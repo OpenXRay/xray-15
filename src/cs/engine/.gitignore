@@ -1,0 +1,9 @@
+# User-specific files
+*.suo
+*.sdf
+*.user
+
+# Visual Studio profiler
+*.psess
+*.vsp
+*.vspx
