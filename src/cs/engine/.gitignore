@@ -1,6 +1,7 @@
 # User-specific files
 *.suo
 *.sdf
+*.opensdf
 *.user
 
 # Visual Studio profiler
