@@ -1,0 +1,19 @@
+# exclude binaries and temporary files
+binaries/
+binaries_plugs/
+intermediate/
+intermediate_plugs/
+libraries/
+ipch/
+
+# User-specific files
+*.suo
+*.sdf
+*.opensdf
+*.user
+*.vcxproj.filters
+
+# Visual Studio profiler
+*.psess
+*.vsp
+*.vspx

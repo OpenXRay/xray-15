@@ -1,8 +1,0 @@
-# exclude shadow of chernobyl
-soc/
-# exclude binaries and temporary files
-binaries/
-binaries_plugs/
-intermediate/
-intermediate_plugs/
-libraries/
