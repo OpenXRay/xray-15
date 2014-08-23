@@ -231,7 +231,6 @@
   <ItemGroup>
     <ClInclude Include="dds\ConvertColor.h" />
     <ClInclude Include="dds\ddsTypes.h" />
-    <ClInclude Include="dds\nvdxt_options.h" />
     <ClInclude Include="dds\nvErrorCodes.h" />
     <ClInclude Include="dds\tPixel.h" />
     <ClInclude Include="dds\tVector.h" />
