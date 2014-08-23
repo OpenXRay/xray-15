@@ -1,0 +1,646 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#include ""buildver.h""\r\n"
+    "#if defined(GAME_FREE_VER)\r\n"
+    "  #include ""wm3_gmax.rc""\r\n"
+    "#elif defined(WEBVERSION)\r\n"
+    "  #include ""wm3_plasma.rc""\r\n"
+    "#endif\r\n"
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_SV_MORPH32_MASK     BITMAP                  "morph32m.bmp"
+IDB_SV_MORPH32          BITMAP                  "morph32.bmp"
+IDB_SV_MORPH16_MASK     BITMAP                  "morph16m.bmp"
+IDB_SV_MORPH16          BITMAP                  "morph16.bmp"
+IDB_MORPHPARAMS_MASK    BITMAP                  "morph_updown_msk.bmp"
+IDB_MORPHPARAMS_ICON    BITMAP                  "morph_updown_but.bmp"
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.K.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_GLOBAL_PARAMS DIALOG  0, 0, 108, 174
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Use Limits",IDC_LIMIT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,51,36,46,10
+    CONTROL         "",IDC_MIN_EDIT,"CustEdit",WS_TABSTOP,51,49,35,10
+    CONTROL         "",IDC_MAX_EDIT,"CustEdit",WS_TABSTOP,51,60,35,10
+    CONTROL         "Use Vertex Selection",IDC_USESEL,"CustButton",
+                    WS_TABSTOP,10,77,87,15
+    GROUPBOX        "Global Settings",IDC_STATIC,3,2,102,97
+    CONTROL         "",IDC_MAX_SPIN,"SpinnerControl",0x0,87,60,7,10
+    CONTROL         "",IDC_MIN_SPIN,"SpinnerControl",0x0,87,49,7,10
+    RTEXT           "Maximum :",IDC_STATIC,15,60,34,8
+    RTEXT           "Minimum :",IDC_STATIC,17,49,32,8
+    LTEXT           "Override these settings on all channels :",IDC_STATIC,
+                    10,12,87,16
+    GROUPBOX        "Morph Material",IDC_STATIC,3,138,102,32
+    PUSHBUTTON      "Assign New Material",IDC_MTLASSIGN,9,149,89,15
+    GROUPBOX        "Channel Activation",IDC_STATIC,3,101,102,35
+    PUSHBUTTON      "Set All",IDC_ALL_ACTIVATE,10,114,42,15
+    PUSHBUTTON      "Set None",IDC_ALL_DEACTIVATE,56,114,39,15
+END
+
+IDD_CHANNEL_PARAMS DIALOGEX 0, 0, 108, 321
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_CHANNAME,"CustEdit",WS_TABSTOP,23,3,81,12
+    PUSHBUTTON      "000",IDC_CHANNUM,3,3,19,12,BS_CENTER | BS_VCENTER,
+                    WS_EX_STATICEDGE
+    CONTROL         "Pick Object from Scene",IDC_PICK,"CustButton",
+                    WS_TABSTOP,10,43,88,15
+    CONTROL         "Capture Current State",IDC_MAKE,"CustButton",WS_TABSTOP,
+                    10,60,88,15
+    PUSHBUTTON      "Delete",IDC_DELETE,10,80,43,15,WS_DISABLED
+    PUSHBUTTON      "Extract",IDC_EXTRACT,55,80,43,15,WS_DISABLED
+    CONTROL         "Use Limits",IDC_LIMIT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,51,114,46,10
+    CONTROL         "",IDC_MIN_EDIT,"CustEdit",WS_TABSTOP,51,126,35,10
+    CONTROL         "",IDC_MAX_EDIT,"CustEdit",WS_TABSTOP,51,137,35,10
+    CONTROL         "Use Vertex Selection",IDC_USESEL,"CustButton",
+                    WS_TABSTOP,10,151,87,15
+    PUSHBUTTON      "Reload Morph Target",IDC_UPDATETARGET,3,303,101,15
+    GROUPBOX        "Create Morph Target",IDC_STATIC,3,29,101,71
+    CONTROL         "",IDC_MAX_SPIN,"SpinnerControl",0x0,87,137,7,10
+    CONTROL         "",IDC_MIN_SPIN,"SpinnerControl",0x0,87,126,7,10
+    GROUPBOX        "Channel Settings",IDC_STATIC,3,103,101,68
+    RTEXT           "Maximum :",IDC_STATIC,15,137,34,8
+    RTEXT           "Minimum :",IDC_STATIC,17,126,32,8
+    CONTROL         "Channel is Active",IDC_USECHAN,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,24,17,69,8
+    GROUPBOX        "Progressive Morph",IDC_STATIC,3,175,101,125
+    LISTBOX         IDC_TARGETLIST,5,201,96,50,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Target List",IDC_STATIC,11,191,36,8
+    CONTROL         "",IDC_TARGET_PERCENT_EDIT,"CustEdit",WS_TABSTOP,55,253,
+                    35,10
+    CONTROL         "",IDC_TARGET_PERCENT_SPIN,"SpinnerControl",0x0,91,253,7,
+                    10
+    RTEXT           "Target %:",IDC_STATIC,20,253,33,8
+    PUSHBUTTON      "Delete Target",IDC_DELETE2,11,280,85,11
+    CONTROL         "",IDC_UP_DOWN,"CustToolbar",WS_TABSTOP,63,186,35,14
+    CONTROL         "",IDC_CURVE_EDIT,"CustEdit",WS_TABSTOP,55,265,35,10
+    CONTROL         "",IDC_CURVE_EDIT_SPIN,"SpinnerControl",0x0,91,265,7,10
+    RTEXT           "Tension :",IDC_STATIC,23,265,30,8
+END
+
+IDD_CHANNEL_LIST DIALOGEX 0, 0, 108, 255
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_MARKERLIST,3,3,101,62,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "Save Marker",IDC_SAVEMARKER,3,19,49,12,WS_DISABLED
+    PUSHBUTTON      "Del Marker",IDC_DELMARKER,55,19,49,12,WS_DISABLED
+    CONTROL         "",IDC_FE1,"CustEdit",WS_TABSTOP,71,40,26,11
+    CONTROL         "",IDC_FE2,"CustEdit",WS_TABSTOP,71,53,26,11
+    CONTROL         "",IDC_FE3,"CustEdit",WS_TABSTOP,71,66,26,11
+    CONTROL         "",IDC_FE4,"CustEdit",WS_TABSTOP,71,79,26,11
+    CONTROL         "",IDC_FE5,"CustEdit",WS_TABSTOP,71,92,26,11
+    CONTROL         "",IDC_FE6,"CustEdit",WS_TABSTOP,71,105,26,11
+    CONTROL         "",IDC_FE7,"CustEdit",WS_TABSTOP,71,118,26,11
+    CONTROL         "",IDC_FE8,"CustEdit",WS_TABSTOP,71,131,26,11
+    CONTROL         "",IDC_FE9,"CustEdit",WS_TABSTOP,71,144,26,11
+    CONTROL         "",IDC_FE10,"CustEdit",WS_TABSTOP,71,157,26,11
+    PUSHBUTTON      "Load Multiple Targets...",IDC_LOADMULT,3,192,101,15
+    PUSHBUTTON      "Reload All Morph Targets",IDC_UPDATETARGS,3,208,101,15
+    PUSHBUTTON      "Zero Active Channel Values",IDC_ZEROOTHERS,3,224,101,15
+    CONTROL         "Automatically reload targets",IDC_AUTOLOAD,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,3,241,100,11
+    SCROLLBAR       IDC_LISTSCROLL,3,40,10,128,SBS_VERT
+    CONTROL         "",IDC_P1,"CustButton",WS_TABSTOP,20,40,50,11
+    CONTROL         "",IDC_P2,"CustButton",WS_TABSTOP,20,53,50,11
+    CONTROL         "",IDC_P3,"CustButton",WS_TABSTOP,20,66,50,11
+    CONTROL         "",IDC_P4,"CustButton",WS_TABSTOP,20,79,50,11
+    CONTROL         "",IDC_P5,"CustButton",WS_TABSTOP,20,92,50,11
+    CONTROL         "",IDC_P6,"CustButton",WS_TABSTOP,20,105,50,11
+    CONTROL         "",IDC_P7,"CustButton",WS_TABSTOP,20,118,50,11
+    CONTROL         "",IDC_P8,"CustButton",WS_TABSTOP,20,131,50,11
+    CONTROL         "",IDC_P9,"CustButton",WS_TABSTOP,20,144,50,11
+    CONTROL         "",IDC_P10,"CustButton",WS_TABSTOP,20,157,50,11
+    CONTROL         "",IDC_FS1,"SpinnerControl",0x0,97,40,7,10
+    CONTROL         "",IDC_FS2,"SpinnerControl",0x0,97,53,7,10
+    CONTROL         "",IDC_FS3,"SpinnerControl",0x0,97,66,7,10
+    CONTROL         "",IDC_FS4,"SpinnerControl",0x0,97,79,7,10
+    CONTROL         "",IDC_FS5,"SpinnerControl",0x0,97,92,7,10
+    CONTROL         "",IDC_FS6,"SpinnerControl",0x0,97,105,7,10
+    CONTROL         "",IDC_FS7,"SpinnerControl",0x0,97,118,7,10
+    CONTROL         "",IDC_FS8,"SpinnerControl",0x0,97,131,7,10
+    CONTROL         "",IDC_FS9,"SpinnerControl",0x0,97,144,7,10
+    CONTROL         "",IDC_FS10,"SpinnerControl",0x0,97,157,7,10
+    CTEXT           "000 - 000",IDC_PAGE,58,175,33,11,SS_CENTERIMAGE
+    RTEXT           "List Range :",IDC_STATIC,16,175,39,11,SS_CENTERIMAGE
+    CONTROL         "",IDC_I2,"Static",SS_BLACKFRAME,16,53,3,11,
+                    WS_EX_TRANSPARENT
+    CONTROL         "",IDC_I3,"Static",SS_BLACKFRAME,16,66,3,11,
+                    WS_EX_TRANSPARENT
+    CONTROL         "",IDC_I4,"Static",SS_BLACKFRAME,16,79,3,11,
+                    WS_EX_TRANSPARENT
+    CONTROL         "",IDC_I5,"Static",SS_BLACKFRAME,16,92,3,11,
+                    WS_EX_TRANSPARENT
+    CONTROL         "",IDC_I6,"Static",SS_BLACKFRAME,16,105,3,11,
+                    WS_EX_TRANSPARENT
+    CONTROL         "",IDC_I7,"Static",SS_BLACKFRAME,16,118,3,11,
+                    WS_EX_TRANSPARENT
+    CONTROL         "",IDC_I8,"Static",SS_BLACKFRAME,16,131,3,11,
+                    WS_EX_TRANSPARENT
+    CONTROL         "",IDC_I9,"Static",SS_BLACKFRAME,16,144,3,11,
+                    WS_EX_TRANSPARENT
+    CONTROL         "",IDC_I10,"Static",SS_BLACKFRAME,16,157,3,11,
+                    WS_EX_TRANSPARENT
+    CONTROL         "",IDC_I1,"Static",SS_BLACKFRAME,16,40,3,11,
+                    WS_EX_TRANSPARENT
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,-3,35,121,1,
+                    WS_EX_STATICEDGE
+    GROUPBOX        "",IDC_LISTFRAME2,3,167,101,22
+END
+
+IDD_MC_EXPORT DIALOG  0, 0, 127, 212
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Export Channels"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LISTBOX         IDC_CLIST,7,19,113,102,LBS_USETABSTOPS | 
+                    LBS_NOINTEGRALHEIGHT | LBS_EXTENDEDSEL | 
+                    LBS_DISABLENOSCROLL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Select None",IDC_SELNONE,13,152,50,12
+    PUSHBUTTON      "Select All",IDC_SELALL,65,152,50,12
+    PUSHBUTTON      "Select Used",IDC_SELUSED,13,166,50,12
+    PUSHBUTTON      "Invert",IDC_SELINVERT,65,166,50,12
+    DEFPUSHBUTTON   "Cancel",IDC_CANCEL,74,190,46,16
+    PUSHBUTTON      "Save...",IDC_DOSAVE,7,190,46,16,WS_DISABLED
+    LTEXT           "Select Channels to Export :",IDC_STATIC,7,8,113,10
+    CTEXT           "0 Channels Selected",IDC_SEL,13,136,101,12,
+                    SS_CENTERIMAGE | SS_SUNKEN
+    GROUPBOX        "Selection",IDC_STATIC,7,124,113,60
+END
+
+IDD_MC_IMPORT DIALOG  0, 0, 362, 147
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Import Channels"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LISTBOX         IDC_CIMP,7,19,95,102,LBS_USETABSTOPS | 
+                    LBS_NOINTEGRALHEIGHT | LBS_DISABLENOSCROLL | WS_VSCROLL | 
+                    WS_TABSTOP
+    LISTBOX         IDC_CLIST,106,19,95,102,LBS_USETABSTOPS | 
+                    LBS_NOINTEGRALHEIGHT | LBS_DISABLENOSCROLL | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "Add =>",IDC_ADD,204,54,29,16,WS_DISABLED
+    PUSHBUTTON      "Delete",IDC_ADD2,204,72,29,16,WS_DISABLED
+    LISTBOX         IDC_CMAP,235,19,120,102,LBS_USETABSTOPS | 
+                    LBS_NOINTEGRALHEIGHT | LBS_DISABLENOSCROLL | LBS_NOSEL | 
+                    WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "Cancel",IDC_CANCEL,302,125,53,16
+    PUSHBUTTON      "Load",IDC_DOSAVE,233,125,53,16
+    LTEXT           "Select Channel to Import :",IDC_STATIC,7,8,95,10
+    LTEXT           "Select Target Channel :",IDC_STATIC,106,8,95,10
+    LTEXT           "Channel Mapping :",IDC_STATIC,235,8,93,8
+END
+
+IDD_ADVANCED DIALOGEX 0, 0, 108, 132
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "5.0",IDC_V1,"CustButton",WS_TABSTOP,12,17,25,17
+    CONTROL         "1.0",IDC_V2,"CustButton",WS_TABSTOP,41,17,25,17
+    CONTROL         "0.1",IDC_V3,"CustButton",WS_TABSTOP,70,17,25,17
+    PUSHBUTTON      "Compact Channel List",IDC_COMPACT,9,59,88,17
+    GROUPBOX        "Spinner Increments",IDC_STATIC,3,3,102,38
+    GROUPBOX        "Approximate Memory Usage",IDC_STATIC,3,100,102,29
+    CTEXT           "0 KB",IDC_MEMSIZE,10,113,88,11,SS_CENTERIMAGE,
+                    WS_EX_STATICEDGE
+    CTEXT           "",IDC_COMPACTSTAT,9,80,88,11,SS_CENTERIMAGE,
+                    WS_EX_STATICEDGE
+    GROUPBOX        "Channel Use",IDC_STATIC,3,47,102,50
+END
+
+IDD_CHANOP DIALOG  0, 0, 134, 198
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Channel Operation"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LISTBOX         IDC_CLIST,7,19,120,128,LBS_USETABSTOPS | 
+                    LBS_NOINTEGRALHEIGHT | LBS_DISABLENOSCROLL | WS_VSCROLL | 
+                    WS_TABSTOP
+    DEFPUSHBUTTON   "Cancel",IDC_CANCEL,81,176,46,16
+    PUSHBUTTON      "Unknown Command",IDC_PERFORMOP,7,176,67,16,WS_DISABLED
+    LTEXT           "Select Target Channel :",IDC_STATIC,7,8,120,10
+    CTEXT           "",IDC_STAT,7,150,120,19,SS_SUNKEN
+END
+
+IDD_LEGEND DIALOGEX 0, 0, 108, 114
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_IC1,"Static",SS_BLACKFRAME,4,5,15,12,
+                    WS_EX_TRANSPARENT
+    LTEXT           "Contains no morph data, empty channel",IDC_STATIC,25,3,
+                    80,17
+    LTEXT           "Contains no morph data, changed in some way",IDC_STATIC,
+                    25,25,80,17
+    LTEXT           "Contains morph data, targeted object in scene",
+                    IDC_STATIC,25,47,80,17
+    LTEXT           "Contains morph data; no target object",IDC_STATIC,25,70,
+                    80,17
+    CONTROL         "",IDC_IC2,"Static",SS_BLACKFRAME,4,27,15,12,
+                    WS_EX_TRANSPARENT
+    CONTROL         "",IDC_IC3,"Static",SS_BLACKFRAME,4,49,15,12,
+                    WS_EX_TRANSPARENT
+    CONTROL         "",IDC_IC4,"Static",SS_BLACKFRAME,4,72,15,12,
+                    WS_EX_TRANSPARENT
+    LTEXT           "Channel has been disabled, won't be used",IDC_STATIC,25,
+                    93,80,17
+    CONTROL         "",IDC_IC5,"Static",SS_BLACKFRAME,4,95,15,12,
+                    WS_EX_TRANSPARENT
+END
+
+IDD_MORPHMTL DIALOG  0, 0, 217, 295
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Choose Morph Object",IDC_BIND,"CustButton",WS_TABSTOP,9,
+                    17,80,15
+    PUSHBUTTON      "Refresh",IDC_REFRESH,9,34,80,15
+    COMBOBOX        IDC_MARKERLIST,93,35,115,62,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "",IDC_MORPH_BASE,"CustButton",WS_TABSTOP,65,70,128,12
+    CONTROL         "",IDC_MORPH_MAT1,"CustButton",WS_TABSTOP,65,103,128,12
+    CONTROL         "",IDC_TEXON1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,198,
+                    104,9,9
+    CONTROL         "",IDC_MORPH_MAT2,"CustButton",WS_TABSTOP,65,118,128,12
+    CONTROL         "",IDC_TEXON2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,198,
+                    120,9,9
+    CONTROL         "",IDC_MORPH_MAT3,"CustButton",WS_TABSTOP,65,133,128,12
+    CONTROL         "",IDC_TEXON3,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,198,
+                    134,9,9
+    CONTROL         "",IDC_MORPH_MAT4,"CustButton",WS_TABSTOP,65,148,128,12
+    CONTROL         "",IDC_TEXON4,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,198,
+                    149,9,9
+    CONTROL         "",IDC_MORPH_MAT5,"CustButton",WS_TABSTOP,65,163,128,12
+    CONTROL         "",IDC_TEXON5,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,198,
+                    164,9,9
+    CONTROL         "",IDC_MORPH_MAT6,"CustButton",WS_TABSTOP,65,178,128,12
+    CONTROL         "",IDC_TEXON6,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,198,
+                    179,9,9
+    CONTROL         "",IDC_MORPH_MAT7,"CustButton",WS_TABSTOP,65,193,128,12
+    CONTROL         "",IDC_TEXON7,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,198,
+                    194,9,9
+    CONTROL         "",IDC_MORPH_MAT8,"CustButton",WS_TABSTOP,65,208,128,12
+    CONTROL         "",IDC_TEXON8,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,198,
+                    209,9,9
+    CONTROL         "",IDC_MORPH_MAT9,"CustButton",WS_TABSTOP,65,223,128,12
+    CONTROL         "",IDC_TEXON9,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,198,
+                    224,9,9
+    CONTROL         "",IDC_MORPH_MAT10,"CustButton",WS_TABSTOP,65,238,128,12
+    CONTROL         "",IDC_TEXON10,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,198,
+                    239,9,9
+    SCROLLBAR       IDC_LISTSCROLL,10,102,12,151,SBS_VERT
+    CONTROL         "Always",IDC_UPDATE1,"Button",BS_AUTORADIOBUTTON,9,275,
+                    54,9
+    CONTROL         "When Rendering",IDC_UPDATE2,"Button",BS_AUTORADIOBUTTON,
+                    66,275,68,9
+    CONTROL         "Never Calculate",IDC_UPDATE3,"Button",
+                    BS_AUTORADIOBUTTON,140,275,65,9
+    GROUPBOX        "Modifier Connection",IDC_STATIC,4,4,209,50
+    CTEXT           "No Target",IDC_MORPHNAME,93,17,114,15,SS_CENTERIMAGE | 
+                    SS_SUNKEN
+    GROUPBOX        "Channel Material Setup",IDC_STATIC,4,90,209,169
+    RTEXT           "Map 1 : ",IDC_MNAME1,25,103,38,12,SS_CENTERIMAGE
+    RTEXT           "Map 2 : ",IDC_MNAME2,25,118,38,12,SS_CENTERIMAGE
+    RTEXT           "Map 3 : ",IDC_MNAME3,25,132,38,12,SS_CENTERIMAGE
+    RTEXT           "Map 4 : ",IDC_MNAME4,25,147,38,12,SS_CENTERIMAGE
+    RTEXT           "Map 5 : ",IDC_MNAME5,25,162,38,12,SS_CENTERIMAGE
+    RTEXT           "Map 6 : ",IDC_MNAME6,25,178,38,12,SS_CENTERIMAGE
+    RTEXT           "Map 7 : ",IDC_MNAME7,25,193,38,12,SS_CENTERIMAGE
+    RTEXT           "Map 8 : ",IDC_MNAME8,25,208,38,12,SS_CENTERIMAGE
+    RTEXT           "Map 9 : ",IDC_MNAME9,25,223,38,12,SS_CENTERIMAGE
+    RTEXT           "Map 10 : ",IDC_MNAME10,25,238,38,12,SS_CENTERIMAGE
+    RTEXT           "Base : ",IDC_BASE,25,70,38,12,SS_CENTERIMAGE
+    GROUPBOX        "Base Material",IDC_STATIC,4,57,209,31
+    GROUPBOX        "Mixing Calculation Options",IDC_STATIC,4,262,209,29
+END
+
+IDD_BINDMORPH DIALOG  0, 0, 176, 102
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Choose Morpher Modifier..."
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Bind",IDOK,119,7,50,14,WS_DISABLED
+    PUSHBUTTON      "Cancel",IDCANCEL,119,24,50,14
+    LISTBOX         IDC_MODLIST,7,7,106,88,LBS_NOINTEGRALHEIGHT | 
+                    LBS_DISABLENOSCROLL | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_NAMECAP DIALOG  0, 0, 140, 40
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION
+CAPTION "Name Captured Object..."
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_NEWNAME,"CustEdit",WS_TABSTOP,7,5,125,13
+    DEFPUSHBUTTON   "Accept",IDOK,7,21,55,15
+    DEFPUSHBUTTON   "Cancel",IDCANCEL,78,21,55,15
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_GLOBAL_PARAMS, DIALOG
+    BEGIN
+        LEFTMARGIN, 3
+        RIGHTMARGIN, 105
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 171
+    END
+
+    IDD_CHANNEL_PARAMS, DIALOG
+    BEGIN
+        LEFTMARGIN, 3
+        RIGHTMARGIN, 104
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 318
+    END
+
+    IDD_CHANNEL_LIST, DIALOG
+    BEGIN
+        LEFTMARGIN, 3
+        RIGHTMARGIN, 104
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 252
+    END
+
+    IDD_MC_EXPORT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 120
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 206
+    END
+
+    IDD_MC_IMPORT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 355
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 141
+    END
+
+    IDD_ADVANCED, DIALOG
+    BEGIN
+        LEFTMARGIN, 3
+        RIGHTMARGIN, 105
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 129
+    END
+
+    IDD_CHANOP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 127
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 192
+    END
+
+    IDD_LEGEND, DIALOG
+    BEGIN
+        LEFTMARGIN, 3
+        RIGHTMARGIN, 105
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 111
+    END
+
+    IDD_MORPHMTL, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 213
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 291
+    END
+
+    IDD_BINDMORPH, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 169
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 95
+    END
+
+    IDD_NAMECAP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 133
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 36
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_CHANSUB MENU 
+BEGIN
+    POPUP "Channel_Submenu"
+    BEGIN
+        MENUITEM "Move To...",                  ID_CSM_MOVE
+        MENUITEM "Swap With...",                ID_CSM_SWAP
+        MENUITEM SEPARATOR
+    END
+    POPUP "Target List Popup"
+    BEGIN
+        MENUITEM "Pick Target",                 ID_MENU_PICK_TARGET
+        MENUITEM "Delete Selected",             ID_MENU_TARGET_DELETED
+        MENUITEM "Move Selected Up",            ID_MENU_TARGET_MOVEUP
+        MENUITEM "Move Selected Down",          ID_MENU_TARGET_MOVEDOWN
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_LIBDESCRIPTION      "Morph Modifier (Discreet)"
+    IDS_CLASS_NAME          "Morpher"
+    IDS_GLOBAL_PARAMS       "Global Parameters"
+    IDS_CHANNEL_PARAMS      "Channel Parameters"
+    IDS_CHANNEL_LIST        "Channel List"
+    IDS_ADVANCED            "Advanced Parameters"
+    IDS_EMPTY_CHANNEL       "- empty -"
+    IDS_MXCATEGORY          "MAX STANDARD"
+    IDS_SUBANIMPARAM        "Morph Parameters"
+    IDS_UPD_ON              "Reload Morph Target"
+    IDS_UPD_OFF             "No Target to Reload"
+    IDS_DEL_ON              "Delete"
+    IDS_DEL_OFF             "Delete"
+    IDS_PC_MORPH            "Morpher Change"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_NOCON               "No Target"
+    IDS_ONCON               "Target Available"
+    IDS_MENUITEM1_PS        "Pick from Scene"
+    IDS_MENUITEM2_DC        "Delete Channel"
+    IDS_MENUITEM3_RT        "Reload Target"
+    IDS_CAPTURED            "Captured"
+    IDS_ACTIVE              "Used Channels"
+    IDS_MENUNAME            "Morph Target"
+    IDS_FREE                "Available"
+    IDS_CHANSEL             "Channels Selected"
+    IDS_OPMOVE              "Move"
+    IDS_OPSWAP              "Swap"
+    IDS_OPOKAY              "Operation Okay"
+    IDS_OPWARN              "Warning - Existing channel will be overwritten with this operation."
+    IDS_OPCANT              "Error - Can't use source channel as target."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_LOADMULTI           "Load Multiple Targets"
+    IDS_MULTIBTN            "Load"
+    IDS_NOFREE              "Error - There are no free/empty channels available \nfor incoming targets! Please free up some channels, \nor select fewer targets.\n"
+    IDS_CANNOT              "Cannot Assign Targets"
+    IDS_LEGEND_DLG          "Channel Color Legend"
+    IDS_EXTRACT_GRAB_ERROR  "Cannot extract morph channel - Couldn't get pointer to object.  Please have the morph object selected before using this function."
+    IDS_EXTRACT_MOD_ERROR   "Cannot extract morph channel - couldn't find Morph Modifier !"
+    IDS_MORPHMTL            "Morpher"
+    IDS_MTL_PARAM           "Morpher Basic Parameters"
+    IDS_DS_NONE             "None"
+    IDS_MTL_CNAME           "Channel %i"
+    IDS_MTL_BASE            "Default Material"
+    IDS_MTL_MAPNAME         "Mat %i "
+    IDS_MTL_BASENAME        "Base "
+    IDS_MTL_MAPNAMEDOTS     "Mat %i : "
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_MTL_NOTARG          "No Target"
+    IDS_MTL_NOOBJ           "Cannot Assign Material - Couldn't get pointer to object.  Please have the morph object selected before using this function."
+    IDS_UNDOMCDEL           "Morph Channel Delete"
+    IDS_PBN_USELIMITS       "Use Limits"
+    IDS_PBN_SPINMIN         "Spinner Minimum"
+    IDS_PBN_SPINMAX         "Spinner Maximum"
+    IDS_PBN_USESEL          "Use Selection"
+    IDS_PBN_VALUEINC        "Value Increments"
+    IDS_PBN_AUTOLOAD        "Autoload of targets"
+    IDS_DEL_MARKER          "Delete Marker"
+    IDS_CYCLIC              "This assignment would create a cyclic dependency. Material will be disabled."
+    IDS_CHANNELS_MOVED      "%i Channels Moved"
+    IDS_CYCLIC_MATERIAL     "The morphmaterial and one of it's submaterials share a common morph target. The submaterial will be removed."
+    IDS_UNDO_COMPACT        "Compact Channels"
+    IDS_UNDO_RELOAD         "Reload Morph Target"
+    IDS_MORPHMTL_OBJECT     "Morpher"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_MOVE_TARGETS        "Move Morph Targets"
+    IDS_DELETE_TARGET       "Delete Morph Target"
+    IDS_CANNOT_BIND         "Cannot bind: would create dependency loop"
+END
+
+#endif    // English (U.K.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#include "buildver.h"
+#if defined(GAME_FREE_VER)
+  #include "wm3_gmax.rc"
+#elif defined(WEBVERSION)
+  #include "wm3_plasma.rc"
+#endif
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

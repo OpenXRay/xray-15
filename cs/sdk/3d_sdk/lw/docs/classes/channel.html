@@ -1,0 +1,108 @@
+<html>
+
+<head>
+<title>Classes: ChannelHandler</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="animsave.html"><img width="96" height="20"
+    border="0" src="../images/navlt.gif" alt="AnimSaverHandler"></a></td>
+    <td width="96" align="left"><a href="colorpik.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="ColorPicker"></a></td>
+    <td width="96" align="left"><a href="../classes.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Classes"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>ChannelHandler</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwchannel.h">lwchannel.h</a></small></p>
+    <p>A channel is a value that can vary continuously with time. Channels are everywhere in
+    LightWave. Any animation parameter that can be enveloped is associated with an underlying
+    channel. Channel handlers dip into the stream of a parameter and alter its value.</p>
+    <p><strong>Handler Activation Function</strong></p>
+    <pre>   XCALL_( int ) MyChannel( long version, GlobalFunc *global,
+      LWChannelHandler *local, void *serverData );</pre>
+    <p>The <tt>local</tt> argument to a channel handler's activation function is an
+    LWChannelHandler.</p>
+    <pre>   typedef struct st_LWChannelHandler {
+      LWInstanceFuncs *<strong>inst</strong>;
+      LWItemFuncs     *<strong>item</strong>;
+      void            (*<strong>evaluate</strong>) (LWInstance, const LWChannelAccess *);
+      unsigned int    (*<strong>flags</strong>)    (LWInstance);
+   } LWChannelHandler;</pre>
+    <p>The first two members of this structure are standard instance <a href="../handler.html">handler
+    functions</a>. The <tt>context</tt> argument to the <tt>create</tt> function is the
+    LWChannelID of the associated channel. <em>When the plug-in is activated by Modeler, the <tt>item</tt>
+    member of the LWChannelHandler will be NULL.</em> Check for this before assigning the <tt>item</tt>
+    callbacks.</p>
+    <p>A channel handler also provides an evaluation function and a flags function.<dl>
+      <dt><tt><strong>evaluate</strong>( instance, access )</tt></dt>
+      <dd>The channel value is examined and modified at each time step using functions in the
+        channel access structure, described below.</dd>
+      <dt><br>
+        <tt>f = <strong>flags</strong>( instance )</tt></dt>
+      <dd>Returns an integer containing bit flags combined using bitwise-or. No flags are
+        currently defined for channel handlers, so this should return 0.</dd>
+    </dl>
+    <p><strong>Interface Activation Function</strong></p>
+    <pre>   XCALL_( int ) MyInterface( long version, GlobalFunc *global,
+      LWInterface *local, void *serverData );</pre>
+    <p>This is the standard <a href="../handler.html#ui">interface activation</a> for
+    handlers. Channel handlers are selected on the graph editor panel, and their non-modal
+    interfaces will be drawn there.</p>
+    <p><strong>Channel Access</strong></p>
+    <p>This is the structure passed to the handler's evaluation function.</p>
+    <pre>   typedef struct st_LWChannelAccess {
+      LWChannelID   <strong>chan</strong>;
+      LWFrame       <strong>frame</strong>;
+      LWTime        <strong>time</strong>;
+      double        <strong>value</strong>;
+      void         (*<strong>getChannel</strong>)  (LWChannelID chan, LWTime t,
+                                     double *value);
+      void         (*<strong>setChannel</strong>)  (LWChannelID chan, const double value);
+      const char * (*<strong>channelName</strong>) (LWChannelID chan);
+   } LWChannelAccess;</pre>
+    <dl>
+      <dt><strong><tt>chan</tt></strong></dt>
+      <dd>The channel ID.</dd>
+      <dt><tt><br>
+        <strong>frame</strong></tt></dt>
+      <dd>The frame number of the evaluation.</dd>
+      <dt><strong><tt><br>
+        time</tt></strong></dt>
+      <dd>The time of the evaluation, in seconds.</dd>
+      <dt><strong><tt><br>
+        value</tt></strong></dt>
+      <dd>The current value of the channel at the given time.</dd>
+      <dt><tt><br>
+        <strong>getChannel</strong>( channel, time, value )</tt></dt>
+      <dd>Retrieves a value from a channel.</dd>
+      <dt><tt><br>
+        <strong>setChannel</strong>( channel, value )</tt></dt>
+      <dd>Sets the value of the channel.</dd>
+      <dt><tt><br>
+        name = <strong>channelName</strong>( channel )</tt></dt>
+      <dd>Returns the name associated with the channel ID.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>Several of the SDK samples are channel handlers. <a href="../../sample/NoisyChan/">NoisyChan</a>
+    uses the texture system's noise function to modify a channel. A channel handler is one of
+    four classes demonstrated in <a href="../../sample/txchan/">txchan</a>, which also uses
+    textures as channel modifiers. <a href="../../sample/xpanchan/">xpanchan</a> is a channel
+    handler that demonstrates four ways of displaying the same <a href="../globals/xpanel">XPanels</a>
+    interface.</td>
+  </tr>
+</table>
+</body>
+</html>

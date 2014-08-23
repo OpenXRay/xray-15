@@ -1,0 +1,220 @@
+<html>
+
+<head>
+<title>Classes: EnvironmentHandler</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="displace.html"><img width="96" height="20"
+    border="0" src="../images/navlt.gif" alt="DisplacementHandler"></a></td>
+    <td width="96" align="left"><a href="freq.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="FileRequester"></a></td>
+    <td width="96" align="left"><a href="../classes.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Classes"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>EnvironmentHandler<br>
+    EnvironmentInterface</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwenviron.h">lwenviron.h</a></small></p>
+    <p>Environment handlers render the backdrop, the points at infinity that aren't covered by
+    anything in the scene. This is the natural place to draw the sky, the distant horizon, or
+    a procedural nebula in space.</p>
+    <p><strong>Handler Activation Function</strong></p>
+    <pre>   XCALL_( int ) MyEnvironment( long version, GlobalFunc *global,
+      LWEnvironmentHandler *local, void *serverData );</pre>
+    <p>The <tt>local</tt> argument to an environment handler's activation function is an
+    LWEnvironmentHandler.</p>
+    <pre>   typedef struct st_LWEnvironmentHandler {
+      LWInstanceFuncs *<strong>inst</strong>;
+      LWItemFuncs     *<strong>item</strong>;
+      LWRenderFuncs   *<strong>rend</strong>;
+      LWError         (*<strong>evaluate</strong>) (LWInstance, LWEnvironmentAccess *);
+      unsigned int    (*<strong>flags</strong>) (LWInstance);
+   } LWEnvironmentHandler;</pre>
+    <p>The first three members of this structure point to the standard <a
+    href="../handler.html">handler functions</a>. In addition to these, an environment handler
+    provides an evaluation function and a flags function.<dl>
+      <dt><tt>errmsg = <strong>evaluate</strong>( instance, access )</tt></dt>
+      <dd>This is where the environment handler does its work. At each time step in the animation,
+        the evaluation function is called for each affected pixel in the image. The access
+        argument, described below, contains information about the environment to be colored.</dd>
+      <dt><br>
+        <tt>f = <strong>flags</strong>( instance )</tt></dt>
+      <dd>Returns flag bits combined using bitwise-or.</dd>
+    </dl>
+    <p><strong>Interface Activation Function</strong></p>
+    <pre>   XCALL_( int ) MyInterface( long version, GlobalFunc *global,
+      LWInterface *local, void *serverData );</pre>
+    <p>This is the standard <a href="../handler.html#ui">interface activation</a> for
+    handlers. An environment's non-modal <a href="../globals/xpanel.html">xpanel</a> interface
+    is drawn on the Backdrop tab of the Effects panel.</p>
+    <p><strong>Environment Access</strong></p>
+    <p>This is the structure passed to the handler's evaluation function. </p>
+    <pre>   typedef struct st_LWEnvironmentAccess {
+      LWEnvironmentMode <strong>mode</strong>;
+      double            <strong>h</strong>[2], <strong>p</strong>[2];
+      LWDVector         <strong>dir</strong>;
+      double            <strong>colRect</strong>[4][3];
+      double            <strong>color</strong>[3];
+   } LWEnvironmentAccess;</pre>
+    <dl>
+      <dt><strong><tt>mode</tt></strong></dt>
+      <dd>The context of the evaluation. Currently this distinguishes between rendering (<tt>EHMODE_REAL</tt>)
+        and lower quality previewing (<tt>EHMODE_PREVIEW</tt>).</dd>
+      <dt><tt><br>
+        <strong>h</strong>, <strong>p</strong></tt></dt>
+      <dd>The heading and pitch extents of a rectangular area of the backdrop. They're both
+        expressed in radians. In preview mode, these form a bounding box in spherical coordinates
+        of an area to be colored. They should be ignored in real mode.</dd>
+      <dt><br>
+        <strong>dir</strong></dt>
+      <dd>A vector pointing toward a point on the backdrop to be colored. Use this when evaluating
+        in real mode.</dd>
+      <dt><tt><br>
+        <strong>colRect</strong></tt></dt>
+      <dd>In preview mode, this is where the evaluation function returns the color at the corners
+        of the rectangular area defined by <tt>h</tt> and <tt>p</tt>. The preview display
+        interpolates between these at points inside the rectangle.<blockquote>
+          <p><tt>colRect[0]</tt> gets the color of <tt>(h[0], p[0])<br>
+          colRect[1]</tt> gets the color of <tt>(h[0], p[1])<br>
+          colRect[2]</tt> gets the color of <tt>(h[1], p[0])<br>
+          colRect[3]</tt> gets the color of <tt>(h[1], p[1])</tt></p>
+        </blockquote>
+      </dd>
+      <dt><strong><tt>color</tt></strong></dt>
+      <dd>In real mode, this is where the evaluation function returns the color of the point
+        defined by the direction vector <tt>dir</tt>.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>The <a href="../../sample/Layout/Environment/horizon/">horizon</a> sample duplicates Layout's gradient
+    backdrop settings. It can also produce a grid backdrop. Be sure to look for the haiku in
+    the <tt>newTime</tt> function.</p>
+    <p>The following code can be used to draw a simple representation of the sky and ground
+    that includes a disk for the sun.</p>
+    <p>Drawing the sun requires knowing whether a point on the backdrop is inside the sun's
+    disk. The point's angular separation from the center of the sun must be less than the
+    sun's angular radius. So we need a function for calculating the angular separation between
+    two spherical coordinates.</p>
+    <pre>   static double angsep( double h1, double p1, double h2, double p2 )
+   {
+      double cd;
+   
+      if ( h1 == h2 &amp;&amp; p1 == p2 )
+         return 0.0;
+      
+      cd = cos( p1 ) * cos( p2 ) * cos( fabs( h2 - h1 ))
+         + sin( p1 ) * sin( p2 );
+   
+      /* catch small roundoff errors */
+   
+      if ( cd &gt;  1.0 ) cd =  1.0;
+      if ( cd &lt; -1.0 ) cd = -1.0;
+   
+      return acos( cd );
+   }</pre>
+    <p>We'd also like to write a sampling function that uses the same representation for the
+    point being sampled, regardless of whether it's called in preview or real mode, so we need
+    to be able to convert the direction vector into spherical (heading and pitch) coordinates.
+    If the vector points straight up or down, the heading is undefined, so we set it
+    arbitrarily to 0. To avoid problems with roundoff, we say that the vector is straight up
+    or down if the magnitude of the y component is within some epsilon of 1.0.</p>
+    <pre>   static void vec2hp( LWDVector n, double *h, double *p )
+   {
+      *p = asin( -n[ 1 ] );
+
+      if ( 1.0 - fabs( n[ 1 ] ) &gt; 1e-5 ) {
+         /* not straight up or down */
+         *h = acos( n[ 2 ] / cos( *p ));
+         if ( n[ 0 ] &lt; 0.0 ) *h = 2 * PI - *h;
+      }
+      else *h = 0;
+   }</pre>
+    <p>The sampling function decides whether the point is in the sky, the ground, or the sun,
+    and colors the point accordingly. If the backdrop point is below the horizon, the ground
+    color is used. If both the point and the sun are above the horizon, the point is compared
+    to the sun's position to decide whether the sun or the sky color is used. <tt>hsun</tt>
+    and <tt>psun</tt> are the heading and pitch of the sun's position. In preview mode, the
+    Manhattan distance between the point and the sun's center is sufficient, while in real
+    mode we do the more expensive angular separation calculation.</p>
+    <pre>   static void sample( MyInstance *inst, double h, double p,
+      double *color, int mode )
+   {
+      int insun;
+
+      if ( p &gt;= 0.0 ) {
+         color[ 0 ] = inst-&gt;gndcolor[ 0 ];
+         color[ 1 ] = inst-&gt;gndcolor[ 1 ];
+         color[ 2 ] = inst-&gt;gndcolor[ 2 ];
+         return;
+      }
+   
+      insun = inst-&gt;psun - inst-&gt;sunrad &lt; 0.0;
+      if ( insun ) {
+         if ( mode == EHMODE_PREVIEW )
+            insun =  ( fabs( h - inst-&gt;hsun ) &lt; inst-&gt;sunrad )
+                  &amp;&amp; ( fabs( p - inst-&gt;psun ) &lt; inst-&gt;sunrad );
+         else
+            insun = angsep( h, p, inst-&gt;hsun, inst-&gt;psun )
+                  &lt; inst-&gt;sunrad;
+      }
+
+      if ( insun ) {
+         color[ 0 ] = inst-&gt;suncolor[ 0 ];
+         color[ 1 ] = inst-&gt;suncolor[ 1 ];
+         color[ 2 ] = inst-&gt;suncolor[ 2 ];
+      }
+      else {
+         color[ 0 ] = inst-&gt;skycolor[ 0 ];
+         color[ 1 ] = inst-&gt;skycolor[ 1 ];
+         color[ 2 ] = inst-&gt;skycolor[ 2 ];
+      }
+   }</pre>
+    <p>The evaluation function uses the sampling function to find the right color and returns
+    the color to the renderer.</p>
+    <pre>   XCALL_( static LWError )
+   Evaluate( MyInstance *inst, LWEnvironmentAccess *access )
+   {
+      double h, p;
+
+      switch ( access-&gt;mode )
+      {
+         case EHMODE_PREVIEW:
+            sample( inst, access-&gt;h[ 0 ], access-&gt;p[ 0 ],
+               access-&gt;colRect[ 0 ], access-&gt;mode );
+            sample( inst, access-&gt;h[ 0 ], access-&gt;p[ 1 ],
+               access-&gt;colRect[ 1 ], access-&gt;mode );
+            sample( inst, access-&gt;h[ 1 ], access-&gt;p[ 0 ],
+               access-&gt;colRect[ 2 ], access-&gt;mode );
+            sample( inst, access-&gt;h[ 1 ], access-&gt;p[ 1 ],
+               access-&gt;colRect[ 3 ], access-&gt;mode );
+         break;
+
+         case EHMODE_REAL:
+            vec2hp( access-&gt;dir, &amp;h, &amp;p );
+            sample( inst, h, p, access-&gt;color, access-&gt;mode );
+            break;
+
+         default:
+            break;
+      }
+
+      return NULL;
+   }
+</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

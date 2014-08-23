@@ -1,0 +1,134 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_BENDPARAM DIALOG DISCARDABLE  0, 0, 108, 136
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_ANGLE,"CustEdit",WS_TABSTOP,48,12,36,10
+    CONTROL         "",IDC_DIR,"CustEdit",WS_TABSTOP,48,25,36,10
+    CONTROL         "X",IDC_X,"Button",BS_AUTORADIOBUTTON | WS_GROUP | 
+                    WS_TABSTOP,20,59,20,10
+    CONTROL         "Y",IDC_Y,"Button",BS_AUTORADIOBUTTON,47,59,20,10
+    CONTROL         "Z",IDC_Z,"Button",BS_AUTORADIOBUTTON,73,59,20,10
+    CONTROL         "Limit Effect",IDC_BEND_AFFECTREGION,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP,52,88,48,10
+    CONTROL         "",IDC_BEND_TO,"CustEdit",WS_TABSTOP,52,101,36,10
+    CONTROL         "",IDC_BEND_FROM,"CustEdit",WS_TABSTOP,52,114,36,10
+    CONTROL         "",IDC_ANGLESPINNER,"SpinnerControl",0x0,85,12,7,10
+    CONTROL         "",IDC_DIRSPINNER,"SpinnerControl",0x0,85,25,7,10
+    CONTROL         "",IDC_BEND_TOSPIN,"SpinnerControl",0x0,89,101,7,10
+    CONTROL         "",IDC_BEND_FROMSPIN,"SpinnerControl",0x0,89,114,7,10
+    RTEXT           "Angle:",IDC_STATIC,22,12,25,8
+    RTEXT           "Direction:",IDC_STATIC,14,25,33,8
+    RTEXT           "Lower Limit:",IDC_STATIC,8,114,43,8
+    RTEXT           "Upper Limit:",IDC_STATIC,8,101,43,8
+    GROUPBOX        "Limits",IDC_STATIC,5,78,98,53
+    GROUPBOX        "Bend:",IDC_STATIC,5,2,98,41
+    GROUPBOX        "Bend Axis:",IDC_STATIC,5,46,98,28
+END
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_BENDMOD          "BendModPB2"
+    IDS_RB_BEND2            "BendPB2"
+    IDS_RB_BEND_CLASS       "BendPB2"
+    IDS_MODBASED            "DCG Samples"
+    IDS_RB_HOWTO            "DCG Samples"
+    IDS_RB_PARAMETERS       "Parameters"
+    IDS_RB_ANGLE            "Angle"
+    IDS_RB_DIRECTION        "Direction"
+    IDS_RB_FROM             "From"
+    IDS_RB_TO               "To"
+    IDS_LIB_DESC            "Bend Modifier (PB2 Version)"
+    IDS_FROMTO              "Limit"
+    IDS_FROM                "LowerLimit"
+    IDS_TO                  "UpperLimit"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ANGLE               "Angle"
+    IDS_DIR                 "Direction"
+    IDS_AXIS                "Axis"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

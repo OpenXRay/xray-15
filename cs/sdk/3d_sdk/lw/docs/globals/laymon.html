@@ -1,0 +1,167 @@
+<html>
+
+<head>
+<title>Globals: Layout Monitor</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="iteminfo.html"><img width="96" height="20"
+    border="0" src="../images/navlt.gif" alt="Item Info"></a></td>
+    <td width="96" align="left"><a href="lightinf.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Light Info"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Layout Monitor</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave 7.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwmonitor.h">lwmonitor.h</a></small></p>
+    <p>The Layout monitor global returns functions for initializing and displaying a progress
+    dialog in Layout. This is primarily for showing the progress of lengthy or complex
+    operations in non-handler plug-in classes. Filters and file importer classes have their
+    own monitor mechanisms. See also the monitor global for <a href="modmon.html">Modeler</a>.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWLMonFuncs *lmonf;
+   lmonf = global( LWLMONFUNCS_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWLMonFuncs.</p>
+    <pre>   typedef struct st_LWLMonFuncs {
+      LWLMonID (*<strong>create</strong>)   (void);
+      void     (*<strong>setup</strong>)    (LWLMonID, char *title, unsigned int flags,
+                              const char *histfile);
+      void     (*<strong>setwinpos</strong>)(LWLMonID, int x, int y, int w, int h);
+      void     (*<strong>init</strong>)     (LWLMonID, unsigned int total, const char *);
+      int      (*<strong>step</strong>)     (LWLMonID, unsigned int incr, const char *);
+      void     (*<strong>done</strong>)     (LWLMonID);
+      void     (*<strong>destroy</strong>)  (LWLMonID);
+   } LWLMonFuncs;</pre>
+    <dl>
+      <tt>
+      <dt>mon = <strong>create</strong>()</dt>
+      </tt>
+      <dd>Create a new monitor instance. The monitor returned by <tt>create</tt> is passed as the
+        first argument to the other monitor functions.</dd>
+      <tt>
+      <dt><br>
+        <strong>setup</strong>( mon, title, flags, histfile )</dt>
+      </tt>
+      <dd>Configure the monitor. The <tt>title</tt> string is the title of the monitor window. The
+        <tt>histfile</tt> is the filename of a history file where messages displayed to the user
+        will also be written. This can be NULL if you don't want a history file. The flags can be
+        any of the following combined using bitwise-or. <dl>
+          <tt>
+          <dt><br>
+            LMO_NOABORT</dt>
+          </tt>
+          <dd>By default, the user can inform you that your operation should be stopped. This flag
+            disables the Abort button.</dd>
+          <tt>
+          <dt>LMO_REVIEW</dt>
+          </tt>
+          <dd>If this is set, the monitor window remains open after you call <tt>done</tt>. This
+            allows the user to review the messages displayed during the operation.</dd>
+          <tt>
+          <dt>LMO_HISTAPPEND</dt>
+          </tt>
+          <dd>By default, the history file is overwritten each time <tt>init</tt> is called. This flag
+            causes new message strings to be appended to the file instead.</dd>
+          <tt>
+          <dt>LMO_IMMUPD</dt>
+          </tt>
+          <dd>Enables immediate update of the monitor on every step. The default is to delay updates
+            to avoid incurring too much overhead for rapid step events.</dd>
+        </dl>
+      </dd>
+      <tt>
+      <dt><br>
+        <strong>setwinpos</strong>( mon, x, y, w, h )</dt>
+      </tt>
+      <dd>Set the position and size of the monitor window. The dimensions are in pixels. If you
+        don't call this, Layout will select defaults for you.</dd>
+      <tt>
+      <dt><br>
+        <strong>init</strong>( mon, total, message )</dt>
+      </tt>
+      <dd>Open the monitor window. The <tt>total</tt> is the number of steps in the operation.
+        While <tt>step</tt> is being called, Layout displays your progress to the user as a
+        percentage of this total. The <tt>message</tt> is the first string displayed to the user.</dd>
+      <tt>
+      <dt><br>
+        abort = <strong>step</strong>( mon, increment, message )</dt>
+      </tt>
+      <dd>Advance the progress display by the fraction <tt>total/increment</tt>. When the sum of
+        the steps reaches the total, the progress display will indicate to the user that the task
+        has finished. An increment of 0 is valid and can be used to change the message without
+        changing the progress indication. The <tt>message</tt> can also be NULL, in which case
+        Layout may substitute a generic progress message. If <tt>step</tt> returns 1, the user has
+        requested that the task be aborted.</dd>
+      <tt>
+      <dt><br>
+        <strong>done</strong>( mon )</dt>
+      </tt>
+      <dd>Tell the monitor that the task has been completed. If the flags passed to <tt>setup</tt>
+        included <tt>LMO_REVIEW</tt>, the monitor window remains open and control won't be
+        returned from <tt>done</tt> until the user closes the window. Otherwise <tt>done</tt>
+        closes the window and control returns immediately.</dd>
+      <tt>
+      <dt><br>
+        <strong>destroy</strong>( mon )</dt>
+      </tt>
+      <dd>Free the monitor instance and resources allocated by <tt>create</tt>. If it's open, the
+        monitor window will be closed.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>This code fragment creates and displays a monitor in Layout. Displaying progress to the
+    user is helpful but not essential, so in most cases failure in some part of the monitor
+    processing shouldn't cause your plug-in to fail. </p>
+    <pre>   #include &lt;lwserver.h&gt;
+   #include &lt;lwgeneric.h&gt;
+   #include &lt;lwmonitor.h&gt;
+   #include &lt;time.h&gt;
+
+   LWLMonFuncs *monf;
+   LWLMonID mon;
+   int i, total, step;
+
+   /* get the global and a monitor */
+
+   monf = global( LWLMONFUNCS_GLOBAL, GFUSE_TRANSIENT );
+   if ( monf ) {
+      mon = monf-&gt;create();
+      if ( mon )
+         monf-&gt;setup( mon, &quot;Just Testing&quot;, LMO_REVIEW, NULL );
+   }
+
+   ...
+   /* perform a lengthy task */
+
+   if ( monf &amp;&amp; mon ) monf-&gt;init( mon, total, &quot;Starting...&quot; );
+   for ( i = 0; i &lt; total; i += step ) {
+      ...do something...
+      if ( monf &amp;&amp; mon )
+         if ( monf-&gt;step( mon, step, NULL )) {
+            monf-&gt;step( mon, 0, &quot;Aborted!&quot; );
+            break;
+         }
+   }
+   if ( monf &amp;&amp; mon ) monf-&gt;done( mon );
+
+   ...
+   /* no longer need the monitor */
+
+   if ( monf &amp;&amp; mon ) monf-&gt;destroy( mon );</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

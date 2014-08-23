@@ -1,0 +1,168 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PNG_ABOUT DIALOG DISCARDABLE  0, 0, 183, 92
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About Portable Network Graphics(PNG) I/O Driver"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,61,64,50,14
+    CTEXT           "Portable Network Graphics(PNG) Reader and Writer.  Written by Charlie Thaeler",
+                    IDC_STATIC,33,15,112,32
+END
+
+IDD_PNG_CONFIG DIALOG DISCARDABLE  0, 0, 177, 115
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "PNG Configuration"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,60,97,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,116,97,50,14
+    CONTROL         "Optimized palette  (256)",IDC_PNG_PALETTE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,12,13,144,10
+    CONTROL         "RGB 24 bit  (16.7 Million)",IDC_PNG_RGB24,"Button",
+                    BS_AUTORADIOBUTTON,12,25,144,10
+    CONTROL         "RGB 48 bit  (281 Trillion)",IDC_PNG_RGB48,"Button",
+                    BS_AUTORADIOBUTTON,12,37,144,10
+    CONTROL         "Grayscale 8 bit  (256)",IDC_PNG_GRAY8,"Button",
+                    BS_AUTORADIOBUTTON,12,49,144,10
+    CONTROL         "Grayscale 16 bit  (65,536)",IDC_PNG_GRAY16,"Button",
+                    BS_AUTORADIOBUTTON,12,61,144,10
+    CONTROL         "Alpha channel",IDC_PNG_ALPHA,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,13,81,73,10
+    CONTROL         "Interlaced",IDC_PNG_INTERLACE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,88,81,73,10
+    GROUPBOX        "Colors",-1,6,2,155,73,WS_GROUP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_PNG_ABOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 176
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 85
+    END
+
+    IDD_PNG_CONFIG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 170
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 112
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LIB_DESCRIPTION     "PNG file I/O (Discreet)"
+    IDS_CLASS_NAME          "Portable Network Graphics"
+    IDS_CATEGORY            "Bitmap I/O"
+    IDS_LONGDESC            "PNG Image File"
+    IDS_SHORTDESC           "PNG"
+    IDS_COPYRIGHT           "Copyright 1995-1996 Autodesk, Inc."
+    IDS_AUTHOR              "Discreet, a division of Autodesk"
+    IDS_PNG_PLUGIN          "PNG Plugin"
+    IDS_PNG_ERROR           "PNG Library Internal Error"
+    IDS_PNG_WARNING         "PNG Library Internal Warning"
+    IDS_PNGIO_INTERFACE     "PNG File Interface"
+    IDS_PNGIO_GETBITMAPTYPE "Get Bitmap Type"
+    IDS_PNGIO_SETBITMAPTYPE "Set Bitmap Type"
+    IDS_PNGIO_GETALPHA      "Get Use Alpha"
+    IDS_PNGIO_SETALPHA      "Set Use Alpha"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PNGIO_GETINTERLACED "Get Interlaced"
+    IDS_PNGIO_SETINTERLACED "Set Interlaced"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

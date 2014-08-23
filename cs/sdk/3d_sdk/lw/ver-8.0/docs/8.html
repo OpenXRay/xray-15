@@ -1,0 +1,64 @@
+<html>
+
+<head>
+<title>8 Changes</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="75b.html"><img width="96" height="20" border="0"
+    src="images/navlt.gif" alt="7.5b Changes"></a></td>
+    <td width="384" align="right"><a href="index.html"><img width="230" height="20" border="0"
+    src="images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>8 Changes</h3>
+      <p><small>Mar</small><small>ch 19th, 2004</small> </p>
+    <p>This is a list of the changes in the LightWave 8 release that affect the SDK.</p>
+    <p><tt><a href="../include/lwcomring.h">lwcomring.h</a></tt><ul>
+      <li>A new header file containing the definitions to allow plug-ins to use
+        a standard, event-driven means of intercommunication called the <a href="globals/comring.html">Communication
+        Ring</a>.</li>
+    </ul>
+    <p><tt><a href="../include/lwanimuv.h">lwanimuv.h</a></tt><ul>
+      <li>This is the header for the new <a href="classes/animuv.html">AnimUV</a>
+        Layout plug-in class.</li>
+    </ul>
+    <p><tt><a href="../include/lwdopetrack.h">lwdopetrack.h</a></tt><ul>
+      <li>This is the header for the <a href="globals/dtproxy.html">Dopetrack
+        Proxy</a> global that allows Layout Tool-class plug-ins to use the new
+        Layout Dopetrack as their interface.</li>
+    </ul>
+    <p><tt><a href="../include/lwsceneeditor.h">lwsceneeditor.h</a></tt><ul>
+      <li>This is the header for the SceneEditor global that allows plug-ins to
+        interact with the new Layout Scene Editor system.</li>
+    </ul>
+    <p>Miscellaneous<ul>
+      <li>The <a href="../sample/Layout/AnimUV">AnimUV</a> project has been added to the SDK samples that
+        demonstrates animation of texture UV coordinates.</li>
+      <li>The <a href="globals/comring.html">Communication Ring</a> mechanism is
+        demonstrated by the <a href="../sample/Layout/CustomObject/ComRing">ComRing</a>
+        sample SDK project, which include an LScript and C-code plug-in that
+        intercommunicate.</li>
+      <li>The Custom Polygon plug-in class has an example SDK project&nbsp;</li>
+      <li>A new <b>changeEvent()</b> function has been added to the <a href="../include/lwimage.h">lwimage.h</a>
+        header to allow plug-ins to be notified of editing changes to loaded
+        images.</li>
+      <li><b>motionBlur()</b> and <b>fieldRendering()</b> functions have been
+        added for the <a href="globals/caminfo.html">Camera Info</a> global.</li>
+      <li>The <a href="globals/sceneinf.html">Scene Info</a> global now provides
+        information about <b>antialiasing</b>, <b>enhancedAA</b>, <b>adapativeSampling</b>,
+        <b>adaptiveThreshold</b> and soft <b>filter</b> settings.</li>
+    </ul>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

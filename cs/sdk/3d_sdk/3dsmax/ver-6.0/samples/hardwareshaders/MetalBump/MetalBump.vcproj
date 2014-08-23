@@ -1,0 +1,1572 @@
+<?xml version="1.0" encoding = "Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="7.00"
+	Name="MetalBump"
+	ProjectGUID="{73777C79-7332-4716-8CDC-4E38393C2C8D}"
+	SccProjectName=""
+	SccLocalPath="">
+	<Platforms>
+		<Platform
+			Name="Win32"/>
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory=".\Debug"
+			IntermediateDirectory=".\Debug"
+			ConfigurationType="2"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/LD "
+				Optimization="0"
+				OptimizeForProcessor="2"
+				AdditionalIncludeDirectories="..\..\..\maxsdk\include,..\..\..\..\maxsdk\include"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL"
+				RuntimeLibrary="3"
+				PrecompiledHeaderFile=".\Debug/MetalBump.pch"
+				AssemblerListingLocation=".\Debug/"
+				ObjectFile=".\Debug/"
+				ProgramDatabaseFileName="MetalBump.dlu.pdb"
+				WarningLevel="3"
+				SuppressStartupBanner="TRUE"
+				DebugInformationFormat="4"
+				CompileAs="0"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/MACHINE:I386"
+				AdditionalDependencies="odbc32.lib odbccp32.lib comctl32.lib bmm.lib core.lib geom.lib gfx.lib mesh.lib maxutil.lib maxscrpt.lib manipsys.lib paramblk2.lib d3dx8.lib vfw32.lib Dxerr8.lib mnmath.lib"
+				OutputFile="..\..\..\..\maxsdk\plugin\MetalBump\MetalBump.dlu"
+				LinkIncremental="2"
+				SuppressStartupBanner="TRUE"
+				AdditionalLibraryDirectories="..\..\..\maxsdk\lib,..\..\..\..\maxsdk\lib"
+				ModuleDefinitionFile=".\MetalBump.def"
+				GenerateDebugInformation="TRUE"
+				ProgramDatabaseFile="..\..\..\..\maxsdk\plugin\MetalBump\MetalBump.dlu.pdb"
+				SubSystem="2"
+				BaseAddress="0x117d0000"
+				ImportLibrary=".\Debug/MetalBump.lib"/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="_DEBUG"
+				MkTypLibCompatible="TRUE"
+				SuppressStartupBanner="TRUE"
+				TargetEnvironment="1"
+				TypeLibraryName=".\Debug/MetalBump.tlb"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="2057"
+				AdditionalIncludeDirectories="..\..\..\maxsdk\include;..\..\..\..\maxsdk\include"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+		</Configuration>
+		<Configuration
+			Name="Hybrid|Win32"
+			OutputDirectory=".\Hybrid"
+			IntermediateDirectory=".\Hybrid"
+			ConfigurationType="2"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/LD "
+				Optimization="0"
+				OptimizeForProcessor="2"
+				AdditionalIncludeDirectories="..\..\..\include,..\..\..\..\maxsdk\include"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
+				RuntimeLibrary="2"
+				PrecompiledHeaderFile=".\Hybrid/MetalBump.pch"
+				AssemblerListingLocation=".\Hybrid/"
+				ObjectFile=".\Hybrid/"
+				ProgramDatabaseFileName="MetalBump.dlu.pdb"
+				WarningLevel="3"
+				SuppressStartupBanner="TRUE"
+				DebugInformationFormat="4"
+				CompileAs="0"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/MACHINE:I386"
+				AdditionalDependencies="odbc32.lib odbccp32.lib comctl32.lib bmm.lib core.lib geom.lib gfx.lib mesh.lib maxutil.lib maxscrpt.lib manipsys.lib paramblk2.lib d3dx8.lib vfw32.lib Dxerr8.lib mnmath.lib"
+				OutputFile="..\..\..\..\maxsdk\plugin\MetalBump\MetalBump.dlu"
+				LinkIncremental="2"
+				SuppressStartupBanner="TRUE"
+				AdditionalLibraryDirectories="..\..\..\lib,..\..\..\..\maxsdk\lib"
+				ModuleDefinitionFile=".\MetalBump.def"
+				GenerateDebugInformation="TRUE"
+				ProgramDatabaseFile="..\..\..\..\maxsdk\plugin\MetalBump\MetalBump.dlu.pdb"
+				SubSystem="2"
+				BaseAddress="0x117d0000"
+				ImportLibrary=".\Hybrid/MetalBump.lib"/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="_DEBUG"
+				MkTypLibCompatible="TRUE"
+				SuppressStartupBanner="TRUE"
+				TargetEnvironment="1"
+				TypeLibraryName=".\Hybrid/MetalBump.tlb"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="2057"
+				AdditionalIncludeDirectories="..\..\..\include;..\..\..\..\maxsdk\include"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory=".\Release"
+			IntermediateDirectory=".\Release"
+			ConfigurationType="2"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/LD "
+				InlineFunctionExpansion="2"
+				ImproveFloatingPointConsistency="TRUE"
+				OptimizeForProcessor="2"
+				AdditionalIncludeDirectories="..\..\..\maxsdk\include,..\..\..\..\maxsdk\include"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL"
+				StringPooling="TRUE"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="TRUE"
+				PrecompiledHeaderFile=".\Release/MetalBump.pch"
+				AssemblerListingLocation=".\Release/"
+				ObjectFile=".\Release/"
+				ProgramDatabaseFileName="MetalBump.dlu.pdb"
+				WarningLevel="3"
+				SuppressStartupBanner="TRUE"
+				CompileAs="0"
+				Optimization="2"
+				GlobalOptimizations="TRUE"
+				BufferSecurityCheck="FALSE"
+				FavorSizeOrSpeed="1"
+				OmitFramePointers="TRUE"
+				EnableIntrinsicFunctions="TRUE"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/MACHINE:I386"
+				AdditionalDependencies="odbc32.lib odbccp32.lib comctl32.lib bmm.lib core.lib geom.lib gfx.lib mesh.lib maxutil.lib maxscrpt.lib manipsys.lib paramblk2.lib d3dx8.lib vfw32.lib Dxerr8.lib mnmath.lib"
+				OutputFile="..\..\..\..\maxsdk\plugin\MetalBump\MetalBump.dlu"
+				LinkIncremental="1"
+				SuppressStartupBanner="TRUE"
+				AdditionalLibraryDirectories="..\..\..\maxsdk\lib,..\..\..\..\maxsdk\lib"
+				ModuleDefinitionFile=".\MetalBump.def"
+				ProgramDatabaseFile="..\..\..\..\maxsdk\plugin\MetalBump\MetalBump.dlu.pdb"
+				SubSystem="2"
+				SetChecksum="TRUE"
+				BaseAddress="0x117d0000"
+				ImportLibrary=".\Release/MetalBump.lib"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				OptimizeForWindows98="1"/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="NDEBUG"
+				MkTypLibCompatible="TRUE"
+				SuppressStartupBanner="TRUE"
+				TargetEnvironment="1"
+				TypeLibraryName=".\Release/MetalBump.tlb"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="2057"
+				AdditionalIncludeDirectories="..\..\..\maxsdk\include;..\..\..\..\maxsdk\include"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<IntelOptions
+				CompilerName="1"/>
+		</Configuration>
+	</Configurations>
+	<Files>
+		<Filter
+			Name="Source Files"
+			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat">
+			<File
+				RelativePath=".\ChannelMap.cpp">
+			</File>
+			<File
+				RelativePath=".\DllEntry.cpp">
+			</File>
+			<File
+				RelativePath=".\Lighting.cpp">
+			</File>
+			<File
+				RelativePath=".\MSEmulator.cpp">
+			</File>
+			<File
+				RelativePath=".\MatMgr.cpp">
+			</File>
+			<File
+				RelativePath=".\MetalBump.cpp">
+			</File>
+			<File
+				RelativePath=".\MetalBump.def">
+			</File>
+			<File
+				RelativePath=".\MetalBump.rc">
+			</File>
+			<File
+				RelativePath=".\Movie.cpp">
+			</File>
+			<File
+				RelativePath=".\RenderMesh.cpp">
+			</File>
+			<File
+				RelativePath=".\ShaderMat.cpp">
+			</File>
+			<File
+				RelativePath=".\TextureMgr.cpp">
+			</File>
+			<File
+				RelativePath=".\Utility.cpp">
+			</File>
+		</Filter>
+		<Filter
+			Name="Header Files"
+			Filter="h;hpp;hxx;hm;inl">
+			<File
+				RelativePath=".\ChannelMap.h">
+			</File>
+			<File
+				RelativePath=".\Lighting.h">
+			</File>
+			<File
+				RelativePath=".\MSEmulator.h">
+			</File>
+			<File
+				RelativePath=".\MatMgr.h">
+			</File>
+			<File
+				RelativePath=".\MaterialMgr.h">
+			</File>
+			<File
+				RelativePath=".\MetalBump.h">
+			</File>
+			<File
+				RelativePath=".\Movie.h">
+			</File>
+			<File
+				RelativePath=".\RMaterial.h">
+			</File>
+			<File
+				RelativePath=".\RenderMesh.h">
+			</File>
+			<File
+				RelativePath=".\ShaderConst.h">
+			</File>
+			<File
+				RelativePath=".\ShaderMat.h">
+			</File>
+			<File
+				RelativePath=".\TextureMgr.h">
+			</File>
+			<File
+				RelativePath=".\Utility.h">
+			</File>
+			<File
+				RelativePath=".\nvtexture.h">
+			</File>
+			<File
+				RelativePath=".\resource.h">
+			</File>
+			<File
+				RelativePath=".\singleton.h">
+			</File>
+			<File
+				RelativePath=".\xMovie.h">
+			</File>
+		</Filter>
+		<Filter
+			Name="Shaders"
+			Filter="nvv;nvp">
+			<Filter
+				Name="Vertex"
+				Filter="nvv">
+				<File
+					RelativePath=".\Shaders\Ambient.nvv">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\A.nvo
+"
+							Outputs="shaderoutput\A.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\A.nvo
+"
+							Outputs="shaderoutput\A.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\A.nvo
+"
+							Outputs="shaderoutput\A.nvo"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\Diffuse.nvv">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\D.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\D.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\D.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\D.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\D.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\D.nvo"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\DiffuseReflect.nvv">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DR.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\DR.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DR.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\DR.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DR.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\DR.nvo"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\DirLight.nvv">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DL1.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\DL1.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DL1.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\DL1.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DL1.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\DL1.nvo"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\DirLightNormal.nvv">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DL3.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\DL3.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DL3.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\DL3.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DL3.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\DL3.nvo"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\DirLightNormalSpec.nvv">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DL4.nvo
+"
+							Outputs="shaderoutput\DL4.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DL4.nvo
+"
+							Outputs="shaderoutput\DL4.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DL4.nvo
+"
+							Outputs="shaderoutput\DL4.nvo"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\DirLightSpec.nvv">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DL2.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\DL2.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DL2.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\DL2.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DL2.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\DL2.nvo"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\NormalReflect.nvv">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\NR.nvo
+"
+							Outputs="shaderoutput\NR.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\NR.nvo
+"
+							Outputs="shaderoutput\NR.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\NR.nvo
+"
+							Outputs="shaderoutput\NR.nvo"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\OmniLight.nvv">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\OL1.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\OL1.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\OL1.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\OL1.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\OL1.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\OL1.nvo"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\OmniLightNormal.nvv">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\OL3.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\OL3.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\OL3.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\OL3.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\OL3.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\OL3.nvo"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\OmniLightNormalSpec.nvv">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\OL4.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\OL4.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\OL4.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\OL4.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\OL4.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\OL4.nvo"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\OmniLightSpec.nvv">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\OL2.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\OL2.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\OL2.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\OL2.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\OL2.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\OL2.nvo"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\Reflect.nvv">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\R.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\R.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\R.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\R.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\R.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\R.nvo"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\Specular.nvv">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SP.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SP.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SP.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SP.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SP.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SP.nvo"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\SpotLight.nvv">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SL1.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SL1.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SL1.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SL1.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SL1.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SL1.nvo"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\SpotLightNormal.nvv">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SL3.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SL3.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SL3.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SL3.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SL3.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SL3.nvo"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\SpotLightNormalSpec.nvv">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SL4.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SL4.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SL4.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SL4.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SL4.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SL4.nvo"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\SpotLightSpec.nvv">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SL2.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SL2.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SL2.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SL2.nvo"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SL2.nvo
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SL2.nvo"/>
+					</FileConfiguration>
+				</File>
+			</Filter>
+			<Filter
+				Name="Pixel"
+				Filter="nvp">
+				<File
+					RelativePath=".\Shaders\Ambient.nvp">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\A.pso
+"
+							Outputs="shaderoutput\A.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\A.pso
+"
+							Outputs="shaderoutput\A.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\A.pso
+"
+							Outputs="shaderoutput\A.pso"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\DiffMixAlpha.nvp">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DMA.pso
+"
+							Outputs="shaderoutput\DMA.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DMA.pso
+"
+							Outputs="shaderoutput\DMA.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DMA.pso
+"
+							Outputs="shaderoutput\DMA.pso"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\DiffMixReflect.nvp">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DMR.pso
+"
+							Outputs="shaderoutput\DMR.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DMR.pso
+"
+							Outputs="shaderoutput\DMR.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DMR.pso
+"
+							Outputs="shaderoutput\DMR.pso"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\DiffMixReflectAlpha.nvp">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DMRA.pso
+"
+							Outputs="shaderoutput\DMRA.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DMRA.pso
+"
+							Outputs="shaderoutput\DMRA.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DMRA.pso
+"
+							Outputs="shaderoutput\DMRA.pso"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\DiffuseAlpha.nvp">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DA.pso
+"
+							Outputs="shaderoutput\DA.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DA.pso
+"
+							Outputs="shaderoutput\DA.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DA.pso
+"
+							Outputs="shaderoutput\DA.pso"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\DiffuseReflect.nvp">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DR.pso
+"
+							Outputs="shaderoutput\DR.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DR.pso
+"
+							Outputs="shaderoutput\DR.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DR.pso
+"
+							Outputs="shaderoutput\DR.pso"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\DiffuseReflectAlpha.nvp">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DRA.pso
+"
+							Outputs="shaderoutput\DRA.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DRA.pso
+"
+							Outputs="shaderoutput\DRA.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DRA.pso
+"
+							Outputs="shaderoutput\DRA.pso"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\DirLight.nvp">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DL1.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\DL1.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DL1.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\DL1.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DL1.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\DL1.pso"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\DirLightNormal.nvp">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DL3.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\DL3.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DL3.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\DL3.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DL3.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\DL3.pso"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\DirLightNormalSpec.nvp">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DL4.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\DL4.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DL4.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\DL4.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DL4.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\DL4.pso"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\DirLightSpec.nvp">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DL2.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\DL2.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DL2.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\DL2.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\DL2.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\DL2.pso"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\NormalReflect.nvp">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\NR.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\NR.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\NR.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\NR.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\NR.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\NR.pso"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\OmniLight.nvp">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\OL1.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\OL1.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\OL1.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\OL1.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\OL1.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\OL1.pso"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\OmniLightNormal.nvp">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\OL3.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\OL3.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\OL3.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\OL3.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\OL3.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\OL3.pso"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\OmniLightNormalSpec.nvp">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\OL4.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\OL4.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\OL4.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\OL4.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\OL4.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\OL4.pso"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\OmniLightSpec.nvp">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\OL2.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\OL2.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\OL2.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\OL2.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\OL2.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\OL2.pso"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\Specular.nvp">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SP.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SP.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SP.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SP.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SP.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SP.pso"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\SpotLight.nvp">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SL1.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SL1.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SL1.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SL1.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SL1.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SL1.pso"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\SpotLightNormal.nvp">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SL3.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SL3.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SL3.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SL3.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SL3.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SL3.pso"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\SpotLightNormalSpec.nvp">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SL4.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SL4.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SL4.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SL4.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SL4.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SL4.pso"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Shaders\SpotLightSpec.nvp">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SL2.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SL2.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Hybrid|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SL2.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SL2.pso"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCustomBuildTool"
+							CommandLine="nvasm -d $(InputPath) shaderoutput\SL2.pso
+"
+							AdditionalDependencies="ShaderConst.h;"
+							Outputs="shaderoutput\SL2.pso"/>
+					</FileConfiguration>
+				</File>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="shaderoutput"
+			Filter="">
+			<File
+				RelativePath=".\shaderoutput\d.nvo">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\dl1.nvo">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\dl1.pso">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\dl2.nvo">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\dl2.pso">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\dl3.nvo">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\dl3.pso">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\dl4.nvo">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\dl4.pso">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\dr.nvo">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\nr.nvo">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\nr.pso">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\ol1.nvo">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\ol1.pso">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\ol2.nvo">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\ol2.pso">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\ol3.nvo">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\ol3.pso">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\ol4.nvo">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\ol4.pso">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\r.nvo">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\sl1.nvo">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\sl1.pso">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\sl2.nvo">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\sl2.pso">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\sl3.nvo">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\sl3.pso">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\sl4.nvo">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\sl4.pso">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\sp.nvo">
+			</File>
+			<File
+				RelativePath=".\shaderoutput\sp.pso">
+			</File>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			Filter="ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
+		</Filter>
+		<File
+			RelativePath=".\GAM1.tga">
+		</File>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

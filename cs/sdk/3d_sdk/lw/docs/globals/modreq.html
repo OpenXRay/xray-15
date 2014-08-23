@@ -1,0 +1,367 @@
+<html>
+
+<head>
+<title>Globals: Dynamic Request</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="modmon.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="Dynamic Monitor"></a></td>
+    <td width="96" align="left"><a href="fileio.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="File I/O"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Dynamic Request</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwdyna.h">lwdyna.h</a></small></p>
+    <p>The dynamic request global returns functions that provide a simple user interface API.
+    The requester mechanism predates both the <a href="panel.html">Panels</a> and <a
+    href="xpanel.html">XPanels</a> systems and is available primarily for backward
+    compatibility. Requesters in LightWave 6.0 and later are implemented as non-modal xpanels,
+    so this global can be used as an alternative method of creating those.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   DynaReqFuncs *reqf;
+   reqf = global( LWDYNAREQFUNCS_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to a DynaReqFuncs.</p>
+    <pre>   typedef struct st_DynaReqFuncs {
+      DynaRequestID (*<strong>create</strong>)   (const char *);
+      int           (*<strong>addCtrl</strong>)  (DynaRequestID, const char *,
+                       DyReqControlDesc *);
+      DynaType      (*<strong>ctrlType</strong>) (DynaRequestID, int);
+      int           (*<strong>valueSet</strong>) (DynaRequestID, int, DynaValue *);
+      int           (*<strong>valueGet</strong>) (DynaRequestID, int, DynaValue *);
+      int           (*<strong>post</strong>)     (DynaRequestID);
+      void          (*<strong>destroy</strong>)  (DynaRequestID);
+      LWXPanelID    (*<strong>xpanel</strong>)   (DynaRequestID);
+   } DynaReqFuncs;</pre>
+    <dl>
+      <dt><tt>req = <strong>create</strong>( title )</tt></dt>
+      <dd>Create a new dynamic request dialog. The title is displayed at the top of the dialog
+        window. You can create as many dialogs as you like, but only one can be displayed at a
+        time. The requester ID returned by <tt>create</tt> is passed as the first argument to the
+        other requester functions.</dd>
+      <dt><tt><br>
+        ctl = <strong>addCtrl</strong>( req, label, descriptor )</tt></dt>
+      <dd>Add a control to the dialog. Controls are stacked vertically in the requester window in
+        the order in which they're added, with the first control on top. The return value is a
+        control index used to identify the control in calls to <tt>ctrlType</tt>, <tt>valueSet</tt>
+        and <tt>valueGet</tt>. The descriptor,</dd>
+      <dd>explained below, contains the control type and other information necessary for its
+        display.</dd>
+      <dt><tt><br>
+        <strong>ctrlType</strong>( req, ctl )</tt></dt>
+      <dd>Returns the type of a control.</dd>
+      <dt><tt><br>
+        <strong>valueSet</strong>( req, ctl, value )</tt></dt>
+      <dd>Initialize the value of a control. Values are expressed as <a href="../dynaval.html">DynaValues</a>.
+        This function will return an error code if the DynaValue type is incompatible with the
+        type of the control, or if the control doesn't exist.</dd>
+      <dt><tt><br>
+        <strong>valueGet</strong>( req, ctl, value )</tt></dt>
+      <dd>Retrieve the value of a control. This function will return an error code if the
+        DynaValue type is incompatible with the type of the control, or if the control doesn't
+        exist.</dd>
+      <dt><tt><br>
+        result = <strong>post</strong>( req )</tt></dt>
+      <dd>Display the requester. This function won't return until the user has dismissed the
+        requester. It returns 1 if the user accepted the inputs and 0 if he or she cancelled them.</dd>
+      <dt><tt><br>
+        <strong>destroy</strong>( req )</tt></dt>
+      <dd>Free the requester and associated resources allocated by <tt>create</tt>.</dd>
+      <dt><tt><br>
+        <strong>xpanel</strong>( req )</tt></dt>
+      <dd>Returns the panel ID for the requester. See the <a href="xpanel.html">XPanels</a>
+        discussion for more about this.</dd>
+    </dl>
+    <p><strong>Control Types</strong></p>
+    <p>These are the kinds of controls you can create.<dl>
+      <tt>
+      <dt>DY_STRING</dt>
+      </tt>
+      <dd>A single line of editable text. If you just want to display static text on the
+        requester, use a <tt>DY_TEXT</tt> control.</dd>
+      <tt>
+      <dt><br>
+        DY_INTEGER<br>
+        DY_FLOAT<br>
+        DY_DISTANCE</dt>
+      </tt>
+      <dd>Numeric edit fields. Distance controls display length units and handle unit conversions.
+        Internally the value is a floating-point number of meters.</dd>
+      <tt>
+      <dt><br>
+        DY_VINT<br>
+        DY_VFLOAT<br>
+        DY_VDIST</dt>
+      </tt>
+      <dd>Vector edit fields. A vector in this case is an array of three numbers.</dd>
+      <tt>
+      <dt><br>
+        DY_BOOLEAN<br>
+        DY_CHOICE</dt>
+      </tt>
+      <dd>Boolean controls are like checkboxes. Internally their states are stored as integers
+        with values of either 0 or 1. Choice controls are like radio buttons, an array of mutually
+        exclusive booleans. The internal representation is an integer containing a zero-based
+        index into the choice list.</dd>
+      <tt>
+      <dt><br>
+        DY_SURFACE</dt>
+      </tt>
+      <dd>Lets the user choose one of the surfaces currently in Modeler's internal surface list.
+        The underlying data for a surface control is a string containing the surface name.</dd>
+      <tt>
+      <dt><br>
+        DY_FONT</dt>
+      </tt>
+      <dd>Lets the user choose one of the fonts currently in Modeler's internal font list. The
+        underlying data for a font control is an integer index into the font list.</dd>
+      <tt>
+      <dt><br>
+        DY_TEXT</dt>
+      </tt>
+      <dd>Static (read-only) text. Use this to write things on the requester. If you need a text
+        edit field, use a <tt>DY_STRING</tt> control instead.</dd>
+      <tt>
+      <dt><br>
+        DY_LAYERS</dt>
+      </tt>
+      <dd>Lets the users select one or more layers. These are represented internally by set bits
+        in an integer.</dd>
+    </dl>
+    <p><strong>Control Descriptor</strong></p>
+    <p>The <tt>addCtrl</tt> function is passed a descriptor to tell it what kind of control to
+    create. For most controls, the descriptor is just a type code corresponding to the
+    DynaType of the variable it represents (one of the types in the list above), but for
+    string, choice and static text controls, some additional information is required to create
+    the control.</p>
+    <p><em><strong>String</strong></em></p>
+    <pre>   typedef struct st_DyReqStringDesc {
+      DynaType         type;
+      int              width;
+   } DyReqStringDesc;</pre>
+    <dl>
+      <dt><tt>width</tt></dt>
+      <dd>The displayed width of the edit field, in characters.</dd>
+    </dl>
+    <p><em><strong>Choice</strong></em></p>
+    <pre>   typedef struct st_DyReqChoiceDesc {
+      DynaType         type;
+      const char     **items;
+      int              vertical;
+   } DyReqChoiceDesc;</pre>
+    <dl>
+      <dt><tt>items</tt></dt>
+      <dd>An array of strings. Each string is the label for a choice. The <tt>valueGet</tt> call
+        will return an index into this array to indicate the selected item.</dd>
+      <dt><tt>vertical</tt></dt>
+      <dd>A non-zero value will cause the choices to be arranged vertically on the requester.
+        Otherwise, they're arranged horizontally.</dd>
+    </dl>
+    <p><em><strong>Static Text</strong></em></p>
+    <pre>   typedef struct st_DyReqTextDesc {
+      DynaType         type;
+      const char     **text;
+   } DyReqTextDesc;</pre>
+    <dl>
+      <dt><tt>text</tt></dt>
+      <dd>An array of strings. Each string is displayed on its own line in the requester.</dd>
+    </dl>
+    <p>The control descriptor is a union that collects the type code and this extra
+    information into a single structure.</p>
+    <pre>   typedef union un_DyReqControlDesc {
+      DynaType         type;
+      DyReqStringDesc  string;
+      DyReqChoiceDesc  choice;
+      DyReqTextDesc    text;
+   } DyReqControlDesc;</pre>
+    <p><strong>Example</strong></p>
+    <p>This code fragment creates a requester asking for personal information. It relies on
+    functions called <tt>reqAdd</tt>, <tt>reqSet</tt> and <tt>reqGet</tt> to hide some of the
+    details. The source for these functions follows.</p>
+    <pre>   #include &lt;lwserver.h&gt;
+   #include &lt;lwmodeler.h&gt;
+
+   DynaRequestID req;
+   int ctl[ 5 ], ok;
+
+   char name[ 40 ] = &quot;(Your name here)&quot;;
+   int age = 30, gender = 0;
+   double height = 1.8;
+   double measure[ 3 ] = { 0.9144, 0.6096, 0.9144 };
+   char *glabel[] = { &quot;Female&quot;, &quot;Male&quot;, NULL };
+
+   reqf = global( LWDYNAREQFUNCS_GLOBAL, GFUSE_TRANSIENT );
+   if ( !reqf ) return AFUNC_BADGLOBAL;
+
+   req = reqf-&gt;create( &quot;All About Me&quot; );
+   if ( !req ) goto ErrorNoReq;
+
+   ctl[ 0 ] = reqAdd( req, DY_STRING, &quot;Name&quot;, NULL, 20 );
+   ctl[ 1 ] = reqAdd( req, DY_INTEGER, &quot;Age&quot;, NULL, 0 );
+   ctl[ 2 ] = reqAdd( req, DY_CHOICE, &quot;Gender&quot;, glabel, 1 );
+   ctl[ 3 ] = reqAdd( req, DY_FLOAT, &quot;Height&quot;, NULL, 0 );
+   ctl[ 4 ] = reqAdd( req, DY_VDIST, &quot;Measurements&quot;, NULL, 0 );
+
+   reqSet( req, ctl[ 0 ], name );
+   reqSet( req, ctl[ 1 ], &amp;age );
+   reqSet( req, ctl[ 2 ], &amp;gender );
+   reqSet( req, ctl[ 3 ], &amp;height );
+   reqSet( req, ctl[ 4 ], measure );
+
+   ok = reqf-&gt;post( req );
+
+   if ( ok ) {
+      reqGet( req, ctl[ 0 ], name, sizeof( name ));
+      reqGet( req, ctl[ 1 ], &amp;age, 0 );
+      reqGet( req, ctl[ 2 ], &amp;height, 0 );
+      reqGet( req, ctl[ 3 ], &amp;gender, 0 );
+      reqGet( req, ctl[ 4 ], measure, 0 );
+   }
+
+   reqf-&gt;destroy( req );</pre>
+    <p>The <tt>reqAdd</tt> function creates a requester control. Most control types can be
+    created with only the DynaType and label, but a few require additional information. The <tt>text</tt>
+    argument is an array of strings used to create <tt>DY_CHOICE</tt> and <tt>DY_TEXT</tt>
+    controls. The <tt>extra</tt> argument is the string width in characters for <tt>DY_STRING</tt>
+    controls and the vertical flag for <tt>DY_CHOICE</tt> controls.</p>
+    <pre>int reqAdd( DynaRequestID req, DynaType type, char *label,
+   char **text, int extra )
+{
+   DyReqControlDesc desc;
+
+   desc.type = type;
+
+   switch ( type ) {
+      case DY_STRING:
+         desc.string.width = extra;
+         break;
+      case DY_CHOICE:
+         desc.choice.items = text;
+         desc.choice.vertical = extra;
+         break;
+      case DY_TEXT:
+         desc.text.text = text;
+         break;
+      default:
+         break;
+   }
+
+   return reqf-&gt;addCtrl( req, title, &amp;desc );
+}</pre>
+    <p>The <tt>reqSet</tt> and <tt>reqGet</tt> functions can set and get the value of any
+    control. The <tt>val</tt> argument points to a variable of an appropriate type for the
+    control.</p>
+    <pre>int reqSet( DynaRequestID req, int ctl, void *val )
+{
+   DynaValue dv;
+   int *ivec;
+   double *fvec;
+
+   dv.type = reqf-&gt;ctrlType( req, ctl );
+   switch ( dv.type ) {
+      case DY_STRING:
+      case DY_SURFACE:
+         dv.str.buf = ( char * ) val;
+         dv.str.bufLen = 0;
+         break;
+      case DY_INTEGER:
+      case DY_BOOLEAN:
+      case DY_FONT:
+      case DY_LAYERS:
+      case DY_CHOICE:
+         dv.intv.value = dv.intv.defVal = *(( int * ) val );
+         break;
+      case DY_FLOAT:
+      case DY_DISTANCE:
+         dv.flt.value = dv.flt.defVal = *(( double * ) val );
+         break;
+      case DY_VINT:
+         ivec = ( int * ) val;
+         dv.ivec.val[ 0 ] = ivec[ 0 ];
+         dv.ivec.val[ 1 ] = ivec[ 1 ];
+         dv.ivec.val[ 2 ] = ivec[ 2 ];
+         break;
+      case DY_VFLOAT:
+      case DY_VDIST:
+         fvec = ( double * ) val;
+         dv.fvec.val[ 0 ] = fvec[ 0 ];
+         dv.fvec.val[ 1 ] = fvec[ 1 ];
+         dv.fvec.val[ 2 ] = fvec[ 2 ];
+         break;
+      default:
+         return 0;
+   }
+
+   return reqf-&gt;valueSet( req, ctl, &amp;dv );
+}
+
+
+int reqGet( DynaRequestID req, int ctl, void *val, int len )
+{
+   DynaValue dv;
+   int *ivec, result;
+   double *fvec;
+
+   dv.type = reqf-&gt;ctrlType( req, ctl );
+
+   if ( dv.type == DY_STRING || dv.type == DY_SURFACE ) {
+      dv.str.bufLen = len;
+   }
+
+   result = reqf-&gt;valueGet( req, ctl, &amp;dv );
+
+   switch ( dv.type ) {
+      case DY_STRING:
+      case DY_SURFACE:
+         strcpy( val, dv.str.buf );
+         break;
+      case DY_INTEGER:
+      case DY_BOOLEAN:
+      case DY_FONT:
+      case DY_LAYERS:
+      case DY_CHOICE:
+         *(( int * ) val ) = dv.intv.value;
+         break;
+      case DY_FLOAT:
+      case DY_DISTANCE:
+         *(( double * ) val ) = dv.flt.value;
+         break;
+      case DY_VINT:
+         ivec = ( int * ) val;
+         ivec[ 0 ] = dv.ivec.val[ 0 ];
+         ivec[ 1 ] = dv.ivec.val[ 1 ];
+         ivec[ 2 ] = dv.ivec.val[ 2 ];
+         break;
+      case DY_VFLOAT:
+      case DY_VDIST:
+         fvec = ( double * ) val;
+         fvec[ 0 ] = dv.fvec.val[ 0 ];
+         fvec[ 1 ] = dv.fvec.val[ 1 ];
+         fvec[ 2 ] = dv.fvec.val[ 2 ];
+         break;
+      default:
+         break;
+   }
+
+   return result;
+}
+</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

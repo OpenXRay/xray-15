@@ -1,0 +1,115 @@
+<html>
+
+<head>
+<title>Commands</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="handler.html"><img width="96" height="20" border="0"
+    src="images/navlt.gif" alt="Handlers"></a></td>
+    <td width="96" align="left"><a href="dynaval.html"><img width="64" height="20" border="0"
+    src="images/navrt.gif" alt="DynaValues"></a></td>
+    <td width="384" align="right"><a href="index.html"><img width="230" height="20" border="0"
+    src="images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Commands</h3>
+    <p>Commands are the natural counterparts of <a href="globals.html">globals</a>. While
+    globals are used primarily to read information about LightWave's state, commands are used
+    to change its state by loading and saving files, setting parameters, and performing
+    operations. Most commands available to plug-ins are parallels of actions users can take
+    through LightWave's interface.</p>
+    <p>With one exception described below, commands can only be issued from plug-ins of
+    specific classes: <a href="classes/generic.html">LayoutGeneric</a> and <a
+    href="classes/master.html">MasterHandler</a> in Layout, and <a href="classes/cs.html">CommandSequence</a>
+    in Modeler. Layout and Modeler have command sets unique to each of them, but they also
+    support a common set of commands that operate on components they share, such as the
+    surface and graph editors and the image display.<ul>
+      <li><a href="commands/modeler.html">Modeler</a></li>
+      <li><a href="commands/layout.html">Layout</a></li>
+      <li><a href="commands/common.html">Common</a></li>
+    </ul>
+    <p><strong>Two Methods</strong></p>
+    <p>There are two ways to issue commands, the &quot;lookup/execute&quot; method and the
+    &quot;evaluate&quot; method. Although both methods are available in both Layout and
+    Modeler, the first is native to Modeler and the second to Layout, and there are minor
+    differences in the way they're implemented in each program.<dl>
+      <tt>
+      <dt>cmdcode = <strong>lookup</strong>( data, cmdname )<br>
+        result = <strong>execute</strong>( data, cmdcode, argc, argv, [opsel], cmdresult )</dt>
+      </tt>
+      <dd>The <tt>lookup</tt> function returns an integer code corresponding to the command name.
+        The command is issued by passing the command code to the <tt>execute</tt> function.
+        Command codes are constant for a given session, so <tt>lookup</tt> only needs to be called
+        once per command, after which the codes can be cached and then used in any number of calls
+        to <tt>execute</tt>. The command's arguments are passed in an array of <a
+        href="dynaval.html">DynaValues</a>.<p>Modeler's version of <tt>execute</tt> takes an
+        additional <tt>opsel</tt> argument that determines which geometry will be affected by the
+        command. It can be any one of the <a href="classes/me.html#eltopselect">EltOpSelect</a>
+        codes except <tt>OPSEL_MODIFY</tt>. Modeler's <tt>execute</tt> returns 0 (<tt>CSERR_NONE</tt>)
+        if it succeeds, or an error code if it fails. Layout's <tt>execute</tt> returns 1 if it
+        succeeds and 0 if it fails.</p>
+      </dd>
+      <tt>
+      <dt>result = <strong>evaluate</strong>( data, cmdstring )</dt>
+      </tt>
+      <dd>The <tt>evaluate</tt> function uses a single string to issue the command. The command's
+        name and its arguments are delimited by spaces.</dd>
+    </dl>
+    <p>The evaluate method usually requires you to write less code, particularly if you wrap
+    it in a function that builds the command string. The following does this for a
+    LayoutGeneric.</p>
+    <pre>   static int lwcommand( LWLayoutGeneric *local, const char *cmdname,
+      const char *fmt, ... )
+   {
+      static char cmd[ 512 ], arg[ 512 ];
+
+      if ( fmt ) {
+         va_list ap;
+         va_start( ap, fmt );
+         vsprintf( arg, fmt, ap );
+         va_end( ap );
+         sprintf( cmd, &quot;%s %s&quot;, cmdname, arg );
+         return local-&gt;evaluate( local-&gt;data, cmd );
+      }
+      else
+         return local-&gt;evaluate( local-&gt;data, cmdname );
+   }</pre>
+    <p>The <tt>fmt</tt> argument is a <tt>printf</tt> format string, and the variable number
+    of arguments that follow it correspond to the arguments you'd pass to <tt>printf</tt>.</p>
+    <p>In Modeler, however, the lookup/execute method has a couple of advantages. It runs
+    slightly faster, since Modeler doesn't have to perform the lookup or the
+    &quot;unstringizing&quot; of the arguments itself, and it allows you to specify a
+    selection criterion.</p>
+    <p><strong>Layout Command Global</strong></p>
+    <p>Layout makes available a global that allows plug-ins of any class, not just generics
+    and masters, to issue commands. Currently, this global isn't a first-class citizen of the
+    plug-in API. It isn't prototyped in the SDK headers, and it doesn't have its own document
+    page. This is primarily because there are lots of ways it could be used unsafely, some of
+    which are difficult to anticipate.</p>
+    <p>You can use this global by adding something like the following to your code.</p>
+    <pre>   #define LWCOMMANDFUNC_GLOBAL &quot;LW Command Interface&quot;
+   typedef int ( *LWCommandFunc )( const char *cmd );
+
+   LWCommandFunc *evaluate;
+   evaluate = global( LWCOMMANDFUNC_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>Note that if this global, or something like it, is eventually elevated to first-class
+    status, its prototype will likely be different from the above.</p>
+    <p>A common use for this global is the application of dependent plug-ins. The HyperVoxels
+    volumetric, for example, uses it from within its interface to apply or remove its related
+    custom object plug-in.</p>
+    <p>But be careful. Test your use of this global thoroughly. Issuing commands at the wrong
+    time or in the wrong context can easily cause a crash. In particular, never issue commands
+    during rendering, and don't remove yourself, or the item you're applied to.</td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,5 @@
+cl -c /Ox /Ot /Oy /GF /GS- /MD /nologo /W3 /Zc:forScope /EHsc /Ob2 -DQMC -DMI_MODULE= -DMI_PRODUCT_RAY -DWIN_NT -DEVIL_ENDIAN -D_WIN32_WINNT=0x0400 -DNV_CG -DHYPERTHREAD -D_SECURE_SCL=0 -DX86 -I.  -I.  contourshade.c
+cl -c /Ox /Ot /Oy /GF /GS- /MD /nologo /W3 /Zc:forScope /EHsc /Ob2 -DQMC -DMI_MODULE= -DMI_PRODUCT_RAY -DWIN_NT -DEVIL_ENDIAN -D_WIN32_WINNT=0x0400 -DNV_CG -DHYPERTHREAD -D_SECURE_SCL=0 -DX86 -I.  -I.  outimgshade.c
+cl -c /Ox /Ot /Oy /GF /GS- /MD /nologo /W3 /Zc:forScope /EHsc /Ob2 -DQMC -DMI_MODULE= -DMI_PRODUCT_RAY -DWIN_NT -DEVIL_ENDIAN -D_WIN32_WINNT=0x0400 -DNV_CG -DHYPERTHREAD -D_SECURE_SCL=0 -DX86 -I.  -I.  outpsshade.c
+link /delayload:opengl32.dll /nologo /nodefaultlib:LIBC.LIB /MAP:mapfile /OPT:NOREF /INCREMENTAL:NO /LIBPATH:..\..\lib /STACK:0x200000,0x1000 ws2_32.lib user32.lib mpr.lib opengl32.lib gdi32.lib delayimp.lib /DLL /OUT:contour.dll contourshade.obj outimgshade.obj outpsshade.obj ../../nt-x86-vc8/lib/shader.lib
+mt.exe -nologo -manifest contour.dll.manifest -outputresource:contour.dll;2

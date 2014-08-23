@@ -1,0 +1,43 @@
+// MayaCmdCOM.idl : IDL source for MayaCmdCOM
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (MayaCmdCOM.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(46F65EF4-27C6-4B91-B024-0330982D2110),
+	dual,
+	nonextensible,
+	helpstring("IMELCommand Interface"),
+	pointer_default(unique)
+]
+interface IMELCommand : IDispatch{
+	[id(1), helpstring("method Execute")] HRESULT Execute([in] BSTR Command);
+	[propget, id(2), helpstring("property Result")] HRESULT Result([out, retval] VARIANT* pVal);
+	[propget, id(3), helpstring("property PortName")] HRESULT PortName([out, retval] BSTR* pVal);
+	[propput, id(3), helpstring("property PortName")] HRESULT PortName([in] BSTR newVal);
+	[id(4), helpstring("method Connect")] HRESULT Connect(void);
+	[id(5), helpstring("method Disconnect")] HRESULT Disconnect(void);
+	[propget, id(6), helpstring("property Connected")] HRESULT Connected([out, retval] VARIANT_BOOL* pVal);
+};
+[
+	uuid(D83DFD2B-312C-4B48-9FCB-BB9BDA8AB53D),
+	version(1.0),
+	helpstring("Alias Maya Command Engine Type Library")
+]
+library MayaCommandEngine
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(63364C80-9AE0-42DD-B4BC-13860739859D),
+		helpstring("Alias Maya Command Engine")
+	]
+	coclass MELCommand
+	{
+		[default] interface IMELCommand;
+	};
+};

@@ -1,0 +1,156 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_FORMATION DIALOG DISCARDABLE  0, 0, 108, 200
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Display Target",IDC_TARGETDSPLY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,37,151,61,10
+    CONTROL         "",IDC_TARGETCLR,"ColorSwatch",WS_TABSTOP,5,148,29,14
+    RTEXT           "Target Scale:",IDC_STATIC,8,167,44,8
+    CONTROL         "",IDC_TARGSCALE,"CustEdit",WS_TABSTOP,53,166,29,10
+    CONTROL         "",IDC_TARGSCALESPIN,"SpinnerControl",0x0,83,166,7,10
+    CONTROL         "",IDC_PICKNODE,"CustButton",WS_TABSTOP,6,57,80,14
+    CONTROL         "",IDC_NAMESEL,"CustButton",WS_TABSTOP,88,57,15,14
+    CONTROL         "",IDC_PICKLEADER,"CustButton",WS_TABSTOP,7,14,80,14
+    GROUPBOX        "Leader",IDC_STATIC,1,2,103,36
+    GROUPBOX        "Group",IDC_STATIC,1,42,104,36
+    PUSHBUTTON      "Set Formation",IDC_SETFORMATION,5,92,56,15
+    CONTROL         "",IDC_FORCECLR,"ColorSwatch",WS_TABSTOP,5,179,29,14
+    CONTROL         "Display Force",IDC_FORCEDSPLY,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,37,182,59,10
+    GROUPBOX        "Formation",IDC_STATIC,0,82,104,62
+    CONTROL         "Display Formation",IDC_DISPLAYFORMATION,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,112,71,10
+    RTEXT           "Display Scale:",IDC_STATIC,3,126,47,8
+    CONTROL         "",IDC_DISPLAYSCALE,"CustEdit",WS_TABSTOP,52,125,31,10
+    CONTROL         "",IDC_DISPLAYSCALESPIN,"SpinnerControl",0x0,84,125,7,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_NOPICKCURSOR        CURSOR  DISCARDABLE     "cursor1.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_PICKNODE            BITMAP  DISCARDABLE     "picknode.bmp"
+IDB_MASK_PICKNODE       BITMAP  DISCARDABLE     "map_pick.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SFGOODPICK          "Good Pick"
+    IDS_FORMATION_CLASSNAME "Formation Behavior"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_OBJECTS             "Objects"
+    IDS_EMPTY               " "
+    IDS_PICKPROMPT          "Select objectsfor formation."
+    IDS_MULTSEL             "Multiple Selection"
+    IDS_TARGETCLR           "Target Color"
+    IDS_DISPLAYTARGET       "Display Target"
+    IDS_TARGETSCL           "Target Scale"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_NAME                "Name"
+    IDS_FORCECLR            "Force Color"
+    IDS_DSPLYFRC            "Display Force"
+    IDS_PARAMETERS          "Parameters"
+    IDS_LIBDESC             "Crowd Formation Behavior Plugin for MAX R4.0 :: By Unreal Pictures, Inc."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_UN_WHOM             "UnPick"
+    IDS_SELECT              "Select"
+    IDS_NONE                "-None-"
+    IDS_MULTIPLE            "-Multiple-"
+    IDS_FORMATION_NAME      "Formation"
+    IDS_MATRICES            "Matrices"
+    IDS_DISPLAYFORMATION    "Display Formation"
+    IDS_DISPLAYSCALE        "Display Scale"
+    IDS_RADIUS              "Radius"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

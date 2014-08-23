@@ -1,0 +1,142 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 165
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 69
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 172, 76
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About ASC Export"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,60,55,50,14
+    RTEXT           "3D Studio DOS - ASC File Exporter\nVersion 1.0\nChrister Janson\nCopyright 2000 Autodesk, Inc.",
+                    IDC_STATIC,10,13,151,36
+    GROUPBOX        "",IDC_STATIC,7,7,158,44
+END
+
+IDD_ASCOUT_DLG DIALOG DISCARDABLE  0, 0, 159, 74
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "ASC Export"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,102,5,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,102,23,50,14
+    CONTROL         "",IDC_STATIC_FRAME,"CustEdit",WS_TABSTOP,50,16,25,10
+    CONTROL         "",IDC_STATIC_FRAME_SPIN,"SpinnerControl",0x0,76,16,7,10
+    RTEXT           "Frame #:",IDC_STATIC,14,17,31,8
+    GROUPBOX        "Static Output",IDC_STATIC,4,1,90,30
+    CONTROL         "",IDC_PREC,"CustEdit",WS_TABSTOP,50,46,25,10
+    CONTROL         "",IDC_PREC_SPIN,"SpinnerControl",0x0,76,46,7,10
+    RTEXT           "Decimals:",IDC_STATIC,14,47,31,8
+    GROUPBOX        "Precision",IDC_STATIC,4,34,90,30
+END
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ASCOUT              "AscOut"
+    IDS_CATEGORY            "Standard"
+    IDS_EXTENSION1          "ASC"
+    IDS_LONGDESC            "3D Studio DOS - ASC File Exporter"
+    IDS_SHORTDESC           "ASC File Export"
+    IDS_COPYRIGHT           "Copyright 2000 Autodesk, Inc."
+    IDS_PROGRESS_MSG        "Exporting file..."
+    IDS_VERSIONSTRING       "AscExport Version"
+    IDS_LIBDESCRIPTION      "ASC file exporter (Discreet)"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

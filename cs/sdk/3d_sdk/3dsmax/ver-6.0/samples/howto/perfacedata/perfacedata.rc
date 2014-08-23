@@ -1,0 +1,162 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_RANDOM_DATA DIALOG DISCARDABLE  0, 0, 108, 55
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_RANGE,"CustEdit",WS_TABSTOP,55,17,22,10
+    CONTROL         "",IDC_RANGE_SPIN,"SpinnerControl",0x0,78,17,7,10
+    RTEXT           "Range:",IDC_STATIC,14,18,38,8
+    CONTROL         "Collapsable",IDC_COLLAPSABLE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,27,37,52,10
+    CONTROL         "",IDC_SEED,"CustEdit",WS_TABSTOP,55,5,22,10
+    CONTROL         "",IDC_SEED_SPIN,"SpinnerControl",0x0,78,5,7,10
+    RTEXT           "Seed:",IDC_STATIC,14,5,38,8
+END
+
+IDD_DATA_TO_COLOR DIALOG DISCARDABLE  0, 0, 108, 132
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Affect Channel:",IDC_VIEW_OPTION,7,5,79,8
+    CONTROL         "Vertex Colors",IDC_COLOR,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,20,15,57,10
+    CONTROL         "Vertex Illumination",IDC_ILLUM,"Button",
+                    BS_AUTORADIOBUTTON,20,26,73,10
+    LTEXT           "Color Multipliers:",IDC_STATIC,7,43,52,8
+    RTEXT           "Red:",IDC_STATIC,13,55,32,8
+    CONTROL         "",IDC_RED,"CustEdit",WS_TABSTOP,47,55,31,10
+    CONTROL         "",IDC_RED_SPIN,"SpinnerControl",0x0,79,55,7,10
+    RTEXT           "Green:",IDC_STATIC,13,68,32,8
+    CONTROL         "",IDC_GREEN,"CustEdit",WS_TABSTOP,47,68,31,10
+    CONTROL         "",IDC_GREEN_SPIN,"SpinnerControl",0x0,79,68,7,10
+    RTEXT           "Blue:",IDC_STATIC,13,81,32,8
+    CONTROL         "",IDC_BLUE,"CustEdit",WS_TABSTOP,47,81,31,10
+    CONTROL         "",IDC_BLUE_SPIN,"SpinnerControl",0x0,79,81,7,10
+    CONTROL         "Display Now",IDC_DISPLAY_NOW,"CustButton",WS_TABSTOP,13,
+                    98,82,11
+    CONTROL         "Collapsable",IDC_COLLAPSABLE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,118,52,10
+END
+
+IDD_FACEDATA_EDIT DIALOG DISCARDABLE  0, 0, 108, 73
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_VALUE,"CustEdit",WS_TABSTOP,55,20,31,10
+    CONTROL         "",IDC_VALUE_SPIN,"SpinnerControl",0x0,87,20,7,10
+    LTEXT           "Face Value:",IDC_STATIC,15,20,38,8
+    CTEXT           "No Face Selected",IDC_FACE_SELECTED,14,6,79,8
+    CONTROL         "Reset Selected Faces",IDC_RESET_SELECTION,"CustButton",
+                    WS_TABSTOP,13,36,82,11
+    CONTROL         "Collapsable",IDC_COLLAPSABLE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,27,56,52,10
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LIBDESCRIPTION      "Examples of using Face Data"
+    IDS_CATEGORY            "MAX SDK Samples"
+    IDS_RANDOM_CLASS_NAME   "Random FaceFloats"
+    IDS_PARAMS              "Parameters"
+    IDS_SEED                "Seed"
+    IDS_FACE_SELECTED       "Face %d Selected"
+    IDS_FACES_SELECTED      "%d Faces Selected"
+    IDS_NO_FACE_SELECTED    "No Face Selected"
+    IDS_EDIT_CLASS_NAME     "Edit FaceFloats"
+    IDS_FACE                "Face"
+    IDS_EDIT_FACE_DATA      "Edit FaceFloats"
+    IDS_OBJECT_SELECTED     "Object Selected"
+    IDS_RESET_SELECTED      "Reset Selected"
+    IDS_RESET_ALL           "Reset All"
+    IDS_COLOR_CLASS_NAME    "Color FaceFloats"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_COLOR_CHANNEL       "Color Channel"
+    IDS_RED_MULT            "Red Multiplier"
+    IDS_GREEN_MULT          "Green Multiplier"
+    IDS_BLUE_MULT           "Blue Multiplier"
+    IDS_COLLAPSABLE         "Collapsable"
+    IDS_RANGE               "Range"
+    IDS_FACE_DATA_EXPORT    "FaceFloats Export"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,192 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Win98; U) [Netscape]">
+   <title>Classes: MasterHandler</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#000080" vlink="#800000" alink="#0000FF">
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 BGCOLOR="#D0D0D0" >
+<tr>
+<td ALIGN=LEFT WIDTH="120"><a href="laytool.html"><img SRC="navlt.gif" ALT="LayoutTool" BORDER=0 height=20 width=96></a></td>
+
+<td ALIGN=LEFT WIDTH="96"><a href="me.html"><img SRC="navrt.gif" ALT="MeshDataEdit" BORDER=0 height=20 width=64></a></td>
+
+<td ALIGN=LEFT WIDTH="96"><a href="../classes.html"><img SRC="navup.gif" ALT="Classes" BORDER=0 height=20 width=56></a></td>
+
+<td ALIGN=RIGHT WIDTH="288"><a href="../index.html"><img SRC="proglw.gif" ALT="Table of Contents" BORDER=0 height=20 width=230></a></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 >
+<tr>
+<td WIDTH="600">
+<h3>
+MasterHandler</h3>
+<font size=-1><b>Availability</b>&nbsp; LightWave 6.0</font>
+<br><font size=-1><b>Component</b>&nbsp; Layout</font>
+<br><font size=-1><b>Header</b>&nbsp; <a href="../../include/lwmaster.h">lwmaster.h</a></font>
+<p>Masters can issue commands like <a href="generic.html">generics</a>,
+but unlike generics, masters can respond to the user's changes to a scene
+as the scene is being composed. Masters are handlers, so they have persistent
+instances that can be saved in scene files. Masters can be used to record
+a sequence of commands for scripting or as a central point of control for
+a suite of handler plug-ins.
+<p><b>Activation Function</b>
+<pre>&nbsp;&nbsp; XCALL_( int ) MyMaster( long version, GlobalFunc *global,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWMasterHandler *local, void *serverData );</pre>
+The <tt>local</tt> argument to a master's activation function is an LWMasterHandler.
+<pre>&nbsp;&nbsp; typedef struct st_LWMasterHandler {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWInstanceFuncs *<b>inst</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWItemFuncs&nbsp;&nbsp;&nbsp;&nbsp; *<b>item</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>type</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>event</b>) (LWInstance, const LWMasterAccess *);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int&nbsp;&nbsp;&nbsp; (*<b>flags</b>) (LWInstance);
+&nbsp;&nbsp; } LWMasterHandler;</pre>
+The first two members of this structure point to standard <a href="../handler.html">handler
+functions</a>. In addition to these, a master handler provides a type code,
+an event function and a flags function.
+<dl>&nbsp;
+<dt>
+<b><tt>type</tt></b></dt>
+
+<dd>
+This can be one of the following.</dd>
+
+<dl>&nbsp;
+<br><tt>LWMAST_SCENE</tt>
+<dt>
+<tt>LWMAST_OBJECTS</tt></dt>
+
+<dt>
+<tt>LWMAST_EFFECTS</tt></dt>
+
+<br><tt>LWMAST_LAYOUT</tt></dl>
+The <tt>SCENE</tt> type is the most common. <tt>OBJECTS</tt> and <tt>EFFECTS</tt>
+types are reserved for future enhancement of the class. <tt>LAYOUT</tt>
+masters are like <tt>SCENE</tt> masters, but they survive scene clearing
+and can therefore be used to automate scene management.
+<dt>
+<tt>val = <b>event</b>( instance, access )</tt></dt>
+
+<dd>
+The event function is called to notify the handler that something has happened.
+Information about the event is included in the access structure, described
+below. The handler can respond to the event by issuing commands through
+functions provided in the access structure. The return value is currently
+ignored and should be set to 0.</dd>
+
+<br><tt>f = <b>flags</b>( instance )</tt>
+<dd>
+Returns flag bits combined using bitwise-or. No flags are currently defined,
+so this function should simply return 0.&nbsp;</dd>
+</dl>
+<b>Interface Activation Function</b>
+<pre>&nbsp;&nbsp; XCALL_( int ) MyInterface( long version, GlobalFunc *global,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWInterface *local, void *serverData );</pre>
+This is the standard <a href="../handler.html#ui">interface activation</a>
+for handlers.
+<p><b>Master Access</b>
+<p>This is the structure passed to the handler's event function.&nbsp;
+<pre>&nbsp;&nbsp; typedef struct st_LWMasterAccess {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>eventCode</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *<b>eventData</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *<b>data</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWCommandCode (*<b>lookup</b>)&nbsp;&nbsp; (void *, const char *cmdName);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>execute</b>)&nbsp; (void *, LWCommandCode cmd, int argc,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const DynaValue *argv,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DynaValue *result);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>evaluate</b>) (void *, const char *command);
+&nbsp;&nbsp; } LWMasterAccess;</pre>
+
+<dl>
+<dt>
+<b><tt>eventCode</tt></b></dt>
+
+<br><b><tt>eventData</tt></b>
+<dd>
+The type of event and its associated data. The event can be one of the
+following.&nbsp;</dd>
+
+<dl><tt>LWEVNT_NOTHING</tt>
+<dd>
+Not currently used.</dd>
+
+<dt>
+<tt>LWEVNT_COMMAND</tt></dt>
+
+<dd>
+A user action corresponding to a <a href="../commands.html">command</a>.
+The <tt>eventData</tt> is a string containing the command and its arguments,
+written in the same format used by the <tt>evaluate</tt> function to issue
+commands.</dd>
+
+<dt>
+<tt>LWEVNT_TIME</tt></dt>
+
+<dd>
+Sent whenever the frame slider is moved, which includes playing the scene,
+but not playing back a preview. This allows masters to remain synchronized
+in time with the Layout interface.</dd>
+
+<dt>
+<tt>LWEVNT_SELECT</tt></dt>
+
+<dd>
+Sent when the item selection has changed.</dd>
+
+<br><tt>LWEVNT_RENDER_DONE</tt>
+<dd>
+Sent when a render has been completed.</dd>
+</dl>
+<b><tt>data</tt></b>
+<dd>
+An opaque pointer to data used internally by Layout. Pass this as the first
+argument to the <tt>lookup</tt>, <tt>execute</tt> and <tt>evaluate</tt>
+functions.</dd>
+
+<br><tt>cmdcode = <b>lookup</b>( data, cmdname )</tt>
+<dd>
+Returns an integer code corresponding to the command name. The command
+is issued by passing the command code to the <tt>execute</tt> function.
+Command codes are constant for a given Layout session, so this only needs
+to be called once per command, after which the codes can be cached and
+used multiple times.</dd>
+
+<br><tt>result = <b>execute</b>( data, cmdcode, argc, argv, cmdresult )</tt>
+<dd>
+Issue the command given by the command code argument. <tt>argv</tt> is
+an array of <a href="dynaval.html">DynaValue</a> arguments. <tt>argc</tt>
+is the number of arguments in the <tt>argv</tt> array. The result of the
+command is written in <tt>cmdresult</tt>. The function returns 1 if it
+succeeds or 0 if it does not.</dd>
+
+<br><tt>result = <b>evaluate</b>( data, cmdstring )</tt>
+<dd>
+Issue the command with the name and arguments in the command string. This
+is an alternative to using <tt>lookup</tt> and <tt>execute</tt>. The command
+and its arguments are written to a single string and delimited by spaces.
+The function returns 1 if it succeeds or 0 if it does not.</dd>
+</dl>
+See the <a href="../commands.html">Commands</a> pages for a complete list
+of the commands that can be issued in Layout, as well as a detailed explanation
+of the formatting of command arguments for both the <tt>execute</tt> and
+<tt>evaluate</tt>
+methods.
+<p><b>History</b>
+<p>The <tt>LWEVNT_SELECT</tt> event code was added in LightWave 7.0. The
+<tt>LWEVNT_RENDER_DONE</tt> event code was added in LightWave 7.5.
+<p><b>Example</b>
+<p>The <a href="../../sample/macro/">macro</a> sample is a master that
+records a sequence of commands and saves it as an LScript.</td>
+</tr>
+
+<tr>
+<td></td>
+</tr>
+</table>
+
+</body>
+</html>

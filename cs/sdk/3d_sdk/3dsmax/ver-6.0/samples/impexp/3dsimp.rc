@@ -1,0 +1,192 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "3dsires.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SHAPEIMPORTOPTIONS DIALOG DISCARDABLE  0, 0, 133, 103
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Shape Import"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "&Single Object",IDC_SINGLEOBJECT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,34,31,55,10
+    CONTROL         "&Multiple Objects",IDC_MULTIPLEOBJECTS,"Button",
+                    BS_AUTORADIOBUTTON,34,44,64,10
+    DEFPUSHBUTTON   "OK",IDOK,76,66,50,14,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,76,82,50,14
+    GROUPBOX        "Import Shapes As:",IDC_STATIC,3,18,126,42
+    CONTROL         "Import Shapes",IDC_IMPORT_SHAPES,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,36,4,61,10
+END
+
+IDD_MERGEORREPL DIALOG DISCARDABLE  0, 0, 173, 105
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CONTEXTHELP
+CAPTION "3DS Import"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,109,69,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,109,86,50,14
+    CONTROL         "&Merge objects with current scene.",IDC_3DS_MERGE,
+                    "Button",BS_AUTORADIOBUTTON,24,20,125,10
+    CONTROL         "Completely &replace current scene.",IDC_3DS_REPLACE,
+                    "Button",BS_AUTORADIOBUTTON,24,33,125,10
+	CONTROL			"&Convert units",IDC_3DS_CONVERT,"Button",
+					BS_AUTOCHECKBOX | WS_TABSTOP,24,46,125,10
+    GROUPBOX        "Do you want to:",IDC_STATIC,8,8,153,54
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "3dsires.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_MERGEORREPL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 166
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 98
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MATCHANIMLENGTH     "Do you want to set the current animation length to match\n the animation length stored in the 3DS file?"
+    IDS_3DSIMP              "3DS File Import"
+    IDS_DB_MISSING_SHAPE    "Missing shape"
+    IDS_DB_LIGHT_ERROR      "Light error"
+    IDS_DB_CAMERA_ERROR     "Camera error"
+    IDS_DB_NO_OBJECT        "No object found!"
+    IDS_DB_HAS_VERTS        "Already has verts"
+    IDS_DB_NUMVERTS_FAIL    "SetNumVerts failed"
+    IDS_DB_HAS_TVERTS       "Already has tverts"
+    IDS_DB_HAS_FACES        "Already has faces"
+    IDS_DB_NUMFACES_FAIL    "SetNumFaces failed"
+    IDS_DB_NUMTVFACES_FAIL  "SetNumTVFaces failed"
+    IDS_DB_PUT_NO_VERTS     "Put without verts"
+    IDS_DB_3DSIMP           "3DSIMP"
+    IDS_DB_VERTS_OR         "Put verts out of range"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DB_PUT_NO_TVERTS    "Put without tverts"
+    IDS_DB_TVERTS_OR        "Put tverts out of range"
+    IDS_DB_PUT_NO_FACES     "Put without faces"
+    IDS_DB_FACES_OR         "Put faces out of range"
+    IDS_DB_SMOOTH_NO_FACES  "Put smooth without faces"
+    IDS_DB_SMFACE_OR        "Put smooth face out of range"
+    IDS_DB_SHAPE_NUM        "Shape%d"
+    IDS_DB_NOT_LINKED       "Object linked to dummy or instance - Not linked"
+    IDS_PRS_TVERT_OR        "Texture vert index out of range"
+    IDS_PRS_VERT_OR         "Vert index out of range"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TH_3DSTUDIO         "3D Studio"
+    IDS_TH_SCENEIMPORT      "Scene Import"
+    IDS_TH_3DSTUDIOSHAPE    "3D Studio Shape"
+    IDS_TH_3DSIMPORTDLL     "3DS/SHP file importer (Discreet)"
+    IDS_TH_3DSSCENEFILE     "Autodesk 3D Studio Scene File"
+    IDS_TH_3DSMESH          "3D Studio Mesh"
+    IDS_TH_TOM_HUDSON       "Tom Hudson"
+    IDS_TH_COPYRIGHT_YOST_GROUP "Copyright 1996 Yost Group"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TH_3DSSHAPEFILE     "Autodesk 3D Studio Shape File"
+    IDS_TH_ERR_OPENING_FILE "Error opening file"
+    IDS_TH_3DSIMP           "3DSIMP"
+    IDS_TH_3DSREADERROR     "Read error on file"
+    IDS_TH_INVALIDFILE      "Invalid file"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

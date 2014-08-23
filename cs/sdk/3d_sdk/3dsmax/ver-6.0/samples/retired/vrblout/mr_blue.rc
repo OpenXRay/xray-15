@@ -1,0 +1,747 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MRBLUE_TRIGGERS DIALOG DISCARDABLE  0, 0, 108, 151
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Mouse Click",IDC_MRBLUE_MOUSE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,8,3,55,10
+    CONTROL         "Proximity",IDC_MRBLUE_PROXIMITY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,15,43,10
+    CONTROL         "",IDC_PROX_DIST,"CustEdit",WS_TABSTOP,55,26,36,10
+    CONTROL         "Aligned Bounding Box",IDC_MRBLUE_BBOX,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,37,84,10
+    CONTROL         "",IDC_BBOX_X,"CustEdit",WS_TABSTOP,55,48,36,10
+    CONTROL         "",IDC_BBOX_Y,"CustEdit",WS_TABSTOP,55,59,36,10
+    CONTROL         "",IDC_BBOX_Z,"CustEdit",WS_TABSTOP,55,70,36,10
+    CONTROL         "Line of Sight",IDC_MRBLUE_LOS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,8,83,55,10
+    CONTROL         "See",IDC_MRBLUE_LOS_SEE,"Button",BS_AUTORADIOBUTTON,21,
+                    95,39,10
+    CONTROL         "See and Seen",IDC_MRBLUE_LOS_SEEN,"Button",
+                    BS_AUTORADIOBUTTON,21,106,61,10
+    CONTROL         "",IDC_LOS_OBJ_ANG,"CustEdit",WS_TABSTOP,56,137,36,10
+    CONTROL         "",IDC_LOS_VPT_ANG,"CustEdit",WS_TABSTOP,56,126,36,10
+    LTEXT           "Distance:",IDC_STATIC,17,27,31,8
+    CONTROL         "",IDC_PROX_DIST_SPINNER,"SpinnerControl",0x0,92,26,7,10
+    CONTROL         "",IDC_BBOX_X_SPINNER,"SpinnerControl",0x0,92,48,7,10
+    CONTROL         "",IDC_BBOX_Y_SPINNER,"SpinnerControl",0x0,92,59,7,10
+    CONTROL         "",IDC_BBOX_Z_SPINNER,"SpinnerControl",0x0,92,70,7,10
+    CONTROL         "",IDC_LOS_OBJ_ANG_SPINNER,"SpinnerControl",0x0,93,137,7,
+                    10
+    CONTROL         "",IDC_LOS_VPT_ANG_SPINNER,"SpinnerControl",0x0,93,126,7,
+                    10
+    LTEXT           "Object:",IDC_STATIC,21,138,24,8
+    LTEXT           "Angles:",IDC_STATIC,15,117,24,8
+    LTEXT           "Viewpoint:",IDC_STATIC,21,127,34,8
+    LTEXT           "X:",IDC_STATIC,17,50,31,8
+    LTEXT           "Y:",IDC_STATIC,17,61,31,8
+    LTEXT           "Z:",IDC_STATIC,17,72,31,8
+END
+
+IDD_MRBLUE_ACTIONS DIALOG DISCARDABLE  0, 0, 108, 51
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Hyperlink Jump",IDC_MRBLUE_HL,"Button",
+                    BS_AUTORADIOBUTTON,20,5,64,10
+    CONTROL         "Set Camera",IDC_MRBLUE_CAMERA,"Button",
+                    BS_AUTORADIOBUTTON,20,20,53,10
+    CONTROL         "Animate",IDC_MRBLUE_ANIMATE,"Button",BS_AUTORADIOBUTTON,
+                    20,35,41,10
+END
+
+IDD_MRBLUE_PARAMS_HL DIALOG DISCARDABLE  0, 0, 108, 113
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Bookmarks ...",IDC_BOOKMARKS,23,5,61,14
+    EDITTEXT        IDC_MRBLUE_URL,8,33,96,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_URL_CAMERA,8,61,96,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_URL_DESC,8,89,96,14,ES_AUTOHSCROLL
+    LTEXT           "URL:",IDC_STATIC,8,22,18,8
+    LTEXT           "Camera:",IDC_STATIC,8,50,27,8
+    LTEXT           "Description:",IDC_STATIC,8,78,38,8
+END
+
+IDD_MRBLUE_PARAMS_VPT DIALOG DISCARDABLE  0, 0, 108, 52
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    COMBOBOX        IDC_MRBLUE_CAMERAS,32,5,71,48,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_VPT_DESC,8,33,96,14,ES_AUTOHSCROLL
+    LTEXT           "Camera:",IDC_STATIC,3,8,27,8
+    LTEXT           "Description:",IDC_STATIC,4,22,38,8
+END
+
+IDD_MRBLUE_ANIMATE DIALOG DISCARDABLE  0, 0, 108, 128
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Start",IDC_ANIM_START,"Button",BS_AUTORADIOBUTTON,15,6,
+                    31,10
+    CONTROL         "Stop",IDC_ANIM_STOP,"Button",BS_AUTORADIOBUTTON,59,6,31,
+                    10
+    CONTROL         "Pick Objects",IDC_ANIM_PICK,"CustButton",WS_TABSTOP,20,
+                    23,67,10
+    LISTBOX         IDC_ANIM_LIST,5,41,100,57,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Delete",IDC_ANIM_DEL,30,108,50,14
+END
+
+IDD_LOD DIALOG DISCARDABLE  0, 0, 108, 137
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_LOD_SIZE,"CustEdit",WS_TABSTOP,52,120,36,10
+    CONTROL         "Pick Objects",IDC_LOD_PICK,"CustButton",WS_TABSTOP,18,4,
+                    68,11
+    CONTROL         "",IDC_LOD_DIST,"CustEdit",WS_TABSTOP,55,21,36,10
+    LISTBOX         IDC_LOD_LIST,5,38,100,57,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Delete",IDC_LOD_DEL,28,101,50,14
+    LTEXT           "Icon Size:",IDC_STATIC,10,120,39,8
+    CONTROL         "",IDC_LOD_SIZE_SPINNER,"SpinnerControl",0x0,89,120,7,10
+    LTEXT           "Distance:",IDC_STATIC,6,22,37,8
+    CONTROL         "",IDC_LOD_DIST_SPINNER,"SpinnerControl",0x0,92,21,7,10
+END
+
+IDD_INS DIALOG DISCARDABLE  0, 0, 108, 66
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_INS_SIZE,"CustEdit",WS_TABSTOP,55,51,36,10
+    EDITTEXT        IDC_INS_URL,6,16,92,14,ES_AUTOHSCROLL
+    LTEXT           "Icon Size:",IDC_STATIC,6,51,41,8
+    CONTROL         "",IDC_INS_SIZE_SPINNER,"SpinnerControl",0x0,92,51,7,10
+    LTEXT           "Insert URL:",IDC_STATIC,5,5,37,8
+    PUSHBUTTON      "Bookmarks ...",IDC_BOOKMARKS,23,33,61,14
+END
+
+IDD_VRMLOPTPARAM DIALOG DISCARDABLE  0, 0, 108, 37
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_OPT_PCT,"CustEdit",WS_TABSTOP,55,13,36,10
+    CONTROL         "",IDC_OPT_PCT_SPIN,"SpinnerControl",0x0,92,13,7,10
+    RTEXT           "Percentage:",-1,7,13,40,8
+    GROUPBOX        "Optimize:",-1,5,0,98,31
+END
+
+IDD_VRBLEXP DIALOG DISCARDABLE  0, 0, 193, 234
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CONTEXTHELP
+CAPTION " Export VRML 1.0/VRBL File"
+FONT 8, "MS Sans Serif"
+BEGIN
+    COMBOBOX        IDC_OUTPUT_LANG,76,4,102,53,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_CAMERA_COMBO,76,20,102,54,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Export Hidden Objects",IDC_EXPORT_HIDDEN,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,12,34,86,15
+    CONTROL         "Show Progress Bar",IDC_ENABLE_PROGRESS_BAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,104,34,80,15
+    CONTROL         "Normals",IDC_GENNORMALS,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,12,62,43,11
+    CONTROL         "Fields",IDC_GEN_FIELDS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,92,62,91,11
+    CONTROL         "Indentation",IDC_INDENT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,12,74,49,11
+    CONTROL         "Primitives",IDC_PRIM,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,12,86,43,11
+    COMBOBOX        IDC_DIGITS,97,106,40,48,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "Color per Vertex",IDC_COLOR_PER_VERTEX,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,92,86,68,11
+    CONTROL         "Morph Forms",IDC_COORD_INTERP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,92,74,68,11
+    CONTROL         "Use Prefix",IDC_USE_PREFIX,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,9,191,47,11
+    EDITTEXT        IDC_URL_PREFIX,62,191,120,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,94,216,42,13,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,145,216,42,13
+    PUSHBUTTON      "Help",IDC_EXP_HELP,4,216,34,13,WS_DISABLED
+    PUSHBUTTON      "About",IDC_ABOUT,47,216,34,13
+    LTEXT           "Output Language:",IDC_STATIC,12,6,58,8
+    LTEXT           "Initial View:",IDC_STATIC,12,22,49,8
+    GROUPBOX        "Generate",IDC_STATIC,4,49,183,52
+    GROUPBOX        "Bitmap URL Prefix",IDC_STATIC,4,177,183,32,WS_GROUP
+    LTEXT           "Digits of Precision:",IDC_STATIC,12,110,60,11
+    GROUPBOX        "Vertex Color Source",IDC_STATIC,4,142,183,28
+    CONTROL         "Use Max's",IDC_CPV_MAX,"Button",BS_AUTORADIOBUTTON,12,
+                    156,49,10
+    CONTROL         "Calculate on Export",IDC_CPV_CALC,"Button",
+                    BS_AUTORADIOBUTTON,92,156,78,10
+    LTEXT           "Morph Forms per Second:",IDC_STATIC,12,126,85,11
+    CONTROL         "",IDC_MORPHSPS,"CustEdit",WS_TABSTOP,97,126,32,10
+    CONTROL         "",IDC_MORPHSPSSPINNER,"SpinnerControl",0x0,130,126,7,10
+END
+
+IDD_URL_BOOKMARKS DIALOG DISCARDABLE  0, 0, 367, 224
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Bookmarks"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,250,205,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,310,205,50,14
+    LTEXT           "URL:",IDC_STATIC,11,10,18,8
+    LTEXT           "Description:",IDC_STATIC,11,30,38,8
+    PUSHBUTTON      "Add",IDC_ADD,11,44,50,14
+    PUSHBUTTON      "Delete",IDC_DELETE,69,44,50,14
+    PUSHBUTTON      "Import List...",IDC_IMPORT,310,44,50,14
+    EDITTEXT        IDC_URL,55,5,305,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DESC,55,25,305,14,ES_AUTOHSCROLL
+    CONTROL         "List1",IDC_URL_LIST,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,12,63,348,134
+END
+
+IDD_IMAGE_URL DIALOG DISCARDABLE  0, 0, 301, 276
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Image URLs"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,172,249,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,240,249,50,14
+    LTEXT           "URL Prefix:",IDC_STATIC,25,230,38,10
+    EDITTEXT        IDC_URL_PREFIX,69,228,143,12,ES_AUTOHSCROLL
+    CONTROL         "Use Prefix",IDC_USE_PREFIX,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,14,214,49,10
+    LTEXT           "Name:",IDC_STATIC,20,19,37,11
+    LTEXT           "",IDC_BITMAP_NAME,49,19,163,11
+    LTEXT           "URL:",IDC_STATIC,22,32,22,12
+    EDITTEXT        IDC_URLEDIT,48,30,164,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Bookmarks ...",IDC_BOOKMARK,220,31,59,13
+    CONTROL         "List1",IDC_IMAGE_LIST,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,14,54,272,156
+    GROUPBOX        "Bitmap",IDC_STATIC,14,7,272,40
+    PUSHBUTTON      "Bookmarks ...",IDC_BOOKMARK_PREFIX,222,227,59,13
+END
+
+IDD_DIRLIGHTPARAM DIALOG DISCARDABLE  0, 0, 108, 99
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "On:",IDC_LIGHT_ON,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFTTEXT,7,17,22,10
+    CONTROL         "User1",IDC_LIGHT_COLOR,"ColorSwatch",0x0,35,15,17,12
+    CONTROL         "",IDC_LRED,"CustEdit",WS_TABSTOP,19,36,21,10
+    CONTROL         "",IDC_LGREEN,"CustEdit",WS_TABSTOP,19,48,21,10
+    CONTROL         "",IDC_LBLUE,"CustEdit",WS_TABSTOP,19,61,21,10
+    CONTROL         "",IDC_LH,"CustEdit",WS_TABSTOP,66,36,21,10
+    CONTROL         "",IDC_LS,"CustEdit",WS_TABSTOP,66,48,21,10
+    CONTROL         "",IDC_LV,"CustEdit",WS_TABSTOP,66,61,21,10
+    CONTROL         "",IDC_LMULT,"CustEdit",WS_TABSTOP,53,78,27,10
+    RTEXT           "R:",IDC_STATIC,8,36,9,8
+    RTEXT           "G:",IDC_STATIC,8,48,9,8
+    RTEXT           "B:",IDC_STATIC,9,61,8,8
+    CONTROL         "",IDC_LBLUESPINNER,"SpinnerControl",0x0,41,61,7,10
+    CONTROL         "",IDC_LGREENSPINNER,"SpinnerControl",0x0,41,48,7,10
+    CONTROL         "",IDC_LREDSPINNER,"SpinnerControl",0x0,41,36,7,10
+    GROUPBOX        "Color",IDC_STATIC,2,3,103,91
+    CONTROL         "",IDC_LMULTSPINNER,"SpinnerControl",0x0,81,78,7,10
+    LTEXT           "Multiplier:",IDC_STATIC,18,78,30,8
+    RTEXT           "H:",IDC_STATIC,55,36,9,8
+    RTEXT           "S:",IDC_STATIC,55,48,9,8
+    RTEXT           "V:",IDC_STATIC,56,61,8,8
+    CONTROL         "",IDC_LVSPINNER,"SpinnerControl",0x0,88,61,7,10
+    CONTROL         "",IDC_LSSPINNER,"SpinnerControl",0x0,88,48,7,10
+    CONTROL         "",IDC_LHSPINNER,"SpinnerControl",0x0,88,36,7,10
+END
+
+IDD_LIGHT_PARAM DIALOG DISCARDABLE  0, 0, 108, 138
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "On:",IDC_LIGHT_ON,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFTTEXT,7,17,22,10
+    CONTROL         "User1",IDC_LIGHT_COLOR,"ColorSwatch",0x0,35,15,17,12
+    CONTROL         "",IDC_LRED,"CustEdit",WS_TABSTOP,19,34,21,10
+    CONTROL         "",IDC_LGREEN,"CustEdit",WS_TABSTOP,19,46,21,10
+    CONTROL         "",IDC_LBLUE,"CustEdit",WS_TABSTOP,19,59,21,10
+    CONTROL         "",IDC_LH,"CustEdit",WS_TABSTOP,66,34,21,10
+    CONTROL         "",IDC_LS,"CustEdit",WS_TABSTOP,66,46,21,10
+    CONTROL         "",IDC_LV,"CustEdit",WS_TABSTOP,66,59,21,10
+    CONTROL         "",IDC_LMULT,"CustEdit",WS_TABSTOP,53,76,27,10
+    CONTROL         "",IDC_END_RANGE,"CustEdit",WS_TABSTOP,53,108,36,10
+    CONTROL         "Use",IDC_USE_ATTEN,"Button",BS_AUTOCHECKBOX,23,124,27,
+                    10
+    CONTROL         "Show",IDC_SHOW_RANGES,"Button",BS_AUTOCHECKBOX,55,124,
+                    35,10
+    RTEXT           "R:",IDC_STATIC,8,34,9,8
+    RTEXT           "G:",IDC_STATIC,8,46,9,8
+    RTEXT           "B:",IDC_STATIC,9,59,8,8
+    CONTROL         "",IDC_LBLUESPINNER,"SpinnerControl",0x0,41,59,7,10
+    CONTROL         "",IDC_LGREENSPINNER,"SpinnerControl",0x0,41,46,7,10
+    CONTROL         "",IDC_LREDSPINNER,"SpinnerControl",0x0,41,34,7,10
+    GROUPBOX        "Color",IDC_STATIC,2,3,103,88
+    GROUPBOX        "Attenuation",IDC_STATIC,2,95,103,41
+    CONTROL         "",IDC_END_RANGE_SPIN,"SpinnerControl",0x0,90,108,7,10
+    LTEXT           "Radius:",IDC_STATIC,11,108,40,8
+    CONTROL         "",IDC_LMULTSPINNER,"SpinnerControl",0x0,81,76,7,10
+    LTEXT           "Multiplier:",IDC_STATIC,18,76,30,8
+    RTEXT           "H:",IDC_STATIC,55,34,9,8
+    RTEXT           "S:",IDC_STATIC,55,46,9,8
+    RTEXT           "V:",IDC_STATIC,56,59,8,8
+    CONTROL         "",IDC_LVSPINNER,"SpinnerControl",0x0,88,59,7,10
+    CONTROL         "",IDC_LSSPINNER,"SpinnerControl",0x0,88,46,7,10
+    CONTROL         "",IDC_LHSPINNER,"SpinnerControl",0x0,88,34,7,10
+END
+
+IDD_LIGHT_SHADOW DIALOG DISCARDABLE  0, 0, 108, 108
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Cast Shadows",IDC_CAST_SHADOWS,"Button",BS_AUTOCHECKBOX,
+                    5,4,57,10
+    CONTROL         "Use Global Settings",IDC_GLOBAL_SET,"Button",
+                    BS_AUTOCHECKBOX,5,16,76,10
+    CONTROL         "Use Shadow Maps",IDC_SHADOW_MAPS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,4,32,72,10
+    CONTROL         "Use Ray-Traced Shadows",IDC_RAY_TRACED_SHADOWS,"Button",
+                    BS_AUTORADIOBUTTON,4,42,96,10
+    CONTROL         "",IDC_MAP_BIAS,"CustEdit",WS_GROUP | WS_TABSTOP,3,69,21,
+                    10
+    CONTROL         "",IDC_MAP_SIZE,"CustEdit",WS_TABSTOP,36,69,26,10
+    CONTROL         "",IDC_MAP_RANGE,"CustEdit",WS_TABSTOP,76,69,21,10
+    CONTROL         "Absolute Map Bias",IDC_ABS_MAP_BIAS,"Button",
+                    BS_AUTOCHECKBOX,7,81,72,10
+    RTEXT           "Ray Trace Bias:",IDC_STATIC,5,95,54,8
+    CONTROL         "",IDC_RT_BIAS,"CustEdit",WS_TABSTOP,66,95,21,10
+    CONTROL         "",IDC_MAP_BIAS_SPIN,"SpinnerControl",0x0,24,69,8,10
+    CONTROL         "",IDC_MAP_RANGE_SPIN,"SpinnerControl",0x0,97,69,8,10
+    CONTROL         "",IDC_RT_BIAS_SPIN,"SpinnerControl",0x0,87,95,7,10
+    CONTROL         "",IDC_MAP_SIZE_SPIN,"SpinnerControl",0x0,63,69,8,10
+    LTEXT           "Map Bias",IDC_STATIC,2,60,30,8
+    LTEXT           "Size",IDC_STATIC,42,60,15,8
+    LTEXT           "Smp Range",IDC_STATIC,68,60,39,8
+END
+
+IDD_FREE_SPOTLIGHT DIALOG DISCARDABLE  0, 0, 107, 53
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_LHOTSIZE,"CustEdit",WS_TABSTOP,49,5,36,10
+    CONTROL         "",IDC_LFALLOFF,"CustEdit",WS_TABSTOP,49,18,36,10
+    CONTROL         "Show Cone ",IDC_SHOW_CONE,"Button",BS_AUTOCHECKBOX,4,35,
+                    50,10
+    RTEXT           "Hot Spot:",IDC_STATIC,12,5,33,8
+    CONTROL         "",IDC_LHOTSIZESPINNER,"SpinnerControl",0x0,86,5,7,10
+    RTEXT           "Falloff:",IDC_STATIC,12,18,33,8
+    CONTROL         "",IDC_LFALLOFFSPINNER,"SpinnerControl",0x0,86,18,7,10
+END
+
+IDD_SPOTLIGHT DIALOG DISCARDABLE  0, 0, 108, 50
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_LHOTSIZE,"CustEdit",WS_TABSTOP,49,5,36,10
+    CONTROL         "",IDC_LFALLOFF,"CustEdit",WS_TABSTOP,49,18,36,10
+    CONTROL         "Show Cone ",IDC_SHOW_CONE,"Button",BS_AUTOCHECKBOX,4,32,
+                    50,10
+    RTEXT           "Hotspot:",ID_STATIC,12,6,33,8
+    CONTROL         "",IDC_LHOTSIZESPINNER,"SpinnerControl",0x0,86,5,7,10
+    RTEXT           "Falloff:",IDC_STATIC,12,19,33,8
+    CONTROL         "",IDC_LFALLOFFSPINNER,"SpinnerControl",0x0,86,18,7,10
+END
+
+IDD_WORLD_INFO DIALOG DISCARDABLE  0, 0, 183, 63
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "World Info"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,63,42,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,126,42,50,14
+    LTEXT           "Title:",IDC_STATIC,8,10,18,10
+    EDITTEXT        IDC_TITLE,33,7,144,12,ES_AUTOHSCROLL
+    LTEXT           "Info:",IDC_STATIC,7,27,18,10
+    EDITTEXT        IDC_INFO,33,24,144,12,ES_AUTOHSCROLL
+END
+
+IDD_ABOUT DIALOG DISCARDABLE  0, 0, 144, 187
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About MAX VRML Exporter"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,47,168,50,14
+    CTEXT           "3ds max VRML Exporter",IDC_STATIC,18,4,108,8
+    CTEXT           "Version 2.1.1",IDC_STATIC,21,14,100,8
+    CTEXT           "Copyright 1996, 1997 Autodesk Inc.",IDC_STATIC,21,24,100,8
+    LTEXT           "Development:",IDC_STATIC,21,40,100,8
+    LTEXT           "     Scott Morrison",IDC_STATIC,21,52,100,8
+    LTEXT           "     Charles Thaeler",IDC_STATIC,21,64,100,8
+    LTEXT           "     Greg Finch",IDC_STATIC,21,76,100,8
+    LTEXT           "     Pete Samson",IDC_STATIC,21,88,100,8
+    LTEXT           "Quality Engineering:",IDC_STATIC,21,100,100,8
+    LTEXT           "     Ernie Jackson",IDC_STATIC,21,112,100,8
+    LTEXT           "     Jeff Huther",IDC_STATIC,21,124,100,8
+    LTEXT           "     Jake Winett",IDC_STATIC,21,136,100,8
+    LTEXT           "     Matt Thompson",IDC_STATIC,21,148,100,8
+END
+
+IDD_CPPOUT_PANEL DIALOG DISCARDABLE  0, 0, 108, 51
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Close",IDOK,31,32,46,13
+    CONTROL         "Pick Object",IDC_CPPOUT_PICK,"CustButton",WS_TABSTOP,20,
+                    10,66,13
+END
+
+IDD_PROGRESSDLG DIALOG DISCARDABLE  0, 0, 184, 49
+STYLE DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "Processing..."
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "node name goes here...                                       ",
+                    IDC_PROGRESS_NNAME,"Static",SS_LEFTNOWORDWRAP | 
+                    SS_SUNKEN | WS_BORDER | WS_GROUP,16,10,154,12
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#include ""commctrl.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_MRBLUE_ACTIONS, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 45
+    END
+
+    IDD_MRBLUE_PARAMS_HL, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 112
+    END
+
+    IDD_LOD, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 136
+    END
+
+    IDD_INS, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 65
+    END
+
+    IDD_VRBLEXP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 186
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 227
+    END
+
+    IDD_URL_BOOKMARKS, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 360
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 218
+    END
+
+    IDD_IMAGE_URL, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 294
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 269
+    END
+
+    IDD_WORLD_INFO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 176
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 56
+    END
+
+    IDD_ABOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 137
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 180
+    END
+
+    IDD_PROGRESSDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 177
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 42
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_ANIM_CURSOR         CURSOR  DISCARDABLE     "animcurs.cur"
+IDC_LOD_CURSOR          CURSOR  DISCARDABLE     "lodcurs.cur"
+IDC_CROSS_HAIR          CURSOR  DISCARDABLE     "CROSSHR1.CUR"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_VMTL_BUTTONS        BITMAP  DISCARDABLE     "dmtlbut.bmp"
+IDB_VMTL_MASKBUTTONS    BITMAP  DISCARDABLE     "dmtlmsk.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DB_TRIGGER_DIST     "Trigger Distance"
+    IDS_ANIM_PICK_MODE      "Pick an object to add to the animations list"
+    IDS_LOD_PICK_MODE       "Pick an object to add to the LOD list"
+    IDS_OPEN_FAILED         "Can't create output file"
+    IDS_HL_TITLE            "Hyperlink Jump"
+    IDS_VPT_TITLE           "Set Camera"
+    IDS_ANIM_TITLE          "Animate"
+    IDS_ACTION_TITLE        "Actions"
+    IDS_TRIGGERS_TITLE      "Triggers"
+    IDS_LOD_TITLE           "Level Of Detail"
+    IDS_VRML_INS_TITLE      "VRML Inline"
+    IDS_DLL_INFO            "VRML 1/VRBL exporter with helper objects (Discreet)"
+    IDS_VRML_EXPORT         "VRML Export"
+    IDS_DS_AMBIENT          "Ambient"
+    IDS_DS_DIFFUSE          "Diffuse"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DS_SPECULAR         "Specular"
+    IDS_DS_NONE             "None"
+    IDS_DS_LOCKAD           "Lock Ambient and Diffuse?"
+    IDS_DS_LOCKCOL          "Lock Colors"
+    IDS_DS_PARAMCHG         "Param Change"
+    IDS_DS_LOCK_DS          "Lock Diffuse and Specular?"
+    IDS_DS_BASIC            "VRML Parameters"
+    IDS_DS_SHININESS        "Shininess"
+    IDS_DS_SELFI            "Self-Illumination"
+    IDS_DS_OPACITY          "Opacity"
+    IDS_DS_MAP_TEXTURE_ERR  "Bad Bitmap Name"
+    IDS_DS_INVAL_NAME       "Invalid File Name %s"
+    IDS_DS_SELECT_FILE      "VRML Bitmap File"
+    IDS_DS_STANDARD         "Standard"
+    IDS_DS_BITMAP           "Bitmap"
+    IDS_TH_SCENEEXPORT      "Scene Export"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DS_EXCLUDE__        "Exclude.."
+    IDS_DS_INCLUDE__        "Include.."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DS_LIGHTCOL         "Light Color"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DB_TDIST            "Target Distance"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DB_MULTIPLIER       "Multiplier"
+    IDS_DB_ATTENSTART       "Attenuation Start"
+    IDS_DB_ATTENEND         "Attenuation End"
+    IDS_DB_HOTSIZE          "Hotspot"
+    IDS_DB_FALLSIZE         "Falloff"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DB_COLOR            "Color"
+    IDS_DB_ASPECT_RATIO     "Aspect Ratio"
+    IDS_DB_TAPE_LENGTH      "Length"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DB_NRANGE           "Near Env Range"
+    IDS_DB_FRANGE           "Far Env Range"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_OBJECT           "Object"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_PARAMETERS       "Parameters"
+    IDS_RB_ANGLE            "Angle"
+    IDS_RB_AMOUNT           "Amount"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_RED              "Red"
+    IDS_RB_GREEN            "Green"
+    IDS_RB_BLUE             "Blue"
+    IDS_RB_HOTSIZE          "Hotspot Size"
+    IDS_RB_TRANSFORM        "Transform"
+    IDS_RB_BASEPARAMS       "Object"
+    IDS_DB_TARGET           "Target"
+    IDS_DB_DOT_TARGET       ".Target"
+    IDS_DB_OMNI             "Omni"
+    IDS_DB_TARGET_SPOT      "Target Spot"
+    IDS_DB_DIRECTIONAL      "Directional"
+    IDS_DB_FREE_SPOT        "Free Spot"
+    IDS_DB_NONE             "None"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DB_GENERAL_PARAMS   "General Parameters"
+    IDS_DB_DIR_PARAMS       "Directional Parameters"
+    IDS_DB_SPOT_PARAMS      "Spotlight Parameters"
+    IDS_DB_SHADOW_PARAMS    "Shadow Parameters"
+    IDS_DB_SELECT_TO_FIT    " Select Image File to Fit "
+    IDS_DB_OMNI_LIGHT       "Omni Light"
+    IDS_DB_DIR_LIGHT        "Directional Light"
+    IDS_DB_DIRECT           "Direct"
+    IDS_DB_FSPOT            "Fspot"
+    IDS_DB_SPOT             "Spot"
+    IDS_DB_LIGHT            "Light"
+    IDS_DB_TAPE             "Tape"
+    IDS_DB_GENERAL          "General"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_GEOMETERIC       "Geometry"
+    IDS_RB_SHAPES           "Shapes"
+    IDS_RB_LIGHTS           "Lights"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_MAPSIZE          "Map Size"
+    IDS_RB_MAPBIAS          "Map Bias"
+    IDS_RB_MAPRANGE         "Map Range"
+    IDS_RB_RAYBIAS          "Ray Bias"
+    IDS_RB_NEARPLANE        "Near Plane"
+    IDS_RB_FARPLANE         "Far Plane"
+    IDS_PRS_URL             "URL"
+    IDS_PRS_DESCRIPTION     "Description"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DS_CREATE           "Create"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TimeSensor_PICK_MODE "Pick an object to add to the TimeSensor list"
+    IDS_TouchSensor_PICK_MODE "Pick an object to add to the TouchSensor list"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_CPPOBJECTOUT     "C++ Object Output"
+    IDS_RB_CPPFILES         "C++ files(*.cpp)"
+    IDS_RB_SAVEOBJECT       "Save Object"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_FILEEXISTS       "%s already exists.\nDo you want to replace it?"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

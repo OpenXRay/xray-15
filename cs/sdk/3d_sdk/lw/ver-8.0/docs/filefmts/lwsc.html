@@ -1,0 +1,374 @@
+<html>
+
+<head>
+<title>Scene Files</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="eaiff85.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="EA IFF 85"></a></td>
+    <td width="96" align="left"><a href="lwo2.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Object Files"></a></td>
+    <td width="96" align="left"><a href="../filefmts.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="File Formats"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Scene Files</h3>
+    <p><small>November 9, 2001</small></p>
+    <p>This document describes the LWSC version 3 file format for 3D scenes used by LightWave&reg;
+    6.0 and later. At this point, it's an incomplete rough draft that's missing descriptions
+    of most of the keywords. But the introductory information will allow you to parse the file
+    at least, and the semantics of most of the keywords can be deduced.</p>
+    <p>If you've worked with version 1 of the format (version 2 was an unreleased interim
+    format), version 3 will seem quite familiar. Scene files are still text files containing
+    keyword-value pairs. The most important difference is in the way keyframe data is stored,
+    but obviously there are many others comprising features not available in LightWave&reg; prior
+    to 6.0.</p>
+    <p><strong>Item Numbers</strong></p>
+    <p>When a scene file needs to refer to specific items to establish item relationships
+    (parenting, for example), it uses item numbers. Items are numbered in the order in which
+    they appear in the file, starting with 0.</p>
+    <p>Item numbers can be written in one of two ways, depending on which keyword they're used
+    with. In general, if the type of the item (object, bone, light, camera) can be determined
+    from the keyword alone, the item number will simply be the ordinal, written as a decimal
+    integer. When the keyword can be used with items of more than one type, the item number is
+    an unsigned integer written as an 8-digit hexadecimal string, the format produced by the
+    C-language <tt>&quot;%8X&quot;</tt> print format specifier, and the high bits identify the
+    item type.</p>
+    <p>The first hex digit (most significant 4 bits) of the hex item number string identifies
+    the item type.</p>
+    <blockquote>
+      <p>1 - Object<br>
+      2 - Light<br>
+      3 - Camera<br>
+      4 - Bone</p>
+    </blockquote>
+    <p>The other digits make up the item number, except in the case of bones. For bones, the
+    next 3 digits (bits 16-27) are the bone number and the last 4 digits (bits 0-15) are the
+    object number for the object the bone belongs to. Some examples:</p>
+    <blockquote>
+      <p><tt>10000000 </tt>- the first object<br>
+      <tt>20000000 </tt>- the first light<br>
+      <tt>4024000A </tt>- the 37th bone (24 hex) in the 11th object (0A hex)</p>
+    </blockquote>
+    <p><strong>Blocks</strong></p>
+    <p>Information in a scene file is organized into blocks, the ASCII text analog of the
+    chunks described in the <a href="eaiff85.html">IFF</a> specification. Each block consists
+    of an identifier or name followed by some data. The format of the data is determined by
+    the block name. Block names resemble C-style identifiers. In particular, they never
+    contain spaces or other non-alphanumeric characters.</p>
+    <p>A single-line block is delimited by the newline that terminates the line. Multiline
+    blocks are delimited by curly braces (the <strong>{</strong> and <strong>}</strong>
+    characters, ASCII codes 123 and 125). The name of a multiline block follows the opening
+    curly brace on the same line. The curly brace and the name are separated by a single
+    space. The data follows on one or more subsequent lines. Each line of data is indented
+    using two spaces. The closing brace is on a line by itself and is not indented.</p>
+    <p>Individual data elements are separated from each other by a single space. String data
+    elements are enclosed in double quotes and may contain spaces.</p>
+    <p>Blocks can be nested. In other words, the data of a block can include other blocks. A
+    block that contains nested blocks is always a multiline block. At each nesting level, the
+    indention of the data is incremented by two additional spaces. </p>
+    <pre>   SingleLineBlock data
+   { MultiLineBlock
+     data
+     { NestedMultiLineBlock
+       data
+     }
+   }</pre>
+    <p><strong>Envelopes</strong></p>
+    <p>An envelope defines a function of time. For any animation time, an envelope's
+    parameters can be combined to generate a value at that time. Envelopes are used to store
+    position coordinates, rotation angles, scale factors, camera zoom, light intensity,
+    texture parameters, and anything else that can vary over time.</p>
+    <p>The envelope function is a piecewise polynomial curve. The function is tabulated at
+    specific points, called <em>keys</em>. The curve segment between two adjacent keys is
+    called a <em>span</em>, and values on the span are calculated by interpolating between the
+    keys. The interpolation can be linear, cubic, or stepped, and it can be different for each
+    span. The value of the function before the first key and after the last key is calculated
+    by extrapolation.</p>
+    <p>In scene files, an envelope is stored in a block named <tt>Envelope</tt> that contains
+    one or more nested <tt>Key</tt> blocks and one <tt>Behaviors</tt> block.</p>
+    <pre>   <strong>{ Envelope</strong>
+     nkeys
+     <strong>Key</strong> value time spantype p1 p2 p3 p4 p5 p6
+     <strong>Key</strong> ...
+     <strong>Behaviors</strong> pre post
+   <strong>}</strong></pre>
+    <p>The <tt>nkeys</tt> value is an integer, the number of <tt>Key</tt> blocks in the
+    envelope. Envelopes must contain at least one <tt>Key</tt> block. The contents of a <tt>Key</tt>
+    block are as follows. <dl>
+      <tt>
+      <dt><strong>value</strong></dt>
+      </tt>
+      <dd>The key value, a floating-point number. The units and limits of the value depend on what
+        parameter the envelope represents.</dd>
+      <tt>
+      <dt><strong><br>
+        time</strong></dt>
+      </tt>
+      <dd>The time in seconds, a float. This can be negative, zero or positive. Keys are listed in
+        the envelope in increasing time order.</dd>
+      <tt>
+      <dt><strong><br>
+        spantype</strong></dt>
+      </tt>
+      <dd>The curve type, an integer. This determines the kind of interpolation that will be
+        performed on the span between this key and the previous key, and also indicates what
+        interpolation parameters are stored for the key. <blockquote>
+          <dl>
+            <dt><strong>0</strong> - TCB (Kochanek-Bartels)</dt>
+            <dt><strong>1</strong> - Hermite</dt>
+            <dt><strong>2</strong> - 1D Bezier (obsolete, equivalent to Hermite)</dt>
+            <dt><strong>3</strong> - Linear</dt>
+            <dt><strong>4</strong> - Stepped</dt>
+            <dt><strong>5</strong> - 2D Bezier</dt>
+          </dl>
+        </blockquote>
+      </dd>
+      <tt>
+      <dt><strong>p1...p6</strong></dt>
+      </tt>
+      <dd>Curve parameters. The data depends on the span type. <blockquote>
+          <dl>
+            <dt>TCB, Hermite, 1D Bezier</dt>
+            <dd>The first three parameters are tension, continuity and bias. The fourth and fifth
+              parameters are the incoming and outgoing tangents. The sixth parameter is ignored and
+              should be 0. Use the first three to evaluate TCB spans, and the other two to evaluate
+              Hermite spans.</dd>
+            <dt>2D Bezier</dt>
+            <dd>The first two parameters are the incoming time and value, and the second two are the
+              outgoing time and value.</dd>
+          </dl>
+        </blockquote>
+      </dd>
+    </dl>
+    <p>The <tt>Behaviors</tt> block contains two integers.<dl>
+      <tt>
+      <dt><strong>pre</strong>, <strong>post</strong></dt>
+      </tt>
+      <dd>Pre- and post-behaviors. These determine how the envelope is extrapolated at times
+        before the first key and after the last one. <blockquote>
+          <dl>
+            <dt><strong>0</strong> - Reset</dt>
+            <dd>Sets the value to 0.0.</dd>
+            <dt><strong>1</strong> - Constant</dt>
+            <dd>Sets the value to the value at the nearest key.</dd>
+            <dt><strong>2</strong> - Repeat</dt>
+            <dd>Repeats the interval between the first and last keys (the primary interval).</dd>
+            <dt><strong>3</strong> - Oscillate</dt>
+            <dd>Like Repeat, but alternating copies of the primary interval are time-reversed.</dd>
+            <dt><strong>4</strong> - Offset Repeat</dt>
+            <dd>Like Repeat, but offset by the difference between the values of the first and last keys.</dd>
+            <dt><strong>5</strong> - Linear</dt>
+            <dd>Linearly extrapolates the value based on the tangent at the nearest key.</dd>
+          </dl>
+        </blockquote>
+      </dd>
+    </dl>
+    <p>The source code in the <a href="../../sample/Layout/ChannelFilter/envelope/">sample/envelope</a> directory
+    of the LightWave&reg; plug-in SDK demonstrates how envelopes are evaluated.</p>
+    <p><strong>Scene</strong><dl>
+      <tt>
+      <dt>FirstFrame <strong>n</strong>first<br>
+        LastFrame <strong>n</strong>last<br>
+        FrameStep <strong>n</strong>step</dt>
+      </tt>
+      <dd>The frame range and step size for rendering. In the simplest case, the first frame and
+        frame step are 1, and the last frame is the number of frames to be rendered.</dd>
+      <tt>
+      <dt><br>
+        PreviewFirstFrame <strong>n</strong>first<br>
+        PreviewLastFrame <strong>n</strong>last<br>
+        PreviewFrameStep <strong>n</strong>step</dt>
+      </tt>
+      <dd>The frame range and step size for previewing. These may be unrelated to the values for
+        rendering. They also control the visible ranges of certain interface elements, for example
+        the frame slider in the main window.</dd>
+      <tt>
+      <dt><br>
+        CurrentFrame <strong>n</strong>frame</dt>
+      </tt>
+      <dd>The frame displayed in the interface when the scene is loaded.</dd>
+      <tt>
+      <dt><br>
+        FramesPerSecond <strong>g</strong>frames</dt>
+      </tt>
+      <dd>This controls the duration of each frame.</dd>
+    </dl>
+    <p><strong>Objects</strong><dl>
+      <tt>
+      <dt>LoadObjectLayer <strong>n</strong>layer <strong>s</strong>filename</dt>
+      </tt>
+      <dd>Begins a group of statements about an object. The layer number is the index recorded in
+        the LAYR chunk of the object file.</dd>
+      <tt>
+      <dt><br>
+        ShowObject <strong>n</strong>visibility <strong>n</strong>color</dt>
+      </tt>
+      <dd>Determines how the object is displayed in the interface. The visibility codes are <blockquote>
+          <dl>
+            <dt>0 - hidden</dt>
+            <dt>1 - bounding box</dt>
+            <dt>2 - vertices only</dt>
+            <dt>3 - wireframe</dt>
+            <dt>4 - front face wireframe</dt>
+            <dt>5 - shaded solid</dt>
+            <dt>6 - textured shaded solid</dt>
+          </dl>
+        </blockquote>
+        <p>The color used to draw bounding boxes, vertices and wireframes can be one of the
+        following.</p>
+        <blockquote>
+          <table border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td width="23" align="center">0</td>
+              <td width="23" align="center">1</td>
+              <td width="23" align="center">2</td>
+              <td width="23" align="center">3</td>
+              <td width="23" align="center">4</td>
+              <td width="23" align="center">5</td>
+              <td width="23" align="center">6</td>
+              <td width="23" align="center">7</td>
+              <td width="23" align="center">8</td>
+              <td width="23" align="center">9</td>
+              <td width="23" align="center">10</td>
+              <td width="23" align="center">11</td>
+              <td width="23" align="center">12</td>
+              <td width="23" align="center">13</td>
+              <td width="23" align="center">14</td>
+            </tr>
+            <tr>
+              <td width="345" align="center" colspan="15"><img width="335" height="13"
+              src="../images/uicolors.gif"> </td>
+            </tr>
+          </table>
+        </blockquote>
+        <p>The default visibility and color are stored in the config file. If they haven't been
+        altered by the user, they are textured shaded solid (6) and cyan (3) in LightWave&reg; 6.5.</p>
+      </dd>
+      <tt>
+      <dt>ObjectMotion<br>
+        NumChannels <strong>n</strong>channels<br>
+        Channel <strong>n</strong>index<br>
+        { Envelope ...</dt>
+      </tt>
+      <dd>The <tt>ObjectMotion</tt> keyword signals the start of the motion information for the
+        object. Motions are stored in envelopes, one for each motion channel. There are 9 standard
+        channels, numbered from 0 to 8.<blockquote>
+          <p>0, 1, 2 - (x, y, z) position<br>
+          3, 4, 5 - (heading, pitch, bank) rotation<br>
+          6, 7, 8 - (sx, sy, sz) scale factors along each axis</p>
+        </blockquote>
+        <p>The values of all of these are relative to the object's parent, if it has one.</p>
+      </dd>
+      <tt>
+      <dt>UseBonesFrom 1</dt>
+      </tt>
+      <dd>.</dd>
+      <tt>
+      <dt><br>
+        Plugin <strong>s</strong>class <strong>n</strong>listpos <strong>s</strong>name<br>
+        EndPlugin</dt>
+      </tt>
+      <dd>Lists an object plug-in. The class can be</dd>
+      <tt>
+      <dt><br>
+        MorphAmount<br>
+        MorphTarget<br>
+        MorphSurfaces<br>
+        MTSEMorphing</dt>
+      </tt>
+      <dd>.</dd>
+      <tt>
+      <dt><br>
+        DisplacementMaps<br>
+        { TextureBlock ...</dt>
+      </tt>
+      <dd>.</dd>
+      <tt>
+      <dt><br>
+        ClipMaps<br>
+        { TextureBlock ...</dt>
+      </tt>
+      <dd>.</dd>
+      <tt>
+      <dt><br>
+        ObjectDissolve</dt>
+      </tt>
+      <dd>.</dd>
+      <tt>
+      <dt><br>
+        DistanceDissolve</dt>
+      </tt>
+      <dd>.</dd>
+      <tt>
+      <dt><br>
+        MaxDissolveDistance</dt>
+      </tt>
+      <dd>.</dd>
+      <tt>
+      <dt><br>
+        AffectedByFog</dt>
+      </tt>
+      <dd>.</dd>
+      <tt>
+      <dt><br>
+        UnseenByRays</dt>
+      </tt>
+      <dd>.</dd>
+      <tt>
+      <dt><br>
+        UnseenByCamera</dt>
+      </tt>
+      <dd>.</dd>
+      <tt>
+      <dt><br>
+        ShadowOptions</dt>
+      </tt>
+      <dd>.</dd>
+      <tt>
+      <dt><br>
+        ExcludeLight</dt>
+      </tt>
+      <dd>.</dd>
+      <tt>
+      <dt><br>
+        PolygonEdgeFlags</dt>
+      </tt>
+      <dd>.</dd>
+      <tt>
+      <dt><br>
+        PolygonEdgeThickness</dt>
+      </tt>
+      <dd>.</dd>
+      <tt>
+      <dt><br>
+        PolygonEdgeColor</dt>
+      </tt>
+      <dd>.</dd>
+      <tt>
+      <dt><br>
+        PolygonEdgesZScale</dt>
+      </tt>
+      <dd>.</dd>
+      <tt>
+      <dt><br>
+        EdgeNominalDistance</dt>
+      </tt>
+      <dd>.</dd>
+    </dl>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

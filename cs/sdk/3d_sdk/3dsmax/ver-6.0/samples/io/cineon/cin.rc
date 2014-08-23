@@ -1,0 +1,405 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "windows.h"
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""windows.h""\r\n"
+    "\r\n"
+    "\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CIN_ABOUT DIALOG DISCARDABLE  0, 0, 140, 70
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "About Cineon Image File"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CTEXT           "Kodak's Cineon Format",IDC_STATIC,30,10,84,8
+    CTEXT           "Version 1.0",IDC_STATIC,40,24,57,8
+    GROUPBOX        "",IDC_STATIC,5,0,130,40
+    PUSHBUTTON      "OK",IDOK,45,50,50,14
+END
+
+IDD_CIN_INFO DIALOG DISCARDABLE  0, 0, 480, 297
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Cineon Image File Information"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,216,280,50,14
+    GROUPBOX        "File Information",IDC_STATIC,4,4,472,44
+    LTEXT           "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890",
+                    IDC_INFO_DLG_FILE_NAME,68,12,404,10,SS_SUNKEN
+    LTEXT           "12345678",IDC_INFO_DLG_FILE_VERSION,68,24,40,10,
+                    SS_SUNKEN
+    LTEXT           "123456789012",IDC_INFO_DLG_FILE_CREATION_DATE,344,24,52,
+                    10,SS_SUNKEN
+    LTEXT           "123456789012",IDC_INFO_DLG_FILE_CREATION_TIME,344,36,52,
+                    10,SS_SUNKEN
+    GROUPBOX        " Image Information",IDC_STATIC,4,52,472,56
+    GROUPBOX        " Image Data Format",IDC_STATIC,4,112,472,44
+    LTEXT           "Image Filename:",IDC_STATIC,8,12,55,10
+    LTEXT           "Image File Size:",IDC_STATIC,8,36,55,10
+    LTEXT           "Creation Date:",IDC_STATIC,268,24,70,10
+    LTEXT           "Creation Time:",IDC_STATIC,268,36,70,10
+    LTEXT           "Version:",IDC_STATIC,8,24,55,10
+    LTEXT           "1234567890",IDC_INFO_DLG_FILE_SIZE,68,36,44,10,
+                    SS_SUNKEN
+    LTEXT           "Image Orientation:",IDC_STATIC,8,60,70,10
+    LTEXT           "123456789012345678901234567890",
+                    IDC_INFO_DLG_IMAGE_ORIENTATION,84,60,124,10,SS_SUNKEN
+    LTEXT           "Number of Channels:",IDC_STATIC,8,72,70,10
+    LTEXT           "123",IDC_INFO_DLG_IMAGE_NUMBER_CHANNELS,84,72,16,10,
+                    SS_SUNKEN
+    LTEXT           "Bits/Pixel:",IDC_STATIC,162,72,40,10
+    LTEXT           "123",IDC_INFO_DLG_IMAGE_BITS_PER_PIXEL,212,72,16,10,
+                    SS_SUNKEN
+    LTEXT           "Line/Image:",IDC_STATIC,162,84,40,10
+    LTEXT           "1234567890",IDC_INFO_DLG_IMAGE_LINES_PER_IMAGE,212,84,
+                    44,10,SS_SUNKEN
+    LTEXT           "White Point:",IDC_STATIC,268,60,70,10
+    CTEXT           "12.123456 , 12.123456",IDC_INFO_DLG_IMAGE_WHITE_PT,344,
+                    60,84,10,SS_SUNKEN
+    LTEXT           "Red Chromaticity:",IDC_STATIC,268,72,70,10
+    CTEXT           "12.123456 , 12.123456",IDC_INFO_DLG_IMAGE_RED_PT,344,72,
+                    84,10,SS_SUNKEN
+    LTEXT           "Green Chromaticity:",IDC_STATIC,268,84,70,10
+    CTEXT           "12.123456 , 12.123456",IDC_INFO_DLG_IMAGE_GREEN_PT,344,
+                    84,84,10,SS_SUNKEN
+    LTEXT           "Blue Chromaticity:",IDC_STATIC,268,96,70,10
+    CTEXT           "12.123456 , 12.123456",IDC_INFO_DLG_IMAGE_BLUE_PT,344,
+                    96,84,10,SS_SUNKEN
+    LTEXT           "Data Interleave:",IDC_STATIC,8,120,70,10
+    LTEXT           "Packing:",IDC_STATIC,8,132,70,10
+    LTEXT           "Signed:",IDC_STATIC,8,144,70,10
+    LTEXT           "Image Sense:",IDC_STATIC,260,120,80,10
+    LTEXT           "End Of Line Padding:",IDC_STATIC,260,132,80,10
+    LTEXT           "End Of Channel Padding:",IDC_STATIC,260,144,80,10
+    LTEXT           "123",IDC_INFO_DLG_IMAGE_DATA_INTERLEAVE,84,120,16,10,
+                    SS_SUNKEN
+    LTEXT           "123",IDC_INFO_DLG_IMAGE_PACKING,84,132,16,10,SS_SUNKEN
+    LTEXT           "12",IDC_INFO_DLG_IMAGE_SIGNED,84,144,10,10,SS_SUNKEN
+    LTEXT           "12",IDC_INFO_DLG_IMAGE_SENSE,344,120,10,10,SS_SUNKEN
+    LTEXT           "1234567890",IDC_INFO_DLG_IMAGE_EOL_PADDING,344,132,44,
+                    10,SS_SUNKEN
+    LTEXT           "1234567890",IDC_INFO_DLG_IMAGE_EOC_PADDING,344,144,44,
+                    10,SS_SUNKEN
+    LTEXT           "X Offset:",IDC_STATIC,368,168,40,10
+    GROUPBOX        " Film/Frame Information",IDC_STATIC,4,220,472,56
+    LTEXT           "Y Offset:",IDC_STATIC,368,180,40,10
+    LTEXT           "Name:",IDC_STATIC,8,168,70,10
+    LTEXT           "Model Number:",IDC_STATIC,8,180,70,10
+    LTEXT           "Serial Number:",IDC_STATIC,8,192,70,10
+    GROUPBOX        "Input Device",IDC_STATIC,4,160,472,56
+    LTEXT           "X Pitch (samples/mm.):",IDC_STATIC,328,192,80,10
+    LTEXT           "Y Pitch (samples/mm.):",IDC_STATIC,328,204,80,10
+    LTEXT           "1234567890123456789012345678901234567890123456789012345678901234",
+                    IDC_INFO_DLG_IMAGE_INPUT_DEVICE,84,168,260,10,SS_SUNKEN
+    LTEXT           "12345678901234567890123456789012",
+                    IDC_INFO_DLG_IMAGE_INPUT_DEVICE_SERIAL_NUMBER,84,192,135,
+                    10,SS_SUNKEN
+    LTEXT           "12345678901234567890123456789012",
+                    IDC_INFO_DLG_IMAGE_INPUT_DEVICE_MODEL_NUMBER,84,180,135,
+                    10,SS_SUNKEN
+    LTEXT           "123.123456",IDC_INFO_DLG_IMAGE_DEVICE_X_PITCH,412,192,
+                    44,10,SS_SUNKEN
+    LTEXT           "123.123456",IDC_INFO_DLG_IMAGE_DEVICE_Y_PITCH,412,204,
+                    44,10,SS_SUNKEN
+    LTEXT           "1234567890",IDC_INFO_DLG_IMAGE_X_OFFSET,412,168,44,10,
+                    SS_SUNKEN
+    LTEXT           "1234567890",IDC_INFO_DLG_IMAGE_Y_OFFSET,412,180,44,10,
+                    SS_SUNKEN
+    LTEXT           "Image Gamma:",IDC_STATIC,8,204,70,10
+    LTEXT           "123.123456",IDC_INFO_DLG_IMAGE_GAMMA,84,204,44,10,
+                    SS_SUNKEN
+    LTEXT           "Film Mfg. ID:",IDC_STATIC,288,228,50,10
+    LTEXT           "Film Type:",IDC_STATIC,288,240,50,10
+    LTEXT           "Offset in Perfs:",IDC_STATIC,288,252,50,10
+    LTEXT           "Format:",IDC_STATIC,8,228,70,10
+    LTEXT           "Position:",IDC_STATIC,8,252,70,10
+    LTEXT           "Attribute:",IDC_STATIC,8,240,70,10
+    LTEXT           "12345678901234567890123456789012",
+                    IDC_INFO_DLG_IMAGE_FRAME_ATTRIBUTE,84,240,135,10,
+                    SS_SUNKEN
+    LTEXT           "12345678901234567890123456789012",
+                    IDC_INFO_DLG_IMAGE_FORMAT,84,228,135,10,SS_SUNKEN
+    LTEXT           "123",IDC_INFO_DLG_FILM_MFG_ID,344,228,16,10,SS_SUNKEN
+    LTEXT           "123",IDC_INFO_DLG_FILM_TYPE,344,240,16,10,SS_SUNKEN
+    LTEXT           "123",IDC_INFO_DLG_FILM_OFFSET,344,252,16,10,SS_SUNKEN
+    LTEXT           "Rate (frames/sec.):",IDC_STATIC,8,264,70,10
+    LTEXT           "1234567890",IDC_INFO_DLG_FRAME_POSITION,84,252,44,10,
+                    SS_SUNKEN
+    LTEXT           "123.123456",IDC_INFO_DLG_FRAME_RATE,84,264,44,10,
+                    SS_SUNKEN
+    LTEXT           "Pixels/Line:",IDC_STATIC,8,84,70,10
+    LTEXT           "1234567890",IDC_INFO_DLG_IMAGE_PIXELS_PER_LINE,84,84,44,
+                    10,SS_SUNKEN
+    LTEXT           "Supported format:",IDC_STATIC,8,96,72,10
+    CTEXT           "1234567890",IDC_INFO_DLG_IMAGE_IS_SUPPORTED,84,96,44,10,
+                    SS_SUNKEN
+END
+
+IDD_CIN_CONTROL DIALOG DISCARDABLE  0, 0, 232, 130
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Cineon Image File Format"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,60,110,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,120,110,50,14
+    CONTROL         "",IDC_WHITE_PT_EDIT,"CustEdit",WS_TABSTOP,176,25,32,10
+    CONTROL         "",IDC_WHITE_PT_SPINNER,"SpinnerControl",0x0,209,25,8,10
+    CONTROL         "",IDC_BLACK_PT_EDIT,"CustEdit",WS_TABSTOP,176,40,32,10
+    CONTROL         "",IDC_BLACK_PT_SPINNER,"SpinnerControl",0x0,209,40,8,10
+    LTEXT           "White Pt:",IDC_STATIC,141,26,33,8
+    LTEXT           "Black Pt:",IDC_STATIC,141,41,31,8
+    LTEXT           "10-Bit per color",IDC_STATIC,148,65,56,8
+    GROUPBOX        "Printing Density Adjustment",IDC_STATIC,4,5,224,100
+    GROUPBOX        "Printing density",IDC_STATIC,140,55,72,24
+    CONTROL         "",IDC_VIEW,"Static",SS_BLACKFRAME,31,25,101,64
+    LTEXT           "1024",IDC_STATIC,124,91,17,8
+    LTEXT           "0",IDC_STATIC,24,89,8,8
+    LTEXT           "65536",IDC_STATIC,7,22,21,8
+END
+
+IDD_CIN_CONTROL1 DIALOG DISCARDABLE  0, 0, 320, 156
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Cineon Image File Format"
+FONT 8, "MS Sans Serif"
+BEGIN
+    RTEXT           "White X Pt:",IDC_STATIC,120,18,40,8
+    CONTROL         "",IDC_WHITE_X_PT_EDIT,"CustEdit",WS_TABSTOP,164,16,32,
+                    10
+    CONTROL         "",IDC_WHITE_X_PT_SPINNER,"SpinnerControl",0x0,197,16,8,
+                    10
+    RTEXT           "White Y Pt:",IDC_STATIC,120,29,40,8
+    CONTROL         "",IDC_WHITE_Y_PT_EDIT,"CustEdit",WS_TABSTOP,164,27,32,
+                    10
+    CONTROL         "",IDC_WHITE_Y_PT_SPINNER,"SpinnerControl",0x0,197,27,8,
+                    10
+    RTEXT           "Red X Pt:",IDC_STATIC,216,18,40,8
+    CONTROL         "",IDC_RED_X_PT_EDIT,"CustEdit",WS_TABSTOP,260,16,32,10
+    CONTROL         "",IDC_RED_X_PT_SPINNER,"SpinnerControl",0x0,293,16,8,10
+    RTEXT           "Red Y Pt:",IDC_STATIC,216,29,40,8
+    CONTROL         "",IDC_RED_Y_PT_EDIT,"CustEdit",WS_TABSTOP,260,27,32,10
+    CONTROL         "",IDC_RED_Y_PT_SPINNER,"SpinnerControl",0x0,293,27,8,10
+    RTEXT           "Green X Pt:",IDC_STATIC,216,42,40,8
+    CONTROL         "",IDC_GREEN_X_PT_EDIT,"CustEdit",WS_TABSTOP,260,40,32,
+                    10
+    CONTROL         "",IDC_GREEN_X_PT_SPINNER,"SpinnerControl",0x0,293,40,8,
+                    10
+    RTEXT           "Green Y Pt:",IDC_STATIC,216,52,40,8
+    CONTROL         "",IDC_GREEN_Y_PT_EDIT,"CustEdit",WS_TABSTOP,260,51,32,
+                    10
+    CONTROL         "",IDC_GREEN_Y_PT_SPINNER,"SpinnerControl",0x0,293,51,8,
+                    10
+    RTEXT           "Blue X Pt:",IDC_STATIC,216,66,40,8
+    CONTROL         "",IDC_BLUE_X_PT_EDIT,"CustEdit",WS_TABSTOP,260,64,32,10
+    CONTROL         "",IDC_BLUE_X_PT_SPINNER,"SpinnerControl",0x0,293,64,8,
+                    10
+    RTEXT           "Blue Y Pt:",IDC_STATIC,216,77,40,8
+    CONTROL         "",IDC_BLUE_Y_PT_EDIT,"CustEdit",WS_TABSTOP,260,75,32,10
+    CONTROL         "",IDC_BLUE_Y_PT_SPINNER,"SpinnerControl",0x0,293,75,8,
+                    10
+    LTEXT           "Bits:",IDC_STATIC,10,115,20,10
+    CONTROL         "10",IDC_BITS_PER_CHANNEL_10,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,52,115,22,10
+    CONTROL         "12",IDC_BITS_PER_CHANNEL_12,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,76,115,22,10
+    DEFPUSHBUTTON   "OK",IDOK,104,135,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,164,135,50,14
+    GROUPBOX        "Printing Density Adjustment",IDC_STATIC,4,4,308,96
+    GROUPBOX        "Per Channel",IDC_STATIC,4,104,104,24
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,12,16,96,64
+END
+
+IDD_CIN_BASIC_INFO DIALOG DISCARDABLE  0, 0, 282, 149
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Cineon Image File Information"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,112,128,50,14
+    GROUPBOX        "File Information",-1,4,56,272,68
+    CTEXT           "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890",
+                    IDC_INFO_DLG_FILE_NAME,68,68,200,10,SS_SUNKEN
+    CTEXT           "12345678",IDC_INFO_DLG_FILE_VERSION,68,80,44,10,
+                    SS_SUNKEN
+    CTEXT           "123456789012",IDC_INFO_DLG_FILE_CREATION_DATE,216,80,52,
+                    10,SS_SUNKEN
+    CTEXT           "123456789012",IDC_INFO_DLG_FILE_CREATION_TIME,216,92,52,
+                    10,SS_SUNKEN
+    GROUPBOX        " Image Information",-1,4,0,272,52
+    LTEXT           "Image Filename:",-1,8,68,55,10
+    LTEXT           "Image File Size:",-1,8,92,55,10
+    LTEXT           "Creation Date:",-1,144,80,70,10
+    LTEXT           "Creation Time:",-1,144,92,70,10
+    LTEXT           ".CIN Version:",-1,8,80,55,10
+    CTEXT           "1234567890",IDC_INFO_DLG_FILE_SIZE,68,92,44,10,
+                    SS_SUNKEN
+    LTEXT           "Number of Channels:",-1,8,12,70,10
+    CTEXT           "123",IDC_INFO_DLG_IMAGE_NUMBER_CHANNELS,80,12,12,10,
+                    SS_SUNKEN
+    LTEXT           "Bits/Pixel:",-1,128,12,40,10
+    CTEXT           "123",IDC_INFO_DLG_IMAGE_BITS_PER_PIXEL,168,12,12,10,
+                    SS_SUNKEN
+    LTEXT           "Line/Image:",-1,128,24,40,10
+    LTEXT           "1234567890",IDC_INFO_DLG_IMAGE_LINES_PER_IMAGE,168,24,
+                    40,10,SS_SUNKEN
+    LTEXT           "Image Gamma:",-1,8,36,70,10
+    CTEXT           "123.123456",IDC_INFO_DLG_IMAGE_GAMMA,80,36,40,10,
+                    SS_SUNKEN
+    LTEXT           "Pixels/Line:",-1,8,24,70,10
+    LTEXT           "1234567890",IDC_INFO_DLG_IMAGE_PIXELS_PER_LINE,80,24,40,
+                    10,SS_SUNKEN
+    LTEXT           "Supported format:",-1,8,108,55,10
+    CTEXT           "1234567890",IDC_INFO_DLG_IMAGE_IS_SUPPORTED,68,108,44,
+                    10,SS_SUNKEN
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_CIN_ABOUT, DIALOG
+    BEGIN
+        RIGHTMARGIN, 139
+        BOTTOMMARGIN, 50
+    END
+
+    IDD_CIN_INFO, DIALOG
+    BEGIN
+        HORZGUIDE, 4
+        HORZGUIDE, 14
+        HORZGUIDE, 26
+    END
+
+    IDD_CIN_CONTROL, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 127
+    END
+
+    IDD_CIN_CONTROL1, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 153
+    END
+
+    IDD_CIN_BASIC_INFO, DIALOG
+    BEGIN
+        HORZGUIDE, 4
+        HORZGUIDE, 14
+        HORZGUIDE, 26
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CIN                 "CIN"
+    IDS_CIN_FILE            "Kodak's Cineon"
+    IDS_BITMAP_IO           "Bitmap I/O"
+    IDS_YES                 "Yes"
+    IDS_NO                  "No"
+    IDS_CIN_Author          "greg finch"
+    IDS_CIN_Copyright       "Copyright 2000 Autodesk, Inc."
+    IDS_CIN_ShortDesc       "Cineon Image File"
+    IDS_CIN_LongDesc        "Kodak Cineon"
+    IDS_CIN_DLLDesc         "Kodak Cineon image file I/O (Discreet)"
+    IDS_CIN_Internal_Error  "Cineon Internal Error"
+    IDS_CIN_File_Open_Error "Cineon File Open Error"
+    IDS_CIN_Corrupt_File_Error "Cineon Corrupt File Error"
+    IDS_CIN_Invalid_Header_Error "Cineon Invalid Header Error"
+    IDS_CIN_Memory_Error    "Cineon Memory Error"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CIN_File_IO_Error   "Cineon File IO Error"
+    IDS_CIN_Image_Orientation_0 "Left to Right/Top to Bottom"
+    IDS_CIN_Image_Orientation_1 "Left to Right/Bottom to Top"
+    IDS_CIN_Image_Orientation_2 "Right to Left/Top to Bottom"
+    IDS_CIN_Image_Orientation_3 "Right to Left/Bottom to Top"
+    IDS_CIN_Image_Orientation_4 "Top to Bottom/Left to Right"
+    IDS_CIN_Image_Orientation_5 "Top to Bottom/Right to Left"
+    IDS_CIN_Image_Orientation_6 "Bottom to Top/Left to Right"
+    IDS_CIN_Image_Orientation_7 "Bottom to Top/Right to Left"
+    IDS_CIN_Unsupported_File_Error "Unsupported Cineon File"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

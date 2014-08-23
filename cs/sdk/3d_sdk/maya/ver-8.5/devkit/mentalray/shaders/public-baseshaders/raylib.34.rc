@@ -1,0 +1,31 @@
+#include <windows.h>
+#include <mi_version.h>
+#include "copyright.h"
+
+#define VER_DEBUG		    0
+#define VER_PRERELEASE              0
+#define VER_FILEFLAGSMASK           VS_FFI_FILEFLAGSMASK
+#define VER_FILEOS                  VOS_NT_WINDOWS32
+#define VER_FILEFLAGS               (VER_PRERELEASE|VER_DEBUG)
+
+#define VER_FILETYPE                VFT_APP
+#define VER_FILESUBTYPE             VFT2_UNKNOWN
+
+#define VER_COMPANYNAME_STR         "mental images GmbH"
+#define VER_PRODUCTNAME_STR         "mental ray"
+#define VER_LEGALCOPYRIGHT_YEARS    "1986-2004"
+#define VER_TRADEMARK_STR     	    "The following are trademarks of mental images. Some of the trademarks are registered in the United States or other countries. mental images\xae, mental ray\xae, mental matter\xae, , Phenomenon Creator\xae, Phenomenon Editor\xae, SPM\xae, Reality Server\xae, iray\xae, imatter\xae, neuray\x99, IRP\x99, incremental images\x99, Rendering Imagination Visible\x99"
+
+#define VER_PATENT_STR "This product is manufactured under one or more of the following patents: United States (US) No. 6,496,190, No. 6,529,193, No. 6,606,092; Australia (AU) No. 731,641, No. 744,983, No. 752,048, No. 759,796; France (F) No. 099 2024; Germany (D) No. 6981 2947.4; United Kingdom (UK) No. 099 2024; Patents Pending."
+
+
+#define VER_PRODUCTVERSION          MI_VERSION
+#define VER_PRODUCTVERSION_STR      MI_VERSION_STRING
+#define VER_DATE		    MI_DATE_STRING
+#define VER_FILEDESCRIPTION_STR     "mental ray"
+#define VER_INTERNALNAME_STR        NAME
+#define VER_ORIGINALFILENAME_STR    NAME
+
+
+#include <common.ver>
+

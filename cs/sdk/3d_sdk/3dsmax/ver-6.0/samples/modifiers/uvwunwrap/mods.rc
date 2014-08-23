@@ -1,0 +1,1188 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "modsres.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_UNWRAP_PARAMS DIALOG DISCARDABLE  0, 0, 108, 194
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Edit...",IDC_UNWRAP_EDIT,3,3,99,16,WS_GROUP
+    PUSHBUTTON      "Reset UVWs",IDC_UNWRAP_RESET,3,22,49,14
+    GROUPBOX        "Channel:",IDC_STATIC,3,51,100,41
+    CONTROL         "Planar Map",IDC_UNWRAP_APPLY,"CustButton",WS_TABSTOP,14,
+                    154,76,14
+    GROUPBOX        "Sub Object Params:",IDC_STATIC,3,96,99,79
+    CONTROL         "Map Channel:",IDC_MAP_CHAN1,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,7,63,56,10
+    CONTROL         "Vertex Color Channel",IDC_MAP_CHAN2,"Button",
+                    BS_AUTORADIOBUTTON,7,76,81,10
+    CONTROL         "Align to normals",IDC_UNWRAP_ALIGN_TO_NORMAL,"CustButton",
+                    NOT WS_VISIBLE | WS_DISABLED | WS_TABSTOP,32,105,76,14
+    CONTROL         "Fit",IDC_UNWRAP_FIT,"CustButton",NOT WS_VISIBLE | 
+                    WS_DISABLED | WS_TABSTOP,32,113,76,14
+    PUSHBUTTON      "Save...",IDC_UNWRAP_SAVE,54,22,49,14,WS_GROUP
+    PUSHBUTTON      "Load...",IDC_UNWRAP_LOAD,54,37,49,14,WS_GROUP
+    CONTROL         "",IDC_MAP_CHAN,"CustEdit",WS_TABSTOP,67,63,22,10
+    CONTROL         "",IDC_MAP_CHAN_SPIN,"SpinnerControl",0x0,89,63,7,10
+    CONTROL         "X",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON,18,107,22,11
+    CONTROL         "Y",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,18,118,26,11
+    CONTROL         "Z",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,18,128,22,11
+    CONTROL         "Averaged Normals",IDC_RADIO4,"Button",
+                    BS_AUTORADIOBUTTON,18,139,71,11
+    CONTROL         "Prevent Reflattening",IDC_DONOTREFLATTEN_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,10,179,88,10
+END
+
+IDD_UNWRAP_FLOATER DIALOG DISCARDABLE  0, 0, 401, 329
+STYLE DS_CENTER | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_VISIBLE | 
+    WS_CLIPCHILDREN | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Edit UVWs"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_UNWARP_TOOLBAR,"CustToolbar",WS_TABSTOP,0,0,90,13
+    CONTROL         "",IDC_UNWRAP_U,"CustEdit",WS_TABSTOP,14,316,21,10
+    CONTROL         "",IDC_UNWRAP_V,"CustEdit",WS_TABSTOP,59,316,21,10
+    CONTROL         "",IDC_UNWRAP_W,"CustEdit",WS_TABSTOP,107,316,21,10
+    CONTROL         "",IDC_UNWRAP_VIEW,"UnwrapView",0x0,0,15,400,288
+    CONTROL         "",IDC_UNWRAP_USPIN,"SpinnerControl",0x0,36,316,7,10
+    RTEXT           "U:",IDC_UNWRAP_ULABEL,3,316,10,8
+    CONTROL         "",IDC_UNWRAP_VSPIN,"SpinnerControl",0x0,81,316,7,10
+    RTEXT           "V:",IDC_UNWRAP_VLABEL,48,316,10,8
+    CONTROL         "",IDC_UNWRAP_WSPIN,"SpinnerControl",0x0,129,316,7,10
+    RTEXT           "W:",IDC_UNWRAP_WLABEL,95,316,10,8
+    CONTROL         "",IDC_UNWRAP_VERTS_TOOLBAR,"CustToolbar",0x0,144,0,46,
+                    13
+    CONTROL         "",IDC_UNWRAP_OPTION_TOOLBAR,"CustToolbar",0x0,203,0,75,
+                    13
+    CONTROL         "",IDC_UNWARP_VIEW_TOOLBAR,"CustToolbar",0x0,282,316,75,
+                    13
+    CONTROL         "",IDC_UNWRAP_STR,"CustEdit",0x0,93,2,20,10
+    CONTROL         "",IDC_UNWRAP_STRSPIN,"SpinnerControl",0x0,114,2,7,10
+    CONTROL         "",IDC_UNWRAP_FILTER_TOOLBAR,"CustToolbar",0x0,193,316,
+                    46,13
+END
+
+IDD_UNWRAP_PROP DIALOG DISCARDABLE  0, 0, 211, 330
+STYLE DS_MODALFRAME | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Unwrap Options"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_UNWRAP_LINECOLOR,"ColorSwatch",WS_TABSTOP,9,21,34,
+                    11
+    CONTROL         "",IDC_UNWRAP_SELCOLOR,"ColorSwatch",WS_TABSTOP,10,46,34,
+                    11
+    CONTROL         "",IDC_UNWRAP_WIDTH,"CustEdit",WS_TABSTOP,64,123,28,10
+    CONTROL         "",IDC_UNWRAP_HEIGHT,"CustEdit",WS_TABSTOP,64,136,28,10
+    CONTROL         "Constant Update In Viewports",IDC_UNWRAP_CONSTANTUPDATE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,160,108,10
+    DEFPUSHBUTTON   "OK",IDOK,44,311,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,102,311,50,14
+    PUSHBUTTON      "Defaults",IDC_UNWRAP_DEFAULTS,156,311,50,14
+    GROUPBOX        "Colors",IDC_STATIC,4,0,202,108
+    LTEXT           "Line Color",IDC_STATIC,9,11,36,8
+    LTEXT           "Selection Color",IDC_STATIC,10,36,48,8
+    GROUPBOX        "Display Preferences",IDC_STATIC,4,112,202,87
+    CONTROL         "",IDC_UNWRAP_WIDTHSPIN,"SpinnerControl",0x0,93,123,7,10
+    RTEXT           "Render Width:",IDC_STATIC,14,124,49,8
+    CONTROL         "",IDC_UNWRAP_HEIGHTSPIN,"SpinnerControl",0x0,93,136,7,
+                    10
+    RTEXT           "Render Height:",IDC_STATIC,14,136,49,8
+    CONTROL         "Highlight Selected Verts.",IDC_UNWRAP_SELECT_VERTS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,171,121,10
+    CONTROL         "Center Pixel Snap",IDC_UNWRAP_MIDPIXEL_SNAP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,213,83,10
+    CONTROL         "",IDC_UNWRAP_WELDTHRESH,"CustEdit",WS_TABSTOP,64,228,28,
+                    10
+    CONTROL         "",IDC_UNWRAP_WELDTHRESHSPIN,"SpinnerControl",0x0,93,228,
+                    7,10
+    RTEXT           "Weld Threshold:",IDC_STATIC,9,228,53,8
+    CONTROL         "Use Custom Bitmap Size",IDC_UNWRAP_USEBITMAPRES,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,149,97,10
+    CONTROL         "",IDC_UNWRAP_TILELIMIT,"CustEdit",WS_TABSTOP,160,123,28,
+                    10
+    CONTROL         "",IDC_UNWRAP_TILELIMITSPIN,"SpinnerControl",0x0,189,123,
+                    7,10
+    RTEXT           "Tiles:",IDC_STATIC,120,124,39,8
+    CONTROL         "",IDC_UNWRAP_TILECONTRAST,"CustEdit",WS_TABSTOP,160,135,
+                    28,10
+    CONTROL         "",IDC_UNWRAP_TILECONTRASTSPIN,"SpinnerControl",0x0,189,
+                    135,7,10
+    RTEXT           "Tile Brightness:",IDC_STATIC,103,136,56,8
+    GROUPBOX        "Misc. Preferences",IDC_STATIC,4,201,203,48
+    CONTROL         "Tile Bitmap",IDC_UNWRAP_TILEMAP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,132,149,50,10
+    CONTROL         "Soft Selection Edge Distance",IDC_UNWRAP_LIMITSOFTSEL,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,264,109,10
+    CONTROL         "",IDC_UNWRAP_LIMITSOFTSELRANGE,"CustEdit",WS_TABSTOP,
+                    117,264,28,10
+    CONTROL         "",IDC_UNWRAP_LIMITSOFTSELRANGESPIN,"SpinnerControl",0x0,
+                    146,264,7,10
+    GROUPBOX        "Selection Preferences",IDC_STATIC,4,251,203,56
+    COMBOBOX        IDC_FILL_COMBO,10,89,122,99,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "",IDC_UNWRAP_OPENEDGECOLOR,"ColorSwatch",WS_TABSTOP,116,
+                    46,34,11
+    CONTROL         "Display Open Edges",IDC_DISPLAYOPENEDGES_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,116,36,81,9
+    CONTROL         "Show Hidden Edges",IDC_UNWRAP_DISPLAYHIDDENEDGES,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,183,86,10
+    CONTROL         "",IDC_UNWRAP_HANDLECOLOR,"ColorSwatch",WS_TABSTOP,63,21,
+                    34,11
+    LTEXT           "Handle Color",IDC_STATIC,63,11,48,8
+    CONTROL         "",IDC_UNWRAP_GIZMOCOLOR,"ColorSwatch",WS_TABSTOP,63,46,
+                    34,11
+    LTEXT           "Gizmo Color",IDC_STATIC,63,36,48,8
+    CONTROL         "",IDC_UNWRAP_HITSIZE,"CustEdit",WS_TABSTOP,85,278,28,10
+    CONTROL         "",IDC_UNWRAP_HITSIZESPIN,"SpinnerControl",0x0,114,278,7,
+                    10
+    RTEXT           "Single Click Hit Size",IDC_STATIC,11,278,68,11
+    CONTROL         "",IDC_UNWRAP_SHARECOLOR,"ColorSwatch",WS_TABSTOP,116,21,
+                    34,11
+    CONTROL         "Show Shared Subs",IDC_SHOWSHARED_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,116,10,81,9
+    CONTROL         "",IDC_UNWRAP_BACKGROUNDCOLOR,"ColorSwatch",WS_TABSTOP,
+                    63,72,34,11
+    LTEXT           "Background Color",IDC_STATIC,63,62,58,8
+    CONTROL         "Affect Center Tile",IDC_UNWRAP_AFFECTCENTERTILE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,132,160,69,10
+    CONTROL         "Blend Tile To Background",IDC_UNWRAP_BLENDTOBACK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,102,183,97,10
+    CONTROL         "",IDC_UNWRAP_TICKSIZE,"CustEdit",WS_TABSTOP,85,291,28,
+                    10
+    CONTROL         "",IDC_UNWRAP_TICKSIZESPIN,"SpinnerControl",0x0,114,291,
+                    7,10
+    RTEXT           "Selected Tick Size",IDC_STATIC,11,291,68,11
+    CONTROL         "",IDC_UNWRAP_GRIDCOLOR,"ColorSwatch",WS_TABSTOP,10,72,
+                    34,11
+    CONTROL         "Show Grid",IDC_SHOWGRID_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,10,62,54,10
+    CONTROL         "",IDC_UNWRAP_GRIDSIZE,"CustEdit",WS_TABSTOP,159,215,28,
+                    10
+    CONTROL         "",IDC_UNWRAP_GRIDSIZESPIN,"SpinnerControl",0x0,188,215,
+                    7,10
+    RTEXT           "Grid Size:",IDC_STATIC,117,216,38,8
+    CONTROL         "",IDC_UNWRAP_GRIDSTR,"CustEdit",WS_TABSTOP,159,227,28,
+                    10
+    CONTROL         "",IDC_UNWRAP_GRIDSTRSPIN,"SpinnerControl",0x0,188,227,7,
+                    10
+    RTEXT           "Snap Str:",IDC_STATIC,118,227,38,8
+END
+
+IDD_FLATTENDIALOG DIALOG DISCARDABLE  0, 0, 221, 78
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Flatten Mapping"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "OK",IDC_OK,148,7,66,13
+    CONTROL         "",IDC_UNWRAP_ANGLE,"CustEdit",WS_TABSTOP,80,11,41,10
+    CONTROL         "",IDC_UNWRAP_SPACING,"CustEdit",WS_TABSTOP,80,23,41,10
+    CONTROL         "Normalize Clusters",IDC_NORMALIZE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,38,74,11
+    CONTROL         "Rotate Clusters",IDC_ROTATE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,49,74,11
+    CONTROL         "Fill Holes",IDC_COLLAPSE_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,60,74,11
+    PUSHBUTTON      "Cancel",IDC_CANCEL,148,23,66,13
+    PUSHBUTTON      "Set As Default",IDC_DEFAULT,148,43,66,13
+    CONTROL         "",IDC_UNWRAP_ANGLESPIN,"SpinnerControl",0x0,122,11,7,10
+    RTEXT           "Face Angle Threshold:",IDC_UNWRAP_BIASLABEL,7,11,72,8
+    CONTROL         "",IDC_UNWRAP_SPACINGSPIN,"SpinnerControl",0x0,122,23,7,
+                    10
+    RTEXT           "Spacing:",IDC_UNWRAP_BIASLABEL2,7,23,71,8
+END
+
+IDD_NORMALMAPDIALOG DIALOG DISCARDABLE  0, 0, 221, 78
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Normal Mapping"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "OK",IDC_OK,148,7,66,13
+    COMBOBOX        IDC_METHOD_COMBO,7,7,95,64,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "",IDC_UNWRAP_SPACING,"CustEdit",WS_TABSTOP,42,27,41,10
+    CONTROL         "Normalize Clusters",IDC_NORMALIZE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,40,74,11
+    CONTROL         "Rotate Clusters",IDC_ROTATE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,50,74,11
+    CONTROL         "Align By Width",IDC_ALIGNWIDTH_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,60,74,11
+    PUSHBUTTON      "Cancel",IDC_CANCEL,148,23,66,13
+    PUSHBUTTON      "Set As Default",IDC_DEFAULT,148,43,66,13
+    CONTROL         "",IDC_UNWRAP_SPACINGSPIN,"SpinnerControl",0x0,84,27,7,
+                    10
+    RTEXT           "Spacing:",IDC_UNWRAP_BIASLABEL2,9,27,31,8
+END
+
+IDD_STICTHDIALOG DIALOG DISCARDABLE  0, 0, 186, 66
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Stitch Tool"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "OK",IDC_APPLY,113,7,66,13
+    CONTROL         "Align Clusters",IDC_ALIGN_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,9,74,11
+    CONTROL         "",IDC_UNWRAP_BIAS,"CustEdit",WS_TABSTOP,26,24,41,10
+    PUSHBUTTON      "Cancel",IDC_REVERT,113,23,66,13
+    PUSHBUTTON      "Set As Default",IDC_DEFAULT,113,43,66,13
+    CONTROL         "",IDC_UNWRAP_BIASSPIN,"SpinnerControl",0x0,68,24,7,10
+    RTEXT           "Bias:",IDC_UNWRAP_BIASLABEL,7,24,16,8
+END
+
+IDD_UNFOLDDIALOG DIALOG DISCARDABLE  0, 0, 221, 78
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Unfold Mapping"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "OK",IDC_OK,148,7,66,13
+    COMBOBOX        IDC_METHOD_COMBO,7,7,102,64,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "Normalize Clusters",IDC_NORMALIZE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,37,74,11
+    PUSHBUTTON      "Cancel",IDC_CANCEL,148,23,66,13
+    PUSHBUTTON      "Set As Default",IDC_DEFAULT,148,43,66,13
+END
+
+IDD_UNWRAP_SELPARAMS DIALOG DISCARDABLE  0, 0, 108, 91
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_PLANARANGLE,"CustEdit",WS_TABSTOP,65,41,24,10
+    CONTROL         "",IDC_PLANARANGLE_SPIN,"SpinnerControl",0x0,89,41,7,10
+    CONTROL         "Planar Angle",IDC_PLANARANGLE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,40,57,11
+    CONTROL         "Select By Element",IDC_SELECTELEMENT_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,30,74,11
+    CONTROL         "Select MatID",IDC_UNWRAP_SELECTMATID,"CustButton",
+                    WS_TABSTOP,6,58,54,12
+    CONTROL         "",IDC_MATID,"CustEdit",WS_TABSTOP,67,58,25,10
+    CONTROL         "",IDC_MATID_SPIN,"SpinnerControl",0x0,92,58,7,10
+    CONTROL         "Select SG",IDC_UNWRAP_SELECTSG,"CustButton",WS_TABSTOP,
+                    6,74,54,12
+    CONTROL         "",IDC_SG,"CustEdit",WS_TABSTOP,67,76,25,10
+    CONTROL         "",IDC_SG_SPIN2,"SpinnerControl",0x0,92,76,7,10
+    CONTROL         "Ignore Backfacing",IDC_IGNOREBACKFACING_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,20,73,11
+    CONTROL         "+",IDC_UNWRAP_SELECTEXPAND,"CustButton",WS_TABSTOP,26,4,
+                    19,14
+    CONTROL         "-",IDC_UNWRAP_SELECTCONTRACT,"CustButton",WS_TABSTOP,60,
+                    4,19,14
+END
+
+IDD_PACKDIALOG DIALOG DISCARDABLE  0, 0, 221, 78
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Pack"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "OK",IDC_OK,148,7,66,13
+    COMBOBOX        IDC_COMBO1,7,7,102,167,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "",IDC_UNWRAP_SPACING,"CustEdit",WS_TABSTOP,38,25,41,10
+    CONTROL         "Normalize Clusters",IDC_NORMALIZE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,38,74,11
+    CONTROL         "Rotate Clusters",IDC_ROTATE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,49,74,11
+    CONTROL         "Fill Holes",IDC_COLLAPSE_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,60,74,11
+    PUSHBUTTON      "Cancel",IDC_CANCEL,148,23,66,13
+    PUSHBUTTON      "Set As Default",IDC_DEFAULT,148,43,66,13
+    CONTROL         "",IDC_UNWRAP_SPACINGSPIN,"SpinnerControl",0x0,80,25,7,
+                    10
+    RTEXT           "Spacing:",IDC_UNWRAP_BIASLABEL2,7,25,29,8
+END
+
+IDD_SKETCHDIALOG DIALOG DISCARDABLE  0, 0, 221, 101
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Sketch Tool"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "OK",IDC_OK,148,7,66,13
+    COMBOBOX        IDC_SELECT_COMBO,43,7,99,64,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_ALIGN_COMBO,43,28,99,64,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "Show Vertex Order",IDC_SHOW_VERTORDER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,49,135,11
+    CONTROL         "Interactive Mode",IDC_INTERACTIVEMODE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,62,135,11
+    CONTROL         "",IDC_UNWRAP_DRAGSIZE,"CustEdit",WS_TABSTOP,71,81,41,10
+    PUSHBUTTON      "Cancel",IDC_CANCEL,148,23,66,13
+    PUSHBUTTON      "Set As Default",IDC_DEFAULT,148,43,66,13
+    RTEXT           "Select by",IDC_STATIC,7,7,31,12,SS_CENTERIMAGE
+    RTEXT           "Align to",IDC_STATIC,7,28,31,12,SS_CENTERIMAGE
+    CONTROL         "",IDC_UNWRAP_DRAGSIZESPIN,"SpinnerControl",0x0,113,81,7,
+                    10
+    RTEXT           "Drag Cursor Size:",IDC_UNWRAP_SIZELABEL,7,81,61,8
+END
+
+IDD_RELAXDIALOG DIALOG DISCARDABLE  0, 0, 186, 90
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Relax Tool"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "OK",IDC_APPLYOK,113,7,66,13
+    CONTROL         "Keep Boundary Points Fixed",IDC_BOUNDARY_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,41,101,11
+    CONTROL         "",IDC_RELAX_AMOUNT,"CustEdit",WS_TABSTOP,44,11,41,10
+    PUSHBUTTON      "Cancel",IDC_REVERT,113,23,66,13
+    PUSHBUTTON      "Set As Default",IDC_DEFAULT,113,70,66,13
+    CONTROL         "",IDC_RELAX_AMOUNTSPIN,"SpinnerControl",0x0,86,11,7,10
+    RTEXT           "Amount:",IDC_UNWRAP_BIASLABEL,7,11,35,8
+    CONTROL         "",IDC_RELAX_ITERATIONS,"CustEdit",WS_TABSTOP,44,24,41,
+                    10
+    CONTROL         "",IDC_RELAX_ITERATIONSSPIN,"SpinnerControl",0x0,86,24,7,
+                    10
+    RTEXT           "Iterations:",IDC_UNWRAP_BIASLABEL3,7,24,35,8
+    CONTROL         "Save Outer Corners",IDC_CORNERS_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,55,101,11
+    PUSHBUTTON      "Apply",IDC_APPLY,113,53,66,13
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "modsres.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_MOVEX               CURSOR  DISCARDABLE     "move_x.cur"
+IDC_MOVEY               CURSOR  DISCARDABLE     "move_y.cur"
+IDC_PANHAND             CURSOR  DISCARDABLE     "panhand.cur"
+IDC_SCALEX              CURSOR  DISCARDABLE     "scale_x.cur"
+IDC_SCALEY              CURSOR  DISCARDABLE     "scale_y.cur"
+IDC_WELDCUR             CURSOR  DISCARDABLE     "weld.cur"
+IDC_ZOOM                CURSOR  DISCARDABLE     "magnify.cur"
+IDC_ZOOMREG             CURSOR  DISCARDABLE     "region.cur"
+IDC_CURSOR16            CURSOR  DISCARDABLE     "cursor16.cur"
+IDC_CURSOR15            CURSOR  DISCARDABLE     "cursor17.cur"
+IDC_CURSOR14            CURSOR  DISCARDABLE     "cur00001.cur"
+IDC_CURSOR2             CURSOR  DISCARDABLE     "cursor1.cur"
+IDC_CURSOR1             CURSOR  DISCARDABLE     "cursor22.cur"
+IDC_CURSOR3             CURSOR  DISCARDABLE     "cursor3.cur"
+IDC_CURSOR4             CURSOR  DISCARDABLE     "cursor4.cur"
+IDC_CURSOR5             CURSOR  DISCARDABLE     "cursor5.cur"
+IDC_CURSOR6             CURSOR  DISCARDABLE     "cursor6.cur"
+IDC_CURSOR7             CURSOR  DISCARDABLE     "cursor7.cur"
+IDC_CURSOR8             CURSOR  DISCARDABLE     "cursor8.cur"
+IDC_CURSOR9             CURSOR  DISCARDABLE     "cursor9.cur"
+IDC_CURSOR10            CURSOR  DISCARDABLE     "cursor10.cur"
+IDC_CURSOR11            CURSOR  DISCARDABLE     "cursor11.cur"
+IDC_CURSOR12            CURSOR  DISCARDABLE     "cursor12.cur"
+IDC_CURSOR13            CURSOR  DISCARDABLE     "cursor13.cur"
+IDC_WELDCUR1            CURSOR  DISCARDABLE     "weldcur1.cur"
+IDC_SKETCHCUR           CURSOR  DISCARDABLE     "movex1.cur"
+IDC_SKETCHPICKCUR       CURSOR  DISCARDABLE     "sketchcu.cur"
+IDC_SKETCHPICKCUR1      CURSOR  DISCARDABLE     "sketchpi.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_UNWRAPTOOL          BITMAP  DISCARDABLE     "unwrapto.bmp"
+IDB_MASK_UNWRAPTOOL     BITMAP  DISCARDABLE     "mask_unw.bmp"
+IDB_UNWRAP_VIEW_MASK    BITMAP  DISCARDABLE     "unwrap_view_mask.bmp"
+IDB_UNWRAP_OPTION_MASK  BITMAP  DISCARDABLE     "unwrap_option_mask.bmp"
+IDB_UNWRAP_TRANSFORM    BITMAP  DISCARDABLE     "unwrap_transform.bmp"
+IDB_UNWRAP_TRANSFORM_MASK BITMAP  DISCARDABLE     "unwrap_transform_mask.bmp"
+IDB_UNWRAP_VERT         BITMAP  DISCARDABLE     "unwrap_verts.bmp"
+IDB_UNWRAP_VERT_MASK    BITMAP  DISCARDABLE     "unwrap_verts_mask.bmp"
+IDB_UNWRAP_VIEW         BITMAP  DISCARDABLE     "unwrap_view.bmp"
+IDB_UNWRAP_OPTION       BITMAP  DISCARDABLE     "unwrap_option.bmp"
+IDB_SUBOBJTYPES         BITMAP  DISCARDABLE     "subobjtypes.bmp"
+IDB_MASK_SUBOBJTYPES    BITMAP  DISCARDABLE     "mask_subobjtypes.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_UNWRAP_PARAMS, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 183
+    END
+
+    IDD_UNWRAP_FLOATER, DIALOG
+    BEGIN
+        RIGHTMARGIN, 400
+        BOTTOMMARGIN, 316
+    END
+
+    IDD_UNWRAP_PROP, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        BOTTOMMARGIN, 325
+    END
+
+    IDD_FLATTENDIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 214
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 71
+    END
+
+    IDD_NORMALMAPDIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 214
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 71
+    END
+
+    IDD_STICTHDIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 59
+    END
+
+    IDD_UNFOLDDIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 214
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 71
+    END
+
+    IDD_PACKDIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 214
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 71
+    END
+
+    IDD_SKETCHDIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 214
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 94
+    END
+
+    IDD_RELAXDIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 83
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_UNWRAP_RIGHT_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "UNWRAP"
+    BEGIN
+        MENUITEM "Move",                        ID_UNWRAP_MOVE
+        MENUITEM "Rotate",                      ID_UNWRAP_ROTATE
+        MENUITEM "Scale",                       ID_UNWRAP_SCALE
+        MENUITEM "Mirror",                      ID_UNWRAP_MIRROR
+        MENUITEM "",                            ID_UNWRAP, MENUBARBREAK
+        MENUITEM "Break",                       ID_UNWRAP_BREAK
+        MENUITEM "Target Weld",                 ID_UNWRAP_WELD
+        MENUITEM "Weld Sel.",                   ID_UNWRAP_WELDSELECTED
+        MENUITEM "",                            ID_UNWRAP, MENUBARBREAK
+        MENUITEM "Pan",                         ID_UNWRAP_PAN
+        MENUITEM "Zoom",                        ID_UNWRAP_ZOOM
+        MENUITEM "Zoom Region",                 ID_UNWRAP_ZOOMREGION
+        MENUITEM "Zoom Extent",                 ID_UNWRAP_EXTENT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_UNWRAP_ACCELERATOR ACCELERATORS DISCARDABLE 
+BEGIN
+    "+",            ID_INCSEL,              ASCII,  NOINVERT
+    "-",            ID_DECSEL,              ASCII,  NOINVERT
+    "B",            ID_BREAK,               VIRTKEY, CONTROL, NOINVERT
+    "B",            ID_FLIPH,               VIRTKEY, SHIFT, CONTROL, ALT, 
+                                                    NOINVERT
+    "D",            ID_DETACH,              VIRTKEY, CONTROL, NOINVERT
+    "D",            ID_DISPLAYMAP,          VIRTKEY, SHIFT, CONTROL, ALT, 
+                                                    NOINVERT
+    "E",            ID_SCALE,               VIRTKEY, NOINVERT
+    "E",            ID_EDIT,                VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_FREEZE,              VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_UNFREEZE,            VIRTKEY, ALT, NOINVERT
+    "F",            ID_GETFACESELFROMSTACK, VIRTKEY, SHIFT, CONTROL, ALT, 
+                                                    NOINVERT
+    "H",            ID_HIDE,                VIRTKEY, CONTROL, NOINVERT
+    "H",            ID_UNHIDE,              VIRTKEY, ALT, NOINVERT
+    "I",            ID_SCALEH,              VIRTKEY, SHIFT, CONTROL, ALT, 
+                                                    NOINVERT
+    "J",            ID_MOVEH,               VIRTKEY, SHIFT, CONTROL, ALT, 
+                                                    NOINVERT
+    "K",            ID_MOVEV,               VIRTKEY, SHIFT, CONTROL, ALT, 
+                                                    NOINVERT
+    "L",            ID_LOAD,                VIRTKEY, SHIFT, CONTROL, ALT, 
+                                                    NOINVERT
+    "M",            ID_UPDATEMAP,           VIRTKEY, SHIFT, CONTROL, ALT, 
+                                                    NOINVERT
+    "M",            ID_MIRRORV,             VIRTKEY, SHIFT, CONTROL, ALT, 
+                                                    NOINVERT
+    "N",            ID_MIRRORH,             VIRTKEY, SHIFT, CONTROL, ALT, 
+                                                    NOINVERT
+    "O",            ID_OPTIONS,             VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_SCALEV,              VIRTKEY, SHIFT, CONTROL, ALT, 
+                                                    NOINVERT
+    "P",            ID_PAN,                 VIRTKEY, CONTROL, NOINVERT
+    "Q",            ID_MOVE,                VIRTKEY, NOINVERT
+    "R",            ID_RELAX,               VIRTKEY, CONTROL, ALT, NOINVERT
+    "R",            ID_RELAXDIALOG,         VIRTKEY, SHIFT, CONTROL, 
+                                                    NOINVERT
+    "R",            ID_RESET,               VIRTKEY, SHIFT, CONTROL, ALT, 
+                                                    NOINVERT
+    "S",            ID_SNAP,                VIRTKEY, NOINVERT
+    "S",            ID_SAVE,                VIRTKEY, SHIFT, CONTROL, ALT, 
+                                                    NOINVERT
+    "V",            ID_FACETOVERTEX,        VIRTKEY, SHIFT, CONTROL, ALT, 
+                                                    NOINVERT
+    "V",            ID_FLIPV,               VIRTKEY, SHIFT, CONTROL, ALT, 
+                                                    NOINVERT
+    VK_RETURN,      ID_PLANAR_MAP,          VIRTKEY, NOINVERT
+    VK_SPACE,       ID_LOCK,                VIRTKEY, NOINVERT
+    VK_SPACE,       ID_FILTERSELECTED,      VIRTKEY, CONTROL, NOINVERT
+    VK_SPACE,       ID_ZOOMTOGIZMO,         VIRTKEY, SHIFT, NOINVERT
+    "W",            ID_ROTATE,              VIRTKEY, NOINVERT
+    "W",            ID_WELD,                VIRTKEY, CONTROL, NOINVERT
+    "W",            ID_WELD_SELECTED,       VIRTKEY, CONTROL, ALT, NOINVERT
+    "X",            ID_PLANARMODE,          VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_ZOOM,                VIRTKEY, NOINVERT
+    "Z",            ID_ZOOMREGION,          VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_STITCH,              VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_STITCHDIALOG,        VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_SHOWMAP,             VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_FLATTENMAP,          VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_FLATTENMAPDIALOG,    VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_NORMALMAP,           VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_NORMALMAPDIALOG,     VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_UNFOLDMAP,           VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_UNFOLDMAPDIALOG,     VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_COPY,                VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_PASTE,               VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_PASTEINSTANCE,       VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_LIMITSOFTSEL,        VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_LIMITSOFTSEL1,       VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_LIMITSOFTSEL2,       VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_LIMITSOFTSEL3,       VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_LIMITSOFTSEL4,       VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_LIMITSOFTSEL5,       VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_LIMITSOFTSEL6,       VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_LIMITSOFTSEL7,       VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_LIMITSOFTSEL8,       VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_GEOMELEMMODE,        VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_ELEMENTMODE,         VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_IGNOREBACKFACE,      VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_PLANARMODE,          VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_GEOMEXPANDFACESEL,   VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_GEOMCONTRACTFACESEL, VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_SHOWVERTCONNECT,     VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_TV_VERTMODE,         VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_TV_EDGEMODE,         VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_TV_FACEMODE,         VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_PACK,                VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_PACKDIALOG,          VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_UVEDGEMODE,          VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_OPENEDGEMODE,        VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_UVEDGESELECT,        VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_OPENEDGESELECT,      VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_VERTTOEDGESELECT,    VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_VERTTOFACESELECT,    VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_EDGETOVERTSELECT,    VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_EDGETOFACESELECT,    VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_FACETOVERTSELECT,    VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_FACETOEDGESELECT,    VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_DISPLAYHIDDENEDGES,  VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_SNAPCENTER,          VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_SNAPLOWERLEFT,       VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_SNAPLOWERCENTER,     VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_SNAPLOWERRIGHT,      VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_SNAPUPPERLEFT,       VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_SNAPUPPERCENTER,     VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_SNAPUPPERRIGHT,      VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_SNAPRIGHTCENTER,     VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_SNAPLEFTCENTER,      VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_SKETCHMODE,          VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_SKETCHREVERSE,       VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_SKETCHDIALOG,        VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_FREEFORMMODE,        VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_RESETPIVOTONSEL,     VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_SKETCH,              VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_SHOWHIDDENEDGES,     VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_POLYGONMODE,         VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_POLYGONSELECT,       VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_ALLOWSELECTIONINSIDEGIZMO, VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_SAVEASDEFAULT,       VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_LOADDEFAULT,         VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_SHOWSHARED,          VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_ALWAYSEDIT,          VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_SYNCSELMODE,         VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_SYNCTVSELECTION,     VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_SYNCGEOMSELECTION,   VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_SHOWOPENEDGES,       VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_BRIGHTCENTERTILE,    VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_BLENDTOBACK,         VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_PAINTSELECTMODE,     VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_PAINTSELECTINC,      VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_PAINTSELECTDEC,      VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_GRIDSNAP,            VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_GRIDVISIBLE,         VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_PREVENTREFLATTENING, VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_FIT,                 VIRTKEY, CONTROL, ALT, NOINVERT
+    "Z",            ID_FITSELECTED,         VIRTKEY, SHIFT, CONTROL, ALT, 
+                                                    NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_THRESHOLD        "Threshold"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_PARAMETERS       "Parameters"
+    IDS_RB_AMOUNT           "Amount"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_MATERIAL3        "Material"
+    IDS_RB_MATERIALID       "Material ID"
+    IDS_RB_MATERIAL4        "Material"
+    IDS_RB_MATERIALID2      "Material ID"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_FACE             "Face"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_AMOUNT2          "Amount"
+    IDS_RB_WIDTH            "Width"
+    IDS_RB_HEIGHT           "Height"
+    IDS_DB_EXTRUDE          "Extrude"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PW_PLANAR           "Planar Map"
+    IDS_PW_LATTICE          "Lattice Map"
+    IDS_PW_PLANARLONG       "Planar map faces/patches"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_DEFDEFORMATIONS  "MAX STANDARD"
+    IDS_RB_DEFEDIT          "MAX EDIT"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_SELECTIMAGE      "Select Image"
+    IDS_RB_UTILE            "U Tile"
+    IDS_RB_VTILE            "V Tile"
+    IDS_RB_WTILE            "W Tile"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_MATERIAL3_CLASS  "Material"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DS_MOVE             "Move"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_NONE             "None"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_SCALE            "Scale"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DS_MOVE2            "Move"
+    IDS_DS_SELECT           "Select"
+    IDS_DS_CREATE           "Create"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TH_MIRROR_H         "Mirror Horizontally"
+    IDS_TH_MIRROR_V         "Mirror Vertically"
+    IDS_TH_MIRROR_BOTH      "Mirror Both"
+    IDS_TH_MIRROR           "Mirror"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TH_VERTWELD         "Weld Vertex"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TH_VERTBREAK        "Break Vertex"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_EXT_AMOUNT          "Amount"
+    IDS_EXT_SCALE           "Scale"
+    IDS_RB_UOFFSET          "U Offset"
+    IDS_RB_VOFFSET          "V Offset"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_WOFFSET          "W Offset"
+    IDS_RB_MIRRORMOD        "Mirror"
+    IDS_RB_UNWRAPMOD        "Unwrap UVW"
+    IDS_RB_RESETUVWS        "Reset UVWs"
+    IDS_RB_SETCHANNEL       "Set UVW Channel"
+    IDS_RB_SHOULDRESET      "Do you also want to reset the Unwrap UVW modifier\nto inherit the mapping from the new channel?\n\nChanges made within the UVW modifier will be lost."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_RESETUNWRAPUVWS  "Are you sure you want to reset?\n\nAll changes made within the  Unwrap UVW modifier will be lost."
+    IDS_RB_MOVE             "Move"
+    IDS_RB_ROTATE           "Rotate"
+    IDS_RB_PAN              "Pan"
+    IDS_RB_ZOOM             "Zoom"
+    IDS_RB_PICKMAP          "Pick Map"
+    IDS_RB_UPDATE           "Update Map"
+    IDS_RB_ZOOMEXT          "Zoom Extents"
+    IDS_RB_ZOOMREG          "Zoom Region"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_UVW              "Coordinates"
+    IDS_RB_PROP             "Unwrap Options"
+    IDS_RB_SHOWMAP          "Show Map"
+    IDS_RB_DEFMODS          "Standard modifiers (Discreet)"
+    IDS_RB_ZOOMSELEXT       "Zoom Extents Selected"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PW_PICK             "Pick Texture"
+    IDS_PW_SNAP             "Snap"
+    IDS_PW_WELD             "Target Weld"
+    IDS_PW_FACEMAP          "Face Map"
+    IDS_PW_SELECTFACE       "Select Face"
+    IDS_PW_UVWFILES         "UVW files(*.uvw)"
+    IDS_PW_SAVEOBJECT       "Save UVW"
+    IDS_PW_FILEEXISTS       "%s already exists.\nDo you want to replace it?"
+    IDS_PW_LOADOBJECT       "Load UVW"
+    IDS_PW_MIRRORH          "Mirror Horizontal"
+    IDS_PW_EXPANDSELECTION  "Expand Selection"
+    IDS_PW_FALLOFF          "Falloff type"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_UVWX_CHANNEL        "Map or Vertex Color"
+    IDS_UVWX_MAPCHANNEL     "Map Channel"
+    IDS_UVWX_UFLIP          "U Flip"
+    IDS_UVWX_VFLIP          "V Flip"
+    IDS_UVWX_WFLIP          "W Flip"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PW_FALLOFFSPACE     "World Falloff Space"
+    IDS_PW_BREAK            "Break Selected Vertices"
+    IDS_PW_LOCKSELECTED     "Lock selected vertices"
+    IDS_PW_HIDE             "Hide"
+    IDS_PW_FREEZE           "Freeze"
+    IDS_PW_FACEFILTER       "Filter Selected Faces"
+    IDS_PW_LEVEL            "Level"
+    IDS_PW_INVERT           "Invert"
+    IDS_PW_NODE             "Node"
+    IDS_PW_TEXMAP           "TextureMap"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PW_CHANNEL          "Map Channel"
+    IDS_PW_MAP              "Map Channel Type"
+    IDS_PW_MIRRORV          "Mirror Vertical"
+    IDS_PW_CONTRACTSELECTION "Contract selection"
+    IDS_PW_FALLOFFSPACEUVW  "Texture Falloff Space"
+    IDS_PW_UNHIDE           "Unhide"
+    IDS_PW_UNFREEZE         "Unfreeze"
+    IDS_PW_FALLOFF2         "Falloff"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PW_MOVEH            "Move Horizontal"
+    IDS_PW_MOVEV            "Move Vertical"
+    IDS_PW_SCALEH           "Scale Horizontal"
+    IDS_PW_SCALEV           "Scale Vertical"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PW_WELDSELECTED     "Weld Selected"
+    IDS_PW_APPLYPLANAR      "Apply Planar"
+    IDS_PW_FACEMODE         "Face Mode"
+    IDS_PW_UVW_VERT_EDIT    "UVW Vert Edit"
+    IDS_PW_UVW_EDIT         "UVW Edit"
+    IDS_PW_SELECT_UVW       "Select UVWs"
+    IDS_PW_RESET_UNWRAP     "Reset Unwrap"
+    IDS_PW_SELECTRESTORE    "Select Restore"
+    IDS_PW_PLANARMAP        "PlanarMap"
+    IDS_PW_POINT            "Point"
+    IDS_PW_MOVE_UVW         "Move UVWs"
+    IDS_PW_ID_ALLID         "All IDs"
+    IDS_PW_UNWRAPVIEW       "UnwrapView"
+    IDS_PW_DELETE_SELECTED  "Delete Selected"
+    IDS_PW_HIDE_SELECTED    "Hide Selected"
+    IDS_PW_UNHIDEALL        "Unhide All"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PW_FREEZE_SELECTED  "Freeze Selected"
+    IDS_PW_UNFREEZEALL      "Unfreeze All"
+    IDS_PW_ASSIGN_CONTROLLER "Assign Controlle"
+    IDS_PW_ROTATE_UVW       "Rotate UVWs"
+    IDS_PW_SCALE_UVW        "Scale UVWs"
+    IDS_PW_WELD_UVW         "Weld UVWs"
+    IDS_PW_LINECOLOR        "Line Color"
+    IDS_PARAM_CHANGE        "Parameter Change"
+    IDS_PW_UNDO_RESET       "Reset"
+    IDS_PW_UNDO_FIT         "Fit"
+    IDS_PW_MOUSE_CENTER     "CTRL and ALT centers operation on cursor"
+    IDS_PW_MOUSE_ADD        "CTRL adds to selection"
+    IDS_PW_MOUSE_SUBTRACT   "ALT subtracts from selection"
+    IDS_PW_MOUSE_CONSTRAIN  "SHIFT constrains the mouse to X/Y"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PW_MOUSE_SELECTTV   "Select texture vertices"
+    IDS_PW_MOUSE_SELECTTRI  "SHIFT selects triangle faces"
+    IDS_PW_MOUSE_SELECTFACE "Select faces"
+    IDS_PW_CYCLE            "Cycle"
+    IDS_PW_FUSE             "Fuse Vertices"
+    IDS_PW_AUTOFIT          "Auto fit"
+    IDS_PW_BIND             "Bind"
+    IDS_PW_UNBIND           "Unbind"
+    IDS_PW_SURFACEERROR     "An old version of Surface Tools might have created a bad patch trying to recover"
+    IDS_PW_VOLDATA          "Vol. Select Data"
+    IDS_PW_ERROR            "Error"
+    IDS_PW_INSTANCEERROR    "Error UVW Unwrap cannot be instanced please make it unique"
+    IDS_PW_EDITUVW          "Edit UVW's"
+    IDS_PW_MOVELONG         "Texture Vertex Move Mode"
+    IDS_PW_ROTATELONG       "Texture Vertex Rotate Mode"
+    IDS_PW_SCALELONG        "Texture Vertex Scale Mode"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_VERTEXCOLOR      "Vertex Color"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PW_MIRRORLONG       "Texture Vertex Mirror Mode"
+    IDS_PW_MIRROR_UVW       "Mirror UVW's"
+    IDS_PW_INCSELLONG       "Texture Vertex Expand Selection"
+    IDS_PW_INC_UVW          "Expand Selection UVW's"
+    IDS_PW_DECSELLONG       "Texture Vertex Contract Selection"
+    IDS_PW_DEC_UVW          "Contract Selection UVW's"
+    IDS_PW_WELDLONG         "Texture VertexTarget Weld "
+    IDS_PW_WELDSELECTEDLONG "Texture Vertex Weld Selected"
+    IDS_PW_DISPLAY          "Display Map"
+    IDS_PW_FLIP             "Flip"
+    IDS_PW_DETACH           "Detach Edge Verts"
+    IDS_PW_FLIPH            "Flip Horizontal"
+    IDS_PW_FLIPV            "Flip Vertical"
+    IDS_PW_FACETOVERTEX     "Get Selection From Faces"
+    IDS_PW_ZOOMTOGIZMO      "Zoom To Gizmo"
+    IDS_PW_GETFACESELFROMSTACK "Get Face Selection From Stack"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PW_STATUS_BUILDCLUSTER 
+                            "Press escape to cancel.  Building cluster data"
+    IDS_PW_STATUS_CANCEL    "Press escape to cancel."
+    IDS_PW_STATUS_MAPPING   "Press escape to cancel.  Mapping faces"
+    IDS_PW_STATUS_COLLAPSING "Press escape to cancel.  Collapsing clusters"
+    IDS_PW_STATUS_ROTATING  "Press escape to cancel.  Rotating clusters"
+    IDS_PW_STATUS_DEADSPACE "Press escape to cancel.  Finding dead space"
+    IDS_PW_STITCH           "Stitch"
+    IDS_PW_PASTE            "Paste"
+    IDS_PW_FLATTEN          "Flatten"
+    IDS_CLOSESTFACE         "Walk to closest face"
+    IDS_FARTHESTFACE        "Walk to farthest face"
+    IDS_BACKFRONT           "Back/Front Mapping"
+    IDS_LEFTRIGHT           "Left/Right Mapping"
+    IDS_TOPBOTTOM           "Top/Bottom Mapping"
+    IDS_BOXNOTOP            "Box No Top Mapping"
+    IDS_BOX                 "Box Mapping"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DIAMOND             "Diamond Mapping"
+    IDS_PW_STITCHDIALOG     "Stitch Dialog"
+    IDS_PW_FLATTENMAP       "Flatten Map"
+    IDS_PW_NORMALMAP        "Normal Map"
+    IDS_PW_FLATTENMAPDIALOG "Flatten Map Dialog"
+    IDS_PW_NORMALMAPDIALOG  "Normal Map Dialog"
+    IDS_PW_UNFOLDMAP        "Unfold Map"
+    IDS_PW_UNFOLDMAPDIALOG  "Unfold Map Dialog"
+    IDS_STRING40552         "IDS"
+    IDS_PW_PASTEINSTANCE    "Paste Instance"
+    IDS_PW_COPY             "Copy"
+    IDS_PW_LIMITSOFTSEL     "Soft Selection Edge Distance"
+    IDS_PW_LIMITSOFTSEL2    "Soft Selection Edge Distance Range 2"
+    IDS_PW_LIMITSOFTSEL3    "Soft Selection Edge Distance Range 3"
+    IDS_PW_LIMITSOFTSEL4    "Soft Selection Edge Distance Range 4"
+    IDS_PW_LIMITSOFTSEL5    "Soft Selection Edge Distance Range 5"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PW_LIMITSOFTSEL6    "Soft Selection Edge Distance Range 6"
+    IDS_PW_LIMITSOFTSEL7    "Soft Selection Edge Distance Range 7"
+    IDS_PW_LIMITSOFTSEL8    "Soft Selection Edge Distance Range 8"
+    IDS_PW_LIMITSOFTSEL1    "Soft Selection Edge Distance Range 1"
+    IDS_PW_SELPARAMS        "Selection Parameters"
+    IDS_PW_GEOMELEMMODE     "Geom. Element Select Mode"
+    IDS_PW_PLANARMODE       "Planar Threshold"
+    IDS_PW_IGNOREBACKFACES  "Ignore Back Faces"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PW_ELEMENTMODE      "TV Element Mode"
+    IDS_PW_SHOWVERTCONNECT  "Show Vertex Connections"
+    IDS_PW_PACK             "Pack"
+    IDS_RECURSIVEPACK       "Recursive Packing"
+    IDS_LINEARPACK          "Linear Packing"
+    IDS_PW_TV_VERTMODE      "TV Vertex Sub-object Mode"
+    IDS_PW_TV_EDGEMODE      "TV Edge Sub-object Mode"
+    IDS_PW_TV_FACEMODE      "TV Face Sub-object Mode"
+    IDS_PW_PACKDIALOG       "Pack Dialog"
+    IDS_PW_FILL_NOFILL      "No Fill"
+    IDS_PW_FILL_SOLID       "Solid Fill"
+    IDS_PW_FILL_BDIAG       "Cross Hatch Diagonal Downward"
+    IDS_PW_FILL_FDIAG       "Cross Hatch Diagonal Upward"
+    IDS_PW_FILL_CROSS       "Cross Hatch Horizontal/Vertical"
+    IDS_PW_FILL_DIAGCROSS   "Cross Hatch Diagonal "
+    IDS_PW_FILL_HORIZONTAL  "Cross Hatch Horizontal"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PW_GEOMEXPANDFACESEL "Expand Geom. Faces"
+    IDS_PW_GEOMCONTRACTFACESEL "Contract Geom. Faces"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PW_FILL_VERTICAL    "Cross Hatch Vertical"
+    IDS_PW_OPENEDGECOLOR    "Open Edge Color"
+    IDS_PW_UVEDGEMODE       "UV Edge Mode"
+    IDS_PW_OPENEDGEMODE     "Open Edge Mode"
+    IDS_PW_UVEDGESELECT     "UV Edge Select"
+    IDS_PW_OPENEDGESELECT   "Open Edge Select"
+    IDS_PW_VERTTOEDGESELECT "Vertex to Edge Select"
+    IDS_PW_VERTTOFACESELECT "Vertex to Face Select"
+    IDS_PW_EDGETOVERTSELECT "Edge to Vertex Select"
+    IDS_PW_EDGETOFACESELECT "Edge to Face Select"
+    IDS_PW_FACETOVERTSELECT "Face to Vertex Select"
+    IDS_PW_FACETOEDGESELECT "Face to Edge  Select"
+    IDS_PW_DISPLAYHIDDENEDGES "Show Hidden Edges"
+    IDS_PW_HANDLECOLOR      "Handle Color"
+    IDS_PW_FREEFORMMODE     "Freeform Mode"
+    IDS_PW_PIVOTRESTORE     "Pivot Move"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PW_SNAPCENTER       "Pivot Snap To Center"
+    IDS_PW_SNAPLOWERLEFT    "Pivot Snap Lower Left"
+    IDS_PW_SNAPLOWERRIGHT   "Pivot Snap Lower Right"
+    IDS_PW_SNAPLOWERCENTER  "Pivot Snap Lower Center"
+    IDS_PW_SNAPUPPERLEFT    "Pivot Snap Upperr Left"
+    IDS_PW_SNAPUPPERRIGHT   "Pivot Snap Upper Right"
+    IDS_PW_SNAPUPPERCENTER  "Pivot Snap Upper Center"
+    IDS_PW_SNAPRIGHTCENTER  "Pivot Snap Right Center"
+    IDS_PW_SNAPLEFTCENTER   "Pivot Snap Left Center"
+    IDS_PW_SKETCHREVERSE    "Sketch Reverse Vertex Order"
+    IDS_PW_SKETCHDIALOG     "Sketch Dialog"
+    IDS_PW_PICKSELECT       "Pick Selection"
+    IDS_PW_DRAGSELECT       "Drag Selection"
+    IDS_PW_CURRENTSELECT    "Use Current Selection"
+    IDS_PW_SKETCHFREEFORM   "Free Form"
+    IDS_PW_SKETCHLINE       "Line"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PW_SKETCHBOX        "Box"
+    IDS_PW_SKETCHCIRCLE     "Circle"
+    IDS_PW_SKETCHPROMPT_PICKSEL 
+                            "Click to pick vertices to be aligned, right click to end selecting"
+    IDS_PW_SKETCHPROMPT_DRAGSEL 
+                            "Click and drag to pick vertices to be aligned"
+    IDS_PW_SKETCHPROMPT_FIRST 
+                            "CTRL Click on a vertex to make it the first vertex"
+    IDS_PW_SKETCHPROMPT_LINE "Click and drag to create a line to align to"
+    IDS_PW_SKETCHPROMPT_FREEFORM 
+                            "Click and drag to create a shape to align to"
+    IDS_PW_SKETCHPROMPT_BOX "Click and drag to create a rectangle to align to"
+    IDS_PW_SKETCHPROMPT_CIRCLE "Click and drag to create a circle to align to"
+    IDS_PW_RESETPIVOTONSEL  "Reset Pivot On Selection"
+    IDS_PW_SKETCH           "Sketch"
+    IDS_PW_SHOWHIDDENEDGES  "Show Hidden Edges"
+    IDS_PW_POLYGONMODE      "Polygon Mode"
+    IDS_PW_POLYGONSELECT    "Polygon Select"
+    IDS_PW_ALLOWSELECTIONINSIDEGIZMO "Allow Selections Inside Tranform Gizmo"
+    IDS_PW_LOADDEFAULT      "Load Defaults"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PW_SAVEASDEFAULT    "Save Current Settings As Default"
+    IDS_PW_SHOWSHARED       "Show Shared Sub-objects"
+    IDS_PW_ALWAYSEDIT       "Always Bring Up The Edit Window"
+    IDS_PW_SYNCSELECTIONMODE "Sync Selection Mode"
+    IDS_PW_SYNCTVSELECTION  "Sync Texture Selection To Viewport"
+    IDS_PW_SYNCGEOMSELECTION "Sync Viewport Selection To Texture"
+    IDS_PW_UNWRAPCOLOR      "Unwrap Colors"
+    IDS_PW_SELCOLOR         "Selection Color"
+    IDS_PW_FREEFORMCOLOR    "Transform Gizmo Color"
+    IDS_PW_SHAREDCOLOR      "Shared Sub Objects Color"
+    IDS_PW_BACKGROUNDCOLOR  "Background Color"
+    IDS_PW_SHOWOPENEDGES    "Display Open Edges"
+    IDS_PW_BRIGHTCENTERTILE "Brightness Affects Center Tile"
+    IDS_PW_BLENDTOBACK      "Blend Tiles To background"
+    IDS_PW_PAINTSELECTPROMPT 
+                            "CTRL adds to selection, ALT removes, and right click cancels"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PW_PAINTSELECTDEC   "Paint Select Decrement Cursor Size"
+    IDS_PW_PAINTSELECTINC   "Paint Select Increment Cursor Size"
+    IDS_PW_PAINTSELECT      "Paint Select Mode"
+    IDS_RB_UNWRAPMOD_PLASMA "Unwrap Mapping"
+    IDS_PW_GRIDCOLOR        "Grid Color"
+    IDS_PW_GRIDSNAP         "Grid Snap"
+    IDS_PW_GRIDVISIBLE      "Grid Visible"
+    IDS_PW_PREVENTREFLATTENING "Prevent Reflattening"
+    IDS_PW_RELAX            "Relax"
+    IDS_PW_RELAXDIALOG      "Relax Dialog"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,158 @@
+<html>
+
+<head>
+<title>Globals: File Request 2</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="filereq.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="File Request"></a></td>
+    <td width="96" align="left"><a href="filetype.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="File Type Pattern"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>File Request 2</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp;<a href="../../include/lwhost.h">lwhost.h</a></small></p>
+    <p>The file request 2 global returns a function that prompts the user for a file
+    selection. The request displays the file dialog currently installed in LightWave&reg;. This may
+    be the default system dialog or a <a href="../classes/freq.html">custom file dialog</a>
+    plug-in. See the <a href="filereq.html">File Request</a> global for an alternative
+    interface to the file dialog mechanism.</p>
+    <p>The primary advantage of this file request global over the original File Request is a
+    smarter and more flexible interface to the file dialog. The dialog is initialized by
+    filling out a structure, rather than through a limited number of function arguments.</p>
+    <p>Note that in contrast to the original, this global allows plug-ins to call the file
+    request activation function directly. Plug-ins calling this global act as the host side of
+    the <a href="../classes/freq.html">FileRequester</a> plug-in class.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWFileActivateFunc *filereq;
+   filereq = global( LWFILEACTIVATEFUNC_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWFileActivateFunc.</p>
+    <pre>   typedef int LWFileActivateFunc (int version, LWFileReqLocal *);</pre>
+    <p>The return value of this function can be any of the values defined for the <a
+    href="server.html#activatereturn">return values of activation functions</a>. Any value
+    other than <tt>AFUNC_OK</tt> must be handled as an error.</p>
+    <p>The version is passed as the <tt>version</tt> argument to the file request plug-in's
+    activation function. This should be set to the value defined by the <tt>LWFILEREQ_VERSION</tt>
+    symbol in <tt>lwdialog.h</tt>. File request plug-ins with a different activation version
+    will return <tt>AFUNC_BADVERSION</tt>.</p>
+    <p>The second argument to this function is a pointer to a structure that is passed as the <tt>local</tt>
+    argument to the file request plug-in's activation function.</p>
+    <p><strong>The Local Structure</strong></p>
+    <p>The file request function passes an LWFileReqLocal as the local argument to the
+    activation function of the file request plug-in.</p>
+    <pre>   typedef struct st_LWFileReqLocal {
+      int         <strong>reqType</strong>;
+      int         <strong>result</strong>;
+      const char *<strong>title</strong>;
+      const char *<strong>fileType</strong>;
+      char       *<strong>path</strong>;
+      char       *<strong>baseName</strong>;
+      char       *<strong>fullName</strong>;
+      int         <strong>bufLen</strong>;
+      int        (*<strong>pickName</strong>) (void);
+   } LWFileReqLocal;</pre>
+    <dl>
+      <dt><strong><tt>reqType</tt></strong></dt>
+      <dd>Indicates the type of file request. Possible values are <pre>FREQ_LOAD
+FREQ_SAVE
+FREQ_DIRECTORY
+FREQ_MULTILOAD</pre>
+      </dd>
+      <dt><strong><tt>result</tt></strong></dt>
+      <dd>The result of the request. This will be 1 if the user selected a file, 0 if the user
+        cancelled the request, and a negative number to indicate an error.</dd>
+      <dt><tt><br>
+        <strong>title</strong></tt></dt>
+      <dd>The title string. This is generally displayed near the top of the file dialog and tells
+        the user what kind of file is being requested.</dd>
+      <dt><tt><br>
+        <strong>fileType</strong></tt></dt>
+      <dd>A file type string used to filter the filenames displayed in the dialog. This is one of
+        the type names listed in the document for the <a href="filetype.html">File Type Pattern</a>
+        global, rather than a literal filter.</dd>
+      <dt><tt><br>
+        <strong>path</strong></tt></dt>
+      <dd>The initial path. Default paths for certain file types can be obtained from the <a
+        href="dirinfo.html">Directory Info</a> global. If you construct your own path string,
+        remember that path lexics depend on the platform. If the user selects a file, the initial
+        path is replaced with the path of the selected file.</dd>
+      <dt><tt><br>
+        <strong>baseName</strong></tt></dt>
+      <dd>The initial file name, not including the path. This can be empty, or it can contain a
+        default name. The initial name can also contain wildcards that may be used to filter the
+        names displayed in the dialog. If the user selects a file, the initial name is replaced
+        with the name (not including the path) of the selected file.</dd>
+      <dt><tt><br>
+        <strong>fullName</strong></tt></dt>
+      <dd>The file request returns the selected file name, including the path, in this string. The
+        initial contents are ignored.</dd>
+      <dt><tt><br>
+        <strong>bufLen</strong></tt></dt>
+      <dd>The size in bytes of the <tt>baseName</tt>, <tt>path</tt> and <tt>fullName</tt> strings.
+        Note that all of them must be the same size, and should be large enough to hold the
+        largest file name you expect to process (a minimum of 256 bytes is recommended).</dd>
+      <dt><tt><br>
+        <strong>pickName</strong>()</tt></dt>
+      <dd>A callback function you provide when making <tt>MULTILOAD</tt> requests. This function
+        will be called for each selected file. It returns 0 to continue and any non-zero value to
+        stop processing the files in a multiple file selection. Each time your <tt>pickName</tt>
+        is called, your LWFileReqLocal structure will contain the next name in the list of names
+        selected by the user. Your LWFileReqLocal therefore needs to be declared in a place where
+        it will be visible to your <tt>pickName</tt> function.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>This code fragment asks the user for the name of an image file to save.</p>
+    <pre>   #include &lt;lwserver.h&gt;
+   #include &lt;lwhost.h&gt;
+
+   #define MAXFILESZ 260
+
+   static char
+      node[ MAXFILESZ ] = &quot;&quot;,
+      path[ MAXFILESZ ] = &quot;&quot;,
+      name[ MAXFILESZ ] = &quot;&quot;;
+   static LWFileReqLocal frloc;
+
+   LWFileActivateFunc *filereq;
+   int result;
+
+   filereq = global( LWFILEACTIVATEFUNC_GLOBAL, GFUSE_TRANSIENT );
+   if ( !filereq ) goto NoFileReq;  /* global calls can fail */
+
+   frloc.reqType  = FREQ_SAVE; 
+   frloc.title    = &quot;Save Image&quot;;
+   frloc.bufLen   = MAXFILESZ;
+   frloc.pickName = NULL;
+   frloc.fileType = &quot;Images&quot;;
+   frloc.path     = path;
+   frloc.baseName = node;
+   frloc.fullName = name;
+
+   strcpy( frloc.path, &quot;MyImages&quot; );     /* a relative path */
+   strcpy( frloc.baseName, &quot;foo&quot; );      /* a default name  */
+
+   result = filereq( LWFILEREQ_VERSION, &amp;frloc );
+   if ( result == AFUNC_OK &amp;&amp; frloc.result &gt; 0 ) {
+      save_image( myimage, frloc.fullName );
+      ...
+</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

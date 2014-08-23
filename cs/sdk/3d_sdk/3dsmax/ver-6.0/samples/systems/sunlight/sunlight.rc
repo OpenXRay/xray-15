@@ -1,0 +1,436 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "sunlight.H"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+#include "buildver.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "sunlight.H\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""buildver.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "#if defined(RENDER_VER)\r\n"
+    "  #include ""sunlight_vizR.rc""\r\n"
+    "#endif\r\n"
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_COMPASSPARAM DIALOG  0, 0, 108, 39
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Show Compass Rose",IDC_SHOWAXIS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,12,6,85,10
+    CONTROL         "",IDC_AXISLENGTH,"CustEdit",WS_TABSTOP,46,22,28,10
+    RTEXT           "Radius:",IDC_STATIC,16,22,29,8
+    CONTROL         "",IDC_AXISLENGHSPIN,"SpinnerControl",0x0,75,22,7,10
+END
+
+IDD_GEOGRAPHIC_LOCATION DIALOG  0, 0, 305, 184
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Geographic Location"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,83,166,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,173,166,50,14
+    LISTBOX         IDC_CITYLIST,7,17,103,137,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MAP_NAME,122,18,91,75,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "&Nearest Big City",IDC_NEAREST,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,218,19,74,10
+    LTEXT           "&City:",IDC_STATIC,7,6,30,8
+    CONTROL         "",IDC_MAP_PICTURE,"Button",BS_OWNERDRAW,122,39,173,115
+    LTEXT           "Map:",IDC_STATIC,122,6,17,8
+END
+
+IDD_NATLIGHTPARAM DIALOG  0, 0, 108, 118
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "&Active",IDC_SUN_ACTIVE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,68,3,37,10
+    LTEXT           "&Sunlight",IDC_STATIC,3,4,26,8
+    COMBOBOX        IDC_SUN_COMBO,3,16,102,51,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Position",IDC_STATIC,3,32,102,54
+    CONTROL         "&Manual",IDC_MANUAL_POSITION,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,43,39,10
+    CONTROL         "&Date, Time and Location",IDC_CONTROLLER_POS,"Button",
+                    BS_AUTORADIOBUTTON,7,54,94,10
+    CONTROL         "Setup...",IDC_SETUP_CONTROLLER,"CustButton",WS_GROUP | 
+                    WS_TABSTOP,48,67,50,14
+    CONTROL         "A&ctive",IDC_SKY_ACTIVE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,68,90,37,10
+    LTEXT           "Sk&ylight",IDC_STATIC,3,91,26,8
+    COMBOBOX        IDC_SKY_COMBO,3,103,102,51,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_SUNPARAM DIALOG  0, 0, 108, 241
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_HOUR,"CustEdit",WS_TABSTOP,12,45,15,10
+    CONTROL         "",IDC_MIN,"CustEdit",WS_TABSTOP,38,45,15,10
+    CONTROL         "",IDC_SEC,"CustEdit",WS_TABSTOP,64,45,15,10
+    CONTROL         "",IDC_MONTH,"CustEdit",WS_TABSTOP,11,68,15,10
+    CONTROL         "",IDC_DAY,"CustEdit",WS_TABSTOP,37,68,15,10
+    CONTROL         "",IDC_YEAR,"CustEdit",WS_TABSTOP,63,68,29,10
+    CONTROL         "",IDC_ZONE,"CustEdit",WS_TABSTOP,12,87,15,10
+    CONTROL         "Daylight Saving Time",IDC_DST,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFTTEXT | WS_TABSTOP,12,99,83,10
+    CONTROL         "",IDC_LAT,"CustEdit",WS_TABSTOP,53,156,40,10
+    CONTROL         "",IDC_LONG,"CustEdit",WS_TABSTOP,53,172,40,10
+    CONTROL         "",IDC_RADIUS,"CustEdit",WS_TABSTOP,54,205,37,10
+    CONTROL         "",IDC_NORTH,"CustEdit",WS_TABSTOP,63,220,28,10
+    RTEXT           "Latitude:",IDC_STATIC,12,158,37,8
+    CONTROL         "",IDC_LATSPINNER,"SpinnerControl",WS_TABSTOP,93,156,7,
+                    10
+    RTEXT           "Longitude:",IDC_STATIC,5,174,44,8
+    CONTROL         "",IDC_LONGSPINNER,"SpinnerControl",WS_TABSTOP,93,172,7,
+                    10
+    CTEXT           "Year",IDC_STATIC,62,60,37,8
+    CONTROL         "",IDC_YEARSPINNER,"SpinnerControl",0x0,93,68,7,10
+    GROUPBOX        "Location",IDC_STATIC,4,115,100,73
+    GROUPBOX        "Time",IDC_TIME_GROUP,4,24,100,88
+    CTEXT           "Month",IDC_STATIC,12,60,22,8
+    CONTROL         "",IDC_MONTHSPINNER,"SpinnerControl",0x0,27,68,7,10
+    CTEXT           "Day",IDC_STATIC,37,60,22,8
+    CONTROL         "",IDC_DAYSPINNER,"SpinnerControl",0x0,53,68,7,10
+    CTEXT           "Mins.",IDC_STATIC,39,37,19,8
+    CONTROL         "",IDC_MINSPINNER,"SpinnerControl",WS_TABSTOP,54,45,7,10
+    CTEXT           "Hours",IDC_STATIC,12,37,21,8
+    CONTROL         "",IDC_HOURSPINNER,"SpinnerControl",WS_TABSTOP,28,45,7,
+                    10
+    GROUPBOX        "Site",IDC_STATIC,4,191,100,46
+    CONTROL         "",IDC_RADSPINNER,"SpinnerControl",0x0,92,205,7,10
+    RTEXT           "North Direction:",IDC_STATIC,8,222,52,8
+    CONTROL         "",IDC_NORTHSPINNER,"SpinnerControl",0x0,92,220,7,10
+    PUSHBUTTON      "Get Location...",IDC_GETLOC,23,125,62,12
+    CTEXT           "Azimuth",IDC_STATIC,13,3,36,8
+    CTEXT           "Altitude",IDC_STATIC,57,3,36,8
+    CONTROL         "",IDC_AZ,"CustStatus",0x0,10,11,42,10
+    CONTROL         "",IDC_ALT,"CustStatus",0x0,54,11,42,10
+    CTEXT           "Secs.",IDC_STATIC,64,37,21,8
+    CONTROL         "",IDC_SECSPINNER,"SpinnerControl",WS_TABSTOP,80,45,7,10
+    LTEXT           "Time Zone",IDC_STATIC,37,88,44,8
+    CONTROL         "",IDC_ZONESPINNER,"SpinnerControl",0x0,28,87,7,10
+    RTEXT           "Orbital Scale:",IDC_STATIC,5,207,46,8
+    CONTROL         "",IDC_CITY,"CustStatus",0x0,8,141,91,10
+END
+
+#if defined(APSTUDIO_INVOKED) || !defined(NO_DAYLIGHT_SKY_COVERAGE_SLIDER)
+IDD_DAYPARAM DIALOGEX 0, 0, 108, 290
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    CONTROL         "Manual Override",IDC_MANUAL,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,10,3,68,10
+    CONTROL         "",IDC_HOUR,"CustEdit",WS_TABSTOP,12,57,15,10
+    CONTROL         "",IDC_MIN,"CustEdit",WS_TABSTOP,38,57,15,10
+    CONTROL         "",IDC_SEC,"CustEdit",WS_TABSTOP,64,57,15,10
+    CONTROL         "",IDC_MONTH,"CustEdit",WS_TABSTOP,11,80,15,10
+    CONTROL         "",IDC_DAY,"CustEdit",WS_TABSTOP,37,80,15,10
+    CONTROL         "",IDC_YEAR,"CustEdit",WS_TABSTOP,63,80,29,10
+    CONTROL         "",IDC_ZONE,"CustEdit",WS_TABSTOP,12,99,15,10
+    CONTROL         "Daylight Saving Time",IDC_DST,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFTTEXT | WS_TABSTOP,12,111,83,10
+    CONTROL         "",IDC_LAT,"CustEdit",WS_TABSTOP,53,168,40,10
+    CONTROL         "",IDC_LONG,"CustEdit",WS_TABSTOP,53,184,40,10
+    CONTROL         "",IDC_RADIUS,"CustEdit",WS_TABSTOP,54,217,37,10
+    CONTROL         "",IDC_NORTH,"CustEdit",WS_TABSTOP,63,232,28,10
+    RTEXT           "Latitude:",IDC_STATIC,12,170,37,8
+    CONTROL         "",IDC_LATSPINNER,"SpinnerControl",WS_TABSTOP,93,168,7,
+                    10
+    RTEXT           "Longitude:",IDC_STATIC,5,186,44,8
+    CONTROL         "",IDC_LONGSPINNER,"SpinnerControl",WS_TABSTOP,93,184,7,
+                    10
+    CTEXT           "Year",IDC_STATIC,62,72,37,8
+    CONTROL         "",IDC_YEARSPINNER,"SpinnerControl",0x0,93,80,7,10
+    GROUPBOX        "Location",IDC_STATIC,4,127,100,73
+    GROUPBOX        "Time",IDC_TIME_GROUP,4,36,100,88
+    CTEXT           "Month",IDC_STATIC,12,72,22,8
+    CONTROL         "",IDC_MONTHSPINNER,"SpinnerControl",0x0,27,80,7,10
+    CTEXT           "Day",IDC_STATIC,37,72,22,8
+    CONTROL         "",IDC_DAYSPINNER,"SpinnerControl",0x0,53,80,7,10
+    CTEXT           "Mins.",IDC_STATIC,39,49,19,8
+    CONTROL         "",IDC_MINSPINNER,"SpinnerControl",WS_TABSTOP,54,57,7,10
+    CTEXT           "Hours",IDC_STATIC,12,49,21,8
+    CONTROL         "",IDC_HOURSPINNER,"SpinnerControl",WS_TABSTOP,28,57,7,
+                    10
+    GROUPBOX        "Site",IDC_STATIC,4,203,100,46
+    CONTROL         "",IDC_RADSPINNER,"SpinnerControl",0x0,92,217,7,10
+    RTEXT           "North Direction:",IDC_STATIC,8,234,52,8
+    CONTROL         "",IDC_NORTHSPINNER,"SpinnerControl",0x0,92,232,7,10
+    PUSHBUTTON      "Get Location...",IDC_GETLOC,23,137,62,12
+    CTEXT           "Azimuth",IDC_STATIC,13,15,36,8
+    CTEXT           "Altitude",IDC_STATIC,57,15,36,8
+    CONTROL         "",IDC_AZ,"CustStatus",0x0,10,23,42,10
+    CONTROL         "",IDC_ALT,"CustStatus",0x0,54,23,42,10
+    CTEXT           "Secs.",IDC_STATIC,64,49,21,8
+    CONTROL         "",IDC_SECSPINNER,"SpinnerControl",WS_TABSTOP,80,57,7,10
+    LTEXT           "Time Zone",IDC_STATIC,37,100,44,8
+    CONTROL         "",IDC_ZONESPINNER,"SpinnerControl",0x0,28,99,7,10
+    RTEXT           "Orbital Scale:",IDC_STATIC,5,219,46,8
+    CONTROL         "",IDC_CITY,"CustStatus",0x0,8,153,91,10
+    LTEXT           "Clear",IDC_STATIC,7,260,17,8
+    LTEXT           "Partly Cloudy",IDC_STATIC,31,260,42,8
+    LTEXT           "Cloudy",IDC_STATIC,80,260,22,8
+    CONTROL         "",IDC_SKY_COVER_SLIDER,"SliderControl",WS_TABSTOP,7,271,
+                    93,10
+    GROUPBOX        "Sky",IDC_STATIC,4,251,100,35
+END
+#endif
+
+#if defined(APSTUDIO_INVOKED) || defined(NO_DAYLIGHT_SKY_COVERAGE_SLIDER)
+#if defined(APSTUDIO_INVOKED)
+IDD_DAYPARAM$(NO_DAYLIGHT_SKY_COVERAGE_SLIDER) DIALOGEX 0, 0, 108, 253
+#else
+IDD_DAYPARAM DIALOGEX 0, 0, 108, 253
+#endif
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    CONTROL         "Manual Override",IDC_MANUAL,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,10,3,68,10
+    CONTROL         "",IDC_HOUR,"CustEdit",WS_TABSTOP,12,57,15,10
+    CONTROL         "",IDC_MIN,"CustEdit",WS_TABSTOP,38,57,15,10
+    CONTROL         "",IDC_SEC,"CustEdit",WS_TABSTOP,64,57,15,10
+    CONTROL         "",IDC_MONTH,"CustEdit",WS_TABSTOP,11,80,15,10
+    CONTROL         "",IDC_DAY,"CustEdit",WS_TABSTOP,37,80,15,10
+    CONTROL         "",IDC_YEAR,"CustEdit",WS_TABSTOP,63,80,29,10
+    CONTROL         "",IDC_ZONE,"CustEdit",WS_TABSTOP,12,99,15,10
+    CONTROL         "Daylight Saving Time",IDC_DST,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFTTEXT | WS_TABSTOP,12,111,83,10
+    CONTROL         "",IDC_LAT,"CustEdit",WS_TABSTOP,53,168,40,10
+    CONTROL         "",IDC_LONG,"CustEdit",WS_TABSTOP,53,184,40,10
+    CONTROL         "",IDC_RADIUS,"CustEdit",WS_TABSTOP,54,217,37,10
+    CONTROL         "",IDC_NORTH,"CustEdit",WS_TABSTOP,63,232,28,10
+    RTEXT           "Latitude:",-1,12,170,37,8
+    CONTROL         "",IDC_LATSPINNER,"SpinnerControl",WS_TABSTOP,93,168,7,
+                    10
+    RTEXT           "Longitude:",-1,5,186,44,8
+    CONTROL         "",IDC_LONGSPINNER,"SpinnerControl",WS_TABSTOP,93,184,7,
+                    10
+    CTEXT           "Year",-1,62,72,37,8
+    CONTROL         "",IDC_YEARSPINNER,"SpinnerControl",0x0,93,80,7,10
+    GROUPBOX        "Location",-1,4,127,100,73
+    GROUPBOX        "Time",IDC_TIME_GROUP,4,36,100,88
+    CTEXT           "Month",-1,12,72,22,8
+    CONTROL         "",IDC_MONTHSPINNER,"SpinnerControl",0x0,27,80,7,10
+    CTEXT           "Day",-1,37,72,22,8
+    CONTROL         "",IDC_DAYSPINNER,"SpinnerControl",0x0,53,80,7,10
+    CTEXT           "Mins.",-1,39,49,19,8
+    CONTROL         "",IDC_MINSPINNER,"SpinnerControl",WS_TABSTOP,54,57,7,10
+    CTEXT           "Hours",-1,12,49,21,8
+    CONTROL         "",IDC_HOURSPINNER,"SpinnerControl",WS_TABSTOP,28,57,7,
+                    10
+    GROUPBOX        "Site",-1,4,203,100,46
+    CONTROL         "",IDC_RADSPINNER,"SpinnerControl",0x0,92,217,7,10
+    RTEXT           "North Direction:",-1,8,234,52,8
+    CONTROL         "",IDC_NORTHSPINNER,"SpinnerControl",0x0,92,232,7,10
+    PUSHBUTTON      "Get Location...",IDC_GETLOC,23,137,62,12
+    CTEXT           "Azimuth",-1,13,15,36,8
+    CTEXT           "Altitude",-1,57,15,36,8
+    CONTROL         "",IDC_AZ,"CustStatus",0x0,10,23,42,10
+    CONTROL         "",IDC_ALT,"CustStatus",0x0,54,23,42,10
+    CTEXT           "Secs.",-1,64,49,21,8
+    CONTROL         "",IDC_SECSPINNER,"SpinnerControl",WS_TABSTOP,80,57,7,10
+    LTEXT           "Time Zone",-1,37,100,44,8
+    CONTROL         "",IDC_ZONESPINNER,"SpinnerControl",0x0,28,99,7,10
+    RTEXT           "Orbital Scale:",-1,5,219,46,8
+    CONTROL         "",IDC_CITY,"CustStatus",0x0,8,153,91,10
+END
+#endif
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_NATLIGHTPARAM, DIALOG
+    BEGIN
+        LEFTMARGIN, 3
+        RIGHTMARGIN, 105
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 115
+    END
+
+    IDD_DAYPARAM, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 252
+    END
+
+    "IDD_DAYPARAM$(NO_DAYLIGHT_SKY_COVERAGE_SLIDER)", DIALOG
+    BEGIN
+        BOTTOMMARGIN, 252
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_CROSS_HAIR          CURSOR                  "Crosshr1.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_DB_COMPASS          "Compass"
+    IDS_DB_COMPASS_CLASS    "Compass"
+    IDS_DB_GENERAL          "General"
+    IDS_DB_PARAMETERS       "Parameters"
+    IDS_SUN_CREATE_PROMPT   "Click and Drag to Create a Sun System."
+    IDS_SUN_COMPLETE_PROMPT "Right Click to Finish"
+    IDS_SLAVE_POS_CLASS     "Sunlight/Daylight Slave Controller"
+    IDS_SOL_DATE            "Solar Date"
+    IDS_SOL_TIME            "Solar Time"
+    IDS_SUN_DLG_NAM         "Control Parameters"
+    IDS_SUN_CLASS           "Sunlight"
+    IDS_SUN_CATEGORY        "Basic"
+    IDS_AFRICA              "Africa"
+    IDS_ASIA                "Asia"
+    IDS_ASIAN_SUBCONTINENT  "Asian Subcontinent"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_NAT_LIGHT_NAME      "DaylightAssemblyHead"
+    IDS_NATLIGHT_PARAM_NAME "Daylight Parameters"
+    IDS_SKY_NAME            "Sky"
+    IDS_STANDARD_SUNLIGHT   "Standard"
+    IDS_NO_SUNLIGHT         "<No Sunlight>"
+    IDS_NO_SKYLIGHT         "<No Skylight>"
+    IDS_NATLIGHT_PARAMS     "Daylight"
+    IDS_MANUAL              "Manual"
+    IDS_LOOKAT              "Manual Position"
+    IDS_MULTIPLIER          "Manual Intensity"
+    IDS_SLAVE_FLOAT_CLASS   "Sunlight/Daylight Slave Intensity Controller"
+    IDS_DAY_CLASS           "Daylight"
+    IDS_SKY_COVER           "Sky Cover"
+    IDS_DB_COMPASS_OBJECT   "Compass"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_AUSTRALIA           "Australia"
+    IDS_CANADA              "Canada"
+    IDS_EUROPE              "Europe"
+    IDS_NORTH_AMERICA       "North America"
+    IDS_SOUTH_AMERICA       "South America"
+    IDS_WORLD               "World"
+    IDS_LIGHT_NAME          "Sun"
+    IDS_CAM_NAME            "SunCam"
+    IDS_EAST_MARK           "E"
+    IDS_AFRICA2             "Africa"
+    IDS_ASIA2               "Asia"
+    IDS_ASIAN_SUBCONTINENT2 "Asian Subcontinent"
+    IDS_AUSTRALIA2          "Australia"
+    IDS_CANADA2             "Canada"
+    IDS_EUROPE2             "Europe"
+    IDS_NORTH_AMERICA2      "North America"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_SOUTH_AMERICA2      "South America"
+    IDS_WORLD2              "World"
+    IDS_WEST_MARK           "W"
+    IDS_NORTH_MARK          "N"
+    IDS_SOUTH_MARK          "S"
+    IDS_UNDO                "Create Sunlight"
+    IDS_LIB_DESC            "Sunlight system (Discreet)"
+    IDS_CAM_CREATE          "Camera toggle"
+    IDS_CAM_DEL             "Delete Camera"
+    IDS_LAT                 "Latitude"
+    IDS_LONG                "Longitude"
+    IDS_ZONE                "Time Zone"
+    IDS_DST                 "Daylight Savings"
+    IDS_RAD                 "Orbital Scale"
+    IDS_UNDO_PARAM          "Undo Parameter Change"
+    IDS_DB_COMPASS_CDESC    "Compass"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#if defined(RENDER_VER)
+  #include "sunlight_vizR.rc"
+#endif
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

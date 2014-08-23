@@ -1,0 +1,206 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_MC_KBD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 157
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 191
+    END
+
+    IDD_KBD_KEYPRESSDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 93
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 55
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MC_KBD DIALOG DISCARDABLE  0, 0, 164, 198
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Key Assignment",IDC_STATIC,4,1,155,34
+    PUSHBUTTON      "Assign...",IDC_KBD_KEYBTN,13,14,62,14
+    CONTROL         "",IDC_KBD_ENVGRAPH,"EnvelopeImage",WS_TABSTOP,10,50,143,
+                    50
+    GROUPBOX        "Envelope Graph",IDC_STATIC,4,38,155,67
+    GROUPBOX        "Envelope Parameters",IDC_STATIC,4,107,155,46
+    GROUPBOX        "Parameter Scaling",IDC_STATIC,4,155,155,35
+    CONTROL         "",IDC_KBD_ATTACK,"CustEdit",WS_TABSTOP,45,121,25,10
+    CONTROL         "",IDC_KBD_ATTACKSPIN,"SpinnerControl",0x0,71,121,7,10
+    RTEXT           "Attack:",IDC_STATIC,12,121,29,8
+    CONTROL         "",IDC_KBD_DECAY,"CustEdit",WS_TABSTOP,45,136,25,10
+    CONTROL         "",IDC_KBD_DECAYSPIN,"SpinnerControl",0x0,71,136,7,10
+    RTEXT           "Decay:",IDC_STATIC,12,136,29,8
+    CONTROL         "",IDC_KBD_SUSTAIN,"CustEdit",WS_TABSTOP,119,121,25,10
+    CONTROL         "",IDC_KBD_SUSTAINSPIN,"SpinnerControl",0x0,145,121,7,10
+    RTEXT           "Sustain:",IDC_STATIC,83,121,32,8
+    CONTROL         "",IDC_KBD_RELEASE,"CustEdit",WS_TABSTOP,119,136,25,10
+    CONTROL         "",IDC_KBD_RELEASESPIN,"SpinnerControl",0x0,145,136,7,10
+    RTEXT           "Release:",IDC_STATIC,83,136,32,8
+    CONTROL         "",IDC_KBD_SCALE,"CustEdit",WS_TABSTOP,118,170,25,10
+    CONTROL         "",IDC_KBD_SCALESPIN,"SpinnerControl",0x0,144,170,7,10
+    RTEXT           "Range:",IDC_STATIC,87,170,27,8
+    CONTROL         "",IDC_KBD_TIMESCALE,"CustEdit",WS_TABSTOP,45,170,25,10
+    CONTROL         "",IDC_KBD_TIMESCALESPIN,"SpinnerControl",0x0,71,170,7,
+                    10
+    RTEXT           "Time:",IDC_STATIC,14,170,27,8
+    COMBOBOX        IDC_KBD_KEYEDIT,78,15,73,86,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+END
+
+IDD_KBD_KEYPRESSDLG DIALOG DISCARDABLE  0, 0, 100, 62
+STYLE WS_POPUP | WS_BORDER
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Cancel",ID_FILE_EXIT,25,38,50,14
+    CTEXT           "Press to assign key",IDC_STATIC,13,21,73,8
+END
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_KBD_DEVICENAME      "Keyboard Input Device"
+    IDS_KBD_UNASSIGNED      "<Unassigned>"
+    IDS_KBD_KEY             "Key"
+    IDS_KBD_KEYNAME_BACKSPACE "Backspace"
+    IDS_KBD_KEYNAME_SPACE   "Space"
+    IDS_KBD_KEYNAME_PGUP    "PgUp"
+    IDS_KBD_KEYNAME_PGDN    "PgDn"
+    IDS_KBD_KEYNAME_END     "End"
+    IDS_KBD_KEYNAME_HOME    "Home"
+    IDS_KBD_KEYNAME_LEFTARROW "Left Arrow"
+    IDS_KBD_KEYNAME_UPARROW "Up Arrow"
+    IDS_KBD_KEYNAME_RIGHTARROW "Right Arrow"
+    IDS_KBD_KEYNAME_DOWNARROW "Down Arrow"
+    IDS_KBD_KEYNAME_INSERT  "Insert"
+    IDS_KBD_KEYNAME_DELETE  "Delete"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_KBD_KEYNAME_NUMPAD0 "NumPad 0"
+    IDS_KBD_KEYNAME_NUMPAD1 "NumPad 1"
+    IDS_KBD_KEYNAME_NUMPAD2 "NumPad 2"
+    IDS_KBD_KEYNAME_NUMPAD3 "NumPad 3"
+    IDS_KBD_KEYNAME_NUMPAD4 "NumPad 4"
+    IDS_KBD_KEYNAME_NUMPAD5 "NumPad 5"
+    IDS_KBD_KEYNAME_NUMPAD6 "NumPad 6"
+    IDS_KBD_KEYNAME_NUMPAD7 "NumPad 7"
+    IDS_KBD_KEYNAME_NUMPAD8 "NumPad 8"
+    IDS_KBD_KEYNAME_NUMPAD9 "NumPad 9"
+    IDS_KBD_KEYNAME_GREYSTAR "Grey *"
+    IDS_KBD_KEYNAME_GREYPLUS "Grey +"
+    IDS_KBD_KEYNAME_GREYMINUS "Grey -"
+    IDS_KBD_KEYNAME_GREYDOT "Grey ."
+    IDS_KBD_KEYNAME_GREYSLASH "Grey /"
+    IDS_KBD_KEYNAME_F1      "F1"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_KBD_KEYNAME_F2      "F2"
+    IDS_KBD_KEYNAME_F3      "F3"
+    IDS_KBD_KEYNAME_F4      "F4"
+    IDS_KBD_KEYNAME_F5      "F5"
+    IDS_KBD_KEYNAME_F6      "F6"
+    IDS_KBD_KEYNAME_F7      "F7"
+    IDS_KBD_KEYNAME_F8      "F8"
+    IDS_KBD_KEYNAME_F9      "F9"
+    IDS_KBD_KEYNAME_F10     "F10"
+    IDS_KBD_KEYNAME_F11     "F11"
+    IDS_KBD_KEYNAME_F12     "F12"
+    IDS_LIBDESCRIPTION      "Keyboard controller for motion capture (Discreet)"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

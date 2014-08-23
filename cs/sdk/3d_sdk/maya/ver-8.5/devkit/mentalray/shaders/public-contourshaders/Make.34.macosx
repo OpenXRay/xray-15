@@ -1,0 +1,11 @@
+#!/bin/sh
+# automatically generated Thu Jul 29 12:09:20 MST 2004
+rm -f shader.h geoshader.h mi_version.h
+cp shader.34.h shader.h
+cp geoshader.34.h geoshader.h
+cp mi_version.34.h mi_version.h
+cp raylib.34.rc raylib.rc
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include contourshade.c
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include outimgshade.c
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include outpsshade.c
+libtool  -flat_namespace -undefined suppress -dynamic /usr/local/mi/lib/macosx-fpsave.o -o contour.so contourshade.o outimgshade.o outpsshade.o  

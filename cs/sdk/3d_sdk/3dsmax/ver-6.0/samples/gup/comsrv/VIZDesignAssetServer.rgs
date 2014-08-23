@@ -1,0 +1,21 @@
+HKCR
+{
+	Comsrv.VIZDesignAssetServer.1 = s 'VIZDesignAssetServer Class'
+	{
+		CLSID = s '{0F44DE7C-FB3A-46C1-8A1D-265652AC18DD}'
+	}
+	Comsrv.VIZDesignAssetServer = s 'VIZDesignAssetServer Class'
+	{
+		CLSID = s '{0F44DE7C-FB3A-46C1-8A1D-265652AC18DD}'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {0F44DE7C-FB3A-46C1-8A1D-265652AC18DD} = s 'VIZDesignAssetServer Class'
+		{
+			ProgID = s 'Comsrv.VIZDesignAssetServer.1'
+			VersionIndependentProgID = s 'Comsrv.VIZDesignAssetServer'
+			val AppID = s '{4AD72E62-5A4B-11D2-91CB-0060081C257E}'
+			LocalServer32 = s '%Module%'
+		}
+	}
+}

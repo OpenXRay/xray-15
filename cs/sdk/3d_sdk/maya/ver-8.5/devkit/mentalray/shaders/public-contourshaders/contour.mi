@@ -1,0 +1,232 @@
+#*****************************************************************************
+# Copyright 1986-2006 by mental images GmbH, Fasanenstr. 81, D-10623 Berlin,
+# Germany. All rights reserved.
+#*****************************************************************************
+# Created:      29.02.96
+# Module:       shader
+# Purpose:      .mi declarations for built-in contour functions and shaders
+#
+# Exports:
+#
+#       contour_store_function
+#       contour_contrast_function_levels
+#
+#       contour_shader_simple        
+#       contour_shader_curvature
+#       contour_shader_depthfade
+#       etc.
+#
+#       contour_only          output contour image
+#       contour_composite     output contour image composited onto usual image
+#       contour_ps            output contour image as PostScript file
+#       contour_mi            output contour image as mi file
+#
+# History: 
+#
+# Description:
+# Store this file in /usr/include/mi/contour.mi, and use 
+# $include <contour.mi> in every .mi file that uses any contour shader.
+#*****************************************************************************
+
+min version "2.0"
+max version "3.5.99"
+
+
+
+# Contour store functions
+#   - input:   state, material color 
+#   - output:  user-defined info
+
+declare shader 
+    struct {
+        vector 	 "point",
+	vector   "normal",
+	color    "color",
+	material "material",
+	integer  "level",
+	integer  "label",
+	integer  "index",
+	vector   "normal_geom"
+    } "contour_store_function" ()
+    version 3
+end declare
+
+declare shader
+    material "contour_store_function_simple" () # for fast, simple contours
+    version 2 				
+end declare
+
+
+# Contour contrast functions
+#   - input:   state, info1, info2, params (such as zdelta, ndelta)
+#   - output:  Boolean (miTrue iff there should be a contour) 
+
+declare shader
+    "contour_contrast_function_levels" (
+	scalar  "zdelta",     # depth diff to cause contour (in scene coords)
+	scalar  "ndelta",     # normal difference to cause contour (in degrees)
+	boolean "diff_mat",   # should borders between materials get contours?
+	boolean "diff_label", # should different object labels cause contours?
+	boolean "diff_index", # should diff. triangle indices cause contours?
+ 	boolean "contrast",   # should color contrasts get contours?
+	integer "min_level",  # min level (layer) that gets contours
+	integer "max_level"   # max level (layer) that gets contours
+    )
+    version 3
+end declare
+
+declare shader
+    "contour_contrast_function_simple" ()   # for fast, simple contours
+    version 2				
+end declare
+
+
+# Contour shaders
+#   - input:   state, info1, info2, params (such as color, width, clip. planes)
+#   - output:  color, width
+# The contour shaders are called (with specific parameters) as part of 
+# the material definition
+
+declare shader
+    "contour_shader_simple" (
+	color  "color",        # contour color
+	scalar "width"         # contour width
+    )
+    version 3
+end declare
+
+declare shader
+    "contour_shader_curvature" (
+	color  "color",        # contour color
+	scalar "min_width",    # min contour width
+	scalar "max_width"     # max contour width
+    )
+    version 2
+end declare
+
+declare shader
+    "contour_shader_factorcolor" (
+	scalar "factor",       # factor times the material color
+	scalar "width"
+    )
+    version 2
+end declare
+
+declare shader
+    "contour_shader_depthfade" (
+	scalar "near_z",       # linearly interpolate from this depth ... 
+	color  "near_color",
+	scalar "near_width", 
+	scalar "far_z",        # ... to this 
+	color  "far_color",
+	scalar "far_width"
+    )
+    version 3
+end declare
+
+declare shader
+    "contour_shader_framefade" (
+	integer "frame1",       # linearly interpolate from this frame number
+	color   "color1",
+	scalar  "width1", 
+	integer "frame2",       # ... to this 
+	color   "color2",
+	scalar  "width2"
+    )
+    version 2
+end declare
+
+declare shader
+    "contour_shader_layerthinner" (
+	color  "color",    # contour color
+	scalar "width",    # contour width at top layer
+	scalar "factor"    # factor to make the contour thinner for each layer
+    )
+    version 2
+end declare
+
+declare shader
+    "contour_shader_widthfromcolor" (
+	color  "color",        # contour color
+	scalar "min_width",    # min contour width
+	scalar "max_width"     # max contour width
+    )
+    version 2
+end declare
+
+declare shader
+    "contour_shader_widthfromlightdir" (
+	color  "color",        # contour color
+	scalar "min_width",    # min width of contour
+	scalar "max_width",    # max width of contour
+	vector "light_dir"     # direction to main light source
+    )
+    version 3
+end declare
+
+declare shader
+    "contour_shader_widthfromlight" (
+	color  "color",        # contour color
+	scalar "min_width",    # min width of contour
+	scalar "max_width",    # max width of contour
+	light  "light"         # light source name
+    )
+    version 2
+end declare
+
+declare shader
+    "contour_shader_combi" (
+	scalar "near_z",       # linearly interpolate from this depth ... 
+	color  "near_color",
+	scalar "near_width", 
+	scalar "far_z",        # ... to this 
+	color  "far_color",
+	scalar "far_width",
+	scalar "factor",       # factor to make contour thinner for each layer
+	light  "light",        # light source name (or 0 for no light dependnc)
+	scalar "light_min_factor" # min width factor for light src dependency
+    )
+    version 3
+end declare
+
+
+
+#
+# Contour output shaders
+#
+
+# Output contour image
+declare shader
+    "contour_only" (
+	color   "background", # background color (default black)
+        boolean "glow",       # glowing contours?
+	boolean "maxcomp"     # composite contours using max or alpha blend?
+    )
+    version 3
+end declare
+
+# Output contour image composited onto usual image
+declare shader
+    "contour_composite" (
+        boolean "glow",       # glowing contours?
+	boolean "maxcomp"     # composite contours using max or alpha blend?
+    )
+    version 2
+end declare
+
+# Output contour image as PostScript
+declare shader
+    "contour_ps" (
+	integer "paper_size",  # 0--10: letter, executive, legal, a3, a4, a5,
+			       #        a6, b4, b5, b6, 11x17
+	scalar  "paper_scale",
+	scalar  "paper_transform_b",
+	scalar  "paper_transform_d",
+	boolean "title",
+	boolean "landscape",
+	vector  "ink_stroke_dir",
+	scalar  "ink_min_frac",
+        string  "file_name"
+    ) 
+    version 4
+end declare

@@ -1,0 +1,230 @@
+LibVRML97 library version 0.8.0 Feb XX 1999
+Copyright (C) 1998,1999 Chris Morley (cmorley@vermontel.com)
+Portions Copyright SGI and others
+See "Legal Issues" below for more copyright and usage information.
+
+Please read the TODO file for information on what I want to do next.
+
+Available from http://www.vermontel.com/~cmorley/vrml.html
+
+
+
+What is LibVRML97?
+==================
+
+LibVRML97 is a portable C++ class library for reading and displaying
+VRML97 files. A number of example programs showing how to integrate
+this library into various window system toolkits are provided, including
+browsers based on GLUT, GTK, MFC, and Motif/LessTif.
+
+The code is copyrighted, but is provided free of charge for any purpose.
+The library includes the SGI VRML2 parser, which has its own copyright
+(see README.SGI) and uses other libraries which may have their own
+restrictions. The xmlookat example program is provided under the GPL.
+The GTK viewer and gtklookat example program are provided under the GPL.
+
+
+Changes new in version 0.8.0 Feb X 1999
+=======================================
+
+- Erik Andersen <andersee@debian.org> has revived the win32 build
+  and fixed a bunch of portability problems. MSVC++5 project and
+  workspace files are again included in the distribution, as well
+  as the generated parser/lexer sources (so you don't need flex
+  and bison to build anymore on most platforms).
+
+- Steve Sycamore <sycamore@inr.net> wrote a netscape plugin.
+
+- Kumaran Santhanam <rhapsody@stanford.edu> has contributed a sound
+  driver (Sound and AudioClip nodes) for Linux/OSS. See README.SOUND.
+
+- Erik Andersen <andersee@debian.org> wrote the gtklookat browser.
+
+- S. K. Bose also worked on the win32 port and ported the javascript
+  support to windows.
+
+- Joe Longson added methods to retrieve scene geometry information
+  from client applications.
+
+- Some bug fixes, including a problem with negative TimeSensor 
+  fraction_changed eventOuts, a crash when writing an error message
+  about invalid node names in ROUTEs, and an empty CoordIndex lexer
+  fix all submitted by Kumaran Santhanam <rhapsody@stanford.edu>, and a 
+  Text/MFString problem found by Anton Eliens <eliens@computer.org>.
+
+- Implemented PlaneSensor (USEd PlaneSensors will not behave correctly
+  yet, though).
+
+- The stubs for Java in Script nodes have been added (using the Sun
+  JDK) but it is not worth enabling yet. Java/JNI hackers are welcome
+  to jump in...
+
+- I fixed DEF name scoping issues and re-did the PROTO/EXTERNPROTO 
+  implementation so it is now robust and spec-conforming and just tried 
+  to keep up with all the stuff being done by everyone else.
+
+- The JavaScript support is more robust, including support for IS'd
+  script fields.
+
+- Lexer couldn't handle leading '+' on numbers.
+
+
+See the file NEWS for previous changes.
+See the file TODO for things to come.
+
+
+What VRML97 nodes are supported by the VRML97 library?
+======================================================
+
+Details of the implementation status of each node can be found in NODES.
+All of the static geometry is supported except generation of per vertex
+normals. Text/FontStyle node support is very limited.
+
+Unimplemented: drag sensors (CylinderSensor, PlaneSensor, and 
+SphereSensor), navigation types other than examine.
+
+
+Installation
+============
+
+Here is a list of necessary and optional software used by LibVRML97.
+
+Compilers
+- ANSI C/C++	I use gcc/g++ 2.7.2 & MSVC++ 5. Your C++ must support STL.
+
+Graphics
+If you have OpenGL libraries on your system, you probably want to use
+them as they will probably use any 3D hardware available. Otherwise,
+you will need to get Mesa (and send Brian some beer :).
+You will also need a window system API for OpenGL: any or all of GLUT 3.6,
+Xt/Motif/LessTif, and (not finished yet) GTK.
+
+- OpenGL	http://www.opengl.org/
+- Mesa		http://www.ssec.wisc.edu/~brianp/Mesa.html 
+- GLUT		http://reality.sgi.com/opengl/glut3/glut3.html
+- LessTif	http://www.lesstif.org/
+- GTK		http://www.gtk.org/
+
+Image/Movie Textures
+By default, only GIF support (for Images and Movies) is built in.
+Get the JPEG and PNG (which in turn requires ZLIB) libraries to read 
+those formats for ImageTextures. Make sure the zlib version is at least
+1.1.2 to support reading compressed files.
+
+- JPEG		ftp://ftp.uu.net/graphics/jpeg/
+- PNG		http://www.cdrom.com/pub/png/
+
+Scripting
+For javascript support in Script nodes, you will need the Netscape 
+javascript library which is in the Mozilla source (http://www.mozilla.org/)
+or grab just the javascript reference code extracted from the full source
+(http://www.vermontel.net/~cmorley/js.tar.gz).
+
+The SGI VRML2 parser (included in the LibVRML97 source) is built using 
+flex and bison (http://www.gnu.org/ for the source, or
+http://www.vermontel.net/~cmorley/flex-2.5.4a-win32.zip and
+http://www.vermontel.net/~cmorley/bison-1.25-win32.zip for source
+with prebuilt win32 executables).
+
+
+When you have got all the pieces, if there is a makefile for your system
+(makefile.`uname`), edit the flags in it and type make. Otherwise, copy 
+one of the supplied makefile.* files to makefile.`uname` and edit it to 
+reflect where the other packages were installed, then type make. Send
+the resulting makefile to me if you wish.
+
+After building, you should end up with the library (libVRML97.a) and one
+or more of the example browser programs (lookat, xmlookat, gtklookat).
+
+If you are modifying source, typing "make depend" will update the 
+dependency file (depend.mak), ensuring that the proper objects get 
+rebuilt when .h files are modified.
+
+I currently only have access to Linux 2.0.34/RedHat 5.1, Solaris 5.5.1,
+and Windows 98. If you port to another system, I would appreciate your
+sending me whatever changes to the source and makefile you needed.
+
+
+Running as a Netscape helper/plugin
+===================================
+
+Due to use of the GLUT library, I haven't tried to make a netscape plugin
+yet. However, the XSwallow plugin can reparent the graphics window so it
+appears to be a plugin. Get XSwallow from 
+http://skynet.csn.ul.ie/~caolan/docs/Xswallow.html
+and put these lines in your ~/.netscape/xswallow.conf file:
+
+x-world/x-vrml;  wrl; lookat -geometry 80x80+9000+9000 -url %u %s; "VRML97 OpenGL Viewer" ;  Embedded Vrml
+model/vrml;  wrl; lookat -geometry 80x80+9000+9000 -url %u %s; "VRML97 OpenGL Viewer" ;  Embedded Vrml
+
+Restart netscape & you are off. If you are behind a SOCKS firewall, you
+can download and build the SOCKS libraries, set the SOCKS_SERVER environment
+variables and use runsocks to start lookat:
+
+model/vrml;  wrl; runsocks lookat -geometry 80x80+9000+9000 -url %u %s; "VRML97 OpenGL Viewer" ;  Embedded Vrml
+
+
+X11 colormap flashing on 8 bit displays
+=======================================
+
+If you are having trouble with colormap flashing on an 8 bit
+display, try restarting your X server (eg, log out and back in
+in an xdm environment) and running "xstdcmap -default" BEFORE
+running anything else. In fact, you might put that command in
+your X startup script.
+But you should really get a graphics card with 24 bit color.
+Tell your boss I said so.
+
+
+Bug reports
+===========
+
+Please send bug reports to cmorley@vermontel.net. The code does not attempt
+to validate the input - it expects proper syntax in many places. Although
+I would prefer the code to handle input errors gracefully, less priority
+will be given to bugs resulting from invalid inputs. Please run one of the 
+VRML syntax checkers on your file before submitting a bug report.
+
+
+Design
+======
+
+
+The very brief architecture description:
+        VrmlScene is the top level class; a scene corresponds to reading in
+a vrml file (and all its associated data). A VrmlScene object will have data
+members for the node type definitions (built in and PROTOs/EXTERNPROTOs) and
+the actual nodes of the scene graph. The variables are d_namespace and d_nodes,
+respectively. You can pretty much ignore everything else in VrmlScene.
+        A VrmlNamespace is just a list of node type definitions and a list of
+node name definitions, so if you want to find a particular named node in a 
+scene, you would use the findNode method of the relevant namespace. Each
+PROTO gets its own namespace.
+        Each built in node type has a corresponding VrmlNode* class. PROTOd
+node instances are represented by the VrmlNodeProto class. Vrml nodes are
+built from the primitive field types, represented by the VrmlSF* and VrmlMF*
+(single and multivalued) classes. For each field of each node as defined by 
+the vrml spec there is a data member in the corresponding node class. For
+example, the Group node has a field called children of type MFNode. The
+VrmlNodeGroup class has a data member VrmlMFNode d_children. There is a 
+lot of code, but it is pretty easy to find what you want once you understand
+the structure.
+
+
+SGI Parser bugs
+===============
+
+Just for the record, these are the bugs I have found & fixed in the 
+SGI parser.
+
+- Lexer couldn't handle "0." or leading + on numbers.
+
+- hasExposedField checked eventIn/Out wrong names.
+
+- FontStyle family is an MFString.
+
+- IS statements with MFNode/SFNode fields didn't work.
+
+- Lexer whitespace rules break "#viewpoint" URL parsing.
+
+

@@ -1,0 +1,165 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PANEL DIALOG DISCARDABLE  0, 0, 108, 76
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Close",IDC_CLOSEBUTTON,29,55,50,14
+    CTEXT           "PropertySet Tester",IDC_STATIC,7,7,94,11
+    PUSHBUTTON      "Show Properties...",IDC_SHOWPROP,19,24,70,14
+END
+
+IDD_PROPERTYDIALOG DIALOG DISCARDABLE  0, 0, 406, 269
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Properties"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Cancel",IDCANCEL,349,248,50,14
+    LISTBOX         IDC_CONTENTS,224,7,175,236,LBS_USETABSTOPS | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "List3",IDC_CUSTOM,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_NOSORTHEADER | WS_BORDER | 
+                    WS_TABSTOP,54,149,167,94
+    EDITTEXT        IDC_TITLE,53,7,168,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Title:",IDC_STATIC,7,8,41,8
+    EDITTEXT        IDC_SUBJECT,53,20,168,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Subject:",IDC_STATIC,7,22,41,8
+    EDITTEXT        IDC_AUTHOR,53,33,168,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Author:",IDC_STATIC,7,34,41,8
+    EDITTEXT        IDC_MANAGER,53,46,168,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Manager:",IDC_STATIC,7,47,41,8
+    EDITTEXT        IDC_COMPANY,53,59,168,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Company:",IDC_STATIC,7,61,41,8
+    EDITTEXT        IDC_CATEGORY,53,72,168,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Category:",IDC_STATIC,7,73,41,8
+    EDITTEXT        IDC_KEYWORDS,53,85,168,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Keywords:",IDC_STATIC,7,86,41,8
+    EDITTEXT        IDC_COMMENTS,53,98,168,50,ES_MULTILINE | ES_AUTOHSCROLL | 
+                    ES_READONLY
+    LTEXT           "Comments:",IDC_STATIC,7,100,41,8
+    LTEXT           "Custom:",IDC_STATIC,7,149,41,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_PANEL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 69
+    END
+
+    IDD_PROPERTYDIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 399
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 262
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_NAME                "Name"
+    IDS_VALUE               "Value"
+    IDS_TYPE                "Type"
+    IDS_LIBDESC             "PropertySet Test Utility"
+    IDS_CLASSNAME           "PropertyTest"
+    IDS_PARAMETERS          "Parameters"
+    IDS_PROPTEXT            "Text"
+    IDS_PROPNUMBER          "Number"
+    IDS_PROPYESNO           "Yes or No"
+    IDS_PROPDATE            "Date"
+    IDS_PROPYES             "Yes"
+    IDS_PROPNO              "No"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

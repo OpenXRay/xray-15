@@ -1,0 +1,221 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SCAMERAPARAM_PLASMA DIALOGEX 0, 0, 108, 282
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    RTEXT           "Lens:",-1,23,7,19,8
+    CONTROL         "",IDC_LENS,"CustEdit",WS_GROUP | WS_TABSTOP,44,6,34,10
+    CONTROL         "",IDC_LENSSPINNER,"SpinnerControl",WS_GROUP,79,6,7,10
+    LTEXT           "mm",-1,88,7,12,8
+    CONTROL         "Custom1",IDC_FOV_TYPE,"CustButton",WS_GROUP | 
+                    WS_TABSTOP,7,19,14,12
+    RTEXT           "FOV:",-1,24,21,18,8
+    CONTROL         "",IDC_FOV,"CustEdit",WS_GROUP | WS_TABSTOP,44,20,34,10
+    CONTROL         "",IDC_FOVSPINNER,"SpinnerControl",WS_GROUP,79,20,7,10
+    LTEXT           "deg.",-1,88,21,14,8
+    CONTROL         "Orthographic Projection",IDC_IS_ORTHO,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,9,34,90,10
+    GROUPBOX        "Stock Lenses",-1,3,48,100,59,WS_GROUP
+    PUSHBUTTON      "15mm",IDC_15MM,7,59,27,12,WS_GROUP
+    PUSHBUTTON      "20mm",IDC_20MM,39,59,27,12,WS_GROUP
+    PUSHBUTTON      "24mm",IDC_24MM,70,59,27,12,WS_GROUP
+    PUSHBUTTON      "28mm",IDC_28MM,7,75,27,12,WS_GROUP
+    PUSHBUTTON      "35mm",IDC_35MM,39,75,27,12,WS_GROUP
+    PUSHBUTTON      "50mm",IDC_50MM,70,75,27,12,WS_GROUP
+    PUSHBUTTON      "85mm",IDC_85MM,7,91,27,12,WS_GROUP
+    PUSHBUTTON      "135mm",IDC_135MM,39,91,27,12,WS_GROUP
+    PUSHBUTTON      "200mm",IDC_200MM,70,91,27,12,WS_GROUP
+    LTEXT           "Type:",-1,7,114,19,8,0,WS_EX_RIGHT
+    COMBOBOX        IDC_CAM_TYPE,29,112,69,50,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_GROUP | WS_TABSTOP
+    CONTROL         "Show Cone ",IDC_SHOWCAMCONE,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,9,130,50,10
+    CONTROL         "Show Horizon",IDC_SHOWHORZLINE,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,9,141,56,10
+    GROUPBOX        "Environment Ranges",-1,3,155,100,53,WS_GROUP
+    CONTROL         "Show",IDC_SHOW_RANGES,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,9,167,34,10
+    RTEXT           "Near Range:",-1,7,181,43,8
+    CONTROL         "",IDC_NEAR_RANGE,"CustEdit",WS_GROUP | WS_TABSTOP,52,
+                    181,36,10
+    CONTROL         "",IDC_NEAR_RANGE_SPIN,"SpinnerControl",WS_GROUP,89,181,
+                    7,10
+    RTEXT           "Far Range:",-1,12,193,38,8
+    CONTROL         "",IDC_FAR_RANGE,"CustEdit",WS_GROUP | WS_TABSTOP,52,193,
+                    36,10
+    CONTROL         "",IDC_FAR_RANGE_SPIN,"SpinnerControl",WS_GROUP,89,193,7,
+                    10
+    GROUPBOX        "Clipping Planes",-1,3,212,100,52,WS_GROUP
+    CONTROL         "Clip Manually",IDC_MANUAL_CLIP,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,9,224,54,10
+    RTEXT           "Near Clip:",-1,16,237,34,8
+    CONTROL         "",IDC_HITHER,"CustEdit",WS_GROUP | WS_TABSTOP,52,237,36,
+                    10
+    CONTROL         "",IDC_HITHER_SPIN,"SpinnerControl",WS_GROUP,89,237,7,10
+    RTEXT           "Far Clip:",-1,23,250,28,8
+    CONTROL         "",IDC_YON,"CustEdit",WS_GROUP | WS_TABSTOP,52,249,36,10
+    CONTROL         "",IDC_YON_SPIN,"SpinnerControl",WS_GROUP,89,249,7,10
+    LTEXT           "Target Distance:",-1,2,269,54,9
+    LTEXT           "Static",IDC_TARG_DISTANCE,69,269,30,8
+END
+
+IDD_FCAMERAPARAM_PLASMA DIALOGEX 0, 0, 108, 226
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    RTEXT           "Lens:",IDC_STATIC,23,7,19,8
+    CONTROL         "",IDC_LENS,"CustEdit",WS_GROUP | WS_TABSTOP,44,6,34,10
+    CONTROL         "",IDC_LENSSPINNER,"SpinnerControl",WS_GROUP,79,6,7,10
+    LTEXT           "mm",IDC_STATIC,88,7,12,8
+    CONTROL         "Custom1",IDC_FOV_TYPE,"CustButton",WS_GROUP,7,19,14,12
+    RTEXT           "FOV:",IDC_STATIC,24,21,18,8
+    CONTROL         "",IDC_FOV,"CustEdit",WS_GROUP | WS_TABSTOP,44,20,34,10
+    CONTROL         "",IDC_FOVSPINNER,"SpinnerControl",WS_GROUP,79,20,7,10
+    LTEXT           "deg.",IDC_STATIC,88,21,16,8
+    CONTROL         "Orthographic Projection",IDC_IS_ORTHO,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,9,34,90,10
+    GROUPBOX        "Stock Lenses",IDC_STATIC,3,48,100,60,WS_GROUP
+    PUSHBUTTON      "15mm",IDC_15MM,7,59,27,12,WS_GROUP
+    PUSHBUTTON      "20mm",IDC_20MM,39,59,27,12,WS_GROUP
+    PUSHBUTTON      "24mm",IDC_24MM,70,59,27,12,WS_GROUP
+    PUSHBUTTON      "28mm",IDC_28MM,7,75,27,12,WS_GROUP
+    PUSHBUTTON      "35mm",IDC_35MM,39,75,27,12,WS_GROUP
+    PUSHBUTTON      "50mm",IDC_50MM,70,75,27,12,WS_GROUP
+    PUSHBUTTON      "85mm",IDC_85MM,7,91,27,12,WS_GROUP
+    PUSHBUTTON      "135mm",IDC_135MM,39,91,27,12,WS_GROUP
+    PUSHBUTTON      "200mm",IDC_200MM,70,91,27,12,WS_GROUP
+    LTEXT           "Type:",IDC_STATIC,7,114,19,8,0,WS_EX_RIGHT
+    COMBOBOX        IDC_CAM_TYPE,29,112,69,50,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_GROUP | WS_TABSTOP
+    CONTROL         "Show Cone ",IDC_SHOWCAMCONE,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,9,130,50,10
+    CONTROL         "Show Horizon",IDC_SHOWHORZLINE,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,9,141,56,10
+    GROUPBOX        "Clipping Planes",IDC_STATIC,3,156,100,52,WS_GROUP
+    CONTROL         "Clip Manually",IDC_MANUAL_CLIP,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,9,168,54,10
+    RTEXT           "Near Clip:",IDC_STATIC,16,181,34,8
+    CONTROL         "",IDC_HITHER,"CustEdit",WS_GROUP | WS_TABSTOP,52,181,36,
+                    10
+    CONTROL         "",IDC_HITHER_SPIN,"SpinnerControl",WS_GROUP,89,181,7,10
+    RTEXT           "Far Clip:",IDC_STATIC,23,194,28,8
+    CONTROL         "",IDC_YON,"CustEdit",WS_GROUP | WS_TABSTOP,52,193,36,10
+    CONTROL         "",IDC_YON_SPIN,"SpinnerControl",WS_GROUP,89,193,7,10
+    LTEXT           "Target Distance:",IDC_STATIC,2,213,54,9
+    CONTROL         "",IDC_TDIST,"CustEdit",WS_GROUP | WS_TABSTOP,59,213,36,
+                    10
+    CONTROL         "",IDC_TDISTSPINNER,"SpinnerControl",WS_GROUP,96,213,7,
+                    10
+END
+
+IDD_LIGHT_SHADOW2_PLASMA DIALOG DISCARDABLE  0, 0, 108, 100
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Object Shadows:",-1,1,1,105,97,WS_GROUP
+    CONTROL         "On",IDC_OBJECT_SHADOWS,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,5,11,22,10
+    COMBOBOX        IDC_SHADOW_TYPE,9,22,91,64,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_GROUP | WS_TABSTOP
+    CONTROL         "Use Global Settings",IDC_GLOBAL_SET,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,9,36,78,10
+    RTEXT           "Color:",-1,4,55,19,8
+    CONTROL         "User1",IDC_SHADOW_COLOR,"ColorSwatch",WS_GROUP,24,53,15,
+                    12
+    LTEXT           "Dens.",-1,44,55,20,8
+    CONTROL         "",IDC_SHAD_MULT,"CustEdit",WS_GROUP | WS_TABSTOP,66,54,
+                    27,10
+    CONTROL         "",IDC_SHAD_MULT_SPIN,"SpinnerControl",WS_GROUP,94,54,7,
+                    10
+    CONTROL         "Map:",IDC_USE_SHAD_COLMAP,"Button",BS_AUTOCHECKBOX | 
+                    BS_RIGHT | WS_GROUP | WS_TABSTOP,5,70,30,10
+    CONTROL         "Custom1",IDC_SHADPROJ_MAPNAME,"CustButton",WS_GROUP | 
+                    WS_TABSTOP,35,69,66,12
+    CONTROL         "Light Affects Shadow Color",IDC_LT_EFFECT_SHADCOL,
+                    "Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,5,85,98,
+                    10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TH_MAX_TEXT_PLASMA  "plasma text"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

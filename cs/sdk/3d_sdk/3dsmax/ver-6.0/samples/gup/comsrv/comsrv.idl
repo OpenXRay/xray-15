@@ -1,0 +1,213 @@
+//-----------------------------------------------------------------------------
+// ---------------------
+// File ....: comsrv.idl
+// ---------------------
+// Author...: Gus J Grubba
+// Date ....: October 1998
+//
+//-----------------------------------------------------------------------------
+
+interface IMaxBitmap;
+interface IMaxBitmapInfo;
+
+//standard imports
+import "oaidl.idl";
+import "ocidl.idl";
+
+//extra imports
+//JH 10/30/02 deccoupling from this
+//import "FileLink.idl";
+
+
+
+
+[
+	uuid(4AD72E61-5A4B-11D2-91CB-0060081C257E),
+	version(1.0),
+	helpstring("3D Studio MAX Interface 1.0 Type Library")
+]
+library COMSRVLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	typedef
+	[
+		uuid(8A3AD521-69EF-11d2-91CD-0060081C257E),
+		helpstring("3D Studio MAX G Buffer Flags (Image Definition)"),
+	]
+	enum MAXGBufferFlags
+	{
+		[helpstring("No Special Channels")]	CHAN_NONE			= 0x0000,
+		[helpstring("Z Buffer")]			CHAN_Z				= 0x0001,
+		[helpstring("Material ID")]			CHAN_MTL_ID			= 0x0002,
+		[helpstring("Node ID")]				CHAN_NODE_ID		= 0x0004,
+		[helpstring("UV Coordinates")]		CHAN_UV				= 0x0008,
+		[helpstring("Normals")]				CHAN_NORMAL			= 0x0010,
+		[helpstring("Real Pixels")]			CHAN_REALPIX		= 0x0020,
+		[helpstring("Coverage")]			CHAN_COVERAGE		= 0x0040,
+		[helpstring("Back Ground RGB")]		CHAN_BG				= 0x0080,
+		[helpstring("Node Render Index")]	CHAN_NODE_RENDER_ID	= 0x0100,
+	} MAXGBufferFlags;
+	typedef
+	[
+		uuid(DBCE7FE1-69A2-11d2-91CD-0060081C257E),
+		helpstring("3D Studio MAX Channel Types (Image Request)"),
+	]
+	enum MAXchannelTypes
+	{
+		[helpstring("RGB 24 Bits")]					TYPE_RGB24		= 0x0001,
+		[helpstring("RGB 48 Bits")]					TYPE_RGB48		= 0x0002,
+		[helpstring("RGBA 32 Bits")]				TYPE_RGBA32		= 0x0003,
+		[helpstring("RGBA 64 Bits")]				TYPE_RGBA64		= 0x0004,
+		[helpstring("BGR 24 Bits")]					TYPE_BGR24		= 0x0005,
+		[helpstring("BGR 48 Bits")]					TYPE_BGR48		= 0x0006,
+		[helpstring("BGRA 32 Bits")]				TYPE_BGRA32		= 0x0007,
+		[helpstring("BGRA 64 Bits")]				TYPE_BGRA64		= 0x0008,
+		[helpstring("Z 32 Bits Float")]				TYPE_Z32		= 0x0009,
+		[helpstring("Material ID 8 Bits")]			TYPE_MTLID8		= 0x000A,
+		[helpstring("Node ID 16 Bits")]				TYPE_NODEID16	= 0x000B,
+		[helpstring("UV 64 Bits Point2")]			TYPE_UV64		= 0x000C,
+		[helpstring("Normals 32 Bits Float")]		TYPE_NORMAL32	= 0x000D,
+		[helpstring("Real Pixels (Dep)")]			TYPE_REALPIXDEP	= 0x000E,
+		[helpstring("Coverage 8 Bits")]				TYPE_COVERAGE8	= 0x000F,
+		[helpstring("Back Ground RGB 24 Bits")]		TYPE_BGRGB24	= 0x0010,
+		[helpstring("Node Render Index 16 Bits")]	TYPE_NODEIDX16	= 0x0011
+	} MAXchannelTypes;
+	[
+		object,
+		uuid(4AD72E6D-5A4B-11D2-91CB-0060081C257E),
+		dual,
+		helpstring("3D Studio MAX Interface"),
+		pointer_default(unique)
+	]
+	interface IMaxRenderer : IDispatch
+	{
+		[propget, id(1),  helpstring("AnimationStart")]
+			HRESULT AnimationStart		([out, retval] float *pVal);
+		[propput, id(1),  helpstring("AnimationStart")]
+			HRESULT AnimationStart		([in] float newVal);
+		[propget, id(2),  helpstring("AnimationEnd")]
+			HRESULT AnimationEnd		([out, retval] float *pVal);
+		[propput, id(2),  helpstring("AnimationEnd")]
+			HRESULT AnimationEnd		([in] float newVal);
+		[propget, id(4),  helpstring("RenderFieldRender")]
+			HRESULT RenderFieldRender	([out, retval] BOOL *pVal);
+		[propput, id(4),  helpstring("RenderFieldRender")]
+			HRESULT RenderFieldRender	([in] BOOL newVal);
+		[propget, id(5),  helpstring("RenderColorCheck")]
+			HRESULT RenderColorCheck	([out, retval] BOOL *pVal);
+		[propput, id(5),  helpstring("RenderColorCheck")]
+			HRESULT RenderColorCheck	([in] BOOL newVal);
+		[propget, id(6),  helpstring("RenderSuperBlack")]
+			HRESULT RenderSuperBlack	([out, retval] BOOL *pVal);
+		[propput, id(6),  helpstring("RenderSuperBlack")]
+			HRESULT RenderSuperBlack	([in] BOOL newVal);
+		[propget, id(7),  helpstring("RenderHidden")]
+			HRESULT RenderHidden		([out, retval] BOOL *pVal);
+		[propput, id(7),  helpstring("RenderHidden")]
+			HRESULT RenderHidden		([in] BOOL newVal);
+		[propget, id(8),  helpstring("RenderForceTwoSide")]
+			HRESULT RenderForceTwoSide	([out, retval] BOOL *pVal);
+		[propput, id(8),  helpstring("RenderForceTwoSide")]
+			HRESULT RenderForceTwoSide	([in] BOOL newVal);
+		[propget, id(9),  helpstring("RenderAtmosphere")]
+			HRESULT RenderAtmosphere	([out, retval] BOOL *pVal);
+		[propput, id(9),  helpstring("RenderAtmosphere")]
+			HRESULT RenderAtmosphere	([in] BOOL newVal);
+		[propget, id(10), helpstring("RenderFieldOrder")]
+			HRESULT RenderFieldOrder	([out, retval] long *pVal);
+		[propput, id(10), helpstring("RenderFieldOrder")]
+			HRESULT RenderFieldOrder	([in] long newVal);
+		[id(11), helpstring("Load a MAX Scene")]
+			HRESULT LoadScene				([in] BSTR SceneName);
+		[id(12), helpstring("Save a MAX Scene")]
+			HRESULT SaveScene				([in] BSTR SceneName);
+		[id(13), helpstring("Import File")]
+			HRESULT ImportFile				([in] BSTR FileName);
+		[id(14), helpstring("Enumerate Cameras")]
+			HRESULT EnumCameras				(void);
+		[id(15), helpstring("Render a Frame")]
+			HRESULT RenderFrame				([in] float Time, [in] float Duration);
+		[id(16), helpstring("Open Renderer with given Camera Name and Bitmap description")]
+			HRESULT OpenRenderer			([in] BSTR CameraName, [in] IMaxBitmapInfo *pBif, [in] BOOL region);
+		[id(17), helpstring("Close Renderer")]
+			HRESULT CloseRenderer			(void);
+		[id(18), helpstring("Cancel Renderer")]
+			HRESULT CancelRenderer			(void);
+		[id(19), helpstring("Defines Region for Render Region")]
+			HRESULT SetRegion				([in] short x,[in] short y,[in] short w,[in] short h);
+		[id(20), helpstring("Get a line from the rendered image")]
+			HRESULT GetLine					([in] MAXchannelTypes type, [in] long line, [in] BOOL linear, [out, retval] SAFEARRAY(unsigned char) *psa);
+		[id(21),helpstring("Get a scaled line for preview")]
+			HRESULT GetPreviewLine			([in] long line, [in] long width, [out, retval] SAFEARRAY(unsigned char) *psa);
+		[id(22),helpstring("Executes a MAXScript string")]
+			HRESULT ExecuteMAXScriptString	([in] BSTR String);
+		[id(23),helpstring("Executes a MAXScript file")]
+			HRESULT ExecuteMAXScriptFile	([in] BSTR Filename);
+	};
+	[
+		object,
+		uuid(4AD72E6F-5A4B-11D2-91CB-0060081C257E),
+		dual,
+		helpstring("3D Studio MAX Interface Events"),
+		pointer_default(unique)
+	]
+	interface _IMaxRendererEvents : IDispatch
+	{
+		[id(1), helpstring("Issued for every camera found in the scene")]
+			HRESULT OnEnumCameras	([in] BSTR CameraName);
+		[id(2), helpstring("Issued while rendering to inform render progress")]
+			HRESULT OnRenderProgress([in] long Done,[in] long Total);
+		[id(3), helpstring("Issued while rendering to inform render status")]
+			HRESULT OnRenderMessage	([in] BSTR Message);
+		[id(4), helpstring("Issued when render is complete")]
+			HRESULT OnRenderDone	();
+	};
+	[
+		object,
+		uuid(D888A161-6543-11D2-91CC-0060081C257E),
+		dual,
+		helpstring("3D Studio MAX IMaxBitmapInfo Interface"),
+		pointer_default(unique)
+	]
+	interface IMaxBitmapInfo : IDispatch
+	{
+		[propget, id(1), helpstring("Width")]			HRESULT Width		([out, retval] short *pVal);
+		[propput, id(1), helpstring("Width")]			HRESULT Width		([in] short newVal);
+		[propget, id(2), helpstring("Height")]			HRESULT Height		([out, retval] short *pVal);
+		[propput, id(2), helpstring("Height")]			HRESULT Height		([in] short newVal);
+		[propget, id(3), helpstring("Process Gamma")]	HRESULT ProcessGamma([out, retval] BOOL *pVal);
+		[propput, id(3), helpstring("Process Gamma")]	HRESULT ProcessGamma([in] BOOL newVal);
+		[propget, id(4), helpstring("Gamma")]			HRESULT Gamma		([out, retval] float *pVal);
+		[propput, id(4), helpstring("Gamma")]			HRESULT Gamma		([in] float newVal);
+		[propget, id(5), helpstring("Aspect")]			HRESULT Aspect		([out, retval] float *pVal);
+		[propput, id(5), helpstring("Aspect")]			HRESULT Aspect		([in] float newVal);
+		[propget, id(6), helpstring("Channels")]		HRESULT Channels	([out, retval] MAXGBufferFlags *pVal);
+		[propput, id(6), helpstring("Channels")]		HRESULT Channels	([in] MAXGBufferFlags newVal);
+	};
+
+
+
+	[
+		uuid(4AD72E6E-5A4B-11D2-91CB-0060081C257E),
+		helpstring("MaxRenderer Class")
+	]
+	coclass MaxRenderer
+	{
+		[default] interface IMaxRenderer;
+		[default, source] dispinterface _IMaxRendererEvents;
+	};
+	[
+		uuid(D888A162-6543-11D2-91CC-0060081C257E),
+		helpstring("MaxBitmapInfo Class")
+	]
+	coclass MaxBitmapInfo
+	{
+		[default] interface IMaxBitmapInfo;
+	};
+
+
+};
+
+//-- EOF: comsrv.idl ----------------------------------------------------------

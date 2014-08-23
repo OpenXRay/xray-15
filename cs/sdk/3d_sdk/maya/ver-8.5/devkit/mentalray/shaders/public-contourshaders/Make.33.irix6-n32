@@ -1,0 +1,11 @@
+#!/bin/sh
+# automatically generated Thu Jul 29 12:08:43 MST 2004
+rm -f shader.h geoshader.h mi_version.h
+cp shader.33.h shader.h
+cp geoshader.33.h geoshader.h
+cp mi_version.33.h mi_version.h
+cp raylib.33.rc raylib.rc
+cc -c -O3 -float_const -r10000 -OPT:Olimit=0 -OPT:roundoff=3 -OPT:IEEE_arithmetic=3 -OPT:alias=typed -OPT:fold_unsigned_relops  -n32 -mips3 -fullwarn -woff 1009,1171,1174,1184,1185,1209,1233,1413,1506,1552,3201,3496 -DIRIX -DIRIX6 -DSYSV -DSVR4 -D_SGI_MP_SOURCE -I. -I../../modules/include contourshade.c
+cc -c -O3 -float_const -r10000 -OPT:Olimit=0 -OPT:roundoff=3 -OPT:IEEE_arithmetic=3 -OPT:alias=typed -OPT:fold_unsigned_relops  -n32 -mips3 -fullwarn -woff 1009,1171,1174,1184,1185,1209,1233,1413,1506,1552,3201,3496 -DIRIX -DIRIX6 -DSYSV -DSVR4 -D_SGI_MP_SOURCE -I. -I../../modules/include outimgshade.c
+cc -c -O3 -float_const -r10000 -OPT:Olimit=0 -OPT:roundoff=3 -OPT:IEEE_arithmetic=3 -OPT:alias=typed -OPT:fold_unsigned_relops  -n32 -mips3 -fullwarn -woff 1009,1171,1174,1184,1185,1209,1233,1413,1506,1552,3201,3496 -DIRIX -DIRIX6 -DSYSV -DSVR4 -D_SGI_MP_SOURCE -I. -I../../modules/include outpsshade.c
+ld -n32 -mips3 -Bsymbolic -shared -check_registry /dev/null -multigot -o contour.so contourshade.o outimgshade.o outpsshade.o  

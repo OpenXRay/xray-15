@@ -1,0 +1,444 @@
+// !$*UTF8*$!
+{
+	089C1669FE841209C02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Release;
+		activeBuildStyle = 014CEA3F0018CDD111CA2923 /* Development */;
+		activeExecutable = 5FC7F0C10997CDFD00858E07 /* Firefox */;
+		activeTarget = 8D57630D048677EA00EA77CD /* McpPlugIn */;
+		addToTargets = (
+			8D57630D048677EA00EA77CD /* McpPlugIn */,
+		);
+		breakpoints = (
+			5F15E3B009B37D3A00329732 /* PluginObject.c:1 */,
+			5F4573FA09A3BA46009E551D /* PluginObject.c:1 */,
+			5FC97E9D09B3B07300440802 /* PluginObject.c:1 */,
+		);
+		breakpointsGroup = 5F80A9E709937D3100E736B6 /* XCBreakpointsBucket */;
+		codeSenseManager = 5F3265D509918C9A00F9C8E2 /* Code sense */;
+		executables = (
+			5F80AA0B099405D100E736B6 /* Safari */,
+			5FC7F0C10997CDFD00858E07 /* Firefox */,
+		);
+		perUserDictionary = {
+			"PBXConfiguration.PBXBreakpointsDataSource.v1:1CA1AED706398EBD00589147" = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXBreakpointsDataSource_BreakpointID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					20,
+					210,
+					20,
+					110,
+					109,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXBreakpointsDataSource_ActionID,
+					PBXBreakpointsDataSource_TypeID,
+					PBXBreakpointsDataSource_BreakpointID,
+					PBXBreakpointsDataSource_UseID,
+					PBXBreakpointsDataSource_LocationID,
+					PBXBreakpointsDataSource_ConditionID,
+					PBXBreakpointsDataSource_ContinueID,
+				);
+			};
+			"PBXConfiguration.PBXBreakpointsDataSource.v1:1CA23EDF0692099D00951B8B" = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXBreakpointsDataSource_BreakpointID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					20,
+					301,
+					20,
+					201,
+					200,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXBreakpointsDataSource_ActionID,
+					PBXBreakpointsDataSource_TypeID,
+					PBXBreakpointsDataSource_BreakpointID,
+					PBXBreakpointsDataSource_UseID,
+					PBXBreakpointsDataSource_LocationID,
+					PBXBreakpointsDataSource_ConditionID,
+					PBXBreakpointsDataSource_ContinueID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXExecutablesDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXExecutablesDataSource_NameID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					22,
+					300,
+					400,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXExecutablesDataSource_ActiveFlagID,
+					PBXExecutablesDataSource_NameID,
+					PBXExecutablesDataSource_CommentsID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					725,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXFindDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFindDataSource_LocationID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					200,
+					120,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFindDataSource_MessageID,
+					PBXFindDataSource_LocationID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					200,
+					408,
+					20,
+					48,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 169051618;
+			PBXWorkspaceStateSaveDate = 169051618;
+		};
+		sourceControlManager = 5F3265D409918C9A00F9C8E2 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	089C167EFE841241C02AAC07 /* English */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {917, 550}}";
+			sepNavSelRange = "{119, 0}";
+			sepNavVisRect = "{{0, 0}, {917, 550}}";
+		};
+	};
+	51A8D40706F7BCD500439CFB /* PluginObject.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {917, 3486}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 0}, {917, 550}}";
+		};
+	};
+	51A8D42606F7BD0300439CFB /* PluginObject.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {917, 560}}";
+			sepNavSelRange = "{290, 0}";
+			sepNavVisRect = "{{0, 0}, {917, 550}}";
+			sepNavWindowFrame = "{{84, 221}, {1304, 889}}";
+		};
+	};
+	5F15E3B009B37D3A00329732 /* PluginObject.c:1 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		continueAfterActions = 0;
+		delayBeforeContinue = 0;
+		fileReference = 51A8D40706F7BCD500439CFB /* PluginObject.c */;
+		functionName = "pluginAllocate()";
+		hitCount = 1;
+		lineNumber = 1;
+		modificationTime = 162788425.647568;
+		state = 2;
+	};
+	5F3265D409918C9A00F9C8E2 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+		scmType = "";
+	};
+	5F3265D509918C9A00F9C8E2 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	5F3266270992A50900F9C8E2 /* mcp.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {917, 550}}";
+			sepNavSelRange = "{1283, 0}";
+			sepNavVisRect = "{{0, 0}, {917, 550}}";
+		};
+	};
+	5F4573FA09A3BA46009E551D /* PluginObject.c:1 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		continueAfterActions = 0;
+		delayBeforeContinue = 0;
+		fileReference = 51A8D40706F7BCD500439CFB /* PluginObject.c */;
+		functionName = "getResultAsVariant()";
+		hitCount = 1;
+		lineNumber = 1;
+		modificationTime = 162788425.64916;
+		state = 2;
+	};
+	5F45742909A3C04D009E551D /* PluginObject.c:1 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		continueAfterActions = 0;
+		delayBeforeContinue = 0;
+		fileReference = 51A8D40706F7BCD500439CFB /* PluginObject.c */;
+		functionName = "pluginInvoke()";
+		hitCount = 1;
+		lineNumber = 1;
+		modificationTime = 169054394.737262;
+		state = 2;
+	};
+	5F80A9E709937D3100E736B6 /* XCBreakpointsBucket */ = {
+		isa = XCBreakpointsBucket;
+		name = "Project Breakpoints";
+		objects = (
+			5F4573FA09A3BA46009E551D /* PluginObject.c:1 */,
+			5F45742909A3C04D009E551D /* PluginObject.c:1 */,
+			5FF2599209AF77A200034314 /* PluginObject.c:1 */,
+			5FA8FFBF09B3450800B9D4FF /* PluginObject.c:1 */,
+			5F15E3B009B37D3A00329732 /* PluginObject.c:1 */,
+			5FC97E9D09B3B07300440802 /* PluginObject.c:1 */,
+			5FC97EB909B3B22E00440802 /* PluginObject.c:1 */,
+			5FC97EE209B3B7E100440802 /* main.c:233 */,
+			5FC97F5A09B3DDB100440802 /* PluginObject.c:1 */,
+			5FC97F5C09B3DDB600440802 /* PluginObject.c:1 */,
+			5FC97F6E09B3DEAB00440802 /* PluginObject.c:5 */,
+		);
+	};
+	5F80AA0B099405D100E736B6 /* Safari */ = {
+		isa = PBXExecutable;
+		activeArgIndex = 2147483647;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 3;
+		launchableReference = 5F80AA0C099405D100E736B6 /* Safari.app */;
+		libgmallocEnabled = 0;
+		name = Safari;
+		savedGlobals = {
+		};
+		sourceDirectories = (
+		);
+	};
+	5F80AA0C099405D100E736B6 /* Safari.app */ = {
+		isa = PBXFileReference;
+		explicitFileType = wrapper.application;
+		name = Safari.app;
+		path = /Applications/Safari.app;
+		sourceTree = "<absolute>";
+	};
+	5FA8FFBF09B3450800B9D4FF /* PluginObject.c:1 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		continueAfterActions = 0;
+		delayBeforeContinue = 0;
+		fileReference = 51A8D40706F7BCD500439CFB /* PluginObject.c */;
+		functionName = "";
+		hitCount = 1;
+		lineNumber = 1;
+		modificationTime = 169054618.324773;
+		state = 2;
+	};
+	5FC7F0C10997CDFD00858E07 /* Firefox */ = {
+		isa = PBXExecutable;
+		activeArgIndex = 2147483647;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		launchableReference = 5FC7F0C20997CDFD00858E07 /* firefox-bin */;
+		libgmallocEnabled = 0;
+		name = Firefox;
+		savedGlobals = {
+		};
+		sourceDirectories = (
+		);
+	};
+	5FC7F0C20997CDFD00858E07 /* firefox-bin */ = {
+		isa = PBXFileReference;
+		explicitFileType = "compiled.mach-o.executable";
+		name = "firefox-bin";
+		path = "/Applications/Firefox.app/Contents/MacOS/firefox-bin";
+		sourceTree = "<absolute>";
+	};
+	5FC7F31A0998E96500858E07 /* mcp.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {917, 6034}}";
+			sepNavSelRange = "{257, 0}";
+			sepNavVisRect = "{{0, 0}, {917, 550}}";
+		};
+	};
+	5FC97E9D09B3B07300440802 /* PluginObject.c:1 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		continueAfterActions = 0;
+		delayBeforeContinue = 0;
+		fileReference = 51A8D40706F7BCD500439CFB /* PluginObject.c */;
+		functionName = "pluginGetProperty()";
+		hitCount = 1;
+		lineNumber = 1;
+		modificationTime = 162788425.649764;
+		state = 1;
+	};
+	5FC97EB909B3B22E00440802 /* PluginObject.c:1 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		continueAfterActions = 0;
+		delayBeforeContinue = 0;
+		fileReference = 51A8D40706F7BCD500439CFB /* PluginObject.c */;
+		functionName = "";
+		hitCount = 1;
+		lineNumber = 1;
+		modificationTime = 169054616.311322;
+		state = 2;
+	};
+	5FC97EE209B3B7E100440802 /* main.c:233 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		continueAfterActions = 0;
+		delayBeforeContinue = 0;
+		fileReference = 8454AD200680F60300DFAEA4 /* main.c */;
+		functionName = "NPP_GetValue()";
+		hitCount = 1;
+		lineNumber = 233;
+		modificationTime = 169051886.930157;
+		state = 2;
+	};
+	5FC97F5A09B3DDB100440802 /* PluginObject.c:1 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		continueAfterActions = 0;
+		delayBeforeContinue = 0;
+		fileReference = 51A8D40706F7BCD500439CFB /* PluginObject.c */;
+		functionName = "pluginInvoke()";
+		hitCount = 1;
+		lineNumber = 1;
+		modificationTime = 169054392.224157;
+		state = 2;
+	};
+	5FC97F5C09B3DDB600440802 /* PluginObject.c:1 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		continueAfterActions = 0;
+		delayBeforeContinue = 0;
+		fileReference = 51A8D40706F7BCD500439CFB /* PluginObject.c */;
+		functionName = "";
+		hitCount = 1;
+		lineNumber = 1;
+		modificationTime = 169054638.955981;
+		state = 1;
+	};
+	5FC97F6E09B3DEAB00440802 /* PluginObject.c:5 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		continueAfterActions = 0;
+		delayBeforeContinue = 0;
+		fileReference = 51A8D40706F7BCD500439CFB /* PluginObject.c */;
+		functionName = "";
+		hitCount = 1;
+		lineNumber = 5;
+		modificationTime = 169054633.090445;
+		state = 1;
+	};
+	5FF2599209AF77A200034314 /* PluginObject.c:1 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		continueAfterActions = 0;
+		delayBeforeContinue = 0;
+		fileReference = 51A8D40706F7BCD500439CFB /* PluginObject.c */;
+		functionName = "";
+		hitCount = 1;
+		lineNumber = 1;
+		modificationTime = 169054622.197972;
+		state = 2;
+	};
+	8333A6F6068B71BE00241F49 /* English */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {917, 550}}";
+			sepNavSelRange = "{217, 0}";
+			sepNavVisRect = "{{0, 0}, {917, 550}}";
+		};
+	};
+	8454AD200680F60300DFAEA4 /* main.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {938, 3934}}";
+			sepNavSelRange = "{1283, 0}";
+			sepNavVisRect = "{{0, 0}, {917, 550}}";
+		};
+	};
+	8D57630D048677EA00EA77CD /* McpPlugIn */ = {
+		activeExec = 0;
+	};
+	8D576317048677EA00EA77CD /* Info.plist */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {917, 812}}";
+			sepNavSelRange = "{1557, 0}";
+			sepNavVisRect = "{{0, 250}, {917, 550}}";
+		};
+	};
+}

@@ -1,0 +1,148 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Win98; U) [Netscape]">
+   <meta name="Author" content="Arnie">
+   <title>Globals: Viewport Info</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#000080" vlink="#800000" alink="#0000FF">
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 BGCOLOR="#D0D0D0" >
+<tr>
+<td ALIGN=LEFT WIDTH="120"><a href="instupdt.html"><img SRC="navlt.gif" ALT="Instance Update" BORDER=0 height=20 width=96></a></td>
+
+<td ALIGN=LEFT WIDTH="96"><a href="iteminfo.html"><img SRC="navrt.gif" ALT="Item Info" BORDER=0 height=20 width=64></a></td>
+
+<td ALIGN=LEFT WIDTH="96"><a href="../globals.html"><img SRC="navup.gif" ALT="Globals" BORDER=0 height=20 width=56></a></td>
+
+<td ALIGN=RIGHT WIDTH="288"><a href="../index.html"><img SRC="proglw.gif" ALT="Table of Contents" BORDER=0 height=20 width=230></a></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 >
+<tr>
+<td WIDTH="600">
+<h3>
+Viewport Info</h3>
+<font size=-1><b>Availability</b>&nbsp; LightWave 7.5</font>
+<br><font size=-1><b>Component</b>&nbsp; Layout</font>
+<br><font size=-1><b>Header</b>&nbsp; <a href="../../include/lwrender.h">lwrender.h</a></font>
+<p>The viewport info global returns information about the state of Layout's
+OpenGL viewports. The data is read-only, but you can set the parameters
+using
+<a href="../commands/layout.html#navigation">navigation</a> and <a href="../commands/layout.html#display">display</a>
+commands.
+<p><b>Global Call</b>
+<pre>&nbsp;&nbsp; LWViewportInfo *vpinfo;
+&nbsp;&nbsp; vpinfo = global( LWVIEWPORTINFO_GLOBAL, GFUSE_TRANSIENT );</pre>
+The global function returns a pointer to an LWViewportInfo.
+<pre>&nbsp;&nbsp;<tt> typedef struct st_LWViewportInfo {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>numViewports</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>type</b>)&nbsp; (int);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int&nbsp;&nbsp;&nbsp; (*<b>flags</b>) (int);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>pos</b>)&nbsp;&nbsp; (int, LWDVector);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>xfrm</b>)&nbsp; (int, double mat[9]);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>clip</b>)&nbsp; (int, double *hither, double *yon);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>rect</b>)&nbsp; (int, int *left, int *top, int *width, int *height);
+&nbsp;&nbsp; } LWViewportInfo;</tt></pre>
+
+<dl>
+<dt>
+<b><tt>numViewports</tt></b></dt>
+
+<dd>
+The number of viewports visible in the Layout interface.</dd>
+
+<br><tt>view =<b> type</b>( i )</tt>
+<dd>
+The type of view in the i<sup>th</sup> viewport. It will be one of the
+following:</dd>
+
+<dd>
+<tt>LVVIEWT_NONE</tt></dd>
+
+<dd>
+<tt>LVVIEWT_TOP</tt></dd>
+
+<dd>
+<tt>LVVIEWT_BOTTOM</tt></dd>
+
+<dd>
+<tt>LVVIEWT_BACK</tt></dd>
+
+<dd>
+<tt>LVVIEWT_FRONT</tt></dd>
+
+<dd>
+<tt>LVVIEWT_RIGHT</tt></dd>
+
+<dd>
+<tt>LVVIEWT_LEFT</tt></dd>
+
+<dd>
+<tt>LVVIEWT_PERSPECTIVE</tt></dd>
+
+<dd>
+<tt>LVVIEWT_LIGHT</tt></dd>
+
+<dd>
+<tt>LVVIEWT_CAMERA</tt></dd>
+
+<dd>
+<tt>LVVIEWT_SCHEMATIC</tt></dd>
+
+<br>&nbsp;
+<p>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<p><tt>flags = <b>flags</b>( i )</tt>
+<dd>
+Returns a set of bit flags for the&nbsp; i<sup>th</sup> viewport. These
+can be any combination of the following.&nbsp;</dd>
+
+<pre>LWVIEWF_CENTER
+LWVIEWF_WEIGHTSHADE
+LWVIEWF_XRAY</pre>
+
+<dt>
+<tt><b>pos</b>(i, spot)</tt></dt>
+
+<dd>
+Fills the <tt>spot</tt> vector with the viewing position of the&nbsp; i<sup>th</sup>
+viewport.</dd>
+
+<dd>
+</dd>
+
+<dt>
+<tt><b>xfrm</b>( i, mat[9] )</tt></dt>
+
+<dd>
+Fills <tt>mat</tt> with a 3x3 transformation from world coordinates to
+viewport cordinates for the&nbsp; i<sup>th</sup> viewport.</dd>
+
+<dd>
+</dd>
+
+<br><tt><b>clip</b>( i, &amp;hither, &amp;yon )</tt>
+<dd>
+Fills <tt>hither</tt> and <tt>yon</tt> with the near and far Z clipping
+distances for the&nbsp; i<sup>th</sup> viewport.&nbsp;</dd>
+
+<br>&nbsp;
+<dd>
+</dd>
+
+<br><tt><b>rect</b>( i, &amp;left, &amp;top, &amp;width, &amp;height )</tt>
+<dd>
+Fills <tt>left, top, width </tt>and<tt> height</tt> with pixel coordinates
+of the&nbsp; i<sup>th</sup> viewport.&nbsp;</dd>
+</dl>
+</td>
+</tr>
+</table>
+
+</body>
+</html>

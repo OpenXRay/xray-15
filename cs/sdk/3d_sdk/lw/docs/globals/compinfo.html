@@ -1,0 +1,73 @@
+<html>
+
+<head>
+<title>Globals: LW Comp Info</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="colorpik.html"><img width="96" height="20"
+    border="0" src="../images/navlt.gif" alt="Color Picker"></a></td>
+    <td width="96" align="left"><a href="conmenu.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Context Menu Services"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Comp Info</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwrender.h">lwrender.h</a></small></p>
+    <p>The compositing info global identifies the images being used as the background,
+    foreground and foreground alpha images. This data structure is read-only.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWCompInfo *compinfo;
+   compinfo = global( LWCOMPINFO_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWCompInfo.</p>
+    <pre>   typedef struct st_LWCompInfo {
+      LWImageID <strong>bg</strong>;
+      LWImageID <strong>fg</strong>;
+      LWImageID <strong>fgAlpha</strong>;
+   } LWCompInfo;</pre>
+    <dl>
+      <dt><strong><tt>bg</tt></strong></dt>
+      <dd>The background image. </dd>
+      <dt><strong><tt><br>
+        fg</tt></strong></dt>
+      <dd>The foreground image. </dd>
+      <dt><strong><tt><br>
+        fgAlpha</tt></strong></dt>
+      <dd>The foreground alpha image.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>This code fragment retrieves information about the background image.</p>
+    <pre>   #include &lt;lwserver.h&gt;
+   #include &lt;lwrender.h&gt;
+   #include &lt;lwimage.h&gt;
+
+   LWCompInfo *compinfo;
+   LWImageList *imglist;
+   char *name;
+   int width, height;
+
+   compinfo = global( LWCOMPINFO_GLOBAL, GFUSE_TRANSIENT );
+   imglist = global( LWIMAGELIST_GLOBAL, GFUSE_TRANSIENT );
+   if ( !compinfo || !imglist ) goto ErrorBadGlobal;
+
+   name = imglist-&gt;name( compinfo.bg );
+   imglist-&gt;size( compinfo.bg, &amp;width, &amp;height );
+   ...</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

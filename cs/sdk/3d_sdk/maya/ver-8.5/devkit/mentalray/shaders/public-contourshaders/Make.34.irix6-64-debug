@@ -1,0 +1,11 @@
+#!/bin/sh
+# automatically generated Thu Jul 29 12:08:29 MST 2004
+rm -f shader.h geoshader.h mi_version.h
+cp shader.34.h shader.h
+cp geoshader.34.h geoshader.h
+cp mi_version.34.h mi_version.h
+cp raylib.34.rc raylib.rc
+cc -c -g -DDEBUG -DCVD_DEBUG  -64 -fullwarn -woff 1009,1171,1174,1178,1184,1185,1209,1233,1413,1506,1552,3201,3496 -DIRIX -DIRIX6 -DBIT64 -DSYSV -DSVR4 -D_SGI_MP_SOURCE -I. -I../../modules/include contourshade.c
+cc -c -g -DDEBUG -DCVD_DEBUG  -64 -fullwarn -woff 1009,1171,1174,1178,1184,1185,1209,1233,1413,1506,1552,3201,3496 -DIRIX -DIRIX6 -DBIT64 -DSYSV -DSVR4 -D_SGI_MP_SOURCE -I. -I../../modules/include outimgshade.c
+cc -c -g -DDEBUG -DCVD_DEBUG  -64 -fullwarn -woff 1009,1171,1174,1178,1184,1185,1209,1233,1413,1506,1552,3201,3496 -DIRIX -DIRIX6 -DBIT64 -DSYSV -DSVR4 -D_SGI_MP_SOURCE -I. -I../../modules/include outpsshade.c
+ld -64 -shared -Bsymbolic -check_registry /dev/null -multigot -o contour.so contourshade.o outimgshade.o outpsshade.o  

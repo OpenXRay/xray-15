@@ -1,0 +1,144 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "dxferes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_EXPORTOPTIONS DIALOG DISCARDABLE  0, 0, 127, 103
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Export DXF File"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,68,67,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,68,83,50,14
+    GROUPBOX        "Save To Layers:",IDC_STATIC,6,4,112,57
+    CONTROL         "By &Object",IDC_BYOBJECT,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,31,17,43,10
+    CONTROL         "By &Material",IDC_BYMATERIAL,"Button",
+                    BS_AUTORADIOBUTTON,31,32,48,10
+    CONTROL         "&1 Layer",IDC_1LAYER,"Button",BS_AUTORADIOBUTTON,31,46,
+                    36,10
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "dxferes.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_EXPORTOPTIONS, DIALOG
+    BEGIN
+        RIGHTMARGIN, 123
+        BOTTOMMARGIN, 94
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DXFEXP              "DXFEXP"
+    IDS_NO_MATERIAL         "No Material"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TH_SCENEEXPORT      "Scene Export"
+    IDS_TH_NODATATOEXPORT   "No data to export"
+    IDS_TH_CANTCREATE       "Can't create output file"
+    IDS_TH_WRITEERROR       "Write error on file"
+    IDS_TH_AUTOCAD          "AutoCAD"
+    IDS_TH_DXFEXPORTDLL     "DXF file exporter (Discreet)"
+    IDS_TH_AUTOCADDXFFILE   "AutoCAD DXF File"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TH_TOM_HUDSON       "Tom Hudson"
+    IDS_TH_COPYRIGHT_YOST_GROUP "Copyright 1996 Yost Group"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#define DXF_EXPORT_RESOURCES
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

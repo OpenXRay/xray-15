@@ -1,0 +1,11 @@
+#!/bin/sh
+# automatically generated Thu Jul 29 12:08:46 MST 2004
+rm -f shader.h geoshader.h mi_version.h
+cp shader.34.h shader.h
+cp geoshader.34.h geoshader.h
+cp mi_version.34.h mi_version.h
+cp raylib.34.rc raylib.rc
+icc -D_GNU_SOURCE -c -O3  -wd186,188 -KPIC -DLINUX -DLINUX_X86 -DX86 -DBIT64 -DEVIL_ENDIAN -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -wd32 -I/opt/intel_cc_80/include -I/opt/intel_cc_80/substitute_headers -I/usr/include -I/usr/local/LessTif/Motif1.2/include -I/usr/X11R6/include -I. -I../../modules/include contourshade.c
+icc -D_GNU_SOURCE -c -O3  -wd186,188 -KPIC -DLINUX -DLINUX_X86 -DX86 -DBIT64 -DEVIL_ENDIAN -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -wd32 -I/opt/intel_cc_80/include -I/opt/intel_cc_80/substitute_headers -I/usr/include -I/usr/local/LessTif/Motif1.2/include -I/usr/X11R6/include -I. -I../../modules/include outimgshade.c
+icc -D_GNU_SOURCE -c -O3  -wd186,188 -KPIC -DLINUX -DLINUX_X86 -DX86 -DBIT64 -DEVIL_ENDIAN -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -wd32 -I/opt/intel_cc_80/include -I/opt/intel_cc_80/substitute_headers -I/usr/include -I/usr/local/LessTif/Motif1.2/include -I/usr/X11R6/include -I. -I../../modules/include outpsshade.c
+icc -static-libcxa -shared -export-dynamic -Wl,--whole-archive -o contour.so contourshade.o outimgshade.o outpsshade.o  -Wl,--no-whole-archive

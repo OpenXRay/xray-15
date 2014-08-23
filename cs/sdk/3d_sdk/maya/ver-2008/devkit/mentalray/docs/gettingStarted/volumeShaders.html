@@ -1,0 +1,1440 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 10">
+<meta name=Originator content="Microsoft Word 10">
+<link rel=File-List href="volumeShaders_files/filelist.xml">
+<link rel=Edit-Time-Data href="volumeShaders_files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>Volume Shader</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>joohil</o:Author>
+  <o:LastAuthor>Anybody</o:LastAuthor>
+  <o:Revision>33</o:Revision>
+  <o:TotalTime>27</o:TotalTime>
+  <o:Created>2004-02-05T16:30:00Z</o:Created>
+  <o:LastSaved>2004-02-20T18:33:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>1665</o:Words>
+  <o:Characters>9495</o:Characters>
+  <o:Company>Alias</o:Company>
+  <o:Lines>79</o:Lines>
+  <o:Paragraphs>22</o:Paragraphs>
+  <o:CharactersWithSpaces>11138</o:CharactersWithSpaces>
+  <o:Version>10.2625</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]-->
+<style>
+<!--
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+h1
+	{mso-style-next:Normal;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:14.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:Arial;
+	color:#777A7D;
+	mso-font-kerning:0pt;
+	font-weight:normal;}
+h2
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:14.0pt;
+	font-family:Arial;
+	font-weight:bold;
+	font-style:italic;}
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText
+	{margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	color:black;}
+a:link, span.MsoHyperlink
+	{color:#C80000;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:#C80000;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:78990243;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-807999010 67698691 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1
+	{mso-list-id:120076153;
+	mso-list-template-ids:-1426697726;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l2
+	{mso-list-id:370493651;
+	mso-list-type:hybrid;
+	mso-list-template-ids:579119522 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l2:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l2:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3
+	{mso-list-id:478808744;
+	mso-list-type:hybrid;
+	mso-list-template-ids:193888792 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l3:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l3:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l4
+	{mso-list-id:843126317;
+	mso-list-template-ids:-1046814398;}
+@list l4:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l4:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l5
+	{mso-list-id:894198499;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-282177254 67698691 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l5:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l5:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l6
+	{mso-list-id:909577749;
+	mso-list-template-ids:-905828462;}
+@list l6:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l7
+	{mso-list-id:916598396;
+	mso-list-type:hybrid;
+	mso-list-template-ids:765749698 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l7:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l7:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l7:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l8
+	{mso-list-id:947270553;
+	mso-list-template-ids:1698347386;}
+@list l8:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l9
+	{mso-list-id:998582752;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1983958928 67698691 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l9:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l9:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l9:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l9:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l9:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l9:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l9:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l9:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l9:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l10
+	{mso-list-id:1038816223;
+	mso-list-type:hybrid;
+	mso-list-template-ids:365872512 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l10:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l10:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l10:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l10:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l10:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l10:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l10:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l10:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l10:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l11
+	{mso-list-id:1115949731;
+	mso-list-template-ids:-1489847942;}
+@list l11:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l12
+	{mso-list-id:1192691254;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-922560532 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l12:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l12:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l12:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l12:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l12:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l12:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l12:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l12:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l12:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l13
+	{mso-list-id:1236551266;
+	mso-list-template-ids:-1161138678;}
+@list l13:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l13:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l14
+	{mso-list-id:1244728879;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1763135196 67698691 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l14:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l14:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l14:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l14:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l14:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l14:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l14:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l14:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l14:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l15
+	{mso-list-id:1394889673;
+	mso-list-template-ids:700364528;}
+@list l15:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l16
+	{mso-list-id:1604068223;
+	mso-list-type:hybrid;
+	mso-list-template-ids:266898624 67698691 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l16:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l16:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l16:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l16:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l16:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l16:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l16:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l16:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l16:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l17
+	{mso-list-id:1755317278;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1739069410 67698691 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l17:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l17:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l17:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l17:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l17:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l17:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l17:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l17:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l17:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l18
+	{mso-list-id:1856845271;
+	mso-list-template-ids:1291627870;}
+@list l18:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l18:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l19
+	{mso-list-id:1999531239;
+	mso-list-template-ids:1165364548;}
+@list l19:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l20
+	{mso-list-id:2109812951;
+	mso-list-template-ids:-1300741990;}
+@list l20:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l21
+	{mso-list-id:2117823798;
+	mso-list-template-ids:-642717564;}
+@list l21:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body bgcolor=white lang=EN-US link="#C80000" vlink="#C80000" style='tab-interval:
+.5in' alink="#c80000" leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+
+<div class=Section1>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width="100%"
+ style='width:100.0%;mso-cellspacing:0in;mso-padding-alt:0in 0in 0in 0in'>
+ <tr style='mso-yfti-irow:0'>
+  <td style='background:black;padding:0in 0in 0in 0in'>
+  <p class=MsoNormal><a href="http://www.alias.com"><span style='text-decoration:
+  none;text-underline:none'><img border=0 width=120 height=60 id="_x0000_i1025"
+  src=logo.gif alt=AliasLogo></span></a></p>
+  </td>
+  <td style='background:black;padding:0in 0in 0in 0in'>
+  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1'>
+  <td colspan=2 style='background:#CCCCCC;padding:0in 0in 0in 0in'>
+  <p class=MsoNormal><img border=0 width=66 height=2 id="_x0000_i1026"
+  src=spacer.gif></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2'>
+  <td colspan=2 style='background:black;padding:0in 0in 0in 0in'>
+  <p class=MsoNormal><img border=0 width=66 height=1 id="_x0000_i1027"
+  src=spacer.gif></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3;mso-yfti-lastrow:yes'>
+  <td colspan=2 style='background:white;padding:0in 0in 0in 0in'>
+  <table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:
+   1.5pt;mso-padding-alt:30.0pt 30.0pt 30.0pt 30.0pt'>
+   <tr style='mso-yfti-irow:0;mso-yfti-lastrow:yes'>
+    <td style='padding:30.0pt 30.0pt 30.0pt 30.0pt'>
+    <h1>Volume Shaders</h1>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'>This section shows the basic workflow for mental ray volume
+    shaders in Maya.<o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'><span style='mso-spacerun:yes'> </span><o:p></o:p></span></p>
+    <h1>References: </h1>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'>mental ray User Manual, Chapter 3.10.<o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'>mental ray Shaders Guide, Chapter 2.5.<o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'>Rendering with mental ray, Chapter 6, Appendix D.<o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:14.0pt;mso-bidi-font-size:12.0pt;
+    font-family:Arial;color:#777A7D'>Where to find volume shaders</span><span
+    style='font-size:10.0pt;font-family:Arial;color:black'><br>
+    Material shaders appear in the <b>Hypershade &gt; Create mental ray Nodes &gt;
+    Volumetric Materials</b>. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'>The following material shaders are shipped with Maya:<o:p></o:p></span></p>
+    <ul style='margin-top:0in' type=disc>
+     <li class=MsoNormal style='color:black;mso-list:l10 level1 lfo3;
+         tab-stops:list .5in'><span style='font-size:10.0pt;font-family:Arial'>mib_ray_marcher
+         <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l10 level1 lfo3;
+         tab-stops:list .5in'><span style='font-size:10.0pt;font-family:Arial'>mib_volume
+         <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l10 level1 lfo3;
+         tab-stops:list .5in'><span style='font-size:10.0pt;font-family:Arial'>parti_volume<br
+         style='mso-special-character:line-break'>
+         <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+         <![endif]><o:p></o:p></span></li>
+    </ul>
+    <h1>Default behavior<span style='font-size:10.0pt;color:black'><o:p></o:p></span></h1>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'>The proper connection for a volume shader is: <o:p></o:p></span></p>
+    <ul style='margin-top:0in' type=disc>
+     <li class=MsoNormal style='mso-list:l12 level1 lfo6;tab-stops:list .5in'><span
+         style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>from
+         volumeShader.message to shadingEngine.miVolumeShader<o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l12 level1 lfo6;
+         tab-stops:list .5in'><span style='font-size:10.0pt;font-family:Arial'>from
+         volumeShader.message to cameraShape.miVolumeShader<o:p></o:p></span></li>
+    </ul>
+    <p class=MsoBodyText>Ctrl+drag from a material shader to a shading engine to
+    make the connections.</p>
+    <p class=MsoNormal><br>
+    <span style='font-size:10.0pt;font-family:Arial;color:black'>This section
+    shows a workflow for using a volume shader to create smoke or fog effect. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'>Volume shaders can be connected to a shading engine or a
+    camera shape. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'>If connected to a shading engine, the shader affects the
+    inside of the object the shading engine is assigned to. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'>If connected to a camera shape, the shader affects the entire
+    scene. <o:p></o:p></span></p>
+    <p><span style='font-size:10.0pt;font-family:Arial;color:black'>Volume
+    rendering is an expensive procedure, using a bounding box for the
+    participating medium is recommended, then assign a volume shader to the
+    shape. In this example, we will use parti_volume to make a smoke in a shape
+    of vase through which three balls are visible. <br>
+    <span style='mso-spacerun:yes'> </span><o:p></o:p></span></p>
+    <h2><span style='color:#777A7D;font-style:normal'>Step 1. Getting Ready <o:p></o:p></span></h2>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>Make sure the mental ray for Maya plug-in is
+    loaded.<o:p></o:p></span></p>
+    <ul style='margin-top:0in' type=disc>
+     <li class=MsoNormal style='color:black;mso-list:l2 level1 lfo9;tab-stops:
+         list .5in'><b><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+         font-family:Arial'>Windows &gt; Settings/Preferences &gt; Plug-in
+         Manager...</span></b><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'> <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l2 level1 lfo9;tab-stops:
+         list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+         font-family:Arial'>Find <b>Mayatomr</b> and check <b>loaded</b> <o:p></o:p></span></li>
+    </ul>
+    <p class=MsoNormal><b><span style='font-size:10.0pt;mso-bidi-font-size:
+    7.5pt;font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></b></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>Open the template scene we will use for this
+    section: <b>volume_start.ma</b>.<br style='mso-special-character:line-break'>
+    <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+    <![endif]><o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:
+     1.5pt;mso-padding-alt:0in 0in 0in 0in'>
+     <tr style='mso-yfti-irow:0'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+      font-family:Arial'><img border=0 width=320 height=240 id="_x0000_i1028"
+      src="images/volume_start.jpg"><o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>volume_start.ma<o:p></o:p></span></p>
+      </td>
+     </tr>
+    </table>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <p><b><span style='font-size:14.0pt;font-family:Arial;color:#777A7D'>Step
+    2. Assign a material </span></b><span style='font-size:10.0pt;mso-bidi-font-size:
+    7.5pt;font-family:Arial;color:black'><br>
+    We will create a fog effect around the balls, but also give some shape to
+    the fog. For example, the vase can be used to shape up the fog. <o:p></o:p></span></p>
+    <ul style='margin-top:0in' type=disc>
+     <li class=MsoNormal style='color:black;mso-list:l3 level1 lfo12;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'><a
+         href="mel://setAttr%20vase.translate%200%200%200;/">Position the vase</a>
+         so that the balls are inside the vase, then assign a material to the
+         vase. <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l3 level1 lfo12;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Use a refractive or transparent material to
+         see the effect of the volume shader because the volume shader assigned
+         to a material will be called when the ray is inside the object. <o:p></o:p></span></li>
+     <ul style='margin-top:0in' type=circle>
+      <li class=MsoNormal style='color:black;mso-list:l3 level2 lfo12;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>We&#8217;ll use transmat shader for this
+          scene. transmat shader simply lets a ray pass through the object,
+          making the object invisible. <br>
+          This is suitable for most atmospheric effects, but if you would like
+          to create an object filled with smoke, a refractive shader can be
+          used as a material. <o:p></o:p></span></li>
+     </ul>
+     <li class=MsoNormal style='color:black;mso-list:l3 level1 lfo12;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>The ray tracing settings should be set high
+         enough in the mental ray Render Globals. <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l3 level1 lfo12;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'><a
+         href="mel://createNode%20transmat;%0D%0Asets%20-renderable%20true%20-noSurfaceShader%20true%20-empty%20-name%20transmat1SG;%0D%0AconnectAttr%20transmat1.message%20transmat1SG.miMaterialShader;/">Create
+         a transmat shader</a> <o:p></o:p></span></li>
+     <ul style='margin-top:0in' type=circle>
+      <li class=MsoNormal style='color:black;mso-list:l3 level2 lfo12;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>From <b>Hypershade &gt; Create mental ray
+          Nodes &gt; Materials</b> <o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l3 level2 lfo12;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>Select <b>transmat</b>. <o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l3 level2 lfo12;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>Assign transmat to the vase <o:p></o:p></span></li>
+     </ul>
+     <li class=MsoNormal style='color:black;mso-list:l3 level1 lfo12;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'><a href="mel://select%20vaseShape/">Select
+         the vase.</a> <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l3 level1 lfo12;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'><a
+         href="mel://assignShadingGroup%20transmat1SG/">RMB <b>transmat1</b>
+         from the hypershade and select <b>Assign Material To Selection</b></a>
+         <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l3 level1 lfo12;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Check the connection between the shading
+         engine and the vase. <br style='mso-special-character:line-break'>
+         <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+         <![endif]><o:p></o:p></span></li>
+    </ul>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>Then <a
+    href="mel://setCurrentRenderer%20mentalRay%20;%20renderWindowRender%20redoPreviousRender%20renderView;">Render</a>
+    <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:
+     1.5pt;mso-padding-alt:0in 0in 0in 0in'>
+     <tr style='mso-yfti-irow:0'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+      font-family:Arial'><img border=0 width=320 height=240 id="_x0000_i1029"
+      src="images/volume_transmat.jpg"><o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>transmat<o:p></o:p></span></p>
+      </td>
+     </tr>
+    </table>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><br style='mso-special-character:line-break'>
+    <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+    <![endif]><o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>The vase is completely invisible, and the
+    rest of the image should be the same as before. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>transmat is useful when it comes to
+    simulating atmospheric effects. <o:p></o:p></span></p>
+    <p><b><span style='font-size:14.0pt;font-family:Arial;color:#777A7D'>Step 3.
+    Assign a volume shader </span></b><span style='font-size:10.0pt;mso-bidi-font-size:
+    7.5pt;font-family:Arial;color:black'><br>
+    We&#8217;ll use the parti_volume shader. <o:p></o:p></span></p>
+    <ul style='margin-top:0in' type=disc>
+     <li class=MsoNormal style='color:black;mso-list:l7 level1 lfo15;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'><a href="mel://createNode%20parti_volume/">Create
+         <b>parti_volume</b></a>. <o:p></o:p></span></li>
+     <ul style='margin-top:0in' type=circle>
+      <li class=MsoNormal style='color:black;mso-list:l7 level2 lfo15;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>From <b>Hypershade &gt; Create mental ray
+          Nodes &gt; Volume Materials</b> <o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l7 level2 lfo15;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>Select <b>parti_volume</b>. <o:p></o:p></span></li>
+     </ul>
+     <li class=MsoNormal style='color:black;margin-bottom:12.0pt;mso-list:l7 level1 lfo15;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'><a
+         href="mel://connectAttr%20parti_volume1.message%20transmat1SG.miVolumeShader/">Connect
+         parti_volume1 to transmat1SG.</a><o:p></o:p></span></li>
+     <ul style='margin-top:0in' type=circle>
+      <li class=MsoNormal style='color:black;margin-bottom:12.0pt;mso-list:
+          l7 level2 lfo15;tab-stops:list 1.0in'><span style='font-size:10.0pt;
+          mso-bidi-font-size:7.5pt;font-family:Arial'>The connection is from
+          message of parti_volume1 to miVolumeShader of transmat1SG. <o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;margin-bottom:12.0pt;mso-list:
+          l7 level2 lfo15;tab-stops:list 1.0in'><span style='font-size:10.0pt;
+          mso-bidi-font-size:7.5pt;font-family:Arial'>Ctrl MMB+drag parti_volume1
+          to transmat1SG to make the connection. <o:p></o:p></span></li>
+     </ul>
+    </ul>
+    <p class=MsoNormal style='margin-bottom:12.0pt'><span style='font-size:
+    10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;color:black'>Now all the
+    connections are made. <a
+    href="mel://setCurrentRenderer%20mentalRay%20;%20renderWindowRender%20redoPreviousRender%20renderView;">Render</a>
+    again. <o:p></o:p></span></p>
+    <table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:
+     1.5pt;mso-padding-alt:0in 0in 0in 0in'>
+     <tr style='mso-yfti-irow:0'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+      font-family:Arial'><img border=0 width=320 height=240 id="_x0000_i1030"
+      src="images/volume_transmat.jpg"><o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+      font-family:Arial'>transmat and parti_volume<o:p></o:p></span></p>
+      </td>
+     </tr>
+    </table>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><br style='mso-special-character:line-break'>
+    <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+    <![endif]><o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>The vase is still invisible. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>We need to adjust the parti_volume
+    parameters to correct the look. <o:p></o:p></span></p>
+    <h2><span style='color:#777A7D;font-style:normal'>Step 4. Adjust
+    parti_volume <o:p></o:p></span></h2>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <ul style='margin-top:0in' type=circle>
+     <li class=MsoNormal style='color:black;mso-list:l17 level1 lfo18;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Open the <a
+         href="mel://showEditor%20parti_volume1;/">Attribute Editor</a> of
+         parti_volume1. <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l17 level1 lfo18;
+         tab-stops:list .5in'><b><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>scatter</span></b><span style='font-size:
+         10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial'> is the scattering
+         color. It's default to dark gray, which is too low for this scene. <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l17 level1 lfo18;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'><a
+         href="mel://setAttr%20parti_volume1.scatter%200.8%200.8%200.8;/">Set
+         the scatter value to bright gray</a>. <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l17 level1 lfo18;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'><a
+         href="mel://setCurrentRenderer%20mentalRay%20;%20renderWindowRender%20redoPreviousRender%20renderView;">Render</a>,
+         and finally the vase shows up in the image. <o:p></o:p></span></li>
+    </ul>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:
+     1.5pt;mso-padding-alt:0in 0in 0in 0in'>
+     <tr style='mso-yfti-irow:0'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+      font-family:Arial'><img border=0 width=320 height=240 id="_x0000_i1031"
+      src="images/volume_parti_volume1.jpg"><o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>parti_volume.scatter<o:p></o:p></span></p>
+      </td>
+     </tr>
+    </table>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <ul style='margin-top:0in' type=circle>
+     <li class=MsoNormal style='color:black;mso-list:l9 level1 lfo21;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Let's <a
+         href="mel://setAttr%20parti_volume1.extinction%200.1;/">increase
+         extinction </a>so that light is absorbed. <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l9 level1 lfo21;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'><a
+         href="mel://setCurrentRenderer%20mentalRay%20;%20renderWindowRender%20redoPreviousRender%20renderView;">Render</a>,
+         and you can see the dark vase shape. <o:p></o:p></span></li>
+    </ul>
+    <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+    mso-bidi-font-size:7.5pt;font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:
+     1.5pt;mso-padding-alt:0in 0in 0in 0in'>
+     <tr style='mso-yfti-irow:0'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+      font-family:Arial'><img border=0 width=320 height=240 id="_x0000_i1032"
+      src="images/volume_parti_volume2.jpg"><o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>parti_volume.extinction<o:p></o:p></span></p>
+      </td>
+     </tr>
+    </table>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><br style='mso-special-character:line-break'>
+    <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+    <![endif]><o:p></o:p></span></p>
+    <ul style='margin-top:0in' type=circle>
+     <li class=MsoNormal style='color:black;mso-list:l5 level1 lfo24;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Because the smoke absorbs light energy, we'd
+         better <a href="mel://setAttr%20pointLightShape1.intensity%207;/">increase
+         the light intensity </a>to see the effect more clearly. <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l5 level1 lfo24;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'><a
+         href="mel://setCurrentRenderer%20mentalRay%20;%20renderWindowRender%20redoPreviousRender%20renderView;">Render</a>.
+         <o:p></o:p></span></li>
+    </ul>
+    <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+    mso-bidi-font-size:7.5pt;font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:
+     1.5pt;mso-padding-alt:0in 0in 0in 0in'>
+     <tr style='mso-yfti-irow:0'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+      font-family:Arial'><img border=0 width=320 height=240 id="_x0000_i1033"
+      src="images/volume_parti_volume3.jpg"><o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>parti_volume.intensity<o:p></o:p></span></p>
+      </td>
+     </tr>
+    </table>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <ul style='margin-top:0in' type=circle>
+     <li class=MsoNormal style='color:black;mso-list:l16 level1 lfo27;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>The smoke in the vase has a sampling pattern,
+         which we can reduce by increasing the number of volume samples. <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l16 level1 lfo27;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>The default min_step_len and max_step_len is slightly
+         high for this scene, so <a
+         href="mel://setAttr%20parti_volume1.min_step_len%200.05;%0D%0AsetAttr%20parti_volume1.max_step_len%200.2;/">Decrease
+         the min, max step size </a>.<o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l16 level1 lfo27;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'><a
+         href="mel://setCurrentRenderer%20mentalRay%20;%20renderWindowRender%20redoPreviousRender%20renderView;">Render</a>
+         again to see how the smoke looks quite smooth. <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l16 level1 lfo27;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>(However, you may have noticed the increase
+         in render time.) <o:p></o:p></span></li>
+    </ul>
+    <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+    mso-bidi-font-size:7.5pt;font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:
+     1.5pt;mso-padding-alt:0in 0in 0in 0in'>
+     <tr style='mso-yfti-irow:0'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+      font-family:Arial'><img border=0 width=320 height=240 id="_x0000_i1034"
+      src="images/volume_parti_volume4.jpg"><o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>parti_volume.min_step_len,
+      max_step_len<o:p></o:p></span></p>
+      </td>
+     </tr>
+    </table>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <ul style='margin-top:0in' type=circle>
+     <li class=MsoNormal style='color:black;mso-list:l0 level1 lfo30;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>If the smoke looks too uniform, <a
+         href="mel://setAttr%20parti_volume1.nonuniform%200.5;/">increase
+         nonuniform </a>to add variation to the density of the smoke. <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l0 level1 lfo30;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'><a
+         href="mel://setCurrentRenderer%20mentalRay%20;%20renderWindowRender%20redoPreviousRender%20renderView;">Render</a>.
+         <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l0 level1 lfo30;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>(This will also increase the rendering time.)
+         <o:p></o:p></span></li>
+    </ul>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:
+     1.5pt;mso-padding-alt:0in 0in 0in 0in'>
+     <tr style='mso-yfti-irow:0'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+      font-family:Arial'><img border=0 width=320 height=240 id="_x0000_i1035"
+      src="images/volume_finish.jpg"><o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>parti_volume.nonuniform<o:p></o:p></span></p>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>volume_finish.ma<o:p></o:p></span></p>
+      </td>
+     </tr>
+    </table>
+    <p><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'><o:p>&nbsp;</o:p></span></p>
+    <p><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'>volume_finish.ma contains the scene at this point. <o:p></o:p></span></p>
+    <p><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'>You can adjust more parameters to get the desired look. <br>
+    mental ray Shaders Guide, Chapter 2.5 Participating Media, explains each
+    parameter of the shader. <br style='mso-special-character:line-break'>
+    <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+    <![endif]><o:p></o:p></span></p>
+    <p><b><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:
+    Arial;color:black'>NOTE:</span></b><span style='font-size:10.0pt;
+    mso-bidi-font-size:7.5pt;font-family:Arial;color:black'> <b>lights</b> is
+    an array of lights the volume shader samples. Because mental ray for Maya
+    6.0 resolves the light linking in render time, and <b>Illuminates by
+    Default</b> of a light shape is turned on by default, it is no longer
+    necessary to connect light to this array. However, you can still manually
+    connect the light, in which case mental ray for Maya would not perform the
+    automatic light link for the shader. <o:p></o:p></span></p>
+    <p><b><span style='font-size:14.0pt;font-family:Arial;color:#777A7D'>Step
+    4. Cornell box </span></b><span style='font-size:10.0pt;mso-bidi-font-size:
+    7.5pt;font-family:Arial;color:black'><br>
+    Another example. <br>
+    cornellBox_volume_start.ma has the Cornell box scene with materials and a
+    light shader. <o:p></o:p></span></p>
+    <table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:
+     1.5pt;mso-padding-alt:0in 0in 0in 0in'>
+     <tr style='mso-yfti-irow:0'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+      font-family:Arial'><img border=0 width=300 height=300 id="_x0000_i1036"
+      src="images/cornellBox_volume_start.jpg"><o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>cornellBox_volume_start.ma<o:p></o:p></span></p>
+      </td>
+     </tr>
+    </table>
+    <p><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'><br>
+    The front wall, back wall, and a light cover share a shading engine
+    transmatSG, which has transmat as its material shader. <br>
+    As discussed in <a href="materialShaders.html">Material shaders</a>,
+    transmat is a totally transparent material, making the object invisible. <br>
+    As a matter of fact, the above three surfaces are intended for volume
+    effect. <br>
+    Let's use parti_volume one more time. <o:p></o:p></span></p>
+    <ul style='margin-top:0in' type=circle>
+     <li class=MsoNormal style='color:black;mso-list:l14 level1 lfo33;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'><a
+         href="mel://createNode%20parti_volume;%20%0D%0AconnectAttr%20parti_volume1.message%20transmatSG.miVolumeShader;">Assign
+         parti_volume shader to transmatSG </a><o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l14 level1 lfo33;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Use the following settings: <o:p></o:p></span></li>
+     <ul style='margin-top:0in' type=circle>
+      <li class=MsoNormal style='color:black;mso-list:l14 level2 lfo33;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'><a
+          href="mel://setAttr%20parti_volume1.scatter%200.05%200.05%200.05;">scatter
+          0.05 0.05 0.05 </a><o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l14 level2 lfo33;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'><a
+          href="mel://setAttr%20parti_volume1.extinction%200.05;">extinction
+          0.05 </a><o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l14 level2 lfo33;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'><a
+          href="mel://setAttr%20parti_volume1.min_step_len%200.13;">min_step_len
+          0.13 </a><o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l14 level2 lfo33;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'><a
+          href="mel://setAttr%20parti_volume1.max_step_len%201.0;">max_step_len
+          1 </a><o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l14 level2 lfo33;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'><a
+          href="mel://setAttr%20parti_volume1.light_dist%202;">light_dist 2 </a><o:p></o:p></span></li>
+     </ul>
+    </ul>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>Then <a
+    href="mel://setCurrentRenderer%20mentalRay%20;%20renderWindowRender%20redoPreviousRender%20renderView;">render</a>.
+    <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:
+     1.5pt;mso-padding-alt:0in 0in 0in 0in'>
+     <tr style='mso-yfti-irow:0'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+      font-family:Arial'><img border=0 width=300 height=300 id="_x0000_i1037"
+      src="images/cornellBox_volume_finish.jpg"><o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>cornellBox_volume_finish.ma<o:p></o:p></span></p>
+      </td>
+     </tr>
+    </table>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><br style='mso-special-character:line-break'>
+    <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+    <![endif]><o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>The glare around the light is very
+    noticeable. <br style='mso-special-character:line-break'>
+    <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+    <![endif]><o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>This scene will further enhanced in <a
+    href="photonShaders.html">Photon Shaders</a> using photon shaders and a
+    photon volume shader with global illumination and caustics. </span><span
+    style='font-size:7.5pt;font-family:Arial;color:black'><o:p></o:p></span></p>
+    </td>
+   </tr>
+  </table>
+  <p class=MsoNormal><o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+</div>
+
+</body>
+
+</html>

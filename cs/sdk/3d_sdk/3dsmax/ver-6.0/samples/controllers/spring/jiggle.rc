@@ -1,0 +1,244 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_JIGGLE_TRACK DIALOG DISCARDABLE  0, 0, 121, 206
+STYLE WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | 
+    WS_THICKFRAME
+CAPTION "Spring Properties"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_JIGGLE_ROLLOUT,"RollUpWIndow",WS_GROUP | 
+                    WS_TABSTOP,3,4,115,199
+END
+
+IDD_DYNAMICS_PANEL DIALOG DISCARDABLE  0, 0, 108, 166
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_JIGGLE_DRAG,"CustEdit",WS_TABSTOP,56,23,35,10
+    CONTROL         "",IDC_JIGGLE_DRAG_SPIN,"SpinnerControl",0x0,92,23,7,10
+    CONTROL         "",IDC_JIGGLE_TENSION,"CustEdit",WS_TABSTOP,55,117,35,10
+    CONTROL         "",IDC_JIGGLE_TENSION_SPIN,"SpinnerControl",0x0,91,117,7,
+                    10
+    CONTROL         "",IDC_JIGGLE_DAMP,"CustEdit",WS_TABSTOP,55,130,35,10
+    CONTROL         "",IDC_JIGGLE_DAMP_SPIN,"SpinnerControl",0x0,91,130,7,10
+    RTEXT           "Drag:",IDC_DRAG_TEXT,6,23,46,9
+    RTEXT           "Tension:",IDC_STIFF_TEXT,5,117,46,9
+    RTEXT           "Dampening:",IDC_DAMP_TEXT,5,130,45,9
+    CONTROL         "",IDC_JIGGLE_MASS,"CustEdit",WS_TABSTOP,56,11,35,10
+    CONTROL         "",IDC_JIGGLE_MASS_SPIN,"SpinnerControl",0x0,92,11,7,10
+    RTEXT           "Mass:",IDC_MASS_TEXT,6,11,46,9
+    LISTBOX         IDC_LIST2,9,67,89,44,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    GROUPBOX        "Springs",IDC_STATIC,3,41,101,120
+    CONTROL         "Add",IDC_PICK_SPRING,"CustButton",WS_TABSTOP,10,52,42,
+                    12
+    CONTROL         "Remove",IDC_REMOVE_SPRING,"CustButton",WS_TABSTOP,57,52,
+                    41,12
+    GROUPBOX        "Point",IDC_STATIC,3,3,101,35
+    CONTROL         "Relative",IDC_RELATIVE_RB,"Button",BS_AUTORADIOBUTTON,9,
+                    144,44,10
+    CONTROL         "Absolute",IDC_ABSOLUTE_RB,"Button",BS_AUTORADIOBUTTON,
+                    55,144,43,11
+END
+
+IDD_FORCES_PANEL DIALOG DISCARDABLE  0, 0, 108, 175
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Add",IDC_FORCE_PICKNODE,"CustButton",WS_TABSTOP,10,15,
+                    42,12
+    LISTBOX         IDC_LIST1,9,31,89,44,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "Remove",IDC_REMOVE_FORCE,"CustButton",WS_TABSTOP,56,15,
+                    42,12
+    CONTROL         "",IDC_JIGGLE_STEPS,"CustEdit",WS_TABSTOP,53,113,35,10
+    CONTROL         "",IDC_JIGGLE_STEPS_SPIN,"SpinnerControl",0x0,89,113,7,
+                    10
+    RTEXT           "Iterations:",IDC_STEPS_TEXT,5,113,43,9
+    CONTROL         "",IDC_JIGGLE_X,"CustEdit",WS_TABSTOP,53,129,35,10
+    CONTROL         "",IDC_JIGGLE_X_SPIN,"SpinnerControl",0x0,89,129,7,10
+    RTEXT           "X Effect:",IDC_X_TEXT,5,129,44,9
+    CONTROL         "",IDC_JIGGLE_Y,"CustEdit",WS_TABSTOP,53,142,35,10
+    CONTROL         "",IDC_JIGGLE_Y_SPIN,"SpinnerControl",0x0,89,142,7,10
+    RTEXT           "Y Effect:",IDC_Y_TEXT,5,142,43,9
+    CONTROL         "",IDC_JIGGLE_Z,"CustEdit",WS_TABSTOP,53,154,35,10
+    CONTROL         "",IDC_JIGGLE_Z_SPIN,"SpinnerControl",0x0,89,154,7,10
+    RTEXT           "Z Effect:",IDC_Z_TEXT,5,154,44,9
+    GROUPBOX        "External Forces",IDC_STATIC,3,3,101,80
+    GROUPBOX        "Calculation Parameters",IDC_STATIC,3,87,100,83
+    CONTROL         "",IDC_JIGGLE_START,"CustEdit",WS_TABSTOP,53,100,35,10
+    CONTROL         "",IDC_JIGGLE_START_SPIN,"SpinnerControl",0x0,89,100,7,
+                    10
+    RTEXT           "Start Frame:",IDC_START_TEXT,5,100,43,9
+END
+
+IDD_ABOUT_PANEL DIALOG DISCARDABLE  0, 0, 108, 112
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CTEXT           "Spring\n-----------------------------\nA Mass / Spring\n controller used to add secondary dynamics to any object or point ",
+                    IDC_STATIC,12,12,85,51
+    CTEXT           "Written By:\nAdam Felt",IDC_STATIC,15,70,84,17
+    GROUPBOX        "",IDC_STATIC,6,2,95,105
+    CTEXT           "Release 1.0 Build 01 ",IDC_STATIC,16,92,82,9
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_JIGGLE_TRACK, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 114
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 199
+    END
+
+    IDD_DYNAMICS_PANEL, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 161
+    END
+
+    IDD_FORCES_PANEL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 168
+    END
+
+    IDD_ABOUT_PANEL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 105
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LIBDESCRIPTION      "Secondary Dynamics Controller (Discreet)"
+    IDS_CLASS_NAME          "Spring"
+    IDS_DYN_PARAMS          "Spring Dynamics"
+    IDS_JIGGLE_DRAG         "Drag"
+    IDS_JIG_FORCE_NODES     "Force Nodes"
+    IDS_JIGGLE_STIFF        "Tension"
+    IDS_JIGGLE_DAMP         "Dampening"
+    IDS_JIGGLE_MASS         "Mass"
+    IDS_JIGGLE_STEPS        "Steps"
+    IDS_JIGGLE_X            "X Effect"
+    IDS_JIGGLE_Y            "Y Effect"
+    IDS_JIGGLE_Z            "Z Effect"
+    IDS_JIGGLE_START        "Start Frame"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_JIG_CONTROL_NODES   "Control Nodes"
+    IDS_FORCE_PARAMS        "Forces, Limits and Precision"
+    IDS_ABOUT               "About"
+    IDS_DELETE_SPRING       "Delete the selected spring"
+    IDS_ADD_SPRING          "Add a new Spring"
+    IDS_POS_CONTROL         "Position"
+    IDS_EFFECT_HOW          "Abs/Rel"
+    IDS_FULL_UNDO           "Spring Parameters"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_UNDO_ADD_SPRING     "Add Spring"
+    IDS_UNDO_REMOVE_SPRING  "Remove Spring"
+    IDS_UNDO_SPINNER_CHANGE "Jiggle Parameter Change"
+    IDS_UNDO_TENSION        "Tension Change"
+    IDS_UNDO_DAMPENING      "Dampening Change"
+    IDS_UNDO_MASS           "Mass Change"
+    IDS_UNDO_DRAG           "Drag Change"
+    IDS_OUT_OF_RANGE        "The index value is out of the acceptable range!"
+    IDS_CIRCULAR_DEPENDANCY """Assigning a Spring Controller to this object results in a circular dependancy!"""
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

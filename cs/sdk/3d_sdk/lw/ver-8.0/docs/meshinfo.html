@@ -1,0 +1,168 @@
+<html>
+
+<head>
+<title>Mesh Info</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="imageio.html"><img width="96" height="20" border="0"
+    src="images/navlt.gif" alt="Image I/O"></a></td>
+    <td width="96" align="left"><a href="raytrace.html"><img width="64" height="20" border="0"
+    src="images/navrt.gif" alt="Raytracing"></a></td>
+    <td width="384" align="right"><a href="index.html"><img width="230" height="20" border="0"
+    src="images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Mesh Info</h3>
+    <p>The LWMeshInfo structure describes the geometry of an object. You can get one of these
+    from the <a href="globals/sceneobj.html">Scene Objects</a> and <a
+    href="globals/objinfo.html">Object Info</a> globals and from the access structure passed
+    to the <a href="classes/displace.html">displacement handler</a> <tt>evaluate</tt>
+    function. What it contains can vary depending on how and when you obtain it. This
+    structure is defined in the <a href="../include/lwmeshes.h">lwmeshes.h</a> header file.</p>
+    <pre>   typedef int LWPntScanFunc (void *, LWPntID);
+   typedef int LWPolScanFunc (void *, LWPolID);
+
+   typedef struct st_LWMeshInfo {
+      void         *<strong>priv</strong>;
+      void         (*<strong>destroy</strong>)     (LWMeshInfoID);
+      int          (*<strong>numPoints</strong>)   (LWMeshInfoID);
+      int          (*<strong>numPolygons</strong>) (LWMeshInfoID);
+      int          (*<strong>scanPoints</strong>)  (LWMeshInfoID, LWPntScanFunc *, void *);
+      int          (*<strong>scanPolys</strong>)   (LWMeshInfoID, LWPolScanFunc *, void *);
+      void         (*<strong>pntBasePos</strong>)  (LWMeshInfoID, LWPntID, LWFVector pos);
+      void         (*<strong>pntOtherPos</strong>) (LWMeshInfoID, LWPntID, LWFVector pos);
+      void *       (*<strong>pntVLookup</strong>)  (LWMeshInfoID, LWID, const char *);
+      int          (*<strong>pntVSelect</strong>)  (LWMeshInfoID, void *);
+      int          (*<strong>pntVGet</strong>)     (LWMeshInfoID, LWPntID, float *vector);
+      LWID         (*<strong>polType</strong>)     (LWMeshInfoID, LWPolID);
+      int          (*<strong>polSize</strong>)     (LWMeshInfoID, LWPolID);
+      LWPntID      (*<strong>polVertex</strong>)   (LWMeshInfoID, LWPolID, int);
+      const char * (*<strong>polTag</strong>)      (LWMeshInfoID, LWPolID, LWID);
+      int          (*<strong>pntVPGet</strong>)    (LWMeshInfoID, LWPntID, LWPolID,
+                                     float *vector);
+      unsigned int (*<strong>polFlags</strong>)    (LWMeshInfoID, LWPolID);
+      int          (*<strong>pntVIDGet</strong>)   (LWMeshInfoID, LWPntID, float *vector,
+                                     void *);
+      int          (*<strong>pntVPIDGet</strong>)  (LWMeshInfoID, LWPntID, LWPolID,
+                                     float *vector, void *);
+   } LWMeshInfo;</pre>
+    <dl>
+      <dt><strong><tt>priv</tt></strong></dt>
+      <dd>An opaque pointer to private data used internally by the mesh info functions.</dd>
+      <dt><tt><br>
+        <strong>destroy</strong>( meshinfo )</tt></dt>
+      <dd>Frees resources allocated by the process that created this LWMeshInfo. Call this when
+        you're finished with the mesh info. <em>Note that this field may be NULL, indicating that
+        you shouldn't attempt to free the mesh info.</em> Test the value of this field before
+        trying to use it.</dd>
+      <dt><tt><br>
+        npts = <strong>numPoints</strong>( meshinfo )</tt></dt>
+      <dd>Returns the number of points in the object. If the object contains dynamically created
+        geometry, e.g. subdivision patches or metaballs, this number may include both the control
+        points and the points created by subdividing.</dd>
+      <dt><tt><br>
+        npols = <strong>numPolygons</strong>( meshinfo )</tt></dt>
+      <dd>Returns the number of polygons in the object, which may include polygons created by
+        subdividing.</dd>
+      <dt><tt><br>
+        result = <strong>scanPoints</strong>( meshinfo, pointscan_func, mydata )</tt></dt>
+      <dd>Enumerate the points in the object. The callback you supply is called for each point in
+        the object. The <tt>mydata</tt> argument is passed to the callback and can be anything it
+        might require. Enumeration stops if your callback returns a non-zero value, and this value
+        is then returned by <tt>scanPoints</tt>. Otherwise it returns 0.</dd>
+      <dt><tt><br>
+        result = <strong>scanPolys</strong>( meshinfo, polyscan_func, mydata )</tt></dt>
+      <dd>Enumerate the polygons in the object.</dd>
+      <dt><tt><br>
+        <strong>pntBasePos</strong>( meshinfo, point, pos )</tt></dt>
+      <dd>Get the base, or initial, position of a point.</dd>
+      <dt><tt><br>
+        <strong>pntOtherPos</strong>( meshinfo, point, pos )</tt></dt>
+      <dd>Get an alternate position for the point. This may be the same as the base position or it
+        may be the position of the point after some transformation. The nature of the alternate
+        position depends on how the mesh info was created.</dd>
+      <dt><tt><br>
+        vmap = <strong>pntVLookup</strong>( meshinfo, vmap_type, vmap_name )</tt></dt>
+      <dd>Select a vertex map for reading by <tt>pntVGet</tt>. The vmap is given by its
+        four-character identifier and its name string. The function returns a pointer that can be
+        used later in <tt>pntVSelect</tt> to quickly select this vmap again. The pointer is NULL
+        if no vmap was found with the given ID and name. The <a href="globals/sceneobj.html">Scene
+        Objects</a> global allows you to examine the vmap database and retrieve the names of
+        existing vmaps of a given type.</dd>
+      <dt><tt><br>
+        dim = <strong>pntVSelect</strong>( meshinfo, vmap )</tt></dt>
+      <dd>Select a vmap for reading vectors. The vmap is identified by a pointer returned by <tt>pntVLookup</tt>.
+        The function returns the vmap's dimension (the number of values per point).</dd>
+      <dt><tt><br>
+        ismapped = <strong>pntVGet</strong>( meshinfo, point, val )</tt></dt>
+      <dd>Read the vmap vector for a point. The vector is read from the vmap selected by a
+        previous call to <tt>pntVSelect</tt>. If the point is mapped (has a vmap value in the
+        selected vmap), the <tt>val</tt> array is filled with the vmap vector for the point, and <tt>pntVGet</tt>
+        returns true. The <tt>val</tt> array must have at least as many elements as the number
+        returned by <tt>pntVSelect</tt>. See also <tt>pntVIDGet</tt>.</dd>
+      <dt><tt><br>
+        type = <strong>polType</strong>( meshinfo, polygon )</tt></dt>
+      <dd>Returns the type of a polygon. &quot;Polygon&quot; here refers to a number of different
+        kinds of geometric atoms, including things like curves and bones. The polygon type codes
+        are an extensible set of four-character identifiers. The header file <tt>lwmeshes.h</tt>
+        defines the most common ones. <p><tt>LWPOLTYPE_FACE</tt> - face<br>
+        <tt>LWPOLTYPE_CURV</tt> - higher order curve<br>
+        <tt>LWPOLTYPE_PTCH</tt> - subdivision control cage polygon<br>
+        <tt>LWPOLTYPE_MBAL</tt> - metaball<br>
+        <tt>LWPOLTYPE_BONE</tt> - bone</p>
+      </dd>
+      <dt><tt>nvert = <strong>polSize</strong>( meshinfo, polygon )</tt></dt>
+      <dd>Returns the number of vertices belonging to the polygon.</dd>
+      <dt><tt><br>
+        point = <strong>polVertex</strong>( meshinfo, polygon, vert_index )</tt></dt>
+      <dd>Returns the point ID for a polygon vertex. Vertex indexes range from 0 to <tt>nvert</tt>
+        - 1.</dd>
+      <dt><tt><br>
+        tagname = <strong>polTag</strong>( meshinfo, polygon, tagID )</tt></dt>
+      <dd>Returns the tag string of the given type associated with the polygon. A null string
+        pointer means that the polygon does not have a tag of that type. <tt>lwmeshes.h</tt>
+        defines the most common polygon tags. <dl>
+          <dt><tt><br>
+            LWPTAG_SURF</tt></dt>
+          <dd>The name of the surface applied to the polygon.</dd>
+          <dt><tt>LWPTAG_PART</tt></dt>
+          <dd>The name of the polygon group the polygon belongs to.</dd>
+        </dl>
+      </dd>
+      <dt><tt><br>
+        ismapped = <strong>pntVPGet</strong>( meshinfo, point, polygon, val )</tt></dt>
+      <dd>Like <tt>pntVGet</tt>, but reads the per-polygon, or discontinuous, vmap vector for a
+        polygon vertex. See also <tt>pntVPIDGet</tt>.</dd>
+      <dt><tt><br>
+        flags = <strong>polFlags</strong>( meshinfo, polygon )</tt></dt>
+      <dd>Returns the flags associated with the polygon. the <tt>EDPF_CCSTART</tt> and <tt>EDDF_CCEND</tt>
+        bits determine whether the first and last points in <tt>LWPOLTYPE_CURV</tt> polygons are
+        control points rather than actual vertices. (The constants for these flags are defined in <a
+        href="../include/lwmeshedt.h">lwmeshedt.h</a>.)</dd>
+      <dt><tt><br>
+        ismapped = <strong>pntVIDGet</strong>( meshinfo, point, val, vmap )<br>
+        ismapped = <strong>pntVPIDGet</strong>( meshinfo, point, polygon, val, vmap )</tt></dt>
+      <dd>Like <tt>pntVGet</tt> and <tt>pntVPGet</tt>, but these take the vertex map ID as an
+        additional argument, so that it isn't necessary to first call <tt>pntVSelect</tt> to
+        select the vertex map. This is important when your plug-in might be running in multiple
+        threads, since the thread may change between the <tt>pntVSelect</tt> call and the <tt>pntVGet</tt>
+        or <tt>pntVPGet</tt> calls.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>The <a href="../sample/Layout/Generic/scenscan/">SceneScan</a> sample uses an LWMeshInfo obtained from
+    the <a href="globals/objinfo.html">Object Info</a> global to build arrays of points and
+    polygons for an object, including vmap and surface data. See the <tt>getObjectDB</tt>
+    function in <tt>objectdb.c</tt>.</td>
+  </tr>
+</table>
+</body>
+</html>

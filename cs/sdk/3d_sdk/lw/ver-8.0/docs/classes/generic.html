@@ -1,0 +1,101 @@
+<html>
+
+<head>
+<title>Classes: LayoutGeneric</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="itemmot.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="ItemMotionHandler"></a></td>
+    <td width="96" align="left"><a href="laytool.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="LayoutTool"></a></td>
+    <td width="96" align="left"><a href="../classes.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Classes"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>LayoutGeneric</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwgeneric.h">lwgeneric.h</a></small></p>
+    <p>Layout generic plug-ins can issue commands to alter the scene. They can also manipulate
+    scene settings at a lower level by saving, altering, and reloading scene files. Generics
+    also supply general-<wbr>purpose, non-rendering functionality for doing things like configuring
+    external devices, performing scratch calculations, or displaying scene information.</p>
+    <p><strong>Activation Function</strong></p>
+    <pre>   XCALL_( int ) MyGeneric( long version, GlobalFunc *global,
+      LWLayoutGeneric *local, void *serverData );</pre>
+    <p>The <tt>local</tt> argument to a generic's activation function is an LWLayoutGeneric.</p>
+    <pre>   typedef struct st_LWLayoutGeneric {
+      int           (*<strong>saveScene</strong>)(const char *file);
+      int           (*<strong>loadScene</strong>)(const char *file, const char *name);
+      void          *<strong>data</strong>;
+      LWCommandCode (*<strong>lookup</strong>)   (void *, const char *cmdName);
+      int           (*<strong>execute</strong>)  (void *, LWCommandCode cmd, int argc,
+                                   const DynaValue *argv,
+                                   DynaValue *result);
+      int           (*<strong>evaluate</strong>) (void *, const char *command);
+   } LWLayoutGeneric;</pre>
+    <dl>
+      <tt>
+      <dt>ok = <strong>saveScene</strong>( filename )</dt>
+      </tt>
+      <dd>Save the scene in its current state as a LightWave&reg; scene file. </dd>
+      <tt>
+      <dt><br>
+        ok = <strong>loadScene</strong>( filename, newname )</dt>
+      </tt>
+      <dd>Load a scene file. The scene is loaded from the file named in the first argument. The
+        second argument is the default filename for subsequent saving of the scene and the name
+        that will be displayed to the user.</dd>
+      <tt>
+      <dt><br>
+        <strong>data</strong></dt>
+      </tt>
+      <dd>An opaque pointer to data used internally by Layout. Pass this as the first argument to
+        the <tt>lookup</tt>, <tt>execute</tt> and <tt>evaluate</tt> functions.</dd>
+      <tt>
+      <dt><br>
+        cmdcode = <strong>lookup</strong>( data, cmdname )</dt>
+      </tt>
+      <dd>Returns an integer code corresponding to the command name. The command is issued by
+        passing the command code to the <tt>execute</tt> function. Command codes are constant for
+        a given Layout session, so this only needs to be called once per command, after which the
+        codes can be cached and used multiple times.</dd>
+      <tt>
+      <dt><br>
+        result = <strong>execute</strong>( data, cmdcode, argc, argv, cmdresult )</dt>
+      </tt>
+      <dd>Issue the command given by the command code argument. <tt>argv</tt> is an array of <a
+        href="../dynaval.html">DynaValue</a> arguments. <tt>argc</tt> is the number of arguments
+        in the <tt>argv</tt> array. The result of the command is written in <tt>cmdresult</tt>.
+        The function returns 1 if it succeeds or 0 if it does not.</dd>
+      <tt>
+      <dt><br>
+        result = <strong>evaluate</strong>( data, cmdstring )</dt>
+      </tt>
+      <dd>Issue the command with the name and arguments in the command string. This is an
+        alternative to using <tt>lookup</tt> and <tt>execute</tt>. The command and its arguments
+        are written to a single string and delimited by spaces. The function returns 1 if it
+        succeeds or 0 if it does not.</dd>
+    </dl>
+    <p>See the <a href="../commands.html">Commands</a> pages for a complete list of the
+    commands that can be issued in Layout, as well as a detailed explanation of the formatting
+    of command arguments for both the <tt>execute</tt> and <tt>evaluate</tt> methods.</p>
+    <p><strong>Example</strong></p>
+    <p>The <a href="../../sample/Layout/Generic/hello/">hello</a> sample is the LightWave&reg; version of
+    everybody's favorite &quot;Hello, World!&quot; program. It opens a panel with an edit
+    field, displays messages, and issues a command.</td>
+  </tr>
+</table>
+</body>
+</html>

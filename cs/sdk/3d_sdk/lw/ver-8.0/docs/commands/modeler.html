@@ -1,0 +1,537 @@
+<html>
+
+<head>
+<title>Commands: Modeler</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="layout.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="Layout Commands"></a></td>
+    <td width="96" align="left"><a href="common.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Common Commands"></a></td>
+    <td width="96" align="left"><a href="../commands.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Commands"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Modeler Commands</h3>
+    <p>Modeler commands are <em>not</em> case-sensitive. Modeler's native command mechanism is
+    the <tt>lookup</tt> and <tt>execute</tt> pair of functions, which translate the command
+    name into a code and use an array of <a href="../dynaval.html">DynaValues</a> to pass the
+    arguments. Commands issued using the <tt>evaluate</tt> function will be converted into <tt>lookup</tt>
+    and <tt>execute</tt> calls. (See the <a href="../classes/cs.html">CommandSequence</a>
+    document for definitions of these functions.)</p>
+    <p>Modeler's <tt>evaluate</tt> function treats double quote marks as delimiters, not
+    literal characters. Use them when a string argument contains spaces. You can insert a
+    quote mark as a literal character in a string argument by preceeding it with the backslash
+    ( <tt>\</tt> ) escape character. If you need a literal backslash, use two in a row. (This
+    can produce some odd-looking code if you're generating <tt>evaluate</tt> strings using <tt>sprintf</tt>.
+    To generate a literal quote character that won't be removed by either the C compiler or
+    Modeler's command processor, the <tt>sprintf</tt> string needs to contain <em>three</em>
+    backslashes, followed by the quote character: <tt>\\\&quot;</tt>.)</p>
+    <p>Some Modeler command arguments are optional. If they occur at the end of the argument
+    list, they can simply be omitted. If they're in the middle, they can be replaced by
+    placeholders, a <tt>DY_NULL</tt> DynaValue for <tt>execute</tt> or an asterisk (<tt>*</tt>)
+    in an <tt>evaluate</tt> string. Either way, Modeler will supply default values.</p>
+    <p>In the command list that follows, optional arguments are placed inside square brackets.
+    The types of the arguments are denoted by the initial letter. </p>
+    <blockquote>
+      <dl>
+        <dt><strong>n</strong>umber</dt>
+        <dd>A single integer or floating-point number. These are passed to <tt>execute</tt> as
+          DynaValues of type <tt>DY_INTEGER</tt> or <tt>DY_FLOAT</tt>.</dd>
+        <dt><strong>v</strong>ector</dt>
+        <dd>A triple of numbers. In <tt>evaluate</tt> strings, vectors are delimited by angle
+          brackets (<tt>&lt;</tt> and <tt>&gt;</tt>). If one or two of the numbers is omitted, the
+          last number present is repeated, so <tt>&lt;0&gt;</tt> and <tt>&lt;0&nbsp;0&nbsp;0&gt;</tt>
+          are equivalent. For <tt>execute</tt>, vectors are passed as <tt>DY_VINT</tt>s or <tt>DY_VFLOAT</tt>s.</dd>
+        <dt><strong>s</strong>tring</dt>
+        <dd>A string, such as a filename or surface name. Passed to <tt>execute</tt> as <tt>DY_STRING</tt>s.</dd>
+        <dt><strong>k</strong>eyword</dt>
+        <dd>A string containing one of several options. Valid keywords are listed in the definition
+          of the command.</dd>
+        <dt><strong>f</strong>lags</dt>
+        <dd>A string in which each character represents a toggle.</dd>
+      </dl>
+    </blockquote>
+    <p>The commands are divided into six broad categories here, but this is just to get the
+    list under control. The categories don't have any programming significance. </p>
+    <p><strong>General</strong><dl>
+      <tt>
+      <dt>CLOSE<br>
+        CLOSE_ALL</dt>
+      </tt>
+      <dd>Close the current object workspace, or all object workspaces.</dd>
+      <dt><tt><br>
+        EXIT</tt></dt>
+      <dd>Exit Modeler.</dd>
+      <dt><tt><br>
+        NEW</tt></dt>
+      <dd>Create a new, empty, unnamed object.</dd>
+      <tt>
+      <dt><br>
+        UNDO<br>
+        REDO</dt>
+      </tt>
+      <dd>These move back and forth in Modeler's undo buffer.</dd>
+      <tt>
+      <dt><br>
+        DELETE<br>
+        CUT<br>
+        COPY<br>
+        PASTE</dt>
+      </tt>
+      <dd>The delete command removes the selected geometry without placing it in Modeler's
+        clipboard, unlike cutting, but deletes can still be undone.</dd>
+      <tt>
+      <dt><br>
+        LOAD <strong>s</strong>filename<br>
+        SAVE <strong>s</strong>filename</dt>
+      </tt>
+      <dd>Load and save object files.</dd>
+      <tt>
+      <dt><br>
+        REVERT <strong>s</strong>filename</dt>
+      </tt>
+      <dd>Reload an existing object file.</dd>
+      <tt>
+      <dt><br>
+        SETOBJECT <strong>s</strong>name [<strong>n</strong>index]</dt>
+      </tt>
+      <dd>Set the current object by name, filename or index.</dd>
+      <tt>
+      <dt><br>
+        SETLAYER <strong>s</strong>layers<br>
+        SETALAYER <strong>s</strong>layers<br>
+        SETBLAYER <strong>s</strong>layers</dt>
+      </tt>
+      <dd>Set the current foreground (or active) and background layers. <tt>SETALAYER</tt> is a
+        synonym for <tt>SETLAYER</tt>. The <tt>layers</tt> argument is a string containing one or
+        more layer numbers separated by spaces. Layers are numbered sequentially, starting at 1.</dd>
+      <dt><tt><br>
+        SETLAYERNAME <strong>s</strong>name</tt></dt>
+      <dd>Set the name of the current layer.</dd>
+      <dt><tt><br>
+        SETPIVOT <strong>v</strong>pos</tt></dt>
+      <dd>Set the pivot point for the current layer. The pivot point is the origin for rotations
+        in Layout.</dd>
+      <dt><tt><br>
+        SURFACE <strong>s</strong>name</tt></dt>
+      <dd>Set the current default surface. Geometry created after this is called will be assigned
+        this surface.</dd>
+      <dt><tt><br>
+        SELECTVMAP <strong>k</strong>type <strong>s</strong>name</tt></dt>
+      <dd>Set the current vertex map of a given type. The type can be <tt>MORF</tt> (relative
+        morph), <tt>SPOT</tt> (absolute morph), <tt>WGHT</tt> (weight), <tt>MNVW</tt> (subpatch
+        weight) or <tt>TXUV</tt> (texture UV).</dd>
+      <dt><tt><br>
+        CMDSEQ <strong>s</strong>name [<strong>s</strong>arg]</tt></dt>
+      <dd>Activate another command sequence plug-in, identified by its internal name, the string
+        in the plug-in's ServerRecord <tt>name</tt> field. The argument string is placed in the <tt>argument</tt>
+        field of the LWModCommand structure passed to the plug-in's activation function.</dd>
+      <dt><tt><br>
+        MESHEDIT <strong>s</strong>name</tt></dt>
+      <dd>Activate a MeshDataEdit class plug-in, identified by its internal name.</dd>
+      <dt><tt><br>
+        PLUGIN <strong>s</strong>filename [<strong>s</strong>class <strong>s</strong>name <strong>s</strong>username]</tt></dt>
+      <dd>Install the plug-ins contained in a .p file.</dd>
+    </dl>
+    <p><strong>Selection</strong></p>
+    <p>Commands are applied to the current <em>selection</em>, a subset of the geometry data
+    residing in Modeler when a command is issued. The selection is made up of elements from
+    the current layers, and within those layers, is defined by your choice of EltOpSelect mode
+    for each command.</p>
+    <p>For <tt>OPSEL_USER</tt> and <tt>OPSEL_DIRECT</tt> modes, you can change which elements
+    are selected using the <tt>SEL_POINT</tt> and <tt>SEL_POLYGON</tt> family of commands. (To
+    individually select points and polygons by ID, you'll need to use a <a
+    href="../classes/meshedit.html">mesh edit</a> with the special <tt>OPSEL_MODIFY</tt>
+    mode.)<dl>
+      <dt><tt>SEL_POINT <strong>k</strong>action [condition ...]</tt></dt>
+      <dd>Modify point selection. If it isn't already, the Point tab in Modeler's interface will
+        be selected after this command is issued. The action can be either <tt>SET</tt> or <tt>CLEAR</tt>.
+        If there is no condition, the action will apply to all points. Otherwise, the points
+        specified by the condition will be added to the selection for <tt>SET</tt> and removed
+        from the selection for <tt>CLEAR</tt>. The possible conditions with their additional
+        arguments are:<dl>
+          <dt><tt><br>
+            &quot;VOLUME&quot; <strong>v</strong>lo <strong>v</strong>hi</tt></dt>
+          <dd>Points within the volume.</dd>
+          <dt><tt>&quot;CONNECT&quot;</tt></dt>
+          <dd>Points connected to already selected ones. Only works with <tt>SET</tt>.</dd>
+          <dt><tt>&quot;NPEQ&quot; <strong>n</strong>pols</tt></dt>
+          <dd>Points belonging to exactly pols polygons.</dd>
+          <dt><tt>&quot;NPLT&quot; <strong>n</strong>pols</tt></dt>
+          <dd>Points belonging to less than pols polygons.</dd>
+          <dt><tt>&quot;NPGT&quot; <strong>n</strong>pols</tt></dt>
+          <dd>points belonging to more than npol polygons.</dd>
+        </dl>
+      </dd>
+      <dt><tt><br>
+        SEL_POLYGON <strong>k</strong>action [condition ...]</tt></dt>
+      <dd>Modify polygon selection. Like <tt>SEL_POINT</tt>, with the following conditions:<dl>
+          <dt><tt><br>
+            &quot;VOLEXCL&quot; <strong>v</strong>lo, <strong>v</strong>hi</tt></dt>
+          <dd>Polygons entirely within the volume.</dd>
+          <dt><tt>&quot;VOLINCL&quot; <strong>v</strong>lo, <strong>v</strong>hi</tt></dt>
+          <dd>Polygons at least partly within the volume.</dd>
+          <dt><tt>&quot;CONNECT&quot;</tt></dt>
+          <dd>Polygons connected to already selected ones. Only works with <tt>SET</tt>.</dd>
+          <dt><tt>&quot;NVEQ&quot; <strong>n</strong>verts</tt></dt>
+          <dd>Polygons with exactly verts vertices.</dd>
+          <dt><tt>&quot;NVLT&quot; <strong>n</strong>verts</tt></dt>
+          <dd>Polygons with less than verts vertices.</dd>
+          <dt><tt>&quot;NVGT&quot; <strong>n</strong>verts</tt></dt>
+          <dd>Polygons with more than verts vertices.</dd>
+          <dt><tt>&quot;SURFACE&quot; <strong>s</strong>surface</tt></dt>
+          <dd>Polygons having the given surface.</dd>
+          <dt><tt>&quot;FACE&quot;</tt></dt>
+          <dd>Face polygons only.</dd>
+          <dt><tt>&quot;CURVE&quot;</tt></dt>
+          <dd>Curve polygons only.</dd>
+          <dt><tt>&quot;NONPLANAR&quot; [<strong>n</strong>limit]</tt></dt>
+          <dd>Polygons less planar than the given limit. If limit is omitted, the user's default limit
+            is used.</dd>
+        </dl>
+      </dd>
+      <dt><tt><br>
+        SEL_INVERT</tt></dt>
+      <dd>Invert the selection. Selected data becomes unselected and vice versa.</dd>
+      <dt><tt><br>
+        SEL_HIDE <strong>k</strong>state</tt></dt>
+      <dd>Hide data from view. The <tt>state</tt> can be <tt>SELECTED</tt> (hide the selected
+        data, the default) or <tt>UNSELECTED</tt>.</dd>
+      <dt><tt><br>
+        SEL_UNHIDE</tt></dt>
+      <dd>Unhide all hidden data.</dd>
+      <dt><tt><br>
+        INVERT_HIDE</tt></dt>
+      <dd>Invert the hiding of data. Hidden data becomes unhidden and vice versa.</dd>
+    </dl>
+    <p><strong>Point Transforms</strong></p>
+    <p>The flex and deform transformations use similar region data to define the scope of
+    their operations. These are set globally and then applied to all transformations of a
+    given type.<dl>
+      <dt><tt>FIXEDFLEX <strong>k</strong>axis <strong>n</strong>start <strong>n</strong>end [<strong>f</strong>ease]</tt></dt>
+      <dd>Set the flex functions to operate on a fixed range along an axis. Ease flags can be <tt>&quot;i&quot;</tt>
+        (ease-in), <tt>&quot;o&quot;</tt> (ease-out), or <tt>&quot;io&quot;</tt>.</dd>
+      <dt><tt><br>
+        AUTOFLEX <strong>k</strong>axis <strong>k</strong>polarity [<strong>f</strong>ease]</tt></dt>
+      <dd>Set the flex functions to operate on an automatic range along an axis of the given
+        polarity, which can be <tt>&quot;+&quot;</tt> or <tt>&quot;-&quot;</tt>.</dd>
+      <dt><tt><br>
+        DEFORMREGION <strong>v</strong>radius [<strong>v</strong>center <strong>k</strong>axis]</tt></dt>
+      <dd>Set the area of effect for the deformation tools. If axis is omitted, the effect is
+        bounded in all directions by the given radius. If an axis is specified, the effect is
+        unbounded along that axis.</dd>
+      <tt>
+      <dt><br>
+        MOVE <strong>v</strong>offset<br>
+        SHEAR <strong>v</strong>offset<br>
+        MAGNET <strong>v</strong>offset</dt>
+      </tt>
+      <dd>Translate points by the given offset. Shear translates along the flex axis. Magnet
+        translates in the deform region.</dd>
+      <tt>
+      <dt><br>
+        ROTATE <strong>n</strong>angle <strong>k</strong>axis [<strong>v</strong>center]<br>
+        TWIST <strong>n</strong>angle <strong>k</strong>axis [<strong>v</strong>center]<br>
+        VORTEX <strong>n</strong>angle <strong>k</strong>axis [<strong>v</strong>center]</dt>
+      </tt>
+      <dd>Rotate points along the given axis by the angle given in degrees. Twist uses the flex
+        axis, and vortex uses the deform region.</dd>
+      <tt>
+      <dt><br>
+        SCALE <strong>v</strong>factor [<strong>v</strong>center]<br>
+        TAPER <strong>v</strong>factor [<strong>v</strong>center]<br>
+        POLE <strong>v</strong>factor [<strong>v</strong>center]</dt>
+      </tt>
+      <dd>Scale points by the given factors around the given center. Taper uses the flex axis, and
+        pole uses the deform region.</dd>
+      <dt><tt><br>
+        BEND <strong>n</strong>angle <strong>n</strong>direction [<strong>v</strong>center]<br>
+        BEND2 <strong>n</strong>angle <strong>n</strong>direction [<strong>v</strong>center]</tt></dt>
+      <dd>Bend points by the given bend angle in the direction around the optional center. These
+        commands use the current flex axis. In new code, use <tt>BEND2</tt>, which always
+        interprets angle values as degrees.</dd>
+      <dt><tt><br>
+        JITTER <strong>v</strong>radius [<strong>k</strong>type <strong>v</strong>center]</tt></dt>
+      <dd>Randomly translate points using different displacement functions. The jitter type can be
+        <tt>UNIFORM</tt>, <tt>GAUSSIAN</tt>, <tt>NORMAL</tt> or <tt>RADIAL</tt>. <tt>UNIFORM</tt>
+        is the default and moves points randomly along all three axes within a box of the given
+        size. <tt>GAUSSIAN</tt> distributes the offsets in a bell curve around the start point. <tt>NORMAL</tt>
+        shifts the points in and out along the local surface normal. <tt>RADIAL</tt> shifts points
+        toward or away from the center.</dd>
+      <dt><tt><br>
+        SMOOTH [<strong>n</strong>iterations <strong>n</strong>strength]</tt></dt>
+      <dd>Apply a smoothing function to attempt to remove kinks in polygons connecting affected
+        points.</dd>
+      <dt><tt><br>
+        QUANTIZE <strong>v</strong>size</tt></dt>
+      <dd>Snap all points to a 3D grid defined by the size vector.</dd>
+      <dt><tt><br>
+        MERGEPOINTS [<strong>n</strong>mindist]</tt></dt>
+      <dd>Merge points lying within a certain minimum distance of each other. If no distance is
+        given, it is computed heuristically.</dd>
+    </dl>
+    <p><strong>Object Creation</strong><dl>
+      <dt><tt>MAKEBOX <strong>v</strong>lowcorner <strong>v</strong>highcorner [<strong>v</strong>segments]</tt></dt>
+      <dd>Make a box with the given extent and and number of segments.</dd>
+      <dt><tt><br>
+        MAKEBALL <strong>v</strong>radius <strong>n</strong>sides <strong>n</strong>segments [<strong>v</strong>center]</tt></dt>
+      <dd>Make a globe-style sphere.</dd>
+      <dt><tt><br>
+        MAKETESBALL <strong>v</strong>radius <strong>n</strong>level [<strong>v</strong>center]<br>
+        MAKETESBALL2 <strong>v</strong>radius <strong>n</strong>segments [<strong>v</strong>center]</tt></dt>
+      <dd>Make a tesselated sphere. A level 0 tesball is an icosahedron. A level <em>n</em>
+        tesball divides the edges of the icosahedron into 2<sup><em>n</em></sup> segments. The
+        newer <tt>MAKETESBALL2</tt> comand allows the number of segments along the edges to be any
+        number, not just powers of 2.</dd>
+      <dt><tt><br>
+        MAKEDISC <strong>v</strong>radius <strong>n</strong>top <strong>n</strong>bottom <strong>k</strong>axis
+        <strong>n</strong>sides [<strong>n</strong>segments <strong>v</strong>center]</tt></dt>
+      <dd>Make a disc.</dd>
+      <dt><tt><br>
+        MAKECONE <strong>v</strong>radius <strong>n</strong>top <strong>n</strong>bottom <strong>k</strong>axis
+        <strong>n</strong>sides [<strong>n</strong>segments <strong>v</strong>center]</tt></dt>
+      <dd>Make a cone. The top is the pointy end.</dd>
+      <dt><tt><br>
+        MAKETEXT <strong>s</strong>text <strong>n</strong><number>font [<strong>k</strong>cornertype <strong>n</strong>kern
+        <strong>n</strong>scale <strong>k</strong>axis <strong>v</strong>pos]<br>
+        MAKETEXT2 <strong>s</strong>text <strong>n</strong>font [<strong>k</strong>cornertype <strong>n</strong>kern
+        <strong>n</strong>scale <strong>k</strong>axis <strong>v</strong>pos <strong>k</strong>alignment]</tt></dt>
+      <dd>Generate text using the given font index. The font index begins at 1 for <tt>MAKETEXT</tt>
+        and 0 (in agreement with the <a href="../globals/fontlist.html">Font List</a> global's <tt>index</tt>
+        function) for <tt>MAKETEXT2</tt>. The corner type can be either <tt>SHARP</tt> or <tt>BUFFERED</tt>.
+        The kern is an additional distance to put between characters (normally 0). The scale sets
+        the approximate height of the character cell in meters. The axis defines the plane in
+        which the text will lie. For <tt>MAKETEXT</tt>, text is always left-aligned with the
+        position argument, while for <tt>MAKETEXT2</tt>, the alignment can be <tt>LEFT</tt>, <tt>CENTER</tt>
+        or <tt>RIGHT</tt>.</dd>
+    </dl>
+    <p><strong>Replication</strong><dl>
+      <dt><tt>LATHE <strong>k</strong>axis <strong>n</strong>sides [<strong>v</strong>center <strong>n</strong>endangle
+        <strong>n</strong>startangle <strong>n</strong>offset]</tt></dt>
+      <dd>Spin a template around an axis.</dd>
+      <dt><tt><br>
+        EXTRUDE <strong>k</strong>axis <strong>n</strong>extent [<strong>n</strong>segments]</tt></dt>
+      <dd>Sweep a template along an axis.</dd>
+      <dt><tt><br>
+        MIRROR <strong>k</strong>axis <strong>n</strong>plane</tt></dt>
+      <dd>Copy selected data, flipping it through a plane.</dd>
+      <tt>
+      <dt><br>
+        PATHCLONE <strong>s</strong>filename [<strong>n</strong>step <strong>n</strong>start <strong>n</strong>end]<br>
+        PATHEXTRUDE <strong>s</strong>filename [<strong>n</strong>step <strong>n</strong>start <strong>n</strong>end]</dt>
+      </tt>
+      <dd>Load a motion file and clone or extrude the selected data along the path in the file.
+        Clone creates copies of the selected geometry at intervals along the path, while extrude
+        creates a single continuous object by connecting the copies.</dd>
+      <tt>
+      <dt><br>
+        RAILCLONE <strong>n</strong>segments [<strong>k</strong>divs <strong>f</strong>flags <strong>n</strong>strength]<br>
+        RAILEXTRUDE <strong>n</strong>segments [<strong>k</strong>divs <strong>f</strong>flags <strong>n</strong>strength]</dt>
+      </tt>
+      <dd>Clone or extrude selected data along one or more rails (curves) in background layers. If
+        segments is 0, the number of segments is computed automatically. Otherwise the number of
+        segments is fixed, and the intervals between segments depend on whether <tt>divs</tt> is <tt>KNOTS</tt>
+        (the default) or <tt>LENGTHS</tt>. For <tt>KNOTS</tt>, an equal number of segments is
+        placed between each knot, or curve vertex, while for <tt>LENGTHS</tt>, the segments are
+        spaced at equal intervals along the curve. The flags can be <tt>&quot;o&quot;</tt>
+        (oriented), <tt>&quot;s&quot;</tt> (scaled) or <tt>&quot;os&quot;</tt>.</dd>
+    </dl>
+    <p><strong>Tools</strong><dl>
+      <tt>
+      <dt>AXISDRILL <strong>s</strong>operation <strong>k</strong>axis [<strong>s</strong>surface]<br>
+        SOLIDDRILL <strong>s</strong>operation [<strong>s</strong>surface]</dt>
+      </tt>
+      <dd>The drill commands slice the foreground geometry using a 2D template or 3D shape in the
+        background layer. The operation can be <tt>CORE</tt>, <tt>TUNNEL</tt>, <tt>SLICE</tt> or <tt>STENCIL</tt>.</dd>
+      <tt>
+      <dt><br>
+        BOOLEAN <strong>s</strong>operation</dt>
+      </tt>
+      <dd>Booleans combine geometry in the foreground and background to create new shapes. The
+        geometry involved must form fully enclosed volumes, which Modeler treats as solids when
+        performing booleans. The operation can be <tt>UNION</tt>, <tt>SUBTRACT</tt>, <tt>INTERSECT</tt>
+        or <tt>ADD</tt>.</dd>
+      <tt>
+      <dt><br>
+        BEVEL <strong>n</strong>inset <strong>n</strong>shift</dt>
+      </tt>
+      <dd>Create a beveled edge around each selected polygon. The polygon's edges are moved inward
+        (toward the polygon's center) by the inset amount, and the polygon is offset in the
+        direction of its normal by the shift amount. The gap between the polygon's new and old
+        vertices is filled by new polygons that form the beveled edge.</dd>
+      <tt>
+      <dt><br>
+        SHAPEBEVEL pattern</dt>
+      </tt>
+      <dd>Perform multiple bevels using a single command. The patten for a shapebevel is either a
+        string containing pairs of inset/shift values, or a <tt>DY_CUSTOM</tt> DynaValue with the <tt>val[0]</tt>
+        field set to the number of pairs, and the <tt>val[1]</tt> field cast to a pointer to an
+        array of doubles holding the pairs.</dd>
+      <tt>
+      <dt><br>
+        SMOOTHSHIFT <strong>n</strong>offset [<strong>n</strong>maxangle]</dt>
+      </tt>
+      <dd>Extrude part of a mesh. Vertices are moved in the average (&quot;smoothed&quot;)
+        direction of the shared polygons' normals. The mesh breaks at edges that form angles
+        greater than <tt>maxangle</tt>, and the shift direction isn't averaged across those edges.</dd>
+      <tt>
+      <dt><br>
+        SMSCALE <strong>n</strong>offset</dt>
+      </tt>
+      <dd>Move and scale part of a mesh. Vertices are moved as they are with <tt>SMOOTHSHIFT</tt>,
+        but no new polygons are created.</dd>
+    </dl>
+    <p><strong>Polygons</strong><dl>
+      <tt>
+      <dt>FLIP</dt>
+      </tt>
+      <dd>Flip the sidedness (reverse the surface normals) of faces and the directions of curves.</dd>
+      <tt>
+      <dt><br>
+        TRIPLE</dt>
+      </tt>
+      <dd>Convert polygons into triangles by subdividing.</dd>
+      <tt>
+      <dt><br>
+        FREEZECURVES</dt>
+      </tt>
+      <dd>Convert curves into polygons.</dd>
+      <tt>
+      <dt><br>
+        REMOVEPOLS</dt>
+      </tt>
+      <dd>Delete polygons, leaving behind their vertices as points.</dd>
+      <tt>
+      <dt><br>
+        UNIFYPOLS</dt>
+      </tt>
+      <dd>Delete duplicate polygons.</dd>
+      <tt>
+      <dt><br>
+        ALIGNPOLS</dt>
+      </tt>
+      <dd>Roughly speaking, flip polygons so that they all face in the &quot;same&quot; direction
+        to form a coherent mesh. Incoherent meshes can result from the use of the <tt>UNIFYPOLS</tt>
+        command, or when the geometry is created in another program that ignores the sidedness of
+        polygons. It isn't always possible for <tt>ALIGNPOLS</tt> to infer the correct sidedness
+        for all polygons, however.</dd>
+      <tt>
+      <dt><br>
+        CHANGESURFACE <strong>s</strong>surface</dt>
+      </tt>
+      <dd>Set the surface of selected polygons.</dd>
+      <tt>
+      <dt><br>
+        CHANGEPART <strong>s</strong>part</dt>
+      </tt>
+      <dd>Set the part tag for selected polygons.</dd>
+      <tt>
+      <dt><br>
+        SUBDIVIDE <strong>k</strong>mode [<strong>n</strong>maxangle]</dt>
+      </tt>
+      <dd>Split triangles into four smaller triangles and quads into four smaller quads. The mode
+        can be <tt>FLAT</tt>, <tt>SMOOTH</tt>, or <tt>METAFORM</tt>. With flat subdivision, the
+        new polygons retain the parent's normal. A smooth subdivide creates polygons with normals
+        that interpolate the parent's normal and those of its neighbors. Modeler won't try to
+        interpolate normals across edges that form angles larger than <tt>maxangle</tt>. Metaform,
+        unlike smooth mode, moves the original vertices to approximate the continuity (roundness)
+        of a higher-order patch.</dd>
+      <tt>
+      <dt><br>
+        FRACSUBDIVIDE <strong>k</strong>mode <strong>n</strong>fractal [<strong>n</strong>maxangle]</dt>
+      </tt>
+      <dd>Like <tt>SUBDIVIDE</tt>, but applies a fractal displacement to each new vertex as a
+        function of its position.</dd>
+      <tt>
+      <dt><br>
+        TOGGLECCSTART<br>
+        TOGGLECCEND</dt>
+      </tt>
+      <dd>These affect the interpretation of the first and last points in curves. When toggled
+        &quot;on,&quot; the first (or last) point in a curve becomes a continuity control point.
+        It and the curve segment connected to it are no longer part of the curve, but it can be
+        used to affect the shape of the first (or last) segment that is still part of the curve.</dd>
+      <tt>
+      <dt><br>
+        TOGGLEPATCHES</dt>
+      </tt>
+      <dd>Toggling this &quot;on&quot; converts the selected geometry into a subpatch control
+        cage.</dd>
+      <tt>
+      <dt><br>
+        UNWELD</dt>
+      </tt>
+      <dd>Create multiple copies of the selected points so that none are shared by two polygons at
+        once.</dd>
+    </dl>
+    <p>The following eight commands are only valid with EltOpSelect modes of <tt>OPSEL_USER</tt>
+    or <tt>OPSEL_DIRECT</tt>. Just as in the user interface, these operations require explicit
+    selection of the elements they will operate on.<dl>
+      <tt>
+      <dt>MAKE4PATCH <strong>n</strong>perpendicular <strong>n</strong>parallel</dt>
+      </tt>
+      <dd>Create a quad mesh from three or four curves. The <tt>perpendicular</tt> and <tt>parallel</tt>
+        values determine the number of segments that will be created in directions perpendicular
+        and parallel to the last-selected curve. The curves must share vertices to form a closed
+        area.</dd>
+      <tt>
+      <dt><br>
+        SKINPOLS</dt>
+      </tt>
+      <dd>Create a triangle mesh that connects two or more polygons and encloses the volume
+        between them. This is sometimes called lofting. The original polygons aren't required to
+        have the same number of vertices.</dd>
+      <tt>
+      <dt><br>
+        MORPHPOLS <strong>n</strong>segments</dt>
+      </tt>
+      <dd>Create a triangle mesh that connects exactly two polygons with the same number of
+        vertices. The new mesh is divided into a number of segments along the line connecting the
+        two original polygons.</dd>
+      <tt>
+      <dt><br>
+        MERGEPOLS</dt>
+      </tt>
+      <dd>Merge selected polygons into a single polygon. Each selected polygon must share at least
+        one edge with another.</dd>
+      <tt>
+      <dt><br>
+        WELDPOINTS</dt>
+      </tt>
+      <dd>Merge selected points into a single point. The position of the resulting point is the
+        same as that of the last-selected point before the weld.</dd>
+      <tt>
+      <dt><br>
+        WELDAVERAGE</dt>
+      </tt>
+      <dd>Weld selected points into a single point located at the average position of the welded
+        points.</dd>
+      <tt>
+      <dt><br>
+        SPLITPOLS</dt>
+      </tt>
+      <dd>Divide a polygon into two smaller polygons. The new edge is created between selected
+        points.</dd>
+      <tt>
+      <dt><br>
+        SMOOTHCURVES</dt>
+      </tt>
+      <dd>Smooth a composite of two curves at their join point.</dd>
+    </dl>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

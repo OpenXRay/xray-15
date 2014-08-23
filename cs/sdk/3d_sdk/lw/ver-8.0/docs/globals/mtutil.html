@@ -1,0 +1,105 @@
+<html>
+
+<head>
+<title>Globals: Multithreading Utilities</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="locale.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="Locale Info"></a></td>
+    <td width="96" align="left"><a href="objinfo.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Object Info"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Multithreading Utilities</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwmtutil.h">lwmtutil.h</a></small></p>
+    <p>The multithreading global supplies a mutex (mutual exclusion) mechanism for managing
+    threaded execution of your plug-in. LightWave&reg; may invoke your plug-in from multiple
+    threads simultaneously, which has the effect of threading your code. But when doing
+    certain things, for example when reading and writing global data, the threads of your code
+    should be executed one at a time, rather than all at once. The mutex mechanism is a way
+    for the threads of your code to cooperate in waiting for one another.</p>
+    <p>Think of a mutex as a dressing room, a place where a thread can have some privacy. Any
+    time your plug-in needs to do something synchronously (one thread at a time), you ask to
+    be let into the dressing room by calling <tt>lock</tt>. If another thread (another
+    &quot;you&quot;) is already in that dressing room, your thread waits until the other
+    thread is done. Then your thread gets the dressing room, and other threads that want that
+    dressing room must wait for you to finish. When you're finished, you call <tt>unlock</tt>.</p>
+    <p>The LWMTUtilID returned by the <tt>create</tt> function allows you to use up to 10
+    separate mutexes. These are numbered from 0 to 9 and are passed as the second argument to <tt>lock</tt>
+    and <tt>unlock</tt>. You might think of these as 10 different dressing rooms.</p>
+    <p>Multithreading is a complex topic. If you're unfamiliar with it, you're encouraged to
+    seek out a general programming text that discusses the writing of thread-safe code.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWMTUtilFuncs *mtutil;
+   mtutil = global( LWMTUTILFUNCS_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWMTUtilFuncs.</p>
+    <pre>   typedef struct st_LWMTUtilFuncs {
+      LWMTUtilID (*<strong>create</strong>) (void);
+      void       (*<strong>destroy</strong>)(LWMTUtilID mtid);
+      int        (*<strong>lock</strong>)   (LWMTUtilID mtid, int mutexID);
+      int        (*<strong>unlock</strong>) (LWMTUtilID mtid, int mutexID);
+   } LWMTUtilFuncs;</pre>
+    <dl>
+      <dt><tt>mtid = <strong>create</strong>()</tt> </dt>
+      <dd>Returns an LWMTUtilID that can be used by the lock and unlock functions. The return
+        value is NULL if <tt>create</tt> fails.</dd>
+      <dt><tt><br>
+        <strong>destroy</strong>( mtid )</tt> </dt>
+      <dd>Free resources allocated by <tt>create</tt>.</dd>
+      <dt><tt><br>
+        ok = <strong>lock</strong>( mtid, index )</tt> </dt>
+      <dd>Blocks until the mutex becomes available. Returns true if successful, or false if the
+        lock couldn't be executed for some reason. The index is an integer from 0 to 9 that
+        identifies which of the ten mutexes to lock. If another thread has already called <tt>lock</tt>
+        for this mutex, the calling thread waits until the other thread calls <tt>unlock</tt>.</dd>
+      <dt><tt><br>
+        ok = <strong>unlock</strong>( mtid, index )</tt> </dt>
+      <dd>Release the mutex. If another thread has been waiting for this mutex, that thread will
+        execute. Returns true if successful, otherwise false.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>This code fragment outlines the sequence of steps you'd take to use a mutex.</p>
+    <pre>   #include &lt;lwmtutil.h&gt;
+
+   LWMTUtilFuncs *mtutil;
+   LWMTUtilID mtid;
+
+   mtutil = global( LWMTUTILFUNCS_GLOBAL, GFUSE_TRANSIENT );
+   if ( !mtutil )
+      ...global not available, do this some other way...
+
+   /* create the mutex */
+   mtid = mtutil-&gt;create();
+   ...
+
+   /* enclose critical code (code that must run synchronously) in
+      matching lock()/unlock() calls */
+   if ( mtutil-&gt;lock( mtid, 0 )) {
+      ...do something that can't be threaded...
+      mtutil-&gt;unlock( mtid, 0 );
+   }
+   ...
+
+   /* free the mutex when you no longer need it */
+   if ( mtid ) mtutil-&gt;destroy( mtid );
+</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

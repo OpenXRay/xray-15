@@ -1,0 +1,11 @@
+; MayaCmdCOM.def : Declares the module parameters.
+
+LIBRARY      "MayaCmdCOM.DLL"
+
+EXPORTS
+	DllCanUnloadNow		PRIVATE
+	DllGetClassObject	PRIVATE
+	DllRegisterServer	PRIVATE
+	DllUnregisterServer	PRIVATE
+	OpenURLW
+	OpenURLA

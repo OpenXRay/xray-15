@@ -1,0 +1,371 @@
+<html>
+
+<head>
+<title>Classes: ShaderHandler</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="scenecvt.html"><img width="96" height="20"
+    border="0" src="../images/navlt.gif" alt="SceneConverter"></a></td>
+    <td width="96" align="left"><a href="volume.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="VolumetricHandler"></a></td>
+    <td width="96" align="left"><a href="../classes.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Classes"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>ShaderHandler<br>
+    ShaderInterface</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwshader.h">lwshader.h</a></small></p>
+    <p>Shaders set the color and other appearance attributes of each visible spot on a
+    surface.</p>
+    <p>A <em>surface</em>, sometimes called a <em>material</em> in other programs, is a
+    collection of attributes that define the appearance of a polygon. The same surface can be
+    applied to multiple objects, and different surfaces can be applied to different polygons
+    on the same object. Shaders are always associated with a surface and affect its appearance
+    during rendering by setting or modifying its attributes. More than one shader can be
+    associated with a surface, and the effects of one shader might in turn be modified by the
+    next shader in line. A shader can also fire rays into the scene that cause other shaders
+    to be evaluated.</p>
+    <p><img width="360" height="240" border="0" align="right" hspace="8" vspace="8"
+    src="../images/shader.gif" alt="Shader Figure"></p>
+    <p>For each pixel in the rendered image, the renderer finds the spot in the scene that the
+    camera sees at that pixel. If the spot is on an object, its appearance depends on the
+    suface assigned to the polygon it lies in. The renderer uses the surface settings to
+    calculate a color for the pixel, and if a shader is attached to the surface, its
+    evaluation function is called to either modify the surface settings or perform its own
+    color calculation.</p>
+    <p>The shader evaluation function is given the surface attributes, the geometry of the
+    spot, the ID of the object and the polygon, the source of the viewing ray, and other
+    contextual information, and it has access to raytracing functions that can tell it even
+    more about the scene.</p>
+    <p><strong>Handler Activation Function</strong></p>
+    <pre>   XCALL_( int ) MyShader( long version, GlobalFunc *global,
+      LWShaderHandler *local, void *serverData );</pre>
+    <p>The <tt>local</tt> argument to a shader's activation function is an LWShaderHandler.</p>
+    <pre>   typedef struct st_LWShaderHandler {
+      LWInstanceFuncs *<strong>inst</strong>;
+      LWItemFuncs     *<strong>item</strong>;
+      LWRenderFuncs   *<strong>rend</strong>;
+      void            (*<strong>evaluate</strong>) (LWInstance, LWShaderAccess *);
+      unsigned int    (*<strong>flags</strong>)    (LWInstance);
+   } LWShaderHandler;</pre>
+    <p>The first three members of this structure are the standard <a href="../handler.html">handler
+    functions</a>. In addition to these, a shader provides an evaluation function and a flags
+    function.</p>
+    <p>The <tt>context</tt> argument to the <tt>create</tt> function is the LWSurfaceID for
+    the surface. LWSurfaceID is defined in the <tt>lwsurf.h</tt> header file and is used by
+    the <a href="../globals/surface.html">surface functions</a> global.</p>
+    <p>A shader can be activated by Modeler as well as Layout. When activated by Modeler, the
+    LWItemFuncs pointer in the local data is NULL. Be sure to test for this before filling in
+    the <tt>useItems</tt> and <tt>changeID</tt> fields. Note too that if your shader relies on
+    Layout-only globals, those won't be available when Modeler calls your callbacks.<dl>
+      <dt><tt><strong>evaluate</strong>( instance, access )</tt></dt>
+      <dd>This is where the shader does its work. At each time step in the animation, the
+        evaluation function is called for each pixel affected by the shader's surface. The access
+        argument, described below, contains information about the spot to be colored.</dd>
+      <dt><br>
+        <tt>flagbits = <strong>flags</strong>( instance )</tt></dt>
+      <dd>Returns an int that tells the renderer which surface attributes the shader will modify
+        and whether it will call the raytracing functions. The flags are bits combined using
+        bitwise-or. They correspond to members of the shader access structure described below. For
+        efficiency reasons, the renderer may ignore changes to any surface attributes that weren't
+        indicated by the bit flags returned from this function, and it won't provide access to the
+        raytracing functions unless the <tt>LWSHF_RAYTRACE</tt> bit is set. The flags are <tt><p>LWSHF_NORMAL<br>
+        LWSHF_COLOR<br>
+        LWSHF_LUMINOUS<br>
+        LWSHF_DIFFUSE<br>
+        LWSHF_SPECULAR<br>
+        LWSHF_MIRROR<br>
+        LWSHF_TRANSP<br>
+        LWSHF_ETA<br>
+        LWSHF_ROUGH<br>
+        LWSHF_TRANSLUCENT<br>
+        LWSHF_RAYTRACE</tt></p>
+      </dd>
+    </dl>
+    <p><strong>Interface Activation Function</strong></p>
+    <pre>   XCALL_( int ) MyInterface( long version, GlobalFunc *global,
+      LWInterface *local, void *serverData );</pre>
+    <p>This is the standard <a href="../handler.html#ui">interface activation</a> for
+    handlers. Inline <a href="../globals/xpanel.html">xpanels</a> will appear in the Shaders
+    tab of the Surface Editor.</p>
+    <a name="access"><p><strong>Shader Access</strong></a> </p>
+    <p>The evaluation function is called for every visible spot on a surface and is passed a
+    shader access structure describing the spot to be shaded. The access structure contains
+    some values which are read-only and some which are meant to be modified. The read-only
+    values describe the geometry of the pixel being shaded. The read-write values describe the
+    current attribute settings of the spot and should be modified in place to affect the final
+    look of the spot. Since shaders may be layered, these properties may be altered many more
+    times before final rendering. The access structure also contains raytracing functions that
+    can be called only while rendering. </p>
+    <pre>   typedef struct st_LWShaderAccess {
+      int               <strong>sx</strong>, <strong>sy</strong>;
+      double            <strong>oPos</strong>[3], <strong>wPos</strong>[3];
+      double            <strong>gNorm</strong>[3];
+      double            <strong>spotSize</strong>;
+      double            <strong>raySource</strong>[3];
+      double            <strong>rayLength</strong>;
+      double            <strong>cosine</strong>;
+      double            <strong>oXfrm</strong>[9], <strong>wXfrm</strong>[9];
+      LWItemID          <strong>objID</strong>;
+      int               <strong>polNum</strong>;
+      double            <strong>wNorm</strong>[3];
+      double            <strong>color</strong>[3];
+      double            <strong>luminous</strong>;
+      double            <strong>diffuse</strong>;
+      double            <strong>specular</strong>;
+      double            <strong>mirror</strong>;
+      double            <strong>transparency</strong>;
+      double            <strong>eta</strong>;
+      double            <strong>roughness</strong>;
+      LWIlluminateFunc *<strong>illuminate</strong>;
+      LWRayTraceFunc   *<strong>rayTrace</strong>;
+      LWRayCastFunc    *<strong>rayCast</strong>;
+      LWRayShadeFunc   *<strong>rayShade</strong>;
+      int               <strong>flags</strong>;
+      int               <strong>bounces</strong>;
+      LWItemID          <strong>sourceID</strong>;
+      double            <strong>wNorm0</strong>[3];
+      double            <strong>bumpHeight</strong>;
+      double            <strong>translucency</strong>;
+      double            <strong>colorHL</strong>;
+      double            <strong>colorFL</strong>;
+      double            <strong>addTransparency</strong>;
+      double            <strong>difSharpness</strong>;
+      LWPntID           <strong>verts</strong>[4];
+      float             <strong>weights</strong>[4];
+      float             <strong>vertsWPos</strong>[4][3];
+      LWPolID           <strong>polygon</strong>;
+      double            <strong>replacement_percentage</strong>;
+      double            <strong>replacement_color</strong>[3]; 
+      double            <strong>reflectionBlur</strong>;
+      double            <strong>refractionBlur</strong>;
+  } LWShaderAccess;</pre>
+    <p><em><strong>Read-Only Parameters</strong></em></p>
+    <p>These fields provide read-only information about the local geometry of the spot and the
+    context of the evaluation.<dl>
+      <dt><tt><strong>sx</strong>, <strong>sy</strong></tt></dt>
+      <dd>The pixel coordinates at which the spot is visible in the rendered image. This is
+        labeled <strong>PIXEL</strong> in the figure, but note that it won't necessarily be the
+        spot's projection onto the viewplane. When the viewing ray originates on a reflective
+        surface, for example, the pixel coordinates are usually for the source of the ray (the
+        spot's reflection). The pixel coordinate origin (0, 0) is in the upper left corner of the
+        image.</dd>
+      <dt><tt><br>
+        <strong>oPos</strong></tt></dt>
+      <dd>Spot position in object (Modeler) coordinates (the (<strong>X'</strong>, <strong>Y'</strong>,
+        <strong>Z'</strong>) system in the figure).</dd>
+      <dt><tt><br>
+        <strong>wPos</strong></tt></dt>
+      <dd>Spot position in world coordinates (<strong>X</strong>, <strong>Y</strong>, <strong>Z</strong>).
+        This is the position after transformation and the effects of bones, displacement and
+        morphing.</dd>
+      <dt><tt><br>
+        <strong>gNorm</strong></tt></dt>
+      <dd>Geometric normal in world coordinates. This is the raw polygonal normal at the spot,
+        unperturbed by smoothing or bump mapping. </dd>
+      <dt><tt><br>
+        <strong>wNorm0</strong></tt></dt>
+      <dd>The interpolated normal in world coordinates. This is the same as <tt>gNorm</tt>, but
+        after smoothing.</dd>
+      <dt><tt><br>
+        <strong>spotSize</strong></tt></dt>
+      <dd>Approximate spot diameter, useful for texture antialiasing. The diameter is only
+        approximate because spots in general aren't circular. On a surface viewed on edge, they're
+        long and thin. </dd>
+      <dt><tt><br>
+        <strong>raySource</strong></tt></dt>
+      <dd>Origin of the incoming viewing ray in world coordinates. Labeled <strong>EYE</strong> in
+        the figure, this is often the camera, but it can also, for example, be a point on a
+        reflective surface. </dd>
+      <dt><tt><br>
+        <strong>rayLength</strong></tt></dt>
+      <dd>The distance the viewing ray traveled in free space to reach this spot (ordinarily the
+        distance between <tt>raySource</tt> and <tt>wPos</tt>).</dd>
+      <dt><tt><br>
+        <strong>cosine</strong></tt></dt>
+      <dd>The cosine of the angle between the raw surface normal and a ray pointing from the spot
+        back toward the <tt>raySource</tt>. This is the same as the dot product of <tt>gNorm</tt>
+        and the unit vector <tt>(raySource - wPos)/rayLength</tt>. Low values correspond to high
+        angles and therefore glancing views. This is also a measure of how approximate the spot
+        size is. </dd>
+      <dt><tt><br>
+        <strong>oXfrm</strong></tt></dt>
+      <dd>Object to world transformation matrix. The nine values in this array form a 3 x 3 matrix
+        that describes the rotation and scaling of the object. This is useful primarily for
+        transforming direction vectors (bump gradients, for example) from object to world space. <pre>   LWDVector ovec, wvec;
+   wvec[ 0 ] = ovec[ 0 ] * oXfrm[ 0 ]
+             + ovec[ 1 ] * oXfrm[ 1 ]
+             + ovec[ 2 ] * oXfrm[ 2 ];
+   wvec[ 1 ] = ovec[ 0 ] * oXfrm[ 3 ]
+             + ovec[ 1 ] * oXfrm[ 4 ]
+             + ovec[ 2 ] * oXfrm[ 5 ];
+   wvec[ 2 ] = ovec[ 0 ] * oXfrm[ 6 ]
+             + ovec[ 1 ] * oXfrm[ 7 ]
+             + ovec[ 2 ] * oXfrm[ 8 ];</pre>
+      </dd>
+      <dt><tt><strong>wXfrm</strong></tt></dt>
+      <dd>World to object transformation matrix (the inverse of <tt>oXfrm</tt>).</dd>
+      <dt>&nbsp;</dt>
+      <dt><strong><tt>objID</tt></strong></dt>
+      <dd>The object being shaded. It's possible for a single shader instance to be shared between
+        multiple objects, so this may be different for each call to the shader's evaluation
+        function. For sample sphere rendering the ID will refer to an object not in the current
+        scene. </dd>
+      <dt><tt><br>
+        <strong>polNum</strong></tt></dt>
+      <dd>An index identifying the polygon that contains the spot. It may represent other
+        sub-object information in non-mesh objects. See also the <tt>polygon</tt> field.</dd>
+      <dt><tt><br>
+        <strong>flags</strong></tt></dt>
+      <dd>Bit fields describing the nature of the call. The <tt>LWSAF_SHADOW</tt> bit tells you
+        when the evaluation function is being called during shadow computations, which you might
+        want to treat differently from &quot;regular&quot; shader evaluation.</dd>
+      <dt><tt><br>
+        <strong>bounces</strong></tt></dt>
+      <dd>The number of times the viewing ray has branched, or bounced, before reaching this spot.
+        This value can be used to limit recursion, particularly the shader's own calls to the
+        raytracing functions.</dd>
+      <dt><tt><br>
+        <strong>sourceID</strong></tt></dt>
+      <dd>The item ID of the source of the viewing ray.</dd>
+      <dt><tt><br>
+        <strong>verts</strong></tt></dt>
+      <dd>The four vertices surrounding the spot, useful for interpolating vertex-based surface
+        data.</dd>
+      <dt><tt><br>
+        <strong>weights</strong></tt></dt>
+      <dd>The weights assigned to the four neighboring vertices.</dd>
+      <tt>
+      <dt><br>
+        <strong>vertsWPos</strong></dt>
+      </tt>
+      <dd>The world coordinate position of the neighboring vertices.</dd>
+      <tt>
+      <dt><br>
+        <strong>polygon</strong></dt>
+      </tt>
+      <dd>The polygon ID of the polygon containing the spot.</dd>
+    </dl>
+    <p><em><strong>Modifiable Parameters</strong></em></p>
+    <p>These parameters are used by the renderer to compute the perceived color at the spot
+    and may be modified by the shader. Almost all of them correspond directly to surface
+    parameters in the user interface, although the values may be represented by different
+    ranges. Unless stated otherwise, the values of these fields nominally range from 0.0 to
+    1.0, and values outside that range are also valid.</p>
+    <p>The shader's flags function must have returned the correct flags for the fields the
+    shader will modify, or changes to these fields may be ignored. Prior to LightWave&reg; 7.0, to
+    set the perceived color directly a shader would set all of the parameters to zero except
+    for <tt>luminous</tt>, which would be 1.0, and <tt>color</tt>, which would be the output
+    color of the spot. Newer shaders can instead use the <tt>replacement_color</tt> and <tt>replacement_percentage</tt>
+    fields.<dl>
+      <dt><strong><tt>wNorm</tt></strong></dt>
+      <dd>Surface normal in world coordinates. If you modify this vector, you must renormalize it
+        (make its length equal to 1.0).</dd>
+      <dt><tt><br>
+        <strong>bumpHeight</strong></tt></dt>
+      <dd>The relative height of peaks in the bump map. Increasing this value makes the bump
+        mapping appear more pronounced. Currently this is used solely as a texture input. If no
+        texture is applied to the bump channel of the surface, it will be 0, and values you write
+        will be ignored.</dd>
+      <dt>&nbsp;</dt>
+      <dt><strong><tt>color</tt></strong></dt>
+      <dd>The RGB components of the base color of the spot.</dd>
+      <dt>&nbsp;</dt>
+      <dt><strong><tt>luminous</tt></strong></dt>
+      <dd>Luminosity level. Higher values add more of the base color to the final color of the
+        spot. This component is unaffected by lighting and shading.</dd>
+      <dt>&nbsp;</dt>
+      <dt><strong><tt>diffuse</tt></strong></dt>
+      <dd>Diffuse reflection level.</dd>
+      <dt><tt><br>
+        <strong>specular</strong></tt></dt>
+      <dd>Specular reflection level.</dd>
+      <dt>&nbsp;</dt>
+      <dt><strong><tt>mirror</tt></strong></dt>
+      <dd>Mirror reflection level.</dd>
+      <dt><tt><br>
+        <strong>transparency</strong></tt></dt>
+      <dd>Transparency level.</dd>
+      <dt><tt><br>
+        <strong>eta</strong></tt></dt>
+      <dd>Index of refraction. In the real world this ranges between 1.0 and about 3.5, depending
+        on the material, but values outside that range are also valid here. </dd>
+      <dt><tt><br>
+        <strong>roughness</strong></tt></dt>
+      <dd>Surface roughness, the inverse of the exponent in the Phong specular highlight formula.
+        The corresponding user parameter is called Glossiness. The roughness is approximately 2<sup>(10g+2)</sup>.</dd>
+      <dt><tt><br>
+        <strong>translucency</strong></tt></dt>
+      <dd>Translucency level. This determines how much the brightness of a surface is affected by
+        the brightness of the environment behind it.</dd>
+      <dt><tt><br>
+        <strong>colorHL</strong></tt></dt>
+      <dd>Amount of highlight coloring. Higher values mix more of the base color of the spot into
+        the color of specular highlights, a simple way to simulate the behavior of metallic
+        (nondielectric) surfaces.</dd>
+      <dt><tt><br>
+        <strong>colorFL</strong></tt></dt>
+      <dd>Color filtering amount. This controls how strongly the light passing through a
+        transparent surface is colored by that surface, which affects the color of other surfaces
+        illuminated by this light.</dd>
+      <dt><tt><br>
+        <strong>addTransparency</strong></tt></dt>
+      <dd>Additive transparency. An additively transparent surface adds its own color to the
+        colors of surfaces seen through it. This usually has the effect of lightening the color of
+        the underlying surfaces.</dd>
+      <dt><tt><br>
+        <strong>difSharpness</strong></tt></dt>
+      <dd>Diffuse sharpness level. This controls how the shading varies with the angle of the
+        light. Higher values make the brightness of illuminated areas more uniform and increase
+        the sharpness of the transition between lit and dark areas (the terminator of a planet,
+        for example).</dd>
+      <tt>
+      <dt><br>
+        <strong>replacement_percentage</strong><br>
+        <strong>replacement_color</strong></dt>
+      </tt>
+      <dd>Use these together to set a color for the surface that will be unaffected by subsequent
+        shading and lighting calculations. This is typically used by plug-ins that partially
+        replace LightWave&reg;'s lighting model.</dd>
+      <tt>
+      <dt><br>
+        <strong>reflectionBlur</strong><br>
+        <strong>refractionBlur</strong></dt>
+      </tt>
+      <dd>The amount of blurring applied to reflections and refractions.</dd>
+    </dl>
+    <p><em><strong>Rendering Functions</strong></em><dl>
+      <dt><tt>lit = <strong>illuminate</strong>( lightID, position, direction, color )<br>
+        len = <strong>rayTrace</strong>( position, direction, color )<br>
+        len = <strong>rayCast</strong>( position, direction )<br>
+        len = <strong>rayShade</strong>( position, direction, shaderAccess )</dt>
+      </tt>
+      <dd>See the <a href="../raytrace.html">raytracing functions</a> page for a description of
+        these.</dd>
+    </dl>
+    <p><strong>History</strong></p>
+    <p>LightWave&reg; 7.0 added the <tt>replacement_percentage</tt>, <tt>replacement color</tt>, <tt>reflectionBlur</tt>
+    and <tt>refractionBlur</tt> fields to LWShaderAccess, but <tt>LWSHADER_VERSION</tt> was <em>not</em>
+    incremented. If your shader activation accepts version 4, use the <a
+    href="../globals/prodinfo.html">Product Info</a> global to determine whether these fields
+    are available before attempting to read or write them.</p>
+    <p><strong>Example</strong></p>
+    <p>The <a href="../../sample/Layout/Shader/blotch/">blotch</a> sample is a simple shader that renders a
+    circular blotch of a user-specified position, size and color.</td>
+  </tr>
+</table>
+</body>
+</html>

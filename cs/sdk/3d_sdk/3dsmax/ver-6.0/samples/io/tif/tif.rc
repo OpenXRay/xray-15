@@ -1,0 +1,480 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "tifrc.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include <windows.h>
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUT DIALOG  0, 0, 166, 55
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "About TIF Image File"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,109,36,50,14
+    RTEXT           "TIF Image File Format",IDC_STATIC,81,8,73,11
+    RTEXT           "Version 1.0",IDC_STATIC,36,19,118,11
+    GROUPBOX        "",IDC_STATIC,6,2,153,31
+END
+
+IDD_TIF_CONTROL DIALOGEX 0, 0, 219, 106
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "TIF Image Control"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,162,67,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,162,84,50,14
+    GROUPBOX        "Image Type",IDC_STATIC,7,7,100,88,WS_GROUP
+    CONTROL         "8-bit Greyscale",IDC_GREYSCALE,"Button",
+                    BS_AUTORADIOBUTTON | BS_NOTIFY | WS_GROUP,20,19,80,12
+    CONTROL         "8-bit Color",IDC_COLOR,"Button",BS_AUTORADIOBUTTON,20,
+                    31,80,12
+    CONTROL         "16-bit SGI LogL",IDC_LOGL,"Button",BS_AUTORADIOBUTTON,
+                    20,43,80,12
+    CONTROL         "32-bit SGI LogLUV",IDC_LOGLUV,"Button",
+                    BS_AUTORADIOBUTTON,20,55,80,12
+    CONTROL         "Store Alpha Channel",IDC_SAVE_ALPHA,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,20,79,80,12
+    GROUPBOX        "Compression Type",IDC_COMPRESSION_TYPE,112,7,100,39,
+                    WS_GROUP
+    CONTROL         "No Compression",IDC_COMPRESSION_NONE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,125,19,80,12
+    CONTROL         "Packbits",IDC_COMPRESSION_PACKBITS,"Button",
+                    BS_AUTORADIOBUTTON,125,31,80,12
+    LTEXT           "Dots Per Inch",IDC_STATIC,112,51,44,8
+    CONTROL         "Static",IDC_DPI,"CustEdit",WS_GROUP | WS_TABSTOP,166,50,
+                    39,10
+    CONTROL         "Custom2",IDC_DPI_SPIN,"SpinnerControl",WS_GROUP,205,50,
+                    7,10
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "tifrc.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include <windows.h>\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_TIF_CONTROL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 212
+        VERTGUIDE, 20
+        VERTGUIDE, 107
+        VERTGUIDE, 112
+        VERTGUIDE, 125
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 99
+        HORZGUIDE, 19
+        HORZGUIDE, 31
+        HORZGUIDE, 43
+        HORZGUIDE, 55
+        HORZGUIDE, 61
+        HORZGUIDE, 67
+        HORZGUIDE, 79
+        HORZGUIDE, 91
+        HORZGUIDE, 95
+        HORZGUIDE, 98
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_TIF                 "TIF"
+    IDS_TIF_FILE            "TIF Image File"
+    IDS_BITMAP_IO           "Bitmap I/O"
+    IDS_UNKNOWN             "Unknown TIF File Type"
+    IDS_READ_ERROR          "Error Reading Tif File"
+    IDS_WRITE_ERROR         "Error Writing Tif File"
+    IDS_TIF_DESC            "TIF file I/O (Discreet)"
+    IDS_PHOTO               "photo"
+    IDS_SHOW_CONTROL        "showControl"
+    IDS_COMPRESSION_NONE    "No Compression"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_COMPRESSION_PACKBITS "Packbits"
+    IDS_MAX_TIF_WARNING     "Tif File Warning: %s"
+    IDS_LIBTIFF_MODULE      "LibTiff"
+    IDS_MAX_TIF_ERROR       "Tif Error:  %s"
+    IDS_TIF_READ_ERR        "Tif file read error"
+    IDS_TIFF_FORMAT_NO_SUPPORT "No support for data format."
+    IDS_NO_WRITE_ALGORITHM  "Write Algorithm not defined"
+    IDS_INVALID_INKNAMES    "%s: Invalid InkNames value; expecting %d names, found %d"
+    IDS_NO_LZW_PATENT       "LZW compression no longer supported due to Unisys patent enforcement."
+    IDS_TIF_READ_ERR2       "Tif file read error"
+    IDS_GENERIC_NO_LZW      "%s %s encoding is no longer implemented due to Unisys patent enforcement"
+    IDS_NO_ENCODING         "%s %s encoding is not implemented"
+    IDS_NO_COMPRESSION_SCHEME 
+                            "Compression scheme %u %s encoding is not implemented"
+    IDS_SCANLINE            "scanline"
+    IDS_STRIP               "strip"
+    IDS_TILE                "tile"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_NO_DECODING         "%s %s decoding is not implemented"
+    IDS_NO_COMPRESSION_SCEME_DECODING 
+                            "Compression scheme %u %s decoding is not implemented"
+    IDS_COMP_NO_RAND_ACCESS "Compression algorithm does not support random access"
+    IDS_NO_SPACE_COMP_SCHEME "No space to register compression scheme %s"
+    IDS_CANT_MOVE_SCHEME    "Cannot remove compression scheme %s; not registered"
+    IDS_BAD_TAG_VALUE       "Bad value %ld for ""%s"" tag ignored"
+    IDS_BAD_TILE_WIDTH      "Nonstandard tile width %d, convert file"
+    IDS_BAD_TILE_LENGTH     "Nonstandard tile length %d, convert file"
+    IDS_NO_NEST_IFD         "Sorry, cannot nest SubIFDs"
+    IDS_NO_TAG_SUPPORT      "%s: Invalid %stag ""%s"" (not supported by codec)"
+    IDS_PSEUDO              "pseudo-"
+    IDS_D_BAD_VALUE_FOR     "%d: Bad value for ""%s"""
+    IDS_LD_BAD_VALUE_FOR    "%ld: Bad value for ""%s"""
+    IDS_F_BAD_VALUE_FOR     "%f: Bad value for ""%s"""
+    IDS_UNKNOWN_TAG         "%s: Unknown %stag %u"
+    IDS_NO_MODIFY_TAG       "%s: Cannot modify tag ""%s"" while writing"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TIF_READ_ERR3       "Tif file read error"
+    IDS_DIR_FETCH_ERR       "%s: Error fetching directory count"
+    IDS_DIR_FETCH_LINK_ERR  "%s: Error fetching directory link"
+    IDS_NO_UNLINK           "Can not unlink directory in read-only file"
+    IDS_NO_DIRECTORY        "Directory %d does not exist"
+    IDS_NO_WRITE_DIR_LINK   "Error writing directory link"
+    IDS_INT_UNKNOWN_TAG     "Internal error, unknown tag 0x%x"
+    IDS_NO_SPACE            "No space %s"
+    IDS_DIR_SEEK_ERR        "Seek error accessing TIFF directory"
+    IDS_BAD_READ_DIR_COUNT  "Can not read TIFF directory count"
+    IDS_TO_READ_DIR         "to read TIFF directory"
+    IDS_BAD_READ_DIR        "Can not read TIFF directory"
+    IDS_DIR_NO_TAG_SORT     "invalid TIFF directory; tags are not sorted in ascending order"
+    IDS_UNKNOWN_FLD_W_TAG   "unknown field with tag %d (0x%x) ignored"
+    IDS_WRONT_DATA_TYPE     "wrong data type %d for ""%s""; tag ignored"
+    IDS_TO_READ_TRANSFN     "to read ""TransferFunction"" tag"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DIR_MISS_CALCULATING 
+                            "TIFF directory is missing required ""%s"" field, calculating from imagelength"
+    IDS_INSANELY_BOGUS_FIELD 
+                            "Bogus ""%s"" field, ignoring and calculating from imagelength"
+    IDS_FOR_SBC_ARRAY       "for ""StripByteCounts"" array"
+    IDS_MISS_REQD           "TIFF directory is missing required ""%s"" field"
+    IDS_BAD_FIELD_COUNT     "incorrect count for field ""%s"" (%lu, expecting %lu); tag ignored"
+    IDS_FETCH_DATA_ERR      "Error fetching data for field ""%s"""
+    IDS_ZERO_DENOM          "%s: Rational with zero denominator (num = %lu)"
+    IDS_FETCH_RATIONAL      "to fetch array of rationals"
+    IDS_BALLOON             "Cannot read TIFF_ANY type %d for field ""%s"""
+    IDS_TO_GET_VALUE        "to fetch tag value"
+    IDS_BAD_PER_SAMPLE      "Cannot handle different per-sample values for field ""%s"""
+    IDS_OOHH_STRIP          "to fetch strip tag"
+    IDS_CHOPPED_SBC_ARR     "for chopped ""StripByteCounts"" array"
+    IDS_CHOP_SO_ARRAY       "for chopped ""StripOffsets"" array"
+    IDS_ERROR_POST_ENC      "Error post-encoding before directory write"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CANT_FLUSH_BEF      "Error flushing data before directory write"
+    IDS_NO_DIR_SPACE        "Cannot write directory, out of space"
+    IDS_COUNT_ERR           "Error writing directory count"
+    IDS_ERR_DIR_WRITE       "Error writing directory contents"
+    IDS_ERR_WRITE_LINK      "Error writing directory link"
+    IDS_INFO_RAT_LOST       """%s"": Information lost writing value (%g) as (unsigned) RATIONAL"
+    IDS_ERROR_WRITE_FIELD   "Error writing data for field \\""%s\\"""
+    IDS_ERROR_WRITE_IFD     "%s: Error writing SubIFD directory link"
+    IDS_ERROR_HEADER        "Error writing TIFF header"
+    IDS_ERROR_FETCH_LINK    "Error fetching directory link"
+    IDS_ERROR_WRITE_LINK    "Error writing directory link"
+    IDS_SMALL_DATA_DUMP     "DumpModeDecode: Not enough data for scanline %d"
+    IDS_BAD_CODE_WORD       "%s: Bad code word at scanline %d (x %lu)"
+    IDS_NAUGHTY_UNCOMPRESSED 
+                            "%s: Uncompressed data (not supported) at scanline %d (x %lu)"
+    IDS_SOMETHING_SOMETHING "%s: %s at scanline %d (got %lu, expected %lu)"
+    IDS_LLM                 "Line length mismatch"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PREMIE_EOF          "%s: Premature EOF at scanline %d (x %lu)"
+    IDS_GROUP_BAD_BPS       "Bits/sample must be 1 for Group 3/4 encoding/decoding"
+    IDS_BAD_RUN_ARRAY       "%s: No space for Group 3/4 run arrays"
+    IDS_NO_REF_LINE         "%s: No space for Group 3/4 reference line"
+    IDS_BAD_FAX_LINES       "  Bad Fax Lines: %lu\n"
+    IDS_CONSEQ_BAD_LINES    "  Consecutive Bad Fax Lines: %lu\n"
+    IDS_FAX_BAD_PARAMS      "  Fax Receive Parameters: %08lx\n"
+    IDS_FAX_SUBADDR         "  Fax SubAddress: %s\n"
+    IDS_FAX_REC_TIME        "  Fax Receive Time: %lu secs\n"
+    IDS_NSFSB               "%s: No space for state block"
+    IDS_BAD_BIT_SAMPS       "Sorry, can not handle images with %d-bit samples"
+    IDS_MISS_TAG            "Missing needed %s tag"
+    IDS_BAD_CONTIG_WITH     "Sorry, can not handle contiguous data with %s=%d, and %s=%d"
+    IDS_SPP                 """Samples/pixel"""
+    IDS_BADYCBCR            "Sorry, can not handle YCbCr images with %s=%d"
+    IDS_RGB_CHAN            "Sorry, can not handle RGB image with %s=%d"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PLANAR_CONFIG       "Planarconfiguration"
+    IDS_SEPAR_WITH          "Sorry, can not handle separated image with %s=%d"
+    IDS_LOGL_DATA           "Sorry, LogL data must have %s=%d"
+    IDS_COMPRESSION         "Compression"
+    IDS_LOGLUV_DATA         "Sorry, LogLuv data must have %s=%d or %d"
+    IDS_PLANARCONFIG        "Planarconfiguration"
+    IDS_BAD_IMAGE           "Sorry, can not handle image with %s=%d"
+    IDS_SORRY_BIT_SAMPS     "Sorry, can not image with %d-bit samples"
+    IDS_MISS_NEED           "Missing needed %s tag"
+    IDS_NEED_COLORMAP       "Missing required ""Colormap"" tag"
+    IDS_OOM                 "Out of memory for colormap copy"
+    IDS_CONTIG_DATA         "Sorry, can not handle contiguous data with %s=%d, and %s=%d"
+    IDS_WACKED_OUT_LOGLUV   "Sorry, can not handle LogLuv images with %s=%d"
+    IDS_OH_NO               "Sorry, can not handle image with %s=%d"
+    IDS_NO_GET              "No ""get"" routine setup"
+    IDS_NO_PUT              "No ""put"" routine setupl; probably can not handle image format"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_NO_SPACE_TILE_BUFFER "No space for tile buffer"
+    IDS_NO_STRIP            "No space for strip buffer"
+    IDS_NO_SPC_CONVERSION   "No space for YCbCr->RGB conversion state"
+    IDS_NO_BW_MAPPING       "No space for B&W mapping table"
+    IDS_NO_SPC_PHOTO_CONV   "No space for photometric conversion table"
+    IDS_NO_SPC_PALETTE      "No space for Palette mapping table"
+    IDS_ASSUMING_8          "Assuming 8-bit colormap"
+    IDS_CANT_USE_TILED      "Can't use TIFFReadRGBAStrip() with tiled file."
+    IDS_ROW_MUST_FIRST      "Row passed to TIFFReadRGBAStrip() must be first in a strip."
+    IDS_CANT_READ_TILE_STRIP 
+                            "Can't use TIFFReadRGBATile() with stripped file."
+    IDS_ROW_COL_MUST_TOP    "Row/col passed to TIFFReadRGBATile() must be top left corner of a tile."
+    IDS_NO_SPACE_JPEG       "No space for JPEGTables"
+    IDS_BOGUS_JPEGTABLE     "Bogus JPEGTables field"
+    IDS_IMPROPER_STSIZE     "Improper JPEG strip/tile size"
+    IDS_JPEG_COM_COUNT      "Improper JPEG component count"
+    IDS_BAD_JPEG_PRECISION  "Improper JPEG data precision"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_JPEG_SAMPLING_FACTOR "Improper JPEG sampling factors"
+    IDS_JPEG_SCANLINENR     "fractional scanline not read"
+    IDS_JPEG_BAD_PHOTO      "PhotometricInterpretation %d not allowed for JPEG"
+    IDS_BAD_JPEG_BPS        "BitsPerSample %d not allowed for JPEG"
+    IDS_JPEG_TH             "JPEG tile height must be multiple of %d"
+    IDS_JPEG_TW             "JPEG tile width must be multiple of %d"
+    IDS_RPS_JPEG            "RowsPerStrip must be multiple of %d for JPEG"
+    IDS_JPEG_TOO_BIG        "Strip/tile too large for JPEG"
+    IDS_JPEG_TABLS          "  JPEG Tables: (%lu bytes)\n"
+    IDS_JPEG_NO_SPC_STBLK   "No space for JPEG state block"
+    IDS_LOGL16_NED          "LogL16Decode: Not enough data at row %d (short %d pixels)"
+    IDS_LOGLUV24_NED        "LogLuvDecode24: Not enough data at row %d (short %d pixels)"
+    IDS_LOGLUV32_NED        "LogLuvDecode32: Not enough data at row %d (short %d pixels)"
+    IDS_NO_LOGL_CONV_SUPP   "No support for converting user data format to LogL"
+    IDS_NO_SGILOG_SPACE     "%s: No space for SGILog translation buffer"
+    IDS_SGILOG_PROBS        "SGILog compression cannot handle non-contiguous data"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_LOGLUV_CONVERSION_NONE 
+                            "No support for converting user data format to LogLuv"
+    IDS_INAPPROPRIATE_SGILOG_PHOT 
+                            "Inappropriate photometric interpretation %d for SGILog compression; %s"
+    IDS_LOGLUV_LOGL         "must be either LogLUV or LogL"
+    IDS_SGILOG_INAPP_INTERP "Inappropriate photometric interpretation %d for SGILog compression; %s"
+    IDS_SGILOG_SUPPORT      "SGILog compression supported only for %s, or raw data"
+    IDS_UNKNOWN_FMT_LOGLUV  "Unknown data format %d for LogLuv compression"
+    IDS_LOGLUV_NO_SPACE     "%s: No space for LogLuv state block"
+    IDS_LZW_NO_EOI          "LZWDecode: Strip %d not terminated with EOI code"
+    LZW_NO_SPACE            "No space for LZW code table"
+    IDS_LZW_OLD             "Old-style LZW codes, convert file"
+    IDS_BAD_OLD_LZW_CODE    "Old-style LZW codes not supported"
+    IDS_LZW_BOGUS_ENC       "LZWDecode: Bogus encoding, loop in the code table; scanline %d"
+    IDS_LZW_NED             "LZWDecode: Not enough data at scanline %d (short %d bytes)"
+    LZW_DEC_NED             "LZWDecodeCompat: Not enough data at scanline %d (short %d bytes)"
+    IDS_LZW_NO_SPACE        "No space for LZW state block"
+    IDS_NEXT_NED            "NeXTDecode: Not enough data for scanline %ld"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_SOMETHING_BAD_MODE  "\\""%s\\"": Bad mode"
+    IDS_OUT_OF_MEM_TIFF     "%s: Out of memory (TIFF structure)"
+    IDS_NO_READ_HEADER      "Cannot read TIFF header"
+    IDS_ERR_WRITE_HEAD      "Error writing TIFF header"
+    IDS_BAD_MAGIIC          "Not a TIFF file, bad magic number %d (0x%x)"
+    IDS_TIFF_BADVER         "Not a TIFF file, bad version number %d (0x%x)"
+    IDS_NO_OPEN_COMPRESSED  "Can't open a compressed TIFF file with compression for update."
+    IDS_PACK_DISCARD        "PackBitsDecode: discarding %d bytes to avoid buffer overrun"
+    IDS_PACK_NED            "PackBitsDecode: Not enough data for scanline %ld"
+    IDS_PIXAR_BAD_DEPTH     "PixarLog compression can't handle bits depth/data format combination (depth: %d)"
+    IDS_N_BIT_INPUT_PIXAR   "%d bit input not supported in PixarLog"
+    IDS_PIXAR_DECODE_ERR    "%s: Decoding error at scanline %d, %s"
+    IDS_ZLIB_ERR            "%s: zlib error: %s"
+    IDS_PIXAR_NED           "%s: Not enough data at scanline %d (short %d bytes)"
+    IDS_PIXAR_UNSUPP_BPS    "PixarLogDecode: unsupported bits/sample: %d"
+    IDS_PIXAR_N_BIT_LIN     "PixarLog compression can't handle %d bit linear encodings"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PIXAR_ENC_ERR       "%s: Encoder error: %s"
+    IDS_PIXAR_NO_SPACE      "No space for PixarLog state block"
+    IDS_PRED_BAD_VAL        """Predictor"" value %d not supported"
+    IDS_PRED_BAD_HORIZ      "Horizontal differencing ""Predictor"" not supported with %d-bit samples"
+    IDS_PREDICTOR_COLON     "  Predictor: "
+    IDS_PRED_HORIZ          "horizontal differencing "
+    IDS_PRED_NONE           "none "
+    IDS_SCAN_OOR            "%lu: Row out of range, max %lu"
+    IDS_SCAN_STRIP_OOR      "%ld: Strip out of range, max %ld"
+    IDS_SCAN_SEEK_ERR       "%s: Seek error at scanline %lu, strip %lu"
+    IDS_SCAN_READ_ERR       "%s: Read error at scanline %lu; got %lu bytes, expected %lu"
+    IDS_SCAN_INVALID_SBC    "%lu: Invalid strip byte count, strip %lu"
+    ISD_SCAN_SMALL_BUFFER   "%s: Data buffer too small to hold strip %lu"
+    IDS_SCAN_TILE_OOR       "%ld: Tile out of range, max %ld"
+    IDS_SCAN_SEEK_TILE      "%s: Seek error at row %ld, col %ld, tile %ld"
+    IDS_SCAN_READ_COL_ERR   "%s: Read error at row %ld, col %ld; got %lu bytes, expected %lu"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_SCAN_INVALID_TILE_BC "%lu: Invalid tile byte count, tile %lu"
+    IDS_SCAN_TILE_SMALL_BUFF "%s: Data buffer too small to hold tile %ld"
+    IDS_SCAN_NO_SPACE       "%s: No space for data buffer at scanline %ld"
+    IDS_SCAN_FILE_BAD_OPEN  "File not open for reading"
+    IDS_NO_TILE_FROM_STRIP  "Can not read tiles from a stripped image"
+    IDS_NO_SCAN_FROM_TILE   "Can not read scanlines from a tiled image"
+    IDS_SAMPLE_OOR          "%u: Sample out of range, max %u"
+    IDS_THUNDER_BAD_DATA    "ThunderDecode: %s data at scanline %ld (%lu != %lu)"
+    IDS_THUNDER_NOT_EN      "Not enough"
+    IDS_THUNDER_TOO_MUCH    "Too much"
+    IDS_TILE_COL_OOR        "Col %ld out of range, max %lu"
+    IDS_TILE_ROW_OOR        "Row %ld out of range, max %lu"
+    IDS_TILE_DEPTH_OOR      "Depth %ld out of range, max %lu"
+    IDS_TILE_SAMPLE_OOR     "Sample %d out of range, max %u"
+    IDS_LIBTIFF_VERSION_STR "LIBTIFF, Version 3.5.6 beta\nCopyright (c) 1988-1996 Sam Leffler\nCopyright (c) 1991-1996 Silicon Graphics, Inc."
+    IDS_WIN_CANT_OPEN       "%s: Cannot open"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERR                 "%s Error"
+    IDS_STRING_MODULE       "TIFFLIB"
+    IDS_CANT_CHANGE_LENGTH_PLANES 
+                            "Can not change ""ImageLength"" when using separate planes"
+    IDS_WRITE_SAMPLE_OOR    "%d: Sample out of range, max %d"
+    IDS_WRITE_NO_GROW       "Can not grow image by strips when using separate planes"
+    IDS_WRITE_TILE_OOR      "%s: Tile %lu out of range, max %lu"
+    IDS_WRITE_FILE_NOT_OPEN "%s: File not open for writing"
+    IDS_WRITE_TILE_STRIPPED "Can not write tiles to a stripped image"
+    IDS_WRITE_SCAN_TO_TILE  "Can not write scanlines to a tiled image"
+    IDS_WRITE_IMAGEWIDTH_SET "%s: Must set ""ImageWidth"" before writing data"
+    IDS_WRITE_PLANAR_NOT_SET 
+                            "%s: Must set ""PlanarConfiguration"" before writing data"
+    IDS_WRITE_NO_SPACE_A    "%s: No space for %s arrays"
+    IDS_NO_OUT_BUF_SPACE    "%s: No space for output buffer"
+    IDS_WRITE_EXPAND        "%s: No space to expand strip arrays"
+    IDS_WRITE_SEEK_ERR      "%s: Seek error at scanline %lu"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_WRITE_ERR           "%s: Write error at scanline %lu"
+    IDS_ZIP_DECODE_ERR      "%s: Decoding error at scanline %d, %s"
+    IDS_ZIP_ENCOD_ERR       "%s: Encoder error: %s"
+    IDS_ZIP_NO_SPACE        "No space for ZIP state block"
+    IDS_TIF_COMPRESS        "Compression"
+    IDS_TIFIO_GETTYPE       "Get Type"
+    IDS_TIFIO_SETTYPE       "Set Type"
+    IDS_TIFIO_GETSHOWCONTROL "Get Show Control"
+    IDS_TIFIO_SETSHOWCONTROL "Set Show Control"
+    IDS_TIFIO_GETCOMPRESSION "Get Compression"
+    IDS_TIFIO_SETCOMPRESSION "Set Compression"
+    IDS_TIFIO_GETALPHA      "Get Alpha"
+    IDS_TIFIO_SETALPHA      "Set Alpha"
+    IDS_TIFIO_GETDPI        "Get DPI"
+    IDS_TIFIO_SETDPI        "Set DPI"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

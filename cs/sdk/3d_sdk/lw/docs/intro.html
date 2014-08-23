@@ -1,0 +1,293 @@
+<html>
+
+<head>
+<title>Introduction</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="tables.html"><img width="96" height="20" border="0"
+    src="images/navlt.gif" alt="Tables"></a></td>
+    <td width="96" align="left"><a href="compile.html"><img width="64" height="20" border="0"
+    src="images/navrt.gif" alt="Compiling"></a></td>
+    <td width="384" align="right"><a href="index.html"><img width="230" height="20" border="0"
+    src="images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Introduction</h3>
+    <p>This is the documentation for the LightWave 3D Server Development Kit (SDK) for
+    versions of LightWave beginning with 6.0. Although it will refer specifically to
+    LightWave, other NewTek products may also support LightWave plug-ins. Documentation for
+    versions prior to 6.0 and strategies for supporting multiple versions and products are
+    discussed on the <a href="compat.html">compatibility</a> page.</p>
+    <p>I'll refer to myself in the first person in this introduction, just so you know that
+    the documentation was in fact written by a human being, but to give you fair warning, this
+    is a technical reference with more than a few dry spots. It makes significant demands on
+    the reader, and depending on your degree of familiarity with LightWave, the C language,
+    and 3D graphics programming, many parts might be completely opaque the first time through.</p>
+    <p>That's normal. Don't be discouraged by it. The information covered in this
+    documentation is inherently difficult. It's not just you.</p>
+    <p>Because of this, I've tried very hard to be clear, concise and accurate. I've built on
+    the work of others whose knowledge of this material comes directly from writing the host
+    side of the plug-in API (application programming interface), and some of those same people
+    have made an effort to explain the difficult parts to me. I've corrected a number of
+    mistakes pointed out by readers of earlier drafts, but inevitably, errors and omissions
+    remain, and chances are you'll find at least one.</p>
+    <p>In the following sections, I recommend books that provide the background you'll need,
+    review a particular programming concept that may be unfamiliar to some, and give a quick
+    tour of the plug-in system with links to important parts of the documentation. For
+    developers with pre-6.0 plug-in experience, I'll also highlight some of the major changes
+    that first appeared in LightWave 6.0.</p>
+    <p align="right"><em>Ernie Wright</em><br>
+    December 2001</p>
+    <a name="prerequisites"><p><strong>Programming Prerequisites</strong></a> </p>
+    <p>These pages document the C language interface to LightWave. They assume that you're
+    comfortable with writing C code, so they won't teach you C. Specifically, they won't
+    discuss abstract dynamic library concepts or the writing of re-entrant, thread-safe code.
+    They also won't teach you 3D graphics programming or, for lack of a better term, the
+    LightWave user paradigm. All of this information is available from other, better sources.</p>
+    <p>My favorite book for learning C programming is<ul>
+      <li>Al Kelley and Ira Pohl, <strong><em>A Book on C</em></strong>, 4th ed., Addison-Wesley,
+        ISBN 0201183994</li>
+    </ul>
+    <p>You might also want a good algorithms book. I have<ul>
+      <li>Robert Sedgewick, <em><strong>Algorithms in C</strong></em>, Addison-Wesley, ISBN
+        0201514257</li>
+    </ul>
+    <p>3D graphics relies heavily on trigonometry and linear algebra, but in most cases you
+    don't need an advanced knowledge of those subjects. You do need to know what sine, cosine
+    and tangent are, and you need to know how to do vector and matrix arithmetic. Many of the
+    books below include an appendix that reviews the basics. For greater depth, visit the
+    nearest university bookstore and pick up whatever textbook they're using for the
+    introductory courses.</p>
+    <p>Any good introductory textbook on graphics programming should provide an adequate
+    foundation for understanding the fundamental concepts of computer graphics. I like<ul>
+      <li>F.S. Hill, <strong><em>Computer Graphics</em></strong>, Macmillan, ISBN 0023548606</li>
+      <li>Alan Watt, <em><strong>Fundamentals of Three-Dimensional Computer Graphics</strong></em>,
+        Addison-Wesley, ISBN 0201154420</li>
+    </ul>
+    <p>but there are others. Note that both of these are more than 10 years old. That's okay,
+    though. The fundamentals really haven't changed much in that amount of time. For more
+    advanced texts, the canon would include<ul>
+      <li>Andrew Glassner (series ed.), <strong><em>Graphics Gems</em></strong>, vol. I - V,
+        Academic Press, ISBNs 0122861663, 0120644819, 0124096735, 0123361559, 0125434553</li>
+      <li>James Foley et al., <strong><em>Computer Graphics: Principles and Practice</em></strong>,
+        2nd ed. in C, Addison-<wbr>Wesley, ISBN 0201848406</li>
+      <li>Alan Watt and Mark Watt, <strong><em>Advanced Animation and Rendering Techniques: Theory
+        and Practice</em></strong>, Addison-Wesley, ISBN 0201544121</li>
+      <li>David Ebert et al., <strong><em>Texturing and Modeling</em></strong>, 2nd ed., Academic
+        Press, ISBN 0122287304</li>
+      <li>James Murray and William vanRyper, <strong><em>Encyclopedia of Graphics File Formats</em></strong>,
+        2nd ed., O'Reilly &amp; Associates, ISBN 1565921615</li>
+      <li>William Press et al., <strong><em>Numerical Recipes in C</em></strong>, 2nd ed.,
+        Cambridge University Press, ISBN 0521431085</li>
+      <li>Jackie Neider et al., <em><strong>OpenGL Programming Guide</strong></em> (the red book),
+        Addison-Wesley, ISBN 0201632748</li>
+    </ul>
+    <p>Also consider the two compilation volumes of Jim Blinn's articles in <em>IEEE Computer
+    Graphics and Applications</em> and the often ground-breaking papers in the annual ACM
+    SIGGRAPH <em>Proceedings</em>. In addition to these, you'll also occasionally find
+    chapters and articles specific to writing LightWave plug-ins in trade books and magazines,
+    some of which are written by members of the LightWave programming team. Don't forget the
+    LightWave user manual, the best source of information about how the program works. And, of
+    course, you'll find supplementary material at every level of complexity on the Internet.</p>
+    <p>But in the event none of this has failed to dissuade you from learning to program by
+    writing LightWave plug-ins, I will review one programming concept that's fundamental to
+    the way plug-ins work and which may not be easily understood solely by osmosis. If you
+    already know what a callback is, feel free to <a href="#tour">skip ahead</a>.</p>
+    <a name="callbacks"><p><em><strong>Function pointers</strong></em></a> </p>
+    <p>LightWave plug-ins make extensive use of function pointers. For people of my
+    programming generation who grew up on BASIC, FORTRAN and Pascal, function pointers seem a
+    bit exotic at first glance. In a linear, self-contained program, there are relatively few
+    reasons to use them. But function pointers are just another kind of variable, and they
+    become quite useful when two separate modules need to execute each other's code.</p>
+    <p>The type definition for a particular function pointer might look like this: </p>
+    <pre>   typedef int ( *FooFunc )( int, double );</pre>
+    <p>This says that FooFunc is a function that returns an int (note: not an int *) and takes
+    an int and a double as arguments. Given this definition, you can now declare variables of
+    type FooFunc *, </p>
+    <pre>   FooFunc *foo;</pre>
+    <p>You can write a FooFunc function, </p>
+    <pre>   int myfoo( int count, double size );
+   {
+      return ( int )( size * count );
+   }</pre>
+    <p>and assign this to your FooFunc variable,</p>
+    <pre>   foo = myfoo;</pre>
+    <p>You can also pass FooFuncs as arguments to other functions.</p>
+    <pre>   int bar( FooFunc *foo );</pre>
+    <p>Equivalently, you can explicitly prototype the <tt>foo</tt> function in <tt>bar</tt>'s
+    function header.</p>
+    <pre>   int bar( int ( *foo )( int, double ));</pre>
+    <p>The standard C runtime library contains at least two functions that take function
+    pointers as arguments, <tt>bsearch</tt> and <tt>qsort</tt>, both usually prototyped in <tt>stdlib.h</tt>.
+    The prototypes look something like this:</p>
+    <pre>   void *bsearch( const void *key, const void *a, size_t n, size_t size,
+      int ( *compar )( const void *, const void * ));
+   void qsort( void *a, size_t n, size_t size,
+      int ( *compar )( const void *, const void * ));</pre>
+    <p>For both of these, you write the comparison function that ranks two elements from the
+    array you're sorting or searching, and you pass this function as an argument to <tt>bsearch</tt>
+    or <tt>qsort</tt>. You can sort or search almost anything using these functions, as long
+    as you can write an appropriate comparison function.</p>
+    <p><em><strong>Callbacks</strong></em></p>
+    <p>The comparison function for <tt>bsearch</tt> and <tt>qsort</tt> is an example of a <em>callback</em>,
+    a function you write for other modules to call. The C runtime calls your comparison
+    function whenever it needs to rank two elements from your array.</p>
+    <p>Callbacks are common in user interface code for modern windowed environments, where
+    they're used to handle &quot;events&quot; triggered by user actions. LightWave's built-in
+    user interface facility uses callbacks in exactly this way, but callbacks are also used
+    elsewhere in the plug-in API. Layout handler class plug-ins contain callbacks that are
+    called at certain points during rendering, and Modeler plug-ins use callbacks to enumerate
+    the points and polygons of an object.</p>
+    <p>You refer to callbacks, of course, by using function pointers.</p>
+    <a name="tour"><p><strong>A Quick Tour</strong></a> </p>
+    <p>This section is a brief, informal overview of the plug-in system and the way plug-ins
+    work. It points to other areas of the documentation so that you know where the details are
+    explained. You might also want to read through Part 1 of the <a href="articles/box1.html">Box
+    tutorial</a> in the Articles section. It covers much of the same ground by a different
+    route, taking you step by step through the creation of a simple plug-in.</p>
+    <p>If you're a plug-in oldtimer from the days before LightWave 6.0 and you just want to
+    get caught up, feel free to <a href="#new">skip ahead</a>.</p>
+    <p>Plug-ins are dynamically linked libraries of code that extend LightWave's capabilities.
+    LightWave ships with dozens of plug-ins, and the source code for many of these is included
+    in the plug-in SDK.</p>
+    <p>Plug-ins are divided into different types, called <a href="classes.html">classes</a>.
+    These aren't actual C++ classes, although the idea is pretty much the same. The different
+    classes plug into LightWave at different points and do different things. There are classes
+    for<ul>
+      <li>loading and saving images, movies, objects and scenes</li>
+      <li>moving items and modifying parameter channels</li>
+      <li>rendering surfaces, textures, volumes and environments</li>
+      <li>image processing</li>
+      <li>creating and manipulating geometry</li>
+      <li>custom color picker and file dialogs</li>
+      <li>displaying rendered output</li>
+      <li>command-based scene alterations</li>
+      <li>controlling other plug-ins, and</li>
+      <li>providing services accessible to other plug-ins.</li>
+    </ul>
+    <p>All plug-ins have access to functions that provide information or services. These are
+    called <a href="globals.html">globals</a>, and they can be used to get item positions,
+    object geometry, surface settings, camera parameters, system and locale information, and a
+    lot of other data. Globals are also used to build platform-<wbr>independent user interfaces and
+    to display common interface elements like file dialogs, color pickers, messages, and
+    envelope and texture editors. You can even write your own globals.</p>
+    <p>A few plug-in classes can also issue <a href="commands.html">commands</a>. Most
+    commands parallel actions the user can take through the LightWave interface. While globals
+    are used primarily to read parameters, commands are used to set them.</p>
+    <p>More than half of the plug-in classes are <a href="handler.html">handler</a> classes.
+    Unlike plug-ins that run when they're invoked and then exit, handlers have a persistent
+    lifetime. They supply callbacks that LightWave can call at the appropriate time to perform
+    their tasks. Most handlers are involved in rendering and are called at each frame to, for
+    example, move objects, paint surfaces, or append the frame to a movie&nbsp; file. A few
+    handlers respond to user interface events and manage interface objects.</p>
+    <p>Handlers can be applied, or invoked, multiple times. An item motion handler, for
+    example, can control the motion of several different items in a scene. Each invocation of
+    a handler is called an <em>instance</em>, and for each instance, a handler will create
+    some data that it uses to keep track of that instance. The instance data is normally where
+    handlers hold user settings and precalculated parameters, but it can be anything useful to
+    the handler.</p>
+    <p>Handlers provide callbacks for loading and saving their instance data in scene and
+    object files. The actual reading and writing of data in these files is accomplished
+    through <a href="fileio.html">file I/O functions</a> provided by LightWave. A global
+    allows plug-ins of any class to use these same functions with other files, which can be
+    useful for creating and reading platform-independent configuration files for your plug-in,
+    for example.</p>
+    <p>The file I/O functions are one of several mechanisms shared by multiple classes with
+    similar needs. Two more are the <a href="imageio.html">image I/O system</a> used by image
+    and animation loaders and image savers, and the <a href="raytrace.html">raytracing
+    functions</a> used by shaders, volume renderers and filters.</p>
+    <p>Every plug-in has an <a href="server.html#actfunc">activation function</a>. This is the
+    entry point for the plug-in, the function LightWave calls to begin the interaction between
+    the program and your plug-in. For non-handlers, this is where all of the work of the
+    plug-in is done, but for handlers, this is only where the plug-in tells LightWave how to
+    find the plug-in's callbacks. The activation function has the same form for all plug-in
+    classes, with a single argument that differs for each class.</p>
+    <p>A plug-in file can contain more than one plug-in. Each file contains an array of <a
+    href="server.html#servdesc">server records</a>, one for each plug-in in the file. The
+    server record for a plug-in lists the name and the class of the plug-in and the address of
+    the plug-in's activation function. The server record array is an external data structure,
+    a data block in the file that the operating system can locate by name. When LightWave
+    first loads a plug-in, it asks the operating system to return the address of the server
+    record array, and then it finds in that array the addresses of the activation functions
+    the file contains. It can later call the activation function and, for handlers, obtain the
+    addresses of other functions in the file.</p>
+    <p>Most plug-ins provide a user interface, and they normally display it as part of their
+    activation function processing. Handler classes have associated <a href="handler.html#ui">interface</a>
+    classes whose activation functions are dedicated to this purpose. You can build your
+    interfaces using platform-specific elements, but the SDK provides a complete,
+    platform-independent system for building interfaces with elements that have LightWave's
+    look and feel. This system is described on the <a href="globals/panel.html">Panels</a> and
+    <a href="globals/xpanel.html">XPanels</a> pages.</p>
+    <p>So that you don't have to understand all of this all at once, start by trying to <a
+    href="compile.html">compile</a> the example source that's included with the SDK. Once
+    you're compiling successfully, you can experiment by altering the examples before moving
+    on to creating your own plug-ins.</p>
+    <a name="new"><p><strong>What's New</strong></a></p>
+    <p>If you've written plug-ins for versions of LightWave prior to 6.0, much of the current
+    API will seem familiar, but a lot has changed.</p>
+    <p><em>Classes</em> - There are new classes for <a href="classes/animload.html">anim
+    loading</a>, <a href="classes/channel.html">channels</a>, <a href="classes/custobj.html">custom
+    nulls</a> in Layout, <a href="classes/environ.html">environment</a> (backdrop) rendering,
+    multiple plug-in <a href="classes/master.html">mastering</a> in Layout, custom Modeler <a
+    href="classes/metool.html">tools</a>, procedural <a href="classes/texture.html">textures</a>,
+    and <a href="classes/volume.html">volumetrics</a>. Many of the other classes have been
+    significantly enhanced, and nearly all of them have changed at least slightly to reflect
+    the new architecture.</p>
+    <p><em>Globals</em> - The number of globals has nearly doubled, and many of the familiar
+    ones have grown substantially. Among the new globals are a number of user interface
+    components, including the <a href="globals/xpanel.html">XPanels</a> alternative to classic
+    panels, standard access to the current <a href="globals/colorpik.html">color picker</a>,
+    and off-screen bitmaps that can be <a href="globals/raster.html">blitted</a> onto panels.
+    A revamped <a href="globals/anenvel.html">envelopes</a> global is joined by related <a
+    href="globals/chaninfo.html">channels</a> and <a href="globals/vparam.html">variant
+    parameter</a> globals. Layout can tell you about the state of its <a
+    href="globals/intinfo.html">interface</a>, and modified handler instances can <a
+    href="globals/instupdt.html">update</a> Layout.</p>
+    <p>Plug-ins can <a href="globals/imgutil.html">save images</a> through any installed image
+    saver and use <a href="globals/fileio.html">file I/O</a> functions for creating and
+    reading block-structured files. They can incorporate any of the installed procedural
+    textures using globals for <a href="globals/txtrfunc.html">evaluating</a> them and for
+    displaying a standard texture <a href="globals/txtred.html">editor</a> to the user.
+    Globals are available to help with managing <a href="globals/shelf.html">presets</a> and
+    displaying <a href="globals/preview.html">previews</a>. Layout now exposes detailed <a
+    href="globals/sceneobj.html">geometry data</a> for every object in the scene and allows
+    plug-ins to read and modify <a href="globals/surface.html">surface</a> settings and manage
+    <a href="globals/particle.html">particle system</a> data.</p>
+    <p><em>Handlers</em> - The local arguments to handler activation functions have changed. <tt>create</tt>,
+    <tt>destroy</tt> and so on are still in there, but they've been reorganized and
+    standardized. The interface activation functions associated with handlers now receive a
+    structure rather than just their instance data, and many classes will be able to use this
+    structure to draw their interface controls onto LightWave's own panels. Some handlers can
+    now be run in Modeler to provide previews, and since the world looks different in Modeler,
+    this case needs to be treated carefully.</p>
+    <p><em>Other Changes</em> - The ServerRecord now includes an optional array of tag strings
+    for each plug-in. Among other things, these tags allow you to list language-specific names
+    for your plug-ins. If your plug-in supplies a list of names, the plug-in name LightWave
+    displays to the user will depend on the locale of the user's system.</p>
+    <p>The <tt>XCALL_INIT</tt> macro has been deprecated, meaning that it's no longer
+    required. You can still use it, but it doesn't do anything on any currently supported
+    platform and isn't likely to return in the future.</p>
+    <p>All class name and global identifier strings have been assigned preprocessor symbols.
+    For future compatibility, you should use these symbols, rather than the string literals,
+    in ServerRecord references and calls to the <tt>global</tt> function.</p>
+    <p><strong>Further Information</strong></p>
+    <p>For updates, additional example source code, contact information, and information about
+    the LightWave plug-in developers' Internet mailing list, visit NewTek's websites,</p>
+    <blockquote>
+      <p><a href="http://www.newtek.com">http://www.newtek.com</a><br>
+      <a href="http://www.lightwave-outpost.com">http://www.lightwave-outpost.com</a></p>
+    </blockquote>
+    <p>&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

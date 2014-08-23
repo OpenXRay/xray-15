@@ -1,0 +1,902 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "modsres.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_BONESDEFPARAM DIALOG  0, 0, 108, 426
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_EFFECT,"CustEdit",WS_TABSTOP,56,289,36,10
+    CONTROL         "",IDC_EFFECTSPIN,"SpinnerControl",0x0,92,289,7,10
+    RTEXT           "Abs. Effect:",IDC_STATIC,15,290,38,8
+    LISTBOX         IDC_LIST1,3,73,100,112,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_HSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Add",IDC_ADD,4,57,30,12,BS_CENTER | BS_VCENTER
+    PUSHBUTTON      "Remove",IDC_REMOVE,36,57,30,12
+    CONTROL         "Add",IDC_CREATE_CROSS_SECTION,"CustButton",WS_TABSTOP,9,
+                    196,44,13
+    CONTROL         "Lock this bone",IDC_LOCK_BONE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_DISABLED | 
+                    WS_TABSTOP,29,116,77,10
+    CONTROL         "Absolute Influence",IDC_ABSOLUTE_INFLUENCE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_DISABLED | 
+                    WS_TABSTOP,19,116,77,10
+    CONTROL         "X^3",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | NOT 
+                    WS_VISIBLE | WS_DISABLED,5,115,28,11
+    CONTROL         "X",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON | NOT 
+                    WS_VISIBLE | WS_DISABLED,19,115,28,11
+    CONTROL         "Sinual",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON | NOT 
+                    WS_VISIBLE | WS_DISABLED,41,115,46,11
+    CONTROL         "X^.3",IDC_RADIO6,"Button",BS_AUTORADIOBUTTON | NOT 
+                    WS_VISIBLE | WS_DISABLED,60,115,46,11
+    CONTROL         "Draw Envelope",IDC_DISPLAY_ENVELOPE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_DISABLED | 
+                    WS_TABSTOP,19,116,77,10
+    PUSHBUTTON      "Remove",IDC_CREATE_REMOVE_SECTION,55,196,44,13
+    CONTROL         "c",IDC_ERADIUS,"CustEdit",WS_TABSTOP,56,229,36,10
+    CONTROL         "",IDC_ERADIUSSPIN,"SpinnerControl",0x0,92,229,7,10
+    RTEXT           "Radius:",IDC_STATIC,29,230,24,8
+    CONTROL         "",IDC_BONE_TOOLBAR,"CustToolbar",WS_TABSTOP,14,256,80,
+                    14
+    CONTROL         "Use back face",IDC_PROJECT_THROUGH_CHECK,"Button",
+                    BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_DISABLED | 
+                    WS_TABSTOP,1,116,60,10
+    CONTROL         "Falloff",IDC_FALLOFF_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    NOT WS_VISIBLE | WS_DISABLED | WS_TABSTOP,67,116,32,10
+    CONTROL         "Vertices",IDC_FILTER_VERTICES_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,16,29,40,10
+    CONTROL         "Envelopes",IDC_FILTER_BONES_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,56,29,47,10
+    CONTROL         "Cross Sections",IDC_FILTER_ENVELOPES_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,41,65,10
+    GROUPBOX        "Envelope Properties",IDC_STATIC,3,217,101,58
+    GROUPBOX        "Weight Properties",IDC_STATIC,3,278,101,144
+    GROUPBOX        "Select",IDC_STATIC,3,18,101,38
+    CONTROL         "Exclude Verts",IDC_EXCLUDE,"CustButton",WS_TABSTOP,6,
+                    340,47,13
+    CONTROL         "Include Verts",IDC_INCLUDE,"CustButton",WS_TABSTOP,54,
+                    340,48,13
+    CONTROL         "Select Exclude Verts",IDC_SELECT_EXCLUDED,"CustButton",
+                    WS_TABSTOP,6,355,95,13
+    CONTROL         "c",IDC_SQUASH,"CustEdit",WS_TABSTOP,56,242,36,10
+    CONTROL         "",IDC_SQUASHSPIN,"SpinnerControl",0x0,92,242,7,10
+    RTEXT           "Squash:",IDC_STATIC,28,243,25,8
+    CONTROL         "Edit Envelopes",IDC_EDITENVLOPES,"CustButton",
+                    WS_TABSTOP,9,3,90,14
+    CONTROL         "Weight Table",IDC_WEIGHTABLE,"CustButton",WS_TABSTOP,6,
+                    375,95,13
+    CONTROL         "Bake Selected Verts",IDC_BAKEWEIGHTS,"CustButton",
+                    WS_TABSTOP,6,390,95,13
+    CONTROL         "Rigid",IDC_RIGID_CHECK,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,19,302,71,8
+    CONTROL         "Rigid Handles",IDC_RIGIDHANDLES_CHECK,"Button",
+                    BS_AUTO3STATE | WS_TABSTOP,19,314,71,8
+    CONTROL         "Normalize",IDC_NORMALIZE_CHECK,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,19,326,71,8
+    GROUPBOX        "Cross Sections",IDC_STATIC,3,185,101,30
+    CONTROL         "Paint Weights",IDC_PAINT,"CustButton",WS_TABSTOP,6,405,
+                    69,13
+    CONTROL         "...",IDC_PAINTOPTIONS,"CustButton",WS_TABSTOP,77,405,24,
+                    13
+END
+
+IDD_PASTE_DIALOG DIALOG  0, 0, 169, 175
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Paste Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,112,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,112,24,50,14
+    LISTBOX         IDC_LIST1,7,7,96,161,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_BONESDEFADVANCE DIALOG  0, 0, 108, 221
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Reset Selected Bone",IDC_RESET_ALL,10,106,90,14
+    PUSHBUTTON      "Reset Selected Vertices",IDC_UNLOCK_VERTS,10,90,90,14
+    CONTROL         "",IDC_REF_FRAME,"CustEdit",WS_TABSTOP,69,20,26,10
+    CONTROL         "",IDC_REF_FRAME_SPIN,"SpinnerControl",0x0,96,20,7,10
+    RTEXT           "Ref. Frame:",IDC_STATIC,27,20,41,8
+    CONTROL         "Always Deform",IDC_ALWAYSDEFORM_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,7,84,10
+    CONTROL         "Rigid Vertices (All)",IDC_RIGID_VERTICES_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,45,84,10
+    CONTROL         "Rigid Patch Handles(All)",IDC_RIGID_HANDLES_CHECK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,57,94,10
+    PUSHBUTTON      "Reset All Bones",IDC_RESET_ALL_BONES,10,122,90,14
+    PUSHBUTTON      "Save",IDC_SAVE_ENVELOPES,10,142,90,14
+    PUSHBUTTON      "Load",IDC_LOAD_ENVELOPES,10,159,90,14
+    CONTROL         "Fast Updates",IDC_FAST_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,12,191,87,10
+    CONTROL         "",IDC_BONELIMIT,"CustEdit",WS_TABSTOP,71,72,23,10
+    CONTROL         "",IDC_BONELIMIT_SPIN,"SpinnerControl",0x0,95,72,7,10
+    RTEXT           "Bone Affect Limit:",IDC_STATIC,2,72,66,8
+    CONTROL         "Update on mouse up",IDC_UPDATEONMOUSEUP_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,12,178,87,10
+    CONTROL         "Back Transform Vertices",IDC_BACKTRANSFORM_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,33,94,10
+    CONTROL         "Ignore Bone Scale",IDC_IGNOREBONESCALE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,12,204,87,10
+END
+
+IDD_BONESDEFDISPLAY DIALOG  0, 0, 108, 135
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Show Colored Vertices",IDC_DRAW_VERTICES_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,7,84,10
+    CONTROL         "Show All Envelopes",IDC_DRAWALL_ENVELOPES_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,33,79,10
+    CONTROL         "Show All Vertices",IDC_SHOW_ALL_VERTICES_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,44,71,10
+    CONTROL         "Show All Gizmos",IDC_SHOW_ALL_GIZMOS_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,55,68,10
+    CONTROL         "Cross Sections",IDC_CROSSONTOP_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,99,87,10
+    CONTROL         "Envelopes",IDC_ENVELOPEONTOP_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,109,49,10
+    CONTROL         "Show Colored Faces",IDC_DRAW_FACES_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,17,84,10
+    GROUPBOX        "Draw On Top",IDC_STATIC,5,87,98,39
+    CONTROL         "Show No Envelopes",IDC_SHOWNOENVELOPES_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,71,84,10
+END
+
+IDD_BONESDEFGIZMOS DIALOG  0, 0, 108, 142
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    LISTBOX         IDC_LIST1,7,5,92,77,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "Add Gizmo",IDC_ADD,2,105,50,14,BS_CENTER | BS_VCENTER
+    PUSHBUTTON      "Remove Giz.",IDC_REMOVE,54,105,52,14
+    COMBOBOX        IDC_DEFORMERS,8,87,89,64,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_GROUP | WS_TABSTOP
+    PUSHBUTTON      "Copy",IDC_COPY,2,123,50,14,BS_CENTER | BS_VCENTER
+    PUSHBUTTON      "Paste",IDC_PASTE,56,123,50,14,BS_CENTER | BS_VCENTER
+END
+
+IDD_LOAD_ENVELOPES_DIALOG DIALOG  0, 0, 308, 434
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Load Envelopes"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,216,15,63,14
+    PUSHBUTTON      "Cancel",IDCANCEL,216,34,63,14
+    LISTBOX         IDC_LIST1,7,17,86,321,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Current Envelopes",IDC_STATIC,8,4,78,10
+    LISTBOX         IDC_LIST2,111,17,87,321,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Incoming Envelopes",IDC_STATIC,108,4,74,10
+    CONTROL         "Move Up",IDC_MOVE_UP,"CustButton",WS_TABSTOP,216,57,63,
+                    14
+    CONTROL         "Create Blank",IDC_CREATE_BLANK,"CustButton",WS_TABSTOP,
+                    216,74,63,14
+    CONTROL         "Move Down",IDC_MOVE_DOWN,"CustButton",WS_TABSTOP,216,91,
+                    63,14
+    CONTROL         "Load End Points",IDC_LOAD_POINTS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,211,190,68,9
+    CONTROL         "Load Cross Sections",IDC_LOAD_CROSSSECTIONS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,211,202,83,9
+    CONTROL         "Match by Name",IDC_MATCH,"CustButton",WS_TABSTOP,216,
+                    136,63,14
+    CONTROL         "Delete",IDC_DELETE,"CustButton",WS_TABSTOP,216,114,63,
+                    14
+    CONTROL         "Remove Incoming Prefix",IDC_INCOMING_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,210,156,91,11
+    CONTROL         "Remove Current Prefix",IDC_CURRENT_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,210,168,91,11
+    CONTROL         "Load Vertex Data",IDC_LOAD_VERTEXDATA,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,211,218,83,9
+    CONTROL         "Load Exclusion Lists",IDC_LOAD_EXCLUSIONLISTS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,212,230,83,9
+    LISTBOX         IDC_LIST_CVERT,7,355,86,72,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Current Vertex Set",IDC_STATIC,7,342,78,10
+    LTEXT           "Incoming Vertex Set",IDC_STATIC,107,342,74,10
+    LISTBOX         IDC_LIST_IVERT,112,355,86,72,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Move Up",IDC_MOVE_UPVERT,"CustButton",WS_TABSTOP,218,
+                    355,63,14
+    CONTROL         "Create Blank",IDC_CREATE_BLANKVERT,"CustButton",
+                    WS_TABSTOP,218,372,63,14
+    CONTROL         "Move Down",IDC_MOVE_DOWNVERT,"CustButton",WS_TABSTOP,
+                    218,389,63,14
+    CONTROL         "Load Vertices By Index",IDC_LOAD_VERTEXBYINDEX,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,212,251,90,9
+END
+
+IDD_BONESDEFGIZMOSJOINT DIALOG  0, 0, 108, 163
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Edit Angle Keys Curves",IDC_GRAPH,"CustButton",
+                    WS_TABSTOP,7,133,93,14
+    CONTROL         "Custom1",IDC_NAME,"CustEdit",WS_TABSTOP,7,5,92,12
+    CONTROL         "",IDC_PARAM9,"CustEdit",WS_TABSTOP,71,61,20,10
+    CONTROL         "",IDC_PARAM_SPIN9,"SpinnerControl",0x0,93,61,7,10
+    RTEXT           "Twist :",IDC_STATIC_PARAM9,3,61,66,8
+    LTEXT           "Parent:",IDC_PARENT_TEXT,9,24,88,9
+    LTEXT           "Child:",IDC_CHILD_TEXT,9,34,91,9
+    CONTROL         "Use Bounding Volume",IDC_USE_VOLUME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,78,89,10
+    LTEXT           "Angle:",IDC_ANGLE_TEXT,9,44,90,9
+    CONTROL         "Enable Gizmo",IDC_ENABLE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,91,89,10
+    CONTROL         "Edit Lattice",IDC_EDIT,"CustButton",WS_TABSTOP,8,111,93,
+                    14
+END
+
+IDD_REMOVE_DIALOG DIALOG  0, 0, 169, 175
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Remove Multiple Bones"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,112,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,112,24,50,14
+    LISTBOX         IDC_LIST1,7,7,96,161,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_WEIGHTTABLE_CUSTOMLISTNAME DIALOG  0, 0, 186, 58
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Custom List Name"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_EDIT,"CustEdit",WS_TABSTOP,7,12,172,13
+    DEFPUSHBUTTON   "OK",IDOK,65,37,50,14
+END
+
+IDD_WEIGHTTABLE_DIALOG DIALOG  0, 0, 443, 260
+STYLE DS_SETFONT | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_VISIBLE | 
+    WS_CLIPSIBLINGS | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "WeightTable"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Create",IDC_CREATE,11,13,36,13
+    PUSHBUTTON      "Delete",IDC_DELETE,11,29,36,13
+    CONTROL         "Show only affected bones",IDC_AFFECTEDBONES_CHECK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,173,11,97,12
+    COMBOBOX        IDC_SETS,13,46,64,64,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "Options",IDC_OPTIONS2,335,11,62,14,NOT WS_VISIBLE | 
+                    WS_DISABLED
+    PUSHBUTTON      "Copy",IDC_COPY,7,242,29,12
+    PUSHBUTTON      "Paste",IDC_PASTE,41,242,29,12
+    SCROLLBAR       IDC_SCROLLBAR1,418,97,9,143,SBS_VERT
+    SCROLLBAR       IDC_SCROLLBAR3,158,240,277,9
+    CONTROL         "",IDC_WEIGHTLIST,"weightList",WS_TABSTOP,160,99,256,140
+    GROUPBOX        "Vertex Sets",IDC_VERTEX_STATIC,7,2,75,62
+    GROUPBOX        "Options",IDC_OPTION_STATIC,167,2,240,65
+    COMBOBOX        IDC_NAMELISTGLOBAL_DROP,82,245,71,52,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Update on mouse up",IDC_UPDATEONMOUSEUP_CHECK2,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,173,24,108,12
+    CONTROL         "Flip Rows and Columns",IDC_FLIPFLOPUI_CHECK2,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,173,38,108,12
+    CONTROL         "Show Attribute Data",IDC_ATTRIBUTE_CHECK2,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,281,11,108,12
+    CONTROL         "Show Global Controls",IDC_GLOBAL_CHECK2,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,283,22,108,12
+    CONTROL         "Shorten Labels",IDC_REDUCELABELS_CHECK2,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,283,33,108,12
+    CONTROL         "Show Exclusion Attribute",IDC_SHOWEXCLUSION_CHECK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,283,45,108,12
+    CONTROL         "Show Locked Attribute",IDC_SHOWLOCK_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,283,55,108,12
+    CONTROL         "",IDC_PRECISION2,"CustEdit",WS_TABSTOP,219,50,36,10
+    CONTROL         "",IDC_PRECISION_SPIN2,"SpinnerControl",0x0,255,50,7,10
+    RTEXT           "Precision:",IDC_PRECISION_STATIC,175,50,41,8
+    CONTROL         "",IDC_FONTSIZE2,"CustEdit",WS_TABSTOP,219,64,36,10
+    CONTROL         "",IDC_FONTSIZE_SPIN2,"SpinnerControl",0x0,255,64,7,10
+    RTEXT           "Font Size:",IDC_FONTSIZE_STATIC,175,64,41,8
+    CONTROL         "",IDC_WEIGHTLISTLABEL,"weightListLabel",WS_TABSTOP,158,
+                    74,277,10
+    CONTROL         "",IDC_WEIGHTLISTGLOBAL,"weightListGlobal",WS_TABSTOP,
+                    158,87,277,10
+    CONTROL         "",IDC_NAMELIST,"nameList",WS_TABSTOP,7,99,75,140
+    CONTROL         "",IDC_NAMELISTLABEL,"nameListLabel",WS_TABSTOP,7,74,75,
+                    10
+    CONTROL         "",IDC_ATTRIBLIST,"attribList",WS_TABSTOP,90,99,62,140
+    CONTROL         "",IDC_ATTRIBLISTGLOBAL,"attribListGlobal",WS_TABSTOP,92,
+                    74,59,10
+    CONTROL         "",IDC_ATTRIBLISTLABEL,"attribListLabel",WS_TABSTOP,92,
+                    86,59,10
+    PUSHBUTTON      "Select All",IDC_SELECTALL,87,11,36,13,NOT WS_VISIBLE
+    PUSHBUTTON      "Select None",IDC_SELECTNONE,88,24,36,13,NOT WS_VISIBLE
+    PUSHBUTTON      "Select Invert",IDC_SELECTINVERT,89,39,36,13,NOT 
+                    WS_VISIBLE
+    PUSHBUTTON      "Alternate Global Mode",IDC_JBUIMETHOD,88,55,36,13,NOT 
+                    WS_VISIBLE
+    PUSHBUTTON      "Show copy paste",IDC_SHOWCOPYPASTEUI,126,11,36,13,NOT 
+                    WS_VISIBLE
+    PUSHBUTTON      "Show copy paste",IDC_SHOWSETUI,126,24,36,13,NOT 
+                    WS_VISIBLE
+    PUSHBUTTON      "Show options ui",IDC_SHOWOPTIONSUI,126,39,36,13,NOT 
+                    WS_VISIBLE
+    PUSHBUTTON      "Show Menu",IDC_SHOWMENU,126,54,36,13,NOT WS_VISIBLE
+    PUSHBUTTON      "Drag Mode",IDC_DRAGMODE,126,62,36,13,NOT WS_VISIBLE
+    PUSHBUTTON      "Show Marker",IDC_SHOWMARKER,95,62,36,13,NOT WS_VISIBLE
+    PUSHBUTTON      "Debug Mode",IDC_DEBUGMODE,82,62,36,13,NOT WS_VISIBLE
+    LTEXT           "Static",IDC_STATUS,161,250,275,8
+    PUSHBUTTON      "Right Justify",IDC_RIGHTJUSTIFY,135,63,36,13,NOT 
+                    WS_VISIBLE
+END
+
+IDD_BONESDEFPAINT DIALOG  0, 0, 108, 82
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Paint Weights",IDC_PAINT,"CustButton",WS_TABSTOP,9,8,90,
+                    14
+    CONTROL         "",IDC_SRADIUS,"CustEdit",WS_TABSTOP,55,41,36,10
+    CONTROL         "",IDC_SRADIUSSPIN,"SpinnerControl",0x0,92,41,7,10
+    RTEXT           "Radius:",-1,15,41,38,8
+    CONTROL         "",IDC_FEATHER,"CustEdit",WS_TABSTOP,55,52,36,10
+    CONTROL         "",IDC_FEATHERSPIN,"SpinnerControl",0x0,92,52,7,10
+    RTEXT           "Feather:",-1,15,52,38,8
+    CONTROL         "",IDC_PAINT_STR2,"CustEdit",WS_TABSTOP,55,29,36,10
+    CONTROL         "",IDC_PAINT_STR_SPIN2,"SpinnerControl",0x0,92,29,7,10
+    RTEXT           "Paint Str:",-1,15,29,38,8
+END
+
+IDD_BONESDEFMIRROR DIALOG  0, 0, 108, 217
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Mirror Mode",IDC_MIRRORMODE,"CustButton",WS_TABSTOP,9,7,
+                    91,14
+    COMBOBOX        IDC_MIRRORCOMBO,56,104,44,43,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Mirror Plane:",IDC_STATIC,12,106,44,11
+    CONTROL         "c",IDC_MIRROROFFSET,"CustEdit",WS_TABSTOP,57,121,36,10
+    CONTROL         "",IDC_MIRROROFFSETSPIN,"SpinnerControl",0x0,93,121,7,10
+    RTEXT           "Mirror Offset:",IDC_STATIC,11,122,42,8
+    CONTROL         "Use Initial Pose",IDC_USEINTIALPOSE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_DISABLED | 
+                    WS_TABSTOP,100,204,8,13
+    PUSHBUTTON      "Mirror Paste",IDC_MIRRORPASTE,9,26,91,13
+    CONTROL         "c",IDC_MIRRORTHRESHOLD,"CustEdit",WS_TABSTOP,57,137,36,
+                    10
+    CONTROL         "",IDC_MIRRORTHRESHOLDSPIN,"SpinnerControl",0x0,93,137,7,
+                    10
+    RTEXT           "Mirror Thresh.:",IDC_STATIC,3,138,51,8
+    LTEXT           "Display Projection",IDC_STATIC,9,153,91,9
+    COMBOBOX        IDC_PROJECTIONCOMBO,9,166,91,72,CBS_DROPDOWN | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Manual Update",IDC_MANUALCHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,9,182,91,11
+    PUSHBUTTON      "Update",IDC_UPDATE,9,197,91,13
+    CONTROL         "Fast Engine",IDC_FASTCHECK,"Button",BS_AUTOCHECKBOX | 
+                    NOT WS_VISIBLE | WS_DISABLED | WS_TABSTOP,100,205,8,11
+    PUSHBUTTON      "Paste Green to Blue Bones",IDC_GTOB_BONEPASTE,9,43,91,
+                    13
+    PUSHBUTTON      "Paste Blue to Green Bones",IDC_BTOG_BONEPASTE,9,57,91,
+                    13
+    PUSHBUTTON      "Paste Green to Blue Verts",IDC_GTOB_VERTSPASTE,9,74,91,
+                    13
+    PUSHBUTTON      "Paste Blue to Green Verts",IDC_BTOG_VERTSPASTE,9,88,91,
+                    13
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "modsres.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_BONESDEFPARAM, DIALOG
+    BEGIN
+        RIGHTMARGIN, 106
+        VERTGUIDE, 19
+        VERTGUIDE, 56
+        VERTGUIDE, 101
+        BOTTOMMARGIN, 424
+        HORZGUIDE, 173
+    END
+
+    IDD_PASTE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 162
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 168
+    END
+
+    IDD_BONESDEFADVANCE, DIALOG
+    BEGIN
+        RIGHTMARGIN, 106
+        VERTGUIDE, 19
+        VERTGUIDE, 55
+        BOTTOMMARGIN, 216
+    END
+
+    IDD_BONESDEFDISPLAY, DIALOG
+    BEGIN
+        VERTGUIDE, 19
+        VERTGUIDE, 53
+        BOTTOMMARGIN, 114
+    END
+
+    IDD_BONESDEFGIZMOS, DIALOG
+    BEGIN
+        RIGHTMARGIN, 106
+        BOTTOMMARGIN, 138
+    END
+
+    IDD_LOAD_ENVELOPES_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 301
+        BOTTOMMARGIN, 427
+    END
+
+    IDD_BONESDEFGIZMOSJOINT, DIALOG
+    BEGIN
+        RIGHTMARGIN, 106
+        BOTTOMMARGIN, 159
+    END
+
+    IDD_REMOVE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 162
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 168
+    END
+
+    IDD_WEIGHTTABLE_CUSTOMLISTNAME, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 51
+    END
+
+    IDD_WEIGHTTABLE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 421
+        VERTGUIDE, 82
+        VERTGUIDE, 144
+        VERTGUIDE, 200
+        VERTGUIDE, 345
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 238
+        HORZGUIDE, 11
+        HORZGUIDE, 30
+        HORZGUIDE, 45
+        HORZGUIDE, 75
+        HORZGUIDE, 90
+        HORZGUIDE, 97
+    END
+
+    IDD_BONESDEFPAINT, DIALOG
+    BEGIN
+        RIGHTMARGIN, 106
+        VERTGUIDE, 19
+        VERTGUIDE, 55
+        BOTTOMMARGIN, 78
+    END
+
+    IDD_BONESDEFMIRROR, DIALOG
+    BEGIN
+        VERTGUIDE, 9
+        VERTGUIDE, 53
+        VERTGUIDE, 100
+        BOTTOMMARGIN, 210
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_PARAMS              BITMAP                  "skin_param.bmp"
+IDB_PARAMS_MASK         BITMAP                  "skin_param_mask.bmp"
+IDB_SUBOBJTYPES         BITMAP                  "subobjtypes.bmp"
+IDB_MASK_SUBOBJTYPES    BITMAP                  "mask_subobjtypes.bmp"
+IDB_GRAPHBITMAP         BITMAP                  "bitmap1.bmp"
+IDB_GRAPHBITMAPMASK     BITMAP                  "graphbit.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_SEGREFINECUR        CURSOR                  "segrefin.cur"
+IDC_ADDBONECUR          CURSOR                  "cursor1.cur"
+IDC_ADDBONECUR1         CURSOR                  "addbonec.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_WEIGHTTABLE_DIALOG DLGINIT
+BEGIN
+    IDC_SETS, 0x403, 13, 0
+0x6c41, 0x206c, 0x6576, 0x7472, 0x6369, 0x7365, "\000" 
+    IDC_SETS, 0x403, 18, 0
+0x6553, 0x656c, 0x7463, 0x6465, 0x7620, 0x7265, 0x6974, 0x6563, 0x0073, 
+
+    IDC_SETS, 0x403, 14, 0
+0x6553, 0x656c, 0x7463, 0x6465, 0x6220, 0x6e6f, 0x0065, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_RB_BONESDEFMOD      "Skin"
+    IDS_RB_STARTPOINT       "Start Point"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RB_ENDPOINT         "End Point"
+    IDS_RB_BONESDEFPOINTS   "Envelope"
+    IDS_RB_INNER            "Upper Inner"
+    IDS_RB_LINNER           "Lower Inner"
+    IDS_RB_OUTER            "Upper Outer"
+    IDS_RB_LOUTER           "Lower Outer"
+    IDS_RB_EFFECT           "Effect"
+    IDS_PW_EFFECT           "Effect"
+    IDS_PW_RADIUS           "Radius"
+    IDS_PW_LOCK             "Lock"
+    IDS_PW_ABSOLUTE         "Absolute/Relative"
+    IDS_PW_PARAMETER        "Parameters"
+    IDS_PW_FALLOFF          "Falloff"
+    IDS_PW_DRAWENVELOPE     "DrawEnvelope"
+    IDS_PW_FEATHER          "Feather"
+    IDS_PW_FILTERVERTICES   "Filter vertices"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PW_FILTERBONES      "Filter envelopes"
+    IDS_PW_FILTERENVELOPES  "Filter cross sections"
+    IDS_PW_PAINT            "Paint Params"
+    IDS_PW_FILTER           "Filter Params"
+    IDS_PW_ADVANCE          "Advanced Parameters"
+    IDS_PW_ENVELOPE         "Envelope Visibility"
+    IDS_PW_COPY             "Copy"
+    IDS_PW_PASTE            "Paste"
+    IDS_PW_NOT_BONESDEF_ERROR "Not a skin modifier"
+    IDS_PW_SKIN_NOT_SELECTED 
+                            "Skin need to be selected and in the modifier panel "
+    IDS_PW_EXCEEDED_VERTEX_COUNT "Exceeded the vertex count"
+    IDS_PW_EXCEEDED_SUBVERTEX_COUNT "Exceeded the vertex weight list count"
+    IDS_PW_INVALID_DATA     "Needs to be a number value"
+    IDS_PW_EXCEEDED_BONE_COUNT "Exceeded the bone count"
+    IDS_PW_WEIGHT_BONE_COUNT 
+                            "The weight array count must equal the bone id array count"
+    IDS_PW_ENVELOPEVIS      "Envelope Visible Only When Selected"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PW_PARAMETERS       "Parameters"
+    IDS_PW_SELECT           "Select"
+    IDS_PW_EDIT_ENVELOPE    "Edit envelopes"
+    IDS_PW_DRAWALLENVELOPES "Draw all envelopes"
+    IDS_PW_COLORVERTS       "Color weighted vertices"
+    IDS_PW_DELETEBONE       "Delete Bone"
+    IDS_PW_WEIGHTCHANGE     "Weight Change"
+    IDS_PW_EXCEEDED_CROSS_COUNT "Exceeded the bone count"
+    IDS_PW_SELECTBONES      "Select Bones"
+    IDS_PW_REFFRAME         "Ref. Frame"
+    IDS_PW_ALWAYS_DEFORM    "Always deform"
+    IDS_PW_PAINTSTR         "Paint Str."
+    IDS_PW_REMOVE           "Remove Bone"
+    IDS_PW_FILEEXISTS       "%s already exists.\nDo you want to replace it?"
+    IDS_PW_SAVEENVELOPES    "Save Envelopes"
+    IDS_PW_ENVFILES         "Envelopes, (*.env)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PW_DISPLAY          "Display"
+    IDS_PW_GIZMOS           "Gizmos"
+    IDS_PW_LOADENVELOPES    "Load Envelopes"
+    IDS_PW_GIZMOSJOINT      "Joint Angle Deformer"
+    IDS_PW_GIZMOCATEGORY    "BonesDefGizmoDeformer"
+    IDS_PW_GIZMOPARAM       "Gizmo Parameters"
+    IDS_PW_GIZMOPARAM_NAME  "Name"
+    IDS_PW_GIZMOPARAM_LCO   "Low Compression Outer"
+    IDS_PW_GIZMOPARAM_LCI   "Lower Compression Inner"
+    IDS_PW_GIZMOPARAM_UCO   "Upper Compression Outer"
+    IDS_PW_GIZMOPARAM_UCI   "Upper Compression Inner"
+    IDS_PW_GIZMOPARAM_IB    "Inner bias"
+    IDS_PW_GIZMOPARAM_OB    "Outer bias"
+    IDS_PW_GIZMOPARAM_IBU   "Inner bulge"
+    IDS_PW_GIZMOPARAM_OBU   "Outer bulge"
+    IDS_PW_GIZMOPARAM_PARENT "Parent"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PW_GIZMOPARAM_CHILD "Child"
+    IDS_PW_GIZMOPARAM_WEIGHTS "Weights"
+    IDS_PW_GIZMOPARAM_POINTS "Points"
+    IDS_PW_GIZMOPARAM_DEFORMED_POINTS "Deformed Points"
+    IDS_PW_GIZMOPARAM_INITIALANGLE "Initial angle"
+    IDS_PW_GIZMOPARAM_USEGRAPH "Use Graph"
+    IDS_PW_GIZMOPARAM_TWIST "Twist"
+    IDS_PW_GIZMOPARAM_GRAPH "Graph"
+    IDS_PW_DRAWALLGIZMOS    "Draw all gizmos"
+    IDS_PW_DRAWALLVERTS     "Draw all vertices"
+    IDS_PW_DRAWALLHANDLES   "Draw all handles"
+    IDS_PW_RIGIDVERTS       "Rigid vertices"
+    IDS_PW_RIGIDHANDLES     "Rigid patch handles"
+    IDS_PW_GIZMOPARAM_USEVOLUME "Use Volume"
+    IDS_PW_GRAPH            "Joint Graph"
+    IDS_PW_ENABLE           "Enable gizmo"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PW_FAST             "Quick screen update"
+    IDS_PW_REMOVEGIZMO      "Remove Gizmo"
+    IDS_PW_ADDGIZMO         "Add Gizmo"
+    IDS_PW_KEYGRAPH         "Key graph"
+    IDS_PW_EXCLUSION        "Exclusion"
+    IDS_PW_PASTEALL         "Paste to all bones"
+    IDS_PW_PASTEMULT        "Paste to multiple bones"
+    IDS_PW_FALLOFFLINEAR    "Falloff linear"
+    IDS_PW_FALLOFFSINUAL    "Falloff sinual"
+    IDS_PW_FALLOFFFAST      "Falloff fast out"
+    IDS_PW_FALLOFFSLOW      "Falloff slow out"
+    IDS_PW_ADDBONE          "Add bone"
+    IDS_PW_GLOBALSQUASH     "Global Squash"
+    IDS_PW_LOCALSQUASH      "Local Squash"
+    IDS_PW_INITIALSQUASH    "Initial Squash"
+    IDS_PW_QSPINNER         "Squash Spinner"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PW_SHADEWEIGTHS     "Shade Weights"
+    IDS_PW_ENVONTOP         "Envelopes Always On Top"
+    IDS_PW_GIZMOPARAM_OFFSETS "Offsets"
+    IDS_PW_CROSSONTOP       "Cross Sections Always On Top"
+    IDS_PW_SELECTION        "Selection"
+    IDS_PW_GIZMOPARAM_EDITING "Editing"
+    IDS_RB_DEFDEFORMATIONS  "Deformations"
+    IDS_PW_ORIENTATION      "Orientation"
+    IDS_PW_NOUPDATE         "No update"
+    IDS_PW_PARENTERROR      "The selected bone does not have a parent in the skin system."
+    IDS_PW_VERTEXERROR      "There are no selected vertices."
+    IDS_PW_ERROR            "Error"
+    IDS_CURRENT_ANGLE       "Current Angle: %.2f"
+    IDS_PW_ENVTEXTFILES     "Envelopes as ASCII, (*.envASCII)"
+    IDS_ALLVERTS            "All vertices"
+    IDS_SELECTEDVERTS       "Selected Vertices"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_SELECTEDBONE        "Selected bone"
+    IDS_WEIGHTTABLE         "WeightTable"
+    IDS_SELECTED            "Selected"
+    IDS_MODIFIED            "Modified"
+    IDS_PW_SHOWAFFECTEDBONES "Show Affected Bones"
+    IDS_PW_UPDATEONMOUSEUP  "Update On Mouse Up"
+    IDS_PW_FLIPUI           "Flip UI"
+    IDS_PW_SHOWATTRIBUTES   "Show Attributes"
+    IDS_PW_SHOWGLOBAL       "Show Global"
+    IDS_PW_SHORTENLABELS    "Shortern Labels"
+    IDS_PW_SHOWEXLUSIONS    "Show Exclusions"
+    IDS_PW_SHOWLOCKS        "Show Locks"
+    IDS_PW_PRECISION        "Precision"
+    IDS_PW_FONTSIZE         "FontSize"
+    IDS_PW_SHOWUI           "ShowUI"
+    IDS_PW_JBUIMETHOD       "Alternate Global Method"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PW_AFFECTSELECTED   "Affect Selected"
+    IDS_PW_WIDTH            "Width"
+    IDS_PW_HEIGHT           "Height"
+    IDS_PW_XPOS             "XPos"
+    IDS_PW_YPOS             "YPos"
+    IDS_PW_TABLEY           "Top Border"
+    IDS_PW_SHOWCOPYPASTEUI  "Show Copy and Paste UI"
+    IDS_PW_SHOWSETUI        "Show Set Sets UI"
+    IDS_PW_SHOWOPTIONSUI    "Show Options UI"
+    IDS_PW_SHOWMENU         "Show Menu"
+    IDS_PW_SELECTALL        "Select All"
+    IDS_PW_SELECTNONE       "Select None"
+    IDS_PW_SELECTINVERT     "Select Invert"
+    IDS_PW_CREATE           "Create Vertex Set"
+    IDS_PW_DELETE           "Delete Vertex Set"
+    IDS_PW_DRAGMODE         "Drag Left/Right Mode"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PW_AFFECTALLVERTS   "Affect All Vertices"
+    IDS_PW_ACTIVEVERTSET    "Active Vertex Set"
+    IDS_PW_MARKERTYPE       "Marker Type"
+    IDS_PW_MARKERCOLOR      "Marker Color"
+    IDS_PW_SHOWMARKER       "Show Weight Table Marker"
+    IDS_PW_DEBUGMODE        "DebugMode"
+    IDS_PW_ATTRIBLABELHEIGHT "Attrib Label Height"
+    IDS_STATUS_DRAGMODELR   "Left click and drag left/right on a cell to change the weight"
+    IDS_STATUS_DRAGMODETB   "Left click and drag up/down on a cell to change the weight"
+    IDS_STATUS_DRAGMODEALT  "ALT while dragging slows down the speed"
+    IDS_STATUS_DRAGMODECTRL "CTRL while dragging increases the speed"
+    IDS_STATUS_LEFTCLICK    "Left click on a cell to bring up a typein field "
+    IDS_STATUS_RIGHTCLICK   "Right click on a cell to zero it out"
+    IDS_STATUS_RIGHTCLICKCTRL "CTRL Right click on cell to set weight to 1.0"
+    IDS_STATUS_RIGHTCLICKSHIFT 
+                            "SHIFT Right Click to remove the weight from the list"
+    IDS_STATUS_MIDDLEMOUSEBUTTON 
+                            "Use the middle mouse button to pan the window"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STATUS_MIDDLEMOUSESCROLL 
+                            "Use the middle mouse wheel to scroll the window"
+    IDS_PW_CUSTOMNAMES      "CustomeNames"
+    IDS_PW_NORMALIZED       "Normalized"
+    IDS_PW_RIGID            "Rigid"
+    IDS_PW_RIGIDHANDLE      "Handle Rigid"
+    IDS_PW_BONELIMIT        "Bone Limit"
+    IDS_PW_BACKTRANSFORM    "Back Transform Verts"
+    IDS_PW_SHORTENNAMES     "Shorten Bone Names"
+    IDS_PARAM_PBLOCK        "Parameters"
+    IDS_DISPLAY_PBLOCK      "Display"
+    IDS_GIZMO_PBLOCK        "Gizmos"
+    IDS_ADVANCE_PBLOCK      "Advance"
+    IDS_WEIGHTTABLE_PBLOCK  "Weight Table"
+    IDS_BONESTART           "Start Point"
+    IDS_BONEEND             "End Point"
+    IDS_INNNERRADIUS        "Inner Radius"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OUTERRADIUS         "Outer Radius"
+    IDS_PW_TTSELECTED       "Selected - this is whether the vertex is selected in the veiwport by skin"
+    IDS_PW_TTMODIFIED       "Modified - this is whether the vertex has been hand weighted (not under the control of an envelope)"
+    IDS_PW_TTNORMALIZED     "Normalized - this is whether the vertex weights are forced to sum up to 1.0"
+    IDS_PW_TTRIGID          "A Rigid vertex is only influenced by one bone"
+    IDS_PW_TTRIGIDHANDLE    "A Rigid Handle gets it weight from the knot that controls it"
+    IDS_PW_ATTRIBUTESCHANGE "Attribute Change"
+    IDS_PW_AFFECTALLVERTS2  "Affect All Verts"
+    IDS_PW_AFFECTSEL        "Affect Sel. Verts"
+    IDS_PW_BONEID           "Bone ID"
+    IDS_PW_VERTEXID         "Vertex ID"
+    IDS_PW_ADDCROSSSECTION  "Add Cross Section"
+    IDS_PW_CUSTOMLIST       "Custom  List"
+    IDS_PW_NORMALIZEDSHORT  "N"
+    IDS_PW_RIGIDSHORT       "R"
+    IDS_PW_SELECTEDSHORT    "S"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PW_RIGIDHANDLESHORT "H"
+    IDS_PW_MODIFIEDSHORT    "M"
+    IDS_PW_RIGHTJUSTIFY     "Right Justify Bone Names"
+    IDS_PW_IGNOREBONESCALE  "Ignore Bone Scale"
+    IDS_MIRRORPLANE         "Mirror Plane"
+    IDS_MIRROSOFFSET        "Mirror Offset"
+    IDS_PW_MIRRORPARAMETER  "Mirror Parameters"
+    IDS_X                   "X"
+    IDS_Y                   "Y"
+    IDS_Z                   "Z"
+    IDS_USEINITIALTM        "Use Initial TM"
+    IDS_MIRRORENABLED       "Mirror Enabled"
+    IDS_MIRRORTHRESHOLD     "Mirror Threshold"
+    IDS_MIRRORPASTE         "Mirror Paste"
+    IDS_MIRRORPROJECTION    "Mirror Projection"
+    IDS_NONE                "None"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_MIRRORPOS           "Positive Direction"
+    IDS_MIRRORNEG           "Negative Direction"
+    IDS_MIRRORNORMAL        "Default Display"
+    IDS_MIRRORMANUAL        "Manual Update"
+    IDS_MIRRORFAST          "Fast Engine"
+    IDS_PW_PAINTBLENDMODE   "Paint Blend Mode"
+    IDS_SKIN_WEIGHT_TABLE   "Skin Weight Table"
+    IDS_SKIN_WEIGHT_TABLE_ONE "Skin Weight Table (%s)"
+    IDS_SKIN_WEIGHT_TABLE_MULTI "Skin Weight Table (%s...%s)"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

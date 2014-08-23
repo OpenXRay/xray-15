@@ -1,0 +1,211 @@
+<html>
+
+<head>
+<title>6.5 Changes</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="60b.html"><img width="96" height="20" border="0"
+    src="images/navlt.gif" alt="6.0B Changes"></a></td>
+    <td width="96" align="left"><a href="65b.html"><img width="64" height="20" border="0"
+    src="images/navrt.gif" alt="6.5B Changes"></a></td>
+    <td width="384" align="right"><a href="index.html"><img width="230" height="20" border="0"
+    src="images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>6.5 Changes</h3>
+    <p><small>November 4, 2000</small> </p>
+    <p>This is a list of the changes in the LightWave 6.5 patch that affect the SDK. In most
+    cases, the changes won't require you to rewrite or recompile your existing code. The most
+    significant exception is for variant parameters, which have been updated to support
+    parameters modulated by textures.</p>
+    <p><tt><a href="../include/lwenvel.h">lwenvel.h</a></tt><ul>
+      <li>Definitions of <a href="globals/vparam.html">variant parameters</a> have been moved to a
+        new header, lwvparm.h.</li>
+    </ul>
+    <p><tt><a href="../include/lwfilter.h">lwfilter.h</a></tt><ul>
+      <li>New buffers (<tt>LWBUF_REFL_RED</tt>, <tt>LWBUF_REFL_GREEN</tt> and <tt>LWBUF_REFL_BLUE</tt>)
+        have been added to the list of buffers available to <a href="classes/imgfilt.html">image
+        filters</a> and <a href="classes/pxlfilt.html">pixel filters</a>. These contain the RGB
+        levels for reflections calculated by raytracing and environment mapping.</li>
+    </ul>
+    <p><tt><a href="../include/lwimage.h">lwimage.h</a></tt><ul>
+      <li><tt>LWIMAGELIST_GLOBAL</tt> (<a href="globals/imglist.html">Image List</a>) has been
+        incremented to &quot;LW Image List 3&quot;.</li>
+      <li>Added LWImageList functions: <tt>hasAlpha</tt>, <tt>alpha</tt>, <tt>alphaSpot</tt>, <tt>evaluate</tt>.</li>
+    </ul>
+    <p><tt><a href="../include/lwio.h">lwio.h</a></tt><ul>
+      <li>Added <a href="fileio.html">File I/O</a> type <tt>LWIO_BINARY_IFF</tt>. This type
+        supports 4-byte chunk sizes for block reading and writing of IFF files.</li>
+    </ul>
+    <p><tt><a href="../include/lwmeshedt.h">lwmeshedt.h</a></tt><ul>
+      <li><tt>LWMESHEDIT_VERSION</tt> (<a href="classes/me.html">MeshDataEdit</a>) has been
+        incremented to 4.</li>
+      <li>Added MeshEditOp functions <tt>pointVPGet</tt>, <tt>pointVEval</tt>, <tt>pntVPMap</tt>.
+        These are for per-polygon vertex mapping.</li>
+      <li>The second argument to <tt>initUV</tt> is now float * rather than float[2] so that <tt>initUV</tt>
+        can be used to initialize per-polygon UVs.</li>
+    </ul>
+    <p><tt><a href="../include/lwmeshes.h">lwmeshes.h</a></tt><ul>
+      <li>Added vertex map types for color vmaps: <tt>LWVMAP_RGB</tt> and <tt>LWVMAP_RGBA</tt>.</li>
+      <li>Added <a href="meshinfo.html">LWMeshInfo</a> function <tt>pntVPGet</tt> for per-polygon
+        vertex mapping.</li>
+    </ul>
+    <p><tt><a href="../include/lwobjimp.h">lwobjimp.h</a></tt><ul>
+      <li><tt>LWOBJECTIMPORT_VERSION</tt> (<a href="classes/objload.html">ObjectLoader</a>) has
+        been incremented to 3.</li>
+      <li>Added LWObjectImport function <tt>vmapPDV</tt> for per-polygon vertex mapping.</li>
+      <li>The second argument to <tt>pivot</tt> and the third argument to <tt>vmapVal</tt> are now
+        const.</li>
+    </ul>
+    <p><tt><a href="../include/lwrender.h">lwrender.h</a></tt><ul>
+      <li>New <tt><a href="raytrace.html">illuminate</a></tt> special item types <tt>LWITEM_RADIOSITY</tt>
+        and <tt>LWITEM_CAUSTICS</tt> allow callers of <tt>illuminate</tt> to get information about
+        global illumination at a spot.</li>
+      <li><tt>LWOBJECTINFO_GLOBAL</tt> (<a href="globals/objinfo.html">Object Info</a>) has been
+        incremented to &quot;LW Object Info 3&quot;.</li>
+      <li>The texture IDs of the displacement and clip maps of each object can now be obtained
+        using the new <tt>dispMap</tt> and <tt>clipMap</tt> Object Info functions. </li>
+      <li><tt>LWINTERFACEINFO_GLOBAL</tt> (<a href="globals/intinfo.html">Interface Info</a>) has
+        been incremented to &quot;LW Interface Info 2&quot;</li>
+      <li>New Interface Info function <tt>schemaPos</tt> returns the positions of items in
+        schematic viewports. (Use the new <tt>SchematicPosition</tt> command to set them.)</li>
+      <li>New Interface Info field <tt>dynaUpdate</tt> contains Layout's Dynamic Update setting,
+        which can be <tt>LWDYNUP_OFF</tt>, <tt>LWDYNUP_DELAYED</tt> or <tt>LWDYNUP_INTERACTIVE</tt>.</li>
+      <li>Added a <a href="globals/timeinfo.html">Time Info</a> global that returns the frame and
+        time for the image currently being rendered.</li>
+    </ul>
+    <p><tt><a href="../include/lwserver.h">lwserver.h</a></tt><ul>
+      <li>ServerUserName has been replaced by <a href="server.html">ServerTagInfo</a>, which among
+        other things allows plug-ins to specify how they should be added to LightWave's menu
+        system.</li>
+    </ul>
+    <p><tt><a href="../include/lwshelf.h">lwshelf.h</a></tt><ul>
+      <li>New <a href="globals/shelf.html">LWShelfFuncs</a> function <tt>addNamedPreset</tt>.</li>
+    </ul>
+    <p><tt><a href="../include/lwsurf.h">lwsurf.h</a></tt><ul>
+      <li><tt>LWSURFACEFUNCS_GLOBAL</tt> (<a href="globals/surface.html">Surface Functions</a>)
+        incremented to &quot;Surface Functions 2&quot;.</li>
+      <li>Added surface channel <tt>SURF_VCOL</tt> for color vertex maps.</li>
+      <li>Added Surface Functions routines <tt>getColorVMap</tt> and <tt>setColorVMap</tt>.</li>
+    </ul>
+    <p><tt><a href="../include/lwtexture.h">lwtexture.h</a></tt><ul>
+      <li><tt>LWTEXTURE_VERSION</tt> (<a href="classes/texture.html">ProceduralTextureHandler</a>)
+        has been incremented to 5.</li>
+      <li>Texture class plug-ins can now return RGBA levels, in support of which added
+        LWTextureAccess field <tt>txRGBA[4]</tt>, LWTextureHandler flag <tt>LWTEXF_SELF_COLOR</tt>
+        and LWTextureAccess flag <tt>LWTXEF_COLOR</tt>.</li>
+    </ul>
+    <p><tt><a href="../include/lwtxtr.h">lwtxtr.h</a></tt><ul>
+      <li>New <a href="globals/txtrfunc.html">LWTxtrParamDesc</a> flag <tt>LWGF_AUTOSIZE</tt> for
+        gradient textures that can automatically adjust their min and max.</li>
+    </ul>
+    <p><tt><a href="../include/lwtxtred.h">lwtxtred.h</a></tt><ul>
+      <li><tt>LWTXTREDFUNCS_GLOBAL</tt> (<a href="globals/txtred.html">Texture Editor</a>) has
+        been incremented to &quot;Texture Editor 2&quot;.</li>
+      <li>New callback type <tt>LW_GradAutoSizeFunc</tt> for gradient autosizing.</li>
+      <li>New Texture Editor functions for supporting multiselection (<tt>selectAdd</tt>, <tt>selectRem</tt>,
+        <tt>selectClr</tt>, <tt>selectFirst</tt>, <tt>selectNext</tt>) and automatic ranges for
+        gradient textures (<tt>setGradientAutoSize</tt>).</li>
+    </ul>
+    <p><tt><a href="../include/lwvparm.h">lwvparm.h</a></tt><ul>
+      <li>New header (<a href="globals/vparam.html">variant parameters</a> were formerly defined
+        in lwenvel.h).</li>
+      <li>Added <tt>LWVPDT</tt> texture data types.</li>
+      <li>Added arguments (texture context, event callback, plug-in name and userdata) to the
+        LWVParmFuncs <tt>create</tt> function.</li>
+      <li>Added a micropolygon argument to <tt>getVal</tt> for texture evaluation.</li>
+      <li>New functions <tt>getState</tt>, <tt>setState</tt>, <tt>editTex</tt>, <tt>initMP</tt>, <tt>getEnv</tt>
+        and <tt>getTex</tt>. <tt>getState</tt> and <tt>setState</tt> replace the <tt>hasEnv</tt>
+        and <tt>setEnvState</tt> functions, which have been removed. The new functions support
+        textures in addition to envelopes.</li>
+    </ul>
+    <p><tt><a href="../include/lwxpanel.h">lwxpanel.h</a></tt><ul>
+      <li>Added <tt>XpENABLE</tt> hint (<a href="globals/xpanel.html">XPanels</a>). </li>
+    </ul>
+    <p><a href="commands/layout.html">Commands: Layout</a><ul>
+      <li><tt>SaveSceneCopy</tt> and <tt>SaveObjectCopy</tt> save a copy of the scene or the
+        object in a file with a new name without affecting the current name in Layout. </li>
+      <li><tt>PreviousSibling</tt> and <tt>NextSibling</tt> allow easy navigation among a set of
+        items that share the same parent. </li>
+      <li><tt>AddEnvelope</tt> and <tt>RemoveEnvelope</tt> allow plug-ins and scripts to
+        &quot;press the E button&quot; for a Layout parameter. Each command takes a channel name
+        as its argument (the same names that appear when channels are expanded in the Scene
+        Editor). </li>
+      <li>By passing <tt>AutoConfirm</tt> an argument greater than zero, plug-ins and scripts can
+        use this command to automatically respond affirmatively to all confirmation requesters
+        before commands are issued to clear items, etc. This feature should be used with care, and
+        it should be turned off by passing it a zero before control is returned to the user. </li>
+      <li><tt>EditPlugins</tt> opens the new dialog for displaying, adding, and deleting servers. </li>
+      <li><tt>SaveObject</tt> and <tt>SaveTransformed</tt> now accept a filename argument.</li>
+      <li><tt>CommandInput</tt> now accepts a command argument.</li>
+      <li><tt>MaskPosition</tt> allows plug-ins and scripts to set exact pixel values for the
+        left, top, width, and height of the camera mask. One potential use is to create scene
+        files for portions of a frame which can be rendered separately and then perfectly
+        recombined by summing the resulting images (assuming the mask color is black).</li>
+      <li><tt>SchematicPosition</tt> sets the X and Y of the current item's schematic node. This
+        and the <tt>schemaPos</tt> function added to the <a href="globals/intinfo.html">Interface
+        Info</a> global allow plug-ins to arrange items in Schematic viewports.</li>
+      <li><tt>Antialiasing</tt> takes an argument from 0 to 4, as in scene files.</li>
+      <li>Other new commands:<pre>TopView              CacheRadiosity           RayTraceShadows
+BottomView           CacheCaustics            RayTraceReflection
+BackView             EnableVolumetricLights   RayTraceRefraction
+FrontView            RadiosityTolerance       MorphTarget
+RightView            EnhancedAA               IncludeLight
+LeftView             FogType                  ExcludeLight
+SchematicView        FogMinDistance           PolygonEdgeColor
+CenterItem           FogMaxDistance           CacheShadowMap
+FitAll               FogMinAmount             MaskColor
+FitSelected          FogMaxAmount             LightIntensityTool
+ShowSafeAreas        FogColor                 EnableVIPER
+ShowFieldChart       AddPartigon
+
+</pre>
+      </li>
+    </ul>
+    <p><a href="commands/modeler.html">Commands: Modeler</a><ul>
+      <li>The <tt>revert</tt> command reloads an existing object file.</li>
+    </ul>
+    <p>Miscellaneous<ul>
+      <li>When items are moved, rotated, or scaled, using either the mouse or the numeric fields,
+        the appropriate position, rotation, or scale commands are now added to the command
+        history, which in turn generates events for <a href="classes/master.html">master</a>
+        plug-ins.</li>
+      <li>The <tt>newTime</tt> callbacks of <a href="classes/shader.html">shaders</a>, <a
+        href="classes/volume.html">volumetrics</a>, and <a href="classes/pxlfilt.html">pixel
+        filters</a> are now called only after all geometry has been finalized. This fixes a
+        problem that occurs when plug-ins of one of those classes depend on the results of <a
+        href="classes/displace.html">displacement</a> plug-ins.</li>
+      <li>There can now be any number of <a href="classes/custobj.html">custom object</a> plug-ins
+        per object, and they are added using a server pane rather than a popup.</li>
+      <li>RGB and alpha <a href="classes/imgsave.html">image savers</a> are now recorded in scene
+        files by name rather than by index, preventing problems caused by different machines
+        having different saver lists. Image saver indices in existing scene files will continue to
+        work as before.</li>
+      <li>When the <tt>newTime</tt> functions of <a href="classes/shader.html">shaders</a>, <a
+        href="classes/environ.html">environment</a> plug-ins, <a href="classes/volume.html">volumetric</a>
+        plug-ins and lights, <a href="classes/pxlfilt.html">pixel filters</a>, <a
+        href="classes/custobj.html">custom object</a> and <a href="classes/displace.html">displacement</a>
+        plug-ins are called, inverse kinematics have already been computed. Therefore, the <a
+        href="globals/iteminfo.html">Item Info</a> <tt>param</tt> function now simply returns
+        existing vectors in such cases (assuming the time argument matches the current time),
+        allowing those plug-ins to properly account for IK.</li>
+      <li>When a subpatch object is being deformed and its Subdivision Order is later than the
+        deformation, the interior patch points are no longer deformed. In particular, the <tt>evaluate</tt>
+        functions of <a href="classes/displace.html">displacement</a> plug-ins will no longer be
+        called for the patch points.<br>
+      </li>
+    </ul>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,168 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MP_DOF_CAM_EFFECT DIALOG DISCARDABLE  0, 0, 108, 222
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Focal Depth",IDC_STATIC,3,4,100,38,BS_LEFT
+    CONTROL         "Use Target Distance",IDC_USE_TARGET_DIST,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,9,15,79,10
+    RTEXT           "Focal Depth:",IDTEXT_FOCAL_DEPTH,7,28,42,8
+    CONTROL         "",IDEB_FOCAL_DEPTH,"CustEdit",WS_DISABLED | WS_GROUP | 
+                    WS_TABSTOP,52,28,37,10
+    CONTROL         "",IDSP_FOCAL_DEPTH,"SpinnerControl",WS_DISABLED | 
+                    WS_GROUP,90,28,9,10
+    GROUPBOX        "Sampling",IDC_STATIC,3,46,100,75,BS_LEFT
+    CONTROL         "Display Passes",IDC_DISPLAY_PASSES,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,9,57,61,10
+    CONTROL         "Use Original Location",IDC_USE_ORIG_LOCATION,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,9,69,81,10
+    RTEXT           "Total Passes:",IDC_STATIC,12,82,43,8
+    CONTROL         "",IDEB_TOTAL_PASSES,"CustEdit",WS_DISABLED | WS_GROUP | 
+                    WS_TABSTOP,57,82,32,10
+    CONTROL         "",IDSP_TOTAL_PASSES,"SpinnerControl",WS_DISABLED | 
+                    WS_GROUP,90,82,9,10
+    RTEXT           "Sample Radius:",IDC_STATIC,5,94,50,8
+    CONTROL         "",IDEB_SAMPLE_RADIUS,"CustEdit",WS_DISABLED | WS_GROUP | 
+                    WS_TABSTOP,57,94,32,10
+    CONTROL         "",IDSP_SAMPLE_RADIUS,"SpinnerControl",WS_DISABLED | 
+                    WS_GROUP,90,94,9,10
+    RTEXT           "Sample Bias:",IDC_STATIC,13,106,42,8
+    CONTROL         "",IDEB_SAMPLE_BIAS,"CustEdit",WS_DISABLED | WS_GROUP | 
+                    WS_TABSTOP,57,106,32,10
+    CONTROL         "",IDSP_SAMPLE_BIAS,"SpinnerControl",WS_DISABLED | 
+                    WS_GROUP,90,106,9,10
+    GROUPBOX        "Pass Blending",IDC_STATIC,3,125,100,51,BS_LEFT
+    CONTROL         "Normalize Weights",IDC_NORMALIZE_WEIGHTS,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,9,136,72,10
+    RTEXT           "Dither Strength:",IDC_STATIC,14,149,50,8
+    CONTROL         "",IDEB_DITHER_STRENGTH,"CustEdit",WS_DISABLED | 
+                    WS_GROUP | WS_TABSTOP,66,149,23,10
+    CONTROL         "",IDSP_DITHER_STRENGTH,"SpinnerControl",WS_DISABLED | 
+                    WS_GROUP,90,149,9,10
+    RTEXT           "Tile Size:",IDC_STATIC,34,161,30,8
+    CONTROL         "",IDEB_TILE_SIZE,"CustEdit",WS_DISABLED | WS_GROUP | 
+                    WS_TABSTOP,66,161,23,10
+    CONTROL         "",IDSP_TILE_SIZE,"SpinnerControl",WS_DISABLED | 
+                    WS_GROUP,90,161,9,10
+    GROUPBOX        "Scanline Renderer Params",IDGB_SCANLINE_PARAMS,3,180,
+                    100,37,BS_LEFT
+    CONTROL         "Disable Filtering",IDC_DISABLE_FILTERING,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,10,191,63,10
+    CONTROL         "Disable Antialiasing",IDC_DISABLE_ANTIALIASING,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,10,203,74,10
+END
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MP_DOF_PARAMS       "Depth of Field Parameters"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MP_DOF              "Depth of Field"
+    IDS_LIBDESCRIPTION      "MultiPass DOF Camera Effect (Discreet)"
+    IDS_USE_TARGET_DIST     "Use Target Distance"
+    IDS_FOCAL_DEPTH         "Focal Depth"
+    IDS_DISPLAY_PASSES      "Display Passes"
+    IDS_TOTAL_PASSES        "Total Passes"
+    IDS_SAMPLE_RADIUS       "Sample Radius"
+    IDS_SAMPLE_BIAS         "Sample Bias"
+    IDS_NORMALIZE_WEIGHTS   "Normalize Weights"
+    IDS_DITHER_STRENGTH     "Dither Strength"
+    IDS_TILE_SIZE           "Tile Size"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DISABLE_FILTERING   "Disable Filtering"
+    IDS_DISABLE_ANTIALIASING "Disable Antialiasing"
+    IDS_USE_ORIG_LOCATION   "Use Original Location"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

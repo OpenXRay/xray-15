@@ -1,0 +1,567 @@
+LWSC
+3
+
+FirstFrame 1
+LastFrame 60
+FrameStep 1
+PreviewFirstFrame 0
+PreviewLastFrame 60
+PreviewFrameStep 1
+CurrentFrame 0
+FramesPerSecond 30
+
+LoadObjectLayer 1 Objects/snowyMountains.lwo
+ShowObject 6 3
+ObjectMotion
+NumChannels 9
+Channel 0
+{ Envelope
+  1
+  Key 0.5905706 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 1
+{ Envelope
+  1
+  Key -0.0675 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 2
+{ Envelope
+  1
+  Key 1.920927 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 3
+{ Envelope
+  1
+  Key 1.893682 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 4
+{ Envelope
+  1
+  Key 0 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 5
+{ Envelope
+  1
+  Key 0 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 6
+{ Envelope
+  1
+  Key 1.196001 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 7
+{ Envelope
+  1
+  Key 0.9999999 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 8
+{ Envelope
+  1
+  Key 2 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+
+LockedChannels 384
+SubPatchLevel 50 100
+DisplacementMaps
+{ TextureBlock
+  { Texture
+    { Procedural
+      "(72)"
+      Channel 1954051186
+      { Opacity
+        0
+        1
+        0
+      }
+      Enable 1
+      Negative 0
+      Axis 1
+    }
+    { TextureMap
+      { Center
+        0 0 0
+        0
+      }
+      { Size
+        1 1 1
+        0
+      }
+      { Rotation
+        0 0 0
+        0
+      }
+      { Falloff
+        0
+        0 0 0
+        0
+      }
+      RefObject "Null"
+      Coordinates 0
+    }
+    Axis 2
+    TextureValue 1.035
+    { Func
+      "Crumple"
+      3
+      0.31
+    }
+  }
+  { Texture
+    { Gradient
+      "(-112)"
+      Channel 1954051186
+      { Opacity
+        0
+        1
+        0
+      }
+      Enable 0
+      Negative 0
+      Axis 1
+    }
+    Version 2
+    ParamName "Previous Layer"
+    ItemName "(none)"
+    GradStart 0
+    GradEnd 1
+    GradRepeat 0
+    KeyFloats 0 0 0 0 1 0.6315789 0.2217725 0.2217725 0.2217725 1 0.7894737 0.5084879 0 0 1 0.9947369 0.7834879 0.7834879 0.7834879 1
+    KeyInts 0 0 0 0
+  }
+}
+ShadowOptions 7
+
+LoadObjectLayer 1 Objects/snowyMountains.lwo
+ShowObject 6 3
+SchematicPosition 0.000000 -0.500000
+ObjectMotion
+NumChannels 9
+Channel 0
+{ Envelope
+  2
+  Key 0 0 0 0 0 0 0 0 0
+  Key 0 1.5 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 1
+{ Envelope
+  2
+  Key 0 0 0 0 0 0 0 0 0
+  Key 0 1.5 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 2
+{ Envelope
+  2
+  Key 0 0 0 0 0 0 0 0 0
+  Key 0 1.5 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 3
+{ Envelope
+  1
+  Key 0 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 4
+{ Envelope
+  1
+  Key 0 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 5
+{ Envelope
+  1
+  Key 0 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 6
+{ Envelope
+  1
+  Key 1 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 7
+{ Envelope
+  1
+  Key 1 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 8
+{ Envelope
+  1
+  Key 1 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+
+SubPatchLevel 50 250
+DisplacementMaps
+{ TextureBlock
+  { Texture
+    { Procedural
+      "(-128)"
+      Channel 1954051186
+      { Opacity
+        0
+        1
+        0
+      }
+      Enable 1
+      Negative 0
+      Axis 1
+    }
+    { TextureMap
+      { Center
+        0 0 0
+        0
+      }
+      { Size
+        1 1 1
+        0
+      }
+      { Rotation
+        0 0 0
+        0
+      }
+      { Falloff
+        0
+        0 0 0
+        0
+      }
+      RefObject "Null"
+      Coordinates 0
+    }
+    Axis 2
+    TextureValue 1.035
+    { Func
+      "Crumple"
+      3
+      0.31
+    }
+  }
+  { Texture
+    { Gradient
+      "(-112)"
+      Channel 1954051186
+      { Opacity
+        0
+        1
+        0
+      }
+      Enable 0
+      Negative 0
+      Axis 1
+    }
+    Version 2
+    ParamName "Previous Layer"
+    ItemName "(none)"
+    GradStart 0
+    GradEnd 1
+    GradRepeat 0
+    KeyFloats 0 0 0 0 1 0.6315789 0.2217725 0.2217725 0.2217725 1 0.7894737 0.5084879 0 0 1 0.9947369 0.7834879 0.7834879 0.7834879 1
+    KeyInts 0 0 0 0
+  }
+}
+ShadowOptions 7
+
+AddNullObject Null
+ShowObject 6 3
+ObjectMotion
+NumChannels 9
+Channel 0
+{ Envelope
+  1
+  Key 4.040066 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 1
+{ Envelope
+  1
+  Key 3.929999 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 2
+{ Envelope
+  1
+  Key -0.4591554 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 3
+{ Envelope
+  1
+  Key 0 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 4
+{ Envelope
+  1
+  Key 0 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 5
+{ Envelope
+  1
+  Key 0 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 6
+{ Envelope
+  1
+  Key 1 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 7
+{ Envelope
+  1
+  Key 1 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 8
+{ Envelope
+  1
+  Key 1 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+
+ShadowOptions 7
+
+AmbientColor 0.662745 0.752941 0.905882
+AmbientIntensity 0.145
+
+AddLight
+LightName Sun
+ShowLight 1 5
+LightMotion
+NumChannels 9
+Channel 0
+{ Envelope
+  1
+  Key 1.606139 0 0 0 0 0 0 -1.318422 0
+  Behaviors 1 1
+}
+Channel 1
+{ Envelope
+  1
+  Key 0.7399971 0 0 0 0 0 0 0.8349996 0
+  Behaviors 1 1
+}
+Channel 2
+{ Envelope
+  1
+  Key -0.4567976 0 0 0 0 0 0 0.4996248 0
+  Behaviors 1 1
+}
+Channel 3
+{ Envelope
+  1
+  Key -3.466222 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 4
+{ Envelope
+  1
+  Key 0.891863 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 5
+{ Envelope
+  1
+  Key 0 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 6
+{ Envelope
+  1
+  Key 1 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 7
+{ Envelope
+  1
+  Key 1 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 8
+{ Envelope
+  1
+  Key 1 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+
+LockedChannels 32
+HController 1
+PController 1
+TargetObject 2
+LightColor 1 1 1
+LightIntensity 1
+AffectCaustics 1
+LightType 0
+ShadowType 1
+
+AddCamera
+CameraName Camera
+ShowCamera 1 2
+CameraMotion
+NumChannels 6
+Channel 0
+{ Envelope
+  1
+  Key -0.2553348 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 1
+{ Envelope
+  1
+  Key 0.7 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 2
+{ Envelope
+  1
+  Key -0.6946386 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 3
+{ Envelope
+  1
+  Key 0.3036873 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 4
+{ Envelope
+  1
+  Key 0.221657 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+Channel 5
+{ Envelope
+  1
+  Key 0 0 0 0 0 0 0 0 0
+  Behaviors 1 1
+}
+
+ZoomFactor 1.96
+ResolutionMultiplier .5
+FrameSize 320 240
+PixelAspect 1
+MaskPosition 0 0 640 480
+MotionBlur 0
+
+ApertureHeight 0.015
+Antialiasing 0
+AdaptiveSampling 0
+FieldRendering 0
+
+SolidBackdrop 0
+BackdropColor 0 0 0
+ZenithColor 0.08235294 0.08627451 0.2
+SkyColor 0.8705882 0.8784314 0.9529412
+GroundColor 0.8705882 0.8784314 0.9529412
+NadirColor 1 1 1
+SkySqueezeAmount 5
+FogType 1
+FogMinDist 0
+FogMaxDist 4
+FogMinAmount 0
+FogMaxAmount 1
+FogColor 0.5098 0.5098 0.549
+BackdropFog 1
+Plugin VolumetricHandler 1 Demo_GroundFog
+3
+0.47
+0.2
+0.75
+1
+1
+0.1
+1 1 1
+2
+0
+0
+1
+1
+{ VFogTexture
+  { TextureBlock
+    { Texture
+      { Procedural
+        "(-128)"
+        Channel 1954051186
+        { Opacity
+          0
+          1
+          0
+        }
+        Enable 1
+        Negative 0
+        Axis 1
+      }
+      { TextureMap
+        { Center
+          0 0 0
+          0
+        }
+        { Size
+          1 0.495 1
+          0
+        }
+        { Rotation
+          0 0 0
+          0
+        }
+        { Falloff
+          0
+          0 0 0
+          0
+        }
+        RefObject "(none)"
+        Coordinates 0
+      }
+      Axis 2
+      TextureValue 0.8 0.8 0.8
+      { Func
+        "Crumple"
+        3
+        0.75
+      }
+    }
+  }
+}
+EndPlugin
+DitherIntensity 1
+AnimatedDither 0
+
+RenderMode 2
+RayTraceEffects 1
+RayRecursionLimit 16
+DataOverlayLabel  
+
+ViewConfiguration 0
+DefineView 0
+ViewMode 5
+ViewAimpoint 0 0 0
+ViewZoomFactor 1.372001
+
+GridNumber 100
+GridSize 0.5
+CameraViewBG 0
+ShowMotionPath 1
+ShowFogRadius 0
+ShowFogEffect 0
+ShowSafeAreas 0
+ShowFieldChart 0
+
+CurrentObject 1
+CurrentLight 0
+CurrentCamera 0
+GraphEditorFavorites
+{ GraphEd_Favorites
+}

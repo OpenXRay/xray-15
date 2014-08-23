@@ -1,0 +1,125 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_EDTRI_SELECT_VIZR DIALOGEX 0, 0, 108, 110
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_SELTYPE,"CustToolbar",WS_TABSTOP,12,5,83,14
+    CONTROL         "By Vertex",IDC_SEL_BYVERT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,6,23,43,10
+    CONTROL         "Ignore Backfacing",IDC_IGNORE_BACKFACES,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,35,74,10
+    CONTROL         "Ignore Visible Edges",IDC_IGNORE_VISEDGE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,47,80,10
+    RTEXT           "Planar Thresh:",IDC_SEL_PT_TEXT,10,59,49,8
+    CONTROL         "",IDC_PLANAR,"CustEdit",WS_TABSTOP,60,58,30,10
+    CONTROL         "",IDC_PLANARSPINNER,"SpinnerControl",0x0,91,58,7,10
+    CONTROL         "Hide",IDC_HIDE,"CustButton",WS_TABSTOP,4,94,48,11
+    CONTROL         "Unhide All",IDC_UNHIDEALL,"CustButton",WS_TABSTOP,55,94,
+                    48,11
+    CONTROL         "Show Normals",IDC_NORMAL_SHOW,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,6,71,61,10
+    CONTROL         "",IDC_NORMAL_SCALE,"CustEdit",WS_TABSTOP,60,81,30,10
+    CONTROL         "",IDC_NORMAL_SCALESPIN,"SpinnerControl",0x0,91,81,7,10
+    RTEXT           "Scale:",IDC_SCALE_TEXT,37,82,22,8
+END
+
+IDD_EDTRI_GEOM_VIZR DIALOG DISCARDABLE  0, 0, 108, 47
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Delete",IDC_DELETE,"CustButton",WS_TABSTOP,4,4,48,11
+    CONTROL         "Detach",IDC_DETACH,"CustButton",WS_TABSTOP,55,4,48,11
+    GROUPBOX        "Weld",IDC_STATIC,3,18,101,26
+    CONTROL         "Selected",IDC_WELD,"CustButton",WS_TABSTOP,7,28,45,11
+    CONTROL         "",IDC_W_THR,"CustEdit",WS_TABSTOP,55,29,37,10
+    CONTROL         "",IDC_W_THR_SPIN,"SpinnerControl",0x0,94,29,7,10
+END
+
+IDD_EDTRI_SURF_FACE_VIZR DIALOGEX 0, 0, 108, 87
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Auto Smooth",IDC_SMOOTH_AUTO,"CustButton",WS_TABSTOP,6,
+                    66,46,11
+    CONTROL         "",IDC_SMOOTH_THRESH,"CustEdit",WS_TABSTOP,55,67,36,10
+    CONTROL         "Flip",IDC_NORMAL_FLIP,"CustButton",WS_TABSTOP,6,11,46,
+                    11
+    CONTROL         "Unify",IDC_NORMAL_UNIFY,"CustButton",WS_TABSTOP,55,11,
+                    46,11
+    CONTROL         "",IDC_SMOOTH_THRESHSPIN,"SpinnerControl",0x0,92,67,7,10
+    GROUPBOX        "Normals:",IDC_STATIC,3,1,101,38
+    CONTROL         "Clear All",IDC_SMOOTH_CLEAR,"CustButton",WS_TABSTOP,6,
+                    53,46,11
+    CONTROL         "Flip Normal Mode",IDC_NORMAL_FLIPMODE,"CustButton",
+                    WS_TABSTOP,6,24,95,11
+    GROUPBOX        "Smoothing Groups:",IDC_STATIC,3,42,101,40
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE MOVEABLE PURE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE MOVEABLE PURE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE MOVEABLE PURE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

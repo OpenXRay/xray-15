@@ -1,0 +1,158 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CUSTCTRL DIALOG DISCARDABLE  0, 0, 108, 512
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_EDIT,"CustEdit",WS_GROUP,6,79,55,10
+    CONTROL         "",IDC_SPIN_EDIT,"CustEdit",WS_TABSTOP,6,102,48,10
+    CONTROL         "",IDC_SPIN_SPINNER,"SpinnerControl",0x0,55,102,7,10
+    CONTROL         "Button - Check",IDC_BUTTON_CHECK,"CustButton",
+                    WS_TABSTOP,7,178,64,12
+    CONTROL         "",IDC_TOOLBAR,"CustToolbar",WS_TABSTOP,7,249,53,18
+    CONTROL         "",IDC_COLORSWATCH,"ColorSwatch",WS_TABSTOP,6,289,29,14
+    LTEXT           "SpinnerControl",IDC_STATIC,52,113,49,8
+    LTEXT           "CustEdit",IDC_STATIC,6,112,28,8
+    LTEXT           "CustEdit",IDC_STATIC,6,90,28,8
+    LTEXT           "Push Button",IDC_STATIC,7,166,41,8
+    CONTROL         "(255,255,255)",IDC_STATUS,"CustStatus",0x0,39,289,59,14
+    CONTROL         "",IDC_FLYOFF,"CustButton",WS_TABSTOP,7,204,20,18
+    LTEXT           "Fly Off",IDC_STATIC,7,223,23,8
+    CONTROL         "Button - Push",IDC_BUTTON_PUSH,"CustButton",WS_TABSTOP,
+                    7,153,64,12
+    LTEXT           "Check Button",IDC_STATIC,7,191,46,8
+    RTEXT           "Fly Off Index: 0",IDC_FLYOFFINDEX,28,209,51,8
+    CONTROL         "Enable",IDC_TBCHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,64,253,35,10
+    LTEXT           "Value: 100.0",IDC_SPINEDIT_VALUE,6,124,43,8
+    LTEXT           "Spin MSG: DN",IDC_SPIN_STATUS,52,124,48,8
+    CONTROL         "",IDC_IMAGE,"CustImage",0x0,14,12,80,50
+    LTEXT           "RIGHT",IDC_BUTTON_TEXT,74,156,23,8
+    GROUPBOX        "Color Swatch / Status",IDC_STATIC,2,278,103,30
+    GROUPBOX        "Custom Buttons",IDC_STATIC,2,141,103,94
+    GROUPBOX        "Custom Toolbar",IDC_STATIC,2,239,102,34
+    GROUPBOX        "Custom Edit / Spinner",IDC_STATIC,3,69,103,67
+    GROUPBOX        "Custom Image",IDC_STATIC,2,0,103,68
+    GROUPBOX        "Custom TCB Graph",IDC_STATIC,2,311,102,81
+    CONTROL         "",IDC_TCB_GRAPH,"TCBGraph",0x0,7,322,91,52
+    CONTROL         "",IDC_SPIN_TCBSPIN,"SpinnerControl",0x0,91,378,7,10
+    CONTROL         "",IDC_SPIN_TCBEDIT,"CustEdit",WS_TABSTOP,63,378,26,10
+    LTEXT           "Tension Value:",IDC_STATIC,10,379,48,8
+    GROUPBOX        "Custom Slider",IDC_STATIC,2,393,102,107
+    CONTROL         "",IDC_SLIDER,"SliderControl",WS_TABSTOP,7,403,88,11
+    CONTROL         "",IDC_SLIDER_EDIT,"CustEdit",WS_TABSTOP,71,418,24,11
+    LTEXT           "Float Slider",IDC_STATIC,33,417,37,9
+    CONTROL         "",IDC_SLIDER1,"SliderControl",WS_TABSTOP,8,434,88,11
+    CONTROL         "",IDC_SLIDER_EDIT1,"CustEdit",WS_TABSTOP,69,449,27,11
+    CONTROL         "",IDC_SLIDER2,"SliderControl",WS_TABSTOP,8,464,89,12
+    CONTROL         "",IDC_SLIDER_EDIT2,"CustEdit",WS_TABSTOP,62,481,35,11
+    LTEXT           "Int Slider",IDC_STATIC,35,449,30,9
+    LTEXT           "Universal Slider",IDC_STATIC,9,482,52,11
+    LTEXT           "",IDC_SLIDE_VALUE,7,418,20,9
+    LTEXT           "",IDC_SLIDE1_VALUE,8,449,22,10
+END
+
+IDD_MAXDLG DIALOG DISCARDABLE  0, 0, 108, 201
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Color Selector",IDC_COLOR_DLG,10,6,88,15
+    PUSHBUTTON      "Node Color Picker",IDC_NCP_DLG,10,22,88,15
+    PUSHBUTTON      "Track View Pick",IDC_TVP_DLG,10,38,88,15
+    PUSHBUTTON      "Exclusion List",IDC_EXCL_DLG,10,54,88,15
+    PUSHBUTTON      "Material/Map Browser",IDC_MTL_DLG,9,70,88,15
+    PUSHBUTTON      "Hit By Name",IDC_HBN_DLG,9,86,88,15
+    PUSHBUTTON      "Arc Rotate (Modeless)",IDC_ARC_DLG,9,102,88,15
+    CTEXT           "Text Line 1",IDC_INFO1,9,153,90,8
+    CTEXT           "Text Line 2",IDC_INFO2,9,164,90,8
+    CTEXT           "Text Line 3",IDC_INFO3,9,175,90,8
+    GROUPBOX        "Dialog Information:",IDC_STATIC,7,139,94,51
+    PUSHBUTTON      "Choose Directory",IDC_CHOOSE_DIR,9,119,88,15
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_FLYOFFMASK          BITMAP  DISCARDABLE     "ccflymsk.bmp"
+IDB_FLYOFFIMAGE         BITMAP  DISCARDABLE     "ccflyimg.bmp"
+IDB_IMAGE               BITMAP  DISCARDABLE     "ccimage.bmp"
+IDB_IMAGEMASK           BITMAP  DISCARDABLE     "imagemsk.bmp"
+IDB_TBMASK              BITMAP  DISCARDABLE     "tbmask.bmp"
+IDB_TB                  BITMAP  DISCARDABLE     "tb.bmp"
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

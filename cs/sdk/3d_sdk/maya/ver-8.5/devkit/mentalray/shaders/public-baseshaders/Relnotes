@@ -1,0 +1,106 @@
+Updates in release 4 of the base shader sources, 9 December 2002
+----------------------------------------------------------------
+
+The third update on 9 December 2002 fixes more bugs, and adds mental ray 3.1
+support. Shaders compiled for mental ray 3.1 also work for mental ray 3.2.
+
+mib_dielectric
+	now supports total internal reflection
+
+mib_illum_hair
+	- removed the (undocumented) rootdarken argument
+	- now uses the correct bary[] for the length of the hair
+	- leave state->pri intact to fix self-intersections
+
+mib_lightmap_write
+	provide dir, dot_nd, tex_list, and shadow_tol state variables to
+	called shaders
+
+mib_color_mix
+	fixed mode 0, weight and alpha were incorrectly combined
+
+mib_bump_basis
+	- perform calculations in internal, not object, space
+	- catch various boundary cases and do something useful
+
+
+Updates in release 3 of the base shader sources, 5 October 2001
+---------------------------------------------------------------
+
+The third release of the mental ray base shader sources on 5 October 2001
+contain the following changes:
+
+basegeo.c, mi_baseshade.h, base.mi:
+	Added a torus geometry shader.
+
+baselightmap.c
+	Instead of determining the range of a triangle in pixel space and
+	looping over that rectangle, determining 'inside' by computed
+	barycentric coordinates, adopt a different approach. Each triangle is
+	treated as an edge pair, as in a scaline algorithm. 'inside' is
+	determinated by the equations of the lines in pixel space. This way,
+	pixels will never be missed between adjacent triangles. Additionally,
+	after barycentric coordinates have been computed they are refined, by
+	reprojecting them to the barycentric plane (x+y+z=1) and clipping them.
+
+
+Updates in release 2 of the base shader sources, 9 March 2001
+-------------------------------------------------------------
+
+The second release of the mental ray base shader sources on 9 March 2001
+fixed a number of bugs listed below, adds support for mental ray 2.1 and
+3.0, and supports simple texture-based light mapping for mental ray 3.0.
+
+base.mi:
+	base.mi allows max version 3.0.99.
+
+baserefract.c, mib_refract:
+	check for successful return of mi_refraction_dir() before calling
+	mi_trace_refraction(). This happens with total internal reflection.
+
+basetexgen.c, mib_passthrough_bump_map:
+	changed the version number from 1 to 2.
+
+
+mi_baseshade.h, mib_texture_turbulence:
+	added declarations for  mib_texture_turbulence_[init,exit]. mkmishader
+	missed the init and exit shaders (they aren't contained in base.mi)
+
+baselightmap.c, mib_lightmap_sample and mib_lightmap_write:
+	a new source file with two new shaders for light mapping. Yjey work
+	only with mental ray 3.0 because mental ray 2.1 does not support light
+	mapping. The code is bracketed with #ifdef RAY3.
+
+basetexgen.c, mib_texture_vector:
+	the vertex parameter of mib_texture_vector can be set to 1..3 to pick
+	up triangle vertices, but the lookup should have happened in the array
+	with 0..2. It now subtracts 1.
+	Also fixes division by zero problems in lollipop mapping, and returns
+	miFALSE if spherical or lollipop mapping is attempted from the pole
+	singularity (the new light mapping shader relies on this).
+
+baseenviron.c, mib_lookup_background:
+	panning incorrectly mi_eval'd the zoom parameter instead of pan.
+
+basetexgen.c, mib_texture_vector
+	the computation of the v coordinate in spherical mapping was incorrect.
+	Also cleaned up the use of temporaries, 'vp' points to the working
+	vector, while 'v' may contain a local copy of it.
+
+basemux.c, mib_color_mix:
+	fixed mode 0 (blend): "w" was not computed correctly, giving wrong
+	blend especially for low values of color->a.
+
+baselights.c, mib_light_infinite:
+	the parameter "factor" was used without mi_eval.
+
+baseenviron.c and basetexgen.c:
+	avoid atan2(0, 0) calls because the result is different on different
+	platforms, and on some is even NaN.
+
+basetexgeo.c, mib_geo_add_uv_texsurf:
+	this shader is problematic because it uses undocumented low-level scene
+	functions such as mi_scene_create instead of regular API functions.
+	This hasn't been changed (yet), but the reliance on the include file
+	mirelay.h, which isn't part of the mental ray distribution, has been
+	avoided. The shader may be removed in a future version.

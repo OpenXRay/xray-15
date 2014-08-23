@@ -1,0 +1,110 @@
+<html>
+
+<head>
+<title>Globals: File I/O</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="modreq.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="Dynamic Request"></a></td>
+    <td width="96" align="left"><a href="filereq.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="File Request"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>File I/O</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwio.h">lwio.h</a></small></p>
+    <p>This global provides functions for reading and writing data in files. The state
+    structures returned by the <tt>open</tt> functions are the same as those passed to the <a
+    href="../handler.html">handler</a> <tt>save</tt> and <tt>load</tt> callbacks, making it
+    possible for handlers to create and read custom preset files with the same code they use
+    to write and read their settings in scene and object files. This is also an easy way for
+    any kind of Layout plug-in to create block-<wbr>structured, platform-<wbr>independent configuration
+    and data files.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWFileIOFuncs *fiof;
+   fiof = global( LWFILEIOFUNCS_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWFileIOFuncs. The structure returned by
+    the open functions is described on the <a href="../fileio.html">file I/O</a> page.</p>
+    <pre>   typedef struct st_LWFileIOFuncs {
+      LWSaveState * (*<strong>openSave</strong>) (const char *name, int ioMode);
+      void          (*<strong>closeSave</strong>)(LWSaveState *save); 
+      LWLoadState * (*<strong>openLoad</strong>) (const char *name, int ioMode);
+      void          (*<strong>closeLoad</strong>)(LWLoadState *load); 
+   } LWFileIOFuncs;</pre>
+    <dl>
+      <dt><tt>sstate = <strong>openSave</strong>( name, iomode )</tt></dt>
+      <dd>Open a file for writing. The mode can be one of the following. <dl>
+          <tt>
+          <dt><br>
+            LWIO_ASCII</dt>
+          </tt>
+          <dd>Create a text file. Write operations will be line-buffered.</dd>
+          <tt>
+          <dt>LWIO_BINARY</dt>
+          </tt>
+          <dd>Create a binary file. Block writes will always use 2-byte integers for block sizes.</dd>
+          <tt>
+          <dt>LWIO_BINARY_IFF</dt>
+          </tt>
+          <dd>Create a binary file. Block sizes will be 4-byte integers for the first two nesting
+            levels and 2-byte integers at deeper levels, corresponding to the chunk and subchunk
+            scheme used in LightWave&reg; <a href="../filefmts/lwo2.html">object files</a>.</dd>
+        </dl>
+      </dd>
+      <dt><tt><br>
+        <strong>closeSave</strong>( sstate )</tt></dt>
+      <dd>Close a file opened by <tt>openSave</tt>.</dd>
+      <dt><tt><br>
+        lstate = <strong>openLoad</strong>( name, iomode )</tt></dt>
+      <dd>Open a file for reading. The <tt>iomodes</tt> are the same as those for <tt>openSave</tt>.</dd>
+      <dt><tt><br>
+        <strong>closeLoad</strong>( lstate )</tt></dt>
+      <dd>Close a file opened by <tt>openLoad</tt>.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>This code fragment creates a text file and writes the contents of a structure. It uses
+    the Observer structure and the <tt>write_obs</tt> function defined in the Example section
+    of the <a href="../fileio.html">file I/O</a> page. </p>
+    <pre>   #include &lt;lwserver.h&gt;
+   #include &lt;lwio.h&gt;
+
+   LWFileIOFuncs *fiof;
+   LWSaveState *save;
+   Observer obs = {
+      4.0f, &quot;EDT&quot;, 2000, 4, 24, 2, 5, 30,
+      37.75f, -122.55f,
+      1, 40.0f, 30.0f, 100.0f,
+      2000.0f
+   };
+
+   fiof = global( LWFILEIOFUNCS_GLOBAL, GFUSE_TRANSIENT );
+   if ( !fiof ) return AFUNC_BADGLOBAL;
+
+   if ( save = fiof-&gt;openSave( &quot;testio.txt&quot;, LWIO_ASCII )) {
+      write_obs( save, &amp;obs );
+      fiof-&gt;closeSave( save );
+   }
+
+   if ( save = fiof-&gt;openSave( &quot;testio.bin&quot;, LWIO_BINARY )) {
+      write_obs( save, &amp;obs );
+      fiof-&gt;closeSave( save );
+   }</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

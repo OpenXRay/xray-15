@@ -1,0 +1,221 @@
+#*****************************************************************************
+# Copyright 1986-2006 by mental images GmbH, Fasanenstr. 81, D-10623 Berlin,
+# Germany. All rights reserved.
+#*****************************************************************************
+# Created:	19.06.96
+# Module:	physics
+# Purpose:	Declarations needed for global illumination, caustics, etc.
+#
+# Exports:
+#	physical_lens_dof
+#	physical_light
+#	dgs_material
+#	dgs_material_photon
+#	dielectric_material
+#	dielectric_material_photon
+#	oversampling_lens
+#	path_material
+#	parti_volume
+#	parti_volume_photon
+#	transmat
+#	transmat_photon
+#
+# History:
+#
+#****************************************************************************/
+
+min version "2.1"
+max version "3.6.99"
+
+# Lens depth of field shader, requires physics.so that comes with ray 2.1
+
+declare shader
+	color "physical_lens_dof" (
+		scalar		"plane",
+		scalar		"radius"
+	)
+	version 1
+	apply lens
+	scanline off
+	trace on
+end declare
+
+# Light shader (physically plausible light source model)
+
+declare shader
+	color "physical_light" (
+		color		"color",    # energy 
+		scalar		"cone",	    # inner solid cone for spotlight
+		scalar		"threshold",# accuracy threshold for opti.
+		scalar		"cos_exp"   # cosine exponent (disc&rectangle)
+	)
+	version 3
+	apply light
+end declare
+
+
+# Material declaration for diffuse-glossy-specular global illumination 
+# (physically plausible models of reflection).
+# When changing here, also change dgs_material_photon and path_material!
+# There is no texture capability since this can be done with a phenomenon
+# or shader tree with base shaders.  Modifying the brushing direction with 
+# a texture can also be done with a base shader.
+
+declare shader
+	color "dgs_material" (
+		color		"diffuse",
+		color           "glossy",
+		color		"specular",
+		scalar		"shiny",
+		scalar		"shiny_u",
+		scalar		"shiny_v",
+		scalar		"transp",
+		scalar		"ior",
+		array light	"lights",
+		integer		"mode"
+	)
+	version 3
+	apply material
+	derivative 1
+end declare
+
+declare shader
+	"dgs_material_photon" (
+		color		"diffuse",
+		color           "glossy",
+		color		"specular",
+		scalar		"shiny",
+		scalar		"shiny_u",
+		scalar		"shiny_v",
+		scalar		"transp",
+		scalar		"ior",
+		array light	"lights",
+		integer		"mode"
+	)
+	version 3
+	apply photon
+	derivative 1
+end declare
+
+
+declare shader
+	color "dielectric_material" (
+		color 		"col",        	# inside (light absorption per unit-length)
+		scalar 		"ior",       	# inside (index of refract = 1.5 for glass)
+		color 		"col_out",    	# Ooutside (light absorption per unit-lngth)
+		scalar 		"ior_out",   	# outside (index of refraction)
+		boolean 	"ignore_normals",# ignore normals
+		scalar 		"phong_coef", 	# hong fake high light
+		array light 	"lights",	# lights giving rise to Phong highlights
+		integer 	"mode"	 	# light selection mode 0,1,2,4		
+	)
+	version 2
+	apply material
+end declare
+
+declare shader
+	"dielectric_material_photon" (
+		color 		"col",        	# inside (light absorption per unit-length)
+		scalar 		"ior",      	# inside (index of refract = 1.5 for glass)
+		color 		"col_out",    	# outside (light absorption per unit-lngth)
+		scalar 		"ior_out",   	# outside (index of refraction)
+		boolean 	"ignore_normals",# ignore normals
+		scalar 		"phong_coef", 	# ignored
+		array light 	"lights", 	# ignored
+		integer 	"mode"	 	# ignored
+	)
+	version 2
+	apply photon
+end declare
+
+
+# ----- Path tracing -----
+
+# Lens shader for oversampling
+
+declare shader
+	color "oversampling_lens" (
+		integer  	"samples"
+	)
+	version 1
+	apply lens
+end declare
+
+
+# Material declaration for path tracing
+
+declare shader
+	color "path_material" (
+		color		"diffuse",
+		color           "glossy",
+		color		"specular",
+		scalar		"shiny",
+		scalar		"shiny_u",
+		scalar		"shiny_v",
+		scalar		"transp",
+		scalar		"ior",
+		array light	"lights",
+		integer		"mode"
+	)
+	version 2
+	apply material
+end declare
+
+
+# ----- Volume shaders for participating media -----
+
+declare shader 
+	color "parti_volume" (
+		integer "mode",		# mode: 0 or 1
+		color 	"scatter",	# volume color
+		scalar 	"extinction",	# extinction coefficient
+		scalar	"r",		# blending parameter between lobes
+		scalar	"g1",		# eccentricity for first lobe
+		scalar	"g2",		# eccentricity for second lobe
+		scalar  "nonuniform", 	# nonhomogeneous ("cloudiness")
+		scalar  "height", 	# mode 1:upper height ("roof of smoke")
+		scalar  "min_step_len", # minimum step length for ray marcher
+		scalar  "max_step_len", # maximum step length for ray marcher
+		scalar  "light_dist",   # distance for fast light sampling
+		integer "min_level",    # ignored
+		boolean "no_globil_where_direct", # for optimization
+		array light  "lights"   # light sources
+	)
+	version 3
+	apply volume
+end declare
+
+declare shader
+	color "parti_volume_photon" (
+		integer "mode",		# mode: 0 or 1
+		color 	"scatter",	# volume color
+		scalar 	"extinction",	# extinction coefficient
+		scalar	"r",		# blending parameter between lobes
+		scalar	"g1",		# eccentricity for first lobe
+		scalar	"g2",		# eccentricity for second lobe
+		scalar  "nonuniform", 	# nonhomogeneous ("cloudiness")
+		scalar  "height", 	# mode 1:upper height ("roof of smoke")
+		scalar  "min_step_len", # minimum step length for ray marcher
+		scalar  "max_step_len", # maximum step length for ray marcher
+		scalar  "light_dist",   # ignored
+		integer "min_level",    # photons only stored from min refr.lvl
+		boolean "no_globil_where_direct", # ignored
+		array light  "lights"   # ignored
+	)
+	version 3
+end declare
+
+
+# ----- Material shader for 'dummy' surface of participating media -----
+
+declare shader 
+	color "transmat" ()
+	version 1
+	apply material
+end declare
+
+declare shader 
+	color "transmat_photon" ()
+	version 1
+	apply photon
+end declare

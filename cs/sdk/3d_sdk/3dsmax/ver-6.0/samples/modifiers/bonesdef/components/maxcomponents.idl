@@ -1,0 +1,67 @@
+// MAXComponents.idl : IDL source for MAXComponents.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (MAXComponents.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	uuid(F088EA67-2E87-11D3-B1F3-00C0F03C37D3),
+	version(1.0),
+	helpstring("MAXComponents 1.0 Type Library")
+]
+library MAXCOMPONENTSLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+	
+	[
+		object,
+		uuid(68CD6A91-34C2-11D3-9F71-00C04FB150E3),
+	
+		helpstring("ISkinEngine Interface"),
+		pointer_default(unique)
+	]
+	interface ISkinEngine : IUnknown
+	{
+		[helpstring("method SetNumPoints")] HRESULT SetNumPoints([in] int numPoints);
+		[helpstring("method SetNumBones")] HRESULT SetNumBones([in] int numBones);
+		[helpstring("method SetPointData")] HRESULT SetPointData([in] int pointIdx, [in] int numData, 
+						[in] DWORD b_stride, [in] int *BoneIndexArray, 
+						[in] DWORD w_stride, [in] float *WeightArray, 
+						[in] DWORD sci_stride, [in] int *SubCurveIdxArray, 
+						[in] DWORD ssi_stride, [in] int *SubSegIdxArray, 
+						[in] DWORD ssd_stride, [in] float *SubSegDistArray, 
+						[in] DWORD t_stride, [in, size_is(3) ] float *TangentsArray, 
+						[in] DWORD op_stride, [in, size_is(3) ] float *OPointsArray);
+
+		[helpstring("method SetInitBoneTM")] HRESULT SetInitBoneTM([in] int boneIdx, [in, size_is(12)] float *InitTM);
+		[helpstring("method SetBoneTM")] HRESULT SetBoneTM([in] int boneIdx, [in, size_is(12)] float *currentTM);
+		[helpstring("method MapPoint")] HRESULT MapPoint([in] int idx, [in] float *pin, [out] float *pout);
+		[helpstring("method SetInitTM")] HRESULT SetInitTM([in, size_is(12)] float *InitTM);
+		[helpstring("method SetBoneFlags")] HRESULT SetBoneFlags([in] int boneIdx, [in] DWORD flags);
+	};
+	[
+		uuid(68CD6A93-34C2-11D3-9F71-00C04FB150E3),
+		helpstring("_ISkinEngineEvents Interface")
+	]
+
+	interface _ISkinEngineEvents : IUnknown
+	{
+
+		[id(1), helpstring("method InterpCurvePiece3D")] HRESULT GetInterpCurvePiece3D([in] int BoneId, [in]  int CurveId, [in] int SegId, [in] float distance, [out, size_is(3) ] float *pPoint);
+		[id(2), helpstring("method GetTangentPiece3D")] HRESULT GetTangentPiece3D([in] int BoneId,[in]  int CurveId, [in] int SegId, [in] float distance, [out, size_is(3) ] float *pPoint);
+	};
+
+	[
+		uuid(68CD6A92-34C2-11D3-9F71-00C04FB150E3),
+		helpstring("SkinEngine Class")
+	]
+	coclass SkinEngine
+	{
+		[default] interface ISkinEngine;
+		[default, source] dispinterface _ISkinEngineEvents;
+	};
+};

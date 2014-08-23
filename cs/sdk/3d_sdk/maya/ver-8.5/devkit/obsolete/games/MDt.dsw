@@ -1,0 +1,98 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "MDt"=.\MDt.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ge2
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name MDtAPI
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name vrml2
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name rtg
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "MDtAPI"=.\MDtAPI\MDtAPI.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "ge2"=.\ge2Export\ge2.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name MDtAPI
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "rtg"=.\rtgExport\rtgExport.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name MDtAPI
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "vrml2"=.\vrml2Export\vrml2.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name MDtAPI
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

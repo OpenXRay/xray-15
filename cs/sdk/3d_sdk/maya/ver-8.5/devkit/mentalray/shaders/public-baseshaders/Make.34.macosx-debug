@@ -1,0 +1,40 @@
+#!/bin/sh
+# automatically generated Thu Jul 29 11:45:33 MST 2004
+rm -f shader.h geoshader.h mi_version.h
+cp shader.34.h shader.h
+cp geoshader.34.h geoshader.h
+cp mi_version.34.h mi_version.h
+cp raylib.34.rc raylib.rc
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include baseblinn.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basecheck.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basecolor.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basecooktorr.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basedielec.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include baseenviron.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basegeo.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basehair.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include baseior.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include baselambert.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include baselens.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include baselight.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include baselightmap.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basemux.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basephong.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basephotbas.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basepolka.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include baseraymarch.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basereflect.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include baserefract.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include baseshadow.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basetexgen.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basetexgeo.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basetexlook.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basetrans.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include baseturb.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basetwoside.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basevolume.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include baseward.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basewardderi.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basewave.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include baseocc.cpp
+libtool  -flat_namespace -undefined suppress -dynamic /usr/local/mi/lib/macosx-fpsave.o -o base.so baseblinn.o basecheck.o basecolor.o basecooktorr.o basedielec.o baseenviron.o basegeo.o basehair.o baseior.o baselambert.o baselens.o baselight.o baselightmap.o basemux.o basephong.o basephotbas.o basepolka.o baseraymarch.o basereflect.o baserefract.o baseshadow.o basetexgen.o basetexgeo.o basetexlook.o basetrans.o baseturb.o basetwoside.o basevolume.o baseward.o basewardderi.o basewave.o baseocc.o  

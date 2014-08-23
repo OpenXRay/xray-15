@@ -1,0 +1,183 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "modsres.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_BONESDEFGIZMOSBULGE DIALOG DISCARDABLE  0, 0, 108, 164
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Edit Bulge Keys Curves",IDC_GRAPH,"CustButton",
+                    WS_TABSTOP,6,138,93,14
+    CONTROL         "Custom1",IDC_NAME,"CustEdit",WS_TABSTOP,7,5,92,12
+    CONTROL         "",IDC_PARAM_SPIN2,"SpinnerControl",0x0,93,61,7,10
+    CONTROL         "",IDC_PARAM2,"CustEdit",WS_TABSTOP,71,61,20,10
+    RTEXT           "Twist :",IDC_STATIC_PARAM9,3,61,66,8
+    LTEXT           "Parent:",IDC_PARENT_TEXT,9,24,97,9
+    LTEXT           "Child:",IDC_CHILD_TEXT,9,34,97,9
+    CONTROL         "Use bounding volume",IDC_USE_VOLUME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,81,89,10
+    LTEXT           "Angle:",IDC_ANGLE_TEXT,9,44,85,9
+    CONTROL         "Enable gizmo",IDC_ENABLE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,94,89,10
+    CONTROL         "Edit Lattice",IDC_EDIT,"CustButton",WS_TABSTOP,5,115,93,
+                    14
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "modsres.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_BONESDEFGIZMOSBULGE, DIALOG
+    BEGIN
+        RIGHTMARGIN, 106
+        BOTTOMMARGIN, 160
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_GRAPHBITMAPMASK     BITMAP  DISCARDABLE     "bitmap1.bmp"
+IDB_BITMAP2             BITMAP  DISCARDABLE     "graphbit.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PW_PARAMETERS       "Parameters"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PW_GIZMOS           "Deformers"
+    IDS_PW_GIZMOBULGE       "Bulge Angle Deformer"
+    IDS_PW_GIZMOCATEGORY    "BonesDefGizmoDeformer"
+    IDS_PW_GIZMOPARAM       "Defomer Parameters"
+    IDS_PW_GIZMOPARAM_NAME  "Name"
+    IDS_PW_GIZMOPARAM_BULGE "Bulge"
+    IDS_PW_GIZMOPARAM_PARENT "Parent"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PW_GIZMOPARAM_CHILD "Child"
+    IDS_PW_GIZMOPARAM_WEIGHTS "Weights"
+    IDS_PW_GIZMOPARAM_POINTS "Points"
+    IDS_PW_GIZMOPARAM_DEFORMED_POINTS "Deformed Points"
+    IDS_PW_GIZMOPARAM_INITIALANGLE "Initial angle"
+    IDS_PW_GIZMOPARAM_USEGRAPH "Use Graph"
+    IDS_PW_GIZMOPARAM_TWIST "Twist"
+    IDS_PW_GIZMOPARAM_GRAPH "Graph"
+    IDS_PW_GIZMOPARAM_USEVOLUME "Use Volume"
+    IDS_PW_GRAPH            "Joint Graph"
+    IDS_PW_ENABLE           "Enable gizmo"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PW_KEYGRAPH         "Key Graph"
+    IDS_PW_ORIENTATION      "Orientation"
+    IDS_PW_SELECTION        "Selection"
+    IDS_PW_OFFSET           "Offset"
+    IDS_PW_GIZMOPARAM_EDITING "Editing"
+    IDS_PW_SELECT           "Select"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PW_PARENTERROR      "The selected bone does not have a parent in the skin system."
+    IDS_PW_VERTEXERROR      "There are no selected vertices."
+    IDS_PW_ERROR            "Error"
+    IDS_CURRENT_ANGLE       "Current Angle: %.2f"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

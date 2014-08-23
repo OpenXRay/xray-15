@@ -1,0 +1,281 @@
+<html>
+
+<head>
+<title>Compatibility</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="server.html"><img width="96" height="20" border="0"
+    src="images/navlt.gif" alt="Common Elements"></a></td>
+    <td width="96" align="left"><a href="classes.html"><img width="64" height="20" border="0"
+    src="images/navrt.gif" alt="Classes"></a></td>
+    <td width="384" align="right"><a href="index.html"><img width="230" height="20" border="0"
+    src="images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Compatibility</h3>
+    <p>This page discusses four different varieties of plug-in compatibility. <ul>
+      <li><em>Backward</em> compatibility is the ability to use the same code, including the
+        latest SDK headers and source, with both current and older versions of LightWave&reg;.</li>
+      <li><em>Forward</em> compatibility deals with writing code that won't break in future
+        versions of LightWave&reg;.</li>
+      <li>Compatibility <em>across platforms</em> allows you to use one code base to support more
+        than one operating system or CPU type. </li>
+      <li><em>Product</em> compatibility means being able to use the same code in products that
+        may be derived from LightWave&reg; or share some of its plug-in API (application programming
+        interface).</li>
+    </ul>
+    <p>Of these, backward compatibility is likely to be the greatest concern. Forward
+    compatibility and compatibility across platforms are largely automatic for the plug-in
+    author, as long as he or she writes to the specification in this documentation and uses
+    the facilities provided by the SDK rather than platform-specific code. The requirements
+    for product compatibility are difficult to predict at the moment, since no concrete
+    examples of the need for it exist yet, but globals for determining the product and version
+    number are available, and we'll introduce them here.</p>
+    <p>This discussion necessarily delves into some grubby details, so it'll be easier to
+    follow if you're already familiar with the SDK. But if you're not, links to the
+    information you need are provided.</p>
+    <p><strong>SDK Versions</strong></p>
+    <p>The plug-in SDK continues to evolve. Changes to it will appear with each release of
+    LightWave&reg;. The SDK itself isn't versioned, however. Each class and global has its own
+    version number. Your plug-in remains both forward and backward compatible with SDK changes
+    by using, for <a href="classes.html">classes</a>, the version number passed as the first
+    argument to your <a href="server.html#actfunc">activation function</a>, and for <a
+    href="globals.html">globals</a>, increments embedded in the global's service name string.</p>
+    <p>The SDK defines symbolic names for the versions of each class. The version number for <a
+    href="classes/shader.html">shaders</a>, for example, is <tt>LWSHADER_VERSION</tt>, which
+    as of this writing is defined as 4. Your shader's activation function will usually compare
+    this to the version number passed as the first argument to the function and return <tt>AFUNC_BADVERSION</tt>
+    if the two numbers don't match.</p>
+    <pre>   XCALL_( int )
+   MyActivate( long version, GlobalFunc *global, LWShaderHandler *local,
+      void *serverData );
+   {
+      if ( version != LWSHADER_VERSION )
+         return AFUNC_BADVERSION;</pre>
+    <p>This ensures that the LWShaderHandler being passed to you in the <tt>local</tt>
+    argument is the same as the LWShaderHandler in your copy of the <a
+    href="../include/lwshader.h">lwshader.h</a> SDK header file. The <a
+    href="../include/lwshader.h">lwshader.h</a> header contains the line</p>
+    <pre>   #define LWSHADER_VERSION 4</pre>
+    <p>as well as the definition of the structures used by shaders, including LWShaderHandler
+    and LWShaderAccess. When you compile your plug-in using this header, the compiler renders
+    the version checking code in your activation function as</p>
+    <pre>   if ( version != 4 ) ...</pre>
+    <p>You test for version 4 because that's the version of the shader API defined in your
+    copy of the header, and the version of the shader-related structures compiled into your
+    plug-in.</p>
+    <p>LightWave&reg; will call your activation function with every version of LWShaderHandler it
+    supports, until it runs out of versions or one of the calls succeeds. Forward
+    compatibility is therefore automatic, as long as LightWave&reg; continues to support version 4
+    of LWShaderHandler.</p>
+    <p>But what happens when you update your copy of the SDK headers? <tt>LWSHADER_VERSION</tt>
+    may have been incremented, yet you want to continue to support LightWave&reg; 6.x, which itself
+    supports shaders no later than version 4.</p>
+    <p>First, your activation function must accept a range of versions. LightWave&reg; starts by
+    calling your activation function with the highest version it supports, then with
+    successively lower versions. (The exception is the <a href="handler.html#ui">interface
+    activation</a> for handlers, which for historical reasons starts at 1 and counts up.) Your
+    plug-in is therefore activated with the highest version supported by both the plug-in and
+    the LightWave&reg; it's running in.</p>
+    <pre>   XCALL_( int )
+   MyActivate( long version, GlobalFunc *global, LWShaderHandler *local,
+      void *serverData );
+   {
+      if ( version &gt; LWSHADER_VERSION || version &lt; 4 )
+         return AFUNC_BADVERSION;</pre>
+    <p>Then you have to decide how to handle the different versions of LWShaderHandler and
+    other shader-related structures in the rest of your code. In many cases, changes to the
+    API of a class are incremental. Existing structure members are retained, and new members
+    are appended, making it possible to use the most recent versions of the data structures
+    with previous versions of the API. You just need to remember not to use new members when
+    you've been activated with an older version number.</p>
+    <p>The documentation includes a history of the changes made to the headers with each
+    revision of LightWave&reg;. Look for this in both the <a href="60b.html">changes</a> lists and
+    in sections labeled &quot;History&quot; on the pages for each class. Using this
+    information, you can see how the current data structures differ from those in previous
+    versions.</p>
+    <p>Globals work in a similar way. The SDK headers define symbolic names for the strings
+    you pass to the global function. <tt>LWMESSAGEFUNCS_GLOBAL</tt>, for example, is the
+    symbolic name of the messages global.</p>
+    <pre>   LWMessageFuncs *msgf;
+   msgf = global( LWMESSAGEFUNCS_GLOBAL, GFUSE_TRANSIENT );
+   if ( msgf ) { ...</pre>
+    <p>By using the symbolic name, you ensure that the LWMessageFuncs structure returned by
+    the global function is the same as the LWMessageFuncs defined in your copy of the <a
+    href="../include/lwhost.h">lwhost.h</a> SDK header.</p>
+    <p>The name strings underlying the symbols often contain trailing numbers or other
+    incrementing characters. As of this writing, the string for the messages global, for
+    example, is &quot;Info Messages 2&quot;. If the LWMessageFuncs structure changes in the
+    future, the new string will most likely be &quot;Info Messages 3&quot;, but LightWave&reg; will
+    continue to support &quot;Info Messages 2&quot;. Again, your plug-in's forward
+    compatibility with future versions of LightWave&reg; is automatic.</p>
+    <p>For backwards compatibility, you can request earlier versions of globals when the most
+    recent version, or the version defined in your copy of the headers, isn't available. As
+    with class-related structures, the data structures for globals in many cases evolve in
+    backward-compatible ways. The LWMessageFuncs structure for the original &quot;Info
+    Messages&quot; global looks like this.</p>
+    <pre>   typedef struct st_LWMessageFuncs {
+      void (*info)     (const char *, const char *);
+      void (*error)    (const char *, const char *);
+      void (*warning)  (const char *, const char *);
+   } LWMessageFuncs;</pre>
+    <p>The &quot;Info Messages 2&quot; global adds several functions to the end of the
+    structure.</p>
+    <pre>   typedef struct st_LWMessageFuncs {
+      void (*info)     (const char *, const char *);
+      void (*error)    (const char *, const char *);
+      void (*warning)  (const char *, const char *);
+      int  (*okCancel) (const char *ttl, const char *, const char *);
+      int  (*yesNo)    (const char *ttl, const char *, const char *);
+      int  (*yesNoCan) (const char *ttl, const char *, const char *);
+      int  (*yesNoAll) (const char *ttl, const char *, const char *);
+   } LWMessageFuncs;</pre>
+    <p>The version 2 definition is backward-compatible with the pointer returned from a
+    request for the original &quot;Info Messages&quot; global, as long as you remember not to
+    use the fields added for &quot;Info Messages 2&quot;.</p>
+    <p><strong>Before LightWave&reg; 6.0</strong></p>
+    <p>The revision of the plug-in API for LightWave&reg; 6.0 was the most substantial since the
+    plug-in architecture was first introduced in 1995. Prior to 6.0, API revisions were
+    incremental and had very little effect on existing source code. New globals were made
+    available, and new members were appended to existing class structures. Plug-in authors
+    could take advantage of the new features without changing much of their code and without
+    sacrificing backward compatibility with older versions of LightWave&reg;.</p>
+    <p>This is also true within versions from 6.0 onward. But there is a great divide at 6.0,
+    and the most difficult backward compatibility challenge involves bridging this divide.
+    (This is a problem only for <em>new source code</em>. The situation for existing binaries
+    is quite a bit simpler. With a few exceptions, plug-in binaries built with the pre-6.0 SDK
+    will run in LightWave&reg; 6.0 but won't have access to any of the new features. Binaries built
+    with the current SDK will <em>not</em> run in versions of LightWave&reg; prior to 6.0.)</p>
+    <p>With 6.0, the API doubled in size, and in keeping with the complete overhaul of
+    LightWave&reg; itself, many familiar API structures were renamed, rearranged or removed. It's
+    no longer possible to write plug-ins to both the current and 5.x APIs using the same code
+    base and a single set of SDK headers. In some cases it simply won't make sense to continue
+    to work within the limitations of the 5.x SDK, particularly as time passes and older
+    versions of LightWave&reg; fade from view. But with that caveat in mind, it's still possible to
+    write a single plug-in that uses new SDK features yet runs in LightWave&reg; 5.x.</p>
+    <p>One way to do this is to segregate any code that requires a particular API version.
+    Your <a href="server.html#actfunc">activation functions</a> might look like the following.</p>
+    <pre>   XCALL_( static int )
+   Activate( long version, GlobalFunc *global, void *local,
+      void *serverData )
+   {
+      unsigned long prodinfo, major;
+
+      prodinfo = ( unsigned long ) global( LWPRODUCTINFO_GLOBAL,
+         GFUSE_TRANSIENT );
+      major = LWINF_GETMAJOR( prodinfo );
+      if ( major &lt; 6 )
+         return Activate5( version, global, local, serverData );
+      else
+         return Activate6( version, global, local, serverData );
+   }</pre>
+    <p>The <a href="globals/prodinfo.html">Product Info</a> global is used here to distinguish
+    between major versions of LightWave&reg;. <tt>Activate5</tt> is the activation function you
+    would have written, had this been an exclusively 5.x plug-in, and <tt>Activate6</tt> is
+    the 6.0 version. <tt>Activate</tt> covers both functions and is the activation function
+    that should be listed in the ServerRecord. <tt>Activate5</tt> and <tt>Activate6</tt>
+    reside in two different .c files, each of which includes the appropriate version of the
+    headers and contains the version-sensitive callbacks. The code that doesn't depend on the
+    API version can be called from both of these files.</p>
+    <p>In the 6 SDK, the ServerRecord structure was extended to include a <tt>tagInfo</tt>
+    member, and the value of the <tt>sysVersion</tt> member of the ModuleDescriptor structure
+    was incremented. (These structures are defined in <a href="../include/lwserver.h">lwserver.h</a>
+    and <a href="../include/lwmodule.h">lwmodule.h</a> in the 6.0 SDK, and in splug.h and
+    serv_w.c in the 5.x SDK.) The change in <tt>sysVersion</tt> prevents plug-ins linked with
+    the 6 SDK library from being loaded by earlier versions of LightWave&reg; that don't know about
+    <tt>tagInfo</tt>. Your 5.x/6 hybrid plug-in must therefore be linked with the 5.x SDK
+    library, and it can't include <tt>tagInfo</tt> in its ServerRecords.</p>
+    <p><strong>Product Info and System ID</strong></p>
+    <p>The <a href="globals/prodinfo.html">Product Info</a> global returns the identity of the
+    host (e.g. LightWave&reg;), its major and minor version numbers, and the build number. The <a
+    href="globals/sysid.html">System ID</a> global tells you which specific program you're
+    running in (e.g., Layout, Modeler or Screamernet). If your plug-in uses features that only
+    appear in certain versions of LightWave&reg;, or in LightWave&reg; but not in other programs that
+    may share the LightWave&reg; SDK, or in Layout but not Modeler, you can use these two globals
+    so that you can either bracket the affected code or fail gracefully.</p>
+    <p>Note that this is only necessary when the class version number or the global service
+    name aren't sufficient by themselves to ensure compatibility, as in the 5.x example above.
+    The need also arises in cases where the LightWave&reg; programmers, proving they are only
+    human, forget to increment a version number when they make a change to a header.</p>
+    <p>Returning to our shader example, LightWave&reg; 7.0 added four fields to the LWShaderAccess
+    structure without a corresponding change to <tt>LWSHADER_VERSION</tt>. As the History
+    section of the shader page points out, you'll need to use the Product Info global to
+    ensure that you're running in at least LightWave&reg; 7.0 before you try to read or write those
+    new LWShaderAccess fields.</p>
+    <p>The least convenient but most reliable version indicator is the build number. You may
+    occasionally need this in order to identify minor patches that retain the same major and
+    minor version numbers. Older versions of a given LightWave&reg; component will always have
+    smaller build numbers, so that you can reliably use inequalities to test whether the
+    current program is <em>at least as</em> old or new as a specific build. The build numbers
+    for LightWave&reg; Layout and Modeler are displayed in their About boxes.</p>
+    <p><strong>Platforms</strong></p>
+    <p>LightWave&reg; is available on more than one operating system. You can build a version of
+    your plug-in for each of these operating systems and platforms without the use of any
+    platform-specific source code. LightWave&reg; supports this by providing services for <a
+    href="fileio.html">file I/O</a> and user interface construction (<a
+    href="globals/panel.html">panels</a>, <a href="globals/xpanel.html">xpanels</a>, <a
+    href="globals/modreq.html">requesters</a>, <a href="globals/message.html">messages</a>, <a
+    href="globals/filereq2.html">file dialogs</a>, <a href="globals/colorpik.html">color
+    dialogs</a>, <a href="globals/preview.html">previews</a>, <a href="globals/shelf.html">presets</a>
+    and <a href="globals/modmon.html">monitors</a>, for example) that hide details specific to
+    each platform. You just need to recompile.</p>
+    <p>The SDK requires you to define certain preprocessor symbols to distinguish between
+    platforms. The <a href="../include/lwdisplay.h">lwdisplay.h</a> header uses these, for
+    example, to selectively compile different versions of the structure returned by the <a
+    href="globals/display.html">Host Display Info</a> global. Under Windows, your plug-in
+    receives an HWND for the LightWave&reg; component's main window, while on the Mac, it receives
+    a WindowPtr. Which one you get will depend on whether you define <tt>_WIN32</tt> or <tt>_MACOS</tt>
+    when you compile.</p>
+    <p>Although platform independence is usually a good thing, the SDK by no means requires
+    it. Plug-ins aren't exotic objects on any platform. They're shared libraries on the Mac
+    and DLLs in Windows, and they can do everything that other dynamically linked code can do
+    on those platforms.</p>
+    <p>Under Windows, your plug-in can include an entry point function, usually called <tt>DllMain</tt>.
+    The entry point is a function Windows calls when LightWave&reg; loads your plug-in (or when any
+    process or thread links to a DLL). In order to gain access to resources (dialog box
+    templates, bitmaps, icons, version data) you've linked into your .p file, you need to know
+    your module handle, which you receive as the first argument to your entry point function.</p>
+    <pre>   #ifdef _WIN32
+   static HINSTANCE hdll;
+
+   BOOL WINAPI DllMain( HINSTANCE hInstance, ULONG reason,
+      LPVOID reserved )
+   {
+      if ( reason == DLL_PROCESS_ATTACH )
+         hdll = hInstance;
+      return TRUE;
+   }
+   #endif /* _WIN32 */</pre>
+    <p>Later, you can pass <tt>hdll</tt> as the first argument to Win32 functions like <tt>LoadIcon</tt>
+    and <tt>DialogBox</tt>.</p>
+    <p><strong>Parting Tips</strong><ul>
+      <li>Always check the activation version (the first argument to the <a
+        href="server.html#actfunc">activation function</a>).</li>
+      <li>Always check the value returned by the <a href="globals.html">global function</a>. It
+        may be NULL if the global you've requested doesn't exist in the LightWave&reg; that's running
+        you.</li>
+      <li>You can use the <tt>lookup</tt> function to see whether a <a href="commands.html">command</a>
+        is available.</li>
+      <li>Write to the spec. Don't make assumptions about undocumented LightWave&reg; internals. Don't
+        try to dereference opaque pointers or read past the ends of buffers, and don't rely on
+        buffers being contiguous or persistent, or in the same form internally as they are in the
+        SDK.</li>
+      <li>When possible, follow LightWave&reg; conventions.</li>
+      <li>Use the <a href="globals/prodinfo.html">Product Info</a> and <a href="sysid.html">System
+        ID</a> globals to find out what program is calling you.</li>
+      <li>Use platform-independent services for file I/O and user interfaces.</li>
+    </ul>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

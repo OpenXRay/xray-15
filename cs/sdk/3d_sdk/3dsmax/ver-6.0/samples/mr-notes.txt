@@ -1,0 +1,187 @@
+
+Porting Mental Ray Shaders to MAX Plugins
+=========================================
+
+General notes:
+
+MR Shader to MAX Plugin mapping:
+-------------------------------
+
+MR Shader type             MAX Plugin Type          Primary MAX plugin base class
+==============             ===============          =============================
+Material                   Material and/or Shader   Mtl, Shader
+Texture                    Texmap                   Texmap
+Environment                (Texmap)                 Texmap
+Volume                     Atmospheric              Atmospheric
+Light                      Light Object             LightObject
+Shadow                     Shadow Generator         ShadowGenerator
+Lens                       Camera Object            CameraObject
+Output                     RenderEffect, BitmapIO   BitmapIO, Effect, ImageFilter
+Displacement               (Texmap)                 Texmap
+Geometry                   Procedural Object        GeomObject
+
+For the environment, MAX allows users to associate a Texmap with
+the environment, which can be any Texmap plugin.
+
+Displacement shading in MAX is done via the Displacement channel
+of a typical MAX material, and any Texmap plugin is allowed to
+be used to provide the specific displacement information.
+
+(no real MAX equivalents for Photon shaders?)
+
+
+MR State Variable to MAX Context state mapping
+----------------------------------------------
+
+(Todo: finish, cleanup)
+
+What follows is a rough mapping of MR shader state
+variables to MAX class vars, functions, etc.  In
+most cases, the assumption was that the behavior to
+MR state variables was desired (e.g. available at
+render-time).  In some cases, information is available
+in the MAX scene, available at render time, but not
+exactly via a "direct" path (for example: during render,
+some, but limited camera info is available in the
+ViewParams of the RenderGlobalContext, but it's also
+possible to iterate over the scene and find the actual
+Camera object for detailed information)
+
+
+MR State Variable         MAX Class or Function
+=================         =====================
+
+version                   
+camera_inst               
+camera
+options
+
+orthographic
+focal
+aperture
+aspect
+clip
+x_resolution
+y_resolution
+window.xl
+window.yl
+window.xh
+window.yh
+volume
+environment
+lens
+output
+frame
+frame_time
+x_offset
+y_offset
+
+trace
+scanline
+motion
+shadow
+filter
+acceleration
+face
+field
+reflection_depth
+refraction_depth
+trace_depth
+photon_reflection_depth
+photon_refraction_depth
+photon_trace_depth
+samplelock
+caustic
+globillum
+finalgather
+image
+
+raster_x
+raster_y
+shader
+global_lock
+thread
+
+parent
+child
+type
+
+(etc)
+
+
+MR Utility Function to MAX Utility fcn/class mapping
+----------------------------------------------------
+
+(todo, probably helpful to try and show rough equivalents for
+various mi_api/mi_xxx functions...note that these probably
+won't map nicely...for example, mi_img_xxx functions will
+map somewhat to Bitmap and GBuffer functions, but probably
+not exactly)
+
+
+
+Shader Parameters and UI in MAX
+-------------------------------
+
+MAX plugins keep all custom user-modifiable parameters
+in something called a ParamBlock2
+(see "Parameter Blocks and Maps in Release 3" in SDK documentation).  
+You must use a paramblock2 in your MAX plugin port if you have
+user parameters.  The reasons include:
+
+  1) MAXTrans interface to MR will automatically pick up
+     PB2 information and output it to the MI file
+  2) It significantly reduces the amount of development
+     work for things like parameter validity checking,
+     and hooking up parameters to MAX plug-in user UI.
+  3) Will likely become required for future release of MAX.
+
+Note that MAX doesn't have the same State information that
+MR passes to shaders, so you may need to replicate some information
+as user parameters instead.
+
+
+Typical plugin source file layout
+---------------------------------
+
+While in MR you might have had a single simple shader C source
+plus some includes, MAX plugins are Windows DLLs, and require some
+additional files, along with additional work to integrate the plugin
+DLL into the MAX application.
+
+Typically, a plugin will have:
+
+  -- plugin MSDEV project files (<plugin>.DSP, <plugin>.DSW, <plugin>.MAK)
+  -- plugin "def" file (<plugin>.DEF) that defines the standard DLL exports
+     that are needed so that MAX can load and access the plugin objects
+  -- Windows UI resources file (<plugin>.RC)
+  -- source files: usually a main header, and one or more source files,
+     broken-out as desired.
+
+Suggested SDK Sections to Read: 
+
+
+
+Interaction with Mental Ray
+---------------------------
+
+[Norm -- this needs review]
+
+If your plugin uses PB2, the MAX-to-MR Connection will automatically 
+generate appropriate shader declaration, param names and calls.  Note that
+it will prepend a "max_" to the name of the shader/plugin.
+
+-- Versioning
+
+[Norm -- actually shader versioning was kinda a mystery to me.
+That is...miMTShader has get/setVersion, and this is used when
+generating the MI, but I can't tell where the translator gets
+the version from...or does it?
+
+Perhaps an even better question is...where would the translator
+get plugin version info from...some plugin types have it builtin
+(e.g. Import/Export).  Most I'd think would utilize the PB2 
+mechanisms for versioning...not sure]
+
+
+

@@ -1,0 +1,109 @@
+<html>
+
+<head>
+<title>Globals: Info Messages</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="imgutil.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="Image Utility"></a></td>
+    <td width="96" align="left"><a href="instupdt.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Instance Update"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Info Messages</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwhost.h">lwhost.h</a></small></p>
+    <p>This global provides a set of functions for displaying messages to the user.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWMessageFuncs *msgf;
+   msgf = global( LWMESSAGEFUNCS_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWMessageFuncs.</p>
+    <pre>   typedef struct st_LWMessageFuncs {
+      void (*<strong>info</strong>)     (const char *, const char *);
+      void (*<strong>error</strong>)    (const char *, const char *);
+      void (*<strong>warning</strong>)  (const char *, const char *);
+      int  (*<strong>okCancel</strong>) (const char *title, const char *, const char *);
+      int  (*<strong>yesNo</strong>)    (const char *title, const char *, const char *);
+      int  (*<strong>yesNoCan</strong>) (const char *title, const char *, const char *);
+      int  (*<strong>yesNoAll</strong>) (const char *title, const char *, const char *);
+   } LWMessageFuncs;</pre>
+    <p>All of these functions allow you to display one or two lines of text. The second line
+    is optional and may be NULL.</p>
+    <p>The first three functions are informational only. Depending on the user-defined alert
+    level, the arguments are displayed either in a separate dialog with an OK button, or in a
+    status area on the main window. The remaining functions allow you to ask the user
+    questions, and they differ in the choice of responses available to the user. The possible
+    return values are</p>
+    <div align="center"><center><table border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="150">&nbsp; </td>
+        <td width="80"><strong>3</strong></td>
+        <td width="80"><strong>2</strong></td>
+        <td width="80"><strong>1</strong></td>
+        <td width="80"><strong>0</strong></td>
+      </tr>
+      <tr>
+        <td colspan="5"><hr>
+        </td>
+      </tr>
+      <tr>
+        <td width="150"><strong><tt>okCancel</tt></strong></td>
+        <td width="80">-</td>
+        <td width="80">-</td>
+        <td width="80">OK</td>
+        <td width="80">Cancel</td>
+      </tr>
+      <tr>
+        <td width="150"><strong><tt>yesNo</tt></strong></td>
+        <td width="80">-</td>
+        <td width="80">-</td>
+        <td width="80">Yes</td>
+        <td width="80">No</td>
+      </tr>
+      <tr>
+        <td width="150"><strong><tt>yesNoCan</tt></strong></td>
+        <td width="80">-</td>
+        <td width="80">Yes</td>
+        <td width="80">No</td>
+        <td width="80">Cancel</td>
+      </tr>
+      <tr>
+        <td width="150"><strong><tt>yesNoAll</tt></strong></td>
+        <td width="80">Yes to All</td>
+        <td width="80">Yes</td>
+        <td width="80">No</td>
+        <td width="80">Cancel</td>
+      </tr>
+    </table>
+    </center></div><p><strong>Example</strong></p>
+    <p>This code fragment displays everyone's favorite first message.</p>
+    <pre>   #include &lt;lwserver.h&gt;
+   #include &lt;lwhost.h&gt;
+
+   LWMessageFuncs *msgf;
+
+   msgf = global( LWMESSAGEFUNCS_GLOBAL, GFUSE_TRANSIENT );
+
+   if ( msgf ) {
+      msgf-&gt;info( &quot;Hello, world!&quot;, NULL );
+   }
+</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

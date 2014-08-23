@@ -1,0 +1,144 @@
+//-
+// ==========================================================================
+// Copyright (C) 1995 - 2005 Alias Systems Corp. and/or its licensors.  All 
+// rights reserved. 
+// 
+// The coded instructions, statements, computer programs, and/or related 
+// material (collectively the "Data") in these files are provided by Alias 
+// Systems Corp. ("Alias") and/or its licensors for the exclusive use of the 
+// Customer (as defined in the Alias Software License Agreement that 
+// accompanies this Alias software). Such Customer has the right to use, 
+// modify, and incorporate the Data into other products and to distribute such 
+// products for use by end-users.
+//  
+// THE DATA IS PROVIDED "AS IS".  ALIAS HEREBY DISCLAIMS ALL WARRANTIES 
+// RELATING TO THE DATA, INCLUDING, WITHOUT LIMITATION, ANY AND ALL EXPRESS OR 
+// IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY AND/OR FITNESS FOR A 
+// PARTICULAR PURPOSE. IN NO EVENT SHALL ALIAS BE LIABLE FOR ANY DAMAGES 
+// WHATSOEVER, WHETHER DIRECT, INDIRECT, SPECIAL, OR PUNITIVE, WHETHER IN AN 
+// ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, OR IN EQUITY, 
+// ARISING OUT OF ACCESS TO, USE OF, OR RELIANCE UPON THE DATA.
+// ==========================================================================
+//+
+
+global proc string ge2setTags( string $shader )
+{
+	int		$i;
+	int		$foundAttr = false;
+
+	source ge2MatAttr;
+
+	string	$domainAttrs[] = ge2GetAllAttrs();
+	string	$types[] = ge2GetAllAttrTypes();
+	string	$cmd;
+	string	$retString = "";
+
+	string	$dynAttrs[] = `listAttr -ud $shader`;
+
+	for ( $i = 0; $i < size($domainAttrs); $i++ )
+	{
+		for ( $attr in $dynAttrs )
+		{
+			if ( $attr == $domainAttrs[$i] )
+			{
+				$foundAttr = true;
+				break;
+			}
+		}
+
+		if ( true != $foundAttr )
+		{
+			$cmd = "addAttr ";
+			
+			$cmd += $types[$i] + " -ln " + $domainAttrs[$i] + " " + $shader;
+
+			eval $cmd;
+
+			// Turn off keyable
+			$cmd = "setAttr -k false " + $shader + "." + $domainAttrs[$i];
+			eval $cmd;
+
+			// Could also initialize to a default value. This would require another
+			// array in ge2MatAttr...
+
+			if ( "" == $retString )
+			{
+				$retString = `nodeType $shader`;
+			}
+		}
+	}
+
+	return $retString;
+}
+
+global proc ge2tags()
+{
+	global int $gSourceLambert = false;
+	global int $gSourceBlinn = false;
+
+	int		$addedToLambert = false;
+	int		$addedToBlinn = false;
+
+	int		$i;
+
+	string	$tagged;
+
+	string	$shaders[];	
+
+	$shaders = `ls -mat`;
+
+	for ( $i = 0; $i < size($shaders); $i++ )
+	{
+		$tagged = `ge2setTags( $shaders[$i] )`;
+		if ( $tagged == "lambert" )
+		{
+			$addedToLambert = true;
+		}
+		else if ( $tagged == "blinn" )
+		{
+			$addedToBlinn = true;
+		}
+		// and likewise for Phong, PhongE, etc.
+	}
+
+	print( "Ideally, extra material attributes added for the purpose of ge2 Export\n" );
+	print( "would be grouped together by domain, but due to some instabilities in\n" );
+	print( "the Attribute Editor, all ge2 material attributes will appear in the\n" );
+	print( "\"Extra Attributes\" section of the Attribute Editor for each shader.\n" );
+
+	return;
+
+	int		$lambertExists = `formLayout -exists AttrEdlambertFormLayout`;
+	int		$blinnExists = `formLayout -exists AttrEdblinnFormLayout`;
+
+	if ( !$gSourceLambert && $addedToLambert )
+	{
+		if ( !$lambertExists )
+		{
+			// $cmd = "source AElambertGe2Revision";
+			// eval $cmd;
+			// $gSourceLambert = true;
+		}
+		else
+		{
+			print( "Could not rebuild the lambert node layout in the Attribute Editor\n" );
+			print( "To rebuild the display, ge2tags must be executed before the AE is\n" );
+			print( "opened on a lambert node\n" );
+		}
+	}
+	if ( !$gSourceBlinn && $addedToBlinn )
+	{
+		if ( !$blinnExists )
+		{
+			// $cmd = "source AEblinnGe2Revision";
+			// eval $cmd;
+			// $gSourceBlinn = true;
+		}
+		else
+		{
+			print( "Could not rebuild the blinn node layout in the Attribute Editor\n" );
+			print( "To rebuild the display, ge2tags must be executed before the AE is\n" );
+			print( "opened on a blinn node\n" );
+		}
+	}
+}	

@@ -1,0 +1,43 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Pursuit - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\TEMP\RSP62.tmp" with contents
+[
+/nologo /MT /W3 /GX /O2 /I "..\\" /I "..\..\..\..\maxsdk\include\\" /I "..\..\..\..\maxsdk\Include\Maxscrpt" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "PURSUIT_EXPORTS" /Fp"Release/Pursuit.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"D:\3dsmax4\CSTUDIO\SDK\Crowd\Pursuit\dll.cpp"
+"D:\3dsmax4\CSTUDIO\SDK\Crowd\Pursuit\pursuit.cpp"
+]
+Creating command line "cl.exe @C:\TEMP\RSP62.tmp" 
+Creating temporary file "C:\TEMP\RSP63.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib comctl32.lib /nologo /dll /incremental:no /pdb:"Release/pursuit.pdb" /machine:I386 /def:".\pursuit.def" /out:"..\plugins\pursuit.dlo" /implib:"Release/pursuit.lib" 
+.\Release\dll.obj
+.\Release\pursuit.obj
+..\..\..\..\maxsdk\lib\core.lib
+..\..\..\..\maxsdk\lib\geom.lib
+..\..\..\..\maxsdk\lib\Maxscrpt.lib
+..\..\..\..\maxsdk\lib\maxutil.lib
+..\..\..\..\maxsdk\lib\mesh.lib
+..\..\..\..\maxsdk\lib\Paramblk2.lib
+]
+Creating command line "link.exe @C:\TEMP\RSP63.tmp"
+<h3>Output Window</h3>
+Compiling...
+dll.cpp
+pursuit.cpp
+Linking...
+   Creating library Release/pursuit.lib and object Release/pursuit.exp
+pursuit.exp : warning LNK4070: /OUT:formation.dlo directive in .EXP differs from output filename "..\plugins\pursuit.dlo"; ignoring directive
+
+
+
+<h3>Results</h3>
+pursuit.dlo - 0 error(s), 1 warning(s)
+</pre>
+</body>
+</html>

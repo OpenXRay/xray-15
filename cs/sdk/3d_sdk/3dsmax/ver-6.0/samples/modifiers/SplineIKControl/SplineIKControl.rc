@@ -1,0 +1,155 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PANEL DIALOG DISCARDABLE  0, 0, 114, 307
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    LISTBOX         IDC_CTRL_OBJ_LIST,6,15,100,116,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Control Objects",IDC_STATIC,1,3,109,132
+    CONTROL         "",IDC_SIK_HELPERSIZE_EDIT,"CustEdit",WS_TABSTOP,62,265,
+                    30,10
+    CONTROL         "",IDC_SIK_HELPERSIZE_SPINNER,"SpinnerControl",0x0,94,
+                    265,7,10
+    LTEXT           "Helper Size:",IDC_SIK_HELPERSIZE,18,265,38,8,
+                    SS_CENTERIMAGE
+    CONTROL         "Center Marker",IDC_CENTERMARKER_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,223,61,10
+    CONTROL         "Axis Tripod",IDC_AXISTRIPOD_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,233,51,10
+    CONTROL         "Cross",IDC_CROSS_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,242,33,10
+    CONTROL         "Box",IDC_BOX_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,252,28,10
+    CONTROL         "Constant Screen Size",IDC_CNSTSCREENSIZE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,279,84,10
+    GROUPBOX        "Helper Display",IDC_H_DISPLAY,5,210,102,92
+    CONTROL         "Draw on Top",IDC_DRAWONTOP_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,289,57,10
+    GROUPBOX        "Link Types",IDC_LINK,5,157,101,51
+    CONTROL         "Link All to Root",IDC_LINK_TO_ROOT,"Button",
+                    BS_AUTORADIOBUTTON,20,180,64,10
+    CONTROL         "Link All in Hierarchy",IDC_LINK_IN_HIERARCHY,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,20,169,79,10
+    CONTROL         "No Linking",IDC_LINK_TO_NONE,"Button",
+                    BS_AUTORADIOBUTTON,20,192,64,8
+    CONTROL         "Create Helpers",IDC_SIK_CREATE_HELPERS_PICKBTN,
+                    "CustButton",0x0,13,140,86,12
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_PANEL, DIALOG
+    BEGIN
+        RIGHTMARGIN, 112
+        BOTTOMMARGIN, 306
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CLASS_NAME          "Spline IK Control"
+    IDS_PARAMS              "Spline IK Control Parameters"
+    IDS_AG_SM_HELPERSIZE    "Helper Size"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_AG_CENTERMARKER     "Center Marker"
+    IDS_AG_AXISTRIPOD       "Axis Tripod"
+    IDS_AG_CROSS            "Cross"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_AG_CNSTSCREENSIZE   "Const Screen Size"
+    IDS_AG_DRAWONTOP        "Draw On Top"
+    IDS_AG_BOX              "Box"
+    IDS_AG_LINK_TYPES       "Link Types"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#include "veroverrides.h"
+#include "maxversion.r"
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,927 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "sflectrs.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_AP_USPAWNDEFL DIALOG DISCARDABLE  0, 0, 108, 414
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_EP_TIMEON,"CustEdit",WS_TABSTOP,46,58,36,10
+    CONTROL         "",IDC_EP_TIMEOFF,"CustEdit",WS_TABSTOP,46,71,36,10
+    CONTROL         "",IDC_EP_AFFECTS,"CustEdit",WS_TABSTOP,46,104,36,10
+    CONTROL         "",IDC_EP_BOUNCEU,"CustEdit",WS_TABSTOP,46,117,36,10
+    CONTROL         "",IDC_EP_BOUNCEUVAR,"CustEdit",WS_TABSTOP,46,130,36,10
+    CONTROL         "",IDC_EP_BOUNCEUCHAOS,"CustEdit",WS_TABSTOP,46,143,36,
+                    10
+    CONTROL         "",IDC_EP_REFRACTSU,"CustEdit",WS_TABSTOP,46,175,36,10
+    CONTROL         "",IDC_EP_DECELU,"CustEdit",WS_TABSTOP,46,188,36,10
+    CONTROL         "",IDC_EP_DECELUVAR,"CustEdit",WS_TABSTOP,46,201,36,10
+    CONTROL         "",IDC_EP_REFRACTIONU,"CustEdit",WS_TABSTOP,46,214,36,10
+    CONTROL         "",IDC_EP_REFRACTUVAR,"CustEdit",WS_TABSTOP,46,227,36,10
+    CONTROL         "",IDC_EP_DIFFUSIONU,"CustEdit",WS_TABSTOP,46,240,36,10
+    CONTROL         "",IDC_EP_DIFFUSIONUVAR,"CustEdit",WS_TABSTOP,46,253,36,
+                    10
+    CONTROL         "",IDC_EP_BOUNCEUFRICTION,"CustEdit",WS_TABSTOP,46,285,
+                    36,10
+    CONTROL         "",IDC_EP_BOUNCEUINHERIT,"CustEdit",WS_TABSTOP,46,298,36,
+                    10
+    CONTROL         "",IDC_EP_SPAWNSONLY,"CustEdit",WS_TABSTOP,46,333,36,10
+    CONTROL         "",IDC_EP_SPAWNONLYDECEL,"CustEdit",WS_TABSTOP,46,346,36,
+                    10
+    CONTROL         "",IDC_EP_SPAWNSONLYDECELVAR,"CustEdit",WS_TABSTOP,46,
+                    359,36,10
+    CONTROL         "",IDC_EP_ICONSIZE,"CustEdit",WS_TABSTOP,46,391,36,10
+    CONTROL         "",IDC_EP_TIMEONSPIN,"SpinnerControl",0x0,84,58,7,10
+    CONTROL         "",IDC_EP_TIMEOFFSPIN,"SpinnerControl",0x0,84,71,7,10
+    CONTROL         "",IDC_EP_ICONSIZESPIN,"SpinnerControl",0x0,84,391,7,10
+    CONTROL         "Pick Object",IDC_EP_PICKBUTTON,"CustButton",0x0,13,26,
+                    80,12
+    RTEXT           "Time On:",IDC_STATIC,11,60,30,8
+    RTEXT           "Time Off:",IDC_STATIC,11,72,30,8
+    RTEXT           "Icon Size:",IDC_STATIC,8,391,33,8
+    LTEXT           "Object:<None>",IDC_EP_PICKNAME,8,13,91,8
+    GROUPBOX        "Timing",IDC_STATIC,0,47,107,40
+    GROUPBOX        "Display Icon",IDC_STATIC,0,380,107,29
+    GROUPBOX        "Object-Based OmniFlector",IDC_STATIC,0,0,107,44
+    CONTROL         "",IDC_EP_AFFECTSSPIN,"SpinnerControl",0x0,84,104,7,10
+    CONTROL         "",IDC_EP_BOUNCEUSPIN,"SpinnerControl",0x0,84,117,7,10
+    CONTROL         "",IDC_EP_BOUNCEUVARSPIN,"SpinnerControl",0x0,84,130,7,
+                    10
+    CONTROL         "",IDC_EP_BOUNCEUCHAOSSPIN,"SpinnerControl",0x0,84,143,7,
+                    10
+    CONTROL         "",IDC_EP_BOUNCEUFRICTIONSPIN,"SpinnerControl",0x0,84,
+                    285,7,10
+    CONTROL         "",IDC_EP_BOUNCEUINHERITSPIN,"SpinnerControl",0x0,84,298,
+                    7,10
+    RTEXT           "Reflects:",IDC_STATIC,12,105,29,8
+    RTEXT           "%",IDC_STATIC,93,104,8,8
+    RTEXT           "Bounce:",IDC_STATIC,13,118,28,8
+    RTEXT           "Chaos:",IDC_STATIC,18,144,23,8
+    RTEXT           "Variation:",IDC_STATIC,11,131,30,8
+    RTEXT           "%",IDC_STATIC,93,130,8,8
+    RTEXT           "%",IDC_STATIC,93,143,8,8
+    RTEXT           "Friction:",IDC_STATIC,15,286,26,8
+    GROUPBOX        "Reflection",IDC_STATIC,0,90,108,70
+    RTEXT           "Inherit Vel:",IDC_STATIC,7,299,34,8
+    GROUPBOX        "Refraction",IDC_STATIC,0,162,108,108
+    CONTROL         "",IDC_EP_REFRACTIONUSPIN,"SpinnerControl",0x0,84,214,7,
+                    10
+    RTEXT           "Distortion:",IDC_STATIC,9,215,32,8
+    RTEXT           "%",IDC_STATIC,93,214,8,8
+    CONTROL         "",IDC_EP_REFRACTSUSPIN,"SpinnerControl",0x0,84,175,7,10
+    RTEXT           "Refracts:",IDC_STATIC,11,177,30,8
+    RTEXT           "%",IDC_STATIC,93,176,8,8
+    CONTROL         "",IDC_EP_REFRACTUVARSPIN,"SpinnerControl",0x0,84,227,7,
+                    10
+    RTEXT           "Variation:",IDC_STATIC,11,228,30,8
+    RTEXT           "%",IDC_STATIC,93,227,8,8
+    CONTROL         "",IDC_EP_DECELUSPIN,"SpinnerControl",0x0,84,188,7,10
+    CONTROL         "",IDC_EP_DECELUVARSPIN,"SpinnerControl",0x0,84,201,7,10
+    RTEXT           "Pass Vel:",IDC_STATIC,11,190,30,8
+    RTEXT           "Variation:",IDC_STATIC,11,203,30,8
+    RTEXT           "%",IDC_STATIC,93,201,8,8
+    CONTROL         "",IDC_EP_DIFFUSIONUSPIN,"SpinnerControl",0x0,84,240,7,
+                    10
+    RTEXT           "Diffusion:",IDC_STATIC,11,242,30,8
+    RTEXT           "%",IDC_STATIC,93,240,8,8
+    CONTROL         "",IDC_EP_DIFFUSIONUVARSPIN,"SpinnerControl",0x0,84,253,
+                    7,10
+    RTEXT           "Variation:",IDC_STATIC,11,255,30,8
+    RTEXT           "%",IDC_STATIC,93,253,8,8
+    GROUPBOX        "Common",IDC_STATIC,0,273,108,43
+    GROUPBOX        "Spawn Effects Only",IDC_STATIC,0,318,108,59
+    CONTROL         "",IDC_EP_SPAWNSONLYSPIN,"SpinnerControl",0x0,84,333,7,
+                    10
+    RTEXT           "Spawns:",IDC_STATIC,13,334,28,8
+    RTEXT           "%",IDC_STATIC,93,335,8,8
+    CONTROL         "",IDC_EP_SPAWNONLYDECELSPIN,"SpinnerControl",0x0,84,346,
+                    7,10
+    CONTROL         "",IDC_EP_SPAWNSONLYDECELVARSPIN,"SpinnerControl",0x0,84,
+                    359,7,10
+    RTEXT           "Pass Vel:",IDC_STATIC,11,347,30,8
+    RTEXT           "Variation:",IDC_STATIC,11,360,30,8
+    RTEXT           "%",IDC_STATIC,93,359,8,8
+    RTEXT           "%",IDC_STATIC,93,286,8,8
+END
+
+IDD_AP_PSPAWNDEFL DIALOG DISCARDABLE  0, 0, 108, 375
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_EP_TIMEON,"CustEdit",WS_TABSTOP,46,11,36,10
+    CONTROL         "",IDC_EP_TIMEOFF,"CustEdit",WS_TABSTOP,46,24,36,10
+    CONTROL         "",IDC_EP_AFFECTS,"CustEdit",WS_TABSTOP,46,53,36,10
+    CONTROL         "",IDC_EP_BOUNCE,"CustEdit",WS_TABSTOP,46,66,36,10
+    CONTROL         "",IDC_EP_BOUNCEVAR,"CustEdit",WS_TABSTOP,46,79,36,10
+    CONTROL         "",IDC_EP_CHAOS,"CustEdit",WS_TABSTOP,46,92,36,10
+    CONTROL         "",IDC_EP_REFRACTS,"CustEdit",WS_TABSTOP,46,125,36,10
+    CONTROL         "",IDC_EP_DECEL,"CustEdit",WS_TABSTOP,46,138,36,10
+    CONTROL         "",IDC_EP_DECELVAR,"CustEdit",WS_TABSTOP,46,151,36,10
+    CONTROL         "",IDC_EP_REFRACTION,"CustEdit",WS_TABSTOP,46,164,36,10
+    CONTROL         "",IDC_EP_REFRACTVAR,"CustEdit",WS_TABSTOP,46,177,36,10
+    CONTROL         "",IDC_EP_DIFFUSION,"CustEdit",WS_TABSTOP,46,190,36,10
+    CONTROL         "",IDC_EP_DIFFUSIONVAR,"CustEdit",WS_TABSTOP,46,203,36,
+                    10
+    CONTROL         "",IDC_EP_INHERIT,"CustEdit",WS_TABSTOP,46,235,36,10
+    CONTROL         "",IDC_EP_FRICTION,"CustEdit",WS_TABSTOP,46,249,36,10
+    CONTROL         "",IDC_EP_SPAWNSONLY,"CustEdit",WS_TABSTOP,46,284,36,10
+    CONTROL         "",IDC_EP_SPAWNONLYDECEL,"CustEdit",WS_TABSTOP,46,297,36,
+                    10
+    CONTROL         "",IDC_EP_SPAWNSONLYDECELVAR,"CustEdit",WS_TABSTOP,46,
+                    310,36,10
+    CONTROL         "",IDC_EP_ICONSIZE,"CustEdit",WS_TABSTOP,46,344,36,10
+    CONTROL         "",IDC_EP_ICONSIZE1,"CustEdit",WS_TABSTOP,46,357,36,10
+    CONTROL         "",IDC_EP_TIMEONSPIN,"SpinnerControl",0x0,84,11,7,10
+    CONTROL         "",IDC_EP_TIMEOFFSPIN,"SpinnerControl",0x0,84,24,7,10
+    CONTROL         "",IDC_EP_AFFECTSSPIN,"SpinnerControl",0x0,84,53,7,10
+    CONTROL         "",IDC_EP_ICONSIZESPIN,"SpinnerControl",0x0,84,344,7,10
+    CONTROL         "",IDC_EP_ICONSIZE1SPIN,"SpinnerControl",0x0,84,357,7,10
+    RTEXT           "Time On:",IDC_STATIC,11,13,30,8
+    RTEXT           "Time Off:",IDC_STATIC,11,25,30,8
+    RTEXT           "Width:",IDC_STATIC,19,344,22,8
+    RTEXT           "Reflects:",IDC_STATIC,12,55,29,8
+    RTEXT           "%",IDC_STATIC,93,53,8,8
+    GROUPBOX        "Timing",IDC_STATIC,0,0,108,40
+    GROUPBOX        "Display Icon",IDC_STATIC,0,330,108,43
+    RTEXT           "Height:",IDC_STATIC,17,357,24,8
+    CONTROL         "",IDC_EP_BOUNCESPIN,"SpinnerControl",0x0,84,66,7,10
+    CONTROL         "",IDC_EP_BOUNCEVARSPIN,"SpinnerControl",0x0,84,79,7,10
+    CONTROL         "",IDC_EP_CHAOSSPIN,"SpinnerControl",0x0,84,92,7,10
+    CONTROL         "",IDC_EP_INHERITSPIN,"SpinnerControl",0x0,84,235,7,10
+    RTEXT           "Bounce:",IDC_STATIC,13,68,28,8
+    RTEXT           "Chaos:",IDC_STATIC,18,94,23,8
+    RTEXT           "Variation:",IDC_STATIC,11,81,30,8
+    RTEXT           "%",IDC_STATIC,93,80,8,8
+    RTEXT           "%",IDC_STATIC,93,93,8,8
+    GROUPBOX        "Refraction",IDC_STATIC,0,112,108,108
+    RTEXT           "Inherit Vel:",IDC_STATIC,7,236,34,8
+    CONTROL         "",IDC_EP_REFRACTIONSPIN,"SpinnerControl",0x0,84,164,7,
+                    10
+    RTEXT           "Distortion:",IDC_STATIC,9,165,32,8
+    RTEXT           "%",IDC_STATIC,93,164,8,8
+    CONTROL         "",IDC_EP_REFRACTSSPIN,"SpinnerControl",0x0,84,125,7,10
+    RTEXT           "Refracts:",IDC_STATIC,11,127,30,8
+    RTEXT           "%",IDC_STATIC,93,126,8,8
+    CONTROL         "",IDC_EP_REFRACTVARSPIN,"SpinnerControl",0x0,84,177,7,
+                    10
+    RTEXT           "Variation:",IDC_STATIC,11,178,30,8
+    RTEXT           "%",IDC_STATIC,93,177,8,8
+    GROUPBOX        "Reflection",IDC_STATIC,0,42,108,67
+    CONTROL         "",IDC_EP_DECELSPIN,"SpinnerControl",0x0,84,138,7,10
+    CONTROL         "",IDC_EP_DECELVARSPIN,"SpinnerControl",0x0,84,151,7,10
+    RTEXT           "Pass Vel:",IDC_STATIC,11,140,30,8
+    RTEXT           "Variation:",IDC_STATIC,11,153,30,8
+    RTEXT           "%",IDC_STATIC,93,151,8,8
+    CONTROL         "",IDC_EP_DIFFUSIONSPIN,"SpinnerControl",0x0,84,190,7,10
+    RTEXT           "Diffusion:",IDC_STATIC,11,192,30,8
+    RTEXT           "%",IDC_STATIC,93,190,8,8
+    CONTROL         "",IDC_EP_DIFFUSIONVARSPIN,"SpinnerControl",0x0,84,203,7,
+                    10
+    RTEXT           "Variation:",IDC_STATIC,11,205,30,8
+    RTEXT           "%",IDC_STATIC,93,203,8,8
+    GROUPBOX        "Common",IDC_STATIC,0,222,108,44
+    GROUPBOX        "Spawn Effects Only",IDC_STATIC,0,269,108,59
+    CONTROL         "",IDC_EP_SPAWNSONLYSPIN,"SpinnerControl",0x0,84,284,7,
+                    10
+    RTEXT           "Spawns:",IDC_STATIC,13,286,28,8
+    RTEXT           "%",IDC_STATIC,93,286,8,8
+    CONTROL         "",IDC_EP_SPAWNONLYDECELSPIN,"SpinnerControl",0x0,84,297,
+                    7,10
+    CONTROL         "",IDC_EP_SPAWNSONLYDECELVARSPIN,"SpinnerControl",0x0,84,
+                    310,7,10
+    RTEXT           "Pass Vel:",IDC_STATIC,11,299,30,8
+    RTEXT           "Variation:",IDC_STATIC,11,311,30,8
+    RTEXT           "%",IDC_STATIC,93,310,8,8
+    CONTROL         "",IDC_EP_FRICTIONSPIN,"SpinnerControl",0x0,84,249,7,10
+    RTEXT           "Friction:",IDC_STATIC,15,249,26,8
+    RTEXT           "%",IDC_STATIC,93,251,8,8
+END
+
+IDD_AP_SDYNADEFL DIALOG DISCARDABLE  0, 0, 108, 228
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_EP_TIMEON,"CustEdit",WS_TABSTOP,46,11,36,10
+    CONTROL         "",IDC_EP_TIMEOFF,"CustEdit",WS_TABSTOP,46,24,36,10
+    CONTROL         "",IDC_EP_AFFECTS,"CustEdit",WS_TABSTOP,46,54,36,10
+    CONTROL         "",IDC_EP_BOUNCE,"CustEdit",WS_TABSTOP,46,67,36,10
+    CONTROL         "",IDC_EP_BOUNCEVAR,"CustEdit",WS_TABSTOP,46,80,36,10
+    CONTROL         "",IDC_EP_CHAOS,"CustEdit",WS_TABSTOP,46,93,36,10
+    CONTROL         "",IDC_EP_FRICTION,"CustEdit",WS_TABSTOP,46,106,36,10
+    CONTROL         "",IDC_EP_INHERIT,"CustEdit",WS_TABSTOP,46,119,36,10
+    CONTROL         "",IDC_EP_PARTICLEMASS,"CustEdit",WS_TABSTOP,45,149,36,
+                    10
+    CONTROL         "gram",IDC_EP_MASSGM,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,6,175,31,10
+    CONTROL         "Kg",IDC_EP_MASSKG,"Button",BS_AUTORADIOBUTTON,42,175,25,
+                    10
+    CONTROL         "Lbm",IDC_EP_MASSLBM,"Button",BS_AUTORADIOBUTTON,72,175,
+                    29,10
+    CONTROL         "",IDC_EP_ICONSIZE,"CustEdit",WS_TABSTOP,46,207,36,10
+    CONTROL         "",IDC_EP_TIMEONSPIN,"SpinnerControl",0x0,84,11,7,10
+    CONTROL         "",IDC_EP_TIMEOFFSPIN,"SpinnerControl",0x0,84,24,7,10
+    CONTROL         "",IDC_EP_AFFECTSSPIN,"SpinnerControl",0x0,84,54,7,10
+    CONTROL         "",IDC_EP_ICONSIZESPIN,"SpinnerControl",0x0,84,207,7,10
+    RTEXT           "Time On:",IDC_STATIC,11,11,30,8
+    RTEXT           "Time Off:",IDC_STATIC,11,24,30,8
+    RTEXT           "Radius:",IDC_STATIC,16,207,25,8
+    RTEXT           "Reflects:",IDC_STATIC,12,54,29,8
+    RTEXT           "%",IDC_STATIC,93,55,8,8
+    GROUPBOX        "Timing",IDC_STATIC,0,0,108,39
+    GROUPBOX        "Display Icon",IDC_STATIC,0,193,108,31
+    CONTROL         "",IDC_EP_BOUNCESPIN,"SpinnerControl",0x0,84,67,7,10
+    CONTROL         "",IDC_EP_BOUNCEVARSPIN,"SpinnerControl",0x0,84,80,7,10
+    CONTROL         "",IDC_EP_CHAOSSPIN,"SpinnerControl",0x0,84,93,7,10
+    CONTROL         "",IDC_EP_INHERITSPIN,"SpinnerControl",0x0,84,119,7,10
+    CONTROL         "",IDC_EP_PARTICLEMASSSPIN,"SpinnerControl",0x0,83,149,7,
+                    10
+    RTEXT           "Bounce:",IDC_STATIC,13,67,28,8
+    RTEXT           "Chaos:",IDC_STATIC,18,93,23,8
+    RTEXT           "Variation:",IDC_STATIC,11,80,30,8
+    RTEXT           "%",IDC_STATIC,93,81,8,8
+    RTEXT           "%",IDC_STATIC,93,93,8,8
+    GROUPBOX        "Particle Bounce",IDC_STATIC,0,41,107,95
+    RTEXT           "Inherit Vel:",IDC_STATIC,7,120,34,8
+    GROUPBOX        "Physical Properties",IDC_STATIC,0,138,108,53
+    RTEXT           "Mass:",IDC_STATIC,21,149,20,8
+    RTEXT           "Units of Mass",IDC_STATIC,31,164,44,8
+    CONTROL         "",IDC_EP_FRICTIONSPIN,"SpinnerControl",0x0,84,106,7,10
+    RTEXT           "Friction:",IDC_STATIC,15,107,26,8
+    RTEXT           "%",IDC_STATIC,93,107,8,8
+END
+
+IDD_SW_DESC DIALOG DISCARDABLE  0, 0, 108, 24
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "All Particle Systems",-1,22,8,62,8
+END
+
+IDD_SW_DESC_BOTH DIALOG DISCARDABLE  0, 0, 108, 33
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Particle Systems",-1,27,8,52,8
+    LTEXT           "Dynamic Effects",-1,27,19,52,8
+END
+
+IDD_AP_PDYNADEFL DIALOG DISCARDABLE  0, 0, 108, 237
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_EP_TIMEON,"CustEdit",WS_TABSTOP,46,13,36,10
+    CONTROL         "",IDC_EP_TIMEOFF,"CustEdit",WS_TABSTOP,46,26,36,10
+    CONTROL         "",IDC_EP_AFFECTS,"CustEdit",WS_TABSTOP,46,58,36,10
+    CONTROL         "",IDC_EP_BOUNCE,"CustEdit",WS_TABSTOP,46,71,36,10
+    CONTROL         "",IDC_EP_BOUNCEVAR,"CustEdit",WS_TABSTOP,46,84,36,10
+    CONTROL         "",IDC_EP_CHAOS,"CustEdit",WS_TABSTOP,46,97,36,10
+    CONTROL         "",IDC_EP_FRICTION,"CustEdit",WS_TABSTOP,46,110,36,10
+    CONTROL         "",IDC_EP_INHERIT,"CustEdit",WS_TABSTOP,46,123,36,10
+    CONTROL         "",IDC_EP_PARTICLEMASS,"CustEdit",WS_TABSTOP,45,153,36,
+                    10
+    CONTROL         "gram",IDC_EP_MASSGM,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,6,180,31,10
+    CONTROL         "Kg",IDC_EP_MASSKG,"Button",BS_AUTORADIOBUTTON,42,180,25,
+                    10
+    CONTROL         "Lbm",IDC_EP_MASSLBM,"Button",BS_AUTORADIOBUTTON,72,180,
+                    29,10
+    CONTROL         "",IDC_EP_ICONSIZE,"CustEdit",WS_TABSTOP,46,207,36,10
+    CONTROL         "",IDC_EP_ICONSIZE1,"CustEdit",WS_TABSTOP,46,220,36,10
+    CONTROL         "",IDC_EP_TIMEONSPIN,"SpinnerControl",0x0,84,13,7,10
+    CONTROL         "",IDC_EP_TIMEOFFSPIN,"SpinnerControl",0x0,84,26,7,10
+    CONTROL         "",IDC_EP_AFFECTSSPIN,"SpinnerControl",0x0,84,58,7,10
+    CONTROL         "",IDC_EP_BOUNCESPIN,"SpinnerControl",0x0,84,71,7,10
+    CONTROL         "",IDC_EP_BOUNCEVARSPIN,"SpinnerControl",0x0,84,84,7,10
+    CONTROL         "",IDC_EP_CHAOSSPIN,"SpinnerControl",0x0,84,97,7,10
+    CONTROL         "",IDC_EP_INHERITSPIN,"SpinnerControl",0x0,84,123,7,10
+    CONTROL         "",IDC_EP_PARTICLEMASSSPIN,"SpinnerControl",0x0,83,153,7,
+                    10
+    CONTROL         "",IDC_EP_ICONSIZESPIN,"SpinnerControl",0x0,84,207,7,10
+    CONTROL         "",IDC_EP_ICONSIZE1SPIN,"SpinnerControl",0x0,84,220,7,10
+    RTEXT           "Time On:",IDC_STATIC,11,14,30,8
+    RTEXT           "Time Off:",IDC_STATIC,11,26,30,8
+    RTEXT           "Width:",IDC_STATIC,19,208,22,8
+    RTEXT           "Reflects:",IDC_STATIC,12,58,29,8
+    RTEXT           "%",IDC_STATIC,93,58,8,8
+    GROUPBOX        "Timing",IDC_STATIC,0,2,108,41
+    GROUPBOX        "Display Icon",IDC_STATIC,0,196,108,39
+    RTEXT           "Height:",IDC_STATIC,17,220,24,8
+    RTEXT           "Bounce:",IDC_STATIC,13,71,28,8
+    RTEXT           "Chaos:",IDC_STATIC,18,97,23,8
+    RTEXT           "Variation:",IDC_STATIC,11,84,30,8
+    RTEXT           "%",IDC_STATIC,93,85,8,8
+    RTEXT           "%",IDC_STATIC,93,98,8,8
+    GROUPBOX        "Particle Bounce",IDC_STATIC,0,46,108,92
+    RTEXT           "Inherit Vel:",IDC_STATIC,7,123,34,8
+    GROUPBOX        "Physical Properties",IDC_STATIC,0,140,108,53
+    RTEXT           "Mass:",IDC_STATIC,21,153,20,8
+    RTEXT           "Units of Mass",IDC_STATIC,31,167,44,8
+    CONTROL         "",IDC_EP_FRICTIONSPIN,"SpinnerControl",0x0,84,110,7,10
+    RTEXT           "Friction:",IDC_STATIC,15,110,26,8
+    RTEXT           "%",IDC_STATIC,93,112,8,8
+END
+
+IDD_AP_SSPAWNDEFL DIALOG DISCARDABLE  0, 0, 108, 365
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_EP_TIMEON,"CustEdit",WS_TABSTOP,46,11,36,10
+    CONTROL         "",IDC_EP_TIMEOFF,"CustEdit",WS_TABSTOP,46,24,36,10
+    CONTROL         "",IDC_EP_AFFECTS,"CustEdit",WS_TABSTOP,46,53,36,10
+    CONTROL         "",IDC_EP_BOUNCE,"CustEdit",WS_TABSTOP,46,66,36,10
+    CONTROL         "",IDC_EP_BOUNCEVAR,"CustEdit",WS_TABSTOP,46,79,36,10
+    CONTROL         "",IDC_EP_CHAOS,"CustEdit",WS_TABSTOP,46,92,36,10
+    CONTROL         "",IDC_EP_REFRACTS,"CustEdit",WS_TABSTOP,46,125,36,10
+    CONTROL         "",IDC_EP_DECEL,"CustEdit",WS_TABSTOP,46,138,36,10
+    CONTROL         "",IDC_EP_DECELVAR,"CustEdit",WS_TABSTOP,46,151,36,10
+    CONTROL         "",IDC_EP_REFRACTION,"CustEdit",WS_TABSTOP,46,164,36,10
+    CONTROL         "",IDC_EP_REFRACTVAR,"CustEdit",WS_TABSTOP,46,177,36,10
+    CONTROL         "",IDC_EP_DIFFUSION,"CustEdit",WS_TABSTOP,46,190,36,10
+    CONTROL         "",IDC_EP_DIFFUSIONVAR,"CustEdit",WS_TABSTOP,46,203,36,
+                    10
+    CONTROL         "",IDC_EP_FRICTION,"CustEdit",WS_TABSTOP,46,235,36,10
+    CONTROL         "",IDC_EP_INHERIT,"CustEdit",WS_TABSTOP,46,249,36,10
+    CONTROL         "",IDC_EP_SPAWNSONLY,"CustEdit",WS_TABSTOP,46,286,36,10
+    CONTROL         "",IDC_EP_SPAWNONLYDECEL,"CustEdit",WS_TABSTOP,46,299,36,
+                    10
+    CONTROL         "",IDC_EP_SPAWNSONLYDECELVAR,"CustEdit",WS_TABSTOP,46,
+                    312,36,10
+    CONTROL         "",IDC_EP_ICONSIZE,"CustEdit",WS_TABSTOP,46,345,36,10
+    CONTROL         "",IDC_EP_TIMEONSPIN,"SpinnerControl",0x0,84,11,7,10
+    CONTROL         "",IDC_EP_TIMEOFFSPIN,"SpinnerControl",0x0,84,24,7,10
+    CONTROL         "",IDC_EP_ICONSIZESPIN,"SpinnerControl",0x0,84,345,7,10
+    RTEXT           "Time On:",IDC_STATIC,11,12,30,8
+    RTEXT           "Time Off:",IDC_STATIC,11,25,30,8
+    RTEXT           "Radius:",IDC_STATIC,16,345,25,8
+    GROUPBOX        "Timing",IDC_STATIC,0,0,108,40
+    GROUPBOX        "Display Icon",IDC_STATIC,0,332,108,31
+    CONTROL         "",IDC_EP_AFFECTSSPIN,"SpinnerControl",0x0,84,53,7,10
+    RTEXT           "Reflects:",IDC_STATIC,12,55,29,8
+    RTEXT           "%",IDC_STATIC,93,53,8,8
+    CONTROL         "",IDC_EP_BOUNCESPIN,"SpinnerControl",0x0,84,66,7,10
+    CONTROL         "",IDC_EP_BOUNCEVARSPIN,"SpinnerControl",0x0,84,79,7,10
+    CONTROL         "",IDC_EP_CHAOSSPIN,"SpinnerControl",0x0,84,92,7,10
+    CONTROL         "",IDC_EP_INHERITSPIN,"SpinnerControl",0x0,84,249,7,10
+    RTEXT           "Bounce:",IDC_STATIC,13,68,28,8
+    RTEXT           "Chaos:",IDC_STATIC,18,94,23,8
+    RTEXT           "Variation:",IDC_STATIC,11,81,30,8
+    RTEXT           "%",IDC_STATIC,93,80,8,8
+    RTEXT           "%",IDC_STATIC,93,93,8,8
+    GROUPBOX        "Refraction",IDC_STATIC,0,112,108,108
+    RTEXT           "Inherit Vel:",IDC_STATIC,7,250,34,8
+    CONTROL         "",IDC_EP_REFRACTIONSPIN,"SpinnerControl",0x0,84,164,7,
+                    10
+    RTEXT           "Distortion:",IDC_STATIC,9,165,32,8
+    RTEXT           "%",IDC_STATIC,93,164,8,8
+    CONTROL         "",IDC_EP_REFRACTSSPIN,"SpinnerControl",0x0,84,125,7,10
+    RTEXT           "Refracts:",IDC_STATIC,11,127,30,8
+    RTEXT           "%",IDC_STATIC,93,126,8,8
+    CONTROL         "",IDC_EP_REFRACTVARSPIN,"SpinnerControl",0x0,84,177,7,
+                    10
+    RTEXT           "Variation:",IDC_STATIC,11,178,30,8
+    RTEXT           "%",IDC_STATIC,93,177,8,8
+    GROUPBOX        "Reflection",IDC_STATIC,0,42,108,67
+    CONTROL         "",IDC_EP_DECELSPIN,"SpinnerControl",0x0,84,138,7,10
+    CONTROL         "",IDC_EP_DECELVARSPIN,"SpinnerControl",0x0,84,151,7,10
+    RTEXT           "Pass Vel:",IDC_STATIC,11,140,30,8
+    RTEXT           "Variation:",IDC_STATIC,11,153,30,8
+    RTEXT           "%",IDC_STATIC,93,151,8,8
+    CONTROL         "",IDC_EP_DIFFUSIONSPIN,"SpinnerControl",0x0,84,190,7,10
+    RTEXT           "Diffusion:",IDC_STATIC,11,192,30,8
+    RTEXT           "%",IDC_STATIC,93,190,8,8
+    CONTROL         "",IDC_EP_DIFFUSIONVARSPIN,"SpinnerControl",0x0,84,203,7,
+                    10
+    RTEXT           "Variation:",IDC_STATIC,11,205,30,8
+    RTEXT           "%",IDC_STATIC,93,203,8,8
+    GROUPBOX        "Common",IDC_STATIC,0,223,108,44
+    GROUPBOX        "Spawn Effects Only",IDC_STATIC,0,271,108,59
+    CONTROL         "",IDC_EP_SPAWNSONLYSPIN,"SpinnerControl",0x0,84,286,7,
+                    10
+    RTEXT           "Spawns:",IDC_STATIC,13,287,28,8
+    RTEXT           "%",IDC_STATIC,93,288,8,8
+    CONTROL         "",IDC_EP_SPAWNONLYDECELSPIN,"SpinnerControl",0x0,84,299,
+                    7,10
+    CONTROL         "",IDC_EP_SPAWNSONLYDECELVARSPIN,"SpinnerControl",0x0,84,
+                    312,7,10
+    RTEXT           "Pass Vel:",IDC_STATIC,11,300,30,8
+    RTEXT           "Variation:",IDC_STATIC,11,313,30,8
+    RTEXT           "%",IDC_STATIC,93,312,8,8
+    CONTROL         "",IDC_EP_FRICTIONSPIN,"SpinnerControl",0x0,84,235,7,10
+    RTEXT           "Friction:",IDC_STATIC,15,237,26,8
+    RTEXT           "%",IDC_STATIC,93,236,8,8
+END
+
+IDD_AP_UDYNADEFL DIALOG DISCARDABLE  0, 0, 108, 273
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Pick Object",IDC_EP_PICKBUTTON,"CustButton",0x0,13,26,
+                    80,12
+    CONTROL         "",IDC_EP_TIMEON,"CustEdit",WS_TABSTOP,46,58,36,10
+    CONTROL         "",IDC_EP_TIMEOFF,"CustEdit",WS_TABSTOP,46,71,36,10
+    CONTROL         "",IDC_EP_AFFECTS,"CustEdit",WS_TABSTOP,46,103,36,10
+    CONTROL         "",IDC_EP_BOUNCEU,"CustEdit",WS_TABSTOP,46,117,36,10
+    CONTROL         "",IDC_EP_BOUNCEUVAR,"CustEdit",WS_TABSTOP,46,130,36,10
+    CONTROL         "",IDC_EP_BOUNCEUCHAOS,"CustEdit",WS_TABSTOP,46,143,36,
+                    10
+    CONTROL         "",IDC_EP_BOUNCEUFRICTION,"CustEdit",WS_TABSTOP,46,156,
+                    36,10
+    CONTROL         "",IDC_EP_BOUNCEUINHERIT,"CustEdit",WS_TABSTOP,46,169,36,
+                    10
+    CONTROL         "",IDC_EP_PARTICLEMASSU,"CustEdit",WS_TABSTOP,45,199,36,
+                    10
+    CONTROL         "gram",IDC_EP_MASSGM,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,6,225,31,10
+    CONTROL         "Kg",IDC_EP_MASSKG,"Button",BS_AUTORADIOBUTTON,42,225,25,
+                    10
+    CONTROL         "Lbm",IDC_EP_MASSLBM,"Button",BS_AUTORADIOBUTTON,72,225,
+                    29,10
+    CONTROL         "",IDC_EP_ICONSIZE,"CustEdit",WS_TABSTOP,46,254,36,10
+    CONTROL         "",IDC_EP_TIMEONSPIN,"SpinnerControl",0x0,84,58,7,10
+    CONTROL         "",IDC_EP_TIMEOFFSPIN,"SpinnerControl",0x0,84,71,7,10
+    CONTROL         "",IDC_EP_AFFECTSSPIN,"SpinnerControl",0x0,84,103,7,10
+    CONTROL         "",IDC_EP_BOUNCEUSPIN,"SpinnerControl",0x0,84,117,7,10
+    CONTROL         "",IDC_EP_BOUNCEUVARSPIN,"SpinnerControl",0x0,84,130,7,
+                    10
+    CONTROL         "",IDC_EP_BOUNCEUCHAOSSPIN,"SpinnerControl",0x0,84,143,7,
+                    10
+    CONTROL         "",IDC_EP_BOUNCEUFRICTIONSPIN,"SpinnerControl",0x0,84,
+                    156,7,10
+    CONTROL         "",IDC_EP_BOUNCEUINHERITSPIN,"SpinnerControl",0x0,84,169,
+                    7,10
+    CONTROL         "",IDC_EP_PARTICLEMASSUSPIN,"SpinnerControl",0x0,83,199,
+                    7,10
+    CONTROL         "",IDC_EP_ICONSIZESPIN,"SpinnerControl",0x0,84,254,7,10
+    RTEXT           "Time On:",IDC_STATIC,11,60,30,8
+    RTEXT           "Time Off:",IDC_STATIC,11,73,30,8
+    RTEXT           "Icon Size:",IDC_STATIC,8,254,33,8
+    RTEXT           "Reflects:",IDC_STATIC,12,104,29,8
+    RTEXT           "%",IDC_STATIC,93,103,8,8
+    LTEXT           "Object:<None>",IDC_EP_PICKNAME,8,13,91,8
+    GROUPBOX        "Timing",IDC_STATIC,0,47,108,40
+    GROUPBOX        "Display Icon",IDC_STATIC,0,243,108,27
+    GROUPBOX        "Object-Based DynaFlector",IDC_STATIC,0,0,108,45
+    RTEXT           "Bounce:",IDC_STATIC,13,117,28,8
+    RTEXT           "Chaos:",IDC_STATIC,18,143,23,8
+    RTEXT           "Variation:",IDC_STATIC,11,130,30,8
+    RTEXT           "%",IDC_STATIC,93,130,8,8
+    RTEXT           "%",IDC_STATIC,93,143,8,8
+    RTEXT           "Friction:",IDC_STATIC,15,156,26,8
+    GROUPBOX        "Particle Bounce",IDC_STATIC,0,89,108,96
+    RTEXT           "Inherit Vel:",IDC_STATIC,7,169,34,8
+    GROUPBOX        "Physical Properties",IDC_STATIC,0,187,108,53
+    RTEXT           "Mass:",IDC_STATIC,21,199,20,8
+    RTEXT           "Units of Mass",IDC_STATIC,31,214,44,8
+    RTEXT           "%",IDC_STATIC,93,157,8,8
+END
+
+IDD_MF_0202_FLECTCPLXCPLX DIALOG DISCARDABLE  0, 0, 108, 332
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_EP_TIMEON,"CustEdit",WS_TABSTOP,46,11,36,10
+    CONTROL         "",IDC_EP_TIMEOFF,"CustEdit",WS_TABSTOP,46,24,36,10
+    CONTROL         "",IDC_EP_AFFECTS,"CustEdit",WS_TABSTOP,46,53,36,10
+    CONTROL         "",IDC_EP_BOUNCE,"CustEdit",WS_TABSTOP,46,66,36,10
+    CONTROL         "",IDC_EP_BOUNCEVAR,"CustEdit",WS_TABSTOP,46,79,36,10
+    CONTROL         "",IDC_EP_CHAOS,"CustEdit",WS_TABSTOP,46,92,36,10
+    CONTROL         "",IDC_EP_REFRACTS,"CustEdit",WS_TABSTOP,46,125,36,10
+    CONTROL         "",IDC_EP_DECEL,"CustEdit",WS_TABSTOP,46,138,36,10
+    CONTROL         "",IDC_EP_DECELVAR,"CustEdit",WS_TABSTOP,46,151,36,10
+    CONTROL         "",IDC_EP_REFRACTION,"CustEdit",WS_TABSTOP,46,164,36,10
+    CONTROL         "",IDC_EP_REFRACTVAR,"CustEdit",WS_TABSTOP,46,177,36,10
+    CONTROL         "",IDC_EP_DIFFUSION,"CustEdit",WS_TABSTOP,46,190,36,10
+    CONTROL         "",IDC_EP_DIFFUSIONVAR,"CustEdit",WS_TABSTOP,46,203,36,
+                    10
+    CONTROL         "",IDC_EP_INHERIT,"CustEdit",WS_TABSTOP,46,235,36,10
+    CONTROL         "",IDC_EP_FRICTION,"CustEdit",WS_TABSTOP,46,249,36,10
+    CONTROL         "",IDC_EP_SPAWNSONLY,"CustEdit",WS_TABSTOP,46,284,36,10
+    CONTROL         "",IDC_EP_SPAWNONLYDECEL,"CustEdit",WS_TABSTOP,46,297,36,
+                    10
+    CONTROL         "",IDC_EP_SPAWNSONLYDECELVAR,"CustEdit",WS_TABSTOP,46,
+                    310,36,10
+    CONTROL         "",IDC_EP_TIMEONSPIN,"SpinnerControl",0x0,84,11,7,10
+    CONTROL         "",IDC_EP_TIMEOFFSPIN,"SpinnerControl",0x0,84,24,7,10
+    CONTROL         "",IDC_EP_AFFECTSSPIN,"SpinnerControl",0x0,84,53,7,10
+    RTEXT           "Time On:",-1,13,12,30,8
+    RTEXT           "Time Off:",-1,13,25,30,8
+    RTEXT           "Reflects:",-1,14,54,29,8
+    RTEXT           "%",-1,93,53,8,8
+    GROUPBOX        "Timing",-1,0,0,108,40
+    CONTROL         "",IDC_EP_BOUNCESPIN,"SpinnerControl",0x0,84,66,7,10
+    CONTROL         "",IDC_EP_BOUNCEVARSPIN,"SpinnerControl",0x0,84,79,7,10
+    CONTROL         "",IDC_EP_CHAOSSPIN,"SpinnerControl",0x0,84,92,7,10
+    CONTROL         "",IDC_EP_INHERITSPIN,"SpinnerControl",0x0,84,235,7,10
+    RTEXT           "Bounce:",-1,15,67,28,8
+    RTEXT           "Chaos:",-1,20,93,23,8
+    RTEXT           "Variation:",-1,13,80,30,8
+    RTEXT           "%",-1,93,80,8,8
+    RTEXT           "%",-1,93,93,8,8
+    GROUPBOX        "Refraction",-1,0,112,108,108
+    RTEXT           "Inherit Vel:",-1,9,236,34,8
+    CONTROL         "",IDC_EP_REFRACTIONSPIN,"SpinnerControl",0x0,84,164,7,
+                    10
+    RTEXT           "Distortion:",-1,11,165,32,8
+    RTEXT           "%",-1,93,164,8,8
+    CONTROL         "",IDC_EP_REFRACTSSPIN,"SpinnerControl",0x0,84,125,7,10
+    RTEXT           "Refracts:",-1,13,126,30,8
+    RTEXT           "%",-1,93,126,8,8
+    CONTROL         "",IDC_EP_REFRACTVARSPIN,"SpinnerControl",0x0,84,177,7,
+                    10
+    RTEXT           "Variation:",-1,13,178,30,8
+    RTEXT           "%",-1,93,177,8,8
+    GROUPBOX        "Reflection",-1,0,42,108,67
+    CONTROL         "",IDC_EP_DECELSPIN,"SpinnerControl",0x0,84,138,7,10
+    CONTROL         "",IDC_EP_DECELVARSPIN,"SpinnerControl",0x0,84,151,7,10
+    RTEXT           "Pass Vel:",-1,13,139,30,8
+    RTEXT           "Variation:",-1,13,151,30,8
+    RTEXT           "%",-1,93,151,8,8
+    CONTROL         "",IDC_EP_DIFFUSIONSPIN,"SpinnerControl",0x0,84,190,7,10
+    RTEXT           "Diffusion:",-1,13,191,30,8
+    RTEXT           "%",-1,93,190,8,8
+    CONTROL         "",IDC_EP_DIFFUSIONVARSPIN,"SpinnerControl",0x0,84,203,7,
+                    10
+    RTEXT           "Variation:",-1,13,204,30,8
+    RTEXT           "%",-1,93,203,8,8
+    GROUPBOX        "Common",-1,0,222,108,44
+    GROUPBOX        "Collision Test Only",-1,0,269,108,59
+    CONTROL         "",IDC_EP_SPAWNSONLYSPIN,"SpinnerControl",0x0,84,284,7,
+                    10
+    RTEXT           "Affects:",-1,18,285,25,8
+    RTEXT           "%",-1,93,286,8,8
+    CONTROL         "",IDC_EP_SPAWNONLYDECELSPIN,"SpinnerControl",0x0,84,297,
+                    7,10
+    CONTROL         "",IDC_EP_SPAWNSONLYDECELVARSPIN,"SpinnerControl",0x0,84,
+                    310,7,10
+    RTEXT           "Pass Vel:",-1,13,298,30,8
+    RTEXT           "Variation:",-1,13,311,30,8
+    RTEXT           "%",-1,93,310,8,8
+    CONTROL         "",IDC_EP_FRICTIONSPIN,"SpinnerControl",0x0,84,249,7,10
+    RTEXT           "Friction:",-1,17,249,26,8
+END
+
+IDD_SW_DESC_LEGACY DIALOG DISCARDABLE  0, 0, 108, 24
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Particle Systems",-1,26,8,52,8
+END
+
+IDD_SW_DESC_BOTH_LEGACY DIALOG DISCARDABLE  0, 0, 108, 33
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Particle Systems",-1,27,8,52,8
+    LTEXT           "Dynamic Effects",-1,27,19,52,8
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "sflectrs.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_CROSS_HAIR          CURSOR  DISCARDABLE     "Crosshr1.cur"
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_EP_PLANARSPAWNDEF   "POmniFlect"
+    IDS_EP_PLANARSPAWNDEFMOD "POmniFlectMod"
+    IDS_EP_PLANARSPAWNDEFMODBINDING "POmniFlector Binding"
+    IDS_EP_PARAMETERS       "Parameters"
+    IDS_EP_TOP              "Supports Objects of Type"
+    IDS_EP_TIMEON           "Time On"
+    IDS_EP_TIMEOFF          "Time Off"
+    IDS_EP_AFFECTS          "Reflects"
+    IDS_EP_WIDTH            "Width"
+    IDS_EP_HEIGHT           "Height"
+    IDS_EP_SSPAWNDEFLECTOR  "SOmniFlect"
+    IDS_EP_SSPAWNDEFLECTORMOD "SOmniFlectMod"
+    IDS_EP_SSPAWNDEFLECTORBINDING "SOmniFlector Binding"
+    IDS_EP_ICONSIZE         "Icon Size"
+    IDS_SISYPHUSSWCAT       "Sisyphus Spacewarps"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_EP_RADIUS           "Radius"
+    IDS_EP_USPAWNDEFLECTOR  "UOmniFlect"
+    IDS_EP_USPAWNDEFLECTORMOD "UOmniFlectMod"
+    IDS_EP_USPAWNDEFLECTORBINDING "UOmniFlector Binding"
+    IDS_EP_OBJECTSTR        "Object:"
+    IDS_EP_NONE             "<None>"
+    IDS_EP_USPPICK          "UOmniPick"
+    IDS_EP_CREATE           "Create"
+    IDS_EP_ITEMSTR          "Item:"
+    IDS_EP_PDYNADEF         "PDynaFlect"
+    IDS_EP_PDYNADEFMOD      "PDynaFlectMod"
+    IDS_EP_PDYNADEFMODBINDING "PDynaFlector Binding"
+    IDS_EP_SDYNADEFLECTOR   "SDynaFlect"
+    IDS_EP_SDYNADEFLECTORMOD "SDynaFlectMod"
+    IDS_EP_SDYNADEFLECTORBINDING "SDynaFlector Binding"
+    IDS_EP_UDYNADEFLECTOR   "UDynaFlect"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_EP_UDYNADEFLECTORMOD "UDynaFlectMod"
+    IDS_EP_UDYNADEFLECTORBINDING "UDynaFlector Binding"
+    IDS_EP_BOUNCE           "Bounce"
+    IDS_EP_BOUNCEVAR        "Bounce Variation"
+    IDS_EP_CHAOS            "Chaos"
+    IDS_EP_INHERIT          "Velocity Inheritance"
+    IDS_EP_MASS             "Particle Mass"
+    IDS_EP_MASSUNITS        "Particle Mass Units"
+    IDS_EP_FRICTION         "Friction"
+    IDS_EP_REFRACTS         "Refracts"
+    IDS_EP_REFRACTION       "Distortion"
+    IDS_EP_REFRACTVAR       "Distortion Variation"
+    IDS_EP_PASSVEL          "Pass Velocity"
+    IDS_EP_PASSVELVAR       "Pass Velocity Variation"
+    IDS_EP_DIFFUSION        "Diffusion"
+    IDS_EP_DIFFUSIONVAR     "Diffusion Variation"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_AP_SPAWN            "Spawn Percentage"
+    IDS_AP_PASSVEL          "Pass Velocity"
+    IDS_AP_PASSVELVAR       "Pass Velocity Variation"
+    SPACEWARPS_FOR_DYNAMICS "Legacy Particles & Dynamics"
+    SPACEWARPS_FOR_PARTICLES "Legacy Particles Only"
+    SPACEWARPS_FOR_BOTH     "Legacy Particles & Dynamics"
+    IDS_AP_CREATEMODE       "Click and drag to begin creation process"
+    IDS_AP_PICKMODE         "Click  to select object"
+    IDS_EP_QUALITY          "Collision Quality"
+    IDS_EP_PDYNADEF_OBJECT  "PDynaFlect"
+    IDS_EP_PLANARSPAWNDEF_OBJECT "POmniFlect"
+	IDS_EP_SDYNADEFLECTOR_OBJECT "SDynaFlect"
+	IDS_EP_SSPAWNDEFLECTOR_OBJECT "SOmniFlect"
+	IDS_EP_UDYNADEFLECTOR_OBJECT "UDynaFlect"
+	IDS_EP_USPAWNDEFLECTOR_OBJECT "UOmniFlect"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_EP_APPLYX           "Apply at X location"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_EP_APPLYY           "Apply at Y location"
+    IDS_EP_APPLYZ           "Apply at Z location"
+    IDS_EP_FORCEX           "Force in X Direction"
+    IDS_EP_FORCEY           "Force in Y Direction"
+    IDS_EP_FORCEZ           "Force in Z Direction"
+    IDS_EP_NUMBER           "Number of Particles"
+    IDS_AP_MONONAME         "MonoFlector"
+    IDS_DLG_FTYPE           "Flector Type"
+    IDS_FLECTORTYPETBLE     "Flector Dialogs"
+    IDS_DLG_FCOMPLEX        "Flector Complexity Type"
+    IDS_FLECTORCOMPTBLE     "Flector Complex Dialogs"
+    IDS_AP_FPICK            "Pick Flector"
+    IDS_PLANEPARAMS         "Plane Parameters"
+    IDS_SPHEREPARAMS        "Sphere Parameters"
+    IDS_MESHPARAMS          "Mesh Parameters"
+    IDS_SIMPPARAMS          "Simple Parameters"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_COMPLEXPARAMS       "Complex Parameters"
+    IDS_DYNAMPARAMS         "Dynamic Parameters"
+    IDS_REFLECTS            "Reflects"
+    IDS_BOUNCE              "Bounce"
+    IDS_BVAR                "Bounce Variation"
+    IDS_CHAOS               "Chaos"
+    IDS_FRICTION            "Friction"
+    IDS_INHERVEL            "Inherit Velocity"
+    IDS_TIMEON              "Time On"
+    IDS_TIMEOFF             "Time Off"
+    IDS_ICONSIZE            "Icon size"
+    IDS_ICONHEIGHT          "Icon Height"
+    IDS_ICONWIDTH           "Icon Width"
+    IDS_NODETXT             "Picked Node"
+    IDS_HIDEICON            "Hide Icon"
+    IDS_REFRACTS            "Refracts"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PASSVELOCITY        "Pass Velocity"
+    IDS_PASSVELOCITYVAR     "Pass Velocity Var"
+    IDS_DISTORTION          "Distortion"
+    IDS_DISTORTIONVAR       "Distortion Variation"
+    IDS_DIFFUSION           "Diffusion"
+    IDS_DIFFUSIONVAR        "Diffusion Variation"
+    IDS_COLAFFECTS          "Collision Affects"
+    IDS_COLPASSVEL          "Collision Pass Velocity"
+    IDS_COLPASSVELVAR       "Collision Pass Velocity Variation"
+    IDS_EP_BASICDEFLECTORMOD "Basic Deflector Modifier"
+    IDS_EP_BASICDEFLECTORBINDING "Basic Deflector Binding"
+    SPACEWARPS_NEW_ALL      "All Particles & Dynamics"
+    IDS_EP_SW_FORCES        "Forces"
+    IDS_EP_SW_DEFLECTORS    "Deflectors"
+    IDS_EP_SW_TESTS         "Particle Tests"
+    IDS_EP_SW_OPS           "Particle Operators"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_AP_DECEL            "Deceleration"
+    IDS_AP_DECELVAR         "Deceleration Variation"
+    IDS_DLG_MONOF           "Parameters"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.K.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MF_0201_FLECTCPLXSIMPLE DIALOG DISCARDABLE  0, 0, 108, 138
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_EP_AFFECTS,"CustEdit",WS_TABSTOP,46,55,36,10
+    CONTROL         "",IDC_EP_BOUNCE,"CustEdit",WS_TABSTOP,46,68,36,10
+    CONTROL         "",IDC_EP_BOUNCEVAR,"CustEdit",WS_TABSTOP,46,81,36,10
+    CONTROL         "",IDC_EP_CHAOS,"CustEdit",WS_TABSTOP,46,94,36,10
+    CONTROL         "",IDC_EP_FRICTION,"CustEdit",WS_TABSTOP,46,107,36,10
+    CONTROL         "",IDC_EP_INHERIT,"CustEdit",WS_TABSTOP,46,120,36,10
+    CONTROL         "",IDC_EP_AFFECTSSPIN,"SpinnerControl",0x0,84,55,7,10
+    CONTROL         "",IDC_EP_BOUNCESPIN,"SpinnerControl",0x0,84,68,7,10
+    CONTROL         "",IDC_EP_BOUNCEVARSPIN,"SpinnerControl",0x0,84,81,7,10
+    CONTROL         "",IDC_EP_CHAOSSPIN,"SpinnerControl",0x0,84,94,7,10
+    CONTROL         "",IDC_EP_INHERITSPIN,"SpinnerControl",0x0,84,120,7,10
+    RTEXT           "Reflects:",IDC_STATIC,12,55,29,8
+    RTEXT           "%",IDC_STATIC,93,55,8,8
+    RTEXT           "Bounce:",IDC_STATIC,13,68,28,8
+    RTEXT           "Chaos:",IDC_STATIC,18,94,23,8
+    RTEXT           "Variation:",IDC_STATIC,11,81,30,8
+    RTEXT           "%",IDC_STATIC,93,82,8,8
+    RTEXT           "%",IDC_STATIC,93,95,8,8
+    GROUPBOX        "Reflection",IDC_STATIC,0,41,108,94
+    RTEXT           "Inherit Vel:",IDC_STATIC,7,120,34,8
+    CONTROL         "",IDC_EP_FRICTIONSPIN,"SpinnerControl",0x0,84,107,7,10
+    RTEXT           "Friction:",IDC_STATIC,15,107,26,8
+    CONTROL         "",IDC_EP_TIMEON,"CustEdit",WS_TABSTOP,46,12,36,10
+    CONTROL         "",IDC_EP_TIMEOFF,"CustEdit",WS_TABSTOP,46,25,36,10
+    CONTROL         "",IDC_EP_TIMEONSPIN,"SpinnerControl",0x0,84,12,7,10
+    CONTROL         "",IDC_EP_TIMEOFFSPIN,"SpinnerControl",0x0,84,25,7,10
+    RTEXT           "Time On:",IDC_STATIC,13,13,30,8
+    RTEXT           "Time Off:",IDC_STATIC,13,26,30,8
+    GROUPBOX        "Timing",IDC_STATIC,0,1,108,40
+    RTEXT           "%",IDC_STATIC,93,108,8,8
+END
+
+IDD_MF_0200_FLECTCOMPLEXITYSELECT DIALOG DISCARDABLE  0, 0, 108, 68
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    COMBOBOX        IDC_FLECTCOMPLEXITYLIST,9,18,88,56,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Deflector Function",IDC_STATIC,1,2,104,62
+END
+
+IDD_MF_0103_FLECTTYPEMESH DIALOG DISCARDABLE  0, 0, 108, 76
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_EP_ICONSIZE0,"CustEdit",WS_TABSTOP,48,13,36,10
+    CONTROL         "",IDC_EP_ICONSIZE0SPIN,"SpinnerControl",0x0,86,13,7,10
+    RTEXT           "Icon Size:",-1,12,13,32,8
+    GROUPBOX        "Dimensions",-1,2,0,104,73
+    CONTROL         "Pick Object",IDC_EP_PICKBUTTON,"CustButton",0x0,14,41,
+                    80,12
+    LTEXT           "",IDC_EP_PICKNAME,34,28,66,8
+    CONTROL         "Hide Icon",IDC_EP_HIDEICON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,30,59,47,10
+    RTEXT           "Object:",-1,6,28,24,8
+END
+
+IDD_MF_0102_FLECTTYPESPHERE DIALOG DISCARDABLE  0, 0, 108, 31
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_EP_ICONSIZE0,"CustEdit",WS_TABSTOP,45,13,36,10
+    CONTROL         "",IDC_EP_ICONSIZE0SPIN,"SpinnerControl",0x0,83,13,7,10
+    RTEXT           "Radius:",-1,17,13,25,8
+    GROUPBOX        "Dimensions",-1,2,0,104,29
+END
+
+IDD_MF_0101_FLECTTYPEPLANE DIALOG DISCARDABLE  0, 0, 108, 76
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_EP_ICONSIZE0,"CustEdit",WS_TABSTOP,46,10,36,10
+    CONTROL         "",IDC_EP_ICONSIZE1,"CustEdit",WS_TABSTOP,46,24,36,10
+    CONTROL         "",IDC_EP_QUALITY,"CustEdit",WS_TABSTOP,46,58,36,10
+    GROUPBOX        "Collision Quality",IDC_STATIC,1,45,105,29
+    CONTROL         "",IDC_EP_QUALITYSPIN,"SpinnerControl",0x0,84,58,7,10
+    RTEXT           "Quality:",IDC_STATIC,17,58,24,8
+    CONTROL         "",IDC_EP_ICONSIZE0SPIN,"SpinnerControl",0x0,84,10,7,10
+    CONTROL         "",IDC_EP_ICONSIZE1SPIN,"SpinnerControl",0x0,84,24,7,10
+    RTEXT           "Width:",IDC_STATIC,19,12,22,8
+    GROUPBOX        "Dimensions",IDC_STATIC,2,0,104,41
+    RTEXT           "Length:",IDC_STATIC,16,24,25,8
+END
+
+IDD_MF_0100_FLECTTYPESELECT DIALOG DISCARDABLE  0, 0, 108, 68
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    COMBOBOX        IDC_FLECTTYPELIST,9,17,88,56,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    GROUPBOX        "Deflector Type",IDC_STATIC,1,2,104,62
+END
+
+#endif    // English (U.K.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,114 @@
+<html>
+
+<head>
+<title>DynaValues and LWValues</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="commands.html"><img width="96" height="20"
+    border="0" src="images/navlt.gif" alt="Commands"></a></td>
+    <td width="96" align="left"><a href="fileio.html"><img width="64" height="20" border="0"
+    src="images/navrt.gif" alt="File I/O"></a></td>
+    <td width="384" align="right"><a href="index.html"><img width="230" height="20" border="0"
+    src="images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>DynaValues and LWValues</h3>
+    <p>The DynaValue data type defined in <a href="../include/lwdyna.h">lwdyna.h</a> is a
+    union of containers for values of various base types. DynaValues are used as function
+    arguments, with <a href="commands.html">commands</a> and <a href="globals/modreq.html">requesters</a>,
+    for example, when the function must accept values of multiple types. LWValues are a
+    variation on DynaValues used by <a href="globals/panel.html">Panels</a> and defined in <a
+    href="../include/lwpanel.h">lwpanel.h</a>.</p>
+    <p>The DynaValue typedef looks like this.</p>
+    <pre>   typedef union un_DynaValue {
+      DynaType      type;
+      DyValString   str;
+      DyValInt      intv;
+      DyValFloat    flt;
+      DyValIVector  ivec;
+      DyValFVector  fvec;
+      DyValCustom   cust;
+   } DynaValue;</pre>
+    <p>The elements of this union each support a different base type, and each base type can
+    underlie several DynaTypes. (Two DynaTypes, <tt>DY_NULL</tt> and <tt>DY_TEXT</tt>, have no
+    underlying value.)</p>
+    <p><em><strong>Strings</strong></em></p>
+    <pre>   typedef struct st_DyValString {           DY_STRING
+      DynaType   type;                       DY_SURFACE
+      char      *buf;
+      int        bufLen;
+   } DyValString;</pre>
+    <p><tt>bufLen</tt> is the size of <tt>buf</tt> in characters. For the <tt>DY_SURFACE</tt>
+    type, <tt>buf</tt> contains the surface name.</p>
+    <p><em><strong>Integers</strong></em></p>
+    <pre>   typedef struct st_DyValInt {              DY_INTEGER
+      DynaType   type;                       DY_BOOLEAN
+      int        value;                      DY_CHOICE
+      int        defVal;                     DY_FONT
+   } DyValInt;                               DY_LAYERS</pre>
+    <p>The value in <tt>defVal</tt> is used by requesters to reset control values. The value
+    for <tt>DY_CHOICE</tt> and <tt>DY_FONT</tt> is a 0-based index into a list. The value for <tt>DY_LAYERS</tt>
+    is a set of bitfields corresponding to layer numbers.</p>
+    <p><em><strong>Floating-Point Numbers</strong></em></p>
+    <pre>   typedef struct st_DyValFloat {            DY_FLOAT
+      DynaType   type;                       DY_DISTANCE
+      double     value;
+      double     defVal;
+   } DyValFloat;</pre>
+    <p><tt>DY_DIST</tt> values are distances in meters.</p>
+    <p><em><strong>Integer Vectors</strong></em></p>
+    <pre>   typedef struct st_DyValIVector {          DY_VINT
+      DynaType   type;
+      int        val[3];
+      int        defVal;
+   } DyValIVector;</pre>
+    <p><em><strong>Floating-Point Vectors</strong></em></p>
+    <pre>   typedef struct st_DyValFVector {          DY_VFLOAT
+      DynaType   type;                       DY_VDIST
+      double     val[3];
+      double     defVal;
+   } DyValFVector;</pre>
+    <p><em><strong>Custom Values</strong></em></p>
+    <pre>   typedef struct st_DyValCustom {           DY_CUSTOM
+      DynaType   type;
+      int        val[4];
+   } DyValCustom;</pre>
+    <p><tt>DY_CUSTOM</tt> is used to encode values that don't fit one of the standard types.
+    The interpretation of the values in the <tt>val</tt> array will depend on the context in
+    which this type is used.</p>
+    <p>The <a href="globals/dynaconv.html">Dynamic Conversion</a> global provides a facility
+    for converting between DynaValues of different types.</p>
+    <p><strong>LWValues</strong></p>
+    <p>Panels adds a generic pointer type to the list of types, but in all other respects,
+    LWValues differ from DynaValues in name only. Structurally they're equivalent.</p>
+    <pre>   typedef union un_LWValue {
+      LWType        type;
+      LWValString   str;
+      LWValInt      intv;
+      LWValFloat    flt;
+      LWValIVector  ivec;
+      LWValFVector  fvec;
+      LWValPointer  ptr;
+      LWValCustom   cust;
+   } LWValue;</pre>
+    <p>Although lwpanel.h defines others, only five LWTypes are needed to describe the values
+    of all LWPanels controls.</p>
+    <pre>   LWT_STRING
+   LWT_INTEGER
+   LWT_FLOAT
+   LWT_VINT
+   LWT_VFLOAT</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

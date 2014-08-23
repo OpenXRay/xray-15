@@ -1,0 +1,174 @@
+<html>
+
+<head>
+<title>Globals: Camera Info</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="boneinfo.html"><img width="96" height="20"
+    border="0" src="../images/navlt.gif" alt="Bone Info"></a></td>
+    <td width="96" align="left"><a href="chaninfo.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Channel Info"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Camera Info</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwrender.h">lwrender.h</a></small></p>
+    <p>The camera info global returns functions for getting camera-specific information about
+    any of the cameras in a scene. Use the <a href="iteminfo.html">item info</a> global to get
+    the camera list and for generic item information. The information returned by these
+    functions is read-only, but you can set camera parameters using <a
+    href="../commands/layout.html#cameras">commands</a>.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWCameraInfo *caminfo;
+   caminfo = global( LWCAMERAINFO_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWCameraInfo.</p>
+    <pre>   typedef struct st_LWCameraInfo {
+      double       (*<strong>zoomFactor</strong>)    (LWItemID, LWTime);
+      double       (*<strong>focalLength</strong>)   (LWItemID, LWTime);
+      double       (*<strong>focalDistance</strong>) (LWItemID, LWTime);
+      double       (*<strong>fStop</strong>)         (LWItemID, LWTime);
+      double       (*<strong>blurLength</strong>)    (LWItemID, LWTime);
+      void         (*<strong>fovAngles</strong>)     (LWItemID, LWTime, double *hfov,
+                                       double *vfov);
+      unsigned int (*<strong>flags</strong>)         (LWItemID);
+      void         (*<strong>resolution</strong>)    (LWItemID, int *w, int *h);
+      double       (*<strong>pixelAspect</strong>)   (LWItemID, LWTime);
+      double       (*<strong>separation</strong>)    (LWItemID, LWTime);
+      void         (*<strong>regionLimits</strong>)  (LWItemID, int *x0, int *y0, int *x1,
+                                       int *y1);
+      void         (*<strong>maskLimits</strong>)    (LWItemID, int *x0, int *y0, int *x1,
+                                       int *y1);
+      void         (*<strong>maskColor</strong>)     (LWItemID, LWDVector color);
+      unsigned int (*<b>motionBlur</b>)    (LWItemID);
+      unsigned int (*<b>fieldRendering</b>)(LWItemID);
+   } LWCameraInfo;</pre>
+    <dl>
+      <dt><tt>zoom = <strong>zoomFactor</strong>( camera, time )</dt>
+      </tt>
+      <dd>Returns the zoom factor.</dd>
+      <tt>
+      <dt><br>
+        flen = <strong>focalLength</strong>( camera, time )</dt>
+      </tt>
+      <dd>Returns the focal length in millimeters.</dd>
+      <tt>
+      <dt><br>
+        fdist = <strong>focalDistance</strong>( camera, time )</dt>
+      </tt>
+      <dd>Returns the distance from the camera at which objects are in focus. </dd>
+      <tt>
+      <dt><br>
+        fstop = <strong>fStop</strong>( camera, time )</dt>
+      </tt>
+      <dd>Returns the f-stop number.</dd>
+      <tt>
+      <dt><br>
+        blurlen = <strong>blurLength</strong>( camera, time )</dt>
+      </tt>
+      <dd>Returns the blur length as a fraction of the frame time. </dd>
+      <tt>
+      <dt><br>
+        <strong>fovAngles</strong>( camera, time, hfov, vfov )</dt>
+      </tt>
+      <dd>Gets the <tt>hfov</tt> and <tt>vfov</tt> (horizontal and vertical field of view) angles,
+        expressed in radians.</dd>
+      <tt>
+      <dt><br>
+        f = <strong>flags</strong>( camera );</dt>
+      </tt>
+      <dd>Returns flags describing the camera, combined using bitwise-or.<pre>LWCAMF_STEREO
+LWCAMF_DOF
+LWCAMF_LIMITED_REGION
+LWCAMF_LR_NOBORDERS
+LWCAMF_PARTICLE_BLUR
+LWCAMF_MASK</pre>
+      </dd>
+      <tt>
+      <dt><strong>resolution</strong>( camera, width, height )</dt>
+      </tt>
+      <dd>Gets the image size in pixels for the images rendered by the camera.</dd>
+      <tt>
+      <dt><br>
+        aspect = <strong>pixelAspect</strong>( camera, time )</dt>
+      </tt>
+      <dd>Returns the pixel aspect ratio of images rendered by the camera, expressed as
+        width/height. Values greater than 1.0 mean short wide pixels and values less than 1.0 mean
+        tall thin pixels.</dd>
+      <tt>
+      <dt><br>
+        sep = <strong>separation</strong>( camera, time )</dt>
+      </tt>
+      <dd>Returns the interocular distance (eye separation) for stereoscopic rendering, in meters.</dd>
+      <tt>
+      <dt><br>
+        <strong>regionLimits</strong>( camera, x0, y0, x1, y1 )</dt>
+      </tt>
+      <dd>Gets the limited region rectangle for the camera.</dd>
+      <tt>
+      <dt><br>
+        <strong>maskLimits</strong>( camera, x0, y0, x1, y1 )</dt>
+      </tt>
+      <dd>Gets the mask rectangle for the camera.</dd>
+      <tt>
+      <dt><br>
+        <strong>maskColor</strong>( camera, color )</dt>
+      </tt>
+      <dd>Gets the color that will be rendered in areas of the image outside the mask rectangle.</dd>
+    </dl>
+    <dl>
+      <tt>
+      <dt>blur = <strong>motionBlur</strong>( camera )</dt>
+      </tt>
+      <dd>Returns the motion blur setting for the specified camera, where one
+        (1) is &quot;normal,&quot; and&nbsp; two (2) is dithered.</dd>
+    </dl>
+    <dl>
+      <tt>
+      <dt>on = <strong>fieldRendering</strong>( camera )</dt>
+      </tt>
+      <dd>Returns the field-rendering state for the specified camera.&nbsp; This
+        is a Boolean value, where one (1) is enabled and zero (0) is disabled.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>This code fragment collects information about the first camera.</p>
+    <pre>   #include &lt;lwserver.h&gt;
+   #include &lt;lwrender.h&gt;
+
+   LWItemInfo *iteminfo;
+   LWCameraInfo *caminfo;
+   LWItemID id;
+   LWTime t = 3.0;          /* seconds */
+   double zoom, flen, fdist, fstop, blen, hfov, vfov;
+
+   iteminfo = global( LWITEMINFO_GLOBAL, GFUSE_TRANSIENT );
+   caminfo  = global( LWCAMERAINFO_GLOBAL, GFUSE_TRANSIENT );
+
+   if ( iteminfo &amp;&amp; caminfo ) {
+      id = iteminfo-&gt;first( LWI_CAMERA, NULL );
+      zoom  = caminfo-&gt;zoomFactor( id, t );
+      flen  = caminfo-&gt;focalLength( id, t );
+      fdist = caminfo-&gt;focalDistance( id, t );
+      fstop = caminfo-&gt;fStop( id, t );
+      blen  = caminfo-&gt;blurLength( id, t );
+      fovAngles( id, t, &amp;hfov, &amp;vfov );
+   }
+</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

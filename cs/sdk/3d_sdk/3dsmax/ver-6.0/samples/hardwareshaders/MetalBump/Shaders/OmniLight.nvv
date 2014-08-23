@@ -1,0 +1,112 @@
+//_____________________________________________________________________________
+//
+//	File:		OmniLight.nvv
+//	
+//_____________________________________________________________________________
+
+
+//_____________________________________________________________________________
+//
+//	Include files	
+//
+//_____________________________________________________________________________
+
+#include "ShaderConst.h"
+
+//_____________________________________________________________________________
+//
+//	Defines	
+//
+//_____________________________________________________________________________
+
+#define NORMAL_LOCAL		r0
+#define LIGHT_LOCAL 		r1
+#define POSITION_WORLD		r2
+#define LIGHT_ATTEN			r3
+
+vs.1.0
+
+//_____________________________________
+//
+//	Transform 
+//
+//_____________________________________
+
+dp4 oPos.x, V_POSITION, c[CV_WORLDVIEWPROJ_0]
+dp4 oPos.y, V_POSITION, c[CV_WORLDVIEWPROJ_1]
+dp4 oPos.z, V_POSITION, c[CV_WORLDVIEWPROJ_2]
+dp4 oPos.w, V_POSITION, c[CV_WORLDVIEWPROJ_3]
+
+//_____________________________________
+//
+//	Transform
+//
+//_____________________________________
+
+dp4 POSITION_WORLD.x, V_POSITION, c[CV_WORLD_0]
+dp4 POSITION_WORLD.y, V_POSITION, c[CV_WORLD_1]
+dp4 POSITION_WORLD.z, V_POSITION, c[CV_WORLD_2]
+
+//_____________________________________
+//
+//	Vector 
+//
+//_____________________________________
+
+add LIGHT_LOCAL, c[CV_LIGHT_POSITION], -POSITION_WORLD.xyz 
+
+//_____________________________________
+//
+//	Atten
+//
+//_____________________________________
+
+mul LIGHT_ATTEN, LIGHT_LOCAL, c[CV_LIGHT_OUTER_RANGE].x
+add LIGHT_ATTEN, LIGHT_ATTEN, c[CV_HALF].x
+
+
+//_____________________________________
+//
+//	Output light  
+//
+//_____________________________________
+
+mov oT1.xyz, LIGHT_LOCAL
+mov oT1.w, c[CV_ONE].w
+
+//_____________________________________
+//
+//	Transform 
+//
+//_____________________________________
+
+dp3 NORMAL_LOCAL.x, V_NORMAL, c[CV_WORLD_0]
+dp3 NORMAL_LOCAL.y, V_NORMAL, c[CV_WORLD_1]
+dp3 NORMAL_LOCAL.z, V_NORMAL, c[CV_WORLD_2]
+
+//_____________________________________
+//
+//	Output normal 
+//
+//_____________________________________
+
+mov oT0.xyz, NORMAL_LOCAL
+mov oT0.w, c[CV_ONE].w
+
+//_____________________________________
+//
+//	Output atten  
+//
+//_____________________________________
+
+mov oT2.xy, LIGHT_ATTEN.xy
+mov oT3.x,  LIGHT_ATTEN.z
+mov oT3.y,  c[CV_HALF].x
+
+//_____________________________________
+//
+//	Output texture  
+//
+//_____________________________________
+
+

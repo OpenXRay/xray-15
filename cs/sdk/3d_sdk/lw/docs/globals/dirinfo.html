@@ -1,0 +1,67 @@
+<html>
+
+<head>
+<title>Globals: Directory Info</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="conmenu.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="Context Menu Services"></a></td>
+    <td width="96" align="left"><a href="dynaconv.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Dynamic Conversion"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Directory Info</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwhost.h">lwhost.h</a></small></p>
+    <p>The function returned by the directory info global gives plug-ins read-only access to
+    LightWave's internal directory list. This tells you where LightWave would look first for a
+    given item. It can be used to set the initial path for a <a href="filereq2.html">file
+    request</a>.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWDirInfoFunc *dirinfo;
+   dirinfo = global( LWDIRINFOFUNC_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWDirInfoFunc.</p>
+    <pre>   typedef const char * LWDirInfoFunc (const char *dirtype);</pre>
+    <p>The <tt>dirtype</tt> argument identifies which directory path should be returned by the
+    directory info function. It can be any of the predefined <a href="filetype.html">file type</a>
+    strings. The paths returned may be relative rather than absolute. In most cases, relative
+    paths will be relative to the content directory. Also, in some cases, the path may be
+    NULL.</p>
+    <p><strong>Example</strong></p>
+    <p>This code fragment initializes a path string with the default directory for images.</p>
+    <pre>   #include &lt;lwserver.h&gt;
+   #include &lt;lwhost.h&gt;
+
+   #define MAXFILESZ 260
+
+   char *imgdir, path[ MAXFILESZ ] = &quot;&quot;;
+   LWDirInfoFunc *dirinfo;
+
+   dirinfo = global( LWDIRINFOFUNC_GLOBAL, GFUSE_TRANSIENT );
+   if ( dirinfo ) {
+      imgdir = dirinfo( LWFTYPE_IMAGE );
+      if ( imgdir )
+         if ( strlen( imgdir ) &lt; MAXFILESZ )
+            strcpy( path, imgdir );
+   }
+   ...
+</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

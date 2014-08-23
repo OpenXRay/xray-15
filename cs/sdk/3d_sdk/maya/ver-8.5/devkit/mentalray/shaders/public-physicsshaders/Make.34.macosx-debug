@@ -1,0 +1,15 @@
+#!/bin/sh
+# automatically generated Thu Jul 29 12:13:41 MST 2004
+rm -f shader.h geoshader.h mi_version.h
+cp shader.34.h shader.h
+cp geoshader.34.h geoshader.h
+cp mi_version.34.h mi_version.h
+cp raylib.34.rc raylib.rc
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include dgsutil.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include dgsshade.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include dielecshade.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include partishade.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include pathshade.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include physlight.cpp
+cc -c -g -DDEBUG -DCVD_DEBUG  -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include physlens.cpp
+libtool  -flat_namespace -undefined suppress -dynamic /usr/local/mi/lib/macosx-fpsave.o -o physics.so dgsutil.o dgsshade.o dielecshade.o partishade.o pathshade.o physlight.o physlens.o  

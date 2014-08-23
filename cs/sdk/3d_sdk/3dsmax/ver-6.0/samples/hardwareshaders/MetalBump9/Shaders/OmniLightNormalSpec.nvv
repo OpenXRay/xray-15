@@ -1,0 +1,179 @@
+//_____________________________________________________________________________
+//
+//	File:		OmniLightNormalSpec.nvv
+//	
+//_____________________________________________________________________________
+
+
+//_____________________________________________________________________________
+//
+//	Include files	
+//
+//_____________________________________________________________________________
+
+#include "ShaderConst.h"
+
+//_____________________________________________________________________________
+//
+//	Defines	
+//
+//_____________________________________________________________________________
+
+#define S_WORLD 			r0
+#define T_WORLD 			r1
+#define SxT_WORLD 			r2
+#define LIGHT_LOCAL 		r3
+#define POSITION_WORLD		r4
+#define LIGHT_ATTEN			r5
+#define EYE_VECTOR			r6
+#define HALF_ANGLE			r7
+#define WORLD_TEMP	 		r8
+
+vs_1_1
+
+dcl_position	v0
+dcl_normal		v1
+dcl_normal1		v2
+dcl_texcoord3	v6
+
+//_____________________________________
+//
+//	Transform 
+//
+//_____________________________________
+
+dp4 oPos.x, V_POSITION, c[CV_WORLDVIEWPROJ_0]
+dp4 oPos.y, V_POSITION, c[CV_WORLDVIEWPROJ_1]
+dp4 oPos.z, V_POSITION, c[CV_WORLDVIEWPROJ_2]
+dp4 oPos.w, V_POSITION, c[CV_WORLDVIEWPROJ_3]
+
+
+//_____________________________________
+//
+//	Transform basis
+//
+//_____________________________________
+
+m3x3 S_WORLD,    V_S,			c[CV_WORLD_0]
+m3x3 SxT_WORLD,  V_NORMAL,		c[CV_WORLD_0]
+mul  WORLD_TEMP, S_WORLD.zxy,	SxT_WORLD.yzx   
+mad  T_WORLD,    S_WORLD.yzx,	SxT_WORLD.zxy, -WORLD_TEMP
+
+//_____________________________________
+//
+//	Scale bumps 
+//
+//_____________________________________
+
+mul S_WORLD.xyz, S_WORLD.xyz, c[CV_SCALE].w
+mul T_WORLD.xyz, T_WORLD.xyz, c[CV_SCALE].w
+
+
+//_____________________________________
+//
+//	Transform 
+//
+//_____________________________________
+
+dp4 POSITION_WORLD.x, V_POSITION, c[CV_WORLD_0]
+dp4 POSITION_WORLD.y, V_POSITION, c[CV_WORLD_1]
+dp4 POSITION_WORLD.z, V_POSITION, c[CV_WORLD_2]
+
+//_____________________________________
+//
+//	Vector 
+//
+//_____________________________________
+
+add LIGHT_LOCAL, c[CV_LIGHT_POSITION], -POSITION_WORLD.xyz 
+
+//_____________________________________
+//
+//	Normalize 
+//
+//_____________________________________
+
+dp3 LIGHT_LOCAL.w, LIGHT_LOCAL, LIGHT_LOCAL
+rsq LIGHT_LOCAL.w, LIGHT_LOCAL.w
+rcp LIGHT_ATTEN,   LIGHT_LOCAL.w
+mul LIGHT_ATTEN,   LIGHT_ATTEN.w, c[CV_LIGHT_OUTER_RANGE].x
+mul LIGHT_LOCAL,   LIGHT_LOCAL, LIGHT_LOCAL.w
+
+//_____________________________________
+//
+//	Eye vector  
+//
+//_____________________________________
+
+add EYE_VECTOR,  c[CV_EYE], -POSITION_WORLD.xyz
+
+//_____________________________________
+//
+//	Normalize  
+//
+//_____________________________________
+
+dp3 EYE_VECTOR.w, EYE_VECTOR, EYE_VECTOR
+rsq EYE_VECTOR.w, EYE_VECTOR.w
+mul EYE_VECTOR,   EYE_VECTOR, EYE_VECTOR.w
+
+//_____________________________________
+//
+//	Half angle  
+//
+//_____________________________________
+
+add HALF_ANGLE, LIGHT_LOCAL, EYE_VECTOR
+
+//_____________________________________
+//
+//	Normalize  
+//
+//_____________________________________
+
+dp3 HALF_ANGLE.w, HALF_ANGLE, HALF_ANGLE
+rsq HALF_ANGLE.w, HALF_ANGLE.w
+mul HALF_ANGLE,   HALF_ANGLE, HALF_ANGLE.w
+
+
+//_____________________________________
+//
+//	Transform 
+//
+//_____________________________________
+
+dp3 oT1.x, S_WORLD.xyz,   LIGHT_LOCAL
+dp3 oT1.y, T_WORLD.xyz,   LIGHT_LOCAL
+dp3 oT1.z, SxT_WORLD.xyz, LIGHT_LOCAL
+mov oT1.w, c[CV_ONE].w		
+
+//_____________________________________
+//
+//	Output atten 
+//
+//_____________________________________
+
+sub oD0, c[CV_ONE],LIGHT_ATTEN.x
+
+//_____________________________________
+//
+//	Ouput half angle  
+//
+//_____________________________________
+
+dp3 oT2.x, HALF_ANGLE, S_WORLD
+dp3 oT2.y, HALF_ANGLE, T_WORLD
+dp3 oT2.z, HALF_ANGLE, SxT_WORLD
+mov oT2.w, c[CV_ONE]
+
+//_____________________________________
+//
+//	Output texture 
+//
+//_____________________________________
+
+mov oT0.xy,  V_TEXTURE_3
+
+
+
+

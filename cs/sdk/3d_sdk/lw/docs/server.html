@@ -1,0 +1,385 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Win98; U) [Netscape]">
+   <title>Common Elements</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#000080" vlink="#800000" alink="#0000FF">
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 BGCOLOR="#D0D0D0" >
+<tr>
+<td ALIGN=LEFT WIDTH="120"><a href="compile.html"><img SRC="navlt.gif" ALT="Compiling" BORDER=0 height=20 width=96></a></td>
+
+<td ALIGN=LEFT WIDTH="96"><a href="compat.html"><img SRC="navrt.gif" ALT="Compatibility" BORDER=0 height=20 width=64></a></td>
+
+<td ALIGN=RIGHT WIDTH="384"><a href="index.html"><img SRC="proglw.gif" ALT="Table of Contents" BORDER=0 height=20 width=230></a></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 >
+<tr>
+<td WIDTH="600">
+<h3>
+Common Elements</h3>
+This page discusses the components that are common to all plug-ins. These
+are the structural components that form the bridge between LightWave and
+your plug-ins. They have funny names and do possibly unfamiliar things,
+so we need to introduce some terminology.
+<p>The <i>host</i> is the program, Layout or Modeler, for example, that
+runs your plug-ins.
+<p>A plug-in <i>module</i> is a file, usually with a <tt>.p</tt> extension,
+that contains one or more LightWave plug-ins. Any number of plug-ins can
+be compiled together into a single module. It's common for an image loader
+and an image saver to be together in the same file, for example.
+<p>Every plug-in file needs a <i>server description</i> that lists the
+plug-ins in the file, and every plug-in needs a special entry point function,
+its <i>activation function</i>. Both of these are defined in the <tt>lwserver.h</tt>
+header file. Each plug-in file also contains initialization and cleanup
+functions called <tt>Startup</tt> and <tt>Shutdown</tt>.
+<p><a NAME="servdesc"></a><b>Server Description</b>
+<p>The server description lists what your plug-in file contains. It's the
+first thing the host examines when it loads your module. The list appears
+in your source code as an array of ServerRecords.
+<pre>&nbsp;&nbsp; typedef struct st_ServerRecord {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const char&nbsp;&nbsp;&nbsp;&nbsp; *<b>className</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const char&nbsp;&nbsp;&nbsp;&nbsp; *<b>name</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ActivateFunc&nbsp;&nbsp; *<b>activate</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ServerTagInfo&nbsp; *<b>tagInfo</b>;
+&nbsp;&nbsp; } ServerRecord;</pre>
+
+<dl>
+<dt>
+<b><tt>className</tt></b></dt>
+
+<dd>
+A string containing the class of the plug-in. The class identifies what
+kind of plug-in this is. The header files for classes contain <tt>#defines</tt>
+for each class name. These are also listed in the <a href="classes.html">documentation</a>
+for each class.</dd>
+
+<dt>
+</dt>
+
+<br><b><tt>name</tt></b>
+<dd>
+A string containing the name by which LightWave will uniquely identify
+your plug-in. This is the name LightWave uses internally and saves in scene
+and object files. It's also the name displayed to the user if the plug-in
+doesn't supply at least one user name. The name must be a string of ASCII
+characters in the range 33 to 127 (note that this excludes spaces). Case
+is significant.</dd>
+
+<p><br>Although this allows punctuation and other special characters to
+appear in the name, you're strongly encouraged to limit names to those
+that would be legal identifiers in the C language. C identifiers contain
+letters, numbers and the underscore character (ASCII 0x5F). Image saver
+names, which by convention end with the default filename extension in parentheses,
+are an exception to this rule.&nbsp;
+<p>The use of non-alphanumeric initial characters to force your plug-ins
+to appear first, or together, in lexicographically sorted lists is discouraged.
+This practice may interfere with LightWave's internal name processing and
+may conflict with conventions that evolve in the future.
+<p>Each class has its own name space, so plug-ins of different classes
+can have the same name. Although you'll probably want to avoid giving unrelated
+plug-ins the same name, you <i>must</i> use the same name for the interface
+class associated with a <a href="handler.html">handler</a>. This is how
+the host matches a handler with its interface.
+<dt>
+<b><tt>activate</tt></b></dt>
+
+<dd>
+The activation function. See below.</dd>
+
+<dt>
+</dt>
+
+<br><b><tt>tagInfo</tt></b>
+<dd>
+An array of tag strings that describe the plug-in. Among other things,
+this is where you list the name that will be displayed to your users in
+LightWave's interface.</dd>
+</dl>
+<a NAME="servtag"></a><b>Server Tags</b>
+<p>The ServerRecord's <tt>tagInfo</tt> field is an array of ServerTagInfo
+structures.
+<pre>&nbsp;&nbsp; typedef struct st_ServerTagInfo {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const char&nbsp;&nbsp; *<b>string</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int&nbsp;<b> tag</b>;
+&nbsp;&nbsp; } ServerTagInfo;</pre>
+Each tag contains two codes combined using bitwise-or. The high word is
+the tag type, and the low word is the language ID. Not all of the tags
+are supported yet. Currently defined tag types include the following.
+<dl>&nbsp;
+<dt>
+<b><tt>SRVTAG_USERNAME</tt></b></dt>
+
+<dd>
+The name displayed to the user in LightWave's interface. Multiple user
+names for different <a href="globals/locale.html">locales</a> can be provided
+by combining this type code with different language IDs. LightWave attempts
+to select the name that's most appropriate for the locale of the user's
+machine. Unlike the internal server name, there are no restrictions on
+what the string may contain.</dd>
+
+<br>Japanese strings should be encoded as JIS on Windows and EUC on Unix.
+<dt>
+</dt>
+
+<br><b><tt>SRVTAG_BUTTONNAME</tt></b>
+<dd>
+The string that will appear on a button or in a popup list used to invoke
+your plug-in. This is usually an abbreviated version of your user name.</dd>
+
+<dt>
+</dt>
+
+<br><b><tt>SRVTAG_CMDGROUP</tt></b>
+<dd>
+The LightWave interface organizes commands, including plug-ins, into command
+groups. The command group you specifiy determines the heading under which
+users will find your plug-in on menu and key customization dialogs. The
+command group can be a predefined group, or a new group created simply
+by listing its name.&nbsp;</dd>
+
+<p><br><b><tt>SRVTAG_SELECTCMD</tt></b>
+<dd>
+The string in this tag will be executed as a command when an item with
+this plug-in applied is selected in Layout. This is useful for activating
+special tools for certain custom objects, among other things.</dd>
+
+<p><br>In general, the predefined group names are lowercase versions of
+the group names displayed in the interface. When using one of these groups,
+the language ID should be 0. Predefined group names are automatically translated
+to the locale of the user's machine. The following is a partial list of
+the predefined command groups.
+<br>&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 >
+<tr>
+<td ALIGN=LEFT WIDTH="150"><b><i>Both</i></b></td>
+
+<td ALIGN=LEFT WIDTH="150"><b><i>Layout</i></b></td>
+
+<td ALIGN=LEFT WIDTH="150"><b><i>Modeler</i></b></td>
+</tr>
+
+<tr>
+<td ALIGN=LEFT VALIGN=TOP WIDTH="150">display
+<br>file
+<br>preferences
+<br>windows
+<br>selection
+<br>additional</td>
+
+<td ALIGN=LEFT VALIGN=TOP WIDTH="150">bones
+<br>cameras
+<br>effects
+<br>items
+<br>lights
+<br>motion
+<br>objects
+<br>previews
+<br>rendering
+<br>time</td>
+
+<td ALIGN=LEFT VALIGN=TOP WIDTH="150">create
+<br>construct
+<br>edit
+<br>mappings
+<br>modify
+<br>polygons
+<br>texture</td>
+</tr>
+</table>
+
+<dt>
+<b><tt>SRVTAG_MENU</tt></b></dt>
+
+<dd>
+For plug-ins that can be activated as commands or tools (all Modeler classes,
+plus generics in Layout), the menu string specifies the location of the
+plug-in's node in LightWave's menu system. Like command groups, the menu
+string can refer to predefined or custom nodes. They can also specify a
+"path" resembling a filename, with optional root menu nodes followed by
+a colon and other nodes separated by forward slashes, and the nodes can
+be a mix of predefined and custom. The path&nbsp;</dd>
+
+<pre>&nbsp;&nbsp; "tools/objects/Quadrics"</pre>
+for example, would create a (custom) "Quadrics" popup on the (predefined)
+"Tools" tab, while&nbsp;
+<pre>&nbsp;&nbsp; "polygon/Metaballs"</pre>
+would create a "Metaballs" group. In general, the menu tag path has the
+form&nbsp;
+<pre>&nbsp;&nbsp; "[menu:]tab[/group[/group...]]"</pre>
+and the menu info tag can contain many of these strings separated by commas.
+The string&nbsp;
+<pre>&nbsp;&nbsp; "multiply/replicate,LMB:Ultra Studio"</pre>
+would place the command or tool into the standard location in the main
+menu and into a custom group in the left mouse button popup. It's even
+possible to place commands into the bottom command bar in Modeler, but
+this isn't recommended, since the screen real estate there is limited.
+<p>The predefined menu hierarchy hadn't been finalized at the time this
+document was last updated.
+<dt>
+<b><tt>SRVTAG_DESCRIPTION</tt></b></dt>
+
+<dd>
+A line of text describing the plug-in. This might be displayed in the interface
+as hint text or as a description next to the user name in customization
+dialogs.</dd>
+
+<dt>
+</dt>
+
+<br><b><tt>SRVTAG_ENABLE</tt></b>
+<dd>
+A string defining the conditions under which the plug-in should be active.
+This is currently used for Modeler tools and commands to determine the
+enable state of the plug-in's button. Possible values include&nbsp;</dd>
+
+<p><br><tt>"pnt"</tt> - active points
+<br><tt>"pol"</tt> - active polygons
+<br><tt>"spnt"</tt> - directly selected points
+<br><tt>"spol"</tt> - directly selected polygons
+<p>Compound conditions, which would combine these into boolean expressions,
+aren't supported yet but may be in the future.</dl>
+The language ID is a code indicating the language for the name string.
+The language IDs are identical to those defined in the Microsoft Win32
+API and exposed in the Microsoft Visual C++ <tt>winnt.h</tt> header file.
+Bits 7 - 0 define the language group and bits 15 - 8 define the sublanguage.
+<a href="../include/lwserver.h">lwserver.h</a> contains symbols for some
+of the more common language IDs.
+<blockquote><tt>0x0407 LANGID_GERMAN</tt>
+<br><tt>0x0409 LANGID_USENGLISH</tt>
+<br><tt>0x0809 LANGID_UKENGLISH</tt>
+<br><tt>0x040a LANGID_SPANISH</tt>
+<br><tt>0x040c LANGID_FRENCH</tt>
+<br><tt>0x0410 LANGID_ITALIAN</tt>
+<br><tt>0x0411 LANGID_JAPANESE</tt>
+<br><tt>0x0412 LANGID_KOREAN</tt>
+<br><tt>0x0419 LANGID_RUSSIAN</tt>
+<br><tt>0x041D LANGID_SWEDISH</tt></blockquote>
+<a NAME="actfunc"></a><b>Activation Function</b>
+<p>The activation function is the entry point for the service provided
+by your plug-in. For some plug-in classes, this may be the only function
+the host calls in your plug-in (other than the startup and shutdown functions).
+For others, the activation function is where the host finds out about the
+plug-in's callback functions.
+<pre>&nbsp;&nbsp; XCALL_( int )
+&nbsp;&nbsp; MyActivate( long <b>version</b>, GlobalFunc *<b>global</b>, void *<b>local</b>,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void *<b>serverData</b> );</pre>
+
+<dl>
+<dt>
+<b><tt>version</tt></b></dt>
+
+<dd>
+A class-specific version number. As development of LightWave continues,
+the interaction between the host and a given plug-in class is sometimes
+redefined. This number tells you, among other things, what version of the
+local data the host has passed. See the compatibility discussion for more
+information on using this value. In most cases, though, you'll test this
+value against the version number defined in the header file for your plug-in's
+class and return <tt>AFUNC_BADVERSION</tt> if they don't match.</dd>
+
+<dt>
+</dt>
+
+<br><b><tt>global</tt></b>
+<dd>
+A function that gives your plug-in access to services provided by the host
+and by Global class plug-ins. See the pages about the <a href="globfunc.html">global</a>
+function and <a href="global.html">Global</a> plug-ins for more information.</dd>
+
+<dt>
+</dt>
+
+<br><b><tt>local</tt></b>
+<dd>
+Class-specific data. Each plug-in class receives different data through
+this argument. The documentation for each class, in fact, is primarily
+concerned with describing the class's local argument. For handler classes,
+this points to a structure that the plug-in needs to fill. The host gets
+pointers to other functions in your plug-in this way.</dd>
+
+<dt>
+</dt>
+
+<br><b><tt>serverData</tt></b>
+<dd>
+The data pointer returned by the startup function. Unless you replaced
+the default startup function, you should ignore this argument. In particular,
+don't try to dereference the pointer, since on most systems it contains
+an invalid (although non-NULL) address.</dd>
+</dl>
+<a NAME="activatereturn"></a>The activation function returns a code that
+tells the host whether the plug-in was activated successfully.
+<dl>&nbsp;
+<dt>
+<b><tt>AFUNC_BADVERSION</tt></b></dt>
+
+<dd>
+The version argument differs from what your plug-in supports. In some cases
+the host will try again with a lower version number.</dd>
+
+<dt>
+</dt>
+
+<br><b><tt>AFUNC_BADGLOBAL</tt></b>
+<dd>
+A call to the global function failed.</dd>
+
+<dt>
+</dt>
+
+<br><b><tt>AFUNC_BADLOCAL</tt></b>
+<dd>
+Your plug-in doesn't like something in the local data.</dd>
+
+<dt>
+</dt>
+
+<br><b><tt>AFUNC_BADAPP</tt></b>
+<dd>
+The host is a program you don't support.</dd>
+
+<dt>
+</dt>
+
+<br><b><tt>AFUNC_OK</tt></b>
+<dd>
+Return this when none of the other values is appropriate.</dd>
+</dl>
+<b>Startup and Shutdown</b>
+<p>These two optional entry points allow the module to initialize itself
+when it is first loaded and to clean itself up before being unloaded.
+<pre>&nbsp;&nbsp; void *Startup( void );
+&nbsp;&nbsp; void Shutdown( void *serverData );</pre>
+Most plug-in files don't require module-level initialization and cleanup.
+They use the empty startup and shutdown functions supplied by the SDK linker
+library.
+<p>The startup function is called when the plug-in is first loaded by the
+host. The return value is the data passed to the activation and shutdown
+functions as the <tt>serverData</tt> argument. Returning NULL from the
+startup function indicates failure, so even if a module has no real server
+data, it should still return something. The module's shutdown function
+is called just before the host unloads the module. Any allocated server
+data should be freed at this point.
+<p><b>Calling Convention</b>
+<p>Functions in the plug-in are called directly by LightWave, and this
+is a potentially funky thing in some systems since they may be different
+environments. The <tt>lwserver.h</tt> header file defines an <tt>XCALL_</tt>
+macro that establishes the calling convention for each platform and compiler.
+<tt>XCALL_</tt> is applied to anything that preceeds the function name
+in definitions.
+<pre>&nbsp;&nbsp; XCALL_( static const char * ) DescLn( LWInstance instance )
+&nbsp;&nbsp; { ...</pre>
+All functions in your plug-in that can be called by LightWave need the
+<tt>XCALL_</tt> treatment, with the exception of the startup and shutdown
+functions.</td>
+</tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,197 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PANEL DIALOGEX 0, 0, 108, 340
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    CONTROL         "",IDC_EDIT,"CustEdit",WS_TABSTOP,60,7,32,10
+    CONTROL         "",IDC_SPIN,"SpinnerControl",0x0,94,7,7,10
+    RTEXT           "Inner Amount:",IDC_STATIC,7,7,47,10
+    CONTROL         "",IDC_EDIT2,"CustEdit",WS_TABSTOP,60,20,32,10
+    CONTROL         "",IDC_SPIN2,"SpinnerControl",0x0,94,20,7,10
+    RTEXT           "Outer Amount:",IDC_STATIC,7,20,47,10
+    CONTROL         "Override Edge Mat ID",IDC_MATIDCHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,144,94,11
+    CONTROL         "",IDC_MATID,"CustEdit",WS_TABSTOP,60,158,32,10
+    CONTROL         "",IDC_MATIDSPIN,"SpinnerControl",0x0,94,158,7,10
+    RTEXT           "Edge Mat ID:",IDC_EMATIDSTATIC,7,158,47,10
+    CONTROL         "Override Edge Smooth Grp",IDC_SMOOTHCHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,201,99,11
+    CONTROL         "",IDC_SMOOTHGROUP,"CustEdit",WS_TABSTOP,60,214,32,10
+    CONTROL         "",IDC_SMOOTHGROUPSPIN,"SpinnerControl",0x0,94,214,7,10
+    RTEXT           "Smooth Grp:",IDC_SGSTATIC,7,214,47,10
+    COMBOBOX        IDC_EDGEMAPCOMBO,7,255,94,49,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "Edge Mapping",IDC_STATIC,7,241,94,9
+    CONTROL         "",IDC_TVOFFSET,"CustEdit",WS_TABSTOP,60,271,32,10
+    CONTROL         "",IDC_TVOFFSETSPIN,"SpinnerControl",0x0,94,271,7,10
+    RTEXT           "TV Offset:",IDC_TVSTATIC,7,271,47,10
+    CONTROL         "Override Inner Mat ID",IDC_MATIDCHECK2,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,87,94,11
+    CONTROL         "",IDC_MATID2,"CustEdit",WS_TABSTOP,60,101,32,10
+    CONTROL         "",IDC_MATIDSPIN2,"SpinnerControl",0x0,94,101,7,10
+    RTEXT           "Inner Mat ID:",IDC_IMATIDSTATIC,7,101,47,10
+    CONTROL         "Select Edges",IDC_SELECTEDGESCHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,286,94,11
+    CONTROL         "Select Inner Faces",IDC_SELECTFACESCHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,298,94,11
+    CONTROL         "",IDC_EDIT3,"CustEdit",WS_TABSTOP,60,37,32,10
+    CONTROL         "",IDC_SPIN3,"SpinnerControl",0x0,94,37,7,10
+    RTEXT           "Segments:",IDC_STATIC,7,37,47,10
+    CONTROL         "Straighten Corners",IDC_FIXCORNERSCHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,322,94,11
+    CONTROL         "Auto Smooth Edge",IDC_AUTOSMOOTHCHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,175,94,11
+    CONTROL         "",IDC_AUTOSMOOTH,"CustEdit",WS_TABSTOP,60,188,32,10
+    CONTROL         "",IDC_AUTOSMOOTHSPIN,"SpinnerControl",0x0,94,188,7,10
+    RTEXT           "Angle:",IDC_ANGLESTATIC,7,188,47,10
+    CONTROL         "Select Outer Faces",IDC_SELECTOUTERFACESCHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,310,94,11
+    CONTROL         "Override Outer Mat ID",IDC_MATIDCHECK3,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,116,94,11
+    CONTROL         "",IDC_MATID3,"CustEdit",WS_TABSTOP,60,130,32,10
+    CONTROL         "",IDC_MATIDSPIN3,"SpinnerControl",0x0,94,130,7,10
+    RTEXT           "Outer Mat ID:",IDC_OMATIDSTATIC,7,130,47,10
+    CONTROL         "Bevel Edges",IDC_BEVELEDGESCHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,49,94,11
+    CONTROL         "-Bevel Shape-",IDC_SHAPE,"CustButton",WS_TABSTOP,54,60,
+                    47,12
+    LTEXT           "Bevel Spline:",IDC_STATIC,7,62,41,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_PANEL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        VERTGUIDE, 54
+        VERTGUIDE, 60
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 333
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_LIBDESCRIPTION      "Shell"
+    IDS_CATEGORY            "Shell"
+    IDS_CLASS_NAME          "Shell"
+    IDS_PARAMS              "Parameters"
+    IDS_SPIN                "Spin"
+    IDS_IAMOUNT             "Inner Amount"
+    IDS_OAMOUNT             "Outer Amount"
+    IDS_OVERRIDEMATID       "Override MatID"
+    IDS_MATID               "Mat ID"
+    IDS_OVERRIDESG          "Override Smoothing Group"
+    IDS_SG                  "Smooth Group"
+    IDS_EDGEMAPPING         "Edge Mapping"
+    IDS_NONE                "None"
+    IDS_STRIP               "Strip"
+    IDS_INTERPOLATE         "Interpolate"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_COPY                "Copy"
+    IDS_TVOFFSET            "TV Offset"
+    IDS_OVERRIDEINNERMATID  "Override Inner MatID"
+    IDS_INNERMATID          "Inner MatID"
+    IDS_SELECTEDGES         "Select Edges Faces"
+    IDS_SELECTINNER         "Select Inner Faces"
+    IDS_EM_POLY             "Face"
+    IDS_SEGMENTS            "Segments"
+    IDS_FIXUPCORNERS        "Straighten Corners"
+    IDS_AUTOSMOOTH          "Auto Smooth"
+    IDS_SELECTOUTER         "Select Outer Faces"
+    IDS_OVERRIDEOUTERMATID  "Override Outer MatID"
+    IDS_OUTERMATID          "Outer MatID"
+    IDS_BEVEL               "Bevel"
+    IDS_BEVELSHAPE          "Bevel Shape"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#include "veroverrides.h"
+#include "maxversion.r"
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

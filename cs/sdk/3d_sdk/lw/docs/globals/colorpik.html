@@ -1,0 +1,126 @@
+<html>
+
+<head>
+<title>Globals: Color Picker</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="chaninfo.html"><img width="96" height="20"
+    border="0" src="../images/navlt.gif" alt="Channel Info"></a></td>
+    <td width="96" align="left"><a href="compinfo.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Comp Info"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Color Picker</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwhost.h">lwhost.h</a></small></p>
+    <p>The color picker global returns a function that prompts the user for a color selection.
+    The request displays the color dialog currently installed in LightWave. This may be the
+    default system dialog or a custom <a href="../classes/colorpik.html">ColorPicker</a>
+    plug-in.</p>
+    <p>The function returned by the color picker global calls the color picker module's
+    activation function directly. Plug-ins calling the function act as the host side of the
+    ColorPicker plug-in class.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWColorActivateFunc *colorpick;
+   colorpick = global( LWCOLORACTIVATEFUNC_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWColorActivateFunc.</p>
+    <pre>   typedef int LWColorActivateFunc (int version, LWColorPickLocal *);</pre>
+    <p>The return value of this function can be any of the values defined for the <a
+    href="server.html#activatereturn">return values of activation functions</a>. Any value
+    other than <tt>AFUNC_OK</tt> must be handled as an error.</p>
+    <p>The version is passed as the <tt>version</tt> argument to the color picker's activation
+    function. This should be set to the value defined by the <tt>LWCOLORPICK_VERSION</tt>
+    symbol in <tt>lwdialog.h</tt>. Color picker plug-ins with a different activation version
+    will return <tt>AFUNC_BADVERSION</tt>.</p>
+    <p>The second argument to this function is a pointer to a structure that is passed as the <tt>local</tt>
+    argument to the color picker's activation function.</p>
+    <p><strong>The Local Structure</strong></p>
+    <p>The color picker function passes an LWColorPickLocal as the local argument to the
+    activation function of the color picker plug-in.</p>
+    <pre>   typedef void LWHotColorFunc (void *data, float r, float g, float b);
+
+   typedef struct st_LWColorPickLocal {
+      int             <strong>result</strong>;
+      const char     *<strong>title</strong>;
+      float           <strong>red</strong>, <strong>green</strong>, <strong>blue</strong>;
+      void           *<strong>data</strong>;
+      LWHotColorFunc *<strong>hotFunc</strong>;
+   } LWColorPickLocal;</pre>
+    <dl>
+      <dt><strong><tt>result</tt></strong></dt>
+      <dd>The result of the request. This will be 1 if the user selected a color, 0 if the user
+        cancelled the request, and a negative number to indicate an error.</dd>
+      <dt><tt><br>
+        <strong>title</strong></tt></dt>
+      <dd>The title string. This is generally displayed near the top of the color dialog and tells
+        the user the context of the color request.</dd>
+      <dt><tt><br>
+        <strong>red</strong>, <strong>green</strong>, <strong>blue</strong></tt></dt>
+      <dd>The initial color. If the user selects a color, these fields will be modified to contain
+        the selected color. The nominal range for RGB levels is 0.0 to 1.0, but they can be
+        outside this range.</dd>
+      <dt><tt><br>
+        <strong>data</strong></tt></dt>
+      <dd>A pointer to data that will be passed to your hot color callback. This can point to
+        anything your callback requires, or NULL. The color picker ignores it.</dd>
+      <dt><tt><br>
+        <strong>hotFunc</strong>( data, r, g, b )</tt></dt>
+      <dd>A color callback you supply. The color picker calls this while the user is playing with
+        any of its color selection mechanisms. This allows you to update your own display
+        interactively as the user selects a color. (The &quot;hot&quot; part of the name refers to
+        this dynamic interaction. This isn't an NTSC color gamut test.) The callback should
+        execute quickly enough that it doesn't bog down the interactivity of the color picker with
+        the user.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>This code fragment asks the user for a color.</p>
+    <pre>   #include &lt;lwserver.h&gt;
+   #include &lt;lwhost.h&gt;
+
+   void colorcb( MyDisplayData *data, float r, float g, float b )
+   {
+      /* redraw my display with the current color */
+      ...
+   }
+
+   LWColorActivateFunc *colorpick;
+   LWColorPickLocal clrloc;
+   MyDisplayData myhotdata;
+   int result;
+
+   colorpick = global( LWCOLORACTIVATEFUNC_GLOBAL, GFUSE_TRANSIENT );
+   if ( !colorpick ) goto NoColorPick;  /* global calls can fail */
+
+   clrloc.title   = &quot;Widget Color&quot;;
+   clrloc.red     = current_red;
+   clrloc.green   = current_green;
+   clrloc.blue    = current_blue;
+   clrloc.data    = &amp;myhotdata;
+   clrloc.hotFunc = colorcb;
+
+   result = colorpick( LWCOLORPICK_VERSION, &amp;clrloc );
+   if ( result == AFUNC_OK &amp;&amp; clrloc.result &gt; 0 ) {
+      current_red   = clrloc.red;
+      current_green = clrloc.green;
+      current_blue  = clrloc.blue;
+      ...
+</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,318 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MASTERPARAMS DIALOG DISCARDABLE  0, 0, 174, 173
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "Master Block Parameters"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,109,150,59,14
+    PUSHBUTTON      "Cancel",IDCANCEL,117,159,50,14,NOT WS_VISIBLE | 
+                    WS_DISABLED
+    LISTBOX         IDC_LIST1,6,6,95,140,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_HSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Add",IDC_ADD,110,6,58,15
+    PUSHBUTTON      "Remove",IDC_DELETE,110,66,58,15
+    PUSHBUTTON      "Replace",IDC_REPLACE,110,48,58,15
+    PUSHBUTTON      "Load",IDC_LOAD,110,90,58,15
+    PUSHBUTTON      "Save",IDC_SAVE,110,110,58,15
+    CONTROL         "",IDC_LIST_NAME,"CustEdit",WS_TABSTOP,7,152,77,10
+    CONTROL         "",IDC_COLOR,"ColorSwatch",0x0,87,152,13,10
+    PUSHBUTTON      "Add Selected",IDC_ADD_SELECTED,110,24,58,15
+END
+
+IDD_ADDKEY DIALOG DISCARDABLE  0, 0, 174, 137
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "Add Block Key"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,112,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,112,25,50,14
+    LISTBOX         IDC_LIST1,6,6,95,121,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_HSCROLL | WS_TABSTOP
+END
+
+IDD_BLOCKPROP DIALOG DISCARDABLE  0, 0, 126, 80
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "BlockParameters"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,7,57,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,66,57,50,14
+    CONTROL         "",IDC_LIST_NAME,"CustEdit",WS_TABSTOP,15,8,93,10
+    CONTROL         "",IDC_START,"CustEdit",WS_TABSTOP,36,20,37,10
+    CONTROL         "",IDC_END,"CustEdit",WS_TABSTOP,36,33,37,10
+    CONTROL         "",IDC_STARTSPIN,"SpinnerControl",0x0,74,20,7,10
+    RTEXT           "Start:",IDC_STATIC,15,21,18,8
+    CONTROL         "",IDC_ENDSPIN,"SpinnerControl",0x0,74,33,7,10
+    RTEXT           "End:",IDC_STATIC,16,34,17,8
+    CONTROL         "",IDC_COLOR,"ColorSwatch",0x0,84,20,25,23
+END
+
+IDD_ATTACH_CONTROLS_DIALOG DIALOG DISCARDABLE  0, 0, 284, 199
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Attach Controls"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,215,155,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,215,173,50,14
+    LISTBOX         IDC_LIST1,14,18,88,169,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    LISTBOX         IDC_LIST2,107,18,88,169,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    CTEXT           "Incoming Controls",IDC_STATIC,15,7,85,8
+    CTEXT           "Copy to",IDC_STATIC,109,7,85,8
+    PUSHBUTTON      "Add",IDC_ADD_CONTROL,203,21,66,12
+    PUSHBUTTON      "Delete",IDC_DELETE_CONTROL,203,79,66,12
+    PUSHBUTTON      "Move Up",IDC_UP,203,109,66,12
+    PUSHBUTTON      "Move Down",IDC_DOWN,204,126,66,12
+    PUSHBUTTON      "Add Null",IDC_ADDNULL_CONTROL,203,38,66,12
+    PUSHBUTTON      "Match by Node",IDC_MATCH_CONTROL,203,63,66,12
+END
+
+IDD_KEYPROP DIALOG DISCARDABLE  0, 0, 166, 68
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Block Key Properties"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,101,15,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,101,32,50,14
+    CONTROL         "Relative motion",IDC_RELATIVE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,22,13,66,12
+    CONTROL         "",IDC_START,"CustEdit",WS_TABSTOP,38,30,37,10
+    CONTROL         "",IDC_END,"CustEdit",WS_TABSTOP,38,43,37,10
+    CONTROL         "",IDC_STARTSPIN,"SpinnerControl",0x0,76,30,7,10
+    RTEXT           "Start:",IDC_STATIC,17,31,18,8
+    CONTROL         "",IDC_ENDSPIN,"SpinnerControl",0x0,76,43,7,10
+    RTEXT           "End:",IDC_STATIC,18,44,17,8
+END
+
+IDD_SLAVEPARAMS DIALOG DISCARDABLE  0, 0, 174, 173
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "Slave Parameters"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,109,125,59,14
+    PUSHBUTTON      "Cancel",IDCANCEL,116,143,50,14,NOT WS_VISIBLE | 
+                    WS_DISABLED
+    LISTBOX         IDC_LIST1,6,6,95,140,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_HSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Add New Link ",IDC_LINK,110,6,58,15
+    PUSHBUTTON      "Remove Link",IDC_REMOVE,110,25,58,15
+    PUSHBUTTON      "Collapse Control",IDC_COLLAPSE,110,54,58,15
+END
+
+IDD_ADDNEWLINK DIALOG DISCARDABLE  0, 0, 174, 137
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "Add New Link"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,112,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,112,25,50,14
+    LISTBOX         IDC_LIST1,6,6,95,121,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_HSCROLL | WS_TABSTOP
+END
+
+IDD_ADDNEWMASTER DIALOG DISCARDABLE  0, 0, 174, 137
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "No Master Found Add a New Master"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,112,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,112,25,50,14
+    LISTBOX         IDC_LIST1,6,6,95,121,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_HSCROLL | WS_TABSTOP
+END
+
+IDD_ADDNEWTRACK DIALOG DISCARDABLE  0, 0, 174, 137
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "Block Properties"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,112,107,50,14
+    LISTBOX         IDC_LIST1,6,6,95,121,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_HSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Add",IDC_ADD,106,11,66,12
+    PUSHBUTTON      "Remove",IDC_REMOVE,106,29,66,12
+END
+
+IDD_TRACKPROP DIALOG DISCARDABLE  0, 0, 166, 45
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Track Start Time"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,101,15,50,14
+    CONTROL         "",IDC_START,"CustEdit",WS_TABSTOP,38,17,37,10
+    CONTROL         "",IDC_STARTSPIN,"SpinnerControl",0x0,76,17,7,10
+    RTEXT           "Start:",-1,17,18,18,8
+END
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ATTACH_CONTROLS_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 277
+        TOPMARGIN, 1
+        BOTTOMMARGIN, 192
+    END
+
+    IDD_KEYPROP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 159
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 61
+    END
+
+    IDD_TRACKPROP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 159
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 38
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PW_MASTERBLOCK      "MasterBlock"
+    IDS_PW_SLAVE            "Slave"
+    IDS_PW_BLOCK            "Block"
+    IDS_PW_SLAVEFLOAT       "SlaveFloat"
+    IDS_PW_SUB              "Sub Control"
+    IDS_PW_SLAVEPOS         "SlavePos"
+    IDS_DS_PARAMCHG         "Param Change"
+    IDS_PW_CONTROLCONTAINER "ControlContainer"
+    IDS_PW_REFS             "References"
+    IDS_PW_REFS_NAMES       "ReferencesNames"
+    IDS_PW_HOLDER           "Holder"
+    IDS_PW_START            "Start"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_STRENGTH         "Strength:"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PW_END              "End"
+    IDS_PW_COLOR            "Color"
+    IDS_PW_SLAVEROTATION    "SlaveRotation"
+    IDS_PW_BLEND            "Blend"
+    IDS_PW_SLAVESCALE       "SlaveScale"
+    IDS_PW_PROPERTIES       "Properties"
+    IDS_PW_MB_ADDKEY        "MasterBlock Add Key"
+    IDS_PW_MB_DELETEKEY     "MasterBlock Delete Key"
+    IDS_PW_MB_SELECTKEY     "MasterBlock Select Key"
+    IDS_PW_SLAVEPOINT3      "Slave Point3"
+    IDS_PW_RANGE            "Range"
+    IDS_PW_RESTORE          "Master Block Restore"
+    IDS_PW_ADDKEY           "Master Block Add Key"
+    IDS_PW_DELETEKEY        "Master Block Delete Key"
+    IDS_PW_ERROR            "Error"
+    IDS_PW_ERROR_MSG        "You cannot replace a block track control"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PW_BLKFILES         "Animation block files(*.blk)"
+    IDS_PW_SAVEBLOCK        "Save Animation Block"
+    IDS_PW_FILEEXISTS       "%s already exists.\nDo you want to replace it?"
+    IDS_PW_LOADBLOCK        "Load Animation Block"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PW_ADDBLOCK         "Add Block"
+    IDS_PW_REMOVEBLOCK      "Remove Block"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

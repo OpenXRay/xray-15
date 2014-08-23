@@ -1,0 +1,398 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SMOKE DIALOG  0, 0, 217, 81
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_SIZE_EDIT,"CustEdit",WS_TABSTOP,57,7,32,10
+    CONTROL         "",IDC_SIZE_SPIN,"SpinnerControl",0x0,91,7,10,10
+    CONTROL         "",IDC_ITER_EDIT,"CustEdit",WS_TABSTOP,57,23,32,10
+    CONTROL         "",IDC_ITER_SPIN,"SpinnerControl",0x0,91,23,10,10
+    CONTROL         "",IDC_SPEED_EDIT,"CustEdit",WS_TABSTOP,153,7,32,10
+    CONTROL         "",IDC_SPEED_SPIN,"SpinnerControl",0x0,187,7,10,10
+    CONTROL         "",IDC_EXP_EDIT,"CustEdit",WS_TABSTOP,153,23,32,10
+    CONTROL         "",IDC_EXP_SPIN,"SpinnerControl",0x0,187,23,10,10
+    PUSHBUTTON      "Swap",IDC_SWAP,7,50,28,12
+    CONTROL         "",IDC_COL1,"ColorSwatch",0x0,73,42,40,14
+    CONTROL         "",IDC_COL2,"ColorSwatch",0x0,73,60,40,14
+    CONTROL         "",IDC_TEX1,"CustButton",WS_TABSTOP,117,42,82,14
+    CONTROL         "",IDC_TEX2,"CustButton",WS_TABSTOP,117,60,82,14
+    CONTROL         "",IDC_MAPON1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,203,
+                    45,8,8
+    CONTROL         "",IDC_MAPON2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,203,
+                    62,8,8
+    LTEXT           "Size:",IDC_STATIC,35,8,16,8
+    LTEXT           "Color #1",IDC_STATIC,41,46,29,8
+    LTEXT           "Color #2",IDC_STATIC,41,61,30,8
+    LTEXT           "Maps",IDC_STATIC,155,34,20,8
+    LTEXT           "Exponent:",IDC_STATIC,116,24,33,8
+    LTEXT           "# Iterations:",IDC_STATIC,15,23,38,8
+    LTEXT           "Phase:",IDC_STATIC,126,8,23,8
+END
+
+IDD_PLANET DIALOG  0, 0, 217, 138
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_SIZE_EDIT,"CustEdit",WS_TABSTOP,61,78,32,10
+    CONTROL         "",IDC_ISLAND_EDIT,"CustEdit",WS_TABSTOP,61,92,32,10
+    CONTROL         "",IDC_PERCENT_EDIT,"CustEdit",WS_TABSTOP,61,106,32,10
+    CONTROL         "",IDC_SEED_EDIT,"CustEdit",WS_TABSTOP,61,119,32,10
+    CONTROL         "Blend Water/Land",IDC_BLEND,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFTTEXT | WS_TABSTOP,121,113,75,10
+    LTEXT           "Continent Size:",IDC_STATIC,9,78,48,8
+    CONTROL         "",IDC_SIZE_SPIN,"SpinnerControl",0x0,95,78,10,10
+    LTEXT           "Color #1",IDC_STATIC,21,23,29,8
+    CONTROL         "",IDC_COL1,"ColorSwatch",0x0,53,20,40,12
+    LTEXT           "Color #2",IDC_STATIC,21,36,30,8
+    CONTROL         "",IDC_COL2,"ColorSwatch",0x0,53,36,40,12
+    CONTROL         "",IDC_ISLAND_SPIN,"SpinnerControl",0x0,95,92,10,10
+    LTEXT           "Ocean %:",IDC_STATIC,25,106,34,8
+    CONTROL         "",IDC_PERCENT_SPIN,"SpinnerControl",0x0,95,106,10,10
+    LTEXT           "Island Factor:",IDC_STATIC,13,92,44,8
+    LTEXT           "Random Seed:",IDC_STATIC,11,119,48,8
+    CONTROL         "",IDC_SEED_SPIN,"SpinnerControl",0x0,95,119,10,10
+    LTEXT           "Color #3",IDC_STATIC,21,52,28,8
+    CONTROL         "",IDC_COL3,"ColorSwatch",0x0,53,52,40,12
+    LTEXT           "Color #4",IDC_STATIC,123,19,28,8
+    CONTROL         "",IDC_COL4,"ColorSwatch",0x0,155,19,40,12
+    LTEXT           "Color #5",IDC_STATIC,123,35,28,8
+    CONTROL         "",IDC_COL5,"ColorSwatch",0x0,155,35,40,12
+    LTEXT           "Color #6",IDC_STATIC,123,51,28,8
+    CONTROL         "",IDC_COL6,"ColorSwatch",0x0,155,51,40,12
+    LTEXT           "Color #7",IDC_STATIC,123,67,28,8
+    CONTROL         "",IDC_COL7,"ColorSwatch",0x0,155,67,40,12
+    LTEXT           "Color #8",IDC_STATIC,123,83,28,8
+    CONTROL         "",IDC_COL8,"ColorSwatch",0x0,155,82,40,12
+    GROUPBOX        "Water Colors",IDC_STATIC,9,6,96,66
+    GROUPBOX        "Land Colors",IDC_STATIC,111,4,96,98
+END
+
+IDD_SPECKLE DIALOG  0, 0, 217, 61
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_SIZE_EDIT,"CustEdit",WS_TABSTOP,93,4,32,10
+    PUSHBUTTON      "Swap",IDC_SWAP,7,33,28,12
+    LTEXT           "Size:",-1,72,5,16,8
+    CONTROL         "",IDC_SIZE_SPIN,"SpinnerControl",0x0,127,4,10,10
+    LTEXT           "Color #1",-1,41,29,29,8
+    CONTROL         "",IDC_COL1,"ColorSwatch",0x0,73,26,40,14
+    LTEXT           "Color #2",-1,41,44,30,8
+    CONTROL         "",IDC_COL2,"ColorSwatch",0x0,73,43,40,14
+    LTEXT           "Maps",-1,156,17,20,8
+    CONTROL         "",IDC_TEX1,"CustButton",WS_TABSTOP,118,26,82,14
+    CONTROL         "",IDC_TEX2,"CustButton",WS_TABSTOP,118,43,82,14
+    CONTROL         "",IDC_MAPON1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,203,
+                    28,8,8
+    CONTROL         "",IDC_MAPON2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,203,
+                    45,8,8
+END
+
+IDD_STUCCO DIALOG  0, 0, 217, 81
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_SIZE_EDIT,"CustEdit",WS_TABSTOP,49,6,32,10
+    CONTROL         "",IDC_SIZE_SPIN,"SpinnerControl",0x0,83,6,10,10
+    CONTROL         "",IDC_THICK_EDIT,"CustEdit",WS_TABSTOP,145,6,32,10
+    CONTROL         "",IDC_THICK_SPIN,"SpinnerControl",0x0,179,6,10,10
+    CONTROL         "",IDC_THRESH_EDIT,"CustEdit",WS_TABSTOP,103,22,32,10
+    CONTROL         "",IDC_THRESH_SPIN,"SpinnerControl",0x0,137,22,10,10
+    CONTROL         "",IDC_COL1,"ColorSwatch",0x0,73,41,40,14
+    CONTROL         "",IDC_COL2,"ColorSwatch",0x0,73,60,40,14
+    CONTROL         "",IDC_TEX1,"CustButton",WS_TABSTOP,117,41,82,14
+    CONTROL         "",IDC_TEX2,"CustButton",WS_TABSTOP,117,60,82,14
+    CONTROL         "",IDC_MAPON1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,203,
+                    45,8,8
+    CONTROL         "",IDC_MAPON2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,203,
+                    62,8,8
+    PUSHBUTTON      "Swap",IDC_SWAP,7,49,28,12
+    LTEXT           "Size:",IDC_STATIC,27,8,16,8
+    LTEXT           "Color #1",IDC_STATIC,41,46,29,8
+    LTEXT           "Color #2",IDC_STATIC,41,61,30,8
+    LTEXT           "Maps",IDC_STATIC,155,33,20,8
+    LTEXT           "Threshold:",IDC_STATIC,65,22,33,8
+    LTEXT           "Thickness:",IDC_STATIC,107,8,36,8
+END
+
+IDD_WATER DIALOG  0, 0, 217, 126
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_NUM_EDIT,"CustEdit",WS_TABSTOP,64,8,32,10
+    CONTROL         "",IDC_LEN_MAX_EDIT,"CustEdit",WS_TABSTOP,64,23,32,10
+    CONTROL         "",IDC_AMP_EDIT,"CustEdit",WS_TABSTOP,64,37,32,10
+    CONTROL         "",IDC_SIZE_EDIT,"CustEdit",WS_TABSTOP,167,8,32,10
+    CONTROL         "",IDC_LEN_MIN_EDIT,"CustEdit",WS_TABSTOP,167,23,32,10
+    CONTROL         "",IDC_SPEED_EDIT,"CustEdit",WS_TABSTOP,167,37,32,10
+    CONTROL         "3D",IDC_RADIO_3D,"Button",BS_AUTORADIOBUTTON,63,55,25,
+                    10
+    CONTROL         "2D",IDC_RADIO_2D,"Button",BS_AUTORADIOBUTTON,88,55,25,
+                    10
+    PUSHBUTTON      "Swap",IDC_SWAP,7,101,28,12
+    LTEXT           "Num Wave Sets:",IDC_STATIC,7,9,55,8
+    CONTROL         "",IDC_NUM_SPIN,"SpinnerControl",0x0,98,8,10,10
+    LTEXT           "Color #1",IDC_STATIC,39,95,29,8
+    CONTROL         "",IDC_COL1,"ColorSwatch",0x0,71,92,40,12
+    LTEXT           "Color #2",IDC_STATIC,39,110,30,8
+    CONTROL         "",IDC_COL2,"ColorSwatch",0x0,71,108,40,12
+    LTEXT           "Maps",IDC_STATIC,141,81,20,8
+    CONTROL         "",IDC_TEX1,"CustButton",WS_TABSTOP,115,92,82,12
+    CONTROL         "",IDC_TEX2,"CustButton",WS_TABSTOP,115,108,82,12
+    CONTROL         "",IDC_MAPON1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,201,
+                    94,8,8
+    CONTROL         "",IDC_MAPON2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,201,
+                    110,8,8
+    LTEXT           "Wave Len Max:",IDC_STATIC,10,24,52,8
+    CONTROL         "",IDC_LEN_MAX_SPIN,"SpinnerControl",0x0,98,23,10,10
+    LTEXT           "Wave Radius:",IDC_STATIC,119,9,46,8
+    CONTROL         "",IDC_SIZE_SPIN,"SpinnerControl",0x0,201,8,10,10
+    LTEXT           "Wave Len Min:",IDC_STATIC,115,24,50,8
+    CONTROL         "",IDC_LEN_MIN_SPIN,"SpinnerControl",0x0,201,23,10,10
+    LTEXT           "Amplitude:",IDC_STATIC,28,37,33,8
+    CONTROL         "",IDC_AMP_SPIN,"SpinnerControl",0x0,98,37,10,10
+    LTEXT           "Phase:",IDC_STATIC,141,37,23,8
+    CONTROL         "",IDC_SPEED_SPIN,"SpinnerControl",0x0,201,37,10,10
+    LTEXT           "Distribution:",IDC_STATIC,21,54,38,8
+    LTEXT           "Random Seed:",IDC_STATIC,19,71,48,8
+    CONTROL         "",IDC_RSEED_EDIT,"CustEdit",WS_TABSTOP,100,69,32,10
+    CONTROL         "",IDC_RSEED_SPIN,"SpinnerControl",0x0,134,69,10,10
+END
+
+IDD_SPLAT DIALOG  0, 0, 217, 82
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_SIZE_EDIT,"CustEdit",WS_TABSTOP,97,5,32,10
+    CONTROL         "",IDC_SIZE_SPIN,"SpinnerControl",0x0,131,5,10,10
+    CONTROL         "",IDC_ITER_EDIT,"CustEdit",WS_TABSTOP,58,25,32,10
+    CONTROL         "",IDC_ITER_SPIN,"SpinnerControl",0x0,92,25,10,10
+    CONTROL         "",IDC_THRESH_EDIT,"CustEdit",WS_TABSTOP,154,23,32,10
+    CONTROL         "",IDC_THRESH_SPIN,"SpinnerControl",0x0,188,23,10,10
+    PUSHBUTTON      "Swap",IDC_SWAP,7,49,28,12
+    CONTROL         "",IDC_COL1,"ColorSwatch",0x0,73,42,40,14
+    CONTROL         "",IDC_COL2,"ColorSwatch",0x0,73,59,40,14
+    CONTROL         "",IDC_TEX1,"CustButton",WS_TABSTOP,118,42,82,14
+    CONTROL         "",IDC_TEX2,"CustButton",WS_TABSTOP,118,59,82,14
+    CONTROL         "",IDC_MAPON1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,203,
+                    44,8,8
+    CONTROL         "",IDC_MAPON2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,203,
+                    61,8,8
+    LTEXT           "Size:",IDC_STATIC,75,6,16,8
+    LTEXT           "Color #1",IDC_STATIC,41,45,29,8
+    LTEXT           "Color #2",IDC_STATIC,41,60,30,8
+    LTEXT           "Maps",IDC_STATIC,156,33,20,8
+    LTEXT           "Threshold:",IDC_STATIC,114,24,34,8
+    LTEXT           "# Iterations:",IDC_STATIC,15,25,38,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_SMOKE, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 215
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 79
+    END
+
+    IDD_PLANET, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 215
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 136
+    END
+
+    IDD_STUCCO, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 215
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 79
+    END
+
+    IDD_WATER, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 215
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 124
+    END
+
+    IDD_SPLAT, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 61
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#include ""buildver.h""\r\n"
+    "#if defined(DESIGN_VER)\r\n"
+    "  #if defined(RENDER_VER)\r\n"
+    "    #include ""procmaps_vizR.rc""\r\n"
+    "  #endif\r\n"
+    "#endif\r\n"
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_DS_PROCMAPDESC      "Procedural texture maps (Discreet)"
+    IDS_DS_PLANET_PARAMS    "Planet Parameters"
+    IDS_DS_SMOKE_PARAMS     "Smoke Parameters"
+    IDS_DS_SPECKLE_PARAMS   "Speckle Parameters"
+    IDS_DS_STUCCO_PARAMS    "Stucco Parameters"
+    IDS_DS_WATER_PARAMS     "Waves Parameters"
+    IDS_DS_SPLAT_PARAMS     "Splat Parameters"
+    IDS_DS_PLANET           "Planet"
+    IDS_DS_SIZE             "Size"
+    IDS_DS_ISLAND           "Island Factor"
+    IDS_DS_PERCENT          "Ocean Percent"
+    IDS_DS_SEED             "Random Seed"
+    IDS_DS_COL1             "Color 1"
+    IDS_DS_COL2             "Color 2"
+    IDS_DS_COL3             "Color 3"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DS_COL4             "Color 4"
+    IDS_DS_COL5             "Color 5"
+    IDS_DS_COL6             "Color 6"
+    IDS_DS_COL7             "Color 7"
+    IDS_DS_COL8             "Color 8"
+    IDS_DS_COORDS           "Coordinates"
+    IDS_DS_PARAMETERS       "Parameters"
+    IDS_DS_SMOKE            "Smoke"
+    IDS_DS_ITER             "Iterations"
+    IDS_DS_EXPONENT         "Exponent"
+    IDS_DS_PHASE            "Phase"
+    IDS_DS_NONE             "None"
+    IDS_DS_SPECKLE          "Speckle"
+    IDS_DS_SPLAT            "Splat"
+    IDS_DS_THRESH           "Threshold"
+    IDS_DS_STUCCO           "Stucco"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DS_THICKNESS        "Thickness"
+    IDS_DS_WATER            "Waves"
+    IDS_DS_NUMWAVSETS       "Num Wave Sets"
+    IDS_DS_WAVERAD          "Wave Radius"
+    IDS_DS_WAVELENMIN       "WaveLenMin"
+    IDS_DS_WAVELENMAX       "WaveLenMax"
+    IDS_DS_AMPL             "Amplitude"
+    IDS_DS_TYPE             "TYPE"
+    IDS_DS_CONTSIZE         "Continent Size"
+    IDS_PW_BLEND            "blend"
+    IDS_PW_COORDINATES      "Coordinates"
+    IDS_PW_MAPON1           "Map1 On"
+    IDS_PW_MAPON2           "Map2 On"
+    IDS_PW_MAP1             "Map1"
+    IDS_PW_MAP2             "Map2"
+    IDS_DS_CONT2SIZE        "ContinentSize"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PW_BLENDWL          "BlendWaterLand"
+    IDS_PW_DISTRIBUTION     "Distribution"
+    IDS_PW_RSEED            "RandomSeed"
+    IDS_DS_WATER_CDESC      "Waves"
+    IDS_DS_STUCCO_CDESC     "Stucco"
+    IDS_DS_SPLAT_CDESC      "Splat"
+    IDS_DS_SPECKLE_CDESC    "Speckle"
+    IDS_DS_SMOKE_CDESC      "Smoke"
+    IDS_DS_PLANET_CDESC     "Planet"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#include "buildver.h"
+#if defined(DESIGN_VER)
+  #if defined(RENDER_VER)
+    #include "procmaps_vizR.rc"
+  #endif
+#endif
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

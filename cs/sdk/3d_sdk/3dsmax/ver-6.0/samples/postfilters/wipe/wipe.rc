@@ -1,0 +1,156 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include <windows.h>
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include <windows.h>\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_WIPE_ABOUT DIALOG DISCARDABLE  0, 0, 204, 54
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "About Simple Wipe Transition"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,145,33,50,14
+    RTEXT           "Simple Wipe Transition",IDC_STATIC,70,8,118,9
+    RTEXT           "Version 1.0",IDC_STATIC,70,17,118,9
+    GROUPBOX        "",IDC_STATIC,26,2,170,28
+END
+
+IDD_WIPE_CONTROL DIALOG DISCARDABLE  0, 0, 181, 106
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Simple Wipe Control"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,37,86,39,14
+    PUSHBUTTON      "Cancel",IDCANCEL,105,86,39,14
+    GROUPBOX        " Direction ",IDC_STATIC,7,7,82,74
+    CONTROL         "",IDC_RIGHT,"Button",BS_AUTORADIOBUTTON | WS_GROUP,49,
+                    24,18,10
+    CONTROL         105,IDC_RIGHT_POS,"Static",SS_BITMAP,23,23,17,12
+    CONTROL         106,IDC_LEFT_POS,"Static",SS_BITMAP,23,48,16,12
+    CONTROL         "",IDC_LEFT,"Button",BS_AUTORADIOBUTTON,49,49,18,10
+    CONTROL         111,IDC_RIGHT_NEG,"Static",SS_BITMAP,23,23,16,12
+    CONTROL         110,IDC_LEFT_NEG,"Static",SS_BITMAP,23,48,16,12
+    CONTROL         "Push",IDC_REVERSE,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT | BS_LEFT | WS_GROUP,117,24,32,10
+    CONTROL         "Pop",IDC_NORMAL,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFTTEXT | BS_LEFT,120,49,29,10
+    GROUPBOX        " Mode ",IDC_STATIC,92,7,82,74
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_WIPE_CONTROL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 174
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 99
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_RIGHT               BITMAP  DISCARDABLE     "right.bmp"
+IDB_LEFT                BITMAP  DISCARDABLE     "left.bmp"
+IDB_LEFT_NEG            BITMAP  DISCARDABLE     "left_n.BMP"
+IDB_RIGHT_NEG           BITMAP  DISCARDABLE     "right_n.BMP"
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DB_WIPE             "Wipe"
+    IDS_DB_IMAGE_FILTER     "Image Filter"
+    IDS_DB_SIMPLE_WIPE      "Simple Wipe"
+    IDS_LIBDESCRIPTION      "Wipe transition (Discreet)"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

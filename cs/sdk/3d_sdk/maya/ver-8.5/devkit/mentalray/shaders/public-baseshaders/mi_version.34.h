@@ -1,0 +1,2 @@
+#define MI_VERSION_STRING "3.4.0.411"
+#define MI_DATE_STRING    "28 Jul 2004"

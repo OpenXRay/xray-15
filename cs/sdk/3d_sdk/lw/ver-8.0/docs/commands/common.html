@@ -1,0 +1,292 @@
+<html>
+
+<head>
+<title>Commands: Common</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="modeler.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="Modeler Commands"></a></td>
+    <td width="96" align="left"><a href="layout.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Layout Commands"></a></td>
+    <td width="96" align="left"><a href="../commands.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Commands"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Common Commands</h3>
+    <p>These commands are available in both Layout and Modeler. They're handled by a set of
+    editor modules that are common to both programs. Although the editors are represented to
+    the user as separate windows, you can issue most of these commands regardless of whether
+    the editor's window is open.</p>
+    <p>In the command list that follows, the data types of the arguments are denoted by the
+    initial letter. (The same letters are used in C <tt>printf</tt> formatting.)</p>
+    <blockquote>
+      <dl>
+        <dt><strong>n</strong>umber</dt>
+        <dd>An integer.</dd>
+        <dt><strong>g</strong>float</dt>
+        <dd>A floating-point number.</dd>
+        <dt><strong>s</strong>tring</dt>
+        <dd>A string, such as a filename or channel name.</dd>
+        <dt>he<strong>x</strong></dt>
+        <dd>A hexadecimal number, such as an item identifier.</dd>
+      </dl>
+    </blockquote>
+    <p><a name="surface"><strong>Surface Editor</strong></a></p>
+    <p>The Surface Editor is a window for setting and changing surface parameters. These
+    commands are a counterpart to the <a href="globals/surface.html">Surface Functions</a>
+    global.<dl>
+      <tt>
+      <dt>Surf_OpenWindow<br>
+        Surf_CloseWindow<br>
+        Surf_SetWindowPos <strong>n</strong>x <strong>n</strong>y</dt>
+      </tt>
+      <dd>Open and close the Surface Editor window, and set its position. In Layout, <tt>SurfaceEditor</tt>
+        is a synonym for <tt>Surf_OpenWindow</tt> and <tt>Surf_CloseWindow</tt>.</dd>
+      <tt>
+      <dt><br>
+        Surf_SetSurf <strong>s</strong>surfname <strong>s</strong>objname</dt>
+      </tt>
+      <dd>Set the current surface in the Surface Editor. All of the surface commands that modify
+        surface parameters operate on the current surface. The object name is the name returned by
+        the <a href="../globals/iteminfo.html">Item Info</a> <tt>name</tt> function in Layout and
+        the <a href="../globals/modstate.html">State Query</a> <tt>object</tt> function in
+        Modeler.</dd>
+      <tt>
+      <dt><br>
+        Surf_SetInt <strong>s</strong>channel <strong>n</strong>value</dt>
+      </tt>
+      <dd>Set the integer value associated with the surface channel. Use this to add or remove an
+        envelope or a texture (equivalent to pressing the E or T buttons in the interface). The
+        channel name can be any of the strings defined in <a href="../../include/lwsurf.h">lwsurf.h</a>.
+        The value is one of the following. <p>0 - no envelope, no texture<br>
+        1 - envelope, no texture<br>
+        2 - texture, no envelope<br>
+        3 - envelope and texture</p>
+        <p>Once you've added an envelope, you can create keys for it and manipulate it in other
+        ways using the <a href="../globals/anenvel.html">Animation Envelopes</a> global. Use the <a
+        href="../globals/txtrfunc.html">Texture Functions</a> global to modify the texture. You
+        can get the envelope and texture IDs you'll need from the <a
+        href="../globals/surface.html">Surface Functions</a> global. Getting the IDs also allows
+        you to check whether an envelope or a texture exists before issuing this command.</p>
+      </dd>
+      <tt>
+      <dt>Surf_SetFloat <strong>s</strong>channel <strong>g</strong>value</dt>
+      </tt>
+      <dd>Set the value of a float-valued channel.</dd>
+      <tt>
+      <dt><br>
+        Surf_SetColor <strong>s</strong>channel <strong>g</strong>red <strong>g</strong>green <strong>g</strong>blue</dt>
+      </tt>
+      <dd>Set the color of a color-valued channel.</dd>
+      <tt>
+      <dt><br>
+        Surf_AddShader <strong>s</strong>shader<br>
+        Surf_RemShader <strong>s</strong>shader</dt>
+      </tt>
+      <dd>Add or remove a shader. The argument is the shader's server name, the string in the <tt>name</tt>
+        field of the shader's <a href="../server.html#servdesc">ServerRecord</a>.</dd>
+      <tt>
+      <dt><br>
+        Surf_Rename <strong>s</strong>name</dt>
+      </tt>
+      <dd>Rename the current surface.</dd>
+      <dt><br>
+        <tt>Surf_Copy <strong>s</strong>surfname <strong>s</strong>objname</tt></dt>
+      <dd>Copy the settings of the current surface (the one set by <tt>Surf_SetSurf</tt>) to the
+        surface specified in the arguments.</dd>
+      <dt><br>
+        <tt>Surf_SetBakerImage <strong>s</strong>filename</tt></dt>
+      <dd>Set the base filename for the image file output of the Surface Baker shader.</dd>
+    </dl>
+    <p><a name="image"><strong>Image Editor</strong></a></p>
+    <p>The Image Editor is a window for managing LightWave&reg;'s list of images, image sequences
+    and animation files. See also the <a href="globals/imglist.html">Image List</a> global.<dl>
+      <tt>
+      <dt>IE_OpenWindow<br>
+        IE_SetWindowPos <strong>n</strong>x <strong>n</strong>y</dt>
+      </tt>
+      <dd>Open the Image Editor window, and set its position. In Layout, <tt>ImageEditor</tt> is a
+        synonym for <tt>IE_OpenWindow</tt>.</dd>
+    </dl>
+    <p><a name="graph"><strong>Graph Editor</strong></a></p>
+    <p>The Graph Editor is a window for editing parameters that vary with time. These
+    functions of time are called <em>channels</em>. The function is assigned a value at
+    specific times, and the (value, time) pair is called a <em>key</em>. The value at other
+    times is found by interpolating between keys, or by extrapolating from the first and last
+    key. See the <a href="../sample/Layout/ChannelFilter/envelope/">envelope</a> SDK sample to find out exactly how
+    this is done.</p>
+    <p>The channels available for editing are displayed in a list, called the channel bin.
+    Channels are selected for editing from the bin, and commands can be used both to select
+    channels and to change the contents of the bin. One or more keys in the selected channels
+    can also be selected. Commands typically operate on the selected channels and keys.</p>
+    <p>The Graph Editor commands complement the functions available through the <a
+    href="globals/anenvel.html">Animation Envelopes</a> and <a href="globals/chaninfo.html">Channel
+    Info</a> globals.<dl>
+      <tt>
+      <dt>GE_OpenWindow <strong>n</strong>mode<br>
+        GE_SetWindowPos <strong>n</strong>x <strong>x</strong>y<br>
+        GE_SetWindowSize <strong>n</strong>width <strong>n</strong>height</dt>
+      </tt>
+      <dd>Open the Graph Editor window, and set its position and size. In Layout, <tt>GraphEditor</tt>
+        is a synonym for <tt>GE_OpenWindow</tt>.</dd>
+      <tt>
+      <dt><br>
+        GE_ClearBin</dt>
+      </tt>
+      <dd>Remove all channels from the channel bin.</dd>
+      <tt>
+      <dt><br>
+        GE_SetEnv <strong>s</strong>channelname <strong>n</strong>append<br>
+        GE_SetEnvID <strong>x</strong>channelid <strong>n</strong>append</dt>
+      </tt>
+      <dd>Add the channel to the channel bin and select it. If <tt>append</tt> is true, the
+        channel bin isn't cleared, and the channel is added to the current selection. Otherwise
+        the added channel replaces the contents of the channel bin.</dd>
+      <tt>
+      <dt><br>
+        GE_GetLayoutSel <strong>n</strong>append</dt>
+      </tt>
+      <dd>Get motion channels for the items selected in Layout and add them to the channel bin. If
+        <tt>append</tt> is true (non-zero), the channel bin isn't cleared, and selected item
+        channels are added to the bin. Otherwise the selected item channels replace the contents
+        of the channel bin.</dd>
+      <tt>
+      <dt><br>
+        GE_FilterSelection <strong>s</strong>filter</dt>
+      </tt>
+      <dd>Remove channels from the channel bin whose names don't match the filter string.
+        (Contrary to what the name implies, this command filters the bin contents, <em>not</em>
+        the selection.) The filter is a regular expression. &quot;*.Position.*&quot; leaves only
+        position channels in the list, for example. If the filter can't be parsed, the user will
+        be prompted for a valid filter. Currently, the filter string must be enclosed in
+        double-quotes.</dd>
+      <tt>
+      <dt><br>
+        GE_SelectAllCurves</dt>
+      </tt>
+      <dd>Select all of the channels in the channel list.</dd>
+      <tt>
+      <dt><br>
+        GE_SetGroup <strong>x</strong>groupid</dt>
+      </tt>
+      <dd>Assign the selected channels to a group.</dd>
+      <tt>
+      <dt><br>
+        GE_ApplyServer <strong>s</strong>class <strong>s</strong>server<br>
+        GE_RemoveServer <strong>s</strong>class <strong>n</strong>index</dt>
+      </tt>
+      <dd>Apply a plug-in to the selected channels, or remove it. The <tt>class</tt> and <tt>server</tt>
+        arguments are the first and second fields of the <a href="../server.html#servdesc">ServerRecord</a>
+        for the plug-in. The index refers to the list of applied servers of a given class. The
+        first server in each list has an index of 1.</dd>
+      <tt>
+      <dt><br>
+        GE_BakeCurves</dt>
+      </tt>
+      <dd>Create a keyframe at every frame of the selected channels, and make every span's
+        interpolation linear.</dd>
+      <tt>
+      <dt><br>
+        GE_SelectAllKeys <strong>n</strong>deselect</dt>
+      </tt>
+      <dd>Select all of the keys in the selected channels, if <tt>deselect</tt> is false, or
+        deselect all keys if <tt>deselect</tt> is true.</dd>
+      <tt>
+      <dt><br>
+        GE_CopySelKeys<br>
+        GE_PasteKeys <strong>g</strong>frame</dt>
+      </tt>
+      <dd>Copy the selected keys and paste them at the given frame.</dd>
+      <tt>
+      <dt><br>
+        GE_DeleteSelKeys</dt>
+      </tt>
+      <dd>Delete the selected keys.</dd>
+      <tt>
+      <dt><br>
+        GE_MoveKeys <strong>g</strong>deltaframe <strong>g</strong>deltavalue</dt>
+      </tt>
+      <dd>Shift the selected keys in both time and value. The deltas are added to the time and
+        value, so to shift only one of these, set the other delta to 0.</dd>
+      <tt>
+      <dt><br>
+        GE_SnapKeysToFrames</dt>
+      </tt>
+      <dd>Shift each selected key in time to the nearest integral frame. (Keys may be set at
+        fractional frame times.)</dd>
+      <tt>
+      <dt><br>
+        GE_ReduceKeys <strong>n</strong>recursive <strong>g</strong>threshold</dt>
+      </tt>
+      <dd>Delete neighboring keys with values that differ by less than the threshold. For example,
+        consider consecutive keys A B C D E with values that all lie within the threshold. When <tt>recursive</tt>
+        is false, the first <tt>GE_ReduceKeys</tt> deletes keys B and D, leaving A C E. The second
+        call deletes C, and the third deletes E. When <tt>recursive</tt> is true, a single call to
+        <tt>GE_ReduceKeys</tt> deletes all the keys except A.</dd>
+      <tt>
+      <dt><br>
+        GE_LockKeys <strong>n</strong>unlock</dt>
+      </tt>
+      <dd>Lock the selected keys, if <tt>unlock</tt> is false, or unlock the keys if <tt>unlock</tt>
+        is true. A locked key can still be selected but can't be edited in the interface, a
+        protection against accidental changes.</dd>
+      <tt>
+      <dt><br>
+        GE_LeaveFootprints<br>
+        GE_PickupFootprints<br>
+        GE_BacktrackFootprints</dt>
+      </tt>
+      <dd>Apply, remove or revert to footprints. A footprint is a static copy of a selected curve.
+        It's displayed in the Graph Editor window as a reference while the user edits the curve,
+        and the user can undo the changes made after the footprint was created. <tt>GE_LeaveFootprints</tt>
+        records the current state of the selected curves. <tt>GE_PickupFootprints</tt> removes the
+        footprints. <tt>GE_BacktrackFootprints</tt> reverts the curves to the state recorded in
+        the footprints.</dd>
+      <tt>
+      <dt><br>
+        GE_CopyTimeslice <strong>n</strong>fromfootprint <strong>g</strong>frame<br>
+        GE_PasteTimeslice <strong>g</strong>frame</dt>
+      </tt>
+      <dd>Copy and paste keys at specific times. If <tt>fromfootprint</tt> is true, the keys are
+        copied from the footprint rather than the curve.</dd>
+      <tt>
+      <dt><br>
+        GE_MatchFootprintAtFrame frame</dt>
+      </tt>
+      <dd>Create a key at the specified frame with the value of the footprint at that frame.</dd>
+      <tt>
+      <dt><br>
+        GE_CreateExpression <strong>s</strong>name <strong>s</strong>expression</dt>
+      </tt>
+      <dd>Create an expression. The name is used to refer to the expression in both the interface
+        and the <tt>GE_AttachExpression</tt> commands. Consult the LightWave&reg; user documentation
+        for information about what an expression can contain.</dd>
+      <tt>
+      <dt><br>
+        GE_AttachExpression <strong>s</strong>channelname <strong>s</strong>expressionname<br>
+        GE_AttachExpressionID <strong>x</strong>channelid <strong>s</strong>expressionname</dt>
+      </tt>
+      <dd>Associate an expression with the channel identified either by name or by channel ID.</dd>
+      <tt>
+      <dt><br>
+        GE_LoadExpressions <strong>s</strong>filename<br>
+        GE_SaveExpressions <strong>s</strong>filename</dt>
+      </tt>
+      <dd>Store all of the expressions in a file, or retrieve them from a file.</dd>
+    </dl>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

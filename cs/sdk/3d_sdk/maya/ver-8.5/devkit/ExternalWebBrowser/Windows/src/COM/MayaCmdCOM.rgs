@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		'%APPID%' = s 'MayaCmdCOM'
+		'MayaCmdCOM.DLL'
+		{
+			val AppID = s '%APPID%'
+		}
+	}
+}

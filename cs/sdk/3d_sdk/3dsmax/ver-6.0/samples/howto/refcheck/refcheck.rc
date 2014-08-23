@@ -1,0 +1,121 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAIN DIALOG DISCARDABLE  0, 0, 194, 396
+STYLE WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Reference Watcher / Walker"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Pick ReferenceTarget to Watch...",IDC_TVPICK,23,15,146,
+                    14
+    LTEXT           "Class Name",IDC_CLASSNAME,11,44,170,8
+    LTEXT           "Client Name",IDC_CLIENTNAME,11,54,170,8
+    GROUPBOX        "ReferenceTargets This Item References",IDC_STATIC,3,293,
+                    188,84
+    LISTBOX         IDC_IREF_LIST,8,305,177,67,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    GROUPBOX        "ReferenceMakers Who Reference This Item",IDC_STATIC,3,
+                    192,188,98
+    LISTBOX         IDC_REFME_LIST,9,218,177,67,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    GROUPBOX        "ReferenceTarget Information",IDC_STATIC,3,3,188,66
+    GROUPBOX        "Reference Messages Recieved From Target",IDC_STATIC,3,
+                    73,188,112
+    PUSHBUTTON      "Clear Message List",IDC_CLEAR,100,87,83,14
+    LISTBOX         IDC_MSG_LIST,8,106,177,75,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    LTEXT           "Node/Mtl Name",IDC_ITEM_NAME,11,34,170,8
+    CONTROL         "Show PartID's",IDC_PARTID,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,10,89,76,10
+    CONTROL         "Show Object Instance Addresses",IDC_ADDRESS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,3,383,138,10
+    CONTROL         "Show Full Dependency Tree",IDC_FULLTREE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,10,204,108,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_MAIN, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 395
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

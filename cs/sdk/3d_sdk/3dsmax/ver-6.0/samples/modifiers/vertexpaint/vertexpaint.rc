@@ -1,0 +1,167 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PANEL DIALOG  0, 0, 108, 209
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Vertex Color Paint",IDC_STATIC,2,2,103,67
+    CONTROL         "Paint",IDC_PAINT,"CustButton",WS_TABSTOP,13,13,30,14
+    CONTROL         "",IDC_COLOR,"ColorSwatch",WS_TABSTOP,72,13,23,14
+    GROUPBOX        "Color Palette",IDC_STATIC,2,114,103,90
+    CONTROL         "",IDC_PALETTE_1,"ColorSwatch",WS_TABSTOP,14,128,17,14
+    CONTROL         "",IDC_PALETTE_2,"ColorSwatch",WS_TABSTOP,35,128,17,14
+    CONTROL         "",IDC_PALETTE_3,"ColorSwatch",WS_TABSTOP,56,128,17,14
+    CONTROL         "",IDC_PALETTE_4,"ColorSwatch",WS_TABSTOP,77,128,17,14
+    CONTROL         "",IDC_PALETTE_5,"ColorSwatch",WS_TABSTOP,14,147,17,14
+    CONTROL         "",IDC_PALETTE_6,"ColorSwatch",WS_TABSTOP,35,147,17,14
+    CONTROL         "",IDC_PALETTE_7,"ColorSwatch",WS_TABSTOP,56,147,17,14
+    CONTROL         "",IDC_PALETTE_8,"ColorSwatch",WS_TABSTOP,77,147,17,14
+    CONTROL         "",IDC_PALETTE_9,"ColorSwatch",WS_TABSTOP,14,165,17,14
+    CONTROL         "",IDC_PALETTE_10,"ColorSwatch",WS_TABSTOP,35,165,17,14
+    CONTROL         "",IDC_PALETTE_11,"ColorSwatch",WS_TABSTOP,56,165,17,14
+    CONTROL         "",IDC_PALETTE_12,"ColorSwatch",WS_TABSTOP,77,165,17,14
+    CONTROL         "",IDC_PALETTE_13,"ColorSwatch",WS_TABSTOP,14,184,17,14
+    CONTROL         "",IDC_PALETTE_14,"ColorSwatch",WS_TABSTOP,35,184,17,14
+    CONTROL         "",IDC_PALETTE_15,"ColorSwatch",WS_TABSTOP,56,184,17,14
+    CONTROL         "",IDC_PALETTE_16,"ColorSwatch",WS_TABSTOP,77,184,17,14
+    CONTROL         "",IDC_TINT,"CustEdit",WS_TABSTOP,54,35,24,10
+    CONTROL         "",IDC_TINT_SPIN,"SpinnerControl",0x0,80,35,7,10
+    LTEXT           "Opacity % :",IDC_STATIC,16,35,35,10
+    PUSHBUTTON      "VertCol",IDC_VC_ON,37,52,29,11
+    PUSHBUTTON      "Shaded",IDC_SHADED,70,52,29,11
+    LTEXT           "Toggle :",IDC_STATIC,8,52,27,8
+    CONTROL         "Pick",IDC_PICK,"CustButton",WS_TABSTOP,47,13,17,14
+    CONTROL         "Alpha:",IDC_AFFECT_ALPHA,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,9,98,34,10
+    CONTROL         "",IDC_ALPHA,"CustEdit",WS_TABSTOP,47,98,24,10
+    CONTROL         "",IDC_ALPHA_SPIN,"SpinnerControl",0x0,73,98,7,10
+    CONTROL         "Colors",IDC_AFFECT_COLOR,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,9,83,35,10
+    CONTROL         "Illumination",IDC_AFFECT_ILLUM,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,47,83,51,10
+    GROUPBOX        "Affect Channels",IDC_STATIC,2,71,103,42
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_PANEL, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 105
+        BOTTOMMARGIN, 204
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_PAINTCURSOR         CURSOR                  "paintcur.cur"
+IDC_DROPPER_CURSOR      CURSOR                  "dropcurs.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BUTTONS             BITMAP                  "Buttons.bmp"
+IDB_BUTTON_MASK         BITMAP                  "buttonmask.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_LIBDESCRIPTION      "Vertex-color painting modifier (Discreet)"
+    IDS_CATEGORY            "MAX STANDARD"
+    IDS_CLASS_NAME          "OldVertexPaint"
+    IDS_PARAMS              "Parameters"
+    IDS_PAINTPROMPT         "Paint Vertex Colors on the Selected Object"
+    IDS_RESTORE             "Vertex Paint"
+    IDS_PAINT               "Paint Vertex Colors"
+    IDS_PICK                "Pick Vertex Color"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

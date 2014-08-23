@@ -1,0 +1,1250 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_FUNC_LIST DIALOG  0, 0, 234, 214
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Function List"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Close",IDOK,177,193,50,14
+    LISTBOX         IDC_FUNC_LIST,6,5,220,183,LBS_SORT | LBS_USETABSTOPS | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_EXPRPARAMS DIALOG  0, 0, 374, 202
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | 
+    WS_CAPTION | WS_SYSMENU
+CAPTION "Expression Controller"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_VAR_NAME,39,15,53,13,ES_AUTOHSCROLL
+    CONTROL         "Scalar",IDC_SCALAR_RB,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,14,32,35,10
+    CONTROL         "Vector",IDC_VECTOR_RB,"Button",BS_AUTORADIOBUTTON,55,32,
+                    35,10
+    PUSHBUTTON      "Create",IDC_CREATE_VAR,102,12,53,14
+    PUSHBUTTON      "Delete",IDC_DELETE_VAR,102,28,53,14
+    LISTBOX         IDC_SCALAR_LIST,5,89,76,73,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_VECTOR_LIST,88,89,75,73,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Assign to Constant",IDC_ASGN_CONST,5,183,75,14
+    PUSHBUTTON      "Assign to Controller",IDC_ASGN_CNTRL,87,183,75,14
+    EDITTEXT        IDC_EXPR_EDIT,180,17,182,66,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL
+    EDITTEXT        IDC_DESCRIPTION,180,102,183,47,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL
+    PUSHBUTTON      "Save",IDC_SAVE,178,183,26,14
+    PUSHBUTTON      "Load",IDC_LOAD,205,183,26,14
+    PUSHBUTTON      "Evaluate",IDC_EXPR_EVAL,290,183,39,14
+    DEFPUSHBUTTON   "Close",IDOK,330,183,39,14
+    GROUPBOX        "Create Variables",IDC_STATIC,5,4,158,42
+    RTEXT           "Name:",IDC_STATIC,11,18,22,8
+    LTEXT           "Scalars",IDC_STATIC,6,80,30,8
+    LTEXT           "Vectors",IDC_STATIC,89,80,30,8
+    LTEXT           "Assigned to:",IDC_STATIC,7,166,43,8
+    LTEXT           "",IDC_CUR_ASGN,49,166,117,8
+    GROUPBOX        "Expression",IDC_STATIC,176,4,192,84
+    GROUPBOX        "Description",IDC_STATIC,176,92,192,60
+    PUSHBUTTON      "Function List",IDC_FUNCTIONS,299,159,68,14
+    LTEXT           "T = ticks",IDC_STATIC,179,158,30,8
+    LTEXT           "S = secs",IDC_STATIC,179,167,30,8
+    LTEXT           "F = frames",IDC_STATIC,222,158,35,8
+    LTEXT           "NT = normalized time",IDC_STATIC,222,167,70,8
+    RTEXT           "Tick Offset:",IDC_STATIC,46,61,38,8
+    LTEXT           "",IDC_EXPLAIN_NOTATION,180,78,182,8,NOT WS_VISIBLE
+    PUSHBUTTON      "Debug",IDC_EXPR_DEBUG,244,183,33,14
+    GROUPBOX        "Variable Parameters",IDC_STATIC,5,48,158,29
+    CONTROL         "",IDC_OFFSET,"CustEdit",WS_TABSTOP,88,60,31,10
+    CONTROL         "",IDC_OFFSET_SPIN,"SpinnerControl",0x0,120,60,7,10
+END
+
+IDD_SCALAR_ASGN DIALOG  0, 0, 110, 79
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Assign Constant"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,6,59,45,14
+    PUSHBUTTON      "Cancel",IDCANCEL,56,59,45,14
+    GROUPBOX        "Scalar Value",IDC_STATIC,9,7,89,42
+    CONTROL         "",IDC_EXPR_CONST,"CustEdit",WS_TABSTOP,28,25,40,10
+    CONTROL         "",IDC_EXPR_CONST_SPIN,"SpinnerControl",0x0,69,25,7,10
+END
+
+IDD_VECTOR_ASGN DIALOG  0, 0, 193, 77
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Assign Constant"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,86,58,46,14
+    PUSHBUTTON      "Cancel",IDCANCEL,137,58,46,14
+    GROUPBOX        "Vector Value",IDC_STATIC,7,8,177,40
+    LTEXT           ",",IDC_STATIC,63,30,4,8
+    LTEXT           ",",IDC_STATIC,121,30,4,8
+    CONTROL         "",IDC_VEC_Z,"CustEdit",WS_TABSTOP,129,27,40,10
+    CONTROL         "",IDC_VEC_Z_SPIN,"SpinnerControl",0x0,171,27,7,10
+    CONTROL         "",IDC_VEC_Y,"CustEdit",WS_TABSTOP,72,27,40,10
+    CONTROL         "",IDC_VEC_Y_SPIN,"SpinnerControl",0x0,113,27,7,10
+    CONTROL         "",IDC_VEC_X,"CustEdit",WS_TABSTOP,14,27,40,10
+    CONTROL         "",IDC_VEC_X_SPIN,"SpinnerControl",0x0,55,27,7,10
+END
+
+IDD_EULER_PARAMS DIALOG  0, 0, 108, 37
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "X",IDC_EULER_X,"CustButton",WS_TABSTOP,59,21,12,12
+    CONTROL         "Y",IDC_EULER_Y,"CustButton",WS_TABSTOP,73,21,12,12
+    CONTROL         "Z",IDC_EULER_Z,"CustButton",WS_TABSTOP,87,21,12,12
+    RTEXT           "Rotation Axis:",IDC_STATIC,6,24,51,8
+    COMBOBOX        IDC_EULER_ORDER,59,4,41,105,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Axis Order:",IDC_STATIC,9,7,48,8
+END
+
+IDD_PATHJOINTPARAMS DIALOG  0, 0, 108, 79
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Active",IDC_XACTIVE,"Button",BS_AUTOCHECKBOX,13,11,34,
+                    10
+    CONTROL         "Limited",IDC_XLIMITED,"Button",BS_AUTOCHECKBOX,13,24,35,
+                    10
+    CONTROL         "Ease",IDC_XEASE,"Button",BS_AUTOCHECKBOX,59,24,30,10
+    CONTROL         "",IDC_XFROM,"CustEdit",WS_TABSTOP,13,46,30,10
+    CONTROL         "",IDC_XTO,"CustEdit",WS_TABSTOP,59,46,30,10
+    CONTROL         "",IDC_XDAMPING,"CustEdit",WS_TABSTOP,59,60,30,10
+    GROUPBOX        "Percent Along Path",IDC_STATIC,4,0,101,76
+    CONTROL         "",IDC_XFROMSPIN,"SpinnerControl",0x0,45,46,7,10
+    CONTROL         "",IDC_XTOSPIN,"SpinnerControl",0x0,91,46,7,10
+    LTEXT           "From:",IDC_JP_XFROMLABEL,13,36,21,8
+    LTEXT           "To:",IDC_JP_XTOLABEL,59,36,13,8
+    CONTROL         "",IDC_XDAMPINGSPIN,"SpinnerControl",0x0,91,60,7,10
+    RTEXT           "Damping:",IDC_JP_XDAMPINGLABEL,28,60,30,8
+END
+
+IDD_NOISEPARAMS DIALOG  0, 0, 213, 146
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Noise Parameters"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_NOISE_SEED,"CustEdit",WS_TABSTOP,53,8,30,10
+    CONTROL         "",IDC_NOISE_FREQ,"CustEdit",WS_TABSTOP,53,24,30,10
+    CONTROL         "",IDC_NOISE_ROUGH,"CustEdit",WS_TABSTOP,53,64,30,10
+    CONTROL         "",IDC_NOISE_XSTRENGTH,"CustEdit",WS_TABSTOP,140,8,39,10
+    CONTROL         "",IDC_NOISE_YSTRENGTH,"CustEdit",WS_TABSTOP,140,21,39,
+                    10
+    CONTROL         "",IDC_NOISE_ZSTRENGTH,"CustEdit",WS_TABSTOP,140,34,39,
+                    10
+    CONTROL         "",IDC_NOISE_RAMPIN,"CustEdit",WS_TABSTOP,140,51,39,10
+    CONTROL         "",IDC_NOISE_RAMPOUT,"CustEdit",WS_TABSTOP,140,64,39,10
+    CONTROL         "Fractal Noise",IDC_NOISE_FRACTAL,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFTTEXT,34,51,57,10
+    CONTROL         ">0",IDC_NOISE_XLIM0,"Button",BS_AUTOCHECKBOX,189,9,22,
+                    10
+    CONTROL         ">0",IDC_NOISE_YLIM0,"Button",BS_AUTOCHECKBOX,189,22,22,
+                    10
+    CONTROL         ">0",IDC_NOISE_ZLIM0,"Button",BS_AUTOCHECKBOX,189,35,22,
+                    10
+    CONTROL         "",IDC_NOISE_XSTRENGTHSPIN,"SpinnerControl",0x0,180,8,7,
+                    10
+    RTEXT           "X Strength:",IDC_NOISE_XSTRENGTHLABEL,95,8,44,8
+    CONTROL         "",IDC_NOISE_FREQSPIN,"SpinnerControl",0x0,84,24,7,10
+    RTEXT           "Frequency:",IDC_STATIC,10,24,41,8
+    CONTROL         "",IDC_NOISE_SEEDSPIN,"SpinnerControl",0x0,84,8,7,10
+    RTEXT           "Seed:",IDC_STATIC,16,8,35,8
+    CONTROL         "",IDC_NOISE_YSTRENGTHSPIN,"SpinnerControl",0x0,180,21,7,
+                    10
+    RTEXT           "Y Strength:",IDC_NOISE_YSTRENGTHLABEL,95,21,44,8
+    CONTROL         "",IDC_NOISE_ZSTRENGTHSPIN,"SpinnerControl",0x0,180,34,7,
+                    10
+    RTEXT           "Z Strength:",IDC_NOISE_ZSTRENGTHLABEL,95,34,44,8
+    CONTROL         "",IDC_NOISE_ROUGHSPIN,"SpinnerControl",0x0,84,64,7,10
+    RTEXT           "Roughness:",IDC_NOISE_ROUGHLABEL,10,64,41,8
+    CONTROL         "",IDC_NOISE_GRAPH,"NoiseGraph",0x0,8,90,179,46
+    CONTROL         "",IDC_NOISE_RAMPINSPIN,"SpinnerControl",0x0,180,51,7,10
+    RTEXT           "Ramp in:",IDC_NOISE_ZSTRENGTHLABEL2,103,52,36,8
+    CONTROL         "",IDC_NOISE_RAMPOUTSPIN,"SpinnerControl",0x0,180,64,7,
+                    10
+    RTEXT           "Ramp out:",IDC_NOISE_ZSTRENGTHLABEL3,103,65,36,8
+    LTEXT           "Characteristic Graph:",IDC_STATIC,8,80,73,8
+END
+
+IDD_IPOS_PARAMS DIALOG  0, 0, 108, 21
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "X",IDC_IPOS_X,"CustButton",WS_TABSTOP,59,4,12,12
+    CONTROL         "Y",IDC_IPOS_Y,"CustButton",WS_TABSTOP,73,4,12,12
+    CONTROL         "Z",IDC_IPOS_Z,"CustButton",WS_TABSTOP,87,4,12,12
+    RTEXT           "Position Axis:",IDC_STATIC,6,7,51,8
+END
+
+IDD_ATTACH_PARAMS DIALOG  0, 0, 108, 381
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Pick Object",IDC_ATTACH_PICKOB,"CustButton",WS_TABSTOP,
+                    15,24,76,12
+    GROUPBOX        "Attach To:",IDC_STATIC,4,2,100,50
+    CTEXT           "Object01",IDC_ATTACH_OBNAME,6,12,94,8
+    GROUPBOX        "Key Info:",IDC_STATIC,4,93,100,284
+    CONTROL         "Set Position",IDC_ATTACH_SETPOS,"CustButton",WS_TABSTOP,
+                    15,221,76,12
+    CONTROL         "",IDC_ATTACH_KEYTIME,"CustEdit",WS_TABSTOP,51,116,27,10
+    CONTROL         "",IDC_ATTACH_KEYTIMESPIN,"SpinnerControl",0x0,79,116,7,
+                    10
+    RTEXT           "Time:",IDC_STATIC,23,116,26,8
+    CONTROL         "",IDC_ATTACH_KEYFACE,"CustEdit",WS_TABSTOP,51,138,27,10
+    CONTROL         "",IDC_ATTACH_KEYFACESPIN,"SpinnerControl",0x0,79,138,7,
+                    10
+    RTEXT           "Face:",IDC_STATIC,23,139,26,8
+    CONTROL         "<",IDC_PREVKEY,"CustButton",0x0,8,103,11,11
+    CONTROL         ">",IDC_NEXTKEY,"CustButton",0x0,20,103,11,11
+    CONTROL         "",IDC_KEYNUM,"CustStatus",0x0,33,104,22,9
+    GROUPBOX        "Position:",IDC_STATIC,8,129,92,110
+    CONTROL         "",IDC_ATTACH_KEYA,"CustEdit",WS_TABSTOP,51,151,27,10
+    CONTROL         "",IDC_ATTACH_KEYASPIN,"SpinnerControl",0x0,79,151,7,10
+    RTEXT           "A:",IDC_STATIC,23,153,26,8
+    CONTROL         "",IDC_ATTACH_KEYB,"CustEdit",WS_TABSTOP,51,164,27,10
+    CONTROL         "",IDC_ATTACH_KEYBSPIN,"SpinnerControl",0x0,79,164,7,10
+    RTEXT           "B:",IDC_STATIC,23,165,26,8
+    CONTROL         "",IDC_ATTACH_FACEPOSGRAPH,"FacePosGraph",WS_TABSTOP,20,
+                    177,66,41
+    GROUPBOX        "TCB:",IDC_STATIC,8,239,92,134
+    CONTROL         "",IDC_TCB_GRAPH,"TCBGraph",0x0,20,313,66,54
+    CONTROL         "",IDC_ATTACH_KEYTENS,"CustEdit",WS_TABSTOP,51,248,27,10
+    CONTROL         "",IDC_ATTACH_KEYTENSSPIN,"SpinnerControl",0x0,79,248,7,
+                    10
+    RTEXT           "Tension:",IDC_STATIC,20,249,29,8
+    CONTROL         "",IDC_ATTACH_KEYCONT,"CustEdit",WS_TABSTOP,51,261,27,10
+    CONTROL         "",IDC_ATTACH_KEYCONTSPIN,"SpinnerControl",0x0,79,261,7,
+                    10
+    RTEXT           "Continuity:",IDC_STATIC,15,262,34,8
+    CONTROL         "",IDC_ATTACH_KEYBIAS,"CustEdit",WS_TABSTOP,51,274,27,10
+    CONTROL         "",IDC_ATTACH_KEYBIASSPIN,"SpinnerControl",0x0,79,274,7,
+                    10
+    RTEXT           "Bias:",IDC_STATIC,20,275,29,8
+    CONTROL         "",IDC_ATTACH_KEYEASETO,"CustEdit",WS_TABSTOP,51,287,27,
+                    10
+    CONTROL         "",IDC_ATTACH_KEYEASETOSPIN,"SpinnerControl",0x0,79,287,
+                    7,10
+    RTEXT           "Ease To:",IDC_STATIC,20,288,29,8
+    CONTROL         "",IDC_ATTACH_KEYEASEFROM,"CustEdit",WS_TABSTOP,51,300,
+                    27,10
+    CONTROL         "",IDC_ATTACH_KEYEASEFROMSPIN,"SpinnerControl",0x0,79,
+                    300,7,10
+    RTEXT           "Ease From:",IDC_STATIC,11,301,38,8
+    CONTROL         "Align To Surface",IDC_ATTACH_ALIGN,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,39,69,10
+    GROUPBOX        "Update:",IDC_STATIC,4,52,100,40
+    CONTROL         "Manual Update",IDC_ATTACH_MANUPDATE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,79,65,10
+    CONTROL         "Update",IDC_ATTACH_UPDATE,"CustButton",WS_TABSTOP,15,64,
+                    76,12
+END
+
+IDD_ATTACH_DIALOG DIALOGEX 0, 0, 195, 137
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Attachment"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_ATTACH_KEYTIME,"CustEdit",WS_TABSTOP,47,22,27,10
+    CONTROL         "",IDC_ATTACH_KEYTIMESPIN,"SpinnerControl",0x0,75,22,7,
+                    10
+    RTEXT           "Time:",IDC_STATIC,19,22,26,8
+    CONTROL         "",IDC_ATTACH_KEYFACE,"CustEdit",WS_TABSTOP,47,49,27,10
+    CONTROL         "",IDC_ATTACH_KEYFACESPIN,"SpinnerControl",0x0,75,49,7,
+                    10
+    RTEXT           "Face:",IDC_STATIC,19,50,26,8
+    CONTROL         "<",IDC_PREVKEY,"CustButton",0x0,3,3,11,11
+    CONTROL         ">",IDC_NEXTKEY,"CustButton",0x0,15,3,11,11
+    CONTROL         "",IDC_KEYNUM,"CustStatus",0x0,29,4,22,9
+    GROUPBOX        "Position:",IDC_STATIC,3,35,92,100
+    CONTROL         "",IDC_ATTACH_KEYA,"CustEdit",WS_TABSTOP,47,62,27,10
+    CONTROL         "",IDC_ATTACH_KEYASPIN,"SpinnerControl",0x0,75,62,7,10
+    RTEXT           "A:",IDC_STATIC,19,64,26,8
+    CONTROL         "",IDC_ATTACH_KEYB,"CustEdit",WS_TABSTOP,47,75,27,10
+    CONTROL         "",IDC_ATTACH_KEYBSPIN,"SpinnerControl",0x0,75,75,7,10
+    RTEXT           "B:",IDC_STATIC,19,76,26,8
+    CONTROL         "",IDC_ATTACH_FACEPOSGRAPH,"FacePosGraph",WS_TABSTOP,17,
+                    88,66,41
+    GROUPBOX        "TCB:",IDC_STATIC,100,1,92,134
+    CONTROL         "",IDC_TCB_GRAPH,"TCBGraph",0x0,113,75,66,54
+    CONTROL         "",IDC_ATTACH_KEYTENS,"CustEdit",WS_TABSTOP,144,10,27,10
+    CONTROL         "",IDC_ATTACH_KEYTENSSPIN,"SpinnerControl",0x0,172,10,7,
+                    10
+    RTEXT           "Tension:",IDC_STATIC,112,11,29,8
+    CONTROL         "",IDC_ATTACH_KEYCONT,"CustEdit",WS_TABSTOP,144,23,27,10
+    CONTROL         "",IDC_ATTACH_KEYCONTSPIN,"SpinnerControl",0x0,172,23,7,
+                    10
+    RTEXT           "Continuity:",IDC_STATIC,108,24,34,8
+    CONTROL         "",IDC_ATTACH_KEYBIAS,"CustEdit",WS_TABSTOP,144,36,27,10
+    CONTROL         "",IDC_ATTACH_KEYBIASSPIN,"SpinnerControl",0x0,172,36,7,
+                    10
+    RTEXT           "Bias:",IDC_STATIC,112,37,29,8
+    CONTROL         "",IDC_ATTACH_KEYEASETO,"CustEdit",WS_TABSTOP,144,49,27,
+                    10
+    CONTROL         "",IDC_ATTACH_KEYEASETOSPIN,"SpinnerControl",0x0,172,49,
+                    7,10
+    RTEXT           "Ease To:",IDC_STATIC,112,50,29,8
+    CONTROL         "",IDC_ATTACH_KEYEASEFROM,"CustEdit",WS_TABSTOP,144,62,
+                    27,10
+    CONTROL         "",IDC_ATTACH_KEYEASEFROMSPIN,"SpinnerControl",0x0,172,
+                    62,7,10
+    RTEXT           "Ease From:",IDC_STATIC,104,62,38,8
+END
+
+IDD_EXPR_DEBUG DIALOGEX 0, 0, 221, 174
+STYLE DS_SETFONT | DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | 
+    WS_CAPTION | WS_SYSMENU
+CAPTION "Expression Debug Window"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Close",IDCANCEL,172,153,42,14
+    LISTBOX         IDC_DEBUG_LIST,7,16,207,106,LBS_SORT | LBS_USETABSTOPS | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP,
+                    WS_EX_DLGMODALFRAME
+    LTEXT           "Variables:",IDC_STATIC,7,7,32,8
+    LTEXT           "Expression value:",IDC_STATIC,7,131,56,8
+    CTEXT           "",IDC_DEBUG_VALUE,69,130,145,11,SS_SUNKEN
+    PUSHBUTTON      "Evaluate",IDC_EXPR_EVAL,125,153,42,14,NOT WS_VISIBLE
+END
+
+IDD_LINK_PARAMS DIALOG  0, 0, 107, 233
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Add Link",IDC_LINK_TARG_PICKNODE,"CustButton",
+                    WS_TABSTOP,10,6,87,12
+    CONTROL         "Link to World",IDC_LINK_TO_WORLD,"CustButton",
+                    WS_TABSTOP,10,21,87,12
+    CONTROL         "Delete Link",IDC_REMOVE_LINK_TARG,"CustButton",
+                    WS_TABSTOP,10,35,87,12
+    LISTBOX         IDC_LINK_LIST,7,62,93,64,LBS_USETABSTOPS | WS_VSCROLL | 
+                    WS_HSCROLL | WS_TABSTOP
+    CONTROL         "",IDC_LINK_TIME_EDIT,"CustEdit",WS_TABSTOP,54,128,30,10
+    CONTROL         "",IDC_LINK_TIME_SPINNER,"SpinnerControl",0x0,85,128,7,
+                    10
+    CONTROL         "No Key",IDC_NO_KEY,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,14,153,39,10
+    CONTROL         "Key Nodes",IDC_KEY_NODES,"Button",BS_AUTORADIOBUTTON,14,
+                    169,51,10
+    CONTROL         "Key Entire Hierarchy",IDC_KEY_HIERARCHY,"Button",
+                    BS_AUTORADIOBUTTON,14,196,80,10
+    CONTROL         "Child",IDC_KEY_NODES_CHILD,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,21,180,31,10
+    CONTROL         "Parents",IDC_KEY_NODES_PARENTS,"Button",
+                    BS_AUTORADIOBUTTON,55,180,37,10
+    CONTROL         "Child",IDC_KEY_HIERARCHY_CHILD,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,21,207,31,10
+    CONTROL         "Parents",IDC_KEY_HIERARCHY_PARENTS,"Button",
+                    BS_AUTORADIOBUTTON,55,207,40,10
+    GROUPBOX        "Key Mode",IDC_STATIC,10,143,91,80
+    RTEXT           "Start Time:",IDC_LINK_TIMELABEL,15,128,37,8
+    GROUPBOX        "Target                Frame #",IDC_STATIC2,3,52,101,71
+    GROUPBOX        "",IDC_STATIC,10,161,91,32
+END
+
+IDD_FOLLOW_PANEL DIALOG  0, 0, 108, 203
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Selected Object:",IDC_STATIC,4,0,100,23
+    LTEXT           "Sphere01",IDC_SEL_NAME,10,10,89,8
+    PUSHBUTTON      "Apply Follow",IDC_FOLLOW_APPLY,5,28,98,14
+    GROUPBOX        "Follow Options:",IDC_STATIC,4,46,100,72
+    CONTROL         "Bank",IDC_PATH_BANK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,12,58,35,10
+    RTEXT           "Bank Amount:",IDC_FOLLOW_BANKLABEL,8,73,47,8
+    CONTROL         "",IDC_FOLLOW_BANK,"CustEdit",WS_TABSTOP,56,73,35,10
+    CONTROL         "",IDC_FOLLOW_BANKSPIN,"SpinnerControl",0x0,92,73,7,10
+    RTEXT           "Smoothness:",IDC_FOLLOW_TRACKLABEL,8,87,47,8
+    CONTROL         "",IDC_FOLLOW_TRACK,"CustEdit",WS_TABSTOP,56,87,35,10
+    CONTROL         "",IDC_FOLLOW_TRACKSPIN,"SpinnerControl",0x0,92,87,7,10
+    CONTROL         "Allow Upside Down",IDC_PATH_ALLOWFLIP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,12,102,77,10
+    GROUPBOX        "Samples:",IDC_STATIC,4,120,100,55
+    RTEXT           "Start:",IDC_STATIC,19,133,24,8
+    CONTROL         "",IDC_FOLLOW_START,"CustEdit",WS_TABSTOP,44,133,35,10
+    CONTROL         "",IDC_FOLLOW_STARTSPIN,"SpinnerControl",0x0,80,133,7,10
+    RTEXT           "End:",IDC_STATIC,19,146,24,8
+    CONTROL         "",IDC_FOLLOW_END,"CustEdit",WS_TABSTOP,44,146,35,10
+    CONTROL         "",IDC_FOLLOW_ENDSPIN,"SpinnerControl",0x0,80,146,7,10
+    RTEXT           "Samples:",IDC_STATIC,12,159,31,8
+    CONTROL         "",IDC_FOLLOW_SAMP,"CustEdit",WS_TABSTOP,44,159,35,10
+    CONTROL         "",IDC_FOLLOW_SAMPSPIN,"SpinnerControl",0x0,80,159,7,10
+    PUSHBUTTON      "Close",IDOK,29,184,46,13
+END
+
+IDD_SURFPARAMS DIALOG  0, 0, 108, 150
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Pick Surface",IDC_PICKSURF,"CustButton",0x0,16,30,74,12
+    CONTROL         "",IDC_SURF_U,"CustEdit",WS_TABSTOP,50,63,35,10
+    CONTROL         "",IDC_SURF_V,"CustEdit",WS_TABSTOP,50,76,35,10
+    CONTROL         "No Alignment",IDC_ALIGN_NONE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,26,92,58,10
+    CONTROL         "Align to U",IDC_ALIGN_U,"Button",BS_AUTORADIOBUTTON,26,
+                    104,47,10
+    CONTROL         "Align to V",IDC_ALIGN_V,"Button",BS_AUTORADIOBUTTON,26,
+                    115,46,10
+    LTEXT           "CurrentSurfObjectName",IDC_SURFNAME,9,16,88,8
+    GROUPBOX        "Current Surface Object:",IDC_STATIC,5,3,98,47
+    GROUPBOX        "Surface Options:",IDC_STATIC,5,51,98,94
+    CONTROL         "",IDC_SURF_USPIN,"SpinnerControl",0x0,86,63,7,10
+    RTEXT           "U Position:",IDC_STATIC,12,63,37,8
+    CONTROL         "",IDC_SURF_VSPIN,"SpinnerControl",0x0,86,76,7,10
+    RTEXT           "V Position:",IDC_STATIC,12,76,37,8
+    CONTROL         "Flip",IDC_ALIGN_FLIP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,27,128,27,10
+END
+
+IDD_SURFJOINTPARAMS DIALOG  0, 0, 108, 158
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Active",IDC_XACTIVE,"Button",BS_AUTOCHECKBOX,13,11,34,
+                    10
+    CONTROL         "Limited",IDC_XLIMITED,"Button",BS_AUTOCHECKBOX,13,24,35,
+                    10
+    CONTROL         "Ease",IDC_XEASE,"Button",BS_AUTOCHECKBOX,59,24,30,10
+    CONTROL         "",IDC_XFROM,"CustEdit",WS_TABSTOP,13,46,30,10
+    CONTROL         "",IDC_XTO,"CustEdit",WS_TABSTOP,59,46,30,10
+    CONTROL         "",IDC_XDAMPING,"CustEdit",WS_TABSTOP,59,60,30,10
+    GROUPBOX        "U:",IDC_STATIC,4,0,101,76
+    CONTROL         "",IDC_XFROMSPIN,"SpinnerControl",0x0,45,46,7,10
+    CONTROL         "",IDC_XTOSPIN,"SpinnerControl",0x0,91,46,7,10
+    LTEXT           "From:",IDC_JP_XFROMLABEL,13,36,21,8
+    LTEXT           "To:",IDC_JP_XTOLABEL,59,36,13,8
+    CONTROL         "",IDC_XDAMPINGSPIN,"SpinnerControl",0x0,91,60,7,10
+    RTEXT           "Damping:",IDC_JP_XDAMPINGLABEL,28,60,30,8
+    CONTROL         "Active",IDC_YACTIVE,"Button",BS_AUTOCHECKBOX,13,89,34,
+                    10
+    CONTROL         "Limited",IDC_YLIMITED,"Button",BS_AUTOCHECKBOX,13,102,
+                    35,10
+    CONTROL         "Ease",IDC_YEASE,"Button",BS_AUTOCHECKBOX,59,102,30,10
+    CONTROL         "",IDC_YFROM,"CustEdit",WS_TABSTOP,13,124,30,10
+    CONTROL         "",IDC_YTO,"CustEdit",WS_TABSTOP,59,124,30,10
+    CONTROL         "",IDC_YDAMPING,"CustEdit",WS_TABSTOP,59,138,30,10
+    GROUPBOX        "V:",IDC_STATIC,4,78,101,76
+    CONTROL         "",IDC_YFROMSPIN,"SpinnerControl",0x0,45,124,7,10
+    CONTROL         "",IDC_YTOSPIN,"SpinnerControl",0x0,91,124,7,10
+    LTEXT           "From:",IDC_JP_YFROMLABEL,13,114,21,8
+    LTEXT           "To:",IDC_JP_YTOLABEL,59,114,13,8
+    CONTROL         "",IDC_YDAMPINGSPIN,"SpinnerControl",0x0,91,138,7,10
+    RTEXT           "Damping:",IDC_JP_YDAMPINGLABEL,23,138,35,8
+END
+
+IDD_STDJOINTPARAMS DIALOG  0, 0, 108, 302
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Active",IDC_XACTIVE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,11,34,10
+    CONTROL         "Limited",IDC_XLIMITED,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,24,35,10
+    CONTROL         "Ease",IDC_XEASE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    61,24,30,10
+    CONTROL         "",IDC_XFROM,"CustEdit",WS_TABSTOP,13,46,30,10
+    CONTROL         "",IDC_XTO,"CustEdit",WS_TABSTOP,61,46,30,10
+    CONTROL         "Spring Back",IDC_XSPINGBACK,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFTTEXT | BS_RIGHT | WS_TABSTOP,5,59,53,10
+    CONTROL         "",IDC_XSPRING,"CustEdit",WS_TABSTOP,61,59,30,10
+    CONTROL         "",IDC_XSPRINGTENS,"CustEdit",WS_TABSTOP,61,72,30,10
+    CONTROL         "",IDC_XDAMPING,"CustEdit",WS_TABSTOP,61,85,30,10
+    CONTROL         "Active",IDC_YACTIVE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,14,110,34,10
+    CONTROL         "Limited",IDC_YLIMITED,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,14,123,35,10
+    CONTROL         "Ease",IDC_YEASE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    61,123,30,10
+    CONTROL         "",IDC_YFROM,"CustEdit",WS_TABSTOP,14,145,30,10
+    CONTROL         "",IDC_YTO,"CustEdit",WS_TABSTOP,61,145,30,10
+    CONTROL         "Spring Back",IDC_YSPINGBACK,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFTTEXT | BS_RIGHT | WS_TABSTOP,5,158,53,10
+    CONTROL         "",IDC_YSPRING,"CustEdit",WS_TABSTOP,61,158,30,10
+    CONTROL         "",IDC_YSPRINGTENS,"CustEdit",WS_TABSTOP,61,171,30,10
+    CONTROL         "",IDC_YDAMPING,"CustEdit",WS_TABSTOP,61,184,30,10
+    CONTROL         "Active",IDC_ZACTIVE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,14,209,34,10
+    CONTROL         "Limited",IDC_ZLIMITED,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,14,222,35,10
+    CONTROL         "Ease",IDC_ZEASE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    61,222,30,10
+    CONTROL         "",IDC_ZFROM,"CustEdit",WS_TABSTOP,14,244,30,10
+    CONTROL         "",IDC_ZTO,"CustEdit",WS_TABSTOP,61,244,30,10
+    CONTROL         "Spring Back",IDC_ZSPINGBACK,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFTTEXT | BS_RIGHT | WS_TABSTOP,5,257,53,10
+    CONTROL         "",IDC_ZSPRING,"CustEdit",WS_TABSTOP,61,257,30,10
+    CONTROL         "",IDC_ZSPRINGTENS,"CustEdit",WS_TABSTOP,61,270,30,10
+    CONTROL         "",IDC_ZDAMPING,"CustEdit",WS_TABSTOP,61,283,30,10
+    GROUPBOX        "X Axis",1611,4,0,101,99
+    CONTROL         "",IDC_XFROMSPIN,"SpinnerControl",0x0,45,46,7,10
+    CONTROL         "",IDC_XTOSPIN,"SpinnerControl",0x0,93,46,7,10
+    LTEXT           "From:",IDC_JP_XFROMLABEL,13,36,21,8
+    LTEXT           "To:",IDC_JP_XTOLABEL,61,36,13,8
+    CONTROL         "",IDC_XDAMPINGSPIN,"SpinnerControl",0x0,93,85,7,10
+    RTEXT           "Damping:",IDC_JP_XDAMPINGLABEL,30,85,30,8
+    GROUPBOX        "Y Axis",1612,4,99,101,99
+    CONTROL         "",IDC_YFROMSPIN,"SpinnerControl",0x0,46,145,7,10
+    CONTROL         "",IDC_YTOSPIN,"SpinnerControl",0x0,93,145,7,10
+    LTEXT           "From:",IDC_JP_YFROMLABEL,14,135,21,8
+    LTEXT           "To:",IDC_JP_YTOLABEL,59,135,13,8
+    CONTROL         "",IDC_YDAMPINGSPIN,"SpinnerControl",0x0,93,184,7,10
+    RTEXT           "Damping:",IDC_JP_YDAMPINGLABEL,30,184,30,8
+    GROUPBOX        "Z Axis",1613,4,198,101,99
+    CONTROL         "",IDC_ZFROMSPIN,"SpinnerControl",0x0,46,244,7,10
+    CONTROL         "",IDC_ZTOSPIN,"SpinnerControl",0x0,93,244,7,10
+    LTEXT           "From:",IDC_JP_ZFROMLABEL,14,234,21,8
+    LTEXT           "To:",IDC_JP_ZTOLABEL,61,234,13,8
+    CONTROL         "",IDC_ZDAMPINGSPIN,"SpinnerControl",0x0,93,283,7,10
+    RTEXT           "Damping:",IDC_JP_ZDAMPINGLABEL,30,283,30,8
+    CONTROL         "",IDC_XSPRINGSPIN,"SpinnerControl",0x0,93,59,7,10
+    CONTROL         "",IDC_YSPRINGSPIN,"SpinnerControl",0x0,93,158,7,10
+    CONTROL         "",IDC_ZSPRINGSPIN,"SpinnerControl",0x0,93,257,7,10
+    CONTROL         "",IDC_XSPRINGTENSSPIN,"SpinnerControl",0x0,93,72,7,10
+    RTEXT           "Spring Tension:",IDC_STATIC,9,73,50,8
+    CONTROL         "",IDC_YSPRINGTENSSPIN,"SpinnerControl",0x0,93,171,7,10
+    RTEXT           "Spring Tension:",IDC_STATIC,9,172,50,8
+    CONTROL         "",IDC_ZSPRINGTENSSPIN,"SpinnerControl",0x0,93,270,7,10
+    RTEXT           "Spring Tension:",IDC_STATIC,9,271,50,8
+END
+
+IDD_LOD_UTILPARAMS DIALOG  0, 0, 108, 333
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    LISTBOX         IDC_LOD_LIST,4,135,100,60,LBS_USETABSTOPS | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Display In Viewports",IDC_LOD_VIEWPORTOBJ,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,198,79,10
+    CONTROL         "",IDC_LOD_VIEWWIDTH,"CustEdit",WS_TABSTOP,51,83,30,10
+    CONTROL         "",IDC_LOD_VIEWHEIGHT,"CustEdit",WS_TABSTOP,51,96,30,10
+    CONTROL         "Pixels",IDC_LOD_DISPPIXELS,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,21,223,34,10
+    CONTROL         "% of Target Image",IDC_LOD_DISPPERCENT,"Button",
+                    BS_AUTORADIOBUTTON,21,234,73,10
+    CONTROL         "",IDC_LOD_MIN,"CustEdit",WS_TABSTOP,51,263,30,10
+    CONTROL         "",IDC_LOD_MAX,"CustEdit",WS_TABSTOP,51,276,30,10
+    PUSHBUTTON      "Reset All",IDC_LOD_RESET,26,291,64,13
+    CONTROL         "Add To Set",IDC_LOD_ADDTOSET,"CustButton",WS_TABSTOP,20,
+                    33,68,13
+    CONTROL         "Remove From Set",IDC_LOD_DELETEFROMSET,"CustButton",
+                    WS_TABSTOP,20,50,68,13
+    CONTROL         "Create New Set",IDC_LOD_CREATENEWSET,"CustButton",
+                    WS_TABSTOP,20,16,68,13
+    PUSHBUTTON      "Close",IDOK,28,315,50,13
+    CONTROL         "",IDC_LOD_MINSPIN,"SpinnerControl",0x0,82,263,7,10
+    RTEXT           "Min Size:",IDC_LOD_MINLABEL,15,263,34,8
+    CONTROL         "",IDC_LOD_MAXSPIN,"SpinnerControl",0x0,82,276,7,10
+    RTEXT           "Max Size:",IDC_LOD_MAXLABEL,15,276,34,8
+    GROUPBOX        "Thresholds:",IDC_STATIC,4,250,100,60
+    GROUPBOX        "Level of Detail Set:",IDC_STATIC,4,2,100,68
+    CONTROL         "",IDC_LOD_VIEWWIDTHSPIN,"SpinnerControl",0x0,82,83,7,10
+    RTEXT           "Width:",IDC_STATIC,22,83,27,8
+    CONTROL         "",IDC_LOD_VIEWHEIGHTSPIN,"SpinnerControl",0x0,82,96,7,
+                    10
+    RTEXT           "Height:",IDC_STATIC,22,96,27,8
+    GROUPBOX        "Image Output Size:",IDC_STATIC,4,71,100,59
+    GROUPBOX        "Threshold Units:",IDC_STATIC,4,211,100,38
+    PUSHBUTTON      "Reset to Current",IDC_LOD_RESETOUTPUT,26,111,64,13
+END
+
+IDD_ISCALE_PARAMS DIALOG  0, 0, 108, 21
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "X",IDC_ISCALE_X,"CustButton",WS_TABSTOP,59,4,12,12
+    CONTROL         "Y",IDC_ISCALE_Y,"CustButton",WS_TABSTOP,73,4,12,12
+    CONTROL         "Z",IDC_ISCALE_Z,"CustButton",WS_TABSTOP,87,4,12,12
+    RTEXT           "Scale Axis:",IDC_STATIC,6,7,51,8
+END
+
+IDD_PATHPARAMS DIALOG  0, 0, 109, 280
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_PATHPERCENT,"CustEdit",WS_TABSTOP,55,144,35,10
+    CONTROL         "Follow",IDC_PATH_FOLLOW,"Button",BS_AUTOCHECKBOX,11,158,
+                    35,10
+    CONTROL         "Bank",IDC_PATH_BANK,"Button",BS_AUTOCHECKBOX,53,158,35,
+                    10
+    CONTROL         "",IDC_FOLLOW_BANK,"CustEdit",WS_TABSTOP,55,173,35,10
+    CONTROL         "",IDC_FOLLOW_TRACK,"CustEdit",WS_TABSTOP,55,187,35,10
+    CONTROL         "Allow Upside Down",IDC_PATH_ALLOWFLIP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,201,77,10
+    CONTROL         "Constant Velocity",IDC_PATH_CONSTVEL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,215,77,10
+    CONTROL         "X",IDC_PATH_X,"Button",BS_AUTORADIOBUTTON | WS_GROUP,9,
+                    261,19,10
+    CONTROL         "Y",IDC_PATH_Y,"Button",BS_AUTORADIOBUTTON,33,261,19,10
+    CONTROL         "Z",IDC_PATH_Z,"Button",BS_AUTORADIOBUTTON,55,261,19,10
+    CONTROL         "Flip",IDC_PATH_FLIP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,75,261,24,10
+    CONTROL         "",IDC_FOLLOW_BANKSPIN,"SpinnerControl",0x0,91,173,7,10
+    RTEXT           "Bank Amount:",IDC_FOLLOW_BANKLABEL,7,173,47,8
+    GROUPBOX        "Path Options:",IDC_STATIC,3,133,101,113
+    CONTROL         "",IDC_FOLLOW_TRACKSPIN,"SpinnerControl",0x0,91,187,7,10
+    RTEXT           "Smoothness:",IDC_FOLLOW_TRACKLABEL,7,187,47,8
+    CONTROL         "",IDC_PATHPERCENTSPIN,"SpinnerControl",0x0,91,144,7,10
+    RTEXT           "% Along Path:",IDC_FOLLOW_BANKLABEL2,7,144,47,8
+    GROUPBOX        "Axis:",IDC_STATIC,5,250,98,26
+    CONTROL         "Delete Path",IDC_REMOVE_PATH,"CustButton",0x0,15,18,74,
+                    12
+    CONTROL         "Add Path",IDC_PATH_PICKNODE,"CustButton",0x0,15,4,74,12
+    CONTROL         "",IDC_PATH_WEIGHT_EDIT,"CustEdit",WS_TABSTOP,43,120,32,
+                    10
+    CONTROL         "",IDC_PATH_WEIGHT_SPINNER,"SpinnerControl",0x0,77,120,7,
+                    10
+    RTEXT           "Weight",IDC_FOLLOW_BANKLABEL3,13,121,27,8
+    CONTROL         "Loop",IDC_PATH_LOOP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,11,230,39,10
+    CONTROL         "Relative",IDC_PATH_RELATIVE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,55,230,42,10
+    LISTBOX         IDC_PATH_LIST,6,44,93,74,LBS_USETABSTOPS | WS_VSCROLL | 
+                    WS_HSCROLL | WS_TABSTOP
+    GROUPBOX        "Target                   Weight",IDC_STATIC,3,33,99,82
+END
+
+IDD_POS_CONST_PARAMS DIALOG  0, 0, 110, 146
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Delete Position Target",IDC_REMOVE_POS_TARG,"CustButton",
+                    0x0,15,18,74,12
+    CONTROL         "Add Position Target",IDC_POS_TARG_PICKNODE,"CustButton",
+                    0x0,15,4,74,12
+    CONTROL         "Weight Edit",IDC_POS_CONS_WEIGHT_EDIT,"CustEdit",
+                    WS_TABSTOP,40,115,32,10
+    CONTROL         "Weight Spinner",IDC_POS_CONS_WEIGHT_SPINNER,
+                    "SpinnerControl",0x0,75,115,7,10
+    RTEXT           "Weight",IDC_FOLLOW_BANKLABEL3,11,115,27,8
+    LISTBOX         IDC_POS_TARG_LIST,6,42,93,70,LBS_USETABSTOPS | 
+                    WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    CONTROL         "Keep Initial Offset",IDC_POS_CONS_RELATIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,16,130,71,10
+    GROUPBOX        "Target                   Weight",IDC_STATIC,3,31,99,82
+END
+
+IDD_ORIENT_CONST_PARAMS DIALOG  0, 0, 107, 198
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Delete Orientation Target",IDC_REMOVE_ORIENT_TARG,
+                    "CustButton",0x0,11,34,86,12
+    CONTROL         "Add Orientation Target",IDC_ORIENT_TARG_PICKNODE,
+                    "CustButton",0x0,11,4,86,12
+    CONTROL         "Weight Edit",IDC_ORIENT_CONS_WEIGHT_EDIT,"CustEdit",
+                    WS_TABSTOP,43,127,32,10
+    CONTROL         "Weight Spinner",IDC_ORIENT_CONS_WEIGHT_SPINNER,
+                    "SpinnerControl",0x0,78,127,7,10
+    RTEXT           "Weight",IDC_FOLLOW_BANKLABEL3,13,128,27,8
+    CONTROL         "Keep Initial Offset",IDC_ORIENT_CONS_RELATIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,21,141,71,10
+    CONTROL         "Local -->Local",IDC_ORIENT_CONST_LOCAL,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,19,168,64,10
+    CONTROL         "World --> World",IDC_ORIENT_CONST_WORLD,"Button",
+                    BS_AUTORADIOBUTTON,19,178,65,10
+    GROUPBOX        "Transform Rule",IDC_STATIC1,9,156,91,36
+    CONTROL         "Add World as Target",IDC_ORIENT_PICK_WORLD,"CustButton",
+                    WS_TABSTOP,11,19,86,12
+    LISTBOX         IDC_ORIENT_TARG_LIST,6,60,93,64,LBS_USETABSTOPS | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Target                   Weight",IDC_STATIC2,3,51,99,72
+END
+
+IDD_LOOKAT_CONST_PARAMS DIALOG  0, 0, 118, 370
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Delete LookAt Target",IDC_REMOVE_LOOKAT_TARG,"CustButton",
+                    0x0,16,18,86,12
+    CONTROL         "Add LookAt Target",IDC_LOOKAT_TARG_PICKNODE,"CustButton",
+                    0x0,16,4,86,12
+    CONTROL         "Weight Edit",IDC_LOOKAT_CONS_WEIGHT_EDIT,"CustEdit",
+                    WS_TABSTOP,44,106,32,10
+    CONTROL         "Weight Spinner",IDC_LOOKAT_CONS_WEIGHT_SPINNER,
+                    "SpinnerControl",0x0,78,106,7,10
+    RTEXT           "Weight",IDC_FOLLOW_BANKLABEL3,13,106,27,8
+    CONTROL         "Keep Initial Offset",IDC_LOOKAT_CONS_RELATIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,24,119,71,10
+    CONTROL         "Length Edit",IDC_LOOKAT_CONS_LENGTH_EDIT,"CustEdit",
+                    WS_TABSTOP,65,133,32,10
+    CONTROL         "Length Spinner",IDC_LOOKAT_CONS_LENGTH_SPINNER,
+                    "SpinnerControl",0x0,99,133,7,10
+    RTEXT           "Viewline Length ",IDC_LENGTH,6,133,57,11
+    CONTROL         "Set Orientation",IDC_LOOKAT_SET_ORIENTATION_PICKNODE,
+                    "CustButton",0x0,17,159,86,12
+    CONTROL         "Reset Orientation",
+                    IDC_LOOKAT_RESET_ORIENTATION_PICKNODE,"CustButton",0x0,
+                    17,175,86,12
+    GROUPBOX        "Select Upnode:",IDC_STATIC,9,219,100,27
+    CONTROL         "Pick Up Node",IDC_LOOKAT_CONS_UPNODE_PICKNODE,
+                    "CustButton",0x0,51,228,47,12
+    CONTROL         "X",IDC_LOOKAT_CONS_UPNODE_X,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,20,347,19,10
+    CONTROL         "Y",IDC_LOOKAT_CONS_UPNODE_Y,"Button",BS_AUTORADIOBUTTON,
+                    52,347,19,10
+    CONTROL         "Z",IDC_LOOKAT_CONS_UPNODE_Z,"Button",BS_AUTORADIOBUTTON,
+                    80,347,19,10
+    GROUPBOX        "aligned to Upnode Axis:",IDC_STATIC,10,337,96,23
+    GROUPBOX        "Select LookAt Axis: ",IDC_STATIC,9,192,100,23
+    CONTROL         "X",IDC_LOOKAT_CONS_TARGET_X,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,11,203,19,10
+    CONTROL         "Y",IDC_LOOKAT_CONS_TARGET_Y,"Button",BS_AUTORADIOBUTTON,
+                    33,203,19,10
+    CONTROL         "Z",IDC_LOOKAT_CONS_TARGET_Z,"Button",BS_AUTORADIOBUTTON,
+                    55,203,19,10
+    CONTROL         "Flip",IDC_LOOKAT_CONS_TARGET_FLIP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,79,203,24,10
+    GROUPBOX        "Source Axis",IDC_STATIC,10,310,95,25
+    CONTROL         "X",IDC_LOOKAT_CONS_S_UP_X,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,14,322,19,10
+    CONTROL         "Y",IDC_LOOKAT_CONS_S_UP_Y,"Button",BS_AUTORADIOBUTTON,
+                    34,322,19,10
+    CONTROL         "Z",IDC_LOOKAT_CONS_S_UP_Z,"Button",BS_AUTORADIOBUTTON,
+                    54,322,19,10
+    CONTROL         "Flip",IDC_LOOKAT_CONS_S_UP_FLIP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,76,322,24,10
+    GROUPBOX        "Source/Upnode Alignment",IDC_STATIC,6,297,104,65
+    CONTROL         "World",IDC_LOOKAT_CONS_UPNODE_W,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,230,35,10
+    CONTROL         "Viewline Length Absolute",IDC_AG_LOOKAT_CONS_VL_ABS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,145,95,11
+    LISTBOX         IDC_LOOKAT_TARG_LIST,11,41,93,62,LBS_USETABSTOPS | 
+                    WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    GROUPBOX        "Target                   Weight",IDC_STATIC,8,31,99,71
+    GROUPBOX        "Upnode Control:",IDC_STATIC,9,250,100,43
+    CONTROL         "LookAt",IDC_LOOKAT_CONS_UPNODE_CTRL_LA,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,20,262,51,10
+    CONTROL         "Axis Alignment",IDC_LOOKAT_CONS_UPNODE_CTRL_AA,"Button",
+                    BS_AUTORADIOBUTTON,19,276,73,10
+END
+
+IDD_LISTPARAMS_MOTION DIALOG  0, 0, 108, 147
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Set Active",IDC_LIST_SETACTIVE,6,78,46,14,WS_DISABLED
+    PUSHBUTTON      "Delete",IDC_LIST_DELETE,55,78,46,14,WS_DISABLED
+    PUSHBUTTON      "Cut",IDC_LIST_CUT,6,96,46,14,WS_DISABLED
+    PUSHBUTTON      "Paste",IDC_LIST_PASTE,55,96,46,14,WS_DISABLED
+    CONTROL         "",IDC_LIST_NAME,"CustEdit",WS_TABSTOP,6,64,95,10
+    CONTROL         "",IDC_LIST_WEIGHT,"CustEdit",WS_TABSTOP,55,115,38,10
+    CONTROL         "",IDC_LIST_WEIGHTSPIN,"SpinnerControl",0x0,94,115,7,10
+    RTEXT           "Weight:",IDC_STATIC,6,115,45,8
+    CONTROL         "List1",IDC_CONTROLLER_WEIGHT_LIST,"SysListView32",
+                    LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | 
+                    LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,5,5,96,56
+    CONTROL         "Average Weights",IDC_AVERAGE_WEIGHTS,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFT | WS_TABSTOP,7,130,96,11
+END
+
+IDD_LISTPARAMS_TRACK DIALOG  0, 0, 157, 126
+STYLE DS_SETFONT | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "List Controller"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Set Active",IDC_LIST_SETACTIVE,106,7,43,14,WS_DISABLED
+    PUSHBUTTON      "Delete",IDC_LIST_DELETE,106,27,43,14,WS_DISABLED
+    PUSHBUTTON      "Cut",IDC_LIST_CUT,106,48,43,14,WS_DISABLED
+    PUSHBUTTON      "Paste",IDC_LIST_PASTE,106,64,43,14,WS_DISABLED
+    CONTROL         "",IDC_LIST_NAME,"CustEdit",WS_TABSTOP,6,81,95,10
+    CONTROL         "",IDC_LIST_WEIGHT,"CustEdit",WS_TABSTOP,55,96,38,10
+    CONTROL         "",IDC_LIST_WEIGHTSPIN,"SpinnerControl",0x0,94,96,7,10
+    RTEXT           "Weight:",IDC_STATIC,6,96,45,8
+    CONTROL         "List1",IDC_CONTROLLER_WEIGHT_LIST,"SysListView32",
+                    LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | 
+                    LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,5,5,96,73
+    CONTROL         "Average Weights",IDC_AVERAGE_WEIGHTS,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFT | WS_TABSTOP,7,110,96,11
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_EXPRPARAMS, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 197
+    END
+
+    IDD_EULER_PARAMS, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 21
+    END
+
+    IDD_ATTACH_PARAMS, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 104
+        VERTGUIDE, 8
+        VERTGUIDE, 100
+    END
+
+    IDD_EXPR_DEBUG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 214
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 167
+    END
+
+    IDD_LINK_PARAMS, DIALOG
+    BEGIN
+        RIGHTMARGIN, 106
+        BOTTOMMARGIN, 232
+    END
+
+    IDD_STDJOINTPARAMS, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 266
+    END
+
+    IDD_LOD_UTILPARAMS, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 328
+    END
+
+    IDD_PATHPARAMS, DIALOG
+    BEGIN
+        RIGHTMARGIN, 107
+        BOTTOMMARGIN, 240
+        HORZGUIDE, 180
+    END
+
+    IDD_POS_CONST_PARAMS, DIALOG
+    BEGIN
+        RIGHTMARGIN, 108
+        BOTTOMMARGIN, 140
+    END
+
+    IDD_ORIENT_CONST_PARAMS, DIALOG
+    BEGIN
+        RIGHTMARGIN, 105
+        BOTTOMMARGIN, 185
+    END
+
+    IDD_LOOKAT_CONST_PARAMS, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 369
+    END
+
+    IDD_LISTPARAMS_MOTION, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 75
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_DB_BAD_NAME         "Invalid variable name"
+    IDS_DB_POSITION_EXPR    "Position Expression"
+    IDS_DB_POINT3_EXPR      "Point3 Expression"
+    IDS_DB_FLOAT_EXPR       "Float Expression"
+    IDS_DB_SCALE_EXPR       "Scale Expression"
+    IDS_DB_ROTATION_EXPR    "Rotation Expression"
+    IDS_DB_CIRCULAR_DEPENDENCY "Circular Dependency"
+    IDS_DB_CANT_ASSIGN      "Can't Assign Controller"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DB_EXPR_PARSE_ERROR "Error Parsing Expression"
+    IDS_DB_DUPNAME          "Duplicate Name"
+    IDS_DB_CANT_CREATE_VAR  "Can't Create Variable"
+    IDS_DB_NOSUCH           "No Such Variable: %s"
+    IDS_DB_CANT_CHANGE_OFFSET "Can't Change Offset"
+    IDS_DB_NOCURVAR         "No Current Variable"
+    IDS_DB_CANTDELETE       "Can't Delete %s"
+    IDS_DB_EXPRCNTL         "Expression Controller"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DB_NOTHINGDEL       "Nothing to Delete"
+    IDS_DB_XPR_FILES        "Expression Files (*.xpr)"
+    IDS_JW_BANK             "Bank"
+    IDS_JW_AXIS             "Axis"
+    IDS_JW_AXISFLIP         "Axis Flip"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DB_NEED_VECTOR      "Need a vector expression"
+    IDS_DB_NEED_SCALAR      "Need a scalar expression"
+    IDS_DB_SAVE_EXPR        "Save Expression As"
+    IDS_DB_LOAD_EXPR        "Load Expression"
+    IDS_JW_BANKAMOUNT       "Bank Amount"
+    IDS_JW_SMOOTHNESS       "Smoothness"
+    IDS_JW_ALLOWUPSIDEDOWN  "Allow Upside Down"
+    IDS_JW_CONSTANTVEL      "Constant Velocity"
+    IDS_JW_FOLLOW           "Follow"
+    IDS_AG_PATH_PATH_LIST   "Pathlist"
+    IDS_AG_LOOP             "Loop"
+    IDS_AG_RELATIVE         "Relative"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RB_EXPRESSIONCONTROLTITLE "Expression Controller : "
+    IDS_RB_PICKPATH         "Pick Path"
+    IDS_DB_FN_SIN           "sin(x)\ttrigonometric sine of x"
+    IDS_DB_FN_NOISE         "noise(x,y,z)\t3D noise function"
+    IDS_DB_FN_IF            "if(c,t,f)\tconditional: value is t if c is true, else value is f"
+    IDS_DB_FN_MIN           "min(x,y)\tminimum of x and y"
+    IDS_DB_FN_MAX           "max(x,y)\tmaximum of x and y"
+    IDS_DB_FN_POW           "pow(x,y)\tx raised to the power y"
+    IDS_DB_FN_MOD           "mod(x,y)\tremainder of x divided by y"
+    IDS_DB_FN_DEGTORAD      "degToRad(x)\tx converted from degrees to radians"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RB_PATH             "Path Constraint"
+    IDS_RB_EULERXYZ         "Euler XYZ"
+    IDS_RB_EULERPARAMS      "Euler Parameters"
+    IDS_RB_XROTATION        "X Rotation"
+    IDS_RB_YROTATION        "Y Rotation"
+    IDS_RB_ZROTATION        "Z Rotation"
+    IDS_RB_NOISEFLOAT       "Noise Float"
+    IDS_RB_NOISEPOSITION    "Noise Position"
+    IDS_RB_NOISEPOINT3      "Noise Point3"
+    IDS_RB_NOISEROTATION    "Noise Rotation"
+    IDS_RB_NOISESCALE       "Noise Scale"
+    IDS_PRS_LOCALEULERXYZ   "Local Euler XYZ"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PRS_LOCALXROTATION  "Local X Rotation"
+    IDS_PRS_LOCALYROTATION  "Local Y Rotation"
+    IDS_PRS_LOCALZROTATION  "Local Z Rotation"
+    IDS_AG_POSITIONPARAMS   "Position Constraint"
+    IDS_AG_POSITION         "Position Constraint"
+    IDS_AG_ORIENTATIONPARAMS "Orientation Constraint"
+    IDS_AG_ORIENTATION      "Orientation Constraint"
+    IDS_AG_LOOKATPARAMS     "LookAt Constraint"
+    IDS_AG_LOOKAT_CONS      "LookAt Constraint"
+    IDS_AG_LOOKAT_CONS_UPNODE_CTRL "Upnode Control"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RB_ROTJOINTPARAMS   "Rotational Joints"
+    IDS_RB_PATHJOINTPARAMS  "Path Joint"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RB_PERCENT          "Percent"
+    IDS_RB_PATHPARAMS       "Path Parameters"
+    IDS_RB_NONE             "None"
+    IDS_AG_PATH_WEIGHT_LIST "Weight"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RB_PATHCONTROLLER   "Path Controller"
+    IDS_RB_ILLEGALPATH      "Using this path would create a circular dependency."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RB_NOISECONTROLTITLE "Noise Controller : "
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RB_STRENGTH         "Strength:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DB_FN_RADTODEG      "radToDeg(x)\tx converted from radians to degrees"
+    IDS_DB_FN_COS           "cos(x)\ttrigonometric cosine of x"
+    IDS_DB_FN_TAN           "tan(x)\ttrigonometric tangent of x"
+    IDS_DB_FN_ASIN          "asin(x)\tarcsine of x"
+    IDS_DB_FN_ACOS          "acos(x)\tarccosine of x"
+    IDS_DB_FN_ATAN          "atan(x)\tarctangent of x"
+    IDS_DB_FN_SINH          "sinh(x)\thyperbolic sine of x"
+    IDS_DB_FN_COSH          "cosh(x)\thyperbolic cosine of x"
+    IDS_DB_FN_TANH          "tanh(x)\thyperbolic tangent of x"
+    IDS_DB_FN_LN            "ln(x)\tnatural logarithm (base e) of x"
+    IDS_DB_FN_LOG           "log(x)\tcommon logarithm (base 10) of x"
+    IDS_DB_FN_EXP           "exp(x)\te raised to the power x"
+    IDS_DB_FN_SQRT          "sqrt(x)\tsquare root of x"
+    IDS_DB_FN_ABS           "abs(x)\tabsolute value of x"
+    IDS_DB_FN_CEIL          "ceil(x)\tsmallest integer greater than or equal to x"
+    IDS_DB_FN_FLOOR         "floor(x)\tlargest integer less than or equal to x"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DB_FN_COMP          "comp(v,i)\ti'th component of v"
+    IDS_DB_FN_UNIT          "unit(v)\tunit vector in the direction of v"
+    IDS_DB_FN_LENGTH        "length(v)\tlength of v"
+    IDS_DB_FN_PI            "pi\tthe constant pi (3.1415...)"
+    IDS_DB_FN_E             "e\tthe constant e (2.71828...)"
+    IDS_DB_FN_TPS           "TPS\tnumber of ticks per second"
+    IDS_DB_FN_VIF           "vif(c,v1,v2)\t""vector if"" - value is v1 if c is true, else v2"
+    IDS_RB_NOISESTRENGTH    "Noise Strength"
+    IDS_RB_SETPERCENT       "Set Path %"
+    IDS_RB_BOOLCONTROL      "On/Off"
+    IDS_RB_IPOSPARAMS       "Position XYZ Parameters"
+    IDS_RB_IPOS             "Position XYZ"
+    IDS_RB_XPOSITION        "X Position"
+    IDS_RB_YPOSITION        "Y Position"
+    IDS_RB_ZPOSITION        "Z Position"
+    IDS_RB_ATTACHCONTROL    "Attachment"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RB_ATTACHPARAMS     "Attachment Parameters"
+    IDS_RB_EDITATTACHKEY    "Edit Attachment Key"
+    IDS_RB_ATTACHCONTROLLER "Attachment Controller"
+    IDS_RB_ILLEGALOBJECT    "Illegal Object"
+    IDS_RB_ATTACHTITLE      "Attachment Controller:"
+    IDS_RB_IPOINT3          "Point3 XYZ"
+    IDS_RB_IPOINT3PARAMS    "Point3 XYZ Parameters"
+    IDS_RB_ICOLOR           "Color RGB"
+    IDS_RB_ICOLORPARAMS     "Color RGB Parameters"
+    IDS_RB_LINKCTRL         "Link Constraint"
+    IDS_RB_IPOINT4          "Point4 XYZW"
+    IDS_RB_LINKPARAMS       "Link Parameters"
+    IDS_RB_SETLINKTIME      "Set Link Time"
+    IDS_RB_DELETELINK       "Delete Link"
+    IDS_RB_ADDLINK          "Pick Link"
+    IDS_RB_FOLLOWUTIL       "Follow/Bank"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RB_MULTISEL         "Multiple Selected"
+    IDS_RB_NONESEL          "None Selected"
+    IDS_RB_APPLYFOLLOW      "Apply Follow"
+    IDS_MM_ISCALEPARAMS     "Scale XYZ Parameters"
+    IDS_RB_SURF             "Surface"
+    IDS_RB_U                "U"
+    IDS_RB_V                "V"
+    IDS_RB_CHANGEUV         "Change UV"
+    IDS_RB_SURFPARAMS       "Surface Controller Parameters"
+    IDS_RB_SURFJOINTPARAMS  "Surface Joint"
+    IDS_RB_EULERTYPE0       "XYZ"
+    IDS_RB_EULERTYPE1       "XZY"
+    IDS_RB_EULERTYPE2       "YZX"
+    IDS_RB_EULERTYPE3       "YXZ"
+    IDS_RB_EULERTYPE4       "ZXY"
+    IDS_RB_EULERTYPE5       "ZYX"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RB_EULERTYPE6       "XYX"
+    IDS_RB_EULERTYPE7       "YZY"
+    IDS_RB_EULERTYPE8       "ZXZ"
+    IDS_RB_X                "X"
+    IDS_RB_Y                "Y"
+    IDS_RB_Z                "Z"
+    IDS_RB_XAXIS            "X Axis"
+    IDS_RB_YAXIS            "Y Axis"
+    IDS_RB_ZAXIS            "Z Axis"
+    IDS_RB_EULERNAME        "Euler %s"
+    IDS_RB_LODCONTROL       "LOD Controller"
+    IDS_RB_LODUTILITU       "Level of Detail"
+    IDS_RB_LODSAMEPARENT    "All Level of Detail objects must be grouped."
+    IDS_RB_DEFCONTROLLERS   "Standard controllers (Discreet)"
+    IDS_RB_CHANGESTRENGTH   "Change Strength"
+    IDS_PRS_LOCALEULERNAME  "Local Euler %s"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_MM_ISCALE           "ScaleXYZ"
+    IDS_MM_XSCALE           "X Scale"
+    IDS_MM_YSCALE           "Y Scale"
+    IDS_MM_ZSCALE           "Z Scale"
+    IDS_AG_POSITION_LIST    "Position List"
+    IDS_AG_POSITION_WEIGHT_LIST "Position Weight"
+    IDS_AG_POS_CONS_RELATIVE "Relative"
+    IDS_AG_PICK_POS_TARG    "Pick Position Target"
+    IDS_AG_ORIENTATION_LIST "Orientation List"
+    IDS_AG_ORIENTATION_WEIGHT_LIST "Orientation Weight"
+    IDS_AG_ORIENT_CONS_RELATIVE "Relative"
+    IDS_AG_PICK_ORIENT_TARG "Pick Orientation Target"
+    IDS_AG_LOOKAT_LIST      "LookAt List"
+    IDS_AG_LOOKAT_WEIGHT_LIST "LookAt Weight"
+    IDS_AG_LOOKAT_CONS_RELATIVE "Relative"
+    IDS_AG_PICK_LOOKAT_TARG "Pick LookAt Target"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_LOOKAT_CONS_LEN_SPEC "Specify Length"
+    IDS_AG_LOOKAT_SET_ORIENTATION "Set Orientation"
+    IDS_RB_IPOINT4PARAMS    "Point4 XYZW Parameters"
+    IDS_AG_LOOKAT_RESET_ORIENTATION "Reset Orientation"
+    IDS_AG_LOOKAT_VECTOR_LENGTH "Vector Length"
+    IDS_AG_ORIENT_CONS_LW   "LocalOrWorld"
+    IDS_AG_LOOKAT_TARGET_AXIS "Target Axis"
+    IDS_AG_LOOKAT_TARGET_AXISFLIP "Target AxisFlip"
+    IDS_AG_LOOKAT_UPNODE_AXIS "Upnode Axis"
+    IDS_AG_LOOKAT_UPNODE_W  "Upnode World"
+    IDS_RB_IACOLOR          "Color RGBA"
+    IDS_AG_LOOKAT_S_UP_AXIS "StoUP Axis"
+    IDS_AG_LOOKAT_UPNODE_PICKNODE "Pick Upnode"
+    IDS_AG_LOOKAT_S_UP_AXISFLIP "StoUP AxisFlip"
+    IDS_AG_LOOKAT_SET_ORIENTATION_AMT "Set Orientation Amount"
+    IDS_AG_ORIENTATION_CONS_TO_WORLD "Constrain to World"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_AG_LINKPARAMS       "Link Params"
+    IDS_AG_LINK_LIST        "Link List"
+    IDS_AG_LINK_KEY_MODE    "Link KeyMode"
+    IDS_AG_LINK_START_FRAME_LIST "Link Start Frame List"
+    IDS_AG_LOOKAT_CONS_VL_ABS "Viewline Abs"
+    IDS_PRS_ADDITIVEEULERXYZ "Additive Euler XYZ"
+    IDS_PRS_ADDITIVEXROTATION "Additive X Rotation"
+    IDS_PRS_ADDITIVEYROTATION "Additive Y Rotation"
+    IDS_PRS_ADDITIVEZROTATION "Additive Z Rotation"
+    IDS_PRS_ADDITIVEEULERNAME "Additive Euler %s"
+    IDS_AG_LINK_KEY_NODES_MODE "Link KeyNodes Mode"
+    IDS_AG_LINK_KEY_HIERARCHY_MODE "Link KeyHierarchy Mode"
+    IDS_PRS_EXPR_INVALID_REVERT 
+                            "%s\n\nClick OK to revert to original value,\nor Cancel to edit it."
+    IDS_ARE_YOU_SURE_YOU_WANT 
+                            "Are you sure you want to animate the position of this object?"
+    IDS_ATTACHMENT_CONTROLLER "Attachment Controller"
+    IDS_RB_IACOLORPARAMS    "Color RGBA Parameters"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RB_FLOATLIST        "Float List"
+    IDS_RB_POINT3LIST       "Point3 List"
+    IDS_RB_POSITIONLIST     "Position List"
+    IDS_RB_ROTATIONLIST     "Rotation List"
+    IDS_RB_SCALELIST        "Scale List"
+    IDS_RB_AVAILABLE        "Available"
+    IDS_RB_LISTCONTROLLER   "List Controller"
+    IDS_RB_POINT4LIST       "Point4 List"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RB_DELETECONTROLLER "Delete Controller"
+    IDS_RB_CUTCONTROLLER    "Cut Controller"
+    IDS_RB_PASTECONTROLLER  "Paste Controller"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PW_MASTERBLOCK      "Block Control"
+    IDS_AF_INDEX_ERROR      "The index is not in the acceptable range"
+    IDS_PICK_LOOKAT_UPNODE_PRMPT "Pick an Upnode"
+    IDS_AF_LIST_WEIGHT      "Weight"
+    IDS_AF_LIST_WEIGHT_UNDO "Weight Change"
+    IDS_AF_LIST_WEIGHTS     "Weights"
+    IDS_AF_LIST_ENTRY       "Layer"
+    IDS_AF_LIST_AVERAGE     "Average Weights"
+    IDS_AF_LIST_POSE_TO_POSE "Pose to Pose"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_AG_ATTACHMENT_PICKNODE "picknode"
+    IDS_RB_PARAMETERCHANGE  "Parameter Change"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

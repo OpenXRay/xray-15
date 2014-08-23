@@ -1,0 +1,211 @@
+<html>
+
+<head>
+<title>Classes: ItemMotionHandler</title>
+<style type="text/css">
+<!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="volume.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="VolumetricHandler"></a></td>
+    <td width="96" align="left"><a href="animsave.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="AnimSaverHandler"></a></td>
+    <td width="96" align="left"><a href="../classes.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Classes"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>PolygonHandler</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 8.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout</small>/Modeler<br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwpolygon.h">lwpolygon.h</a></small></p>
+    <p>Polygon Type handlers provide a way to extend the list of available polygon types in
+    LightWave.</p>
+    <p><strong>Handler Activation Function</strong></p>
+    <pre>   XCALL_( int ) MyPolygonHandler( long version, GlobalFunc *global,
+      LWPolygonHandler *local, void *serverData );</pre>
+    <p>The <tt>local</tt> argument to a motion handler's activation function is an
+    LWPolygonHandler.</p>
+    <pre>   typedef struct st_LWPolygonHandler {
+      LWInstanceFuncs *<strong>inst</strong>;
+      LWItemFuncs     *<strong>item</strong>;
+   } LWPolygonHandler;</pre>
+    <p>The first two members of this structure are standard <a href="../handler.html">handler
+    functions</a>.</p>
+    <p><strong>PolyType</strong>
+    <p>The handler instance create function has to create and return a LWPolyType structure. </p>
+    <pre>   typedef struct st_LWPolyType {
+      unsigned long <strong>type</strong>;
+      int           <strong>flags</strong>;
+      void	  (*<strong>display )</strong>( void *instance, 
+                               LWPolID pol, 
+                               const LWWireDrawAccess *access, 
+                               LWPolygonTypeAccessID ptinfo );
+      void	  (*<strong>genMesh</strong> )( void *instance, 
+	                             LWPolID pol, 
+                               LWPolyMeshInfoID mesh, 
+                               LWPolygonTypeAccessID ptinfo );
+      int	  (*<strong>tstMesh</strong> )( void *instance, 
+                               LWPolID pol, 
+                               LWPolygonTypeAccessID ptinfo );
+      void        (*<strong>startup</strong> )( LWPolyTypeID );
+      void        (*<strong>shutdown</strong>)( LWPolyTypeID polygon_type);
+      void *      (*<strong>alloc</strong>   )( LWPolygonTypeAccessID ptinfo );
+      void        (*<strong>free</strong>    )( void *data );
+      int         (*<strong>update</strong>  )( void *, 
+                               int lnum, 
+                               int change, 
+                               LWPolygonTypeAccessID ptinfo );
+   } LWPolyType;</pre>
+    <dl>
+      <dt><strong><tt>type</tt></strong></dt>
+      <dd>Four-character type code for the new polygon. Use LWID_() in <a href="../../include/lwtypes.h"> lwtypes.h</a> to create.&nbsp;
+        There are several 'built-in' types that can not be used for custom polygon types.</dd>
+      <dt><tt><br>
+        <strong>flags</strong></tt></dt>
+      <dd>This contains bits that determine the type of the new polygon.&nbsp; If the
+        <b> LWGPTF_SURFACE</b> bit is set, then the polygon will render as a surface
+        and a mesh wil be generated.&nbsp; If <b> LWGPTF_FLAT</b> is set, then the surface is
+        intended to be flat.&nbsp; If <b> LWGPTF_LINEAR</b> is set, then the polygon type is a linear
+        curve, and the order of the points determines absolute direction rather than sidedness.</dd>
+      <dt><tt><br>
+        <strong>display</strong>( instance, polygon, wireaccess, ptinfo )</tt></dt>
+      <dd>This is called when an instance of your custom polygon needs to be drawn in a view port<br>
+ using basic drawing functions.&nbsp; The specific polygon to be displayed and the means to obtain
+        the vertexes are given along with the means to draw into the view port</dd>
+      <dt><tt><br>
+        <strong>genMesh</strong>( instance, polygon, polymeshinfo, ptinfo )</tt></dt>
+      <dd> This is called when an <code> instance</code> of your custom polygon needs to generate a standard surface mesh, which can consist of vertices, triangles or quads, normal vectors, and texture
+        weightings.&nbsp; The <code> polygon</code> parameter specifies the custom polygon for which a mesh is needed.&nbsp;
+        The vertex instance allows access to the vertices for the existing custom polygon.&nbsp;
+        The mesh is a structure that you fill in. (see definition below)</dd>
+      &nbsp;
+      <dt><tt><strong>tstMesh</strong>( instance, polygon, ptinfo )</tt></dt>
+      <dd> This is called to test if the given custom polygon instance is to be used.<br>
+Return 0 if false, 1 if true.</dd>
+      &nbsp;
+      <dt><tt><strong>startup</strong>( ptypeid )</tt></dt>
+      <dd> The 'startup' and 'shutdown' functions are used by the host when
+           adding and removing the custom polygon type.  The private data should be managed
+           by these functions.</dd>
+
+      <dt>&nbsp;</dt>
+
+      <dt><tt><strong>shutdown</strong>( ptypeid )</tt></dt>
+      <dd> Called once when plug-in unloaded.</dd>
+
+      <dt>&nbsp;</dt>
+
+      <dt><tt><strong>alloc</strong>( ptinfo )</tt></dt>
+      <dd> This is called when an instance of your custom polygon type is being created.
+ Any necessary memory allocation and setup should be done here.
+ The free() function is obviously called to destroy that data.  
+</dd>
+
+      <dt>&nbsp;</dt>
+
+      <dt><tt><strong>free</strong>( instance )</tt></dt>
+      <dd> This is called when an instance of your custom polygon type is being destroyed.
+          This is your chance for polygon instance-specific memory
+        de-allocation.&nbsp; <code>instance</code> is a pointer to the memory allocated via the
+        alloc() callback.</dd>
+
+      <dt>&nbsp;</dt>
+
+      <dt><tt><strong>update</strong>( instance, layernum, changeflags, ptinfo )</tt></dt>
+      <dd> This is called when the data in a layer changes. Test if the changes are relevant
+	  for your instance, and perform necessary pre-processing.</dd>
+    </dl>
+    <p><strong>PolygonType Access</strong></p>
+    <p>The functions provided by this structure resemble the ones in LWMeshInfo.</p>
+    <p><strong>LWGPolMeshInfo</strong>    </p>
+    <pre>
+    typedef struct st_GPolMeshInfo {
+        int <strong>flag</strong>;
+        int <strong>type</strong>;
+        int <strong>nvrt</strong>;
+        int <strong>npol</strong>;
+        int <strong>ntex</strong>;
+        const int *<strong>pols</strong>;
+        const float *<strong>vrts</strong>;
+        const float *<strong>norm</strong>;
+        const int *<strong>itex</strong>;
+        const float *<strong>wtex</strong>;
+    } GPolMeshInfo;</pre>    
+    <dl>
+      <dt><tt><strong>flag</strong></tt></dt>
+      <dd> This flag will be set for you to indicate which additional mesh data is being requested.&nbsp;
+        When set to <b> LWPMI_NORMALS</b>, please compute and supply a <code>norm</code> array.&nbsp;
+        When set to <b> LWPMI_TEXTURE</b>, please compute and supply texture data via
+        <code>itex</code> and <code>wtex</code>.&nbsp; You should always specify the
+        <code>vrts</code> and <code>pols</code> arrays.</dd>
+    </dl>
+    <dl>
+      <dt><tt><strong>type</strong></tt></dt>
+      <dd> The type is 3 or 4, where 3 indicates that this is a triangle mesh  
+           and 4 indicates that it is a quad mesh.  A type of zero indicates no mesh.</dd>
+    </dl>
+    <dl>
+      <dt><tt><strong>nvrt</strong></tt></dt>
+      <dd> Number of vertices in the polygon's mesh</dd>
+    </dl>
+    <dl>
+      <dt><tt><strong>npol</strong></tt></dt>
+      <dd> Number of surface polygons this specific polygon instance has
+        generated.</dd>
+    </dl>
+    <dl>
+      <dt><tt><strong>ntex</strong></tt></dt>
+      <dd> Texture information is organized into a set of tuples; one tuple associated with each vertex
+           in the mesh of polygons.
+           Each point in the mesh is associated with an n-tuple of polygon vertices
+           and weights, with the tuple order specified by <code>ntex</code>.</dd>
+    </dl>
+    <dl>
+      <dt><tt><strong>pols</strong></tt></dt>
+      <dd> The polygons in the mesh are specified by indices into the
+           vertex array <code>vrts</code>.  There are <code>npol</code> polygons, and the
+        indices are grouped into
+           triples or quads based on the mesh type.</dd>
+    </dl>
+    <dl>
+      <dt><tt><strong>vrts</strong></tt></dt>
+      <dd> The vertices of the polygon mesh are given by an array of floats, organized into
+        <code>nvrt</code> triples.</dd>
+    </dl>
+    <dl>
+      <dt><tt><strong>norm</strong></tt></dt>
+      <dd> The normals of the polygon mesh are given by an array of floats, organized into
+        <code>nvrt</code> triples.&nbsp; It is important to note that these
+        triples should be normalized direction vectors (x,y,z).&nbsp; This is
+        only needed when <code>flag</code> is set the <b>LWPMI_NORMALS</b>.</dd>
+    </dl>
+    <dl>
+      <dt><tt><strong>itex</strong></tt></dt>
+      <dd> This array holds the indices of the polygon vertices used in a texture.</dd>
+    </dl>
+    <dl>
+      <dt><tt><strong>wtex</strong></tt></dt>
+      <dd> This array holds the weight of each texture-polygon vertex.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>The <a href="../../sample/Modeler/MeshEdit/spikeyplus/">spikeyplus</a>
+    SDK sample project is a plug-in showing the interaction between a MeshEditTool, which creates
+    the polygon of a new type, and the Polygon Type plug-in, which takes care of
+    creating and displaying the generated geometry,</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

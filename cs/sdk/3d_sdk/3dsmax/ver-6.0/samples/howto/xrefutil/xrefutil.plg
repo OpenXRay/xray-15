@@ -1,0 +1,37 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: xrefutil - Win32 Hybrid--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\cazabor\LOCALS~1\Temp\RSP43.tmp" with contents
+[
+/nologo /G6 /MLd /W3 /Gm /ZI /Od /I "..\..\\include" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /Fp"Hybrid/xrefutil.pch" /YX /Fo"Hybrid/" /Fd"Hybrid/" /FD /c 
+"C:\devel\3dswin\src\maxsdk\Samples\XRefUtil\DllEntry.cpp"
+"C:\devel\3dswin\src\maxsdk\Samples\XRefUtil\xrefutil.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\cazabor\LOCALS~1\Temp\RSP43.tmp" 
+Creating temporary file "C:\DOCUME~1\cazabor\LOCALS~1\Temp\RSP44.tmp" with contents
+[
+comctl32.lib bmm.lib core.lib geom.lib gfx.lib mesh.lib maxutil.lib maxscrpt.lib gup.lib paramblk2.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /base:"0x105b0000" /subsystem:windows /dll /incremental:yes /pdb:"Hybrid/XRefUtil.pdb" /debug /machine:I386 /def:".\xrefutil.def" /out:"c:\devel\3dswin\src\exe\plugins\XRefUtil.dlu" /implib:"Hybrid/XRefUtil.lib" /pdbtype:sept /libpath:"..\\..\\lib" 
+.\Hybrid\DllEntry.obj
+.\Hybrid\xrefutil.obj
+.\Hybrid\xrefutil.res
+]
+Creating command line "link.exe @C:\DOCUME~1\cazabor\LOCALS~1\Temp\RSP44.tmp"
+<h3>Output Window</h3>
+Compiling...
+DllEntry.cpp
+xrefutil.cpp
+Linking...
+   Creating library Hybrid/XRefUtil.lib and object Hybrid/XRefUtil.exp
+
+
+
+<h3>Results</h3>
+XRefUtil.dlu - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

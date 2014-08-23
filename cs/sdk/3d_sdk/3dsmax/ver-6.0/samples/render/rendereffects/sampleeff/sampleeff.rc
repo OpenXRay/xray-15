@@ -1,0 +1,119 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SAMPLE_EFFECT DIALOGEX 0, 0, 211, 40
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    RTEXT           "Color",IDC_STATIC,35,10,20,8,0,WS_EX_RIGHT
+    CONTROL         "",IDC_SAMP_COLOR,"ColorSwatch",0x0,59,6,37,15
+    RTEXT           "Strength",IDC_STATIC,25,24,30,8,0,WS_EX_RIGHT
+    CONTROL         "",IDC_STRENGTH,"CustEdit",WS_TABSTOP,59,23,30,10
+    CONTROL         "0,255,0",IDC_STRENGTH_SPIN,"SpinnerControl",0x0,89,23,7,
+                    10
+    CONTROL         "Ignore Background",IDC_IGN_BACKGROUND,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFT | BS_VCENTER | WS_TABSTOP,109,
+                    10,77,8
+    CONTROL         "Slow",IDC_SLOW,"Button",BS_AUTOCHECKBOX | BS_LEFT | 
+                    BS_VCENTER | WS_TABSTOP,109,24,30,8
+END
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LIBDESCRIPTION      "Sample Effect"
+    IDS_PARAMS              "Sample Effect Parameters"
+    IDS_NAME                "Sample Effect"
+    IDS_CLASS_NAME          "Sample Effect"
+    IDS_CDESC_CLASS_NAME    "Sample Effect"
+    IDS_COLOR               "Color"
+    IDS_STRENGTH            "Strength"
+    IDS_SLOW                "Slow"
+    IDS_IGN_BACK            "Ignore Background"
+    IDS_GIZMO               "Gizmo"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

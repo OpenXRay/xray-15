@@ -1,0 +1,509 @@
+//-
+// ==========================================================================
+// Copyright (C) 1995 - 2005 Alias Systems Corp. and/or its licensors.  All 
+// rights reserved. 
+// 
+// The coded instructions, statements, computer programs, and/or related 
+// material (collectively the "Data") in these files are provided by Alias 
+// Systems Corp. ("Alias") and/or its licensors for the exclusive use of the 
+// Customer (as defined in the Alias Software License Agreement that 
+// accompanies this Alias software). Such Customer has the right to use, 
+// modify, and incorporate the Data into other products and to distribute such 
+// products for use by end-users.
+//  
+// THE DATA IS PROVIDED "AS IS".  ALIAS HEREBY DISCLAIMS ALL WARRANTIES 
+// RELATING TO THE DATA, INCLUDING, WITHOUT LIMITATION, ANY AND ALL EXPRESS OR 
+// IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY AND/OR FITNESS FOR A 
+// PARTICULAR PURPOSE. IN NO EVENT SHALL ALIAS BE LIABLE FOR ANY DAMAGES 
+// WHATSOEVER, WHETHER DIRECT, INDIRECT, SPECIAL, OR PUNITIVE, WHETHER IN AN 
+// ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, OR IN EQUITY, 
+// ARISING OUT OF ACCESS TO, USE OF, OR RELIANCE UPON THE DATA.
+// ==========================================================================
+//+
+
+//
+// This Mel file supports the VRML2 properties that can be attached to 
+// nodes that the VRML2 translator will query and export into the VRML2 
+// file.
+//
+
+global int $gVrmlIdx = 0;
+
+// 
+// Reset the global pointer to the 1st selected item on the selection list
+//
+
+global proc firstVRML2()
+{
+	global int $gVrmlIdx;
+
+	$gVrmlIdx = 0;
+
+	loadVRML2();
+}
+
+//
+// Skip to the previous item on the selection list
+//
+
+global proc backVRML2()
+{
+	global int $gVrmlIdx;
+	
+	if ( $gVrmlIdx > 0 )
+		$gVrmlIdx--;
+	
+	loadVRML2();
+}
+
+//
+// Skip to the next item on the selection list
+//
+
+global proc forwardVRML2()
+{
+	global int $gVrmlIdx;
+
+	$gVrmlIdx++;
+
+	loadVRML2();
+}
+
+//
+// Skip to the last item on the selection list
+//
+
+global proc lastVRML2()
+{
+	global int $gVrmlIdx;
+
+	$gVrmlIdx = size( `ls -st` );
+
+	loadVRML2();
+
+}
+
+//
+// Copy out the VRML2 properties of the current index item on the 
+// selection list, into the UI generated here, so the user can actually
+// see what is there.
+//
+
+global proc loadVRML2()
+{
+	global int $gVrmlIdx;
+
+	string $title;
+	string $linkl;
+	string $msg;
+	string $aBill;
+	int    $bill;
+	string $aPrim;
+	int	   $prim;
+	string $aSensor;
+	int	   $sensor;
+	string $aColl;
+	int    $coll;
+
+    $obj = `ls -sl`;
+
+	if ( size( $obj ) == 0 )
+	{
+		$gVrmlIdx = 0;
+		return;
+	} else {
+		if ( $gVrmlIdx >= size( $obj ) )
+			$gVrmlIdx = size( $obj ) - 1;
+	}
+
+	if ( `attributeQuery -exists -node $obj[$gVrmlIdx] "vrml2Link"` )
+	{
+		$title = "VRML2 Properties for " + $obj[$gVrmlIdx];
+		text -e -label $title vrmlTitle;
+
+	    $link = $obj[$gVrmlIdx] + "." + "vrml2Link";
+    	textFieldGrp -e -text `getAttr $link` vrmlLink;
+
+    	$msg = $obj[$gVrmlIdx] + "." + "vrml2Desc";
+    	textFieldGrp -e -text `getAttr $msg` vrmlDesc;
+
+		$aBill = $obj[$gVrmlIdx] + "." + "vrml2Billboard";
+		$bill = `getAttr $aBill` + 1;
+		optionMenuGrp -e -sl $bill vrmlBillboard;
+
+        $aPrim = $obj[$gVrmlIdx] + "." + "vrml2Primitive";
+        $prim = `getAttr $aPrim` + 1;
+        optionMenuGrp -e -sl $prim vrmlPrimitive;
+
+        $aSensor = $obj[$gVrmlIdx] + "." + "vrml2Sensor";
+        $sensor = `getAttr $aSensor` + 1;
+        optionMenuGrp -e -sl $sensor vrmlSensor;
+
+        $aColl = $obj[$gVrmlIdx] + "." + "vrml2Collision";
+        $coll = `getAttr $aColl` + 1;
+        optionMenuGrp -e -sl $coll vrmlCollision;
+
+        $title = "VRML2 Properties for " + $obj[$gVrmlIdx];
+		text -e -label $title vrmlTitle;
+	} 
+	else
+	{
+        $title = "VRML2 Properties for " + $obj[$gVrmlIdx] + " not defined";
+		text -e -label $title vrmlTitle;
+	}
+}
+
+
+//
+// Update the currently selection item of the selection list with the
+// current data that is displayed in the UI
+//
+
+global proc updateVRML2( int $mode )
+{
+	global int $gVrmlIdx;
+
+	string $title;
+	string $linkl;
+	string $msg;
+	string $aBill;
+	int    $bill;
+	string $aPrim;
+	int	   $prim;
+	string $aSensor;
+	int	   $sensor;
+	string $aColl;
+	int    $coll;
+
+    $obj = `ls -sl`;
+
+	if ( size( $obj ) == 0 )
+	{
+		$gVrmlIdx = 0;
+		return;
+	} else {
+		if ( $gVrmlIdx >= size( $obj ) )
+			$gVrmlIdx = size( $obj ) - 1;
+	}
+		
+	if ( `attributeQuery -exists -node $obj[$gVrmlIdx] "vrml2Link"` )
+	{
+		$title = "VRML2 Properties for " + $obj[$gVrmlIdx];
+		text -e -label $title vrmlTitle;
+
+	    $link = $obj[$gVrmlIdx] + "." + "vrml2Link";
+    	$text = `textFieldGrp -q -text vrmlLink`;
+		setAttr -typ "string" $link $text;
+
+    	$msg = $obj[$gVrmlIdx] + "." + "vrml2Desc";
+    	$text = `textFieldGrp -q -text vrmlDesc`;
+		setAttr -typ "string" $msg $text;
+
+		$aBill = $obj[$gVrmlIdx] + "." + "vrml2Billboard";
+		$bill = `optionMenuGrp -q -sl vrmlBillboard`;
+		$bill = $bill - 1;
+		setAttr $aBill $bill;
+		
+        $aPrim = $obj[$gVrmlIdx] + "." + "vrml2Primitive";
+        $prim = `optionMenuGrp -q -sl vrmlPrimitive`;
+		$prim = $prim - 1;
+		setAttr $aPrim $prim;
+		
+        $aSensor = $obj[$gVrmlIdx] + "." + "vrml2Sensor";
+        $sensor = `optionMenuGrp -q -sl vrmlSensor`;
+		$sensor = $sensor - 1;
+      	setAttr $aSensor $sensor;
+
+        $aColl = $obj[$gVrmlIdx] + "." + "vrml2Collision";
+        $coll = `optionMenuGrp -q -sl vrmlCollision`;
+		$coll = $coll - 1;
+        setAttr $aColl $coll;
+
+		$title = "VRML2 Properties for " + $obj[$gVrmlIdx];
+		text -e -label $title vrmlTitle;
+	} 
+	else
+	{
+        $title = "VRML2 Properties for " + $obj[$gVrmlIdx] + " not defined";
+		text -e -label $title vrmlTitle;
+	}
+}
+
+
+//
+// Add the basic VRML2 properties to the selected item in the selection list
+// There is are options to do this operation on the entire selection list
+// as well as to add in the current displayed values to the objects at the
+// same time.
+//
+
+global proc addVRML2()
+{
+    // Here we create the dynamic attributes on the selected object 
+	// if there isn't already a vrml2Link attribute there.
+
+	global int $gVrmlIdx;
+
+    $obj = `ls -sl`;
+
+	int	$idx;
+	int $last;
+
+	int	$saveCurIdx;
+	
+	// Find the number of selected items.  If zero then quit now
+	
+	$last = size( $obj );
+	if ( $last == 0 )
+		return;
+	
+	// See if we are doing this for all selected items
+	
+	$saveCurIdx = $gVrmlIdx;
+	
+	if ( `checkBoxGrp -q -v1 vrmlDoAll` == 0 )
+	{
+		$idx = $gVrmlIdx;
+		$last = $gVrmlIdx + 1;
+	} else {
+		$idx = 0;
+	}
+	
+	// Now do the actual work of deleting the attributes
+	
+	for ( ; $idx < $last; $idx++ )
+	{
+    	if ( `attributeQuery -exists -node $obj[$idx] "vrml2Link"` )
+    	{
+			//print ( "VRML2 properties already defined for " + $obj[$idx] );
+		} else {
+			addAttr -ln "vrml2Link" -sn "vL" -dt "string" $obj[$idx];
+			addAttr -ln "vrml2Desc" -sn "vD" -dt "string" $obj[$idx];
+			addAttr -ln "vrml2Billboard" -sn "vB" -at long $obj[$idx];
+    		addAttr -ln "vrml2Primitive" -sn "vP" -at long $obj[$idx];
+    		addAttr -ln "vrml2Sensor" -sn "vS" -at long $obj[$idx];
+    		addAttr -ln "vrml2Collision" -sn "vC" -at long -dv 1 $obj[$idx];
+ 		}	
+	
+		// See if want to set the data to the current values
+		// at the same time as creating attributes
+
+		if ( `checkBoxGrp -q -v1 vrmlDoAdd` == 1 )
+		{
+			$gVrmlIdx = $idx;
+			updateVRML2( 1 );
+		}
+	}
+
+	// Now restore the original index
+	
+	$gVrmlIdx = $saveCurIdx;
+	
+	loadVRML2();
+	
+}
+
+//
+// Here we will be deleting the VRML2 property dynamic attributes off of
+// the currently selected item in the selection list or if defined by the
+// option, the entire selection list
+//
+
+global proc deleteVRML2()
+{
+    // Here we delete the dynamic attributes on the selected object 
+    // if there is a vrml2Link attribute there.
+
+    $obj = `ls -sl`;
+
+	int	$idx;
+	int $last;
+
+	// Find the number of selected items.  If zero then quit now
+	
+	$last = size( $obj );
+	if ( $last == 0 )
+		return;
+	
+	// See if we are doing this for all selected items
+	
+	if ( `checkBoxGrp -q -v1 vrmlDoAll` == 0 )
+		$last = 1;
+	
+	// Now do the actual work of deleting the attributes
+	
+	for ( $idx = 0; $idx < $last; $idx++ )
+	{
+    	if ( `attributeQuery -exists -node $obj[$idx] "vrml2Link"` )
+    	{
+    		deleteAttr -at "vrml2Link" $obj[$idx];
+    		deleteAttr -at "vrml2Desc" $obj[$idx];
+        	deleteAttr -at "vrml2Billboard" $obj[$idx];
+        	deleteAttr -at "vrml2Primitive" $obj[$idx];
+    		deleteAttr -at "vrml2Sensor"    $obj[$idx];
+    		deleteAttr -at "vrml2Collision" $obj[$idx];
+		}
+	}
+}
+
+//
+// Routine to close the UI dialog window
+//
+
+global proc closeVRML2()
+{
+	deleteUI vrml2TagsWin;
+}
+
+//
+// Description:
+//  If the selection changes while the vrml2 properties window is 
+//  visible, we want to update the current displayed data 
+//  
+
+global proc newSelectionVRML2()
+{
+    if ( (`isTrue SomethingSelected` == 0) || 
+			!`window -exists vrml2TagsWin` )
+    {
+        $title = "VRML2 Properties for ";
+		text -e -label $title vrmlTitle;
+
+        return;
+    }
+
+	loadVRML2();
+}
+
+//
+// Here we build the basic window that will display the information for
+// us.  This can be modified and extended as the need arises to enable 
+// more functionality of the VRML2 spec, and the translator.
+//
+
+global proc buildVRML2Window (  )
+{
+	window 
+		-rtf true
+		vrml2TagsWin;
+
+
+		columnLayout;
+
+			text -label "VRML2 Properties" vrmlTitle;
+	
+			textFieldGrp -label "vrml2 Link" 
+					-text "" 
+					-cc "updateVRML2(0)" vrmlLink;
+
+			textFieldGrp -label "vrml2 Msg" 
+					-text "" 
+					-cc "updateVRML2(0)" vrmlDesc;
+
+        	optionMenuGrp -label "vrml2 Billboard"  
+					-cal 1 "right"
+					-cc "updateVRML2(0)" vrmlBillboard;
+                  menuItem -label "None";
+                  menuItem -label "X Rotating";
+                  menuItem -label "Y Rotating";
+				  menuItem -label "Screen Aligned";
+			optionMenuGrp -e -sl 1 vrmlBillboard;
+
+            optionMenuGrp -label "vrml2 Primitive"  
+					-cal 1 "right"
+					-cc "updateVRML2(0)" vrmlPrimitive;
+                  menuItem -label "None";
+                  menuItem -label "Box";
+                  menuItem -label "Cone";
+                  menuItem -label "Cylinder";
+				  menuItem -label "Sphere";
+				  menuItem -label "Elevation grid";
+            optionMenuGrp -e -sl 1 vrmlPrimitive;
+
+            optionMenuGrp -label "vrml2 Sensor"  
+					-cal 1 "right"
+					-cc "updateVRML2(0)" vrmlSensor;
+                  menuItem -label "None";
+                  menuItem -label "Cylinder";
+                  menuItem -label "Sphere";
+                  menuItem -label "Plane";
+				  menuItem -label "Proximity";
+				  menuItem -label "Touch";
+				  menuItem -label "Visibility";
+            optionMenuGrp -e -sl 1 vrmlSensor;
+
+            optionMenuGrp -label "vrml2 Collision"  
+					-cal 1 "right"
+					-cc "updateVRML2(0)" vrmlCollision;
+                  menuItem -label "None";
+                  menuItem -label "Object";
+            optionMenuGrp -e -sl 2 vrmlCollision;
+
+			checkBoxGrp -label " " -ncb 1
+					-cw 2 200
+					-l1 "Do All selected" vrmlDoAll;
+		
+			checkBoxGrp -label " " -ncb 1
+					-cw 2 200
+					-l1 "Add and Update" vrmlDoAdd;
+		
+		
+	  	rowLayout -nc 4 -cw 3 112
+               -cat 1 "both" 0
+               -cat 2 "both" 0
+               -cat 3 "both" 0
+			   -cat 4 "both" 0
+                 btnRow;
+       		button -rs 0 -h 28 -l "Add" -al "center" -c "addVRML2";
+        	button -rs 0 -h 28 -l "Delete" -al "center" -c "deleteVRML2";
+			gridLayout
+				-cellWidth 28
+				-numberOfRowsColumns 1 4;
+				symbolButton
+					-image "timerew.xpm"
+					-annotation "first item"
+					-command firstVRML2;
+				symbolButton 
+					-image "timeend.xpm"
+					-annotation "Step back one item"
+					-command backVRML2;
+				symbolButton 
+					-image "timestart.xpm"
+					-annotation "Step forward one item"
+					-command forwardVRML2;
+				symbolButton 
+					-image "timefwd.xpm"
+					-annotation "Step forward one item"
+					-command lastVRML2;
+			setParent ..;
+        	button -rs 0 -h 28 -l "Close" -al "center" -c "closeVRML2";
+    	setParent ..;
+
+	setParent ..;
+
+}
+
+
+//
+// The main VRML2 property control Mel command
+//
+
+global proc vrml2Tags (  )
+{
+    if (!`window -exists vrml2TagsWin`) {
+    	buildVRML2Window;    
+	}
+
+	// Setup a scriptJob to see selection changes.
+
+	scriptJob -e "SelectionChanged" newSelectionVRML2 -p vrml2TagsWin;
+
+	// Load in the current selected item
+
+	loadVRML2();
+
+	// Show the window to all
+
+	showWindow vrml2TagsWin;
+
+}

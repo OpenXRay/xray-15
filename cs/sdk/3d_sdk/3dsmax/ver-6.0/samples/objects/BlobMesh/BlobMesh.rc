@@ -1,0 +1,205 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PANEL DIALOGEX 0, 0, 108, 281
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    CONTROL         "",IDC_SIZE2,"CustEdit",WS_GROUP | WS_TABSTOP,56,8,36,10
+    CONTROL         "",IDC_TENSION,"CustEdit",WS_GROUP | WS_TABSTOP,56,22,36,
+                    10
+    CONTROL         "",IDC_RENDER,"CustEdit",WS_GROUP | WS_TABSTOP,56,48,36,
+                    10
+    CONTROL         "",IDC_VIEWPORT,"CustEdit",WS_GROUP | WS_TABSTOP,56,61,
+                    36,10
+    CONTROL         "Relative Coarseness",IDC_AUTOCOARSE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,75,81,10
+    CONTROL         "Use Soft Selection",IDC_USESOFTSEL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,94,75,10
+    CONTROL         "",IDC_MINSIZE,"CustEdit",WS_GROUP | WS_TABSTOP,56,107,
+                    36,10
+    CONTROL         "Large Data Optimization",IDC_OLDMETHOD,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,123,94,11
+    CONTROL         "Off In Viewport",IDC_OFFINVIEW,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,138,63,10
+    LISTBOX         IDC_LIST1,7,164,93,84,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "Pick",IDC_PICK,"CustButton",WS_TABSTOP,7,255,28,11
+    CONTROL         "Add",IDC_ADD,"CustButton",WS_TABSTOP,39,255,28,11
+    CONTROL         "Remove",IDC_REMOVE,"CustButton",WS_TABSTOP,70,255,31,11
+    CONTROL         "",IDC_TENSIONSPIN,"SpinnerControl",0x0,94,22,7,10
+    CONTROL         "",IDC_SIZE2SPIN,"SpinnerControl",0x0,94,8,7,10
+    CONTROL         "",IDC_RENDERSPIN,"SpinnerControl",0x0,94,48,7,10
+    CONTROL         "",IDC_VIEWPORTSPIN,"SpinnerControl",0x0,94,61,7,10
+    RTEXT           "Tension:",IDC_STATIC,26,22,28,8
+    RTEXT           "Render:",IDC_STATIC,28,48,26,8
+    RTEXT           "Size:",IDC_STATIC,20,8,34,8
+    RTEXT           "Viewport:",IDC_STATIC,24,61,30,8
+    RTEXT           "Evaluation Coarseness:",IDC_STATIC,16,35,75,8
+    GROUPBOX        "Blob Objects",IDC_STATIC,0,154,107,120
+    CONTROL         "",IDC_MINSIZESPIN,"SpinnerControl",0x0,94,107,7,10
+    RTEXT           "Min Size:",IDC_STATIC,20,107,34,8
+END
+
+IDD_PFPANEL DIALOGEX 0, 0, 108, 151
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    CONTROL         "All Particle Flow Events",IDC_USEALLPF,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,89,10
+    LISTBOX         IDC_PFLIST,7,34,93,84,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "Add",IDC_ADDPF_EVENT_BUTTON,7,125,46,11
+    CONTROL         "Remove",IDC_PFREMOVE,"CustButton",WS_TABSTOP,55,125,46,
+                    11
+    GROUPBOX        "Particle Flow Events",-1,0,24,107,120
+END
+
+IDD_ADD_DIALOG DIALOGEX 0, 0, 144, 194
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Add Particle Flow Events"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,37,170,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,89,170,50,14
+    LISTBOX         IDC_EVENTLIST,7,7,130,153,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_PANEL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 274
+    END
+
+    IDD_PFPANEL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 144
+    END
+
+    IDD_ADD_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 137
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 160
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_LIBDESCRIPTION      "BlobMesh (Discreet)"
+    IDS_CATEGORY            "Compound Objects"
+    IDS_CLASS_NAME          "BlobMesh"
+    IDS_PARAMS              "Parameters"
+    IDS_SPIN                "Spin"
+    IDS_SIZE                "Size"
+    IDS_TENSION             "Tension"
+    IDS_RENDER              "Render"
+    IDS_VIEWPORT            "Viewport"
+    IDS_COARSENESS          "Coarseness"
+    IDS_NODELIST            "Node List"
+    IDS_USESOFTSEL          "Use Soft Selection"
+    IDS_MINSIZE             "Min Size"
+    IDS_OLDMETHOD           "Large Data Set Optimization"
+    IDS_PFPARAM             "Particle Flow Parameters"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_USEALLPFEVENTS      "Use All PF Events"
+    IDS_PFEVENTLIST         "PF Event List"
+    IDS_ADDEVENTS           "Add Events"
+    IDS_OFFINVIEW           "Off In View"
+    IDS_ADD                 "Add Blobs"
+    IDS_REMOVE_BLOB         "Remove Blob"
+    IDS_REMOVE              "Remove"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

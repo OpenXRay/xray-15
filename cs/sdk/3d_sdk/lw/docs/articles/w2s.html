@@ -1,0 +1,189 @@
+<html>
+
+<head>
+<title>Articles: World to Screen</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="box1.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="Articles"></a></td>
+    <td width="96" align="left"><a href="box1.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Articles"></a></td>
+    <td width="96" align="left"><a href="../articles.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Articles"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>World to Screen Transformation</h3>
+    <p><small><strong>Author</strong>&nbsp; Ernie Wright<br>
+    <strong>Date</strong>&nbsp; 29 Mar 2001</small></p>
+    <p>This page tells you how to convert from LightWave's world (<em>x</em>, <em>y</em>, <em>z</em>)
+    coordinates to pixel coordinates in the rendered image. It relates parameters available
+    from the LightWave plug-in API to components of the <em>synthetic camera model</em>, a
+    method for defining the position of a virtual camera in 3D space and determining what it
+    can see.</p>
+    <p><img width="256" height="200" align="right" hspace="8" src="uvn.jpg"> Pixels lie on the
+    view plane in the camera's UVN coordinate system. The camera itself is set back from the
+    view plane by an amount called the <em>eye distance</em> that controls the perspective
+    foreshortening.</p>
+    <p>The unit vectors <b>u</b>, <b>v</b> and <b>n</b> correspond to the axes of the UVN
+    system. Position vector <b>r</b> is the origin of UVN, sometimes called the view reference
+    point, or VRP. Given these vectors and the eye distance <em>e</em>, we can express the
+    world to image space transformation as a single 4 x 4 matrix <em>M</em>,</td>
+  </tr>
+  <tr>
+    <td width="600" align="center"><table border="0" cellpadding="8" cellspacing="0">
+      <tr>
+        <td rowspan="4"><em>M</em> &nbsp; =</td>
+        <td><em>u<sub>x</sub></em></td>
+        <td><em>v<sub>x</sub></em></td>
+        <td><em>n<sub>x</sub></em></td>
+        <td><em>-n<sub>x</sub> /e<sub>n</sub></em></td>
+      </tr>
+      <tr>
+        <td><em>u<sub>y</sub></em></td>
+        <td><em>v<sub>y</sub></em></td>
+        <td><em>n<sub>y</sub></em></td>
+        <td><em>-n<sub>y</sub> /e<sub>n</sub></em></td>
+      </tr>
+      <tr>
+        <td><em>u<sub>z</sub></em></td>
+        <td><em>v<sub>z</sub></em></td>
+        <td><em>n<sub>z</sub></em></td>
+        <td><em>-n<sub>z</sub> /e<sub>n</sub></em></td>
+      </tr>
+      <tr>
+        <td><em>r'<sub>x</sub></em></td>
+        <td><em>r'<sub>y</sub></em></td>
+        <td><em>r'<sub>z</sub></em></td>
+        <td><em>1 - r'<sub>z</sub> /e<sub>n</sub></em></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td width="600">The upper left 3 x 3 submatrix rotates the world into the UVN orientation
+    and contains the components of <b>u</b>, <b>v</b> and <b>n</b>. The bottom row translates
+    the origin along <b>r</b>', derived from <b>r</b> by<p align="center"><b>r</b>' = (- <b>r</b>
+    · <b>u</b>, - <b>r</b> · <b>v</b>, - <b>r</b> · <b>n</b>)</p>
+    <p>The rightmost column contains the perspective foreshortening terms.</p>
+    <p>To transform the point <b>p</b>, multiply its homogeneous position vector (<em>p<sub>x</sub></em>,
+    <em>p<sub>y</sub></em>, <em>p<sub>z</sub></em>, 1) by matrix <em>M</em>. The result is the
+    transformed point in viewing coordinates. For pixel coordinates, you need to divide by the
+    width and height of a pixel.</p>
+    <p><strong>Doing It from a Plug-in</strong></p>
+    <p>In your activation function, get the globals you'll need. </p>
+    <pre>   LWItemInfo *lwi;
+   LWCameraInfo *lwc;
+   LWSceneInfo *lws;
+
+   lwi = global( LWITEMINFO_GLOBAL,   GFUSE_TRANSIENT );
+   lwc = global( LWCAMERAINFO_GLOBAL, GFUSE_TRANSIENT );
+   lws = global( LWSCENEINFO_GLOBAL,  GFUSE_TRANSIENT );
+   if ( !lwi || !lwc || !lws ) return AFUNC_BADGLOBAL;</pre>
+    <p>When you're ready to do the transformation, get the camera's <tt>RIGHT</tt>, <tt>UP</tt>,
+    <tt>FORWARD</tt> and <tt>W_POSITION</tt> vectors, and the camera zoom factor. These
+    correspond to <b>u</b>, <b>v</b>, <b>n</b>, <b>r</b> (sort of) and <em>e</em>. </p>
+    <pre>   LWItemID id;
+   LWTime lwtime;
+   double u[ 3 ], v[ 3 ], n[ 3 ], r[ 3 ], e;
+
+   id = lws-&gt;renderCamera( lwtime );
+   lwi-&gt;param( id, LWIP_RIGHT,      lwtime, u );
+   lwi-&gt;param( id, LWIP_UP,         lwtime, v );
+   lwi-&gt;param( id, LWIP_FORWARD,    lwtime, n );
+   lwi-&gt;param( id, LWIP_W_POSITION, lwtime, r );
+   e = -lwc-&gt;zoomFactor( id, lwtime );</pre>
+    <p>Fill in the transformation matrix. </p>
+    <pre>   typedef double MAT4[ 4 ][ 4 ];
+   MAT4 t;
+
+   t[ 0 ][ 0 ] = u[ 0 ];
+   t[ 0 ][ 1 ] = v[ 0 ];
+   t[ 0 ][ 2 ] = n[ 0 ];
+   t[ 1 ][ 0 ] = u[ 1 ];
+   t[ 1 ][ 1 ] = v[ 1 ];
+   t[ 1 ][ 2 ] = n[ 1 ];
+   t[ 2 ][ 0 ] = u[ 2 ];
+   t[ 2 ][ 1 ] = v[ 2 ];
+   t[ 2 ][ 2 ] = n[ 2 ];
+   t[ 3 ][ 0 ] = -dot( r, u );
+   t[ 3 ][ 1 ] = -dot( r, v );
+   t[ 3 ][ 2 ] = -dot( r, n ) + e;
+   t[ 0 ][ 3 ] = -n[ 0 ] / e;
+   t[ 1 ][ 3 ] = -n[ 1 ] / e;
+   t[ 2 ][ 3 ] = -n[ 2 ] / e;
+   t[ 3 ][ 3 ] = 1.0 - t[ 3 ][ 2 ] / e;</pre>
+    <p>Multiply the point by the matrix. </p>
+    <pre>   double pt[ 3 ], tpt[ 3 ], w;
+
+   w = transform( pt, t, tpt );</pre>
+    <p>At this point, you'll probably want to test whether the transformed point is actually
+    visible in the image. It might be behind the camera, or in front of it but outside the
+    boundaries of the viewport. The <em>z</em> coordinate returned by the transformation,
+    however, is the <em>pseudodepth</em>, which has desireable mathematical properties but
+    isn't very useful for visibility testing in LightWave.</p>
+    <p>We calculate the true <em>z</em> distance (the perpendicular distance from the camera
+    plane) instead, using the homogeneous coordinate <em>w</em> returned by our <tt>transform</tt>
+    function. <tt>zdist</tt> is the value that would be in the <em>z</em>-buffer for the
+    point. </p>
+    <pre>   double zdist, frameAspect;
+
+   zdist = w * tpt.z - e;
+   if ( zdist &lt;= 0 ) {
+      // the point is behind the camera ...
+   
+   frameAspect = lws-&gt;pixelAspect * lws-&gt;frameWidth / lws-&gt;frameHeight;
+   if (( fabs( tpt.y ) &gt; 1 ) || ( fabs( tpt.x ) &gt; frameAspect )) {
+      // the point is outside the image rectangle ...</pre>
+    <p>Finally, convert from meters (on the projection plane) to pixels. </p>
+    <pre>   double s, x, y;
+
+   s = lws-&gt;frameHeight * 0.5;
+   y = s - tpt.y * s;
+   x = lws-&gt;frameWidth * 0.5 + tpt.x * s / lws-&gt;pixelAspect;</pre>
+    <p>The <tt>transform</tt> function looks like </p>
+    <pre>   double transform( double pt[ 3 ], MAT4 t, double tpt[ 3 ] )
+   {
+      double w;
+
+      tpt[ 0 ] = pt[ 0 ] * t[ 0 ][ 0 ]
+               + pt[ 1 ] * t[ 1 ][ 0 ]
+               + pt[ 2 ] * t[ 2 ][ 0 ] + t[ 3 ][ 0 ];
+      tpt[ 1 ] = pt[ 0 ] * t[ 0 ][ 1 ]
+               + pt[ 1 ] * t[ 1 ][ 1 ]
+               + pt[ 2 ] * t[ 2 ][ 1 ] + t[ 3 ][ 1 ];
+      tpt[ 2 ] = pt[ 0 ] * t[ 0 ][ 2 ]
+               + pt[ 1 ] * t[ 1 ][ 2 ]
+               + pt[ 2 ] * t[ 2 ][ 2 ] + t[ 3 ][ 2 ];
+      w        = pt[ 0 ] * t[ 0 ][ 3 ]
+               + pt[ 1 ] * t[ 1 ][ 3 ]
+               + pt[ 2 ] * t[ 2 ][ 3 ] + t[ 3 ][ 3 ];
+
+      if ( w != 0 ) {
+         tpt[ 0 ] /= w;
+         tpt[ 1 ] /= w;
+         tpt[ 2 ] /= w;
+      }
+
+      return w;
+   }</pre>
+    <p>and <tt>dot</tt> is just </p>
+    <pre>   double dot( double a[ 3 ], double b[ 3 ] )
+   {
+      return ( a[ 0 ] * b[ 0 ] + a[ 1 ] * b[ 1 ] + a[ 2 ] * b[ 2 ] );
+   }</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

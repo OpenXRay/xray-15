@@ -1,0 +1,327 @@
+<html>
+
+<head>
+<title>Tutorial: Box1</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="96" align="left"><a href="box2.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Boxes Part 2"></a></td>
+    <td width="96" align="left"><a href="../articles.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Articles"></a></td>
+    <td width="408" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Let's Make a Box</h3>
+    <p><small><strong>Author</strong>&nbsp; Ernie Wright<br>
+    <strong>Date</strong>&nbsp; 29 May 2001</small></p>
+    <p>This is an introductory level plug-in tutorial. We'll be discussing a Modeler plug-in
+    that makes a box. The emphasis in this first installment is on the basic mechanics of
+    writing and compiling a plug-in. We don't want to get bogged down in the specifics of
+    creating geometry, so we'll make a simple shape, and we'll do it in the simplest available
+    way, using the <tt>MAKEBOX</tt> command. But don't worry, we'll get to some of the cool
+    stuff in later installments.</p>
+    <p><strong>Our First Box Plug-in</strong></p>
+    <p>Here's the entire source file for our first plug-in. This is included in the SDK
+    samples as the file <tt>sample/boxes/box1/<a href="../../sample/Modeler/CommandSequence/boxes/box1/box.c">box.c</a></tt>.</p>
+    <pre>   #include &lt;lwserver.h&gt;
+   #include &lt;lwcmdseq.h&gt;
+   #include &lt;stdio.h&gt;
+
+   XCALL_( int )
+   Activate( long version, GlobalFunc *global, LWModCommand *local,
+      void *serverData)
+   {
+      char cmd[ 128 ];
+
+      if ( version != LWMODCOMMAND_VERSION )
+         return AFUNC_BADVERSION;
+      sprintf( cmd, &quot;MAKEBOX &lt;%g %g %g&gt; &lt;%g %g %g&gt; &lt;%d %d %d&gt;&quot;,
+         -0.5, -0.5, -0.5,  0.5, 0.5, 0.5,  1, 1, 1 );
+      local-&gt;evaluate( local-&gt;data, cmd );
+      return AFUNC_OK;
+   }
+
+   ServerRecord ServerDesc[] = {
+      { LWMODCOMMAND_CLASS, &quot;Tutorial_Box1&quot;, Activate },
+      { NULL }
+   };</pre>
+    <p><strong>A Closer Look</strong></p>
+    <p>Let's break this down and examine the parts in detail.</p>
+    <pre>   #include &lt;lwserver.h&gt;
+   #include &lt;lwcmdseq.h&gt;
+   #include &lt;stdio.h&gt;</pre>
+    <p>These are the headers required by the plug-in. The first two, <em>lwserver.h</em> and <em>lwcmdseq.h</em>,
+    are part of the LightWave&reg; SDK, in the <a href="../../include/">include</a> directory. <em>lwserver.h</em>
+    contains definitions required by every plug-in. These are explained on the <a
+    href="../server.html">Common Elements</a> page of the SDK, but I'll repeat some of that
+    information less formally here. The second SDK header, <em>lwcmdseq.h</em>, contains the
+    structure definitions and function prototypes comprising the CommandSequence plug-in
+    class.</p>
+    <blockquote>
+      <p><strong>Classes</strong>: LightWave&reg; plug-ins are divided into different types, called
+      classes. Each class does something different, or plugs into LightWave&reg; in a different
+      place. The three Modeler classes are called <a href="../classes/cs.html">CommandSequence</a>
+      (the kind we're looking at now), <a href="../classes/me.html">MeshDataEdit</a> and <a
+      href="../classes/metool.html">MeshEditTool</a>. The CommandSequence class drives Modeler
+      by issuing commands.</p>
+    </blockquote>
+    <p>We also include the C standard header <em>stdio.h</em> to get the function prototype
+    for <tt>sprintf</tt>, which we'll use to build the command string.</p>
+    <p>The order in which these are listed, meaning whether the C headers or the LightWave&reg; SDK
+    headers come first, usually doesn't matter. I put the SDK headers inside angle brackets (<tt>&lt;</tt>
+    and <tt>&gt;</tt>), which tells the compiler to look for them in the &quot;usual
+    place.&quot; Most compilers allow you to add directories to the search path for this usual
+    place, and I use this to add the path to the SDK's include directory.</p>
+    <pre>   XCALL_( int )
+   Activate( long version, GlobalFunc *global, LWModCommand *local,
+      void *serverData )
+   {</pre>
+    <p>This is the activation function, which happens to be the only function in our plug-in.
+    Modeler will call this function when the user starts our plug-in. The actions of the
+    plug-in are complete when this function returns.</p>
+    <blockquote>
+      <p><strong>Activation Function</strong>: Every plug-in has one. This is the entry point of
+      a plug-in, sort of like <tt>main</tt> in a standard C program. Activation functions have a
+      standard list of four arguments. The type of the third one depends on the plug-in class,
+      but the others are always the same. The function doesn't have to be called <tt>Activate</tt>.</p>
+    </blockquote>
+    <p>The <tt>XCALL_</tt> macro is defined in <em>lwserver.h</em>. It encloses the return
+    type of the function. <tt>XCALL_</tt> is a placeholder for any platform-specific or
+    compiler-specific weirdness that might be required to get the calling conventions right.
+    If you've programmed Microsoft Windows, you know that Win32 defines several macros (<tt>WINAPI</tt>
+    and <tt>CALLBACK</tt>, for example) that serve a similar purpose.</p>
+    <p>Strictly speaking, <tt>XCALL_</tt> should be used on every function in your source code
+    that can be called by LightWave&reg;. But as of this writing, <tt>XCALL_</tt> has no effect on
+    any platform LightWave&reg; currently supports, and you might notice that I've gotten somewhat
+    careless in the SDK samples about using it for some callbacks. Just be aware that it might
+    be needed in the future.</p>
+    <p>For Modeler command plug-ins, the third argument to the activation function is a
+    pointer to an LWModCommand structure, which is defined in <em>lwcmdseq.h</em>.</p>
+    <pre>      char cmd[ 128 ];</pre>
+    <p>Plug-ins can declare data in all the ways any other C program or library can. This is
+    the string in which we'll build our command.</p>
+    <pre>      if ( version != LWMODCOMMAND_VERSION )
+         return AFUNC_BADVERSION;</pre>
+    <p>The first thing an activation function should do is ensure that the version is correct.
+    As LightWave&reg; and the SDK develop over time, the definition of LWModCommand can change. The
+    version number passed to your activation function tells you, among other things, which
+    version of LWModCommand Modeler is passing to you.</p>
+    <p>The headers define symbols for the version number of each class's local data. This is
+    the version that matches the definition in the header. In other words, the version of
+    LWModCommand in <em>lwcmdseq.h</em> is <tt>LWMODCOMMAND_VERSION</tt>. If you recompile
+    your plug-in with newer headers, LWModCommand might be different, and if it is, <tt>LWMODCOMMAND_VERSION</tt>
+    will be also.</p>
+    <p>LightWave&reg; tries to be backward-compatible with older plug-ins. It will call your
+    activation function with different versions of the local data until you accept one of the
+    versions (by not returning <tt>AFUNC_BADVERSION</tt>) or until it runs out of versions to
+    try. With a couple of exceptions, it will start with the highest version first, so that
+    you'll run with the highest version of the API you accept. For more about this, see the <a
+    href="../compat.html">Compatibility</a> page.</p>
+    <pre>      sprintf( cmd, &quot;MAKEBOX &lt;%g %g %g&gt; &lt;%g %g %g&gt; &lt;%d %d %d&gt;&quot;,
+         -0.5, -0.5, -0.5,  0.5, 0.5, 0.5,  1, 1, 1 );
+      local-&gt;evaluate( local-&gt;data, cmd );</pre>
+    <p>This is where something actually happens. We build a command string containing the
+    command and its arguments, then call the LWModCommand <tt>evaluate</tt> function to issue
+    the command.</p>
+    <blockquote>
+      <p><strong>Function Pointers</strong>: These may be new to you. The plug-in API makes
+      extensive use of them as a means of allowing separate modules (in this case Modeler and
+      the plug-in) to call each other's functions.</p>
+      <p>A pointer to a function can be used like pointers to anything else. They can appear in
+      arguments, arrays and structures. When you dereference a function pointer, you're calling
+      the function. The <tt>evaluate</tt> member of the LWModCommand structure is a pointer to a
+      function that takes two arguments and returns an int.</p>
+      <p>A call to a function through a pointer is sometimes written with an explicit
+      dereference operator, like this.</p>
+      <pre>   result = ( *local-&gt;evaluate )( local-&gt;data, cmd );</pre>
+      <p>The parentheses are necessary to ensure that the <tt>*</tt> binds to the function
+      pointer. The result of writing the call this way is exactly equivalent to writing it
+      without the <tt>*</tt>, but it may clarify what's going on for human readers, and in rare
+      cases it can prevent the C preprocessor from making incorrect macro substitutions.</p>
+    </blockquote>
+    <p>The first argument to <tt>evaluate</tt> is the <tt>data</tt> field of the LWModCommand
+    structure. <tt>data</tt> is an opaque pointer, meaning you're not supposed to know what it
+    points to. This is data owned by Modeler, that Modeler uses to keep track of what it's
+    doing. The second argument is the <tt>MAKEBOX</tt> command string.</p>
+    <p>The <tt>MAKEBOX</tt> command is described on the Modeler <a
+    href="../commands/modeler.html">Commands</a> page. It takes two required arguments, the
+    coordinates of the low and high corners, and one optional argument, the number of segments
+    along each axis. Each of these arguments is a vector, a triple of three numbers, delimited
+    by angle brackets (<tt>&lt;</tt> and <tt>&gt;</tt>).</p>
+    <p>Since we're making a cube centered on the origin, all three numbers in each vector are
+    the same. We could simplify the command string somewhat by writing only the first value in
+    each vector. And since the values are constants, we don't need <tt>sprintf</tt> at all. We
+    could have written instead,</p>
+    <pre>   local-&gt;evaluate( local-&gt;data, &quot;MAKEBOX &lt;-.5&gt; &lt;.5&gt; &lt;1&gt;&quot; );</pre>
+    <p>When vector components are omitted, their values are taken from the last one included.</p>
+    <pre>      return AFUNC_OK;
+   }</pre>
+    <p>The activation function returns <tt>AFUNC_OK</tt> to indicate that it completed
+    successfully.</p>
+    <p>The LWModCommand <tt>evaluate</tt> function returns 0 to indicate success, or a
+    non-zero error code if something went wrong. For our simple plug-in, we're ignoring <tt>evaluate</tt>'s
+    return value, but in non-trivial code, you'll probably want to react to errors, and this
+    might involve returning something other than <tt>AFUNC_OK</tt> from your activation
+    function.</p>
+    <pre>   ServerRecord ServerDesc[] = {
+      { LWMODCOMMAND_CLASS, &quot;Tutorial_Box1&quot;, Activate },
+      { NULL }
+   };</pre>
+    <p>The ServerRecord array lists the plug-ins contained in a plug-in (.p) file. Our source
+    code defines only one plug-in. Its class is <tt>LWMODCOMMAND_CLASS</tt>, its server name
+    is &quot;Tutorial_Box1&quot; and its activation function is <tt>Activate</tt>. Although we
+    don't use it here, the ServerRecord also allows you to specify a user name that differs
+    from the server name, along with other information about the plug-in supplied as an array
+    of tags.</p>
+    <p>On each platform LightWave&reg; supports, the operating system provides a standard method of
+    loading the .p file as a shared or dynamically-linked library and of obtaining the address
+    within the library of the ServerRecord array. On Windows, for example, LightWave&reg; uses the
+    Win32 <tt>LoadLibrary</tt> and <tt>GetProcAddress</tt> functions. Once LightWave&reg; has the
+    address of the ServerRecord array, it can read the list of plug-ins in the file and find
+    the activation functions.</p>
+    <p><strong>Building the Plug-in</strong></p>
+    <p>The <a href="../compile.html">Compiling</a> page of the SDK gives detailed instructions
+    for creating a .p file from your C source code. But the instructions there can be a little
+    bewildering if your experience with setting compiler switches and building DLLs or shared
+    libraries is limited. So I thought I'd show you how I build plug-ins on my own machine
+    with the compiler I'm using, Microsoft Visual C++ version 4.0 Standard.</p>
+    <p>This obviously won't be so helpful for people using different compilers and platforms,
+    but hopefully it will at least demystify the process a little for them and demonstrate
+    that no rocket science is involved.</p>
+    <table border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="251" align="left" valign="top"><img src="boximage/new.gif" width="221"
+        height="81" hspace="15"><p>Begin by creating a new project workspace. Make sure the
+        project type is Dynamic-Link Library.</td>
+        <td width="349" align="center" valign="top"><img src="boximage/new2.gif" width="308"
+        height="192"></td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">&nbsp;<br>
+        <img src="boximage/new3.gif" width="495" height="274"></td>
+      </tr>
+    </table>
+    <table border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="225" align="center" valign="top"><img src="boximage/insert.gif" width="161"
+        height="135" vspace="16"></td>
+        <td width="15" rowspan="2"></td>
+        <td width="360" rowspan="2" align="left" valign="top"><br>
+        Insert your source files into the project. You also need to insert a small amount of code
+        from the SDK.<p>The <a href="../compile.html">Compiling</a> page tells you how to build
+        the SDK code into a library called <em>server.lib</em>, and if you've done that already,
+        you can just insert <em>server.lib</em> here. Or you can add <em>server.lib</em> to the
+        library files listed on the Link tab of the Settings dialog. The effect is the same.</p>
+        <p>But if you haven't built <em>server.lib</em>, you can instead insert the SDK files <em>startup.c</em>
+        and <em>shutdown.c</em> from the <em>source</em> directory. The advantage of this approach
+        is that you get both debug and release builds of the SDK code without having to worry
+        about keeping track of two versions of <em>server.lib</em>.</p>
+        <p>Either way, you'll also need to insert <em>servmain.c</em> and <em>serv.def</em>. The
+        sole purpose of the .def file is to tell the linker to export the symbol <tt>_mod_descrip</tt>.,
+        which is defined in servmain.c. <tt>_mod_descrip</tt> contains your ServerDesc array,
+        among other things, and exporting it makes it visible to other programs like LightWave&reg;
+        that call the Win32 <tt>GetProcAddress</tt> function.</p>
+        <p>Once you've gotten all your sources into your project, you're ready for the compile and
+        link settings that will turn it into a .p file. Open the settings dialog.</td>
+      </tr>
+      <tr>
+        <td width="225" valign="top"><img src="boximage/set.gif" width="225" height="246"></td>
+      </tr>
+    </table>
+    <p>We're only concerned here with settings on three of the tabs: the Debug, C/C++ and Link
+    tabs. The information you enter on the Debug tab allows you to debug your plug-in using
+    the windowed debugger in MSVC. You can set breakpoints in your code, step through it line
+    by line, and examine the values of variables.</p>
+    <table border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="600" align="center" valign="top"><img src="boximage/setdebug.gif" width="537"
+        height="372"> </td>
+      </tr>
+    </table>
+    <p>In the edit field labelled &quot;Executable for debug session:&quot;, you'll enter the
+    path to your installation of either Layout (Lightwav.exe) or Modeler (Modeler.exe),
+    depending on which part of LightWave&reg; your plug-in is intended to run in. Our box plug-in
+    runs in Modeler.</p>
+    <p>The &quot;Working directory:&quot; will typically be the same as the &quot;Start
+    in:&quot; directory for your LightWave&reg; installation. To find that, look on the Shortcut
+    tab of the Properties panel for the icon or the Startup Menu entry that launches LightWave&reg;
+    on your system. Also look there for the program arguments you normally use. I usually set
+    mine to run without the Hub and to write the config files in the directory where the
+    program files are.</p>
+    <p>You might also want to add the -d switch, which runs the LightWave&reg; component in a
+    &quot;debug&quot; mode. In this mode, plug-in files are always closed and detached when
+    not in use, making it possible to recompile them while LightWave&reg; remains open. LightWave&reg;
+    may also create a text file error dump when certain plug-in related problems occur.</p>
+    <table border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="600" align="center" valign="top"><img src="boximage/setcph.gif" width="304"
+        height="84"> </td>
+      </tr>
+    </table>
+    <p>Like a lot of compilers, MSVC gives you the option of precompiling the headers, and it
+    does this by default. The headers for a project tend not to change as often as the C
+    sources, so in theory this can save a small amount of time, especially when you're
+    including the Win32 headers and compiling on a slow machine. But the .pch files MSVC
+    creates can be surprisingly large, over a megabyte for the Win32 headers, and these are
+    created redundantly for each project. And they don't really save that much time. So I
+    always turn this option off.</p>
+    <p>I also turn off incremental linking, mostly for similar reasons, but also to avoid the
+    small chance that it will introduce errors by failing to rebuild code affected by changes
+    elsewhere in the project.</p>
+    <table>
+      <tr>
+        <td width="600" align="center" valign="top"><img src="boximage/setcpre.gif" width="304"
+        height="197"> </td>
+      </tr>
+    </table>
+    <p>On the C/C++ tab, under Preprocessor, add <tt>_X86_</tt> and <tt>_WIN32</tt> to the
+    preprocessor definitions. The SDK source and the <em>lwdisplay.h</em> header use these
+    symbols to select platform-specific code. In the &quot;Additional include
+    directories:&quot; field, enter the path to the SDK include directory.</p>
+    <table>
+      <tr>
+        <td width="600" align="center" valign="top"><img src="boximage/setlink.gif" width="349"
+        height="110"> </td>
+      </tr>
+    </table>
+    <p>The last settings step is renaming the output file so that it has a .p extension. This
+    isn't strictly necessary. You can rename the file later, or simply use it with its default
+    .dll extension, which LightWave&reg; has no problem with. If you do rename the file here, make
+    sure only one of the two builds is selected in the left pane before altering the filename.
+    If both are selected, the debug and release builds will have the same name and will
+    overwrite each other.</p>
+    <p>You're now ready to build. By default, the toolbar includes a dropdown list from which
+    you can select the debug or release builds of your project. During development, you'll
+    usually want to be building and testing the debug version. Once you've chosen the build,
+    select &quot;Build box1.p&quot; (Shift + F8) or &quot;Rebuild All&quot; (Alt + F8) from
+    the Build menu, or hit the little build icon on the toolbar.</p>
+    <p>To run the plug-in, hit &quot;Execute Modeler.exe&quot; in the same menu. If this is
+    the first time you've run the plug-in, you'll need to install it in LightWave&reg;. Use the Add
+    Plug-ins option (in the Modeler/Plug-ins or Layout/Plug-ins menu) and in the file dialog,
+    navigate to the .p file you created. Unless you changed the path, your .p file will be in
+    the Debug directory created by MSVC in your project directory.</p>
+    <p>To debug your plug-in, select one of the Debug submenu options, typically Go. MSVC will
+    warn you that the LightWave&reg; component contains no debugging information. That's OK, since
+    you're not debugging LightWave&reg; itself. The debug build of your plug-in does contain this
+    information. Before hitting Debug/Go, you'll typically set one or more breakpoints, so
+    that execution stops at those points and you can examine the state of the plug-in's data.
+    Put the cursor in one of your source files in the MSVC editor and press F9 to set a
+    breakpoint there.</p>
+    <p><strong>What's Next</strong></p>
+    <p>If all's gone well, you've learned how to write, compile and run a Modeler plug-in. In
+    the <a href="box2.html">next installment</a>, we'll work on calling Modeler commands in a
+    more sophisticated way, and we'll add a user interface.</td>
+  </tr>
+</table>
+</body>
+</html>

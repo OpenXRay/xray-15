@@ -1,0 +1,516 @@
+<HTML>
+ <HEAD>
+  <META name="GENERATOR" content="htm2chm 3.0.6.0">
+  <!-- Sitemap 1.0 -->
+ </HEAD>
+<BODY>
+<OBJECT type="text/site properties">
+ <PARAM name="Window Styles" value="0x800225">
+ <PARAM name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="articles">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Articles: World to Screen">
+  <PARAM name="Local" value="articles/w2s.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Tutorial: Box1">
+  <PARAM name="Local" value="articles/box1.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Tutorial: Box2">
+  <PARAM name="Local" value="articles/box2.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Tutorial: Box3">
+  <PARAM name="Local" value="articles/box3.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Tutorial: Box4">
+  <PARAM name="Local" value="articles/box4.html">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="classes">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Classes: AnimLoaderHandler">
+  <PARAM name="Local" value="classes/animload.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Classes: AnimSaverHandler">
+  <PARAM name="Local" value="classes/animsave.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Classes: ChannelHandler">
+  <PARAM name="Local" value="classes/channel.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Classes: ColorPicker">
+  <PARAM name="Local" value="classes/colorpik.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Classes: CommandSequence">
+  <PARAM name="Local" value="classes/cs.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Classes: CustomObjHandler">
+  <PARAM name="Local" value="classes/custobj.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Classes: DisplacementHandler">
+  <PARAM name="Local" value="classes/displace.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Classes: EnvironmentHandler">
+  <PARAM name="Local" value="classes/environ.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Classes: FileRequester">
+  <PARAM name="Local" value="classes/freq.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Classes: FrameBufferHandler">
+  <PARAM name="Local" value="classes/framebuf.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Classes: Global">
+  <PARAM name="Local" value="classes/globserv.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Classes: ImageFilterHandler">
+  <PARAM name="Local" value="classes/imgfilt.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Classes: ImageLoader">
+  <PARAM name="Local" value="classes/imgload.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Classes: ImageSaver">
+  <PARAM name="Local" value="classes/imgsave.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Classes: ItemMotionHandler">
+  <PARAM name="Local" value="classes/itemmot.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Classes: LayoutGeneric">
+  <PARAM name="Local" value="classes/generic.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Classes: LayoutTool">
+  <PARAM name="Local" value="classes/laytool.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Classes: MasterHandler">
+  <PARAM name="Local" value="classes/master.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Classes: MeshDataEdit">
+  <PARAM name="Local" value="classes/me.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Classes: MeshEditTool">
+  <PARAM name="Local" value="classes/metool.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Classes: ObjectLoader">
+  <PARAM name="Local" value="classes/objload.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Classes: ObjReplacementHandler">
+  <PARAM name="Local" value="classes/objrep.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Classes: PixelFilterHandler">
+  <PARAM name="Local" value="classes/pxlfilt.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Classes: ProceduralTextureHandler">
+  <PARAM name="Local" value="classes/texture.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Classes: SceneConverter">
+  <PARAM name="Local" value="classes/scenecvt.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Classes: ShaderHandler">
+  <PARAM name="Local" value="classes/shader.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Classes: VolumetricHandler">
+  <PARAM name="Local" value="classes/volume.html">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="commands">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Commands: Common">
+  <PARAM name="Local" value="commands/common.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Commands: Layout">
+  <PARAM name="Local" value="commands/layout.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Commands: Modeler">
+  <PARAM name="Local" value="commands/modeler.html">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="filefmts">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="lwo2ex">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Object File Examples">
+  <PARAM name="Local" value="filefmts/lwo2ex/lwo2ex.html">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="EA IFF 85">
+  <PARAM name="Local" value="filefmts/eaiff85.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Flexible Precision Images">
+  <PARAM name="Local" value="filefmts/fpbm.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="IFF ILBM">
+  <PARAM name="Local" value="filefmts/ilbm.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Object Files">
+  <PARAM name="Local" value="filefmts/lwo2.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Scene Files">
+  <PARAM name="Local" value="filefmts/lwsc.html">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="globals">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Animation Envelopes">
+  <PARAM name="Local" value="globals/anenvel.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Backdrop Info">
+  <PARAM name="Local" value="globals/bkdpinfo.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Bone Info">
+  <PARAM name="Local" value="globals/boneinfo.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Camera Info">
+  <PARAM name="Local" value="globals/caminfo.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Channel Info">
+  <PARAM name="Local" value="globals/chaninfo.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Color Picker">
+  <PARAM name="Local" value="globals/colorpik.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Context Menu Services">
+  <PARAM name="Local" value="globals/conmenu.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Directory Info">
+  <PARAM name="Local" value="globals/dirinfo.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Dynamic Conversion">
+  <PARAM name="Local" value="globals/dynaconv.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Dynamic Monitor">
+  <PARAM name="Local" value="globals/modmon.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Dynamic Request">
+  <PARAM name="Local" value="globals/modreq.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: File I/O">
+  <PARAM name="Local" value="globals/fileio.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: File Request">
+  <PARAM name="Local" value="globals/filereq.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: File Request 2">
+  <PARAM name="Local" value="globals/filereq2.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: File Type Pattern">
+  <PARAM name="Local" value="globals/filetype.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Fog Info">
+  <PARAM name="Local" value="globals/foginfo.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Font List">
+  <PARAM name="Local" value="globals/fontlist.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Global Memory">
+  <PARAM name="Local" value="globals/gmempool.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Host Display Info">
+  <PARAM name="Local" value="globals/display.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Image List">
+  <PARAM name="Local" value="globals/imglist.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Image Utility">
+  <PARAM name="Local" value="globals/imgutil.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Info Messages">
+  <PARAM name="Local" value="globals/message.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Instance Update">
+  <PARAM name="Local" value="globals/instupdt.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Interface Info">
+  <PARAM name="Local" value="globals/intinfo.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Item Info">
+  <PARAM name="Local" value="globals/iteminfo.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Layout Monitor">
+  <PARAM name="Local" value="globals/laymon.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Light Info">
+  <PARAM name="Local" value="globals/lightinf.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Locale Info">
+  <PARAM name="Local" value="globals/locale.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: LW Comp Info">
+  <PARAM name="Local" value="globals/compinfo.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Multithreading Utilities">
+  <PARAM name="Local" value="globals/mtutil.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Object Info">
+  <PARAM name="Local" value="globals/objinfo.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Panels">
+  <PARAM name="Local" value="globals/panel.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Particle Services">
+  <PARAM name="Local" value="globals/particle.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Preview Functions">
+  <PARAM name="Local" value="globals/preview.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Product Info">
+  <PARAM name="Local" value="globals/prodinfo.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Raster Services">
+  <PARAM name="Local" value="globals/raster.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Scene Info">
+  <PARAM name="Local" value="globals/sceneinf.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Scene Objects">
+  <PARAM name="Local" value="globals/sceneobj.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Shelf Functions">
+  <PARAM name="Local" value="globals/shelf.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: State Query">
+  <PARAM name="Local" value="globals/modstate.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Surface Editor">
+  <PARAM name="Local" value="globals/surfed.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Surface Functions">
+  <PARAM name="Local" value="globals/surface.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: System ID">
+  <PARAM name="Local" value="globals/sysid.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Texture Editor">
+  <PARAM name="Local" value="globals/txtred.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Texture Functions">
+  <PARAM name="Local" value="globals/txtrfunc.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Time Info">
+  <PARAM name="Local" value="globals/timeinfo.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Variant Parameters">
+  <PARAM name="Local" value="globals/vparam.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: Viewport Info">
+  <PARAM name="Local" value="globals/viewinfo.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals: XPanels">
+  <PARAM name="Local" value="globals/xpanel.html">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="tables">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Tables: Classes">
+  <PARAM name="Local" value="tables/classes.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Tables: Globals">
+  <PARAM name="Local" value="tables/globals.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Tables: Macros">
+  <PARAM name="Local" value="tables/macros.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Tables: Structure Members">
+  <PARAM name="Local" value="tables/strucmem.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Tables: Structures">
+  <PARAM name="Local" value="tables/structs.html">
+</OBJECT>
+</UL>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="6.0B Changes">
+  <PARAM name="Local" value="60b.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="6.5 Changes">
+  <PARAM name="Local" value="65.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="6.5B Changes">
+  <PARAM name="Local" value="65b.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="7.0 Changes">
+  <PARAM name="Local" value="70.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="7.5 Changes">
+  <PARAM name="Local" value="75.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Articles">
+  <PARAM name="Local" value="articles.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Commands">
+  <PARAM name="Local" value="commands.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Common Elements">
+  <PARAM name="Local" value="server.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Compatibility">
+  <PARAM name="Local" value="compat.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Compiling LightWave Plug-ins">
+  <PARAM name="Local" value="compile.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="DynaValues and LWValues">
+  <PARAM name="Local" value="dynaval.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="File Formats">
+  <PARAM name="Local" value="filefmts.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="File I/O">
+  <PARAM name="Local" value="fileio.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Globals">
+  <PARAM name="Local" value="globals.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Handlers">
+  <PARAM name="Local" value="handler.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Image I/O">
+  <PARAM name="Local" value="imageio.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Introduction">
+  <PARAM name="Local" value="intro.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="LW SDK">
+  <PARAM name="Local" value="index.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Mesh Info">
+  <PARAM name="Local" value="meshinfo.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Plug-in Classes">
+  <PARAM name="Local" value="classes.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Raytracing Functions">
+  <PARAM name="Local" value="raytrace.html">
+</OBJECT>
+<LI><OBJECT type="text/sitemap">
+  <PARAM name="Name" value="Tables">
+  <PARAM name="Local" value="tables.html">
+</OBJECT>
+</BODY>
+</HTML>

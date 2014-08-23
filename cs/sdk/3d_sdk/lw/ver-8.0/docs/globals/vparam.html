@@ -1,0 +1,235 @@
+<html>
+
+<head>
+<title>Globals: Variant Parameters</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="timeinfo.html"><img width="96" height="20"
+    border="0" src="../images/navlt.gif" alt="Time Info"></a></td>
+    <td width="96" align="left"><a href="xpanel.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="XPanels"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Variant Parameters</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwvparm.h">lwvparm.h</a></small></p>
+    <p>A variant parameter, or vparm, is a double-precision variable or 3-vector that can vary
+    as a function of time. Vparms are used as containers for the values of <a
+    href="xpanel.html">XPanel</a> controls that can be enveloped or textured (any control with
+    &quot;-env&quot; in its type name). That's the rationale for the existence of vparms, but
+    you're free to use them for other things as well.</p>
+    <p>The variant parameters global supplies the implementation of the vparm data type.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWVParmFuncs *vparmf;
+   vparmf = global( LWVPARMFUNCS_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWVParmFuncs.</p>
+    <pre>   typedef struct st_LWVParmFuncs {
+      LWVParmID   (*<strong>create</strong>)  (int envType, int texType);
+      void        (*<strong>destroy</strong>) (LWVParmID);
+      void        (*<strong>setup</strong>)   (LWVParmID,
+                                const char *channelName,
+                                LWChanGroupID group,
+                                LWTxtrContextID gc,
+                                LWVP_EventFunc *eventFunc,
+                                const char *pluginName,
+                                void *userData);
+      LWError     (*<strong>copy</strong>)    (LWVParmID to, LWVParmID from);
+      LWError     (*<strong>load</strong>)    (LWVParmID, const LWLoadState *load);
+      LWError     (*<strong>save</strong>)    (LWVParmID, const LWSaveState *save);
+      double      (*<strong>getVal</strong>)  (LWVParmID, LWTime t,
+                                LWMicropolID mp, double *result);
+      int         (*<strong>setVal</strong>)  (LWVParmID, double *value);
+      int         (*<strong>getState</strong>)(LWVParmID);
+      void        (*<strong>setState</strong>)(LWVParmID, int state);
+      void        (*<strong>editEnv</strong>) (LWVParmID);
+      void        (*<strong>editTex</strong>) (LWVParmID);
+      void        (*<strong>initMP</strong>)  (LWMicropolID mp);
+      void        (*<strong>getEnv</strong>)  (LWVParmID, LWEnvelopeID envlist[3]);
+      LWTextureID (*<strong>getTex</strong>)  (LWVParmID);
+   } LWVParmFuncs;</pre>
+    <dl>
+      <dt><tt>vparm = <strong>create</strong>( envtype, txtype )</tt></dt>
+      <dd>Create a new vparm. The envelope type can be one of the following. <dl>
+          <tt>
+          <dt><br>
+            LWVP_FLOAT</dt>
+          </tt>
+          <dd>A floating-point number.</dd>
+          <tt>
+          <dt>LWVP_PERCENT</dt>
+          </tt>
+          <dd>A floating-point number with a nominal range of 0.0 to 1.0. This value will be
+            represented to the user as a percentage.</dd>
+          <tt>
+          <dt>LWVP_DIST</dt>
+          </tt>
+          <dd>A floating-point distance. In meters internally, it may appear in the interface with a
+            variety of units.</dd>
+          <tt>
+          <dt>LWVP_ANGLE</dt>
+          </tt>
+          <dd>An angle. In radians internally but in degrees for users.</dd>
+          <tt>
+          <dt>LWVP_COLOR</dt>
+          </tt>
+          <dd>A floating-point color vector.</dd>
+        </dl>
+        <p>Each of these types corresponds to an XPanel control type. To create a 3-vector vparm,
+        add <tt>LWVPF_VECTOR</tt> to one of the first four types (the <tt>LWVP_COLOR</tt> type
+        code already includes the <tt>LWVPF_VECTOR</tt> bit).</p>
+        <p>The texture type corresponds to the return type you would specify in the <a
+        href="txtrfunc.html">Texture Functions</a> <tt>create</tt> function and can be one of the
+        following.</p>
+        <pre>LWVPDT_NOTXTR
+LWVPDT_VECTOR
+LWVPDT_COLOR
+LWVPDT_PERCENT
+LWVPDT_SCALAR
+LWVPDT_DISPLACEMENT</pre>
+      </dd>
+      <dt><tt><strong>destroy</strong>( vparm )</tt></dt>
+      <dd>Free a vparm.</dd>
+      <dt><tt><br>
+        <strong>setup</strong>( vparm, name, cgroup, txcontext, eventfunc, plugname, userdata )</tt></dt>
+      <dd>Initialize a vparm. This must be called for every vparm you create. The <tt>name</tt> is
+        the name of the envelope (the base name for vectors), and the <tt>cgroup</tt> is the
+        channel group in which the envelopes are created. The event callback is described <a
+        href="#eventcb">below</a>. The plug-in name (the name in your ServerRecord's <tt>name</tt>
+        field) and user data are used by LightWave&reg; to identify the owner of a vparm. The user data
+        is also passed to the event callback.</dd>
+      <dt><tt><br>
+        error = <strong>copy</strong>( vpto, vpfrom )</tt></dt>
+      <dd>Copy a vparm. This will primarily be called by <a href="../handler.html">handler</a>
+        copy callbacks.</dd>
+      <dt><tt><br>
+        error = <strong>load</strong>( vparm, loadstate )</tt></dt>
+      <dd>Read a vparm from a file. This is meant to be called by handler load callbacks, but it
+        might also be called by plug-ins using the <a href="fileio.html">file I/O</a> global to
+        read a file containing vparm data.</dd>
+      <dt><tt><br>
+        error = <strong>save</strong>( vparm, savestate )</tt></dt>
+      <dd>Write a vparm to a file. This is meant to be called by handler save callbacks, but might
+        also be used to save the vparm to a file created through the <a href="fileio.html">file
+        I/O</a> global.</dd>
+      <dt><tt><br>
+        result = <strong>getVal</strong>( vparm, time, micropol, value )</tt></dt>
+      <dd>Get the value of a vparm. The <tt>micropol</tt> is used by textures. If it is NULL, the
+        texture's contribution to the value is ignored. See the <a href="txtrfunc.html">Texture
+        Functions</a> global for a description of the LWMicropol structure. The <tt>value</tt>
+        argument should always point to storage for three doubles, whether or not the vparm is a
+        vector. If the vparm is textured, <tt>getVal</tt> returns the texture opacity.</dd>
+      <dt><tt><br>
+        result = <strong>setVal</strong>( vparm, value )</tt></dt>
+      <dd>Set the value of a vparm. If the value is enveloped, calling this has no effect. Returns
+        the number of elements processed (0, 1, or 3).</dd>
+      <dt><tt><br>
+        state = <strong>getState</strong>( vparm )</tt></dt>
+      <dd>Returns a set of state bits. If the <tt>LWVPSF_ENV</tt> bit is set, an envelope exists
+        for the vparm, and if the <tt>LWVPSF_TEX</tt> bit is set, the vparm has a texture.</dd>
+      <dt><tt><br>
+        <strong>setState</strong>( vparm, state )</tt></dt>
+      <dd>Create or destroy the vparm's underlying envelope or texture. The <tt>state</tt>
+        argument uses the same state bits as <tt>getState</tt>. If the bit is clear (0), the
+        envelope or texture is destroyed, and if the bit is set (1), an envelope or texture is
+        created for the vparm using the information previously specified in <tt>setup</tt>. Never
+        call this for a vparm associated with an XPanel control. The XPanel system takes care of
+        creating and destroying vparm envelopes and textures automatically.</dd>
+      <dt><tt><br>
+        <strong>editEnv</strong>( vparm )</tt></dt>
+      <dd>Open the graph editor for the vparm. This does nothing if the vparm isn't enveloped. You
+        won't need to call this for a vparm associated with an XPanel control, since the control
+        will give the user a way to call the graph editor without your help.</dd>
+      <dt><tt><br>
+        <strong>editTex</strong>( vparm )</tt></dt>
+      <dd>Open the texture editor for the vparm. This has no effect if no texture has been created
+        for the vparm. You won't need to call this for vparms used with XPanel controls.</dd>
+      <dt><tt><br>
+        <strong>initMP</strong>( micropol )</tt></dt>
+      <dd>Initialize a micropolygon. The transformation matrices are set to the identity matrix.
+        Most other fields are set to 0.</dd>
+      <dt><tt><br>
+        <strong>getEnv</strong>( vparm, envarray )</tt></dt>
+      <dd>Gets the envelope IDs of the vparm's envelopes. The first element of the array will
+        contain the single ID for non-vector vparms. If no envelopes exist for the vparm, the
+        array elements will be NULL.</dd>
+      <dt><tt><br>
+        texture = <strong>getTex</strong>( vparm )</tt></dt>
+      <dd>Returns the texture ID for the vparm's texture.</dd>
+    </dl>
+    <p><strong><a name="eventcb">Event Callback</a></strong></p>
+    <p>The event callback you pass to <tt>setup</tt> is used to inform you of changes to the
+    underlying envelopes and texture of your vparm, and in one case to ask you for data needed
+    by the texture.</p>
+    <pre>   typedef int LWVP_EventFunc( LWVParmID vp, void *userdata,
+      en_lwvpec eventcode, void *eventdata );</pre>
+    <p>The <tt>userdata</tt> is whatever you passed as the last argument to <tt>setup</tt>.
+    The <tt>eventcode</tt> will be one of the following.</p>
+    <blockquote>
+      <dl>
+        <tt>
+        <dt>LWVPEC_TXTRACK</dt>
+        </tt>
+        <dd>Generated as the texture changes.</dd>
+        <tt>
+        <dt>LWVPEC_TXUPDATE</dt>
+        </tt>
+        <dd>Generated after the texture has changed.</dd>
+        <tt>
+        <dt>LWVPEC_TXAUTOSIZE</dt>
+        </tt>
+        <dd>Request for texture autosize. For this event, <tt>eventdata</tt> is an array of six
+          doubles (<em>x</em> low, <em>x</em> high, <em>y</em> low, <em>y</em> high, <em>z</em> low,
+          <em>z</em> high) that you're being asked to initialize for the default size of the
+          texture.</dd>
+        <tt>
+        <dt>LWVPEC_ENVTRACK</dt>
+        </tt>
+        <dd>Generated as the envelope changes.</dd>
+        <tt>
+        <dt>LWVPEC_ENVUPDATE</dt>
+        </tt>
+        <dd>Generated after the envelope has changed.</dd>
+        <tt>
+        <dt>LWVPEC_ENVNEW</dt>
+        </tt>
+        <dd>An envelope has been created.</dd>
+        <tt>
+        <dt>LWVPEC_ENVOLD</dt>
+        </tt>
+        <dd>An envelope is being destroyed.</dd>
+        <tt>
+        <dt>LWVPEC_TEXNEW</dt>
+        </tt>
+        <dd>A texture has been created.</dd>
+        <tt>
+        <dt>LWVPEC_TEXOLD</dt>
+        </tt>
+        <dd>The texture is being destroyed.</dd>
+      </dl>
+    </blockquote>
+    <p>Currently, for all events other than <tt>TXAUTOSIZE</tt>, the <tt>eventdata</tt> will
+    be NULL and can be ignored.</p>
+    <p><strong>Example</strong></p>
+    <p>Several of the SDK samples (<a href="../../sample/Layout/Shader/blotch">blotch</a>, <a
+    href="../../sample/Layout/DisplacementMap/inertia/">inertia</a>, <a href="../../sample/Layout/PixelFilter/mandfilt/">mandfilt</a>
+    and <a href="../../sample/Layout/Shader/rapts/">rapts</a>) use vparms as part of their XPanel
+    interfaces. It's not a coincidence that all of these are handlers, since handlers are more
+    likely to need time-dependent parameters.</td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,126 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "yuvrc.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include <windows.h>
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "yuvrc.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include <windows.h>\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_YUV_ABOUT DIALOG DISCARDABLE  0, 0, 166, 54
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "About YUV Image File I/O"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,109,36,50,14
+    RTEXT           "YUV 4:2:2 Image File I/O Module",IDC_STATIC,36,8,118,11
+    RTEXT           "Version 1.0",IDC_STATIC,36,19,118,11
+    GROUPBOX        "",IDC_STATIC,7,0,152,32
+END
+
+IDD_YUV_CONTROL DIALOG DISCARDABLE  0, 0, 185, 100
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "YUV Image File Format"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,103,73,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,30,73,50,14
+    GROUPBOX        " Image Generation ",IDC_STATIC,3,4,87,62
+    CONTROL         "NTSC (486 lines)",IDC_RAD_NTSC,"Button",
+                    BS_AUTORADIOBUTTON,9,17,72,12
+    CONTROL         "PAL (576 lines)",IDC_RAD_PAL,"Button",
+                    BS_AUTORADIOBUTTON,9,33,72,12
+    GROUPBOX        " Custom Size ",IDC_STATIC,95,4,87,62
+    RTEXT           "X:",IDC_STATIC,102,26,12,12
+    RTEXT           "Y:",IDC_STATIC,102,42,12,12
+    EDITTEXT        IDC_EDIT_X,127,25,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_Y,127,41,40,12,ES_AUTOHSCROLL
+    CONTROL         "Custom",IDC_RAD_CUSTOM,"Button",BS_AUTORADIOBUTTON,9,49,
+                    58,10
+END
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_YUV                 "YUV"
+    IDS_YUV_FILE            "YUV Image File"
+    IDS_BITMAP_IO           "Bitmap I/O"
+    IDS_LIBDESCRIPTION      "YUV file I/O (Discreet)"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

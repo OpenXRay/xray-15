@@ -1,0 +1,310 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINMENU MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Reset",                      ID_FILE_RESET
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_FILE_EXIT
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About...",                   ID_HELP_ABOUT
+    END
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""buildver.h""\r\n"
+    "#if defined(GAME_VER)\r\n"
+    "  #include ""maxfind_gmax.rc""\r\n"
+    "#elif defined(DESIGN_VER)\r\n"
+    "  #include ""vizfind.rc""\r\n"
+    "#endif\r\n"
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_MAINWND             ICON    DISCARDABLE     "icon2.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 274, 196
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About MaxFinder"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Close",IDCANCEL,217,175,50,14
+    LTEXT           "3ds max File Finder.",IDC_STATIC,7,178,203,8
+    CONTROL         "",IDC_IMAGE,"Static",SS_GRAYFRAME,9,9,255,156
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,7,7,260,161
+END
+
+IDD_ABOUTBOX_TINY DIALOG DISCARDABLE  0, 0, 228, 28
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About MaxFinder"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Close",IDCANCEL,171,7,50,14
+    LTEXT           "3ds max File Finder. By Christer Janson",IDC_STATIC,7,9,
+                    160,8
+END
+
+IDD_SHOW_PROPERTIES DIALOG DISCARDABLE  0, 0, 378, 253
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "MAX File Properties"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Close",IDCANCEL,321,232,50,14
+    EDITTEXT        IDC_TITLE,53,7,168,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Title:",IDC_STATIC,7,8,41,8
+    EDITTEXT        IDC_SUBJECT,53,20,168,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Subject:",IDC_STATIC,7,22,41,8
+    EDITTEXT        IDC_AUTHOR,53,33,168,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Author:",IDC_STATIC,7,34,41,8
+    EDITTEXT        IDC_MANAGER,53,46,168,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Manager:",IDC_STATIC,7,47,41,8
+    EDITTEXT        IDC_COMPANY,53,59,168,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Company:",IDC_STATIC,7,61,41,8
+    EDITTEXT        IDC_CATEGORY,53,72,168,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Category:",IDC_STATIC,7,73,41,8
+    EDITTEXT        IDC_KEYWORDS,53,85,168,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Keywords:",IDC_STATIC,7,86,41,8
+    EDITTEXT        IDC_COMMENTS,53,98,168,50,ES_MULTILINE | ES_AUTOHSCROLL | 
+                    ES_READONLY
+    LTEXT           "Comments:",IDC_STATIC,7,100,41,8
+    LTEXT           "Contents:",IDC_STATIC,224,7,41,8
+    CONTROL         "List1",IDC_CUSTOM,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_NOSORTHEADER | WS_BORDER | 
+                    WS_TABSTOP,53,151,168,77
+    LTEXT           "Custom:",IDC_STATIC,7,150,41,8
+    LISTBOX         IDC_CONTENTS,224,17,147,211,LBS_USETABSTOPS | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "<<",IDC_PREV,224,232,20,14
+    PUSHBUTTON      ">>",IDC_NEXT,247,232,20,14
+END
+
+IDD_PANEL DIALOGEX 0, 0, 362, 65
+STYLE DS_3DLOOK | DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+EXSTYLE WS_EX_CONTROLPARENT
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_SEARCHEDIT,7,10,107,12,ES_AUTOHSCROLL
+    COMBOBOX        IDC_FILESPEC,119,10,90,81,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_PROPERTY,218,10,105,81,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "Start",IDC_START,7,27,50,14
+    PUSHBUTTON      "Browse...",IDC_BROWSE,68,27,50,14
+    CONTROL         "Include Subfolders",IDC_SUBDIRS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,131,30,75,10
+    LTEXT           "Static",IDC_STATUSPANEL,7,47,348,11,SS_SUNKEN
+    LTEXT           "Search Text:",IDC_TXTSEARCH,7,2,80,8
+    LTEXT           "File Spec:",IDC_TXTFILESPEC,119,1,68,8
+    LTEXT           "Property:",IDC_TXTPROPERTY,218,1,44,8
+    CONTROL         "",IDC_BORDER,"Static",SS_ETCHEDFRAME,0,0,361,65
+END
+
+IDD_VIZ_ABOUTBOX DIALOG DISCARDABLE  0, 0, 274, 196
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About VIZFinder"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Close",IDCANCEL,217,175,50,14
+    LTEXT           "Autodesk® VIZ File Finder.",IDC_STATIC,7,178,203,8
+    CONTROL         "",IDC_IMAGE,"Static",SS_GRAYFRAME,9,9,255,156
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,7,7,260,161
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 267
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 189
+    END
+
+    IDD_ABOUTBOX_TINY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 221
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 21
+    END
+
+    IDD_SHOW_PROPERTIES, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 371
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 246
+    END
+
+    IDD_PANEL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 355
+        BOTTOMMARGIN, 58
+    END
+
+    IDD_VIZ_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 267
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 189
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_EXIT            "Exit Application"
+    ID_FILE_RESET           "Clear All"
+    IDS_PROP_ALL            "All"
+    IDS_PROP_TITLE          "Title"
+    IDS_PROP_SUBJECT        "Subject"
+    IDS_PROP_AUTHOR         "Author"
+    IDS_PROP_MANAGER        "Manager"
+    IDS_PROP_COMPANY        "Company"
+    IDS_PROP_CATEGORY       "Category"
+    IDS_PROP_KEYWORDS       "Keywords"
+    IDS_PROP_COMMENTS       "Comments"
+    IDS_PROP_EXTDEP         "External Dependencies"
+    IDS_PROP_PLUGINS        "Plug-Ins"
+    IDS_PROP_OBJECTS        "Objects"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PROP_MATERIALS      "Materials"
+    IDS_PROP_CUSTOM         "Custom Properties"
+    IDS_SEARCHTEXT          "Search Text:"
+    IDS_FILESPEC            "File Spec:"
+    IDS_PROPERTY            "Property:"
+    IDS_START               "Start"
+    IDS_BROWSE              "Browse..."
+    IDS_SUBFOLDERS          "Include Subfolders"
+    IDS_SELFOLDERTITLE      "Select the folder where you want to begin the search."
+    IDS_CURDIR              "Current Directory: "
+    IDS_BTNCANCEL           "Cancel"
+    IDS_BTNSTART            "Start"
+    IDS_SEARCHDIR           "Searching Directory: "
+    IDS_CUST_NAME           "Name"
+    IDS_CUST_VALUE          "Value"
+    IDS_CUST_TYPE           "Type"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TYPE_TEXT           "Text"
+    IDS_TYPE_DATE           "Date"
+    IDS_TYPE_NUMBER         "Number"
+    IDS_TYPE_BOOL           "Yes or No"
+    IDS_VAL_YES             "Yes"
+    IDS_VAL_NO              "No"
+    IDS_APPTITLE            "MAXFinder Version 1.0"
+    IDS_NOWIN_ERROR         "Could not create window."
+    IDS_FATAL_ERROR         "Fatal Error."
+    IDS_APP_FONT            "MS Sans Serif"
+    IDS_VIZ_APPTITLE        "VIZFinder Version 1.0"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#include "buildver.h"
+#if defined(GAME_VER)
+  #include "maxfind_gmax.rc"
+#elif defined(DESIGN_VER)
+  #include "vizfind.rc"
+#endif
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

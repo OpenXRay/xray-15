@@ -1,0 +1,62 @@
+LibVRML97 library version 0.8.0 Feb XX 1999
+Copyright (C) 1998,1999 Chris Morley (cmorley@vermontel.com)
+Portions Copyright SGI and others
+
+Available from http://www.vermontel.com/~cmorley/vrml.html
+
+
+LEGAL ISSUES
+============
+
+In plain English:
+
+1. I don't promise that this software works.  (But if you find any bugs,
+   please let me know!)
+2. You can use this software for whatever you want.
+3. You may not pretend that you wrote this software.  If you use it in a
+   program, you must acknowledge somewhere in your documentation that
+   you've used the LibVRML97 code.
+
+In legalese:
+
+The authors make NO WARRANTY or representation, either express or implied,
+with respect to this software, its quality, accuracy, merchantability, or
+fitness for a particular purpose.  This software is provided "AS IS", and you,
+its user, assume the entire risk as to its quality and accuracy.
+
+This software is copyright (C) 1998,1999 Chris Morley.
+All Rights Reserved except as specified below.
+
+Permission is hereby granted to use, copy, modify, and distribute this
+software (or portions thereof) for any purpose, without fee, subject to these
+conditions:
+(1) If any part of the source code for this software is distributed, then this
+file must be included, with this copyright and no-warranty notice
+unaltered; and any additions, deletions, or changes to the original files
+must be clearly indicated in accompanying documentation.
+(2) If only executable code is distributed, then the accompanying
+documentation must state that "this software is based in part on the 
+LibVRML97 library".
+(3) Permission for use of this software is granted only if the user accepts
+full responsibility for any undesirable consequences; the authors accept
+NO LIABILITY for damages of any kind.
+
+These conditions apply to any software derived from or based on the 
+LibVRML97 code, not just to the unmodified library.  If you use our work, 
+you ought to acknowledge us.
+
+We specifically permit and encourage the use of this software as the basis of
+commercial products, provided that all warranty or liability claims are
+assumed by the product vendor.
+
+
+Please read the README-SGI.txt file for further copyright and use information.
+
+  "Portions of this software are based in part on the VRML Parser
+   written by Silicon Graphics, Inc., Mountain View, California, USA."
+
+    "The Graphics Interchange Format(c) is the Copyright property of
+    CompuServe Incorporated.  GIF(sm) is a Service Mark property of
+    CompuServe Incorporated."
+
+

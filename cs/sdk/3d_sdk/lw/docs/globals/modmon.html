@@ -1,0 +1,108 @@
+<html>
+
+<head>
+<title>Globals: Dynamic Monitor</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="dynaconv.html"><img width="96" height="20"
+    border="0" src="../images/navlt.gif" alt="Dynamic Conversion"></a></td>
+    <td width="96" align="left"><a href="modreq.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Dynamic Request"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Dynamic Monitor</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwdyna.h">lwdyna.h</a></small></p>
+    <p>The Modeler monitor global returns functions for initializing and displaying a progress
+    dialog in Modeler. See also the monitor global for <a href="laymon.html">Layout</a>.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   DynaMonitorFuncs *monf;
+   monf = global( LWDYNAMONITORFUNCS_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to a DynaMonitorFuncs.</p>
+    <pre>   typedef struct st_DynaMonitorFuncs {
+      LWMonitor * (*<strong>create</strong>)  (const char *, const char *);
+      void        (*<strong>destroy</strong>) (LWMonitor *);
+   } DynaMonitorFuncs;</pre>
+    <dl>
+      <dt><tt>mon = <strong>create</strong>( title, caption )</tt></dt>
+      <dd>Create a monitor. This function returns an LWMonitor structure (described below)
+        containing the actual progress display functions. The title text is ordinarily displayed
+        at the top of the monitor dialog, and the caption text is displayed at the bottom. If <tt>create</tt>
+        returns NULL, your plug-in should continue to run without reporting an error. Monitors are
+        nice to have, but aren't essential.</dd>
+      <dt><tt><br>
+        <strong>destroy</strong>( mon )</tt></dt>
+      <dd>Free a monitor obtained from <tt>create</tt>.</dd>
+    </dl>
+    <p><strong>LWMonitor</strong></p>
+    <p>The monitor structure returned by <tt>create</tt> is defined in the <tt>lwmonitor.h</tt>
+    header file.</p>
+    <pre>   typedef struct st_LWMonitor {
+      void      *<strong>data</strong>;
+      void     (*<strong>init</strong>) (void *, unsigned int);
+      int      (*<strong>step</strong>) (void *, unsigned int);
+      void     (*<strong>done</strong>) (void *);
+   } LWMonitor;</pre>
+    <dl>
+      <dt><strong><tt>data</tt></strong></dt>
+      <dd>An opaque pointer to private data. Pass this as the first argument to all of the monitor
+        functions.</dd>
+      <dt><tt><br>
+        <strong>init</strong>( data, total )</tt></dt>
+      <dd>Initialize the monitor. The <tt>total</tt> argument is the number of steps in the task
+        to be monitored. It's up to you to decide what constitutes a step.</dd>
+      <dt><tt><br>
+        cancelled = <strong>step</strong>( data, increment )</tt></dt>
+      <dd>Advance the progress display by the fraction <tt>total/increment</tt>. When the sum of
+        the steps reaches <tt>total</tt>, the progress display will indicate to the user that the
+        task has finished. If <tt>step</tt> returns 1, the user has requested that the task be
+        aborted.</dd>
+      <dt><tt><br>
+        <strong>done</strong>( data )</tt></dt>
+      <dd>Remove the progress display. This should always be called, even if the task doesn't
+        finish.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>This code fragment demonstrates the use of a monitor. Macros in <tt>lwmonitor.h</tt>
+    allow you to call the LWMonitor functions without worrying about whether the <tt>create</tt>
+    call succeeded.</p>
+    <pre>   #include &lt;lwserver.h&gt;
+   #include &lt;lwdyna.h&gt;
+
+   DynaMonitorFuncs *monf;
+   LWMonitor *mon = NULL;
+
+   monf = global( LWDYNAMONITORFUNCS_GLOBAL, GFUSE_TRANSIENT );
+
+   if ( monf )
+      mon = monf-&gt;create( &quot;Hello&quot;, &quot;Just fooling around&quot; );
+
+   MON_INIT( mon, 100 );
+   for ( i = 0; i &lt; 100; i += 2 ) {
+      ...do something that takes a long time...
+      if ( MON_INCR( mon, 2 )) break;
+   }
+   MON_DONE( mon );
+
+   ...
+   if ( monf &amp;&amp; mon )
+      monf-&gt;destroy( mon );</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

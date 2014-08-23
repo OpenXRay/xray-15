@@ -1,0 +1,251 @@
+<html>
+
+<head>
+<title>Globals: Particle Services</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="panel.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="Panels"></a></td>
+    <td width="96" align="left"><a href="preview.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Preview Functions"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Particle Services</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&nbsp;6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwprtcl.h">lwprtcl.h</a></small></p>
+    <p>The particles global returns functions that allow you to create particle systems and to
+    read and write particle data. Particles are typically used by volumetric renderers to
+    define the extent and local density of a volume. LightWave's Hypervoxels, for example,
+    uses them this way.</p>
+    <p>The host side of the particles global manages a database of particle systems. The
+    global supplies methods for adding, deleting and reading particle data in the database.
+    Having such a database allows one plug-in to create particle systems that others can later
+    use.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWPSysFuncs *psysf;
+   psysf = global( LWPSYSFUNCS_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWPSysFuncs.</p>
+    <pre>   typedef struct st_LWPSysFuncs {
+      LWPSysID   (*<strong>create</strong>)      (int flags, int type);
+      int        (*<strong>destroy</strong>)     (LWPSysID);
+      int        (*<strong>init</strong>)        (LWPSysID, int np);
+      void       (*<strong>cleanup</strong>)     (LWPSysID);
+      void       (*<strong>load</strong>)        (LWPSysID, LWLoadState *);
+      void       (*<strong>save</strong>)        (LWPSysID, LWSaveState *);
+      int        (*<strong>getPCount</strong>)   (LWPSysID);
+      void       (*<strong>attach</strong>)      (LWPSysID, LWItemID);
+      void       (*<strong>detach</strong>)      (LWPSysID, LWItemID);
+      LWPSysID * (*<strong>getPSys</strong>)     (LWItemID);
+      LWPSBufID  (*<strong>addBuf</strong>)      (LWPSysID, LWPSBufDesc);
+      LWPSBufID  (*<strong>getBufID</strong>)    (LWPSysID, int bufFlag);
+      void       (*<strong>setBufData</strong>)  (LWPSBufID, void *data);
+      void       (*<strong>getBufData</strong>)  (LWPSBufID, void *data);
+      int        (*<strong>addParticle</strong>) (LWPSysID);
+      void       (*<strong>setParticle</strong>) (LWPSBufID, int index, void *data);
+      void       (*<strong>getParticle</strong>) (LWPSBufID, int index, void *data);
+      void       (*<strong>remParticle</strong>) (LWPSysID, int index);
+   } LWPSysFuncs;</pre>
+    <p>You can allocate, initialize and read particle data either individually (one particle
+    at a time) or all at once. Which approach you take will depend primarily on where the data
+    comes from and how you use it.<dl>
+      <dt><tt>psys = <strong>create</strong>( flags, type )</tt></dt>
+      <dd>Create a particle system. The flags indicate which buffers should be allocated for the
+        particles and can be any of the following, combined using bitwise-or. <table border="0"
+        cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="120"><br>
+            <tt>LWPSB_POS</tt></td>
+            <td width="240"><br>
+            position</td>
+            <td width="120"><br>
+            <tt>float[3]</tt></td>
+          </tr>
+          <tr>
+            <td width="120"><tt>LWPSB_SIZ</tt></td>
+            <td width="240">size</td>
+            <td width="120"><tt>float</tt></td>
+          </tr>
+          <tr>
+            <td width="120"><tt>LWPSB_SCL</tt></td>
+            <td width="240">scale</td>
+            <td width="120"><tt>float[3]</tt></td>
+          </tr>
+          <tr>
+            <td width="120"><tt>LWPSB_ROT</tt></td>
+            <td width="240">rotation</td>
+            <td width="120"><tt>float[3]</tt></td>
+          </tr>
+          <tr>
+            <td width="120"><tt>LWPSB_VEL</tt></td>
+            <td width="240">velocity</td>
+            <td width="120"><tt>float[3]</tt></td>
+          </tr>
+          <tr>
+            <td width="120"><tt>LWPSB_AGE</tt></td>
+            <td width="240">age</td>
+            <td width="120"><tt>float</tt></td>
+          </tr>
+          <tr>
+            <td width="120"><tt>LWPSB_FCE</tt></td>
+            <td width="240">force</td>
+            <td width="120"><tt>float</tt></td>
+          </tr>
+          <tr>
+            <td width="120"><tt>LWPSB_PRS</tt></td>
+            <td width="240">pressure</td>
+            <td width="120"><tt>float</tt></td>
+          </tr>
+          <tr>
+            <td width="120"><tt>LWPSB_TMP</tt></td>
+            <td width="240">temperature</td>
+            <td width="120"><tt>float</tt></td>
+          </tr>
+          <tr>
+            <td width="120"><tt>LWPSB_MAS</tt></td>
+            <td width="240">mass</td>
+            <td width="120"><tt>float</tt></td>
+          </tr>
+          <tr>
+            <td width="120"><tt>LWPSB_LNK</tt></td>
+            <td width="240">link to particle (for trails)</td>
+            <td width="120"><tt>int</tt></td>
+          </tr>
+          <tr>
+            <td width="120"><tt>LWPSB_ID</tt></td>
+            <td width="240">ID (unique index for the particle)</td>
+            <td width="120"><tt>int</tt></td>
+          </tr>
+          <tr>
+            <td width="120"><tt>LWPSB_ENB</tt></td>
+            <td width="240">enable state (dead/alive/limbo)</td>
+            <td width="120"><tt>char</tt></td>
+          </tr>
+          <tr>
+            <td width="120"><tt>LWPSB_RGBA</tt></td>
+            <td width="240">display color and alpha</td>
+            <td width="120"><tt>char[4]</tt></td>
+          </tr>
+          <tr>
+            <td width="120"><tt>LWPSB_CAGE</tt></td>
+            <td width="240">time since last collision</td>
+            <td width="120"><tt>float</tt></td>
+          </tr>
+        </table>
+        <p>The particle type can be either <tt>LWPST_PRTCL</tt> (single points) or <tt>LWPST_TRAIL</tt>
+        (line segments). <tt>LWPST_TRAIL</tt> particle systems should include an <tt>LWPSB_LNK</tt>
+        buffer for the second point in each trail. </p>
+      </dd>
+      <dt><tt>result = <strong>destroy</strong>( psys )</tt></dt>
+      <dd>Free the particle system.</dd>
+      <dt><tt><br>
+        error = <strong>init</strong>( psys, nparticles )</tt></dt>
+      <dd>Allocate memory for the particles. This is equivalent to calling the <tt>addParticle</tt>
+        function <tt>nparticles</tt> times.</dd>
+      <dt><tt><br>
+        <strong>cleanup</strong>( psys )</tt></dt>
+      <dd>Frees the memory allocated by <tt>init</tt> and <tt>addParticle</tt>.</dd>
+      <dt><tt><br>
+        <strong>load</strong>( psys, loadstate )</tt></dt>
+      <dd>Read the particle system data from a file. This will typically be used by <a
+        href="../handler.html">handler</a> load callbacks.</dd>
+      <dt><tt><br>
+        <strong>save</strong>( psys, savestate )</tt></dt>
+      <dd>Write the particle system data to a file. This will typically be used by <a
+        href="../handler.html">handler</a> save callbacks.</dd>
+      <dt><tt><br>
+        count = <strong>getPCount</strong>( psys )</tt></dt>
+      <dd>Returns the number of particles.</dd>
+      <dt><tt><br>
+        <strong>attach</strong>( psys, item )</tt></dt>
+      <dd>Associate a particle system with an item in the scene, usually an object. More than one
+        particle system can be attached to an item, and more than one item can share the same
+        particle system. Attaching a particle system to an item makes it possible for others,
+        Hypervoxels in particular, to use the <tt>getPSys</tt> function to find it. </dd>
+      <dt><tt><br>
+        <strong>detach</strong>( psys, item )</tt></dt>
+      <dd>Remove the association between a particle system and an item.</dd>
+      <dt><tt><br>
+        psys_array = <strong>getPSys</strong>( item )</tt></dt>
+      <dd>Returns a NULL-terminated array of particle system IDs that have been associated with
+        the item by the <tt>attach</tt> function.</dd>
+      <dt><tt><br>
+        psbuf = <strong>addBuf</strong>( psys, bufdesc )</tt></dt>
+      <dd>Add a custom per-particle buffer. Call this before any calls to <tt>init</tt> or <tt>addParticle</tt>.
+        (The predefined buffer types should be added when <tt>create</tt> is called.) The
+        structure used to define the buffer is described below. The buffer ID returned by this
+        function can be used with the functions that get and set buffer data.</dd>
+      <dt><tt><br>
+        psbuf = <strong>getBufID</strong>( psys, bufbit )</tt></dt>
+      <dd>Returns a buffer ID for one of the predefined buffers. This is used with the functions
+        that get and set buffer data. The second argument is one of the buffer flags passed to <tt>create</tt>.</dd>
+      <dt><tt><br>
+        <strong>setBufData</strong>( psbuf, data )</tt></dt>
+      <dd>Set the buffer values for all particles. The data is an array of the appropriate type
+        for the buffer, with a number of entries equal to the number of particles. Use <tt>setParticle</tt>
+        to set the buffer data for one particle at a time.</dd>
+      <dt><tt><br>
+        <strong>getBufData</strong>( psbuf, data )</tt></dt>
+      <dd>Get the buffer values for all particles. Use <tt>getParticle</tt> to get the buffer data
+        for one particle at a time.</dd>
+      <dt><tt><br>
+        index = <strong>addParticle</strong>( psys )</tt></dt>
+      <dd>Add a particle.</dd>
+      <dt><tt><br>
+        <strong>setParticle</strong>( psbuf, index, data )</tt></dt>
+      <dd>Set the buffer value for a particle. Particles are numbered from 0 to <tt>getPCount</tt>
+        - 1 in the order in which they're added.</dd>
+      <dt><tt><br>
+        <strong>getParticle</strong>( psbuf, index, data )</tt></dt>
+      <dd>Get the buffer value for a particle.</dd>
+      <dt>&nbsp;</dt>
+      <dt><tt><strong>remParticle</strong>( psys, index )</tt></dt>
+      <dd>Remove a particle.</dd>
+    </dl>
+    <p><strong>Particle Buffers</strong></p>
+    <p>The <tt>addBuf</tt> function uses a buffer descriptor to define the buffer to be added.</p>
+    <pre>   typedef struct st_LWPSBufDesc { 
+      const char *<strong>name</strong>;
+      int         <strong>dataType</strong>;
+      int         <strong>dataSize</strong>;
+   } LWPSBufDesc;</pre>
+    <dl>
+      <tt>
+      <dt><strong>name</strong></dt>
+      </tt>
+      <dd>A string that names the buffer. In the future, this may allow users or plug-ins to refer
+        to the buffer by name.</dd>
+      <tt>
+      <dt><br>
+        <strong>dataType</strong></dt>
+      </tt>
+      <dd>The data type of the data in the buffer. <pre>LWPSBT_FLOAT
+LWPSBT_INT
+LWPSBT_CHAR</pre>
+        <tt></dd>
+      <dt><strong>dataSize</strong></dt>
+      </tt>
+      <dd>The number of values per particle in the buffer (and not the number of bytes).</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>The <a href="../../sample/particle/">particle</a> sample is a <a
+    href="../classes/displace.html">displacement handler</a> that demonstrates the use of the
+    particle system global. Its operation is similar to that of the HVParticle displacement
+    handler Hypervoxels adds to objects that lack particle systems.</td>
+  </tr>
+</table>
+</body>
+</html>

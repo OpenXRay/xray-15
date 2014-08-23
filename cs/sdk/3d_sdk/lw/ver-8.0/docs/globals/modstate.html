@@ -1,0 +1,121 @@
+<html>
+
+<head>
+<title>Globals: State Query</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="sceneobj.html"><img width="96" height="20"
+    border="0" src="../images/navlt.gif" alt="Scene Objects"></a></td>
+    <td width="96" align="left"><a href="surfed.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Surface Editor"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>State Query</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwmodeler.h">lwmodeler.h</a></small></p>
+    <p>This global provides a set of functions that return information about the current
+    modeling environment.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWStateQueryFuncs *query;
+   query = global( LWSTATEQUERYFUNCS_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWStateQueryFuncs.</p>
+    <pre>   typedef struct st_LWStateQueryFuncs {
+      int          (*<strong>numLayers</strong>) (void);
+      unsigned int (*<strong>layerMask</strong>) (EltOpLayer);
+      const char * (*<strong>surface</strong>)   (void);
+      unsigned int (*<strong>bbox</strong>)      (EltOpLayer, double *minmax);
+      const char * (*<strong>layerList</strong>) (EltOpLayer, const char *);
+      const char * (*<strong>object</strong>)    (void);
+      int          (*<strong>mode</strong>)      (int);
+      const char * (*<strong>vmap</strong>)      (int, LWID *);
+   } LWStateQueryFuncs;</pre>
+    <dl>
+      <dt><tt>nlayers = <strong>numLayers</strong>()</tt></dt>
+      <dd>Returns the number of data layers for the current object.</dd>
+      <dt><tt><br>
+        mask = <strong>layerMask</strong>( oplayer )</tt></dt>
+      <dd>Returns bits for the data layers included in the <a href="../classes/me.html#eltoplayer">EltOpLayer</a>
+        selection. If bit <em>i</em> of the mask is set, then layer <em>i</em> + 1 of the current
+        object belongs to the set defined by the <tt>oplayer</tt> argument. This function is
+        provided primarily for backward compatibility. New code should use the <tt>layerList</tt>
+        function, which is designed for multiple objects and an unlimited number of layers. </dd>
+      <dt><tt><br>
+        surfname = <strong>surface</strong>()</tt></dt>
+      <dd>Returns the name of the current default surface.</dd>
+      <dt><tt><br>
+        npoints = <strong>bbox</strong>( oplayer, box )</tt></dt>
+      <dd>Returns the number of points in the layer selection. If <tt>box</tt> isn't NULL, it is
+        an array of six doubles that will receive the bounding box of the points in the layer
+        selection, in the order (x0, x1, y0, y1, z0, z1).</dd>
+      <dt><tt><br>
+        layers = <strong>layerList</strong>( oplayer, objname )</tt></dt>
+      <dd>Returns a string containing layer numbers for the given <a
+        href="../classes/me.html#eltoplayer">EltOpLayer</a> and object. The layer numbers in the
+        string are separated by spaces, with the highest numbered layer listed first. The object
+        name is its filename, or NULL for the current object.</dd>
+      <dt><tt><br>
+        objname = <strong>object</strong>()</tt></dt>
+      <dd>Returns the filename of the current object. If the geometry in the current layers hasn't
+        been saved to a file yet, this returns the reference name (the name that would be returned
+        by the <a href="sceneobj.html">Object Functions</a> <tt>refName</tt> function). If no
+        object has been loaded into Modeler, this returns NULL.</dd>
+      <dt><tt><br>
+        m = <strong>mode</strong>( setting )</tt></dt>
+      <dd>Returns the state of a user interface setting. The setting codes are<dl>
+          <tt>
+          <dt><br>
+            LWM_MODE_SELECTION</dt>
+          </tt>
+          <dd>Returns the selection mode (points, polygons, volume) as an integer.</dd>
+          <tt>
+          <dt>LWM_MODE_SYMMETRY</dt>
+          </tt>
+          <dd>Returns the state of the symmetry toggle.</dd>
+        </dl>
+      </dd>
+      <dt><tt><br>
+        vmapname = <strong>vmap</strong>( index, lwid )</tt></dt>
+      <dd>Returns the name of the currently selected vertex map, and stores the <tt>LWID</tt> of
+        the vmap in the second argument. The index can be one of the following. <pre>LWM_VMAP_WEIGHT
+LWM_VMAP_TEXTURE
+LWM_VMAP_MORPH</pre>
+      </dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>This code fragment exercises the query functions.</p>
+    <pre>   #include &lt;lwserver.h&gt;
+   #include &lt;lwmodeler.h&gt;
+
+   LWStateQueryFuncs *query;
+   double box[ 6 ];
+   char *surfname, *layers, *objname;
+   int nlayers, npoints;
+
+   query = global( LWSTATEQUERYFUNCS_GLOBAL, GFUSE_TRANSIENT );
+   if ( !query ) return AFUNC_BADGLOBAL;
+
+   nlayers  = query-&gt;numLayers();
+   npoints  = query-&gt;bbox( OPLYR_PRIMARY, box );
+   surfname = query-&gt;surface();
+   objname  = query-&gt;object();
+   layers   = query-&gt;layerList( OPLYR_FG, objname );
+</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

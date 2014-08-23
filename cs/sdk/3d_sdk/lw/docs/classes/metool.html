@@ -1,0 +1,540 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Win98; U) [Netscape]">
+   <title>Classes: MeshEditTool</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#000080" vlink="#800000" alink="#0000FF">
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 BGCOLOR="#D0D0D0" >
+<tr>
+<td ALIGN=LEFT WIDTH="120"><a href="me.html"><img SRC="navlt.gif" ALT="MeshDataEdit" BORDER=0 height=20 width=96></a></td>
+
+<td ALIGN=LEFT WIDTH="96"><a href="objload.html"><img SRC="navrt.gif" ALT="ObjectLoader" BORDER=0 height=20 width=64></a></td>
+
+<td ALIGN=LEFT WIDTH="96"><a href="../classes.html"><img SRC="navup.gif" ALT="Classes" BORDER=0 height=20 width=56></a></td>
+
+<td ALIGN=RIGHT WIDTH="288"><a href="../index.html"><img SRC="proglw.gif" ALT="Table of Contents" BORDER=0 height=20 width=230></a></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 >
+<tr>
+<td WIDTH="600">
+<h3>
+MeshEditTool</h3>
+<font size=-1><b>Availability</b>&nbsp; LightWave 6.0</font>
+<br><font size=-1><b>Component</b>&nbsp; Modeler</font>
+<br><font size=-1><b>Header</b>&nbsp; <a href="../../include/lwmodtool.h">lwmodtool.h</a>,
+<a href="../../include/lwtool.h">lwtool.h</a></font>
+<p>Mesh edit tools are interactive versions of <a href="me.html">MeshDataEdit</a>
+plug-ins. For users they behave like Modeler's built-in tools. You supply
+callbacks for drawing the tool, for creating "handles" that can be manipulated
+by the user, and for generating the geometry the tool creates or modifies.
+<p><b>Activation Function</b>
+<pre>&nbsp;&nbsp; XCALL_( int ) MyMETool( long version, GlobalFunc *global,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWMeshEditTool *local, void *serverData );</pre>
+The <tt>local</tt> argument to a mesh edit plug-in's activation function
+is an LWMeshEditTool.
+<pre>&nbsp;&nbsp; typedef struct st_LWMeshEditTool {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWInstance&nbsp;&nbsp; <b>instance</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWToolFuncs *<b>tool</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>test</b>)&nbsp; (LWInstance);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWError&nbsp;&nbsp;&nbsp;&nbsp; (*<b>build</b>) (LWInstance, MeshEditOp *);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>end</b>)&nbsp;&nbsp; (LWInstance, int keep);
+&nbsp;&nbsp; } LWMeshEditTool;</pre>
+
+<dl>
+<dt>
+<b><tt>instance</tt></b></dt>
+
+<dd>
+Set this to point to your instance data. Typically this is a structure
+that holds all of the data your plug-in needs to perform its function.&nbsp;</dd>
+
+<dt>
+</dt>
+
+<br><b><tt>tool</tt></b>
+<dd>
+A set of tool callbacks you need to define. See below.</dd>
+
+<dt>
+</dt>
+
+<br><tt>action = <b>test</b>( inst )</tt>
+<dd>
+Returns a code for the edit action that should be performed. The action
+can be one of the following.&nbsp;</dd>
+
+<dl>
+<dt>
+</dt>
+
+<br><tt>LWT_TEST_NOTHING</tt>
+<dd>
+Do nothing. The edit state remains unchanged.</dd>
+
+<dt>
+<tt>LWT_TEST_UPDATE</tt></dt>
+
+<dd>
+Reapply the operation with new settings. The <tt>build</tt> function will
+be called.</dd>
+
+<dt>
+<tt>LWT_TEST_ACCEPT</tt></dt>
+
+<dd>
+Keep the last operation. The <tt>end</tt> callback is called with a nonzero
+<tt>keep</tt> value.</dd>
+
+<dt>
+<tt>LWT_TEST_REJECT</tt></dt>
+
+<dd>
+Discard the last operation. The <tt>end</tt> callback is called with a
+<tt>keep</tt> value of 0.</dd>
+
+<dt>
+<tt>LWT_TEST_CLONE</tt></dt>
+
+<dd>
+Keep the last operation and begin a new one. The <tt>end</tt> callback
+is called with a nonzero <tt>keep</tt> value, and then the <tt>build</tt>
+function is called again.</dd>
+
+<dd>
+</dd>
+
+<br>The return value can also encode a memory size that will be allocated
+for each point and each polygon. These user memory sizes would be passed
+to the <tt>begin</tt> function of the MeshEditOp structure passed to <a href="me.html">MeshDataEdit</a>
+plug-ins. For MeshEditTool class plug-ins, they are encoded in the value
+returned from <tt>test</tt> using the <tt>LWT_VMEM</tt> and <tt>LWT_PMEM</tt>
+macros for vertex and polygon sizes respectively.</dl>
+
+<dt>
+</dt>
+
+<br><tt>lwerr = <b>build</b>( inst, edit )</tt>
+<dd>
+Perform the tool's mesh edit operation. A tool that creates a primitive
+would add the points and polygons of the primitive within this callback.
+The <tt>edit</tt> argument points to the same MeshEditOp structure passed
+to <a href="me.html">MeshDataEdit</a> plug-ins.</dd>
+
+<dt>
+</dt>
+
+<br><tt><b>end</b>( inst, keep )</tt>
+<dd>
+Clear the state when the last edit action is completed. This can be a result
+of a call to <tt>test</tt>, or it can be triggered by an external action.</dd>
+</dl>
+<b>Tool Functions</b>
+<p>Your plug-in fills in an LWToolFuncs structure to tell Modeler where
+your tool callbacks are located.
+<pre>&nbsp;&nbsp; typedef struct st_LWToolFuncs {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>done</b>)&nbsp;&nbsp; (LWInstance);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>draw</b>)&nbsp;&nbsp; (LWInstance, LWWireDrawAccess *);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const char * (*<b>help</b>)&nbsp;&nbsp; (LWInstance, LWToolEvent *);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>dirty</b>)&nbsp; (LWInstance);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>count</b>)&nbsp; (LWInstance, LWToolEvent *);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>handle</b>) (LWInstance, LWToolEvent *, int i,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWDVector pos);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>start</b>)&nbsp; (LWInstance, LWToolEvent *);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>adjust</b>) (LWInstance, LWToolEvent *, int i);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>down</b>)&nbsp;&nbsp; (LWInstance, LWToolEvent *);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>move</b>)&nbsp;&nbsp; (LWInstance, LWToolEvent *);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>up</b>)&nbsp;&nbsp;&nbsp;&nbsp; (LWInstance, LWToolEvent *);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>event</b>)&nbsp; (LWInstance, int code);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWXPanelID&nbsp;&nbsp; (*<b>panel</b>)&nbsp; (LWInstance);
+&nbsp;&nbsp; } LWToolFuncs;</pre>
+
+<dl>
+<dt>
+<tt><b>done</b>( instance )</tt></dt>
+
+<dd>
+Destroy the instance. Called when the user discards the tool.&nbsp;</dd>
+
+<dt>
+</dt>
+
+<br><tt><b>draw</b>( instance, draw_access )</tt>
+<dd>
+Display a wireframe representation of the tool in a 3D viewport using the
+drawing functions in the LWWireDrawAccess, described below.&nbsp;</dd>
+
+<dt>
+</dt>
+
+<br><tt>helptext = <b>help</b>( instance, eventinfo )</tt>
+<dd>
+Returns a text string to be displayed as a help tip for this tool.&nbsp;</dd>
+
+<dt>
+</dt>
+
+<br><tt>dcode = <b>dirty</b>( instance )</tt>
+<dd>
+Returns flag bits indicating whether the wireframe or the help string need
+to be refreshed. The bits are combined using bitwise-or. Return 0 if nothing
+needs to be refreshed, or any combination of the following.&nbsp;</dd>
+
+<dl>
+<dt>
+</dt>
+
+<br><tt>LWT_DIRTY_WIREFRAME</tt>
+<dt>
+<tt>LWT_DIRTY_HELPTEXT</tt></dt>
+</dl>
+
+<dt>
+</dt>
+
+<br><tt>nhandles = <b>count</b>( instance, eventinfo )</tt>
+<dd>
+Returns the number of handles. A "handle" is a component of the tool's
+wireframe that the user can move independently. If this returns 0, then
+the <tt>start</tt> callback is used to set the initial handle point.&nbsp;</dd>
+
+<dt>
+</dt>
+
+<br><tt>priority = <b>handle</b>( instance, eventinfo, hnum, pos )</tt>
+<dd>
+Returns the 3D location and priority of handle <tt>hnum</tt>, or 0 if the
+handle is currently invalid.&nbsp;</dd>
+
+<dt>
+</dt>
+
+<br><tt>hnum = <b>start</b>( instance, eventinfo )</tt>
+<dd>
+Take an initial mouse-down position and return the index of the handle
+that should be dragged.&nbsp;</dd>
+
+<dt>
+</dt>
+
+<br><tt>hdrag = <b>adjust</b>( instance, eventinfo, hnum )</tt>
+<dd>
+Drag the handle to a new location. Returns the index of the handle that
+should continue being dragged (typically the same as <tt>hnum</tt>).&nbsp;</dd>
+
+<dt>
+</dt>
+
+<br><tt>domouse = <b>down</b>( instance, eventinfo )</tt>
+<dd>
+Process a mouse-down event. If this function returns 0, handle processing
+will be done instead of raw mouse event processing.&nbsp;</dd>
+
+<dt>
+</dt>
+
+<br><tt><b>move</b>( instance, eventinfo )</tt>
+<dd>
+Process a mouse-move event. This will only be called if the <tt>down</tt>
+function returned a nonzero value.&nbsp;</dd>
+
+<dt>
+</dt>
+
+<br><tt><b>up</b>( instance, eventinfo )</tt>
+<dd>
+Process a mouse-up event. This will only be called if the <tt>down</tt>
+function returned a nonzero value.&nbsp;</dd>
+
+<dt>
+</dt>
+
+<br><tt><b>event</b>( instance, code )</tt>
+<dd>
+Process a general event indicated by one of the following codes.&nbsp;</dd>
+
+<dl>
+<dt>
+</dt>
+
+<br><tt>LWT_EVENT_DROP</tt>
+<dd>
+The tool has been dropped. The user has clicked on an empty area of the
+interface, or pressed the spacebar, or selected another tool.</dd>
+
+<dt>
+<tt>LWT_EVENT_RESET</tt></dt>
+
+<dd>
+The user has requested that the tool return to its initial state. Numeric
+parameters should be reset to their default values.</dd>
+
+<dt>
+<tt>LWT_EVENT_ACTIVATE</tt></dt>
+
+<dd>
+The tool has been activated.</dd>
+</dl>
+
+<dt>
+</dt>
+
+<br><tt>xpanel = <b>panel</b>( instance )</tt>
+<dd>
+Create an <tt>LWXP_VIEW</tt> <a href="../globals/xpanels.html">xpanel</a>
+for the tool instance.</dd>
+</dl>
+<b>Event Information</b>
+<p>Most of the tool functions take an LWToolEvent as an argument.
+<pre>&nbsp;&nbsp; typedef struct st_LWToolEvent {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWDVector <b>posRaw</b>, <b>posSnap</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWDVector <b>deltaRaw</b>, <b>deltaSnap</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWDVector <b>axis</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWDVector <b>ax</b>, <b>ay</b>, <b>az</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp; <b>pxRaw</b>, <b>pxSnap</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp; <b>pyRaw</b>, <b>pySnap</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>dx</b>, <b>dy</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>portAxis</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>flags</b>;
+&nbsp;&nbsp; } LWToolEvent;</pre>
+
+<dl>
+<dt>
+<tt><b>posRaw</b>, <b>posSnap</b></tt></dt>
+
+<dd>
+The event position in 3D space. The snap vector is the raw vector after
+quantizing to the nearest grid intersection in 3D.</dd>
+
+<dt>
+</dt>
+
+<br><tt><b>deltaRaw</b>, <b>deltaSnap</b></tt>
+<dd>
+The vector from the initial mouse-down event to the current event location.
+This is just the difference between the initial and current positions.</dd>
+
+<dt>
+</dt>
+
+<br><b><tt>axis</tt></b>
+<dd>
+The event axis. All the points under the mouse location are along this
+axis through <tt>pos</tt>.</dd>
+
+<dt>
+</dt>
+
+<br><tt><b>ax</b>, <b>ay</b>, <b>az</b></tt>
+<dd>
+Screen coordinate system. <tt>ax</tt> points to the right, <tt>ay</tt>
+points up and <tt>az</tt> points into the screen. Movement by 1.0 along
+each vector corresponds to approximately one pixel of screen space movement.</dd>
+
+<dt>
+</dt>
+
+<br><tt><b>pxRaw</b>, <b>pxSnap</b></tt>
+<br><tt><b>pyRaw</b>, <b>pySnap</b></tt>
+<dd>
+Parametric translation values. These are the mouse offsets converted to
+values in model space. They provide a method for computing abstract distance
+measures from left/right and up/down mouse movement roughly scaled to the
+magnification of the viewport..</dd>
+
+<dt>
+</dt>
+
+<br><tt><b>dx</b>, <b>dy</b></tt>
+<dd>
+Screen movement in pixels. This is the total raw mouse offset from the
+starting position.</dd>
+
+<dt>
+</dt>
+
+<br><b><tt>portAxis</tt></b>
+<dd>
+The view type. 0, 1 or 2 for orthogonal views, or -1 for perspective views.</dd>
+
+<dt>
+</dt>
+
+<br><b><tt>flags</tt></b>
+<dd>
+This contains flag bits assembled using bitwise-or. It can be some combination
+of the following.&nbsp;</dd>
+
+<dl>
+<dt>
+</dt>
+
+<br><tt>LWTOOLF_CONSTRAIN</tt>
+<dd>
+The action of the tool is constrained. Activated by a standard key or mouse
+combination.</dd>
+
+<dt>
+<tt>LWTOOLF_CONS_X</tt></dt>
+
+<br><tt>LWTOOLF_CONS_Y</tt>
+<dd>
+The direction of constraint for orthogonal moves. Initially neither bit
+is set, but as the user moves enough to select a primary direction, one
+or the other will be set.</dd>
+
+<dt>
+<tt>LWTOOLF_ALT_BUTTON</tt></dt>
+
+<dd>
+Alternate mouse button event, usually the right button.</dd>
+
+<dt>
+<tt>LWTOOLF_MULTICLICK</tt></dt>
+
+<dd>
+Multiple mouse click event.</dd>
+</dl>
+</dl>
+<b>Draw Access</b>
+<p>The <tt>draw</tt> callback is given an LWWireDrawAccess containing a
+set of drawing functions for rendering the visual representation of the
+tool in the interface.
+<pre>&nbsp;&nbsp; typedef struct st_LWWireDrawAccess {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp; *<b>data</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp; (*<b>moveTo</b>) (void *, LWFVector, int);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp; (*<b>lineTo</b>) (void *, LWFVector, int);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp; (*<b>spline</b>) (void *, LWFVector, LWFVector, LWFVector, int);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp; (*<b>circle</b>) (void *, double, int);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;<b>&nbsp; axis</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp; (*<b>text</b>)&nbsp;&nbsp; (void *, const char *, int);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double <b>pxScale</b>;
+&nbsp;&nbsp; } LWWireDrawAccess;</pre>
+
+<dl>
+<dt>
+<b><tt>data</tt></b></dt>
+
+<dd>
+An opaque pointer to data used by Modeler. Pass this as the first argument
+to the drawing functions.</dd>
+
+<dt>
+</dt>
+
+<br><tt><b>moveTo</b>( data, pos, line_style )</tt>
+<dd>
+Move the drawing point to the new position. Use this to set one endpoint
+of a line or a spline or the center of a circle. The third argument sets
+the line style for the drawing functions and can be one of the following.&nbsp;</dd>
+
+<dl>
+<dt>
+</dt>
+
+<br><tt>LWWIRE_SOLID</tt>
+<dt>
+<tt>LWWIRE_DASH</tt></dt>
+</dl>
+
+<dt>
+</dt>
+
+<br><tt><b>lineTo</b>( data, pos, coord_type )</tt>
+<dd>
+Draw a line segment from the current drawing point to the given position.
+The coordinate type can be one of the following.&nbsp;</dd>
+
+<dl>
+<dt>
+</dt>
+
+<br><tt>LWWIRE_ABSOLUTE</tt>
+<dd>
+Absolute coordinates in model space.</dd>
+
+<dt>
+<tt>LWWIRE_RELATIVE</tt></dt>
+
+<dd>
+Relative coordinates in model space. The <tt>pos</tt> argument is an offset
+from the current drawing point, which is the most recent position specified
+in a previous call to a drawing function.</dd>
+
+<dt>
+<tt>LWWIRE_SCREEN</tt></dt>
+
+<dd>
+Relative coordinates in screen space. A distance of 1.0 in this coordinate
+system corresponds to about 20 pixels. Tool handles will typically be drawn
+in screen space, so that they remain the same displayed size regardless
+of the zoom level of the view.</dd>
+</dl>
+
+<dt>
+</dt>
+
+<br><tt><b>spline</b>( data, LWFVector, LWFVector, LWFVector, coord_type
+)</tt>
+<dd>
+Draw a curve from the current drawing point. The vectors are Bezier control
+points, with the current drawing point acting as the first of the required
+four points. When using relative coordinates, each position vector is an
+offset from the previous one.</dd>
+
+<dt>
+</dt>
+
+<br><tt><b>circle</b>( data, radius, coord_type )</tt>
+<dd>
+Draw a circle centered at the current drawing point.</dd>
+
+<dt>
+</dt>
+
+<br><b><tt>axis</tt></b>
+<dd>
+The view in which you're drawing. This can be 0, 1 or 2 for the <i>x</i>,
+<i>y</i> and <i>z</i> axis views, or -1 for a perspective view.</dd>
+
+<dt>
+</dt>
+
+<br><tt><b>text</b>( data, textline, justify )</tt>
+<dd>
+Draw a single line of text. The <tt>justify</tt> argument positions the
+text relative to the current drawing point and can be one of the following.</dd>
+
+<pre>LWWIRE_TEXT_L
+LWWIRE_TEXT_C
+LWWIRE_TEXT_R</pre>
+
+<dt>
+<b><tt>pxScale</tt></b></dt>
+
+<dd>
+The approximate size of a pixel in the current view.</dd>
+</dl>
+<b>History</b>
+<p>In LightWave 7.0, the <tt>text</tt> function and the <tt>pxScale</tt>
+field were added to LWWireDrawAccess, but <tt>LWMESHEDITTOOL_VERSION</tt>
+was <i>not</i> incremented. If your activation accepts a version of 4,
+use the <a href="../globals/prodinfo.html">Product Info</a> global to determine
+whether these items are available.
+<p><b>Example</b>
+<p>The <a href="../../sample/boxes/box4/">boxes/box4</a> sample is a simple
+example of a mesh edit tool. It's described in the <a href="../articles/box4.html">Boxes</a>
+tutorial. The mesh edit tool samples also include <a href="../../sample/capsule/">capsule</a>,
+which creates a capsule shaped primitive, <a href="../../sample/superq/">superq</a>
+for making ellipsoidal and toroidal superquadrics, and <a href="../../spikeytool/">spikeytool</a>
+for adding spikes during subdivision.</td>
+</tr>
+</table>
+
+</body>
+</html>

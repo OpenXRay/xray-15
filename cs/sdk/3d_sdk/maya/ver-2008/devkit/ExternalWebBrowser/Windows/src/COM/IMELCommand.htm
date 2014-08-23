@@ -1,0 +1,146 @@
+<html>
+<head>
+<title>IMELCommand Interface</title>
+</head>
+<body>
+<h2>IMELCommand Interface</h2>
+<hr>
+<p>The IMELCommand interface defines methods and properties used to send commands to the Maya&reg;
+application through its command port.
+Note that the command port must first be opened within Maya, using the MEL 'commandPort' command.
+<p><hr>
+<h3>IMELCommand::Connect Method</h3>
+Connects to the Maya command port, if not already connected.
+<h4>Syntax</h4>
+<table bgcolor="#F0F0F0" ID="Table2">
+<td>
+<pre>
+HRESULT Connect();
+</pre>
+</td>
+</table>
+<h4>Return Value</h4>
+Returns S_OK if successful or already connected, or an error value otherwise.
+
+<p><hr>
+<h3>IMELCommand::Connected Property</h3>
+The Connected property specifies whether there currently is a connection established with the Maya command port. This property is read-only.
+<h4>Syntax</h4>
+<table bgcolor="#F0F0F0" ID="Table4">
+<td>
+<pre>
+[Visual Basic]
+Property Connected As Boolean
+
+[C++]
+HRESULT get_Connected(VARIANT_BOOL* pVal);
+</pre>
+</td>
+</table>
+<h4>Parameters</h4>
+<i>pVal</i> [out] Returns the whether a connection currently exists as a VARIANT_BOOL.
+
+<p><hr>
+<h3>IMELCommand::Disconnect Method</h3>
+Closes the connection to the Maya command port; does nothing if not connected.
+<h4>Syntax</h4>
+<table bgcolor="#F0F0F0" ID="Table3">
+<td>
+<pre>
+HRESULT Disconnect();
+</pre>
+</td>
+</table>
+<h4>Return Value</h4>
+Returns S_OK.
+
+<p><hr>
+<h3>IMELCommand::Execute Method</h3>
+Sends a command to the Maya command port. Connects to the command port if not already connected. The result returned by Maya is stored in the Result parameter.
+<h4>Syntax</h4>
+<table bgcolor="#F0F0F0">
+<td>
+<pre>
+HRESULT Execute(BSTR Command);
+</pre>
+</td>
+</table>
+<h4>Parameters</h4>
+<i>Command</i> [in] Null-terminated string with the command.
+<h4>Return Value</h4>
+Returns S_OK if successful, or an error value otherwise.
+<h4>Remarks</h4>
+The return value from this method only indicates whether the command was successfully sent to the Maya command port. It does not indicate if the command was successfully executed by Maya.
+
+<p><hr>
+<h3>IMELCommand::PortName Property</h3>
+The PortName property specifies the name of the Maya command port.
+<h4>Syntax</h4>
+<table bgcolor="#F0F0F0" ID="Table5">
+<td>
+<pre>
+[Visual Basic]
+Property PortName As String
+
+[C++]
+HRESULT get_PortName(BSTR* pVal);
+HRESULT put_PortName(BSTR newVal);
+</pre>
+</td>
+</table>
+<h4>Parameters</h4>
+<i>pVal</i> [out] Returns the PortName property as a reference to a BSTR.
+<br><i>newVal</i> [in] Sets the value of the PortName property to the value of the BSTR.
+<h4>Remarks</h4>
+Changing the PortName property while a connection is established will close that connection.
+The default/initial value of the PortName property is "mayaCommand".
+
+<p><hr>
+<h3>IMELCommand::Result Property</h3>
+The Result property specifies the result returned by Maya for the most recent invocation of the Execute method. This property is read-only.
+<h4>Syntax</h4>
+<table bgcolor="#F0F0F0" ID="Table6">
+<td>
+<pre>
+[Visual Basic]
+Property Result As Variant
+
+[C++]
+HRESULT get_Result(VARIANT* pVal);
+</pre>
+</td>
+</table>
+<h4>Parameters</h4>
+<i>pVal</i> [out] Returns the Result property as a reference to a VARIANT.
+<h4>Remarks</h4>
+The Result property can be a LONG (VT_I4), DOUBLE (VT_R8), BSTR (VT_BSTR), or an array (VT_ARRAY) of those types.
+
+<p><hr>
+<h3>Examples</h3>
+<h4>Visual Basic</h4>
+
+<table bgcolor="#F0F0F0" ID="Table1">
+<td>
+<pre>
+Dim MEL
+Set MEL = CreateObject("Maya.CommandEngine.MEL")
+MEL.PortName = "myCommandPortName"
+On Error Resume Next
+MEL.Connect()
+If Not MEL.Connected Then
+    MsgBox "Error: " & Err.Description
+Else
+    MEL.Execute("file -f -new")
+    MEL.Execute("sphere -radius 3")
+    MEL.Execute("render")
+    Dim imagePath
+    imagePath = MEL.Result
+    MsgBox "Image: " & imagePath
+    MEL.Disconnect()
+End If
+</pre>
+</td>
+</table>
+
+</body>
+</html>

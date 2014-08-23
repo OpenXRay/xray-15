@@ -1,0 +1,210 @@
+<html>
+
+<head>
+<title>Classes: ProceduralTextureHandler</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="pxlfilt.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="PixelFilterHandler"></a></td>
+    <td width="96" align="left"><a href="scenecvt.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="SceneConverter"></a></td>
+    <td width="96" align="left"><a href="../classes.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Classes"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>ProceduralTextureHandler<br>
+    ProceduralTextureInterface</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwtexture.h">lwtexture.h</a></small></p>
+    <p>Fundamentally, a procedural texture is a function of three variables. In other words,
+    given three numbers <em>x</em>, <em>y</em> and <em>z</em>, a procedural texture calculates
+    and returns a fourth number <em>t</em>.</p>
+    <p>The variables are usually the coordinates of a 3D position, either in world space or in
+    some idealized texture space, and the number returned by the function is used to modulate
+    a rendering parameter, typically one of the surface attributes. LightWave's built-in
+    fractal noise is an example of a procedural texture.</p>
+    <p>Some procedural textures will also return a <em>gradient</em>. Roughly speaking, this
+    is the direction of the texture at the sample point, or the direction in which the value
+    of the texture function increases the fastest. If the texture is being used as a bump map,
+    the renderer can infer a bump normal from the gradient.</p>
+    <p>If your texture function is analytical, you can compute the gradient from the partial
+    derivative of the function with respect to each axis. You aren't required to form the
+    gradient that way, or at all. If the texture doesn't return a gradient, the renderer will
+    calculate a numerical approximation by calling your texture function at six neighboring
+    points.</p>
+    <p>Textures can also return a color. This is useful when the texture will be applied to
+    the color channel of a surface or will modulate some other color-valued parameter.</p>
+    <p><strong>Handler Activation Function</strong></p>
+    <pre>   XCALL_( int ) MyTexture( long version, GlobalFunc *global,
+      LWTextureHandler *local, void *serverData );</pre>
+    <p>The <tt>local</tt> argument to a texture's activation function is an LWTextureHandler.</p>
+    <pre>   typedef struct st_LWTextureHandler {
+      LWInstanceFuncs *<strong>inst</strong>;
+      LWItemFuncs     *<strong>item</strong>;
+      LWRenderFuncs   *<strong>rend</strong>;
+      double          (*<strong>evaluate</strong>) (LWInstance, LWTextureAccess *);
+      unsigned int    (*<strong>flags</strong>)    (LWInstance);
+   } LWTextureHandler;</pre>
+    <p>The first three members of this structure are the standard <a href="../handler.html">handler
+    functions</a>. In addition to these, a procedural texture provides an evaluation function
+    and a flags function.</p>
+    <p>The <tt>context</tt> argument to the <tt>inst-&gt;create</tt> function is the
+    LWTextureID for the texture. LWTextureID is defined in the <tt>lwtxtr.h</tt> header file
+    and is used by the <a href="../globals/surface.html">texture functions</a> and <a
+    href="../globals/surface.html">texture editor</a> globals.</p>
+    <p>A procedural texture can be activated by Modeler as well as Layout. When activated by
+    Modeler, the LWItemFuncs pointer in the local data is NULL. Be sure to test for this
+    before filling in the <tt>useItems</tt> and <tt>changeID</tt> fields. Note too that if
+    your texture relies on Layout-only globals, those won't be available when Modeler calls
+    your callbacks.<dl>
+      <dt><tt>txval = <strong>evaluate</strong>( instance, access )</tt></dt>
+      <dd>Returns a texture value, given the information in the access structure, described below.</dd>
+      <dt><br>
+        <tt>flagbits = <strong>flags</strong>( instance )</tt></dt>
+      <dd>Returns an int that tells LightWave about the texture. The return value can be any of
+        the following flags combined using bitwise-or.<dl>
+          <dt><tt><br>
+            LWTEXF_GRAD</tt></dt>
+          <dd>The texture returns a gradient (the evaluation function sets the value of the <tt>txGrad</tt>
+            member of the access structure). If this flag isn't set, the texture engine ignores <tt>txGrad</tt>
+            and, when necessary, calculates the gradient numerically (by evaluating 6 neighboring
+            points).</dd>
+          <dt><tt>LWTEXF_SLOWPREVIEW</tt></dt>
+          <dd>Set this if the texture evaluates too slowly to be previewed in real time.</dd>
+          <dt><tt>LWTEXF_AXIS</tt></dt>
+          <dd>The texture uses an axis. The texture editor will allow the user to select an axis for
+            the texture, and this selection will be found in the <tt>axis</tt> member of the access
+            structure.</dd>
+          <dt><tt>LWTEXF_AALIAS</tt></dt>
+          <dd>The texture value is already antialiased. Currently ignored, but it may not be in the
+            future.</dd>
+          <dt><tt>LWTEXF_DISPLACE</tt></dt>
+          <dd>Use the texture value for displacements. If this flag is set, the texture editor's axis
+            selector is enabled and the displacement occurs along the selected axis. If this flag
+            isn't set, but <tt>LWTEXF_GRAD</tt> is, the texture engine will use the gradient for
+            displacements. If neither flag is set, no displacement will occur.</dd>
+          <tt>
+          <dt>LWTEXF_HV_SRF</dt>
+          </tt>
+          <dd>The texture is appropriate for use as a HyperVoxels surface texture. This basically
+            means that the texture function is continuous and evaluates relatively quickly.</dd>
+          <tt>
+          <dt>LWTEXF_HV_VOL</dt>
+          </tt>
+          <dd>The texture is appropriate for use as a HyperVoxels volume texture. Efficiency is
+            especially important for these textures.</dd>
+          <tt>
+          <dt>LWTEXF_SELF_COLOR</dt>
+          </tt>
+          <dd>The texture returns an RGBA color in addition to a value.</dd>
+        </dl>
+      </dd>
+    </dl>
+    <p><strong>Interface Activation Function</strong></p>
+    <pre>   XCALL_( int ) MyInterface( long version, GlobalFunc *global,
+      LWInterface *local, void *serverData );</pre>
+    <p>This is the standard <a href="../handler.html#ui">interface activation</a> for
+    handlers.</p>
+    <a name="access"><p><strong>Texture Access</strong></a> </p>
+    <p>The access structure passed to the evaluation function contains parameters that can
+    affect the texture value. The texture can return a gradient and a color through the <tt>txGrad</tt>
+    and <tt>txRGBA</tt> fields. The other fields are read-only.</p>
+    <pre>   typedef struct st_LWTextureAccess {
+      double  <strong>wPos</strong>[3];
+      double  <strong>tPos</strong>[3];
+      double  <strong>size</strong>[3];
+      double  <strong>amp</strong>;
+      double  <strong>spotSize</strong>;
+      double  <strong>txGrad</strong>[3];
+      int     <strong>axis</strong>;
+      int     <strong>flags</strong>;
+      double  <strong>octaves</strong>;
+      double  <strong>txRGBA</strong>[4];
+   } LWTextureAccess;</pre>
+    <dl>
+      <dt><strong><tt>wPos</tt></strong></dt>
+      <dd>The world coordinate position of the sample to be textured.</dd>
+      <dt><tt><br>
+        <strong>tPos</strong></tt></dt>
+      <dd>The position of the sample in texture coordinates.</dd>
+      <dt><tt><br>
+        <strong>size</strong></tt></dt>
+      <dd>The size of the texture. The size value is used to scale the texture spatially. The
+        interpretation is up to the texture, but typically this is the size of a texture cell or
+        the distance between repeating elements.</dd>
+      <dt><tt><br>
+        <strong>amp</strong></tt></dt>
+      <dd>The amplitude of the texture. This value is typically used to scale the magnitude or
+        strength of the texture.</dd>
+      <dt><tt><br>
+        <strong>spotSize</strong></tt></dt>
+      <dd>The approximate diameter of the sample spot. This is useful when antialiasing the
+        texture.</dd>
+      <dt><tt><br>
+        <strong>txGrad</strong></tt></dt>
+      <dd>Storage for the texture gradient at the sample. The evaluation function must fill this
+        in when the flags function returns <tt>LWTEXF_GRAD</tt>. Otherwise it can be ignored.</dd>
+      <dt><tt><br>
+        <strong>axis</strong></tt></dt>
+      <dd>The texture axis selected by the user. Only valid if the flags function set the <tt>LWTEXF_AXIS</tt>
+        or <tt>LWTEXF_DISPLACE</tt> flags.</dd>
+      <dt><tt><br>
+        <strong>flags</strong></tt></dt>
+      <dd>The access flags provide information about the context in which the evaluation function
+        was called.<dl>
+          <tt>
+          <dt><br>
+            LWTXEF_VECTOR</dt>
+          </tt>
+          <dd>Set when a bump is being evaluated.</dd>
+          <tt>
+          <dt>LWTXEF_AXISX<br>
+            LWTXEF_AXISY<br>
+            LWTXEF_AXISZ</dt>
+          </tt>
+          <dd>Which dimensions are used for evaluation. Currently, all three of these are always set,
+            but in the future, the texture engine might evaluate the texture in 2D only, for example,
+            and it would use these flags to allow the texture to switch to an evaluation optimized for
+            2D.</dd>
+          <tt>
+          <dt>LWTXEF_DISPLACE</dt>
+          </tt>
+          <dd>Set when a displacement is being evaluated.</dd>
+          <tt>
+          <dt>LWTXEF_COLOR</dt>
+          </tt>
+          <dd>Set when a color is being evaluated.</dd>
+        </dl>
+      </dd>
+      <tt>
+      <dt><br>
+        <strong>octaves</strong></dt>
+      </tt>
+      <dd>The number of octaves, or frequencies, that should be used by the texture. This affects
+        the amount of structure the texture generates at different scales. This field is currently
+        only initialized by HyperVoxels.</dd>
+      <tt>
+      <dt><strong><br>
+        txRGBA</strong></dt>
+      </tt>
+      <dd>Storage for the texture color at the sample. The evaluation function must fill this in
+        when the flags function returns <tt>LWTEXF_SELF_COLOR</tt>. Otherwise it can be ignored..</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>The <a href="../../sample/rapts/">rapts</a> sample contains 10 procedural textures.</td>
+  </tr>
+</table>
+</body>
+</html>

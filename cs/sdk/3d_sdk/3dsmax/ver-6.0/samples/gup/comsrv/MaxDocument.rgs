@@ -1,0 +1,24 @@
+HKCR
+{
+	Comsrv.MaxDocument.1 = s 'MaxDocument Class'
+	{
+		CLSID = s '{F40F75D9-7384-44F1-8AC1-933D8CBEA728}'
+	}
+	Comsrv.MaxDocument = s 'MaxDocument Class'
+	{
+		CLSID = s '{F40F75D9-7384-44F1-8AC1-933D8CBEA728}'
+		CurVer = s 'Comsrv.MaxDocument.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {F40F75D9-7384-44F1-8AC1-933D8CBEA728} = s 'MaxDocument Class'
+		{
+			ProgID = s 'Comsrv.MaxDocument.1'
+			VersionIndependentProgID = s 'Comsrv.MaxDocument'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '{4AD72E62-5A4B-11D2-91CB-0060081C257E}'
+			'TypeLib' = s '{4AD72E61-5A4B-11D2-91CB-0060081C257E}'
+		}
+	}
+}

@@ -1,0 +1,278 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PATCH_SELECT DIALOGEX 0, 0, 108, 188
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    CONTROL         "",IDC_PS_SELTYPE,"CustToolbar",WS_TABSTOP,14,5,80,14
+    CONTROL         "Select By Vertex",IDC_PS_SEL_BYVERT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,23,70,10
+    CONTROL         "Ignore Backfaces",IDC_PS_IGNORE_BACKFACES,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,35,72,10
+    CONTROL         "Get Vertex Selection",IDC_PS_GETVERT,"CustButton",
+                    WS_TABSTOP,13,59,80,11
+    CONTROL         "Get Edge Selection",IDC_PS_GETEDGE,"CustButton",
+                    WS_TABSTOP,13,73,80,11
+    CONTROL         "Get Patch Selection",IDC_PS_GETPATCH,"CustButton",
+                    WS_TABSTOP,13,87,80,11
+    GROUPBOX        "Get from Other Levels",IDC_STATIC,3,47,102,56
+    GROUPBOX        "Select by Material ID",IDC_PS_SELBYMAT_BOX,3,103,102,26
+    RTEXT           "ID:",IDC_PS_SELBYMAT_TEXT,6,115,11,8
+    CONTROL         "",IDC_PS_MATID,"CustEdit",WS_TABSTOP,19,114,30,10
+    CONTROL         "",IDC_PS_MATIDSPIN,"SpinnerControl",0x0,50,114,7,10
+    CONTROL         "Select",IDC_PS_SELBYMAT,"CustButton",WS_TABSTOP,63,113,
+                    38,11
+    GROUPBOX        "Named Selection Sets",IDC_STATIC,3,130,102,26
+    CONTROL         "Copy",IDC_PS_COPYNS,"CustButton",WS_TABSTOP,7,141,45,11
+    CONTROL         "Paste",IDC_PS_PASTENS,"CustButton",WS_TABSTOP,56,141,45,
+                    11
+    CONTROL         "Select Open Edges",IDC_PS_SELOPEN,"CustButton",
+                    WS_TABSTOP,12,159,83,11
+    LTEXT           "123456 Faces Selected",IDC_PS_NUMBER_SEL,5,176,98,8
+END
+
+IDD_SEL_NAMEDSET DIALOG  0, 0, 186, 127
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | 
+    WS_CAPTION | WS_SYSMENU
+CAPTION "Copy Named Selection"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,129,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,129,24,50,14
+    LISTBOX         IDC_NS_LIST,7,7,108,113,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_PASTE_NAMEDSET DIALOG  0, 0, 186, 57
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Paste Named Selection"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,129,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,129,24,50,14
+    CONTROL         "",IDC_SET_NAME,"CustEdit",WS_TABSTOP,7,40,106,10
+    LTEXT           "A named selection set already exists with the same name. Please select a new name",
+                    IDC_STATIC,7,7,112,30
+END
+
+IDD_SOFT_SELECTION DIALOG  0, 0, 108, 147
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_AR_GRAPH,"Static",SS_BLACKFRAME,13,83,81,50
+    CTEXT           "0'0""00",IDC_NEARLABEL,41,135,30,8
+    CTEXT           "20'0""00",IDC_FARLEFTLABEL,0,135,30,8
+    CTEXT           "20'0""00",IDC_FARRIGHTLABEL,78,135,30,8
+    CONTROL         "",IDC_FALLOFF,"CustEdit",WS_TABSTOP,45,41,37,10
+    CONTROL         "",IDC_PINCH,"CustEdit",WS_TABSTOP,45,54,37,10
+    CONTROL         "",IDC_BUBBLE,"CustEdit",WS_TABSTOP,45,67,37,10
+    CONTROL         "",IDC_FALLOFF_SPIN,"SpinnerControl",0x0,83,41,7,10
+    RTEXT           "Falloff:",IDC_FALLOFF_LABEL,14,42,29,8
+    CONTROL         "",IDC_PINCH_SPIN,"SpinnerControl",0x0,83,54,7,10
+    RTEXT           "Pinch:",IDC_PINCH_LABEL,14,55,29,8
+    CONTROL         "",IDC_BUBBLE_SPIN,"SpinnerControl",0x0,83,67,7,10
+    RTEXT           "Bubble:",IDC_BUBBLE_LABEL,14,68,29,8
+    CONTROL         "Use Soft Selection",IDC_SOFT_SELECTION,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,4,76,10
+    CONTROL         "Edge Distance:",IDC_EDGE_DIST,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,9,16,61,10
+    CONTROL         "",IDC_EDGE,"CustEdit",WS_TABSTOP,73,16,18,10
+    CONTROL         "",IDC_EDGE_SPIN,"SpinnerControl",0x0,93,16,7,10
+    CONTROL         "Affect Backfacing",IDC_AFFECT_BACKFACING,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,28,92,10
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_PATCHSELTYPES       BITMAP                  "patselt.bmp"
+IDB_PATCHSELMASK        BITMAP                  "patselm.bmp"
+IDB_SUBOBJTYPES         BITMAP                  "subobjtypes.bmp"
+IDB_MASK_SUBOBJTYPES    BITMAP                  "mask_subobjtypes.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_SEL_NAMEDSET, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 120
+    END
+
+    IDD_PASTE_NAMEDSET, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 50
+    END
+
+    IDD_SOFT_SELECTION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 140
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_PS_PARAMS           "Parameters"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PS_SELECTBYMATID    "Select By Material ID"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PS_OBJECT           "Object"
+    IDS_PS_ELEMENT          "Element"
+    IDS_PS_VERTEX           "Vertex"
+    IDS_PS_EDGE             "Edge"
+    IDS_PS_HANDLE           "Handle"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PS_CATEGORY         "MAX STANDARD"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PS_PATCH            "Patch"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PS_DEFMODS          "Standard modifiers (Discreet)"
+    IDS_PS_SELECTION        "Selection"
+    IDS_PS_OBJECT_SEL       "Whole Object Selected"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PS_SELECT_OPEN      "Select Open Edges"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PS_NUMVERTSEL       "Vertex %d Selected"
+    IDS_PS_NUMVERTSELP      "%d Vertices Selected"
+    IDS_PS_NUMHANDLESEL     "Handle %d Selected"
+    IDS_PS_NUMHANDLESELP    "%d Handles Selected"
+    IDS_PS_NUMEDGESEL       "Edge %d Selected"
+    IDS_PS_NUMEDGESELP      "%d Edges Selected"
+    IDS_PS_NUMPATCHSEL      "Patch %d Selected"
+    IDS_PS_NUMPATCHSELP     "%d Patches Selected"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PS_NOEDGESSEL       "No edges selected"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PS_PATCHSELMOD      "Patch Select"
+    IDS_PS_PASTE_NS         "Paste Named Selection"
+    IDS_SOFT_SELECTION      "Soft Selection"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

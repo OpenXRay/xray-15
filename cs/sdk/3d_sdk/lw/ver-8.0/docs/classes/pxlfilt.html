@@ -1,0 +1,186 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+   <title>Classes: PixelFilterHandler</title>
+   <style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#000080" vlink="#800000" alink="#0000FF">
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 BGCOLOR="#D0D0D0" >
+<tr>
+<td ALIGN=LEFT WIDTH="120"><a href="objrep.html"><img SRC="navlt.gif" ALT="ObjReplacementHandler" BORDER=0 height=20 width=96></a></td>
+
+<td ALIGN=LEFT WIDTH="96"><a href="texture.html"><img SRC="navrt.gif" ALT="ProceduralTextureHandler" BORDER=0 height=20 width=64></a></td>
+
+<td ALIGN=LEFT WIDTH="96"><a href="../classes.html"><img SRC="navup.gif" ALT="Classes" BORDER=0 height=20 width=56></a></td>
+
+<td ALIGN=RIGHT WIDTH="288"><a href="../index.html"><img SRC="proglw.gif" ALT="Table of Contents" BORDER=0 height=20 width=230></a></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 >
+<tr>
+<td WIDTH="600">
+<h3>
+PixelFilterHandler<br>
+PixelFilterInterface</h3>
+<font size=-1><b>Availability</b>&nbsp; LightWave&reg; 6.0</font>
+<br><font size=-1><b>Component</b>&nbsp; Layout, Modeler</font>
+<br><font size=-1><b>Header</b>&nbsp; <a href="../../include/lwfilter.h">lwfilter.h</a></font>
+<p>Pixel filters apply image processing effects to individual pixels in
+the rendered image.&nbsp;
+<p>Pixel filters look like <a href="imgfilt.html">image filters</a> at
+first glance, but they differ in several significant ways. Pixel filters
+can modify any of the buffers, not just the red, green, blue and alpha
+values, and they have access to the <a href="../raytrace.html">raytracing
+functions</a>. They're applied during rendering, before antialiasing and
+motion blur, so their effects are automatically accumulated by Layout for
+antialiasing and motion blur purposes.
+<p>Unlike image filters, which have access to the entire image and are
+called once per frame, pixel filters only evaluate, and only have access
+to, a single pixel sample at a time, and they can be called multiple times
+per pixel during the rendering of a frame.
+<p><b>Handler Activation Function</b>
+<pre>&nbsp;&nbsp; XCALL_( int ) MyPixelFilter( long version, GlobalFunc *global,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWPixelFilterHandler *local, void *serverData );</pre>
+The <tt>local</tt> argument to a pixel filter's activation function is
+an LWPixelFilterHandler.
+<pre>&nbsp;&nbsp; typedef struct st_LWPixelFilterHandler {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWInstanceFuncs *<b>inst</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWItemFuncs&nbsp;&nbsp;&nbsp;&nbsp; *<b>item</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWRenderFuncs&nbsp;&nbsp; *<b>rend</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>evaluate</b>) (LWInstance, const LWPixelAccess *);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int&nbsp;&nbsp;&nbsp; (*<b>flags</b>)&nbsp;&nbsp;&nbsp; (LWInstance);
+&nbsp;&nbsp; } LWPixelFilterHandler;</pre>
+The first three members of this structure are the standard <a href="../handler.html">handler
+functions</a>. In addition to these, a pixel filter provides an evaluation
+function and a flags function.
+<p>The <tt>context</tt> argument to the <tt>inst->create</tt> function
+is a pointer to an integer containing context flags. If the <tt>LWFCF_PREPROCESS</tt>
+flag is set, the instance is being created for an image other than the
+rendered output, and buffers other than the RGBA of the image won't be
+available.
+<p>A pixel filter can be activated by both Layout and Modeler. When activated
+by Modeler, the LWItemFuncs pointer in the local data is NULL. Be sure
+to test for this before filling in the <tt>useItems</tt> and <tt>changeID</tt>
+fields. Note too that if your pixel filter relies on Layout-only globals,
+those won't be available when Modeler calls your callbacks.
+<dl>&nbsp;
+<dt>
+<tt><b>evaluate</b>( instance, access )</tt></dt>
+
+<dd>
+This is where the pixel filter does its work. For each frame, the filter
+is given access to the red, green, blue and alpha values of each pixel
+sample, along with any other pixel data requested by the flags function.
+The access structure, described below, provides pixel information and functions
+for examining the buffers and writing new values.</dd>
+
+<dt>
+</dt>
+
+<br><tt><b>flags</b>( instance )</tt>
+<dd>
+Returns an int that tells the renderer which buffers the pixel filter will
+examine and/or modify and whether the evaluation function will call one
+of the raytracing functions in the access structure. The return value contains
+bitfields combined using bitwise-or. See the <a href="imgfilt.html#flags">image
+filter</a> page for a list of the buffer codes. In addition to these, the
+<tt>LWPFF_RAYTRACE</tt> flag indicates that the evaluation function will
+call the raytracing functions, and the <tt>LWPFF_EVERYPIXEL</tt> flag indicates
+that the filter should be evaluated for every pixel, despite adaptive sampling
+settings.</dd>
+</dl>
+<b>Interface Activation Function</b>
+<pre>&nbsp;&nbsp; XCALL_( int ) MyInterface( long version, GlobalFunc *global,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWInterface *local, void *serverData );</pre>
+This is the standard <a href="../handler.html#ui">interface activation</a>
+for handlers.
+<p><b>Pixel Access</b>
+<p>The pixel access structure passed to the evaluation function contains
+the pixel coordinates for the sample, functions for getting and setting
+pixel values, and the raytracing functions. Because the sampling of the
+output image is adaptive, pixel positions may be evaluated in any order,
+multiple times, or not at all. The evaluation function must call <tt>setRGBA</tt>
+for every pixel it evaluates, even if the filter doesn't modify the pixel.
+<pre>&nbsp;&nbsp; typedef struct st_LWPixelAccess {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>sx</b>, <b>sy</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>getVal</b>)&nbsp; (int type, int num, float *);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>setRGBA</b>) (const float[4]);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>setVal</b>)&nbsp; (int type, int num, float *);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWIlluminateFunc *<b>illuminate</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWRayTraceFunc&nbsp;&nbsp; *<b>rayTrace</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWRayCastFunc&nbsp;&nbsp;&nbsp; *<b>rayCast</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWRayShadeFunc&nbsp;&nbsp; *<b>rayShade</b>;
+&nbsp;&nbsp; } LWPixelAccess;</pre>
+
+<dl>
+<dt>
+<tt><b>sx</b>, <b>sy</b></tt></dt>
+
+<dd>
+Image coordinates of the sample, in pixel units. These will often contain
+fractional values.</dd>
+
+<dt>
+</dt>
+
+<br><tt><b>getVal</b>( type, buflen, buf )</tt>
+<dd>
+Get a pixel value from one of the buffers. If the buffer type is invalid
+or a type not requested by the flags function, the pixel value returned
+in <tt>buf</tt> is undefined. See the <a href="imgfilt.html#flags">image
+filter</a> page for the list of buffer types. <tt>buflen</tt> is the number
+of contiguous values to return. For most buffers, this number will be 1,
+but the RGB buffers can be retrieved all at once. With a <tt>type</tt>
+of <tt>LWBUF_RAW_RED</tt>, for example, the number can be up to 3 to get
+<tt>RAW_RED</tt>, <tt>RAW_GREEN</tt> and <tt>RAW_BLUE</tt>, and for <tt>LWBUF_RED</tt>
+it can be up to 4, for the RGBA values.</dd>
+
+<dl>&nbsp;</dl>
+
+<dt>
+</dt>
+
+<br><tt><b>setRGBA</b>( rgba )</tt>
+<dd>
+The RGBA (red, green, blue and alpha) output of the pixel filter. This
+must be called even if the filter doesn't modify the values.</dd>
+
+<dt>
+</dt>
+
+<br><tt><b>setVal</b>( type, buflen, buf )</tt>
+<dd>
+Write a value to one of the buffers.</dd>
+
+<dt>
+</dt>
+
+<br><tt>lit = <b>illuminate</b>( lightID, position, direction, color )</tt>
+<br><tt>len = <b>rayTrace</b>( position, direction, color )</tt>
+<br><tt>len = <b>rayCast</b>( position, direction )</tt>
+<br><tt>len = <b>rayShade</b>( position, direction, shaderAccess )</tt>
+<dd>
+These functions trace rays into the scene. See the <a href="../raytrace.html">raytracing
+functions</a> page for details. You can only use these if the return value
+of your flags function includes the <tt>LWPFF_RAYTRACE</tt> flag.</dd>
+</dl>
+<b>Example</b>
+<p>The <a href="../../sample/Layout/PixelFilter/zcomp/">zcomp</a> sample includes a pixel
+filter that composites the render with an image sequence using the <tt>LWBUF_DEPTH</tt>
+buffer. zcomp compares the depth at each pixel with the corresponding depth
+in the image to be composited, and substitutes the image pixel if it's
+nearer in z order to the camera.
+<p>The <a href="../../source/mandfilt/">mandfilt</a> sample turns LightWave&reg;
+into a Mandelbrot set renderer. Unlike most real pixel filters, it simply
+overwrites the pixel values with its own output, so it should be run in
+an empty scene. But it does demonstrate how pixel filter output is antialiased
+and adaptively sampled by LightWave&reg;.</td>
+</tr>
+</table>
+
+</body>
+</html>

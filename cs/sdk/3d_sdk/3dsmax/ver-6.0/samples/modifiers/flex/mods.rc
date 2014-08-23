@@ -1,0 +1,431 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "modsres.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_LAGPARAM DIALOG DISCARDABLE  0, 0, 108, 118
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_LAG_FALLOFF,"CustEdit",WS_TABSTOP,54,7,36,10
+    CONTROL         "",IDC_LAG_FALLOFFSPIN,"SpinnerControl",0x0,91,7,7,10
+    RTEXT           "Flex:",IDC_STATIC,26,8,26,8
+    CONTROL         "",IDC_LAG_SETTLE,"CustEdit",WS_TABSTOP,53,23,36,10
+    CONTROL         "",IDC_LAG_SETTLE_SPIN,"SpinnerControl",0x0,91,23,7,10
+    RTEXT           "Strength:",IDC_STATIC,11,24,40,8
+    CONTROL         "",IDC_LAG_WAVES,"CustEdit",WS_TABSTOP,53,35,36,10
+    CONTROL         "",IDC_LAG_WAVES_SPIN,"SpinnerControl",0x0,91,35,7,10
+    RTEXT           "Sway:",IDC_STATIC,10,36,41,8
+    COMBOBOX        IDC_QUALITY_COMBO,14,79,84,68,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_GROUP | WS_TABSTOP
+    CONTROL         "",IDC_SAMPLES,"CustEdit",WS_TABSTOP,53,99,36,10
+    CONTROL         "",IDC_SAMPLES_SPIN,"SpinnerControl",0x0,91,99,7,10
+    RTEXT           "Samples:",IDC_STATIC,9,100,41,8
+    CONTROL         "Use Chase Springs",IDC_CHASE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,20,50,73,9
+    CONTROL         "Use Weights",IDC_CENTER,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,20,62,73,9
+END
+
+IDD_SPRINGOPTION_DIALOG DIALOG DISCARDABLE  0, 0, 186, 148
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Spring Option"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,129,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,129,24,50,14
+    CONTROL         "Single Edge Spring",IDC_RADIO1,"Button",
+                    BS_AUTORADIOBUTTON,8,11,89,14
+    CONTROL         "Hold Edge Length Springs",IDC_RADIO2,"Button",
+                    BS_AUTORADIOBUTTON,8,26,101,14
+    CONTROL         "Hold Edge Length Springs Apply Only To Selected",
+                    IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,8,41,171,14
+    CONTROL         "Hold Shape Springs",IDC_RADIO4,"Button",
+                    BS_AUTORADIOBUTTON,8,56,89,14
+    CONTROL         "Hold Shape Springs Apply Only To Selected",IDC_RADIO5,
+                    "Button",BS_AUTORADIOBUTTON,8,71,171,14
+    CONTROL         "",IDC_LAG_HOLDSHAPE_OUTER,"CustEdit",WS_TABSTOP,98,90,
+                    36,10
+    CONTROL         "",IDC_LAG_HOLDSHAPE_OUTER_SPIN,"SpinnerControl",0x0,136,
+                    90,7,10
+    RTEXT           "Hold Shape Radius:",IDC_STATIC,30,91,66,8
+    LTEXT           "",IDC_EDGEDATA,8,105,155,9
+    LTEXT           "",IDC_EDGEDATA2,8,127,155,9
+    LTEXT           "",IDC_EDGEDATA1,8,116,155,9
+END
+
+IDD_LAGADVANCESPRINGS DIALOG DISCARDABLE  0, 0, 108, 171
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_LAG_STRETCHSTR,"CustEdit",WS_TABSTOP,55,54,36,10
+    CONTROL         "",IDC_LAG_STRETCHSTR_SPIN,"SpinnerControl",0x0,93,54,7,
+                    10
+    RTEXT           "Stretch Str:",-1,13,55,40,8
+    CONTROL         "",IDC_LAG_STRETCHSWAY,"CustEdit",WS_TABSTOP,55,66,36,10
+    CONTROL         "",IDC_LAG_STRETCHSWAY_SPIN,"SpinnerControl",0x0,93,66,7,
+                    10
+    RTEXT           "Stretch Sway:",-1,8,67,44,8
+    CONTROL         "",IDC_LAG_TORQUESTR,"CustEdit",WS_TABSTOP,55,79,36,10
+    CONTROL         "",IDC_LAG_TORQUESTR_SPIN,"SpinnerControl",0x0,93,79,7,
+                    10
+    RTEXT           "Shape Str:",-1,13,80,40,8
+    CONTROL         "",IDC_LAG_TORQUESWAY,"CustEdit",WS_TABSTOP,55,91,36,10
+    CONTROL         "",IDC_LAG_TORQUESWAY_SPIN,"SpinnerControl",0x0,93,91,7,
+                    10
+    RTEXT           "Shape Sway:",-1,8,92,44,8
+    CONTROL         "Add Spring",IDC_ADD_SPRING,"CustButton",WS_TABSTOP,11,
+                    20,54,12
+    CONTROL         "Remove Spring",IDC_REMOVE_SPRING,"CustButton",
+                    WS_TABSTOP,11,35,54,12
+    CONTROL         "Options",IDC_OPTIONS_SPRING,"CustButton",WS_TABSTOP,68,
+                    20,29,12
+    LTEXT           "",IDC_SUGEST,8,106,91,9
+    LTEXT           "",IDC_INFO,9,118,91,9
+    CONTROL         "Hold Length",IDC_HOLDLENGTH,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,10,134,52,10
+    CONTROL         "",IDC_LAG_HOLDLENGTHPER,"CustEdit",WS_TABSTOP,62,134,20,
+                    10
+    CONTROL         "",IDC_LAG_HOLDLENGTHPER_SPIN,"SpinnerControl",0x0,84,
+                    134,7,10
+    LTEXT           "%",-1,93,135,8,10
+    CONTROL         "Enable Advanced Springs",IDC_ENABLE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,6,94,11
+    CONTROL         "Show Springs",IDC_SHOWSPRINGS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,10,150,93,11
+END
+
+IDD_LAGADVANCEPARAMS DIALOG DISCARDABLE  0, 0, 108, 88
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_REFERENCEFRAME,"CustEdit",WS_TABSTOP,69,5,21,10
+    CONTROL         "",IDC_REFERENCEFRAME_SPIN,"SpinnerControl",0x0,92,5,7,
+                    10
+    RTEXT           "Reference Frame:",-1,9,6,58,8
+    PUSHBUTTON      "Set Reference",IDC_SETREFERENCE_BUTTON,24,53,61,12
+    CONTROL         "Use back face",IDC_PROJECT_THROUGH_CHECK,"Button",
+                    BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_DISABLED | 
+                    WS_TABSTOP,17,69,65,10
+    PUSHBUTTON      "Reset",IDC_RESET_BUTTON,24,68,61,12
+    CONTROL         "",IDC_ENDFRAME,"CustEdit",WS_TABSTOP,69,18,21,10
+    CONTROL         "",IDC_ENDFRAME_SPIN,"SpinnerControl",0x0,92,18,7,10
+    CONTROL         "End Frame:",IDC_ENDFRAMEON,"Button",BS_AUTOCHECKBOX | 
+                    BS_RIGHT | WS_TABSTOP,12,18,55,9
+    CONTROL         "Affect All Points",IDC_AFFECTALL,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFT | WS_TABSTOP,12,35,81,9
+END
+
+IDD_LAGFORCES DIALOG DISCARDABLE  0, 0, 108, 199
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Forces",-1,5,4,98,93
+    CONTROL         "Add",IDC_GRAVITY_PICKNODE,"CustButton",WS_TABSTOP,11,78,
+                    41,12
+    LISTBOX         IDC_LIST1,14,16,79,57,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "Remove",IDC_REMOVE_GRAV,"CustButton",WS_TABSTOP,57,79,
+                    41,12
+    CONTROL         "Add",IDC_COLLISION_PICKNODE,"CustButton",WS_TABSTOP,11,
+                    167,41,12
+    LISTBOX         IDC_LIST2,14,109,81,55,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "Remove",IDC_REMOVE_COLLISION,"CustButton",WS_TABSTOP,57,
+                    167,41,12
+    GROUPBOX        "Deflectors",-1,5,97,98,91
+END
+
+IDD_LAGWEIGHTS DIALOG DISCARDABLE  0, 0, 108, 125
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_RADIUS,"CustEdit",WS_TABSTOP,51,44,36,10
+    CONTROL         "",IDC_RADIUSSPIN,"SpinnerControl",0x0,89,44,7,10
+    RTEXT           "Radius:",-1,11,44,38,8
+    CONTROL         "",IDC_FEATHER,"CustEdit",WS_TABSTOP,51,58,36,10
+    CONTROL         "",IDC_FEATHERSPIN,"SpinnerControl",0x0,89,58,7,10
+    RTEXT           "Feather:",-1,11,58,38,8
+    GROUPBOX        "Paint Weights",-1,6,2,98,71
+    CONTROL         "",IDC_PAINT_STRENGTH,"CustEdit",WS_TABSTOP,51,30,36,10
+    CONTROL         "",IDC_PAINTSTRENGTHSPIN,"SpinnerControl",0x0,89,30,7,10
+    RTEXT           "Strength:",-1,11,30,38,8
+    CONTROL         "Paint",IDC_PAINT,"CustButton",WS_TABSTOP,13,12,82,12
+    GROUPBOX        "Vertex Weights",-1,5,76,98,41
+    CONTROL         "Absolute Weight",IDC_ABSOLUTE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,86,80,10
+    CONTROL         "",IDC_VWEIGHT,"CustEdit",WS_TABSTOP,64,99,21,10
+    CONTROL         "",IDC_VWEIGHT_SPIN,"SpinnerControl",0x0,87,99,7,10
+    RTEXT           "Vertex Weight:",-1,12,100,50,8
+END
+
+IDD_LAGSIMPLESOFT DIALOG DISCARDABLE  0, 0, 108, 84
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_LAG_SSTRETCH,"CustEdit",WS_TABSTOP,49,41,36,10
+    CONTROL         "",IDC_LAG_SSTRETCH_SPIN,"SpinnerControl",0x0,87,41,7,10
+    RTEXT           "Stretch:",-1,7,42,40,8
+    CONTROL         "",IDC_LAG_STIFFNESS,"CustEdit",WS_TABSTOP,49,53,36,10
+    CONTROL         "",IDC_LAG_STIFFNESS_SPIN,"SpinnerControl",0x0,87,53,7,
+                    10
+    RTEXT           "Stiffness:",-1,6,54,41,8
+    CONTROL         "Create Simple Soft Body",IDC_CREATE_SOFT,"CustButton",
+                    WS_TABSTOP,11,6,84,25
+    CTEXT           "",IDC_PERSTATIC,6,67,92,8
+END
+
+IDD_VERTEXINFLUENCE_DIALOG DIALOG DISCARDABLE  0, 0, 186, 82
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Vertex Influence"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,129,7,50,14
+    CONTROL         "",IDC_LAG_VERTEXINLFUENCE,"CustEdit",WS_TABSTOP,111,50,
+                    36,10
+    CONTROL         "",IDC_LAG_VERTEXINLFUENCE_SPIN,"SpinnerControl",0x0,149,
+                    50,7,10
+    RTEXT           "Vertex Influence Radius:",IDC_STATIC,19,51,90,8
+    LTEXT           "There is no definable topology on this object.  Please specify a radius on how far out a vertex will affect its neighbors.",
+                    IDC_STATIC,8,7,116,34
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "modsres.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_SUBOBJTYPES         BITMAP  DISCARDABLE     "subobjtypes.bmp"
+IDB_MASK_SUBOBJTYPES    BITMAP  DISCARDABLE     "mask_subobjtypes.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_LAGPARAM, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 116
+    END
+
+    IDD_SPRINGOPTION_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 8
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 141
+    END
+
+    IDD_LAGADVANCESPRINGS, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 166
+    END
+
+    IDD_LAGADVANCEPARAMS, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 83
+    END
+
+    IDD_LAGFORCES, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 194
+    END
+
+    IDD_LAGWEIGHTS, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 123
+    END
+
+    IDD_LAGSIMPLESOFT, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 82
+    END
+
+    IDD_VERTEXINFLUENCE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 8
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 74
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_LAGMOD           "Flex"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_LAGPOINTS        "Center"
+    IDS_LAG_FALLOFF         "Flex"
+    IDS_LAG_STRENGTH        "Strength"
+    IDS_LAG_SWAY            "Sway"
+    IDS_LAG_REFERENCEFRAME  "Reference Frame"
+    IDS_RB_LAG_EDGE         "Edge Vertices"
+    IDS_LAG_GRAVITY         "Gravity Strength"
+    IDS_LAG_WEIGHTS         "Weights & Springs"
+    IDS_LAG_FORCE_NODES     "Force Nodes"
+    IDS_LAG_ABSOLUTE        "Absolute"
+    IDS_PW_LAG_NOT_SELECTED "Flex object not selected"
+    IDS_PW_NOT_LAGDEF_ERROR "Not a valid flex modifier"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_NONE             "-NONE-"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PW_EXCEEDED_VERTEX_COUNT "Error exceeded vertex count"
+    IDS_PW_ERROR_COUNT      "Error the vertex list length must equal the weight list length"
+    IDS_PW_CHANGE_WEIGHT    "Change Weight"
+    IDS_PW_FLEXDATA         "Flex Data"
+    IDS_LAG_SOLVER          "Solver"
+    IDS_LAG_SAMPLES         "Samples"
+    IDS_LAG_QUALITY         "Quality"
+    IDS_LAG_EULER           "Euler"
+    IDS_LAG_MID             "Midpoint"
+    IDS_LAG_R4              "Runge-Kutta4"
+    IDS_LAG_CHASE           "Chase"
+    IDS_LAG_CENTER          "Center"
+    IDS_LAG_ENABLEENDFRAME  "Enable End Frame"
+    IDS_LAG_ENDFRAME        "End Frame"
+    IDS_LAG_COLLIDER_NODES  "Collider Nodes"
+    IDS_LAG_STRETCHSTRENGTH "Stretch Strength"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_PARAMETERS       "Parameters"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LAG_STRETCHSWAY     "Stretch Sway"
+    IDS_LAG_TORQUESTRENGTH  "Torque Strength"
+    IDS_LAG_TORQUESWAY      "Torque Sway"
+    IDS_LAG_EXTRASTRENGTH   "Extra Strength"
+    IDS_LAG_EXTRASWAY       "Extra Sway"
+    IDS_SUGGESTED           "Suggested Strength"
+    IDS_SPRINGCOUNT         "Spring Count"
+    IDS_LAG_HOLDRADIUS      "Hold Radius"
+    IDS_LAG_ADDMODE         "Add Mode"
+    IDS_AVERAGE             "Average Edge Length"
+    IDS_MAX                 "Maximum Edge Length"
+    IDS_MIN                 "Minimum  Edge Length"
+    IDS_LAG_DISPLAYSPRINGS  "Display Springs"
+    IDS_LAG_HOLDLENGTH      "Hold Length"
+    IDS_LAG_HOLDLENGTHPERCENT "Hold Length Percent"
+    IDS_LAG_LAZYEVAL        "Lazy evaluation"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LAG_ADVANCESPRINGSG "Advanced Springs"
+    IDS_LAG_FORCES_COLLISIONS "Forces and Deflectors"
+    IDS_LAG_ADVANCE_PARAMETERS "Advanced Parameters"
+    IDS_LAG_WEIGHTSPAINTS   "Weights and Painting"
+    IDS_LAG_SIMPLESOFT      "Simple Soft Bodies"
+    IDS_LAG_STRETCH         "Stretch"
+    IDS_LAG_STIFFNESS       "Stiffness"
+    IDS_LAG_ENABLESPRINGS   "Enable Advanced Springs"
+    IDS_RB_DEFDEFORMATIONS  "Deformations"
+    IDS_LAG_SPRINGCOLOR     "Spring Color"
+    IDS_LAG_AFFECTALL       "Affect All"
+    IDS_LAG_CREATESPRINGDEPTH "Create Spring Depth"
+    IDS_LAG_CREATESPRINGMULT "Create Spring Mult"
+    IDS_LAG_CREATESPRING    "Creating Springs"
+    IDS_LAG_PERCANCEL       "Done (ESC to cancel)"
+    IDS_LAG_REMOVESPRING    "Removing Springs"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

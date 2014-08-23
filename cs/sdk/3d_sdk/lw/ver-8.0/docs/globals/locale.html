@@ -1,0 +1,86 @@
+<html>
+
+<head>
+<title>Globals: Locale Info</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="lightinf.html"><img width="96" height="20"
+    border="0" src="../images/navlt.gif" alt="Light Info"></a></td>
+    <td width="96" align="left"><a href="mtutil.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Multithreading Utilities"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Locale Info</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwhost.h">lwhost.h</a></small></p>
+    <p>The locale info global returns a code indicating the (human) language setting of the
+    system.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   unsigned long locinfo;
+   locinfo = ( unsigned long ) global( LWLOCALEINFO_GLOBAL,
+      GFUSE_TRANSIENT );</pre>
+    <p>The global function ordinarily returns a <tt>void *</tt>, so this should be cast to an
+    integer type to get the return value.</p>
+    <p>The language ID is in the low 16 bits of the return value. The high 16 bits are
+    reserved for future use. The language ID can be extracted using a macro defined in <tt>lwhost.h</tt>.</p>
+    <pre>   langid = locinfo &amp; LWLOC_LANGID;</pre>
+    <p>The language IDs are identical to those defined in the Microsoft Win32 API and exposed
+    in the Microsoft Visual C++ <tt>winnt.h</tt> header file. Bits 7 - 0 define the language
+    group and bits 15 - 8 define the sublanguage. The plug-in SDK header file <tt>lwserver.h</tt>
+    contains symbols for some of the more common language IDs.</p>
+    <pre>   LANGID_GERMAN      0x0407
+   LANGID_USENGLISH   0x0409
+   LANGID_UKENGLISH   0x0809
+   LANGID_SPANISH     0x040a
+   LANGID_FRENCH      0x040c
+   LANGID_ITALIAN     0x0410
+   LANGID_JAPANESE    0x0411
+   LANGID_KOREAN      0x0412
+   LANGID_RUSSIAN     0x0419
+   LANGID_SWEDISH     0x041D</pre>
+    <p>Note that the low order bits for <tt>USENGLISH</tt> and <tt>UKENGLISH</tt> are the
+    same. Win32 defines 9 flavors of English (as well as 16 flavors of both Arabic and
+    Spanish, for example) that are distinguished by sublanguage code.</p>
+    <p>Your plug-in isn't required to implement localization, but even if you don't provide
+    error messages or panel text in multiple languages, you may still want to localize things
+    like date formats or currency symbols.</p>
+    <p><strong>Example</strong></p>
+    <p>The following code fragment selects a greeting string based on the locale.</p>
+    <pre>   #include &lt;lwserver.h&gt;
+   #include &lt;lwhost.h&gt;
+
+   unsigned long locinfo;
+   locinfo = ( unsigned long ) global( LWLOCALEINFO_GLOBAL,
+      GFUSE_TRANSIENT );
+
+   switch ( locinfo &amp; LWLOC_LANGID ) {
+      case LANGID_GERMAN:    msg = &quot;Guten Tag&quot;;        break;
+      case LANGID_USENGLISH:
+      case LANGID_UKENGLISH: msg = &quot;Good day&quot;;         break;
+      case LANGID_SPANISH:   msg = &quot;Buenos dias&quot;;      break;
+      case LANGID_FRENCH     msg = &quot;Bonjour&quot;;          break;
+      case LANGID_ITALIAN    msg = &quot;Buon giorno&quot;;      break;
+      case LANGID_JAPANESE   msg = &quot;Konnichi wa&quot;;      break;
+      case LANGID_KOREAN     msg = &quot;Annyoung hase yo&quot;; break;
+      case LANGID_RUSSIAN    msg = &quot;Zdravstvuite&quot;;     break;
+      case LANGID_SWEDISH    msg = &quot;God dag&quot;;          break;
+      ...</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

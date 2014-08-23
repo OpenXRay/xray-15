@@ -1,0 +1,158 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "modsres.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "modsres.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_EXTRUDEPARAM_PLASMA DIALOG DISCARDABLE  0, 0, 108, 129
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_AMOUNT,"CustEdit",WS_TABSTOP,49,6,38,10
+    CONTROL         "",IDC_SEGMENTS,"CustEdit",WS_TABSTOP,49,18,38,10
+    CONTROL         "Cap Start",IDC_CAPSTART,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,33,39,42,10
+    CONTROL         "Cap End",IDC_CAPEND,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,33,50,42,10
+    CONTROL         "Morph",IDC_MORPHCAP,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,19,62,32,10
+    CONTROL         "Grid",IDC_GRIDCAP,"Button",BS_AUTORADIOBUTTON,63,62,25,
+                    10
+    CONTROL         "Generate Mapping Coords.",IDC_GENMAPPING,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,5,81,97,10
+    CONTROL         "",IDC_AMOUNTSPINNER,"SpinnerControl",0x0,88,6,7,10
+    RTEXT           "Amount:",IDC_STATIC,19,6,28,8
+    CONTROL         "",IDC_SEGMENTSPINNER,"SpinnerControl",0x0,88,18,7,10
+    RTEXT           "Segments:",IDC_STATIC,12,19,35,8
+    GROUPBOX        "Capping",IDC_STATIC,2,29,103,46
+    CONTROL         "Generate Material IDs",IDC_GEN_MATIDS,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,5,91,97,10
+    CONTROL         "Use Shape IDs",IDC_USE_SHAPE_IDS,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,16,101,64,10
+    CONTROL         "Smooth",IDC_SMOOTH,"Button",BS_AUTOCHECKBOX | WS_GROUP | 
+                    WS_TABSTOP,5,112,97,10
+END
+
+IDD_SURFREVPARAM_PLASMA DIALOG DISCARDABLE  0, 0, 108, 210
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_DEGREES,"CustEdit",WS_TABSTOP,49,6,36,10
+    CONTROL         "Weld Core",IDC_WELDCORE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,31,18,45,10
+    CONTROL         "",IDC_SEGMENTS,"CustEdit",WS_TABSTOP,49,41,36,10
+    CONTROL         "Cap Start",IDC_CAPSTART,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,33,64,42,10
+    CONTROL         "Cap End",IDC_CAPEND,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,33,75,42,10
+    CONTROL         "Morph",IDC_MORPHCAP,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,19,86,32,10
+    CONTROL         "Grid",IDC_GRIDCAP,"Button",BS_AUTORADIOBUTTON,63,86,25,
+                    10
+    CONTROL         "X",IDC_X,"CustButton",WS_GROUP | WS_TABSTOP,25,114,15,
+                    11
+    CONTROL         "Y",IDC_Y,"CustButton",WS_TABSTOP,46,114,15,11
+    CONTROL         "Z",IDC_Z,"CustButton",WS_TABSTOP,67,114,15,11
+    CONTROL         "Min",IDC_ALIGNMIN,"CustButton",WS_TABSTOP,10,143,27,11
+    CONTROL         "Center",IDC_ALIGNCENTER,"CustButton",WS_TABSTOP,41,143,
+                    27,11
+    CONTROL         "Max",IDC_ALIGNMAX,"CustButton",WS_TABSTOP,72,143,27,11
+    CONTROL         "Generate Mapping Coords.",IDC_GENMAPPING,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,5,164,97,10
+    CONTROL         "",IDC_DEGREESSPINNER,"SpinnerControl",0x0,86,6,7,10
+    RTEXT           "Degrees:",IDC_STATIC,17,7,31,8
+    CONTROL         "",IDC_SEGMENTSPINNER,"SpinnerControl",0x0,86,41,7,10
+    RTEXT           "Segments:",IDC_STATIC,13,42,35,8
+    GROUPBOX        "Direction",IDC_STATIC,3,102,102,28
+    GROUPBOX        "Align",IDC_STATIC,3,131,102,28
+    GROUPBOX        "Capping",IDC_STATIC,3,53,102,46
+    CONTROL         "Flip Normals",IDC_FLIPNORMALS,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,31,28,54,10
+    CONTROL         "Generate Material IDs",IDC_GEN_MATIDS,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,5,174,97,10
+    CONTROL         "Use Shape IDs",IDC_USE_SHAPE_IDS,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,16,184,64,10
+    CONTROL         "Smooth",IDC_SMOOTH,"Button",BS_AUTOCHECKBOX | WS_GROUP | 
+                    WS_TABSTOP,5,194,97,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_UVWMAP_CLASS_PLASMA "Mapping"
+    IDS_RB_UVWMAPPING_PLASMA "Mapping"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

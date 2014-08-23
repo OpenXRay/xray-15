@@ -1,0 +1,220 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "kernelres.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "kernelres.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_BRITECON_EFFECT DIALOG DISCARDABLE  0, 0, 211, 40
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Brightness:",IDC_STATIC,15,6,34,12
+    LTEXT           "Contrast:",IDC_STATIC,111,6,27,12
+    CONTROL         "",IDC_BC_BRIGHTNESS,"CustEdit",WS_TABSTOP,53,6,34,11
+    CONTROL         "",IDC_BC_CONTRAST,"CustEdit",WS_TABSTOP,141,6,41,11
+    CONTROL         "0,255,0",IDC_BC_BRIGHTNESS_SPIN,"SpinnerControl",0x0,89,
+                    6,10,11
+    CONTROL         "0,255,0",IDC_BC_CONTRAST_SPIN,"SpinnerControl",0x0,183,
+                    6,9,11
+END
+
+IDD_MITNET_PARAMS DIALOG DISCARDABLE  0, 0, 208, 49
+STYLE WS_POPUP
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Mitchell /Netravali Kernel Parameters",IDC_STATIC,7,7,
+                    194,35
+    LTEXT           "B:",IDC_STATIC,40,22,8,12
+    LTEXT           "C:",IDC_STATIC,133,21,9,13
+    CONTROL         "",IDC_MITNET_B,"CustEdit",WS_TABSTOP,54,21,34,11
+    CONTROL         "",IDC_MITNET_C,"CustEdit",WS_TABSTOP,146,21,34,11
+    CONTROL         "0,255,0",IDC_MITNET_B_SPIN,"SpinnerControl",0x0,89,21,
+                    10,11
+    CONTROL         "0,255,0",IDC_MITNET_C_SPIN,"SpinnerControl",0x0,182,21,
+                    9,11
+END
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_BRITECON_EFFECT, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 204
+    END
+
+    IDD_MITNET_PARAMS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 201
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 42
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_KE_KERNELDESC       "Standard pre-filter kernels (Discreet)"
+    IDS_KE_SAMPKERNEL       "Cylinder"
+    IDS_KE_PARAMETERS       "dummy parameter"
+    IDS_KE_CONE_KERNEL      "Cone"
+    IDS_KE_QUADRATIC_KERNEL "Quadratic"
+    IDS_KE_CUBIC_KERNEL     "Cubic"
+    IDS_KE_CATROM_KERNEL    "Catmull-Rom"
+    IDS_KE_GAUSS_NARROW_KERNEL "Narrow Gauss"
+    IDS_KE_GAUSS_MEDIUM_KERNEL "Medium Gauss"
+    IDS_KE_GAUSS_WIDE_KERNEL "Wide Gauss"
+    IDS_KE_PAVIC_UNITVOL_KERNEL "Pavic Unit Vol"
+    IDS_KE_PAVIC_OP_KERNEL  "Pavic Op"
+    IDS_KE_HANNING_KERNEL   "Hanning"
+    IDS_KE_HAMMING_KERNEL   "Hamming"
+    IDS_KE_BLACKMAN_KERNEL  "Exact Blackman"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_KE_BLACKMAN361_KERNEL "Blackman 3-61"
+    IDS_KE_BLACKMAN367_KERNEL "Blackman 3-67"
+    IDS_KE_BLACKMAN474_KERNEL "Blackman"
+    IDS_KE_BLACKMAN492_KERNEL "Blackman 4-92"
+    IDS_KE_MAX1_KERNEL      "Sharp Quadratic"
+    IDS_KE_MAX2_KERNEL      "Max 2"
+    IDS_KE_MAX3_KERNEL      "Max 3"
+    IDS_KE_MITNET_OP_KERNEL "Mitchell-Netravali"
+    IDS_KE_MITNET_NOTCH_KERNEL "MitNet Notch"
+    IDS_KE_NTSC_KERNEL      "Video"
+    IDS_KE_COOK_OP_KERNEL   "Cook Op"
+    IDS_KE_MITNET_VAR_KERNEL "Mitchell-Netravali"
+    IDS_KE_COOK_VAR_KERNEL  "Cook Variable"
+    IDS_KE_GAUSS_VAR_KERNEL "Soften"
+    IDS_KE_MITNET_PARAMS    "Mitchell / Netravali Kernel Parameters"
+    IDS_KE_CYLINDER_VAR_KERNEL "Coarse Soften"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_KE_CONE_VAR_KERNEL  "Coarse Soften"
+    IDS_KE_QUADRATIC_VAR_KERNEL "Quadratic Soften"
+    IDS_KE_CUBIC_VAR_KERNEL "Cubic Soften"
+    IDS_KE_QUAD_COMMENT     "A 9 pixel blurring filter based on a quadratic spline. "
+    IDS_KE_MAX_COMMENT      "A sharp 9 pixel reconstruction filter, from Nelson Max. "
+    IDS_KE_CUBIC_COMMENT    "A 25 pixel blurring filter based on a cubic spline. "
+    IDS_KE_NTSC_COMMENT     "A 25 pixel  blurring filter optimized for NTSC && PAL video applications."
+    IDS_KE_COOK_COMMENT     "General purpose filter. Values of 1 to 2.5 are sharp; higher values blur the image."
+    IDS_KE_GAUSSVAR_COMMENT "Adjustable Gaussian softening filter. For mild blurring."
+    IDS_KE_CONEVAR_COMMENT  "Adjustable Cone softening filter. For extreme blurring."
+    IDS_KE_HANNING_COMMENT  "A 25 pixel reconstruction filter with a slight edge enhancement effect."
+    IDS_KE_BLACKMAN_COMMENT "A 25 pixel filter that is sharp, but without edge enhancement."
+    IDS_KE_CATROM_COMMENT   "A 25 pixel filter with pronounced edge enhancement effects."
+    IDS_KE_MITNET_COMMENT   "Two parameter filter: Trade off blurring against ringing && anisotropy."
+    IDS_KE_BLANK            "    "
+    IDS_KE_MITNET_PARAM_B   "Blur:"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_KE_MITNET_PARAM_C   "Ringing:"
+    IDS_KE_BLEND_COMMENT    "Blend between sharp area and coarse soften filters"
+    IDS_KE_STOCKING_BLEND   "Blend:"
+    IDS_KE_STOCKING_PARAMS  "Parameters"
+    IDS_KE_STOCKING_KERNEL  "Fine Blend"
+    IDS_KE_STOCKING_SHARPNESS "Sharpness:"
+    IDS_KE_AREA_COMMENT     "Computes Antialiasing using a variable size area filter."
+    IDS_KE_AREA_KERNEL      "Area"
+    IDS_KE_CYLVAR_COMMENT   "Adjustable Cylinder softening filter.For extreme blurring."
+    IDS_KE_BLEND_KERNEL     "Blend"
+    IDS_KE_STOCKING_COMMENT "Blend between sharp area and Gaussian soften filters"
+    IDS_KE_PIXELSIZE_KERNEL "Plate Match/MAX R2"
+    IDS_KE_PIXELSIZE_COMMENT 
+                            "MAX R2.x method (edges only) for matching mapped objects against background plates."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

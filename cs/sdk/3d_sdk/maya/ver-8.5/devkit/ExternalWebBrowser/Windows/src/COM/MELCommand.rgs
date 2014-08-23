@@ -1,0 +1,40 @@
+HKCR
+{
+	Maya.CommandEngine.MEL.1 = s 'Autodesk Maya Command Engine'
+	{
+		CLSID = s '{63364C80-9AE0-42DD-B4BC-13860739859D}'
+	}
+	Maya.CommandEngine.MEL = s 'Autodesk Maya Command Engine'
+	{
+		CLSID = s '{63364C80-9AE0-42DD-B4BC-13860739859D}'
+		CurVer = s 'Maya.CommandEngine.MEL.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {63364C80-9AE0-42DD-B4BC-13860739859D} = s 'Autodesk Maya Command Engine'
+		{
+			ProgID = s 'Maya.CommandEngine.MEL.1'
+			VersionIndependentProgID = s 'Maya.CommandEngine.MEL'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			val AppID = s '%APPID%'
+			'TypeLib' = s '{D83DFD2B-312C-4B48-9FCB-BB9BDA8AB53D}'
+		}
+	}
+	mel = s 'URL:MEL Protocol'
+	{
+		val 'URL Protocol' = s ''
+		DefaultIcon = s '%MODULE%'
+		shell = s ''
+		{
+			open = s ''
+			{
+				command = s 'rundll32.exe %MODULE%,OpenURL %%1'
+			}
+		}
+		
+	}
+}

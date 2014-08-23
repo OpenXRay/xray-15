@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		{4AD72E62-5A4B-11D2-91CB-0060081C257E} = s '3dsmax'
+		'3dsmax.EXE'
+		{
+			val AppID = s {4AD72E62-5A4B-11D2-91CB-0060081C257E}
+		}
+	}
+}

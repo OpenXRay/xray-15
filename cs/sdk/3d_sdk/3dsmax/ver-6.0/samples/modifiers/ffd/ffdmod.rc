@@ -1,0 +1,551 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_FFDPARAMS DIALOG DISCARDABLE  0, 0, 108, 236
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Lattice",IDC_FFD_SHOWLATTICE,"Button",BS_AUTOCHECKBOX,
+                    23,15,39,10
+    CONTROL         "Source Volume",IDC_FFD_SHOWSOURCE,"Button",
+                    BS_AUTOCHECKBOX,23,29,66,10
+    CONTROL         "Only In Volume",IDC_FFD_INVOLUME,"Button",
+                    BS_AUTORADIOBUTTON,23,60,63,10
+    CONTROL         "All Vertices",IDC_FFD_DEFORMALL,"Button",
+                    BS_AUTORADIOBUTTON,23,72,51,10
+    PUSHBUTTON      "About",IDC_FFD_ABOUT,34,218,40,11
+    GROUPBOX        "Display:",IDC_STATIC,5,1,98,44
+    GROUPBOX        "Deform:",IDC_STATIC,5,47,98,44
+    GROUPBOX        "Control Points:",IDC_STATIC,5,92,98,115
+    PUSHBUTTON      "Reset",IDC_FFD_RESET,22,104,64,11
+    PUSHBUTTON      "Animate All",IDC_FFD_ANIMATEALL,22,119,64,11
+    PUSHBUTTON      "Conform to Shape",IDC_FFD_CONFORM,22,140,64,11
+    CONTROL         "Inside Points",IDC_FFD_INPOINTS,"Button",
+                    BS_AUTOCHECKBOX,25,157,55,10
+    CONTROL         "Outside Points",IDC_FFD_OUTPOINTS,"Button",
+                    BS_AUTOCHECKBOX,25,171,66,10
+    CONTROL         "",IDC_FFD_OFFSET,"CustEdit",WS_TABSTOP,54,187,27,10
+    CONTROL         "",IDC_FFD_OFFSETSPIN,"SpinnerControl",0x0,82,187,7,10
+    RTEXT           "Offset :",IDC_FFD_OFFSETLABEL,16,188,36,8
+END
+
+IDD_FFD_ABOUT44 DIALOG DISCARDABLE  0, 0, 183, 106
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About FFD"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,67,85,50,14
+    CTEXT           "4x4x4 Free Form Deformation Modifier",IDC_STATIC,7,7,
+                    169,8
+    CTEXT           "Copyright © 1996 Yost Group, Inc.",IDC_STATIC,7,29,169,
+                    8
+    CTEXT           "Created by Rolf Berteig",IDC_STATIC,7,18,169,8
+    CTEXT           "Free Form Deformation Patent #4,821,214 licensed from Viewpoint DataLabs Int'l, Inc., Orem, UT\nwww.viewpoint.com",
+                    IDC_STATIC,7,50,169,28
+END
+
+IDD_FFD_ABOUT33 DIALOG DISCARDABLE  0, 0, 183, 106
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About FFD"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,67,85,50,14
+    CTEXT           "3x3x3 Free Form Deformation Modifier",IDC_STATIC,7,7,
+                    169,8
+    CTEXT           "Copyright © 1996 Yost Group, Inc.",IDC_STATIC,7,29,169,
+                    8
+    CTEXT           "Created by Rolf Berteig",IDC_STATIC,7,18,169,8
+    CTEXT           "Free Form Deformation Patent #4,821,214 licensed from Viewpoint DataLabs Int'l, Inc., Orem, UT\nwww.viewpoint.com",
+                    IDC_STATIC,7,50,169,28
+END
+
+IDD_FFD_ABOUT22 DIALOG DISCARDABLE  0, 0, 183, 106
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About FFD"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,67,85,50,14
+    CTEXT           "2x2x2 Free Form Deformation Modifier",IDC_STATIC,7,7,
+                    169,8
+    CTEXT           "Copyright © 1996 Yost Group, Inc.",IDC_STATIC,7,29,169,
+                    8
+    CTEXT           "Created by Rolf Berteig",IDC_STATIC,7,18,169,8
+    CTEXT           "Free Form Deformation Patent #4,821,214 licensed from Viewpoint DataLabs Int'l, Inc., Orem, UT\nwww.viewpoint.com",
+                    IDC_STATIC,7,50,169,28
+END
+
+IDD_FFDNMOSPARAMS DIALOG DISCARDABLE  0, 0, 108, 352
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Set Number of Points",IDC_FFD_SETDIM,12,24,82,11
+    CONTROL         "Lattice",IDC_FFD_SHOWLATTICE,"Button",BS_AUTOCHECKBOX,
+                    23,56,39,10
+    CONTROL         "Source Volume",IDC_FFD_SHOWSOURCE,"Button",
+                    BS_AUTOCHECKBOX,23,70,66,10
+    CONTROL         "Only In Volume",IDC_FFD_INVOLUME,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,23,100,63,10
+    CONTROL         "All Vertices",IDC_FFD_DEFORMALL,"Button",
+                    BS_AUTORADIOBUTTON,23,113,51,10
+    CONTROL         "",IDC_FFD_FALLOFF,"CustEdit",WS_TABSTOP,54,126,27,10
+    CONTROL         "",IDC_FFD_TENS,"CustEdit",WS_TABSTOP,54,148,27,10
+    CONTROL         "",IDC_FFD_CONT,"CustEdit",WS_TABSTOP,54,161,27,10
+    CONTROL         "All X",IDC_FFD_ALLX,"CustButton",WS_TABSTOP,10,190,27,
+                    12
+    CONTROL         "All Y",IDC_FFD_ALLY,"CustButton",WS_TABSTOP,40,190,27,
+                    12
+    CONTROL         "All Z",IDC_FFD_ALLZ,"CustButton",WS_TABSTOP,70,190,27,
+                    12
+    PUSHBUTTON      "About",IDC_FFD_ABOUT,34,332,40,11
+    GROUPBOX        "Display:",IDC_STATIC,5,42,98,44
+    GROUPBOX        "Deform:",IDC_STATIC,5,88,98,90
+    GROUPBOX        "Dimensions:",IDC_STATIC,5,2,98,39
+    CTEXT           "3x4x5",IDC_FFD_DIMTEXT,13,12,80,8
+    CONTROL         "",IDC_FFD_FALLOFFSPIN,"SpinnerControl",0x0,82,126,7,10
+    RTEXT           "Falloff:",IDC_FFD_FALLOFFLABEL,23,127,29,8
+    GROUPBOX        "Selection:",IDC_STATIC,5,179,98,28
+    CONTROL         "",IDC_FFD_CONTSPIN,"SpinnerControl",0x0,82,161,7,10
+    RTEXT           "Continuity:",IDC_STATIC,16,162,36,8
+    CONTROL         "",IDC_FFD_TENSSPIN,"SpinnerControl",0x0,82,148,7,10
+    RTEXT           "Tension:",IDC_STATIC,16,149,36,8
+    GROUPBOX        "",IDC_STATIC,5,138,98,40
+    GROUPBOX        "Control Points:",IDC_STATIC,5,210,98,115
+    PUSHBUTTON      "Reset",IDC_FFD_RESET,22,222,64,11
+    PUSHBUTTON      "Animate All",IDC_FFD_ANIMATEALL,22,237,64,11
+    PUSHBUTTON      "Conform to Shape",IDC_FFD_CONFORM,22,258,64,11
+    GROUPBOX        "",IDC_STATIC,5,248,98,77
+    CONTROL         "Inside Points",IDC_FFD_INPOINTS,"Button",
+                    BS_AUTOCHECKBOX,25,275,55,10
+    CONTROL         "Outside Points",IDC_FFD_OUTPOINTS,"Button",
+                    BS_AUTOCHECKBOX,25,289,66,10
+    CONTROL         "",IDC_FFD_OFFSET,"CustEdit",WS_TABSTOP,54,305,27,10
+    CONTROL         "",IDC_FFD_OFFSETSPIN,"SpinnerControl",0x0,82,305,7,10
+    RTEXT           "Offset :",IDC_FFD_OFFSETLABEL,16,306,36,8
+END
+
+IDD_FFD_ABOUTNM DIALOG DISCARDABLE  0, 0, 183, 106
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About FFD"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,67,85,50,14
+    CTEXT           "Free Form Deformation Modifier",IDC_STATIC,7,7,169,8
+    CTEXT           "Copyright © 1996 Yost Group, Inc.",IDC_STATIC,7,29,169,
+                    8
+    CTEXT           "Created by Rolf Berteig",IDC_STATIC,7,18,169,8
+    CTEXT           "Free Form Deformation Patent #4,821,214 licensed from Viewpoint DataLabs Int'l, Inc., Orem, UT\nwww.viewpoint.com",
+                    IDC_STATIC,7,50,169,28
+END
+
+IDD_FFD_SETDIM DIALOG DISCARDABLE  0, 0, 171, 65
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Set FFD Dimensions"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Set Number of Points",IDC_STATIC,6,3,97,55,WS_GROUP
+    RTEXT           "Length:",IDC_STATIC,16,17,29,8
+    CONTROL         "",IDC_FFD_DIM1,"CustEdit",WS_GROUP | WS_TABSTOP,47,16,
+                    27,10
+    CONTROL         "",IDC_FFD_DIM1SPIN,"SpinnerControl",WS_GROUP,75,16,7,10
+    RTEXT           "Width:",IDC_STATIC,16,30,29,8
+    CONTROL         "",IDC_FFD_DIM0,"CustEdit",WS_GROUP | WS_TABSTOP,47,29,
+                    27,10
+    CONTROL         "",IDC_FFD_DIM0SPIN,"SpinnerControl",WS_GROUP,75,29,7,10
+    RTEXT           "Height:",IDC_STATIC,16,42,29,8
+    CONTROL         "",IDC_FFD_DIM2,"CustEdit",WS_GROUP | WS_TABSTOP,47,42,
+                    27,10
+    CONTROL         "",IDC_FFD_DIM2SPIN,"SpinnerControl",WS_GROUP,75,42,7,10
+    DEFPUSHBUTTON   "OK",IDOK,114,7,50,14,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,114,24,50,14,WS_GROUP
+END
+
+IDD_FFDNMWSPARAMS DIALOG DISCARDABLE  0, 0, 108, 275
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Dimensions:",IDC_STATIC,5,2,98,83,WS_GROUP
+    RTEXT           "Length:",IDC_STATIC,14,14,29,8
+    CONTROL         "",IDC_FFD_LENGTH,"CustEdit",WS_GROUP | WS_TABSTOP,46,13,
+                    33,10
+    CONTROL         "",IDC_FFD_LENGTHSPIN,"SpinnerControl",WS_GROUP,80,13,7,
+                    10
+    RTEXT           "Width:",IDC_STATIC,14,27,29,8
+    CONTROL         "",IDC_FFD_WIDTH,"CustEdit",WS_GROUP | WS_TABSTOP,46,26,
+                    33,10
+    CONTROL         "",IDC_FFD_WIDTHSPIN,"SpinnerControl",WS_GROUP,80,26,7,
+                    10
+    RTEXT           "Height:",IDC_STATIC,14,40,29,8
+    CONTROL         "",IDC_FFD_HEIGHT,"CustEdit",WS_GROUP | WS_TABSTOP,46,39,
+                    33,10
+    CONTROL         "",IDC_FFD_HEIGHTSPIN,"SpinnerControl",WS_GROUP,80,39,7,
+                    10
+    CTEXT           "3x4x5",IDC_FFD_DIMTEXT,13,54,80,8
+    PUSHBUTTON      "Set Number of Points",IDC_FFD_SETDIM,12,66,82,11,
+                    WS_GROUP
+    GROUPBOX        "Display:",IDC_STATIC,5,86,98,44,WS_GROUP
+    CONTROL         "Lattice",IDC_FFD_SHOWLATTICE,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,23,100,39,10
+    CONTROL         "Source Volume",IDC_FFD_SHOWSOURCE,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,23,114,66,10
+    GROUPBOX        "Deform:",IDC_STATIC,5,132,98,90,WS_GROUP
+    CONTROL         "Only In Volume",IDC_FFD_INVOLUME,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,23,144,63,10
+    CONTROL         "All Vertices",IDC_FFD_DEFORMALL,"Button",
+                    BS_AUTORADIOBUTTON,23,156,51,10
+    RTEXT           "Falloff:",IDC_FFD_FALLOFFLABEL,19,172,29,8
+    CONTROL         "",IDC_FFD_FALLOFF,"CustEdit",WS_GROUP | WS_TABSTOP,51,
+                    171,27,10
+    CONTROL         "",IDC_FFD_FALLOFFSPIN,"SpinnerControl",WS_GROUP,79,171,
+                    7,10
+    GROUPBOX        "",IDC_STATIC,5,182,98,40,WS_GROUP
+    RTEXT           "Tension:",IDC_STATIC,16,193,36,8
+    CONTROL         "",IDC_FFD_TENS,"CustEdit",WS_GROUP | WS_TABSTOP,54,192,
+                    27,10
+    CONTROL         "",IDC_FFD_TENSSPIN,"SpinnerControl",WS_GROUP,82,192,7,
+                    10
+    RTEXT           "Continuity:",IDC_STATIC,16,206,36,8
+    CONTROL         "",IDC_FFD_CONT,"CustEdit",WS_GROUP | WS_TABSTOP,54,205,
+                    27,10
+    CONTROL         "",IDC_FFD_CONTSPIN,"SpinnerControl",WS_GROUP,82,205,7,
+                    10
+    GROUPBOX        "Selection:",IDC_STATIC,5,224,98,28,WS_GROUP
+    CONTROL         "All X",IDC_FFD_ALLX,"CustButton",WS_GROUP | WS_TABSTOP,
+                    10,235,27,12
+    CONTROL         "All Y",IDC_FFD_ALLY,"CustButton",WS_GROUP | WS_TABSTOP,
+                    40,235,27,12
+    CONTROL         "All Z",IDC_FFD_ALLZ,"CustButton",WS_GROUP | WS_TABSTOP,
+                    70,235,27,12
+    PUSHBUTTON      "About",IDC_FFD_ABOUT,34,258,40,11,WS_GROUP
+END
+
+IDD_FFDNMWSCYLPARAMS DIALOG DISCARDABLE  0, 0, 108, 262
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Set Number of Points",IDC_FFD_SETDIM,12,54,82,11,
+                    WS_GROUP
+    CONTROL         "Lattice",IDC_FFD_SHOWLATTICE,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,23,88,39,10
+    CONTROL         "Source Volume",IDC_FFD_SHOWSOURCE,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,23,102,66,10
+    CONTROL         "Only In Volume",IDC_FFD_INVOLUME,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,23,132,63,10
+    CONTROL         "All Vertices",IDC_FFD_DEFORMALL,"Button",
+                    BS_AUTORADIOBUTTON,23,145,51,10
+    CONTROL         "",IDC_FFD_FALLOFF,"CustEdit",WS_GROUP | WS_TABSTOP,51,
+                    159,27,10
+    CONTROL         "",IDC_FFD_TENS,"CustEdit",WS_GROUP | WS_TABSTOP,54,180,
+                    27,10
+    CONTROL         "",IDC_FFD_CONT,"CustEdit",WS_GROUP | WS_TABSTOP,54,193,
+                    27,10
+    CONTROL         "",IDC_FFD_WIDTH,"CustEdit",WS_GROUP | WS_TABSTOP,46,13,
+                    33,10
+    CONTROL         "",IDC_FFD_LENGTH,"CustEdit",WS_GROUP | WS_TABSTOP,46,26,
+                    33,10
+    CONTROL         "All X",IDC_FFD_ALLX,"CustButton",WS_GROUP | WS_TABSTOP,
+                    10,222,27,12
+    CONTROL         "All Y",IDC_FFD_ALLY,"CustButton",WS_GROUP | WS_TABSTOP,
+                    40,222,27,12
+    CONTROL         "All Z",IDC_FFD_ALLZ,"CustButton",WS_GROUP | WS_TABSTOP,
+                    70,222,27,12
+    PUSHBUTTON      "About",IDC_FFD_ABOUT,34,245,40,11,WS_GROUP
+    GROUPBOX        "Display:",IDC_STATIC,5,74,98,44,WS_GROUP
+    GROUPBOX        "Deform:",IDC_STATIC,5,120,98,90,WS_GROUP
+    GROUPBOX        "Dimensions:",IDC_STATIC,5,2,98,70,WS_GROUP
+    CTEXT           "3x4x5",IDC_FFD_DIMTEXT,13,42,80,8
+    CONTROL         "",IDC_FFD_FALLOFFSPIN,"SpinnerControl",WS_GROUP,79,159,
+                    7,10
+    RTEXT           "Falloff:",IDC_FFD_FALLOFFLABEL,19,160,29,8
+    CONTROL         "",IDC_FFD_LENGTHSPIN,"SpinnerControl",WS_GROUP,80,26,7,
+                    10
+    RTEXT           "Height:",IDC_STATIC,14,27,29,8
+    CONTROL         "",IDC_FFD_WIDTHSPIN,"SpinnerControl",WS_GROUP,80,13,7,
+                    10
+    RTEXT           "Radius:",IDC_STATIC,14,14,29,8
+    GROUPBOX        "Selection:",IDC_STATIC,5,211,98,28,WS_GROUP
+    CONTROL         "",IDC_FFD_CONTSPIN,"SpinnerControl",WS_GROUP,82,193,7,
+                    10
+    RTEXT           "Continuity:",IDC_STATIC,16,194,36,8
+    CONTROL         "",IDC_FFD_TENSSPIN,"SpinnerControl",WS_GROUP,82,180,7,
+                    10
+    RTEXT           "Tension:",IDC_STATIC,16,181,36,8
+    GROUPBOX        "",IDC_STATIC,5,170,98,40,WS_GROUP
+    CONTROL         "",IDC_FFD_HEIGHT,"CustEdit",NOT WS_VISIBLE | WS_GROUP | 
+                    WS_TABSTOP,51,67,33,10
+    CONTROL         "",IDC_FFD_HEIGHTSPIN,"SpinnerControl",NOT WS_VISIBLE | 
+                    WS_GROUP,85,67,7,10
+END
+
+IDD_FFD_SETDIMCYL DIALOG DISCARDABLE  0, 0, 171, 65
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Set FFD Dimensions"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Set Number of Points",IDC_STATIC,6,3,97,55
+    RTEXT           "Side:",IDC_STATIC,16,16,29,8
+    CONTROL         "",IDC_FFD_DIM0,"CustEdit",WS_TABSTOP,47,15,27,10
+    CONTROL         "",IDC_FFD_DIM0SPIN,"SpinnerControl",0x0,75,15,7,10
+    RTEXT           "Radial:",IDC_STATIC,16,29,29,8
+    CONTROL         "",IDC_FFD_DIM1,"CustEdit",WS_TABSTOP,47,28,27,10
+    CONTROL         "",IDC_FFD_DIM1SPIN,"SpinnerControl",0x0,75,28,7,10
+    RTEXT           "Height:",IDC_STATIC,16,42,29,8
+    CONTROL         "",IDC_FFD_DIM2,"CustEdit",WS_TABSTOP,47,42,27,10
+    CONTROL         "",IDC_FFD_DIM2SPIN,"SpinnerControl",0x0,75,42,7,10
+    DEFPUSHBUTTON   "OK",IDOK,114,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,114,24,50,14
+END
+
+IDD_FFDSELMODPARAMS DIALOG DISCARDABLE  0, 0, 108, 34
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "All X",IDC_FFD_ALLX,"CustButton",WS_TABSTOP,10,12,27,12
+    CONTROL         "All Y",IDC_FFD_ALLY,"CustButton",WS_TABSTOP,40,12,27,12
+    CONTROL         "All Z",IDC_FFD_ALLZ,"CustButton",WS_TABSTOP,70,12,27,12
+    GROUPBOX        "Selection:",-1,5,1,98,28
+END
+
+IDD_FFD_SOT DIALOG DISCARDABLE  0, 0, 108, 18
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "- Any Deformable Object",-1,13,4,82,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_FFD_ABOUT44, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 176
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 99
+    END
+
+    IDD_FFD_ABOUT33, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 176
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 99
+    END
+
+    IDD_FFD_ABOUT22, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 176
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 99
+    END
+
+    IDD_FFD_ABOUTNM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 176
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 99
+    END
+
+    IDD_FFD_SETDIM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 164
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 58
+    END
+
+    IDD_FFD_SETDIMCYL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 164
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 58
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_FFD_SHORTCUTS ACCELERATORS DISCARDABLE 
+BEGIN
+    "C",            ID_SUBOBJ_CP,           VIRTKEY, SHIFT, ALT, NOINVERT
+    "L",            ID_SUBOBJ_LATTICE,      VIRTKEY, SHIFT, ALT, NOINVERT
+    "S",            ID_SUBOBJ_SETVOLUME,    VIRTKEY, SHIFT, ALT, NOINVERT
+    "T",            ID_SUBOBJ_TOP,          VIRTKEY, SHIFT, ALT, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_SUBOBJTYPES         BITMAP  DISCARDABLE     "subobjtypes.bmp"
+IDB_MASK_SUBOBJTYPES    BITMAP  DISCARDABLE     "mask_subobjtypes.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_FFD44            "FFD 4x4x4"
+    IDS_RB_DEFDEFORMATIONS  "MAX STANDARD"
+    IDS_RB_CONTPOINTS       "Control Points"
+    IDS_RB_LATTICE          "Lattice"
+    IDS_RB_LATTICETM        "Lattice Transform"
+    IDS_RB_CONTROLPOINTN    "Control Point %d"
+    IDS_RB_PARAMETERS       "FFD Parameters"
+    IDS_RB_FFD33            "FFD 3x3x3"
+    IDS_RB_FFD22            "FFD 2x2x2"
+    IDS_RB_FFDNMOS          "FFD Custom"
+    IDS_RB_FFDRECT          "FFD(box)"
+    IDS_RB_FFDCYL           "FFD(cyl)"
+    IDS_RB_FFDNMWS          "FFD Custom"
+    IDS_RB_FFDNMWSMOD       "FFD Binding"
+    IDS_RB_LENGTH           "Length"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_WIDTH            "Width"
+    IDS_RB_HEIGHT           "Height"
+    IDS_RB_FALLOFF          "Falloff"
+    IDS_RB_FFDGEN           "FFD"
+    IDS_RB_SETFFDDIM        "Set FFD Dimension"
+    IDS_RB_RADIUS           "Radius"
+    IDS_RB_TENS             "Tension"
+    IDS_RB_CONT             "Continuity"
+    IDS_RB_FFDSELMOD        "FFD Select"
+    IDS_RB_SOT              "Supports Objects of Type"
+    IDS_RB_FFDMOD           "FFD modifier (Discreet)"
+    IDS_RB_FFDRECT_C        "FFD(Box)"
+    IDS_RB_FFDCYL_C         "FFD(Cyl)"
+    IDS_RK_MASTER           "Master"
+    IDS_RK_RESETLATTICE     "Reset FFD Lattice"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RK_ANIMATEALL       "Animate All"
+    IDS_RK_SETVOLUME        "Set Volume"
+    IDS_RK_ALLX             "All X"
+    IDS_RK_ALLY             "All Y"
+    IDS_RK_ALLZ             "All Z"
+    IDS_RK_CONFORM          "Conform to Shape"
+    IDS_RK_SHOWLATTICE      "Lattice"
+    IDS_RK_SHOWSOURCE       "Source Volume"
+    IDS_RK_FALLOFF          "Falloff"
+    IDS_RK_TENSION          "Tension"
+    IDS_RK_CONT             "Continuity"
+    IDS_RK_LENGTH           "Length"
+    IDS_RK_WIDTH            "Width"
+    IDS_RK_HEIGHT           "Height"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RK_INPOINTS         "Inside Points"
+    IDS_RK_OUTPOINTS        "Outside Points"
+    IDS_RK_OFFSET           "Offset"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SWITCH_TOP          "Switch To Top Level"
+    IDS_SWITCH_CP           "Switch To Control Point Level"
+    IDS_SWITCH_LATTICE      "Switch To Lattice Level"
+    IDS_SWITCH_SETVOLUME    "Switch To Set Volume Level"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RK_TOP              "Top"
+    IDS_RK_NOT_FFD_ERROR    "function needs a FFD modifier got:"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

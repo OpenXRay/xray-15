@@ -1,0 +1,15 @@
+#!/bin/sh
+# automatically generated Thu Jul 29 12:13:31 MST 2004
+rm -f shader.h geoshader.h mi_version.h
+cp shader.34.h shader.h
+cp geoshader.34.h geoshader.h
+cp mi_version.34.h mi_version.h
+cp raylib.34.rc raylib.rc
+icc -KPIC -c -O2 -tpp7 -w1 -vec_report0  -wd186,188,963,964 -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_REENTRANT -DSYSV -DSVR4 -D_GNU_SOURCE -Dinline=__inline__ -DHYPERTHREAD -DSSE_INTRINSICS -I/opt/intel/compiler/ia32/include -I/opt/intel/compiler/ia32/substitute_headers -I/usr/include -I/usr/X11R6/include -I. -I../../modules/include dgsutil.cpp
+icc -KPIC -c -O2 -tpp7 -w1 -vec_report0  -wd186,188,963,964 -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_REENTRANT -DSYSV -DSVR4 -D_GNU_SOURCE -Dinline=__inline__ -DHYPERTHREAD -DSSE_INTRINSICS -I/opt/intel/compiler/ia32/include -I/opt/intel/compiler/ia32/substitute_headers -I/usr/include -I/usr/X11R6/include -I. -I../../modules/include dgsshade.cpp
+icc -KPIC -c -O2 -tpp7 -w1 -vec_report0  -wd186,188,963,964 -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_REENTRANT -DSYSV -DSVR4 -D_GNU_SOURCE -Dinline=__inline__ -DHYPERTHREAD -DSSE_INTRINSICS -I/opt/intel/compiler/ia32/include -I/opt/intel/compiler/ia32/substitute_headers -I/usr/include -I/usr/X11R6/include -I. -I../../modules/include dielecshade.cpp
+icc -KPIC -c -O2 -tpp7 -w1 -vec_report0  -wd186,188,963,964 -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_REENTRANT -DSYSV -DSVR4 -D_GNU_SOURCE -Dinline=__inline__ -DHYPERTHREAD -DSSE_INTRINSICS -I/opt/intel/compiler/ia32/include -I/opt/intel/compiler/ia32/substitute_headers -I/usr/include -I/usr/X11R6/include -I. -I../../modules/include partishade.cpp
+icc -KPIC -c -O2 -tpp7 -w1 -vec_report0  -wd186,188,963,964 -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_REENTRANT -DSYSV -DSVR4 -D_GNU_SOURCE -Dinline=__inline__ -DHYPERTHREAD -DSSE_INTRINSICS -I/opt/intel/compiler/ia32/include -I/opt/intel/compiler/ia32/substitute_headers -I/usr/include -I/usr/X11R6/include -I. -I../../modules/include pathshade.cpp
+icc -KPIC -c -O2 -tpp7 -w1 -vec_report0  -wd186,188,963,964 -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_REENTRANT -DSYSV -DSVR4 -D_GNU_SOURCE -Dinline=__inline__ -DHYPERTHREAD -DSSE_INTRINSICS -I/opt/intel/compiler/ia32/include -I/opt/intel/compiler/ia32/substitute_headers -I/usr/include -I/usr/X11R6/include -I. -I../../modules/include physlight.cpp
+icc -KPIC -c -O2 -tpp7 -w1 -vec_report0  -wd186,188,963,964 -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_REENTRANT -DSYSV -DSVR4 -D_GNU_SOURCE -Dinline=__inline__ -DHYPERTHREAD -DSSE_INTRINSICS -I/opt/intel/compiler/ia32/include -I/opt/intel/compiler/ia32/substitute_headers -I/usr/include -I/usr/X11R6/include -I. -I../../modules/include physlens.cpp
+icc -static-libcxa -shared -export-dynamic -Wl,--whole-archive -o physics.so dgsutil.o dgsshade.o dielecshade.o partishade.o pathshade.o physlight.o physlens.o  -Wl,--no-whole-archive

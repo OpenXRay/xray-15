@@ -1,0 +1,171 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MP_MOT_BLUR_CAM_EFFECT DIALOG DISCARDABLE  0, 0, 108, 168
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Sampling",IDC_STATIC,3,4,100,63,BS_LEFT
+    CONTROL         "Display Passes",IDC_DISPLAY_PASSES,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,9,15,61,10
+    RTEXT           "Total Passes:",IDC_STATIC,22,28,43,8
+    CONTROL         "",IDEB_TOTAL_PASSES,"CustEdit",WS_DISABLED | WS_GROUP | 
+                    WS_TABSTOP,67,28,20,10
+    CONTROL         "",IDSP_TOTAL_PASSES,"SpinnerControl",WS_DISABLED | 
+                    WS_GROUP,88,28,9,10
+    RTEXT           "Duration (frames):",IDC_STATIC,9,40,56,8
+    CONTROL         "",IDEB_DURATION,"CustEdit",WS_DISABLED | WS_GROUP | 
+                    WS_TABSTOP,67,40,20,10
+    CONTROL         "",IDSP_DURATION,"SpinnerControl",WS_DISABLED | WS_GROUP,
+                    88,40,9,10
+    RTEXT           "Bias:",IDC_STATIC,48,52,16,8
+    CONTROL         "",IDEB_BIAS,"CustEdit",WS_DISABLED | WS_GROUP | 
+                    WS_TABSTOP,67,52,20,10
+    CONTROL         "",IDSP_BIAS,"SpinnerControl",WS_DISABLED | WS_GROUP,88,
+                    52,9,10
+    GROUPBOX        "Pass Blending",IDC_STATIC,3,71,100,51,BS_LEFT
+    CONTROL         "Normalize Weights",IDC_NORMALIZE_WEIGHTS,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,9,82,72,10
+    RTEXT           "Dither Strength:",IDC_STATIC,15,95,50,8
+    CONTROL         "",IDEB_DITHER_STRENGTH,"CustEdit",WS_DISABLED | 
+                    WS_GROUP | WS_TABSTOP,67,95,20,10
+    CONTROL         "",IDSP_DITHER_STRENGTH,"SpinnerControl",WS_DISABLED | 
+                    WS_GROUP,88,95,9,10
+    RTEXT           "Tile Size:",IDC_STATIC,35,107,30,8
+    CONTROL         "",IDEB_TILE_SIZE,"CustEdit",WS_DISABLED | WS_GROUP | 
+                    WS_TABSTOP,67,107,20,10
+    CONTROL         "",IDSP_TILE_SIZE,"SpinnerControl",WS_DISABLED | 
+                    WS_GROUP,88,107,9,10
+    GROUPBOX        "Scanline Renderer Params",IDGB_SCANLINE_PARAMS,3,126,
+                    100,37,BS_LEFT
+    CONTROL         "Disable Filtering",IDC_DISABLE_FILTERING,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,10,137,63,10
+    CONTROL         "Disable Antialiasing",IDC_DISABLE_ANTIALIASING,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,10,149,74,10
+END
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_MP_MOT_BLUR_CAM_EFFECT, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 156
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MP_MOT_BLUR_PARAMS  "Motion Blur Parameters"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MP_MOT_BLUR         "Motion Blur"
+    IDS_LIBDESCRIPTION      "MultiPass Motion Blur Camera Effect (Discreet)"
+    IDS_DISPLAY_PASSES      "Display Passes"
+    IDS_TOTAL_PASSES        "Total Passes"
+    IDS_DURATION            "Duration"
+    IDS_BIAS                "Bias"
+    IDS_NORMALIZE_WEIGHTS   "Normalize Weights"
+    IDS_DITHER_STRENGTH     "Dither Strength"
+    IDS_TILE_SIZE           "Tile Size"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DISABLE_FILTERING   "Disable Filtering"
+    IDS_DISABLE_ANTIALIASING "Disable Antialiasing"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

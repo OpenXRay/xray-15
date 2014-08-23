@@ -1,0 +1,25 @@
+HKCR
+{
+	MAXComponents.SkinEngine.1 = s 'SkinEngine Class'
+	{
+		CLSID = s '{68CD6A92-34C2-11D3-9F71-00C04FB150E3}'
+	}
+	MAXComponents.SkinEngine = s 'SkinEngine Class'
+	{
+		CLSID = s '{68CD6A92-34C2-11D3-9F71-00C04FB150E3}'
+		CurVer = s 'MAXComponents.SkinEngine.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {68CD6A92-34C2-11D3-9F71-00C04FB150E3} = s 'SkinEngine Class'
+		{
+			ProgID = s 'MAXComponents.SkinEngine.1'
+			VersionIndependentProgID = s 'MAXComponents.SkinEngine'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{F088EA67-2E87-11D3-B1F3-00C0F03C37D3}'
+		}
+	}
+}

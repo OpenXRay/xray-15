@@ -1,0 +1,585 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_NURBS_API_TEST DIALOG DISCARDABLE  0, 0, 108, 166
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Combined Test",IDC_RUN_TEST,8,14,91,11
+    PUSHBUTTON      "Point Tests",IDC_POINT_TEST,8,28,91,11
+    PUSHBUTTON      "Curve Tests",IDC_CURVE_TEST,8,42,91,11
+    PUSHBUTTON      "Surface Tests",IDC_SURF_TEST,8,56,91,11
+    PUSHBUTTON      "Curve On Surface Tests",IDC_COS_TEST,8,71,91,11
+    PUSHBUTTON      "Dump Selected",IDC_DUMP,6,108,95,11
+    CONTROL         "To File:",IDC_FILE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,6,138,39,10
+    EDITTEXT        IDC_FILENAME,17,149,84,14,ES_AUTOHSCROLL
+    GROUPBOX        "Creation Test",IDC_STATIC,3,3,101,98
+    CONTROL         "Relational",IDC_RELATIONAL,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,6,124,47,10
+    CONTROL         "As Curve Object",IDC_AS_CURVE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,20,88,67,10
+END
+
+IDD_SURF_DISPLAY DIALOG DISCARDABLE  0, 0, 108, 112
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Set Selected",IDC_SURF_DISPLAY,13,84,81,11
+    PUSHBUTTON      "Reset",IDC_RESET,13,98,81,11
+    CONTROL         "Lattices",IDC_DISPLATTICE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,9,14,41,10
+    CONTROL         "Surfaces",IDC_DISP_SURFACE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,9,36,44,10
+    GROUPBOX        "Display",-1,4,4,101,78
+    CONTROL         "Dependents",IDC_DISP_DEP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,9,47,55,10
+    CONTROL         "Curves",IDC_DISP_CURVE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,9,25,37,10
+    CONTROL         "Surface Trims",IDC_DISP_TRIM,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,9,58,59,10
+    CONTROL         "Transform Degrade",IDC_DEGRADE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,9,70,77,10
+END
+
+IDD_SURF_APPROX_PARAMS DIALOG DISCARDABLE  0, 0, 121, 194
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Approximation Parameters"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,7,173,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,64,173,50,14
+    CONTROL         "Parametric",IDC_TESS_PARAM,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,11,15,49,10
+    CONTROL         "",IDC_TESS_U,"CustEdit",WS_GROUP | WS_TABSTOP,57,25,36,
+                    10
+    CONTROL         "",IDC_TESS_V,"CustEdit",WS_TABSTOP,57,38,36,10
+    CONTROL         "Spatial",IDC_TESS_SPATIAL,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,11,52,37,10
+    CONTROL         "",IDC_TESS_EDGE,"CustEdit",WS_TABSTOP,57,84,36,10
+    CONTROL         "Curvature",IDC_TESS_CURV,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,11,63,47,10
+    CONTROL         "",IDC_TESS_DIST,"CustEdit",WS_TABSTOP,57,98,36,10
+    CONTROL         "",IDC_TESS_ANG,"CustEdit",WS_TABSTOP,57,111,36,10
+    CONTROL         "View-Dependent",IDC_TESS_VIEW_DEP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,124,69,10
+    CONTROL         "",IDC_TESS_U_SPINNER,"SpinnerControl",0x0,93,25,7,10
+    CONTROL         "",IDC_TESS_V_SPINNER,"SpinnerControl",0x0,93,38,7,10
+    CONTROL         "",IDC_TESS_EDGE_SPINNER,"SpinnerControl",0x0,93,84,7,10
+    CONTROL         "",IDC_TESS_DIST_SPINNER,"SpinnerControl",0x0,93,98,7,10
+    CONTROL         "",IDC_TESS_ANG_SPINNER,"SpinnerControl",0x0,93,111,7,10
+    LTEXT           "U Steps:",IDC_STATIC,24,26,28,8
+    LTEXT           "V Steps:",IDC_STATIC,24,38,28,8
+    LTEXT           "Distance:",IDC_STATIC,24,98,31,8
+    LTEXT           "Angle:",IDC_STATIC,24,110,21,8
+    LTEXT           "Edge:",IDC_STATIC,24,84,20,8
+    CONTROL         "",IDC_MERGE,"CustEdit",WS_TABSTOP,48,139,36,10
+    CONTROL         "",IDC_MERGE_SPINNER,"SpinnerControl",0x0,84,139,7,10
+    LTEXT           "Merge:",IDC_STATIC,13,139,23,8
+    CONTROL         "Spatial and Curvature",IDC_TESS_LDA,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,11,74,84,10
+    PUSHBUTTON      "Advanced Parameters...",IDC_ADVANCED,15,156,81,11
+    CONTROL         "Regular",IDC_TESS_REGULAR,"Button",BS_AUTORADIOBUTTON,
+                    11,4,41,10
+END
+
+IDD_SURF_APPROX DIALOG DISCARDABLE  0, 0, 108, 400
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_ISO_U,"CustEdit",WS_GROUP | WS_TABSTOP,51,14,36,
+                    10
+    CONTROL         "",IDC_ISO_V,"CustEdit",WS_TABSTOP,51,27,36,10
+    CONTROL         "Iso Only",IDC_ISO_ONLY,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,10,40,41,10
+    CONTROL         "Iso And Mesh",IDC_ISO_AND_MESH,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,10,52,59,10
+    CONTROL         "Mesh Only",IDC_MESH_ONLY,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,10,64,49,10
+    GROUPBOX        "Iso Parametric Lines",IDC_STATIC,3,3,101,73
+    CONTROL         "",IDC_ISO_U_SPINNER,"SpinnerControl",0x0,87,14,7,10
+    CONTROL         "",IDC_ISO_V_SPINNER,"SpinnerControl",0x0,87,27,7,10
+    LTEXT           "U Lines:",IDC_STATIC,17,15,27,8
+    LTEXT           "V Lines:",IDC_STATIC,18,27,26,8
+    PUSHBUTTON      "Set Selected",IDC_SURF_APPROX,3,373,101,11
+    PUSHBUTTON      "Reset",IDC_RESET,3,387,101,11
+    CONTROL         "Viewports",IDC_TESS_VIEW,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,7,82,47,10
+    CONTROL         "Renderer",IDC_TESS_RENDERER,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,55,82,45,10
+    CONTROL         "Parametric",IDC_TESS_PARAM,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,9,199,49,10
+    CONTROL         "",IDC_TESS_U,"CustEdit",WS_GROUP | WS_TABSTOP,55,209,36,
+                    10
+    CONTROL         "",IDC_TESS_V,"CustEdit",WS_TABSTOP,55,222,36,10
+    CONTROL         "Spatial",IDC_TESS_SPATIAL,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,9,236,37,10
+    CONTROL         "",IDC_TESS_EDGE,"CustEdit",WS_TABSTOP,55,269,36,10
+    CONTROL         "Curvature",IDC_TESS_CURV,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,9,247,47,10
+    CONTROL         "",IDC_TESS_DIST,"CustEdit",WS_TABSTOP,55,282,36,10
+    CONTROL         "",IDC_TESS_ANG,"CustEdit",WS_TABSTOP,55,295,36,10
+    CONTROL         "View-Dependent",IDC_TESS_VIEW_DEP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,309,69,10
+    CONTROL         "",IDC_TESS_U_SPINNER,"SpinnerControl",0x0,91,209,7,10
+    CONTROL         "",IDC_TESS_V_SPINNER,"SpinnerControl",0x0,91,222,7,10
+    CONTROL         "",IDC_TESS_EDGE_SPINNER,"SpinnerControl",0x0,91,269,7,
+                    10
+    CONTROL         "",IDC_TESS_DIST_SPINNER,"SpinnerControl",0x0,91,282,7,
+                    10
+    CONTROL         "",IDC_TESS_ANG_SPINNER,"SpinnerControl",0x0,91,295,7,10
+    LTEXT           "U Steps:",IDC_STATIC,22,210,28,8
+    LTEXT           "V Steps:",IDC_TESS_V_TXT,22,222,28,8
+    LTEXT           "Distance:",IDC_STATIC,22,282,31,8
+    LTEXT           "Angle:",IDC_STATIC,22,294,21,8
+    LTEXT           "Edge:",IDC_STATIC,22,269,20,8
+    CONTROL         "",IDC_MERGE,"CustEdit",WS_TABSTOP,46,323,36,10
+    CONTROL         "",IDC_MERGE_SPINNER,"SpinnerControl",0x0,82,323,7,10
+    LTEXT           "Merge:",IDC_MERGE_TXT,11,323,23,8
+    CONTROL         "Spatial and Curvature",IDC_TESS_LDA,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,9,258,84,10
+    PUSHBUTTON      "Advanced Parameters...",IDC_ADVANCED,13,338,81,11
+    CONTROL         "Regular",IDC_TESS_REGULAR,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,9,189,41,10
+    CONTROL         "Base Surface",IDC_MESH,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE | WS_GROUP,8,93,91,10
+    CONTROL         "Surface Edge",IDC_TRIM,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,8,103,91,10
+    CONTROL         "Displaced Surface",IDC_DISPLACEMENT,"Button",
+                    BS_AUTORADIOBUTTON | BS_PUSHLIKE,8,113,91,10
+    GROUPBOX        "Tessellation Method",IDC_STATIC,3,181,101,189
+    CONTROL         "Clear Surfaces",IDC_CLEAR_ALL_SURFS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,22,355,62,10
+    GROUPBOX        "Load Tessellation Preset",IDC_STATIC,3,127,102,26
+    PUSHBUTTON      "Low",IDC_PRESET1,6,138,30,10
+    PUSHBUTTON      "Medium",IDC_PRESET2,40,138,30,10
+    PUSHBUTTON      "High",IDC_PRESET3,72,138,30,10
+    GROUPBOX        "Save Tessellation Preset",IDC_STATIC,3,154,102,26
+    PUSHBUTTON      "Low",IDC_SAVE_PRESET1,6,165,30,10
+    PUSHBUTTON      "Medium",IDC_SAVE_PRESET2,40,165,30,10
+    PUSHBUTTON      "High",IDC_SAVE_PRESET3,72,165,30,10
+END
+
+IDD_DISP_SURF_APPROX_PARAMS DIALOG DISCARDABLE  0, 0, 121, 194
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Approximation Parameters"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,7,173,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,64,173,50,14
+    CONTROL         "Parametric",IDC_TESS_PARAM,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,11,34,49,10
+    CONTROL         "",IDC_TESS_U,"CustEdit",WS_GROUP | WS_TABSTOP,57,44,36,
+                    10
+    CONTROL         "",IDC_TESS_V,"CustEdit",WS_TABSTOP,57,57,36,10
+    CONTROL         "Spatial",IDC_TESS_SPATIAL,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,11,71,37,10
+    CONTROL         "",IDC_TESS_EDGE,"CustEdit",WS_TABSTOP,57,103,36,10
+    CONTROL         "Curvature",IDC_TESS_CURV,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,11,82,47,10
+    CONTROL         "",IDC_TESS_DIST,"CustEdit",WS_TABSTOP,57,117,36,10
+    CONTROL         "",IDC_TESS_ANG,"CustEdit",WS_TABSTOP,57,130,36,10
+    CONTROL         "View-Dependent",IDC_TESS_VIEW_DEP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,143,69,10
+    CONTROL         "",IDC_TESS_U_SPINNER,"SpinnerControl",0x0,93,44,7,10
+    CONTROL         "",IDC_TESS_V_SPINNER,"SpinnerControl",0x0,93,57,7,10
+    CONTROL         "",IDC_TESS_EDGE_SPINNER,"SpinnerControl",0x0,93,103,7,
+                    10
+    CONTROL         "",IDC_TESS_DIST_SPINNER,"SpinnerControl",0x0,93,117,7,
+                    10
+    CONTROL         "",IDC_TESS_ANG_SPINNER,"SpinnerControl",0x0,93,130,7,10
+    LTEXT           "U Steps:",-1,24,45,28,8
+    LTEXT           "V Steps:",-1,24,57,28,8
+    LTEXT           "Distance:",-1,24,117,31,8
+    LTEXT           "Angle:",-1,24,129,21,8
+    LTEXT           "Edge:",-1,24,103,20,8
+    CONTROL         "Spatial and Curvature",IDC_TESS_LDA,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,11,93,84,10
+    PUSHBUTTON      "Advanced Parameters...",IDC_ADVANCED,15,157,81,11
+    CONTROL         "Regular",IDC_TESS_REGULAR,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,11,23,41,10
+    CONTROL         "Lock to Toplevel",IDC_LOCK,"Button",BS_AUTOCHECKBOX | 
+                    BS_PUSHLIKE | WS_TABSTOP,7,7,107,10
+END
+
+IDD_CRUVE_SURF_APPROX_PARAMS DIALOG DISCARDABLE  0, 0, 121, 183
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Approximation Parameters"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,7,162,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,64,162,50,14
+    CONTROL         "Parametric",IDC_TESS_PARAM,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,11,34,49,10
+    CONTROL         "",IDC_TESS_U,"CustEdit",WS_GROUP | WS_TABSTOP,57,44,36,
+                    10
+    CONTROL         "Spatial",IDC_TESS_SPATIAL,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,11,60,37,10
+    CONTROL         "",IDC_TESS_EDGE,"CustEdit",WS_TABSTOP,57,92,36,10
+    CONTROL         "Curvature",IDC_TESS_CURV,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,11,71,47,10
+    CONTROL         "",IDC_TESS_DIST,"CustEdit",WS_TABSTOP,57,106,36,10
+    CONTROL         "",IDC_TESS_ANG,"CustEdit",WS_TABSTOP,57,119,36,10
+    CONTROL         "View-Dependent",IDC_TESS_VIEW_DEP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,132,69,10
+    CONTROL         "",IDC_TESS_U_SPINNER,"SpinnerControl",0x0,93,44,7,10
+    CONTROL         "",IDC_TESS_EDGE_SPINNER,"SpinnerControl",0x0,93,92,7,10
+    CONTROL         "",IDC_TESS_DIST_SPINNER,"SpinnerControl",0x0,93,106,7,
+                    10
+    CONTROL         "",IDC_TESS_ANG_SPINNER,"SpinnerControl",0x0,93,119,7,10
+    LTEXT           "U Steps:",-1,24,45,28,8
+    LTEXT           "Distance:",-1,24,106,31,8
+    LTEXT           "Angle:",-1,24,118,21,8
+    LTEXT           "Edge:",-1,24,92,20,8
+    CONTROL         "Spatial and Curvature",IDC_TESS_LDA,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,11,82,84,10
+    PUSHBUTTON      "Advanced Parameters...",IDC_ADVANCED,15,146,81,11
+    CONTROL         "Regular",IDC_TESS_REGULAR,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,11,23,41,10
+    CONTROL         "Lock to Toplevel",IDC_LOCK,"Button",BS_AUTOCHECKBOX | 
+                    BS_PUSHLIKE | WS_TABSTOP,7,7,107,10
+END
+
+IDD_SURF_APPROX_ADV DIALOG DISCARDABLE  0, 0, 180, 116
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Advanced Surface Approx."
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Grid",IDC_GRID,"Button",BS_AUTORADIOBUTTON | WS_GROUP | 
+                    WS_TABSTOP,10,19,29,10
+    CONTROL         "Tree",IDC_TREE,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,
+                    10,30,31,10
+    DEFPUSHBUTTON   "OK",IDOK,7,95,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,123,95,50,14
+    LTEXT           "Subdivision Style:",IDC_STATIC,10,9,56,8
+    CONTROL         "",IDC_TESS_MIN_REC,"CustEdit",WS_TABSTOP,116,41,36,10
+    CONTROL         "",IDC_TESS_MIN_REC_SPINNER,"SpinnerControl",0x0,152,41,
+                    7,10
+    LTEXT           "Minimum Subdivison Levels",IDC_STATIC,19,43,88,8
+    CONTROL         "",IDC_TESS_MAX_REC,"CustEdit",WS_TABSTOP,116,54,36,10
+    CONTROL         "",IDC_TESS_MAX_REC_SPINNER,"SpinnerControl",0x0,152,54,
+                    7,10
+    LTEXT           "Maximum Subdivisions Levels",IDC_STATIC,19,56,94,8
+    CONTROL         "Delaunay",IDC_DELAUNAY,"Button",BS_AUTORADIOBUTTON,10,
+                    68,46,10
+    CONTROL         "",IDC_TESS_MAX_TRIS,"CustEdit",WS_TABSTOP,116,80,36,10
+    CONTROL         "",IDC_TESS_MAX_TRIS_SPINNER,"SpinnerControl",0x0,152,80,
+                    7,10
+    LTEXT           "Maximum Number of Triangles",IDC_STATIC,19,82,96,8
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_SURF_APPROX_PARAMS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 114
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 187
+    END
+
+    IDD_DISP_SURF_APPROX_PARAMS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 114
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 187
+    END
+
+    IDD_CRUVE_SURF_APPROX_PARAMS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 114
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 176
+    END
+
+    IDD_SURF_APPROX_ADV, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 173
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 109
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LIB_DESCRIPTION     "NURBS surface approximation utility (Discreet)"
+    IDS_SURF_APPROX         "Surface Approximation"
+    IDS_API_TEST            "NURBS API Test"
+    IDS_POINT               "Point"
+    IDS_POINT_CONST_POINT   "Point Constrained Point"
+    IDS_CURVE_CONST_POINT   "Curve Constrained Point"
+    IDS_SURF_CONST_POINT    "Surface Constrained Point"
+    IDS_CURVE_CURVE_POINT   "Curve Curve Intersection Point"
+    IDS_CV_CURVE            "CV Curve"
+    IDS_POINT_CURVE         "Point Curve"
+    IDS_BLEND_CURVE         "Blend Curve"
+    IDS_OFFSET_CURVE        "Offset Curve"
+    IDS_XFORM_CURVE         "Transform Curve"
+    IDS_MIRROR_CURVE        "Mirror Curve"
+    IDS_FILLET_CURVE        "Fillet Curve"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CHAMFER_CURVE       "Chamfer Curve"
+    IDS_U_ISO_CURVE         "U Iso Curve"
+    IDS_V_ISO_CURVE         "V Iso Curve"
+    IDS_CV_SURFACE          "CV Surface"
+    IDS_CV                  "CV"
+    IDS_POINT_SURFACE       "Point Surface"
+    IDS_BLEND_SURFACE       "Blend Surface"
+    IDS_OFFSET_SURFACE      "Offset Surface"
+    IDS_XFORM_SURFACE       "Transform Surface"
+    IDS_MIRROR_SURFACE      "Mirror Surface"
+    IDS_RULED_SURFACE       "Ruled Surface"
+    IDS_ULOFT_SURFACE       "U Loft Surface"
+    IDS_EXTRUDE_SURFACE     "Extrude Surface"
+    IDS_LATHE_SURFACE       "Lathe Surface"
+    IDS_F_EDGE_CRV1         "Fillet Edge Curve1"
+    IDS_F_EDGE_CRV2         "Fillet Edge Curve2"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_C_EDGE_CRV1         "Chamfer Edge Curve1"
+    IDS_C_EDGE_CRV2         "Chamfer Edge Curve2"
+    IDS_ADDED_POINT_SURF    "Added Point Surf"
+    IDS_ADDED_ISO_CURVE     "Added Iso Curve"
+    IDS_J_PT_CRV1           "Join Point Curve 1"
+    IDS_J_PT_CRV2           "Join Point Curve 2"
+    IDS_J_PT_SRF1           "Join Point Surf 1"
+    IDS_J_PT_SRF2           "Join Point Surf 2"
+    IDS_BREAK_CURVE         "Break Curve"
+    IDS_BREAK_SURFACE       "Break Surf"
+    IDS_NAME                "Name"
+    IDS_ID                  "ID"
+    IDS_ISO_CURVE           "Iso Curve"
+    IDS_X                   "X:"
+    IDS_Y                   "Y:"
+    IDS_Z                   "Z:"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_NUM_TRIM_POINTS     "NumTrimPoints"
+    IDS_PARAMETER           "Parameter"
+    IDS_DIRECTION_NONE      "Direction = None"
+    IDS_DIRECTION_POS       "Direction = Positive"
+    IDS_DIRECTION_NEG       "Direction = Negative"
+    IDS_RENDERABLE          "Renderable"
+    IDS_FLIP_NORMALS        "Flip Normals"
+    IDS_MAT_ID              "Material ID"
+    IDS_CLOSED_U            "Closed In U"
+    IDS_CLOSED_V            "Closed In V"
+    IDS_UV_CHANNEL          "UV Channel"
+    IDS_GENUV               "GenUVs"
+    IDS_TEXUV               "TexUV"
+    IDS_U                   "U:"
+    IDS_V                   "V:"
+    IDS_UTILE               "U Tile:"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_VTILE               "V Tile:"
+    IDS_UOFFSET             "U Offset:"
+    IDS_VOFFSET             "V Offset:"
+    IDS_YES                 "Yes"
+    IDS_NO                  "No"
+    IDS_TYPE                "TYPE:"
+    IDS_ON_OBJECT           "On Object"
+    IDS_OFFSET              "Offset"
+    IDS_NORMAL              "Normal:"
+    IDS_UTANGENT            "U Tangent:"
+    IDS_VTANGENT            "V Tangent:"
+    IDS_UPARAM              "U Parameter:"
+    IDS_VPARAM              "V Parameter:"
+    IDS_XFORM_MAT           "Transformation Matrix:"
+    IDS_POINTS              "POINTS:"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ORDER               "Order"
+    IDS_KNOTS               "Knots"
+    IDS_CVS                 "CVS:"
+    IDS_PARENT_ID           "Parent ID:"
+    IDS_TRANSFORM           "Transform"
+    IDS_DIRECTION           "Direction:"
+    IDS_DISTANCE            "Distance:"
+    IDS_TENSION             "Tension"
+    IDS_EDGE                "Edge"
+    IDS_FLIP                "Flip"
+    IDS_LOWU                "U Low"
+    IDS_HIGHU               "U High"
+    IDS_LOWV                "V Low"
+    IDS_HIGHV               "V High"
+    IDS_UORDER              "U Order:"
+    IDS_VORDER              "V Order:"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_UKNOTS              "U Knots:"
+    IDS_VKNOTS              "V Knots:"
+    IDS_END                 "End"
+    IDS_TRIM                "Trim:"
+    IDS_MIRRORX             "Mirror X"
+    IDS_MIRRORY             "Mirror Y"
+    IDS_MIRRORZ             "Mirror Z"
+    IDS_MIRRORXY            "Mirror XY"
+    IDS_MIRRORXZ            "Mirror XZ"
+    IDS_MIRRORYZ            "Mirror YZ"
+    IDS_AXIS                "Axis:"
+    IDS_DEGREES             "Degrees:"
+    IDS_NURBS               "NURBS"
+    IDS_SELECTED            "Selected"
+    IDS_NOT_SELECTED        "Not Selected"
+    IDS_TEST_OBJECT         "NAPI Test Object"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ADV_SURF_APPROX_WARNING_TITLE "Surface Approximation Verification"
+    IDS_ADV_SURF_APPROX_WARNING 
+                            "You have selected a potential dangerous setting for the SubDivision limits.  Are you sure you want to do this?"
+    IDS_SURF_DISPLAY        "Surface Display"
+    IDS_CURV_SURF_INT_POINT "Curve Surface Intersection Point"
+    IDS_PROJ_VECT_CURVE     "Project Vector Curve"
+    IDS_PROJ_NORM_CURVE     "Project Normal Curve"
+    IDS_SURF_SURF_CURVE     "Surface Surface Intersection Curve"
+    IDS_COS_CURVE           "Curve On Surface"
+    IDS_SURF_NORM_CURVE     "Surface Normal Curve"
+    IDS_UVLOFT_SURFACE      "UV Loft Surface"
+    IDS_NBLEND_SURFACE      "Multi Sided Blend Surface"
+    IDS_1RAIL_SURFACE       "1 Rail Sweep Surface"
+    IDS_2RAIL_SURFACE       "2 Rail Sweep Surface"
+    IDS_MULTI_TRIM_SURFACE  "Multiple Curve Trimmed Surface"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CAP_SURFACE         "Cap Surface"
+    IDS_PARALLEL            "Parallel"
+    IDS_SCALE               "Scale"
+    IDS_RAIL_ID             "Rail ID:"
+    IDS_SEED                "Seed"
+    IDS_TRIM_SURFACE        "Trim Surface:"
+    IDS_FLIP_TRIM           "Flip Trim:"
+    IDS_CLP                 "Chord Length Parameterized Texture Surface"
+    IDS_POINT_COS_CURVE     "Point Curve On Surface"
+    IDS_CV_COS_CURVE        "CV Curve On Surface"
+    IDS_RIGID               "Rigid"
+    IDS_ANGLE               "Angle"
+    IDS_FILLET_SURFACE      "Fillet Surface"
+    IDS_CUBIC               "Cubic:"
+    IDS_RADIUS              "Radius:"
+    IDS_SURFACE_EDGE_CURVE  "Surface Edge Curve"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PNT_TEST_OBJECT     "NAPI Point Test Object"
+    IDS_CRV_TEST_OBJECT     "NAPI Curve Test Object"
+    IDS_SRF_TEST_OBJECT     "NAPI Surface Test Object"
+    IDS_COS_TEST_OBJECT     "NAPI COS Test Object"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SNAPCS              "Snap Cross Sections"
+    IDS_ROADLIKE            "Roadlike"
+    IDS_TEXTURE_POINT       "Texture Point"
+    IDS_SURFACE_MAPPER      "Surface Mapper"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

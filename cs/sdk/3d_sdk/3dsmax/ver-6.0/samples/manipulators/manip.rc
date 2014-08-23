@@ -1,0 +1,244 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CONE_ANGLE_PARAMS DIALOG DISCARDABLE  0, 0, 108, 73
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    RTEXT           "Angle:",-1,23,6,21,8
+    CONTROL         "",IDC_ANGLE,"CustEdit",WS_TABSTOP,49,4,36,10
+    CONTROL         "",IDC_ANGLE_SPIN,"SpinnerControl",0x0,86,4,7,10
+    RTEXT           "Distance:",-1,12,17,36,8
+    CONTROL         "",IDC_DISTANCE,"CustEdit",WS_TABSTOP,49,17,36,10
+    CONTROL         "",IDC_DISTANCE_SPIN,"SpinnerControl",0x0,86,17,7,10
+    CONTROL         "Use Square",IDC_USE_SQUARE,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFTTEXT | WS_TABSTOP,22,33,71,13
+    RTEXT           "Aspect:",-1,11,51,36,8
+    CONTROL         "",IDC_ASPECT,"CustEdit",WS_TABSTOP,49,51,36,10
+    CONTROL         "",IDC_ASPECT_SPIN,"SpinnerControl",0x0,85,51,7,10
+END
+
+IDD_PLANE_ANGLE_PARAMS DIALOG DISCARDABLE  0, 0, 108, 48
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    RTEXT           "Angle:",-1,23,6,21,8
+    CONTROL         "",IDC_ANGLE,"CustEdit",WS_TABSTOP,49,4,36,10
+    CONTROL         "",IDC_ANGLE_SPIN,"SpinnerControl",0x0,86,4,7,10
+    RTEXT           "Distance:",-1,8,18,36,8
+    CONTROL         "",IDC_DISTANCE,"CustEdit",WS_TABSTOP,49,17,36,10
+    CONTROL         "",IDC_DISTANCE_SPIN,"SpinnerControl",0x0,86,17,7,10
+    RTEXT           "Size:",-1,8,30,36,8
+    CONTROL         "",IDC_MANIP_SIZE,"CustEdit",WS_TABSTOP,49,30,36,10
+    CONTROL         "",IDC_SIZE_SPIN,"SpinnerControl",0x0,86,30,7,10
+END
+
+IDD_SLIDER DIALOG DISCARDABLE  0, 0, 108, 142
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    RTEXT           "Value:",IDC_STATIC,11,31,36,8
+    CONTROL         "",IDC_VALUE,"CustEdit",WS_GROUP | WS_TABSTOP,49,31,25,
+                    10
+    CONTROL         "",IDC_VALUESPIN,"SpinnerControl",WS_GROUP,75,31,7,10
+    RTEXT           "Min:",IDC_STATIC,11,45,36,8
+    CONTROL         "",IDC_MIN,"CustEdit",WS_GROUP | WS_TABSTOP,49,45,25,10
+    CONTROL         "",IDC_MINSPIN,"SpinnerControl",WS_GROUP,75,45,7,10
+    RTEXT           "Max:",IDC_STATIC,11,58,36,8
+    CONTROL         "",IDC_MAX,"CustEdit",WS_GROUP | WS_TABSTOP,49,58,25,10
+    CONTROL         "",IDC_MAXSPIN,"SpinnerControl",WS_GROUP,75,58,7,10
+    RTEXT           "Pos X:",IDC_STATIC,11,80,36,8
+    CONTROL         "",IDC_POSX,"CustEdit",WS_GROUP | WS_TABSTOP,49,80,25,10
+    CONTROL         "",IDC_POSXSPIN,"SpinnerControl",WS_GROUP,75,80,7,10
+    RTEXT           "Pos Y:",IDC_STATIC,11,93,36,8
+    CONTROL         "",IDC_POSY,"CustEdit",WS_GROUP | WS_TABSTOP,49,93,25,10
+    CONTROL         "",IDC_POSYSPIN,"SpinnerControl",WS_GROUP,75,93,7,10
+    RTEXT           "Width:",IDC_STATIC,12,106,36,8
+    CONTROL         "",IDC_WIDTH,"CustEdit",WS_GROUP | WS_TABSTOP,50,106,25,
+                    10
+    CONTROL         "",IDC_WIDTHSPIN,"SpinnerControl",WS_GROUP,76,106,7,10
+    CONTROL         "Hide",IDC_HIDE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,35,
+                    124,53,13
+    RTEXT           "Name:",IDC_STATIC,5,9,30,9
+    CONTROL         "Custom1",IDC_NAME,"CustEdit",WS_TABSTOP,36,8,62,12
+END
+
+IDD_POSITION_SPHERE DIALOG DISCARDABLE  0, 0, 108, 105
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    RTEXT           "Radius:",-1,13,88,36,8
+    CONTROL         "",IDC_POSITION_RADIUS,"CustEdit",WS_GROUP | WS_TABSTOP,
+                    51,88,25,10
+    CONTROL         "",IDC_POSITION_RADIUSSPIN,"SpinnerControl",WS_GROUP,77,
+                    88,7,10
+    RTEXT           "X:",-1,11,40,36,8
+    CONTROL         "",IDC_POSITION_POSX,"CustEdit",WS_GROUP | WS_TABSTOP,49,
+                    39,25,10
+    CONTROL         "",IDC_POSITION_POSXSPIN,"SpinnerControl",WS_GROUP,75,39,
+                    7,10
+    RTEXT           "Y:",-1,11,53,36,8
+    CONTROL         "",IDC_POSITION_POSY,"CustEdit",WS_GROUP | WS_TABSTOP,49,
+                    52,25,10
+    CONTROL         "",IDC_POSITION_POSYSPIN,"SpinnerControl",WS_GROUP,75,52,
+                    7,10
+    RTEXT           "Z:",-1,12,66,36,8
+    CONTROL         "",IDC_POSITION_POSZ,"CustEdit",WS_GROUP | WS_TABSTOP,50,
+                    65,25,10
+    CONTROL         "",IDC_POSITION_POSZSPIN,"SpinnerControl",WS_GROUP,76,65,
+                    7,10
+    RTEXT           "Name:",-1,5,8,30,9
+    CONTROL         "Custom1",IDC_SHPERE_NAME,"CustEdit",WS_TABSTOP,36,7,62,
+                    12
+    GROUPBOX        "Position:",-1,7,26,94,57
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_SLIDER, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 106
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LIBDESCRIPTION      "Standard Manipulators (Discreet)"
+    IDS_CONE_ANGLE_MANIP    "Cone Angle Manipulator"
+    IDS_PARAMETERS          "Parameters"
+    IDS_ORIGIN              "Origin"
+    IDS_DIRECTION           "Direction"
+    IDS_ANGLE               "Angle"
+    IDS_DISTANCE            "Distance"
+    IDS_CONE_ANGLE_CLASS    "Cone Angle"
+    IDS_MANIPULATORS        "Manipulators"
+    IDS_HOTSPOT_MANIP_CLASS "Hotspot Manip"
+    IDS_FALLOFF_MANIP_CLASS "Falloff Manipulator"
+    IDS_PLANE_ANGLE_MANIP   "Plane Angle Manipulator"
+    IDS_PLANE_ANGLE_CLASS   "Plane Angle"
+    IDS_IKSWIVEL_MANIP_CLASS "IK Swivel Manip"
+    IDS_REACTOR_ANGLE_MANIP_CLASS "Reactor Angle Manip"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_REACTOR_VECTOR_HANDLE_MANIP_CLASS "Reactor Vector Handle Manip"
+    IDS_POSITION_VALUE_MANIP_CLASS "Position Value"
+    IDS_NORMAL_VEC          "Normal Vector"
+    IDS_UP_VEC              "Up Vector"
+    IDS_SIZE                "Size"
+    IDS_SLIDER_MANIP        "Slider"
+    IDS_SLIDER_CLASS        "Slider Manip"
+    IDS_VALUE               "Value"
+    IDS_MIN                 "Minimum"
+    IDS_MAX                 "Maximum"
+    IDS_XPOS                "X Position"
+    IDS_YPOS                "Y Position"
+    IDS_WIDTH               "Width"
+    IDS_HIDE                "Hide"
+    IDS_NAME                "Name"
+    IDS_POSITION_MANIP      "Position Manip"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_POSITION            "Position"
+    IDS_RADIUS              "Radius"
+    IDS_USE_SQUARE          "Use Square"
+    IDS_ASPECT              "Aspect"
+    IDS_SWIVEL_ANGLE        "Swivel Angle"
+    IDS_INFLUENCE           "Influence"
+    IDS_AG_IKSTART_SPTWIST_MANIP_CLASS "IK Spline Start Twist Manip"
+    IDS_AG_TWISTST_ANGLE    "Start Twist Angle"
+    IDS_AG_TWISTEND_ANGLE   "End Twist Angle"
+    IDS_AG_IKEND_SPTWIST_MANIP_CLASS "IK Spline End Twist Manip"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,108 @@
+<html>
+
+<head>
+<title>Classes: ImageLoader</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="imgfilt.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="ImageFilterHandler"></a></td>
+    <td width="96" align="left"><a href="imgsave.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="ImageSaver"></a></td>
+    <td width="96" align="left"><a href="../classes.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Classes"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>ImageLoader</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwimageio.h">lwimageio.h</a></small></p>
+    <p>Image loaders read image files. Each of them typically supports a single format.</p>
+    <p>When an image loader's activation function is called, it should open the image file and
+    try to recognize its contents. LightWave calls all of the installed image loaders in
+    sequence until one of them recognizes the file. Each image loader is therefore responsible
+    for identifying the files it can load. If the file isn't one the loader understands, the
+    loader sets the <tt>result</tt> field of the <tt>local</tt> structure to <tt>IPSTAT_NOREC</tt>
+    and returns <tt>AFUNC_OK</tt>.</p>
+    <p>If, on the other hand, the loader understands the image file, it calls <tt>local-&gt;begin</tt>
+    to get the image protocol functions and then loads the file.</p>
+    <p><strong>Activation Function</strong></p>
+    <pre>   XCALL_( int ) MyImageLoader( long version, GlobalFunc *global,
+      LWImageLoaderLocal *local, void *serverData );</pre>
+    <p>The <tt>local</tt> argument to an image loader's activation function is an
+    LWImageLoaderLocal.</p>
+    <pre>   typedef struct st_LWImageLoaderLocal {
+      void              *<strong>priv_data</strong>;
+      int                <strong>result</strong>;
+      const char        *<strong>filename</strong>;
+      LWMonitor         *<strong>monitor</strong>;
+      LWImageProtocolID (*<strong>begin</strong>) (void *, LWImageType);
+      void              (*<strong>done</strong>)  (void *, LWImageProtocolID);
+   } LWImageLoaderLocal;</pre>
+    <dl>
+      <dt><strong><tt>priv_data</tt></strong></dt>
+      <dd>Pass this as the first argument to the <tt>begin</tt> and <tt>done</tt> functions. It's
+        an opaque pointer to data used internally by LightWave.</dd>
+      <dt><br>
+        <strong><tt>result</tt></strong></dt>
+      <dd>Set this to indicate whether the image was loaded successfully. The result codes are <dl>
+          <dt><br>
+            <tt>IPSTAT_OK</tt></dt>
+          <dd>The image was loaded successfully.</dd>
+          <dt><tt>IPSTAT_NOREC</tt></dt>
+          <dd>The loader didn't recognize the file. This can happen frequently, since all loaders are
+            called in sequence until one of them <em>doesn't</em> return this result.</dd>
+          <dt><tt>IPSTAT_BADFILE</tt></dt>
+          <dd>The loader couldn't open the file. If the loader is able to open the file but believes
+            it has found an error in the contents, it should return <tt>IPSTAT_NOREC</tt>.</dd>
+          <dt><tt>IPSTAT_ABORT</tt></dt>
+          <dd>Use this to indicate that the user cancelled the load operation. This can happen if you
+            use the monitor to indicate the progress of a lengthy image loading operation.</dd>
+          <dt><tt>IPSTAT_FAILED</tt></dt>
+          <dd>An error occurred during loading, for example a memory allocation failed.</dd>
+        </dl>
+      </dd>
+      <dt><br>
+        <strong><tt>filename</tt></strong></dt>
+      <dd>The name of the file to load.</dd>
+      <dt><br>
+        <strong><tt>monitor</tt></strong></dt>
+      <dd>A monitor for displaying the progress of the load to the user. You don't have to use
+        this, but you're encouraged to if your image loading takes an unusual amount of time. This
+        is the same structure as that returned by the <a href="../globals/modmon.html">monitor</a>
+        global's <tt>create</tt> function.</dd>
+      <dt><br>
+        <tt>protocol = <strong>begin</strong>( priv_data, pixeltype )</tt></dt>
+      <dd>Call this when you're ready to begin sending image data to LightWave. This will be after
+        you've opened and examined the image file and know what it contains. The pixel type code
+        tells LightWave what kind of pixel data you will be sending, and this will in general
+        depend on what kind of pixel data the file contains, although it doesn't have to. Pixel
+        type codes are listed on the <a href="../imageio.html#pixdata">Image I/O</a> page. <p>The <tt>begin</tt>
+        function returns a pointer to an LWImageProtocol, which is the structure you'll use to
+        actually transfer the image data. See the <a href="../imageio.html">Image I/O</a> page. If
+        you call <tt>begin</tt>, you must also call <tt>done</tt> so that LightWave can free
+        resources associated with the LWImageProtocol it allocates for you.</p>
+      </dd>
+      <dt><tt><strong>done</strong>( priv_data, protocol )</tt></dt>
+      <dd>Completes the image loading process. The protocol is the LWImageProtocolID returned by <tt>begin</tt>.
+        Only call <tt>done</tt> if you previously called <tt>begin</tt>. </dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>The <a href="../../sample/iff/">iff</a> sample is a complete IFF ILBM loader and saver.
+    The <a href="../../sample/zcomp/">zcomp</a> sample includes an image loader that creates a
+    floating-point grayscale image from the values in a previously saved <tt>LWBUF_DEPTH
+    buffer.</tt></td>
+  </tr>
+</table>
+</body>
+</html>

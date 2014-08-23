@@ -1,0 +1,40 @@
+#!/bin/sh
+# automatically generated Thu Jul 29 11:45:45 MST 2004
+rm -f shader.h geoshader.h mi_version.h
+cp shader.34.h shader.h
+cp geoshader.34.h geoshader.h
+cp mi_version.34.h mi_version.h
+cp raylib.34.rc raylib.rc
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include baseblinn.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include basecheck.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include basecolor.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include basecooktorr.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include basedielec.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include baseenviron.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include basegeo.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include basehair.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include baseior.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include baselambert.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include baselens.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include baselight.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include baselightmap.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include basemux.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include basephong.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include basephotbas.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include basepolka.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include baseraymarch.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include basereflect.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include baserefract.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include baseshadow.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include basetexgen.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include basetexgeo.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include basetexlook.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include basetrans.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include baseturb.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include basetwoside.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include basevolume.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include baseward.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include basewardderi.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include basewave.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -g -DDEBUG -DCVD_DEBUG   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include baseocc.cpp
+g++ -shared -export-dynamic -static-libgcc -Wl,-Bsymbolic,--whole-archive,--allow-shlib-undefined -o base.so baseblinn.o basecheck.o basecolor.o basecooktorr.o basedielec.o baseenviron.o basegeo.o basehair.o baseior.o baselambert.o baselens.o baselight.o baselightmap.o basemux.o basephong.o basephotbas.o basepolka.o baseraymarch.o basereflect.o baserefract.o baseshadow.o basetexgen.o basetexgeo.o basetexlook.o basetrans.o baseturb.o basetwoside.o basevolume.o baseward.o basewardderi.o basewave.o baseocc.o  -Wl,--no-whole-archive

@@ -1,0 +1,263 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_EDSPLINE_OPS_VIZR DIALOGEX 0, 0, 108, 37
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    CONTROL         "Attach",IDC_ES_ATTACH,"CustButton",NOT WS_VISIBLE | 
+                    WS_TABSTOP,4,20,47,11
+    CONTROL         "Reorient",IDC_ES_ATTACHREORIENT,"Button",
+                    BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,4,20,39,10
+    CONTROL         "Attach Mult.",IDC_ES_ATTACH_MULTIPLE,"CustButton",NOT 
+                    WS_VISIBLE | WS_TABSTOP,4,20,47,11
+    CONTROL         "Create Line",IDC_ES_CREATELINE,"CustButton",NOT 
+                    WS_VISIBLE | WS_TABSTOP,4,17,47,11
+    CONTROL         "Insert",IDC_ES_INSERT,"CustButton",NOT WS_VISIBLE | 
+                    WS_TABSTOP,57,18,47,11
+    CONTROL         "Connect",IDC_ES_CONNECT,"CustButton",NOT WS_VISIBLE | 
+                    WS_TABSTOP,4,18,47,11
+    CONTROL         "Explode",IDC_ES_EXPLODE,"CustButton",NOT WS_VISIBLE | 
+                    WS_TABSTOP,4,20,47,11
+    CONTROL         "Break",IDC_ES_BREAK,"CustButton",NOT WS_VISIBLE | 
+                    WS_TABSTOP,4,20,47,11
+    CONTROL         "CrossInsert",IDC_ES_CROSS_INSERT,"CustButton",NOT 
+                    WS_VISIBLE | WS_TABSTOP,4,17,47,11
+    CONTROL         "Refine",IDC_ES_REFINE,"CustButton",NOT WS_VISIBLE | 
+                    WS_TABSTOP,4,20,47,11
+    CONTROL         "Make First",IDC_ES_MAKEFIRST,"CustButton",NOT 
+                    WS_VISIBLE | WS_TABSTOP,4,17,47,11
+    CONTROL         "Weld",IDC_ES_WELD,"CustButton",WS_TABSTOP,4,7,47,11
+    CONTROL         "",IDC_ES_WELDTHRESH,"CustEdit",WS_TABSTOP,57,8,38,10
+    CONTROL         "",IDC_ES_THRESHSPINNER,"SpinnerControl",0x0,97,8,7,10
+    CONTROL         "Reverse",IDC_ES_REVERSE,"CustButton",NOT WS_VISIBLE | 
+                    WS_TABSTOP,4,18,47,11
+    CONTROL         "Close",IDC_ES_CLOSE,"CustButton",NOT WS_VISIBLE | 
+                    WS_TABSTOP,57,18,47,11
+    CONTROL         "Divide",IDC_ES_SEGDIVIDE,"CustButton",NOT WS_VISIBLE | 
+                    WS_TABSTOP,4,18,47,11
+    CONTROL         "",IDC_ES_DIVISIONS,"CustEdit",NOT WS_VISIBLE | 
+                    WS_TABSTOP,57,20,38,10
+    CONTROL         "",IDC_ES_DIVSSPINNER,"SpinnerControl",NOT WS_VISIBLE,97,
+                    20,7,10
+    CONTROL         "Detach",IDC_ES_DETACH,"CustButton",WS_TABSTOP,57,20,47,
+                    11
+    CONTROL         "Same Shp",IDC_ES_SAMESHAPE,"Button",BS_AUTOCHECKBOX | 
+                    NOT WS_VISIBLE | WS_TABSTOP,55,20,49,10
+    CONTROL         "Reorient",IDC_ES_DETACHREORIENT,"Button",
+                    BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,65,18,39,
+                    10
+    CONTROL         "Copy",IDC_ES_DETACHCOPY,"Button",BS_AUTOCHECKBOX | NOT 
+                    WS_VISIBLE | WS_TABSTOP,60,19,28,10
+    CONTROL         "Outline",IDC_ES_OUTLINE,"CustButton",NOT WS_VISIBLE | 
+                    WS_TABSTOP,4,18,47,11
+    CONTROL         "",IDC_ES_OUTLINEWIDTH,"CustEdit",NOT WS_VISIBLE | 
+                    WS_TABSTOP,57,18,38,10
+    CONTROL         "",IDC_ES_OUTLINESPINNER,"SpinnerControl",NOT WS_VISIBLE,
+                    97,18,7,10
+    CONTROL         "Center",IDC_ES_OUTCENTER,"Button",BS_AUTOCHECKBOX | NOT 
+                    WS_VISIBLE | WS_TABSTOP,4,17,33,10
+    CONTROL         "Boolean",IDC_ES_BOOLEAN,"CustButton",NOT WS_VISIBLE | 
+                    WS_TABSTOP,4,19,41,11
+    CONTROL         "",IDC_ES_BOOL_TYPE,"CustToolbar",NOT WS_VISIBLE | 
+                    WS_TABSTOP,50,17,54,14
+    CONTROL         "Mirror",IDC_ES_MIRROR,"CustButton",NOT WS_VISIBLE | 
+                    WS_TABSTOP,4,18,41,11
+    CONTROL         "",IDC_ES_MIRROR_TYPE,"CustToolbar",NOT WS_VISIBLE | 
+                    WS_TABSTOP,49,17,54,14
+    CONTROL         "Copy",IDC_ES_COPY_MIRROR,"Button",BS_AUTOCHECKBOX | NOT 
+                    WS_VISIBLE | WS_TABSTOP,4,18,28,10
+    CONTROL         "Delete",IDC_ES_DELETE,"CustButton",WS_TABSTOP,4,20,47,
+                    11
+    CONTROL         "",IDC_ES_CROSSTHRESH,"CustEdit",NOT WS_VISIBLE | 
+                    WS_TABSTOP,57,18,38,10
+    CONTROL         "",IDC_ES_CROSSTHRESHSPINNER,"SpinnerControl",NOT 
+                    WS_VISIBLE,97,18,7,10
+    CONTROL         "Fillet",IDC_ES_FILLET,"CustButton",NOT WS_VISIBLE | 
+                    WS_TABSTOP,4,17,47,11
+    CONTROL         "",IDC_ES_FILLETWIDTH,"CustEdit",NOT WS_VISIBLE | 
+                    WS_TABSTOP,57,18,38,10
+    CONTROL         "",IDC_ES_FILLETSPINNER,"SpinnerControl",NOT WS_VISIBLE,
+                    97,18,7,10
+    CONTROL         "Chamfer",IDC_ES_CHAMFER,"CustButton",NOT WS_VISIBLE | 
+                    WS_TABSTOP,4,18,47,11
+    CONTROL         "",IDC_ES_CHAMFERWIDTH,"CustEdit",NOT WS_VISIBLE | 
+                    WS_TABSTOP,57,18,38,10
+    CONTROL         "",IDC_ES_CHAMFERSPINNER,"SpinnerControl",NOT WS_VISIBLE,
+                    97,18,7,10
+    LTEXT           "To:",IDC_EDSPLINE_OPS_TO_LABEL,4,20,12,8,NOT WS_VISIBLE
+    CONTROL         "Splines",IDC_TO_SPLINES,"Button",BS_AUTORADIOBUTTON | 
+                    NOT WS_VISIBLE,26,18,39,10
+    CONTROL         "Objects",IDC_TO_OBJECTS,"Button",BS_AUTORADIOBUTTON | 
+                    NOT WS_VISIBLE,64,20,40,10
+    CONTROL         "About Pivot",IDC_ES_ABOUT_PIVOT,"Button",
+                    BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,39,18,53,
+                    10
+    CONTROL         "Bind",IDC_ES_BIND,"CustButton",NOT WS_VISIBLE | 
+                    WS_TABSTOP,4,18,47,11
+    CONTROL         "Unbind",IDC_ES_UNBIND,"CustButton",NOT WS_VISIBLE | 
+                    WS_TABSTOP,57,18,47,11
+    CONTROL         "Hide",IDC_ES_HIDE,"CustButton",NOT WS_VISIBLE | 
+                    WS_TABSTOP,4,19,47,11
+    CONTROL         "Unhide All",IDC_ES_UNHIDE,"CustButton",NOT WS_VISIBLE | 
+                    WS_TABSTOP,57,19,47,11
+    CONTROL         "Trim",IDC_ES_TRIM,"CustButton",NOT WS_VISIBLE | 
+                    WS_TABSTOP,4,18,47,11
+    CONTROL         "Infinite Bounds",IDC_ES_TRIM_INFINITE,"Button",
+                    BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,41,17,63,
+                    10
+    GROUPBOX        "Display:",IDC_EDSPLINE_OPS_DISPLAY_LABEL,4,18,102,12,
+                    NOT WS_VISIBLE
+    CONTROL         "Show selected segs",IDC_ES_SHOW_SELECTED,"Button",
+                    BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,4,17,96,12
+    CONTROL         "Cycle",IDC_ES_CYCLE,"CustButton",NOT WS_VISIBLE | 
+                    WS_TABSTOP,57,18,47,11
+    CONTROL         "Linear",IDC_ES_RCLINEAR,"Button",BS_AUTOCHECKBOX | NOT 
+                    WS_VISIBLE | WS_TABSTOP,4,20,35,10
+    CONTROL         "Closed",IDC_ES_RCCLOSED,"Button",BS_AUTOCHECKBOX | NOT 
+                    WS_VISIBLE | WS_TABSTOP,4,20,40,10
+    CONTROL         "Bind first",IDC_ES_BINDFIRST,"Button",BS_AUTOCHECKBOX | 
+                    NOT WS_VISIBLE | WS_TABSTOP,4,20,43,10
+    CONTROL         "Bind last",IDC_ES_BINDLAST,"Button",BS_AUTOCHECKBOX | 
+                    NOT WS_VISIBLE | WS_TABSTOP,4,20,43,10
+    CONTROL         "Extend",IDC_ES_EXTEND,"CustButton",NOT WS_VISIBLE | 
+                    WS_TABSTOP,57,18,47,11
+    GROUPBOX        "",IDC_STATIC,4,20,101,9,NOT WS_VISIBLE
+    CONTROL         "Connect",IDC_ES_RCONNECT,"Button",BS_AUTOCHECKBOX | NOT 
+                    WS_VISIBLE | WS_TABSTOP,4,20,43,10
+    CONTROL         "Fuse",IDC_ES_FUSE,"CustButton",NOT WS_VISIBLE | 
+                    WS_TABSTOP,57,17,47,11
+    GROUPBOX        "End Point Auto-Welding",IDC_STATIC,4,20,101,9,NOT 
+                    WS_VISIBLE
+    CONTROL         "Automatic Welding",IDC_ES_EndPointAutoWeldControl,
+                    "Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,4,
+                    20,75,10
+    CONTROL         "",IDC_ES_EndPointAutoWeldThreshold,"CustEdit",NOT 
+                    WS_VISIBLE | WS_TABSTOP,66,20,38,10
+    CONTROL         "",IDC_ES_ENDPOINTAUTOWELD_THRESHSPINNER,"SpinnerControl",
+                    NOT WS_VISIBLE,97,20,7,10
+    LTEXT           "Threshold Dist.",IDC_STATIC,4,20,48,8,NOT WS_VISIBLE
+END
+
+IDD_EDSPLINE_SELECT_VIZR DIALOGEX 0, 0, 108, 50
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    CONTROL         "",IDC_SELTYPE,"CustToolbar",WS_TABSTOP,30,5,48,14
+    GROUPBOX        "Named Selections:",IDC_EDSPLINE_SELECT_NAMEDSEL_LABEL,3,
+                    0,102,24,NOT WS_VISIBLE
+    CONTROL         "Copy",IDC_NS_COPY,"CustButton",NOT WS_VISIBLE | 
+                    WS_TABSTOP,15,9,37,11
+    CONTROL         "Paste",IDC_NS_PASTE,"CustButton",NOT WS_VISIBLE | 
+                    WS_TABSTOP,59,9,37,11
+    GROUPBOX        "",IDC_STATIC,3,24,102,66,NOT WS_VISIBLE
+    CONTROL         "Lock Handles",IDC_LOCK_HANDLES,"Button",BS_AUTOCHECKBOX | 
+                    NOT WS_VISIBLE | WS_TABSTOP,0,0,56,10
+    CONTROL         "Alike",IDC_LOCKALIKE,"Button",BS_AUTORADIOBUTTON | NOT 
+                    WS_VISIBLE,0,0,28,10
+    CONTROL         "All",IDC_LOCKALL,"Button",BS_AUTORADIOBUTTON | NOT 
+                    WS_VISIBLE,0,0,20,10
+    RTEXT           "123456 Vertices Selected",IDC_NUMSEL_LABEL,4,26,100,8
+    RTEXT           "Vertex Count: 99999",IDC_SPLINE_VERT_COUNT,4,37,99,8
+    CONTROL         "Show Vertex Numbers",IDC_SHOW_VERTEX_NUMBERS,"Button",
+                    BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,0,1,86,10
+    GROUPBOX        "Display",IDC_EDSPLINE_SELECT_DISPLAY_LABEL,0,0,101,31,
+                    NOT WS_VISIBLE
+    CONTROL         "Selected Only",IDC_SVN_SELECTED,"Button",
+                    BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,0,0,60,10
+    CONTROL         "",IDC_SELECTAREA,"CustEdit",NOT WS_VISIBLE | WS_TABSTOP,
+                    0,0,23,10
+    CONTROL         "",IDC_SELECTAREA_SPIN,"SpinnerControl",NOT WS_VISIBLE,1,
+                    0,7,10
+    CONTROL         "Area Selection:",IDC_AREA_SELECTION,"Button",
+                    BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,0,0,59,10
+    CONTROL         "Segment End",IDC_SEGMENT_END,"Button",BS_AUTOCHECKBOX | 
+                    NOT WS_VISIBLE | WS_TABSTOP,0,0,59,10
+    PUSHBUTTON      "Select By...",IDC_SELECT_BY,0,0,50,12,NOT WS_VISIBLE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_EDSPLINE_OPS_VIZR, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 104
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 32
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

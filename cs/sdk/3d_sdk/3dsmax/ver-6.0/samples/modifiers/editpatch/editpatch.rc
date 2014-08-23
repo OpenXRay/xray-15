@@ -1,0 +1,1206 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#include ""buildver.h""\r\n"
+    "#if defined(GAME_VER)\r\n"
+    "  #include ""editpatch_gmax.rc""\r\n"
+    "#endif\r\n"
+    "#if defined(RENDER_VER)\r\n"
+    "  #include ""editpatch_vizR.rc""\r\n"
+    "#endif\r\n"
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SOFT_SELECTION DIALOGEX 0, 0, 108, 160
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    CONTROL         "",IDC_AR_GRAPH,"Static",SS_BLACKFRAME,13,83,81,50
+    CTEXT           "0'0""00",IDC_NEARLABEL,41,135,30,8
+    CTEXT           "20'0""00",IDC_FARLEFTLABEL,0,135,30,8
+    CTEXT           "20'0""00",IDC_FARRIGHTLABEL,78,135,30,8
+    CONTROL         "",IDC_FALLOFF,"CustEdit",WS_TABSTOP,45,41,37,10
+    CONTROL         "",IDC_PINCH,"CustEdit",WS_TABSTOP,45,54,37,10
+    CONTROL         "",IDC_BUBBLE,"CustEdit",WS_TABSTOP,45,67,37,10
+    CONTROL         "",IDC_FALLOFF_SPIN,"SpinnerControl",0x0,83,41,7,10
+    RTEXT           "Falloff:",IDC_FALLOFF_LABEL,14,42,29,8
+    CONTROL         "",IDC_PINCH_SPIN,"SpinnerControl",0x0,83,54,7,10
+    RTEXT           "Pinch:",IDC_PINCH_LABEL,14,55,29,8
+    CONTROL         "",IDC_BUBBLE_SPIN,"SpinnerControl",0x0,83,67,7,10
+    RTEXT           "Bubble:",IDC_BUBBLE_LABEL,14,68,29,8
+    CONTROL         "Use Soft Selection",IDC_SOFT_SELECTION,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,4,76,10
+    CONTROL         "Edge Distance:",IDC_EDGE_DIST,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,9,16,61,10
+    CONTROL         "",IDC_EDGE,"CustEdit",WS_TABSTOP,73,16,18,10
+    CONTROL         "",IDC_EDGE_SPIN,"SpinnerControl",0x0,93,16,7,10
+    CONTROL         "Affect Backfacing",IDC_AFFECT_BACKFACING,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,28,92,10
+    CONTROL         "Shaded Face Toggle",IDC_SHADED_FACE_TOGGLE,"CustButton",
+                    WS_TABSTOP,7,145,94,11
+END
+
+IDD_EDPATCH_SURF_VERT DIALOG  0, 0, 108, 137
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Select Vertex By",IDC_STATIC,3,65,101,69
+    CONTROL         "",IDC_VERT_SELCOLOR,"ColorSwatch",WS_TABSTOP,6,100,46,
+                    16
+    CONTROL         "Select",IDC_VERT_SELBYCOLOR,"CustButton",WS_TABSTOP,6,
+                    118,46,11
+    CONTROL         "",IDC_VERT_SELR,"CustEdit",WS_TABSTOP,69,97,22,10
+    CONTROL         "",IDC_VERT_SELRSPIN,"SpinnerControl",0x0,92,97,7,10
+    CONTROL         "",IDC_VERT_SELG,"CustEdit",WS_TABSTOP,69,108,22,10
+    CONTROL         "",IDC_VERT_SELGSPIN,"SpinnerControl",0x0,92,108,7,10
+    CONTROL         "",IDC_VERT_SELB,"CustEdit",WS_TABSTOP,69,120,22,10
+    CONTROL         "",IDC_VERT_SELBSPIN,"SpinnerControl",0x0,92,120,7,10
+    RTEXT           "Range:",IDC_STATIC,66,87,27,8
+    RTEXT           "R:",IDC_STATIC,54,97,12,8
+    RTEXT           "G:",IDC_STATIC,54,109,12,8
+    RTEXT           "B:",IDC_STATIC,54,120,12,8
+    GROUPBOX        "Edit Vertex Colors",IDC_STATIC,3,2,101,61
+    CONTROL         "",IDC_VERT_COLOR,"ColorSwatch",WS_TABSTOP,52,13,46,16
+    CONTROL         "",IDC_VERT_ILLUM,"ColorSwatch",WS_TABSTOP,52,31,46,16
+    CONTROL         "",IDC_VERT_ALPHA,"CustEdit",WS_TABSTOP,52,49,35,10
+    CONTROL         "",IDC_VERT_ALPHA_SPIN,"SpinnerControl",0x0,90,49,7,10
+    RTEXT           "Alpha:",IDC_ALPHA_LABEL,28,49,21,8
+    LTEXT           "Color:",IDC_STATIC,30,17,19,8
+    LTEXT           "Illumination:",IDC_STATIC,11,34,38,8
+    CONTROL         "Color",IDC_BY_COLOR,"Button",BS_AUTORADIOBUTTON,10,75,
+                    32,10
+    CONTROL         "Illumination",IDC_BY_ILLUM,"Button",BS_AUTORADIOBUTTON,
+                    10,85,51,10
+END
+
+IDD_EDPATCH_SURF_OBJ DIALOG  0, 0, 108, 85
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Relax Mesh",IDC_STATIC,2,2,102,80
+    CONTROL         "",IDC_RELAXSPIN,"SpinnerControl",0x0,92,34,7,10
+    RTEXT           "Relax Value:",IDC_EDPATCH_SURF_OBJ_RELAXVALUE_LABEL,8,
+                    34,41,8
+    CONTROL         "",IDC_RELAX,"CustEdit",WS_TABSTOP,53,34,38,10
+    CONTROL         "",IDC_ITERSPIN,"SpinnerControl",0x0,92,47,7,10
+    RTEXT           "Iterations:",IDC_EDPATCH_SURF_OBJ_ITERATIONS_LABEL,8,47,
+                    41,8
+    CONTROL         "",IDC_ITER,"CustEdit",WS_TABSTOP,53,47,38,10
+    CONTROL         "Keep Boundary Pts Fixed",IDC_BOUNDARY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,59,95,10
+    CONTROL         "Save Outer Corners",IDC_SADDLE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,5,69,92,10
+    CONTROL         "Relax",IDC_DO_RELAX,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,5,11,92,10
+    CONTROL         "Relax Viewports",IDC_RELAX_VIEWPORTS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,21,92,10
+END
+
+IDD_EDPATCH_SURF DIALOGEX 0, 0, 108, 256
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    CONTROL         "1",IDC_SMOOTH_GRP1,"CustButton",WS_TABSTOP,6,125,11,11
+    CONTROL         "2",IDC_SMOOTH_GRP2,"CustButton",WS_TABSTOP,18,125,11,11
+    CONTROL         "3",IDC_SMOOTH_GRP3,"CustButton",WS_TABSTOP,30,125,11,11
+    CONTROL         "4",IDC_SMOOTH_GRP4,"CustButton",WS_TABSTOP,42,125,11,11
+    CONTROL         "5",IDC_SMOOTH_GRP5,"CustButton",WS_TABSTOP,54,125,11,11
+    CONTROL         "6",IDC_SMOOTH_GRP6,"CustButton",WS_TABSTOP,66,125,11,11
+    CONTROL         "7",IDC_SMOOTH_GRP7,"CustButton",WS_TABSTOP,78,125,11,11
+    CONTROL         "8",IDC_SMOOTH_GRP8,"CustButton",WS_TABSTOP,90,125,11,11
+    CONTROL         "9",IDC_SMOOTH_GRP9,"CustButton",WS_TABSTOP,6,138,11,11
+    CONTROL         "10",IDC_SMOOTH_GRP10,"CustButton",WS_TABSTOP,18,138,11,
+                    11
+    CONTROL         "11",IDC_SMOOTH_GRP11,"CustButton",WS_TABSTOP,30,138,11,
+                    11
+    CONTROL         "12",IDC_SMOOTH_GRP12,"CustButton",WS_TABSTOP,42,138,11,
+                    11
+    CONTROL         "13",IDC_SMOOTH_GRP13,"CustButton",WS_TABSTOP,54,138,11,
+                    11
+    CONTROL         "14",IDC_SMOOTH_GRP14,"CustButton",WS_TABSTOP,66,138,11,
+                    11
+    CONTROL         "15",IDC_SMOOTH_GRP15,"CustButton",WS_TABSTOP,78,138,11,
+                    11
+    CONTROL         "16",IDC_SMOOTH_GRP16,"CustButton",WS_TABSTOP,90,138,11,
+                    11
+    CONTROL         "17",IDC_SMOOTH_GRP17,"CustButton",WS_TABSTOP,6,149,11,
+                    11
+    CONTROL         "18",IDC_SMOOTH_GRP18,"CustButton",WS_TABSTOP,18,149,11,
+                    11
+    CONTROL         "19",IDC_SMOOTH_GRP19,"CustButton",WS_TABSTOP,30,149,11,
+                    11
+    CONTROL         "20",IDC_SMOOTH_GRP20,"CustButton",WS_TABSTOP,42,149,11,
+                    11
+    CONTROL         "21",IDC_SMOOTH_GRP21,"CustButton",WS_TABSTOP,54,149,11,
+                    11
+    CONTROL         "22",IDC_SMOOTH_GRP22,"CustButton",WS_TABSTOP,66,149,11,
+                    11
+    CONTROL         "23",IDC_SMOOTH_GRP23,"CustButton",WS_TABSTOP,78,149,11,
+                    11
+    CONTROL         "24",IDC_SMOOTH_GRP24,"CustButton",WS_TABSTOP,90,149,11,
+                    11
+    CONTROL         "25",IDC_SMOOTH_GRP25,"CustButton",WS_TABSTOP,6,162,11,
+                    11
+    CONTROL         "26",IDC_SMOOTH_GRP26,"CustButton",WS_TABSTOP,18,162,11,
+                    11
+    CONTROL         "27",IDC_SMOOTH_GRP27,"CustButton",WS_TABSTOP,30,162,11,
+                    11
+    CONTROL         "28",IDC_SMOOTH_GRP28,"CustButton",WS_TABSTOP,42,162,11,
+                    11
+    CONTROL         "29",IDC_SMOOTH_GRP29,"CustButton",WS_TABSTOP,54,162,11,
+                    11
+    CONTROL         "30",IDC_SMOOTH_GRP30,"CustButton",WS_TABSTOP,66,162,11,
+                    11
+    CONTROL         "31",IDC_SMOOTH_GRP31,"CustButton",WS_TABSTOP,78,162,11,
+                    11
+    CONTROL         "32",IDC_SMOOTH_GRP32,"CustButton",WS_TABSTOP,90,162,11,
+                    11
+    CONTROL         "Select By SG",IDC_SELECTBYSMOOTH,"CustButton",
+                    WS_TABSTOP,6,176,46,11
+    GROUPBOX        "Smoothing Groups:",IDC_STATIC,2,112,102,79
+    CONTROL         "Clear All",IDC_SMOOTH_CLEAR,"CustButton",WS_TABSTOP,54,
+                    176,46,11
+    GROUPBOX        "Edit Vertex Colors",IDC_STATIC,2,192,101,61
+    CONTROL         "",IDC_VERT_COLOR,"ColorSwatch",WS_TABSTOP,52,202,46,16
+    CONTROL         "",IDC_VERT_ILLUM,"ColorSwatch",WS_TABSTOP,52,221,46,16
+    CONTROL         "",IDC_VERT_ALPHA,"CustEdit",WS_TABSTOP,52,240,35,10
+    CONTROL         "",IDC_VERT_ALPHA_SPIN,"SpinnerControl",0x0,90,240,7,10
+    RTEXT           "Alpha:",IDC_ALPHA_LABEL,26,240,21,8
+    LTEXT           "Color:",IDC_STATIC,30,208,19,8
+    LTEXT           "Illumination:",IDC_STATIC,10,224,38,8
+    CONTROL         "Flip",IDC_NORMAL_FLIP,"CustButton",WS_TABSTOP,5,11,46,
+                    11
+    CONTROL         "Unify",IDC_NORMAL_UNIFY,"CustButton",WS_TABSTOP,54,11,
+                    46,11
+    GROUPBOX        "Normals:",IDC_STATIC,2,1,101,38
+    CONTROL         "Flip Normal Mode",IDC_NORMAL_FLIPMODE,"CustButton",
+                    WS_TABSTOP,5,24,95,11
+    GROUPBOX        "Material:",IDC_STATIC,2,40,102,71
+    CONTROL         "",IDC_MAT_ID,"CustEdit",WS_TABSTOP,54,53,37,10
+    CONTROL         "Select ID",IDC_SELECT_BYID,"CustButton",WS_TABSTOP,6,68,
+                    46,11
+    CONTROL         "",IDC_MAT_IDSPIN,"SpinnerControl",0x0,93,53,7,10
+    RTEXT           "Set ID:",IDC_STATIC,24,54,25,8
+    CONTROL         "",IDC_MAT_ID_SEL,"CustEdit",WS_TABSTOP,54,69,37,10
+    CONTROL         "",IDC_MAT_IDSPIN_SEL,"SpinnerControl",0x0,93,69,7,10
+    COMBOBOX        IDC_MTLID_NAMES_COMBO,6,82,96,94,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Clear Selection",IDC_CLEARSELECTION,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,97,63,10
+END
+
+IDD_EDPATCH_SELECT DIALOGEX 0, 0, 108, 157
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    CONTROL         "",IDC_SELTYPE,"CustToolbar",WS_TABSTOP,14,4,80,14
+    CONTROL         "Lattice",IDC_DISPLATTICE,"Button",BS_AUTOCHECKBOX | NOT 
+                    WS_VISIBLE | WS_DISABLED | WS_TABSTOP,11,4,34,10
+    CONTROL         "Surface",IDC_DISPSURFACE,"Button",BS_AUTOCHECKBOX | NOT 
+                    WS_VISIBLE | WS_DISABLED | WS_TABSTOP,56,4,37,10
+    GROUPBOX        "Named Selections:",IDC_EDPATCH_SELECT_NAMEDSEL_LABEL,4,
+                    20,100,24
+    CONTROL         "Copy",IDC_NS_COPY,"CustButton",WS_TABSTOP,11,29,41,11
+    CONTROL         "Paste",IDC_NS_PASTE,"CustButton",WS_TABSTOP,56,29,41,11
+    GROUPBOX        "Filter",IDC_EDPATCH_SELECT_FILTER_LABEL,4,45,100,24
+    CONTROL         "Vertices",IDC_FILTVERTS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,11,56,38,10
+    CONTROL         "Vectors",IDC_FILTVECS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,56,56,36,10
+    CONTROL         "Lock Handles",IDC_LOCK_HANDLES,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,72,56,10
+    CONTROL         "By Vertex",IDC_BY_VERTEX,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,82,56,10
+    CONTROL         "Ignore Backfacing",IDC_IGNORE_BACKFACING,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,92,74,10
+    CONTROL         "Shrink",IDC_EP_SELECTION_SHRINK,"CustButton",WS_TABSTOP,
+                    4,104,48,11
+    CONTROL         "Grow",IDC_EP_SELECTION_GROW,"CustButton",WS_TABSTOP,56,
+                    104,48,11
+    CONTROL         "Ring",IDC_EP_EDGE_RING_SEL,"CustButton",WS_TABSTOP,4,
+                    118,48,11
+    CONTROL         "Loop",IDC_EP_EDGE_LOOP_SEL,"CustButton",WS_TABSTOP,56,
+                    118,48,11
+    CONTROL         "Select Open Edges",IDC_SELECT_OPEN_EDGES,"CustButton",
+                    WS_TABSTOP,16,132,74,11
+    RTEXT           "123456 Vertices Selected",IDC_NUMSEL_LABEL,12,145,92,8
+END
+
+IDD_EDPATCH_OPS DIALOGEX 0, 0, 108, 529
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "Subdivision",IDC_EDPATCH_OPS_SUBDIVISION_LABEL,3,4,101,
+                    40
+    CONTROL         "Subdivide",IDC_SUBDIVIDE,"CustButton",WS_TABSTOP,8,14,
+                    43,11
+    CONTROL         "Propagate",IDC_PROPAGATE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,55,15,46,10
+    CONTROL         "Bind",IDC_BIND,"CustButton",WS_TABSTOP,8,28,43,11
+    CONTROL         "Unbind",IDC_UNBIND,"CustButton",WS_TABSTOP,55,28,43,11
+    GROUPBOX        "Topology",IDC_STATIC,3,46,101,106
+    CONTROL         "Add Tri",IDC_ADDTRI,"CustButton",WS_TABSTOP,8,56,43,11
+    CONTROL         "Add Quad",IDC_ADDQUAD,"CustButton",WS_TABSTOP,56,56,43,
+                    11
+    CONTROL         "Create",IDC_EP_CREATE,"CustButton",WS_TABSTOP,8,70,43,
+                    11
+    CONTROL         "Detach",IDC_DETACH,"CustButton",WS_GROUP | WS_TABSTOP,8,
+                    84,43,11
+    CONTROL         "Reorient",IDC_DETACHREORIENT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,57,85,39,10
+    CONTROL         "Copy",IDC_DETACHCOPY,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,57,95,28,10
+    CONTROL         "Attach",IDC_ATTACH,"CustButton",WS_TABSTOP,8,108,43,11
+    CONTROL         "Reorient",IDC_ATTACHREORIENT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,57,109,39,10
+    CONTROL         "Delete",IDC_PATCH_DELETE,"CustButton",WS_TABSTOP,8,122,
+                    43,11
+    CONTROL         "Break",IDC_BREAK,"CustButton",WS_TABSTOP,56,122,43,11
+    CONTROL         "Hide",IDC_HIDE,"CustButton",WS_TABSTOP,8,136,43,11
+    CONTROL         "Unhide All",IDC_UNHIDE,"CustButton",WS_TABSTOP,56,136,
+                    43,11
+    GROUPBOX        "Weld",IDC_EDPATCH_OPS_WELD_LABEL,3,154,101,40
+    CONTROL         "Selected",IDC_WELD,"CustButton",WS_TABSTOP,8,164,43,11
+    CONTROL         "",IDC_WELDTHRESH,"CustEdit",WS_TABSTOP,56,165,35,10
+    CONTROL         "",IDC_THRESHSPINNER,"SpinnerControl",0x0,92,165,7,10
+    CONTROL         "Target",IDC_VERTWELD,"CustButton",WS_TABSTOP,8,178,43,
+                    11
+    CONTROL         "",IDC_VERTWELDHITRAD,"CustEdit",WS_TABSTOP,56,179,18,10
+    CONTROL         "",IDC_VERTHITRADSPINNER,"SpinnerControl",0x0,75,179,7,
+                    10
+    RTEXT           "pixels",IDC_EDPATCH_OPS_PIXELS_LABEL,83,181,18,8
+    GROUPBOX        "Extrude && Bevel",IDC_EDPATCH_OPS_EXBEV_LABEL,3,196,101,
+                    116
+    CONTROL         "Extrude",IDC_EP_EXTRUDE,"CustButton",WS_TABSTOP,8,206,
+                    43,11
+    CONTROL         "Bevel",IDC_EP_BEVEL,"CustButton",WS_TABSTOP,56,206,43,
+                    11
+    RTEXT           "Extrusion:",IDC_EDPATCH_OPS_EXTRUSION_LABEL,21,221,32,8
+    CONTROL         "",IDC_EP_EXTRUDEAMOUNT,"CustEdit",WS_TABSTOP,56,220,35,
+                    10
+    CONTROL         "",IDC_EP_EXTRUDESPINNER,"SpinnerControl",0x0,92,220,7,
+                    10
+    RTEXT           "Outlining:",IDC_EDPATCH_OPS_OUTLINING_LABEL,21,234,32,8
+    CONTROL         "",IDC_EP_OUTLINEAMOUNT,"CustEdit",WS_TABSTOP,56,233,35,
+                    10
+    CONTROL         "",IDC_EP_OUTLINESPINNER,"SpinnerControl",0x0,92,233,7,
+                    10
+    LTEXT           "Normal:",IDC_EDPATCH_OPS_NORMAL_LABEL,6,248,25,8
+    CONTROL         "Group",IDC_EM_EXTYPE_A,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,32,247,35,10
+    CONTROL         "Local",IDC_EM_EXTYPE_B,"Button",BS_AUTORADIOBUTTON,67,
+                    247,33,10
+    LTEXT           "Bevel Smoothing:",IDC_EDPATCH_OPS_BEVELSMOOTHING_LABEL,
+                    6,259,55,8
+    LTEXT           "Start ",IDC_EDPATCH_OPS_BEVSTART_LABEL,8,269,38,8
+    LTEXT           "End ",IDC_EDPATCH_OPS_BEVEND_LABEL,59,269,38,8
+    CONTROL         "Smooth",IDC_EP_SM_SMOOTH,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,8,279,38,10
+    CONTROL         "Smooth",IDC_EP_SM_SMOOTH4,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,59,279,38,10
+    CONTROL         "Linear",IDC_EP_SM_SMOOTH2,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,8,289,38,10
+    CONTROL         "Linear",IDC_EP_SM_SMOOTH5,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,59,289,38,10
+    CONTROL         "None",IDC_EP_SM_SMOOTH3,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,8,299,38,10
+    CONTROL         "None",IDC_EP_SM_SMOOTH6,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,59,299,38,10
+    GROUPBOX        "Tangent",IDC_EP_TANGENT_STATIC,3,314,101,37
+    CONTROL         "Copy",IDC_EP_COPY_TANGENT,"CustButton",WS_TABSTOP,8,324,
+                    43,11
+    CONTROL         "Paste",IDC_EP_PASTE_TANGENT,"CustButton",WS_TABSTOP,56,
+                    324,43,11
+    CONTROL         "Paste Length",IDC_EP_COPY_TAN_LENGTH,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,338,60,10
+    GROUPBOX        "Spline Surface",IDC_EDPATCH_SPLINE_SURFACE_LABEL,3,353,
+                    101,68
+    CONTROL         "Generate Surface",IDC_EP_GENERATE_SURFACE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,363,70,10
+    RTEXT           "Threshold:",IDC_EP_SURF_THRESHOLD_LABEL,17,375,36,8
+    CONTROL         "",IDC_EP_SURF_THRESHOLD,"CustEdit",WS_TABSTOP,56,374,35,
+                    10
+    CONTROL         "",IDC_EP_SURF_THRESHOLD_SPINNER,"SpinnerControl",0x0,92,
+                    374,7,10
+    CONTROL         "Flip Normals",IDC_EP_FLIP_NORMALS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,385,55,10
+    CONTROL         "Remove Interior Patches",IDC_EP_RM_INTERIOR_PATCHES,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,396,93,10
+    CONTROL         "Use Only Selected Segs.",IDC_EP_USE_SEL_SEGS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,407,93,10
+    GROUPBOX        "Surface",IDC_STATIC,3,423,101,60
+    RTEXT           "View Steps:",IDC_STATIC,7,434,46,8
+    CONTROL         "",IDC_STEPS,"CustEdit",WS_TABSTOP,56,433,35,10
+    CONTROL         "",IDC_STEPSSPINNER,"SpinnerControl",0x0,92,433,7,10
+    RTEXT           "Render Steps:",IDC_STATIC,7,447,46,8
+    CONTROL         "",IDC_STEPS_RENDER,"CustEdit",WS_TABSTOP,56,446,35,10
+    CONTROL         "",IDC_STEPSRENDERSPINNER,"SpinnerControl",0x0,92,446,7,
+                    10
+    CONTROL         "Show Interior Edges",IDC_SHOW_INTERIOR_FACES,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,459,89,10
+    CONTROL         "Use True Patch Normals",IDC_TRUE_PATCH_NORMALS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,470,89,10
+    GROUPBOX        "Miscellaneous",IDC_EDPATCH_OPS_MISC_LABEL,3,485,101,40
+    CONTROL         "Create Shape",IDC_CREATE_SHAPE,"CustButton",WS_TABSTOP,
+                    26,495,56,11
+    CONTROL         "Patch Smooth",IDC_EP_PATCH_SMOOTH,"CustButton",
+                    WS_TABSTOP,26,509,56,11
+END
+
+IDD_PASTE_NAMEDSET DIALOG  0, 0, 186, 57
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Paste Named Selection"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,129,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,129,24,50,14
+    CONTROL         "",IDC_SET_NAME,"CustEdit",WS_TABSTOP,7,40,106,10
+    LTEXT           "A named selection set already exists with the same name. Please select a new name",
+                    IDC_STATIC,7,7,112,30
+END
+
+IDD_SEL_NAMEDSET DIALOG  0, 0, 186, 127
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | 
+    WS_CAPTION | WS_SYSMENU
+CAPTION "Copy Named Selection"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,129,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,129,24,50,14
+    LISTBOX         IDC_NS_LIST,7,7,108,113,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_DETACH DIALOG  0, 0, 165, 65
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Detach"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,101,30,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,101,46,50,14
+    EDITTEXT        IDC_DETACH_NAME,51,8,101,12,ES_AUTOHSCROLL
+    LTEXT           "Detach as:",IDC_STATIC,11,10,37,8
+END
+
+IDD_CREATE_SHAPE DIALOG  0, 0, 165, 63
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Create Shape"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,101,26,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,101,44,50,14
+    EDITTEXT        IDC_SHAPE_NAME,58,8,97,12,ES_AUTOHSCROLL
+    LTEXT           "Shape Name:",IDC_STATIC,11,10,44,8
+END
+
+IDD_SELECTBYMAT DIALOG  0, 0, 151, 47
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Select By Material ID"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_MAT_ID,"CustEdit",WS_TABSTOP,25,7,36,10
+    DEFPUSHBUTTON   "OK",IDOK,90,8,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,90,25,50,14
+    CONTROL         "Clear Selection",IDC_CLEARSELECTION,"Button",
+                    BS_AUTOCHECKBOX,15,22,66,10
+    CONTROL         "",IDC_MAT_IDSPIN,"SpinnerControl",0x0,62,7,7,10
+    RTEXT           "ID:",IDC_STATIC,8,7,17,8
+END
+
+IDD_EM_SELECTBYSMOOTH DIALOG  0, 0, 171, 77
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Select By Smooth Groups"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,112,9,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,112,25,50,14
+    CONTROL         "Clear Selection",IDC_CLEARSELECTION,"Button",
+                    BS_AUTOCHECKBOX,8,58,66,10
+    CONTROL         "1",IDC_SMOOTH_GRP1,"CustButton",WS_TABSTOP,8,8,10,10
+    CONTROL         "2",IDC_SMOOTH_GRP2,"CustButton",WS_TABSTOP,20,8,10,10
+    CONTROL         "3",IDC_SMOOTH_GRP3,"CustButton",WS_TABSTOP,32,8,10,10
+    CONTROL         "4",IDC_SMOOTH_GRP4,"CustButton",WS_TABSTOP,44,8,10,10
+    CONTROL         "5",IDC_SMOOTH_GRP5,"CustButton",WS_TABSTOP,56,8,10,10
+    CONTROL         "6",IDC_SMOOTH_GRP6,"CustButton",WS_TABSTOP,68,8,10,10
+    CONTROL         "7",IDC_SMOOTH_GRP7,"CustButton",WS_TABSTOP,80,8,10,10
+    CONTROL         "8",IDC_SMOOTH_GRP8,"CustButton",WS_TABSTOP,92,8,10,10
+    CONTROL         "9",IDC_SMOOTH_GRP9,"CustButton",WS_TABSTOP,8,20,10,10
+    CONTROL         "10",IDC_SMOOTH_GRP10,"CustButton",WS_TABSTOP,20,20,10,
+                    10
+    CONTROL         "11",IDC_SMOOTH_GRP11,"CustButton",WS_TABSTOP,32,20,10,
+                    10
+    CONTROL         "12",IDC_SMOOTH_GRP12,"CustButton",WS_TABSTOP,44,20,10,
+                    10
+    CONTROL         "13",IDC_SMOOTH_GRP13,"CustButton",WS_TABSTOP,56,20,10,
+                    10
+    CONTROL         "14",IDC_SMOOTH_GRP14,"CustButton",WS_TABSTOP,68,20,10,
+                    10
+    CONTROL         "15",IDC_SMOOTH_GRP15,"CustButton",WS_TABSTOP,80,20,10,
+                    10
+    CONTROL         "16",IDC_SMOOTH_GRP16,"CustButton",WS_TABSTOP,92,20,10,
+                    10
+    CONTROL         "17",IDC_SMOOTH_GRP17,"CustButton",WS_TABSTOP,8,32,10,10
+    CONTROL         "18",IDC_SMOOTH_GRP18,"CustButton",WS_TABSTOP,20,32,10,
+                    10
+    CONTROL         "19",IDC_SMOOTH_GRP19,"CustButton",WS_TABSTOP,32,32,10,
+                    10
+    CONTROL         "20",IDC_SMOOTH_GRP20,"CustButton",WS_TABSTOP,44,32,10,
+                    10
+    CONTROL         "21",IDC_SMOOTH_GRP21,"CustButton",WS_TABSTOP,56,32,10,
+                    10
+    CONTROL         "22",IDC_SMOOTH_GRP22,"CustButton",WS_TABSTOP,68,32,10,
+                    10
+    CONTROL         "23",IDC_SMOOTH_GRP23,"CustButton",WS_TABSTOP,80,32,10,
+                    10
+    CONTROL         "24",IDC_SMOOTH_GRP24,"CustButton",WS_TABSTOP,92,32,10,
+                    10
+    CONTROL         "25",IDC_SMOOTH_GRP25,"CustButton",WS_TABSTOP,8,44,10,10
+    CONTROL         "26",IDC_SMOOTH_GRP26,"CustButton",WS_TABSTOP,20,44,10,
+                    10
+    CONTROL         "27",IDC_SMOOTH_GRP27,"CustButton",WS_TABSTOP,32,44,10,
+                    10
+    CONTROL         "28",IDC_SMOOTH_GRP28,"CustButton",WS_TABSTOP,44,44,10,
+                    10
+    CONTROL         "29",IDC_SMOOTH_GRP29,"CustButton",WS_TABSTOP,56,44,10,
+                    10
+    CONTROL         "30",IDC_SMOOTH_GRP30,"CustButton",WS_TABSTOP,68,44,10,
+                    10
+    CONTROL         "31",IDC_SMOOTH_GRP31,"CustButton",WS_TABSTOP,80,44,10,
+                    10
+    CONTROL         "32",IDC_SMOOTH_GRP32,"CustButton",WS_TABSTOP,92,44,10,
+                    10
+END
+
+IDD_EDSPLINE_SURF DIALOGEX 0, 0, 108, 74
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "Material:",IDC_STATIC,2,0,102,71
+    CONTROL         "",IDC_MAT_ID,"CustEdit",WS_TABSTOP,54,13,37,10
+    CONTROL         "Select ID",IDC_SELECT_BYID,"CustButton",WS_TABSTOP,6,28,
+                    46,11
+    CONTROL         "",IDC_MAT_IDSPIN,"SpinnerControl",0x0,93,13,7,10
+    RTEXT           "Set ID:",IDC_STATIC,24,14,25,8
+    CONTROL         "",IDC_MAT_ID_SEL,"CustEdit",WS_TABSTOP,54,29,37,10
+    CONTROL         "",IDC_MAT_IDSPIN_SEL,"SpinnerControl",0x0,93,29,7,10
+    COMBOBOX        IDC_MTLID_NAMES_COMBO,6,42,96,94,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Clear Selection",IDC_CLEARSELECTION,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,57,63,10
+END
+
+IDD_EDSPLINE_SELECT DIALOG  0, 0, 108, 168
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_SELTYPE,"CustToolbar",WS_TABSTOP,30,5,48,14
+    GROUPBOX        "Named Selections:",IDC_EDSPLINE_SELECT_NAMEDSEL_LABEL,3,
+                    23,102,24
+    CONTROL         "Copy",IDC_NS_COPY,"CustButton",WS_TABSTOP,15,32,37,11
+    CONTROL         "Paste",IDC_NS_PASTE,"CustButton",WS_TABSTOP,59,32,37,11
+    GROUPBOX        "",IDC_STATIC,3,47,102,65
+    CONTROL         "Lock Handles",IDC_LOCK_HANDLES,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,55,56,10
+    CONTROL         "Alike",IDC_LOCKALIKE,"Button",BS_AUTORADIOBUTTON,21,64,
+                    28,10
+    CONTROL         "All",IDC_LOCKALL,"Button",BS_AUTORADIOBUTTON,55,64,20,
+                    10
+    RTEXT           "123456 Vertices Selected",IDC_NUMSEL_LABEL,4,148,100,8
+    RTEXT           "Vertex Count: 99999",IDC_SPLINE_VERT_COUNT,5,157,99,8
+    CONTROL         "Show Vertex Numbers",IDC_SHOW_VERTEX_NUMBERS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,123,86,10
+    GROUPBOX        "Display",IDC_EDSPLINE_SELECT_DISPLAY_LABEL,3,114,101,31
+    CONTROL         "Selected Only",IDC_SVN_SELECTED,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,35,132,60,10
+    CONTROL         "",IDC_SELECTAREA,"CustEdit",WS_TABSTOP,70,76,23,10
+    CONTROL         "",IDC_SELECTAREA_SPIN,"SpinnerControl",0x0,94,76,7,10
+    CONTROL         "Area Selection:",IDC_AREA_SELECTION,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,76,59,10
+    CONTROL         "Segment End",IDC_SEGMENT_END,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,8,87,59,10
+    PUSHBUTTON      "Select By...",IDC_SELECT_BY,29,97,50,12
+END
+
+IDD_EDSPLINE_OPS DIALOGEX 0, 0, 108, 598
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "New Vertex Type",IDC_STATIC,4,4,101,33
+    CONTROL         "Linear",IDC_ES_KTYPE_LINEAR,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,9,14,36,9
+    CONTROL         "Bezier",IDC_ES_KTYPE_BEZIER,"Button",BS_AUTORADIOBUTTON,
+                    47,14,55,9
+    CONTROL         "Smooth",IDC_ES_KTYPE_SMOOTH,"Button",BS_AUTORADIOBUTTON,
+                    9,25,36,9
+    CONTROL         "Bezier Corner",IDC_ES_KTYPE_BEZIER_CORNER,"Button",
+                    BS_AUTORADIOBUTTON,47,25,55,9
+    CONTROL         "Create Line",IDC_ES_CREATELINE,"CustButton",WS_TABSTOP,
+                    4,40,47,11
+    CONTROL         "Break",IDC_ES_BREAK,"CustButton",WS_TABSTOP,57,40,47,11
+    CONTROL         "Attach",IDC_ES_ATTACH,"CustButton",WS_TABSTOP,4,54,47,
+                    11
+    CONTROL         "Attach Mult.",IDC_ES_ATTACH_MULTIPLE,"CustButton",
+                    WS_TABSTOP,4,68,47,11
+    CONTROL         "Reorient",IDC_ES_ATTACHREORIENT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,57,62,39,10
+    CONTROL         "Cross Section",IDC_ES_CROSS_SECTION,"CustButton",
+                    WS_TABSTOP,4,82,47,11
+    GROUPBOX        "",IDC_STATIC,4,93,101,45
+    CONTROL         "Refine",IDC_ES_REFINE,"CustButton",WS_TABSTOP,6,100,45,
+                    11
+    CONTROL         "Connect",IDC_ES_RCONNECT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,57,102,43,10
+    CONTROL         "Linear",IDC_ES_RCLINEAR,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,11,114,35,10
+    CONTROL         "Closed",IDC_ES_RCCLOSED,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,11,124,40,10
+    CONTROL         "Bind first",IDC_ES_BINDFIRST,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,57,114,43,10
+    CONTROL         "Bind last",IDC_ES_BINDLAST,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,57,124,43,10
+    GROUPBOX        "Connect Copy",IDC_ES_CONNECT_COPY_STATIC,4,141,101,36
+    CONTROL         "Connect",IDC_ES_CONNECT_COPY,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,11,151,50,10
+    LTEXT           "Threshold Dist.",IDC_ES_DIST_THRESH_LABEL,9,164,46,8
+    CONTROL         "",IDC_ES_CONNECT_COPY_THRESH,"CustEdit",WS_TABSTOP,56,
+                    163,38,10
+    CONTROL         "",IDC_ES_CONNECT_COPY_THRESHSPINNER,"SpinnerControl",
+                    0x0,96,163,7,10
+    GROUPBOX        "End Point Auto-Welding",IDC_STATIC,4,180,101,36
+    CONTROL         "Automatic Welding",IDC_ES_EndPointAutoWeldControl,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,190,75,10
+    LTEXT           "Threshold Dist.",IDC_STATIC,9,203,45,8
+    CONTROL         "",IDC_ES_EndPointAutoWeldThreshold,"CustEdit",
+                    WS_TABSTOP,56,202,38,10
+    CONTROL         "",IDC_ES_ENDPOINTAUTOWELD_THRESHSPINNER,"SpinnerControl",
+                    0x0,96,202,7,10
+    CONTROL         "Weld",IDC_ES_WELD,"CustButton",WS_TABSTOP,4,219,47,11
+    CONTROL         "",IDC_ES_WELDTHRESH,"CustEdit",WS_TABSTOP,57,220,38,10
+    CONTROL         "",IDC_ES_THRESHSPINNER,"SpinnerControl",0x0,97,220,7,10
+    CONTROL         "Connect",IDC_ES_CONNECT,"CustButton",WS_TABSTOP,4,233,
+                    47,11
+    CONTROL         "Insert",IDC_ES_INSERT,"CustButton",WS_TABSTOP,57,233,47,
+                    11
+    CONTROL         "Make First",IDC_ES_MAKEFIRST,"CustButton",WS_TABSTOP,4,
+                    247,47,11
+    CONTROL         "Fuse",IDC_ES_FUSE,"CustButton",WS_TABSTOP,57,247,47,11
+    CONTROL         "Reverse",IDC_ES_REVERSE,"CustButton",WS_TABSTOP,4,261,
+                    47,11
+    CONTROL         "Cycle",IDC_ES_CYCLE,"CustButton",WS_TABSTOP,57,261,47,
+                    11
+    CONTROL         "CrossInsert",IDC_ES_CROSS_INSERT,"CustButton",
+                    WS_TABSTOP,4,275,47,11
+    CONTROL         "",IDC_ES_CROSSTHRESH,"CustEdit",WS_TABSTOP,57,276,38,10
+    CONTROL         "",IDC_ES_CROSSTHRESHSPINNER,"SpinnerControl",0x0,97,276,
+                    7,10
+    CONTROL         "Fillet",IDC_ES_FILLET,"CustButton",WS_TABSTOP,4,289,47,
+                    11
+    CONTROL         "",IDC_ES_FILLETWIDTH,"CustEdit",WS_TABSTOP,57,290,38,10
+    CONTROL         "",IDC_ES_FILLETSPINNER,"SpinnerControl",0x0,97,290,7,10
+    CONTROL         "Chamfer",IDC_ES_CHAMFER,"CustButton",WS_TABSTOP,4,303,
+                    47,11
+    CONTROL         "",IDC_ES_CHAMFERWIDTH,"CustEdit",WS_TABSTOP,57,304,38,
+                    10
+    CONTROL         "",IDC_ES_CHAMFERSPINNER,"SpinnerControl",0x0,97,304,7,
+                    10
+    CONTROL         "Outline",IDC_ES_OUTLINE,"CustButton",WS_TABSTOP,4,317,
+                    47,11
+    CONTROL         "",IDC_ES_OUTLINEWIDTH,"CustEdit",WS_TABSTOP,57,318,38,
+                    10
+    CONTROL         "",IDC_ES_OUTLINESPINNER,"SpinnerControl",0x0,97,318,7,
+                    10
+    CONTROL         "Center",IDC_ES_OUTCENTER,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,57,331,33,10
+    CONTROL         "Boolean",IDC_ES_BOOLEAN,"CustButton",WS_TABSTOP,4,346,
+                    41,11
+    CONTROL         "",IDC_ES_BOOL_TYPE,"CustToolbar",WS_TABSTOP,50,344,54,
+                    14
+    CONTROL         "Mirror",IDC_ES_MIRROR,"CustButton",WS_TABSTOP,4,362,41,
+                    11
+    CONTROL         "",IDC_ES_MIRROR_TYPE,"CustToolbar",WS_TABSTOP,50,360,54,
+                    14
+    CONTROL         "Copy",IDC_ES_COPY_MIRROR,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,11,376,28,10
+    CONTROL         "About Pivot",IDC_ES_ABOUT_PIVOT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,50,376,53,10
+    CONTROL         "Trim",IDC_ES_TRIM,"CustButton",WS_TABSTOP,4,389,47,11
+    CONTROL         "Extend",IDC_ES_EXTEND,"CustButton",WS_TABSTOP,57,389,47,
+                    11
+    CONTROL         "Infinite Bounds",IDC_ES_TRIM_INFINITE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,403,63,10
+    GROUPBOX        "Tangent",IDC_ES_TANGENT_STATIC,4,415,101,37
+    CONTROL         "Copy",IDC_ES_COPY_TANGENT,"CustButton",WS_TABSTOP,6,425,
+                    45,11
+    CONTROL         "Paste",IDC_ES_PASTE_TANGENT,"CustButton",WS_TABSTOP,57,
+                    425,45,11
+    CONTROL         "Paste Length",IDC_ES_COPY_TAN_LENGTH,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,439,60,10
+    CONTROL         "Hide",IDC_ES_HIDE,"CustButton",WS_TABSTOP,4,455,47,11
+    CONTROL         "Unhide All",IDC_ES_UNHIDE,"CustButton",WS_TABSTOP,57,
+                    455,47,11
+    CONTROL         "Bind",IDC_ES_BIND,"CustButton",WS_TABSTOP,4,469,47,11
+    CONTROL         "Unbind",IDC_ES_UNBIND,"CustButton",WS_TABSTOP,57,469,47,
+                    11
+    CONTROL         "Delete",IDC_ES_DELETE,"CustButton",WS_TABSTOP,4,483,47,
+                    11
+    CONTROL         "Close",IDC_ES_CLOSE,"CustButton",WS_TABSTOP,57,483,47,
+                    11
+    CONTROL         "Divide",IDC_ES_SEGDIVIDE,"CustButton",WS_TABSTOP,4,497,
+                    47,11
+    CONTROL         "",IDC_ES_DIVISIONS,"CustEdit",WS_TABSTOP,57,498,38,10
+    CONTROL         "",IDC_ES_DIVSSPINNER,"SpinnerControl",0x0,97,498,7,10
+    CONTROL         "Detach",IDC_ES_DETACH,"CustButton",WS_TABSTOP,4,511,47,
+                    11
+    CONTROL         "Same Shp",IDC_ES_SAMESHAPE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,57,511,47,10
+    CONTROL         "Reorient",IDC_ES_DETACHREORIENT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,57,521,39,10
+    CONTROL         "Copy",IDC_ES_DETACHCOPY,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,57,531,28,10
+    CONTROL         "Explode",IDC_ES_EXPLODE,"CustButton",WS_TABSTOP,4,543,
+                    47,11
+    LTEXT           "To:",IDC_EDSPLINE_OPS_TO_LABEL,4,557,12,8
+    CONTROL         "Splines",IDC_TO_SPLINES,"Button",BS_AUTORADIOBUTTON,17,
+                    557,39,9
+    CONTROL         "Objects",IDC_TO_OBJECTS,"Button",BS_AUTORADIOBUTTON,59,
+                    557,40,9
+    GROUPBOX        "Display:",IDC_EDSPLINE_OPS_DISPLAY_LABEL,4,569,101,24
+    CONTROL         "Show selected segs",IDC_ES_SHOW_SELECTED,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,579,93,10
+END
+
+IDD_ES_EXPLODE DIALOG  0, 0, 165, 65
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Explode"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,101,30,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,101,46,50,14
+    EDITTEXT        IDC_ES_EXPLODE_NAME,51,8,101,12,ES_AUTOHSCROLL
+    LTEXT           "Object Name:",IDC_ES_EXPLODE_NAMELABEL,5,10,46,8
+END
+
+IDD_SELECT_BY DIALOG  0, 0, 73, 42
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Select By..."
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Segment",IDC_SEGMENT,11,4,50,14
+    PUSHBUTTON      "Spline",IDC_SPLINE,11,22,50,14
+END
+
+IDD_REFINE_CONNECT_OPTION DIALOG  0, 0, 186, 65
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Refine & Connect"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Refine",IDC_REFINE,37,46,50,14
+    DEFPUSHBUTTON   "Connect Only",IDC_CONNECT_ONLY,97,46,50,14
+    LTEXT           "Vertex under cursor..  Do you want to refine at the click",
+                    IDC_STATIC,5,6,174,8
+    LTEXT           "point or simply connect to the existing vertex location?",
+                    IDC_STATIC,5,17,170,8
+    CONTROL         "Do not show this message again",IDC_DONTSHOWAGAIN,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,34,31,118,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_SOFT_SELECTION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 153
+    END
+
+    IDD_EDPATCH_SURF_VERT, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 129
+    END
+
+    IDD_EDPATCH_SURF_OBJ, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 82
+    END
+
+    IDD_EDPATCH_SURF, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 253
+    END
+
+    IDD_EDPATCH_SELECT, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 104
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 153
+    END
+
+    IDD_EDPATCH_OPS, DIALOG
+    BEGIN
+        LEFTMARGIN, 3
+        RIGHTMARGIN, 104
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 525
+    END
+
+    IDD_PASTE_NAMEDSET, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 50
+    END
+
+    IDD_SEL_NAMEDSET, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 120
+    END
+
+    IDD_EDSPLINE_SURF, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 67
+    END
+
+    IDD_EDSPLINE_SELECT, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 135
+    END
+
+    IDD_EDSPLINE_OPS, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 104
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 593
+    END
+
+    IDD_SELECT_BY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 66
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 35
+    END
+
+    IDD_REFINE_CONNECT_OPTION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 58
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_PATCHSELTYPES       BITMAP                  "patselt.bmp"
+IDB_PATCHSELMASK        BITMAP                  "patselm.bmp"
+IDB_SPLINESELTYPES      BITMAP                  "splinese.bmp"
+IDB_SPLINESELMASK       BITMAP                  "splselm.bmp"
+IDB_MIRRORTYPES         BITMAP                  "bmp00001.bmp"
+IDB_MASK_MIRRORTYPES    BITMAP                  "bmp00002.bmp"
+IDB_MASK_BOOLEANTYPES   BITMAP                  "mask_boo.bmp"
+IDB_BOOLEANTYPES        BITMAP                  "booleant.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_ATTACHCUR           CURSOR                  "attach.cur"
+IDC_TH_SELCURSOR        CURSOR                  "thselcur.cur"
+IDC_SEGREFINECUR        CURSOR                  "segrefin.cur"
+IDC_EXTRUDECUR          CURSOR                  "extrudec.cur"
+IDC_ES_CROSS_HAIR       CURSOR                  "CROSSHR.CUR"
+IDC_BEVEL               CURSOR                  "Bevel.cur"
+IDC_OUTLINECUR          CURSOR                  "outline.cur"
+IDC_FILLETCUR           CURSOR                  "fillet.cur"
+IDC_CHAMFERCUR          CURSOR                  "chamfer.cur"
+IDC_SEGBREAKCUR         CURSOR                  "segbreak.cur"
+IDC_CROSSINSERTCUR      CURSOR                  "crossins.cur"
+IDC_VERTCONNECTCUR      CURSOR                  "vertconn.cur"
+IDC_VERTINSERTCUR       CURSOR                  "vinsert.cur"
+IDC_CREATE_WELD         CURSOR                  "createwe.cur"
+IDC_CUR_TRIM            CURSOR                  "Trim.cur"
+IDC_BOOLUNION           CURSOR                  "boolunio.cur"
+IDC_BOOLSUBTRACTION     CURSOR                  "boolsubt.cur"
+IDC_BOOLINTERSECTION    CURSOR                  "boolinte.cur"
+IDC_CROSS_SECTION_CUR   CURSOR                  "cross_se.cur"
+IDC_COPY_TANGENT_CUR    CURSOR                  "copy_tan.cur"
+IDC_PASTE_TANGENT_CUR   CURSOR                  "paste_tan.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_TH_VERTDELETE       "Delete Vertex"
+    IDS_TH_BEZIERCORNER     "Bezier Corner"
+    IDS_TH_EDITPATCH        "Edit Patch"
+    IDS_TH_PATCH            "Patch"
+    IDS_TH_PATCHDELETE      "Delete Patch"
+    IDS_TH_NOPATCHESSEL     "No patches selected"
+    IDS_TH_EDGEWELD         "Weld Edge"
+    IDS_TH_RESET            "Reset"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TH_EDITPATCH_CLASS  "Edit Patch"
+    IDS_TH_EDITSPLINE_CLASS "Edit Spline"
+    IDS_TH_CLOSESPLINE      "Close Spline"
+    IDS_TH_DELETESPLINE     "Delete Spline"
+    IDS_TH_NOVALIDSPLINESSEL "No valid splines selected"
+    IDS_TH_NOSPLINESSEL     "No splines selected"
+    IDS_TH_VERTBREAK        "Break Vertex"
+    IDS_TH_NOVALIDVERTSSEL  "No valid vertices selected"
+    IDS_TH_SEGDELETE        "Delete Segment"
+    IDS_TH_NOSEGSSEL        "No segments selected"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RB_DEFEDIT          "MAX EDIT"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_COULDNOTWELDVERTICES "The selected vertices could not be welded"
+    IDS_VERTWELD            "weld"
+    IDS_SOFT_SELECTION      "Soft Selection"
+    IDS_COULDNOTWELDVERTICES2 "The selected vertices could not be welded"
+    IDS_EM_CHANGE_ALPHA     "Change Alpha"
+    IDS_LIBDESC             "EditPatch and EditSpline Modifiers (discreet)"
+    IDS_SELBYILLUM          "Select By Illumination"
+    IDS_TH_CROSS_SECTION    "Cross Section"
+    IDS_TH_RESET_TANGENTS   "Reset Tangents"
+    IDS_TH_PASTE_TANGENTS   "Paste Tangent"
+    IDS_TH_NUMHANDLESEL     "Handle %d Selected"
+    IDS_TH_NUMHANDLESELP    "%d Handles Selected"
+    IDS_TH_HANDLE           "Handle"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TH_EDGESUBDIVIDE    "Edge Subdivide"
+    IDS_TH_PATCHSUBDIVIDE   "Patch Subdivide"
+    IDS_TH_CREATELINE       "Create Line"
+    IDS_TH_MIRROR_H         "Mirror Horizontally"
+    IDS_TH_MIRROR_V         "Mirror Vertically"
+    IDS_TH_MIRROR_BOTH      "Mirror Both"
+    IDS_TH_MIRROR           "Mirror"
+    IDS_TH_PATCHCHANGE      "Patch Change"
+    IDS_TH_COPLANAR         "Coplanar"
+    IDS_TH_POLYCONNECT      "Poly Connect"
+    IDS_TH_CONNECT_COINCIDENT "Weld coincident endpoints?"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TH_BOOLWELDFAILED   "ERROR: Final boolean weld stage failed"
+    IDS_TH_COINCIDENTVERTEX "Cannot perform boolean because splines have coincident vertices"
+    IDS_TH_SPLINESMUSTOVERLAP 
+                            "Cannot perform boolean because splines must overlap"
+    IDS_TH_SELECTCLOSEDSPLINE "Please select a closed spline"
+    IDS_TH_SPLINESELFINTERSECTS "Spline is invalid: Self-intersects"
+    IDS_TH_ATTACH           "Attach"
+    IDS_TH_NOVERTSSEL       "No vertices selected"
+    IDS_TH_VERTCHANGE       "Vertex Change"
+    IDS_TH_SMOOTH           "Smooth"
+    IDS_TH_CORNER           "Corner"
+    IDS_TH_BEZIER           "Bezier"
+    IDS_TH_SEGCHANGE        "Segment Change"
+    IDS_TH_CURVE            "Curve"
+    IDS_TH_LINE             "Line"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TH_MAKEFIRST        "Make First"
+    IDS_TH_EDGE             "Edge"
+    IDS_TH_AUTOINTERIOR     "Auto Interior"
+    IDS_TH_MANUALINTERIOR   "Manual Interior"
+    IDS_TH_NOVALIDEDGESSEL  "No valid edges selected"
+    IDS_TH_PATCHADD         "Patch Add"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PW_CYCLE            "Cycle"
+    IDS_PW_FUSE             "Fuse Vertices"
+    IDS_PW_BIND             "Bind"
+    IDS_PW_UNBIND           "Unbind"
+    IDS_PW_SURFACEERROR     "An old version of Surface Tools might have created a bad patch trying to recover"
+    IDS_EM_VERTEXILLUM      "Vertex Illumination"
+    IDS_PW_LINEARMAPPING    "Linear Mapping"
+    IDS_TH_ELEMENT          "Element"
+    IDS_TH_COPY_PATCH       "Copy Patch"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PARAM_CHANGE        "Parameter Change"
+    IDS_DS_SELECT           "Select"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TH_CLOSED           "Closed"
+    IDS_EM_ATTACH_LIST      "Attach List"
+    IDS_TH_TRIM             "Trim"
+    IDS_TH_EXTEND           "Extend"
+    IDS_TH_FILLET           "Fillet"
+    IDS_TH_CHAMFER          "Chamfer"
+    IDS_TH_PASTE_NAMED_SEL  "Paste Named Selection"
+    IDS_TH_SURFACEPROPERTIES "Surface Properties"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TH_SELECTION        "Selection"
+    IDS_TH_OBJECT_SEL       "Whole Object Selected"
+    IDS_TH_NUMVERTSEL       "Vertex %d Selected"
+    IDS_TH_NUMVERTSELP      "%d Vertices Selected"
+    IDS_TH_GEOMETRY         "Geometry"
+    IDS_TH_MULTIATTACH      "Attach Multiple"
+    IDS_TH_NUMEDGESEL       "Edge %d Selected"
+    IDS_TH_NUMEDGESELP      "%d Edges Selected"
+    IDS_TH_NUMPATCHSEL      "Patch %d Selected"
+    IDS_TH_NUMPATCHSELP     "%d Patches Selected"
+    IDS_TH_EXPLODE          "Explode"
+    IDS_TH_DIVIDE_SEGMENT   "Divide Segment"
+    IDS_TH_REVERSE_SPLINE   "Reverse Spline"
+    IDS_TH_MULTIPLE_NODES   "Can't Proceed: Modifier applied to multiple splines."
+    IDS_TH_CROSS_INSERT     "Cross Insert"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TH_EDITSPLINE       "Edit Spline"
+    IDS_TH_SPLINE           "Spline"
+    IDS_TH_SEGMENT          "Segment"
+    IDS_TH_VERTEX           "Vertex"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TH_CROSS_NOT_IN_THRESHOLD 
+                            "Crossing lines not within specified threshold"
+    IDS_TH_EDGEDELETE       "Delete Edge"
+    IDS_TH_NOEDGESSEL       "No edges selected"
+    IDS_TH_SEGMTLCHANGE     "Segment material ID change"
+    IDS_N_EDGES_WELDED      "%d edges welded"
+    IDS_N_VERTICES_WELDED   "%d vertices welded"
+    IDS_TH_OPEN             "Open"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TH_BREAK_VERTEX     "Break Vertex"
+    IDS_TH_BREAK_EDGE       "Break Edge"
+    IDS_TH_NO_VALID_GEOMETRY_SELECTED "No valid geometry selected"
+    IDS_TH_CREATE_SHAPE     "Create Shape"
+    IDS_TH_FLIP_NORMALS     "Flip Normals"
+    IDS_TH_UNIFY_NORMALS    "Unify Normals"
+    IDS_CREATEVERTEX        "Create Vertex"
+    IDS_CREATEPATCH         "Create Patch"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TH_DETACHSPLINE     "Detach Spline"
+    IDS_TH_OUTLINE          "Outline Spline"
+    IDS_TH_SEGDETACH        "Detach Segment"
+    IDS_TH_SHAPE            "Shape"
+    IDS_TH_REFINE           "Refine"
+    IDS_TH_SEGBREAK         "Break Segment"
+    IDS_TH_VERTCONNECT      "Connect Vertex"
+    IDS_TH_VERTINSERT       "Insert Vertex"
+    IDS_TH_VERTWELD         "Weld Vertex"
+    IDS_TH_NOWELDPERFORMED  "No vertices within weld threshold."
+    IDS_TH_SELECTONESPLINE  "Please select one spline"
+    IDS_TH_MORETHANONESPLINESEL "More than one spline selected"
+    IDS_TH_BOOLEAN          "Boolean"
+    IDS_TH_UNION            "Union"
+    IDS_TH_SUBTRACTION      "Subtraction"
+    IDS_TH_INTERSECTION     "Intersection"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RB_EXTRUDE          "Extrude"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_EM_BEVEL            "Bevel"
+    IDS_EP_PATCH_SMOOTH     "Patch Smooth"
+    IDS_TOGGLE_SHADED_FACES "Toggle Shaded Faces"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TH_DETACHPATCH      "Detach Patch"
+    IDS_TH_NOEDGEWELDPERFORMED "No compatible edges selected"
+    IDS_TH_COPY_SPLINE      "Copy Spline"
+    IDS_TH_COPY_SEGMENT     "Copy Segment"
+    IDS_TH_SPLINECHANGE     "Spline Change"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TH_PATCHMTLCHANGE   "Patch material ID change"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RB_SETSMOOTHGROUP   "Assign Smooth Group"
+    IDS_RB_SELECTBYMATID    "Select By Material ID"
+    IDS_RB_SELECTBYSMOOTH   "Select By Smooth Groups"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RB_VERTEXCOLOR      "Vertex Color"
+    IDS_RB_SETVERTCOLOR     "Set Vertex Color"
+    IDS_RB_SELBYCOLOR       "Select By Color"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TH_VERTWELDRESULT   "%d Vertices out of %d welded."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TH_SPLSEGSEL        "Spline %d/Seg %d Selected"
+    IDS_TH_NUMSEGSELP       "%d Segments Selected"
+    IDS_TH_NUMSPLINESEL     "Spline %d Selected (%s)"
+    IDS_TH_NUMSPLINESELP    "%d Splines Selected"
+    IDS_TH_SPLVERTSEL       "Spline %d/Vert %d Selected"
+    IDS_TH_SPLINE_VERT_COUNT "Vertex Count: %d"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PW_HIDE             "Hide"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RB_UNHIDEALLFACES   "Unhide All"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_MTL_NONAME          "No Name"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#include "buildver.h"
+#if defined(GAME_VER)
+  #include "editpatch_gmax.rc"
+#endif
+#if defined(RENDER_VER)
+  #include "editpatch_vizR.rc"
+#endif
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

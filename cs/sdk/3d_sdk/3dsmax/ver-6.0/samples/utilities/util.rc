@@ -1,0 +1,705 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_COLORCLIP_PANEL DIALOG DISCARDABLE  0, 0, 108, 95
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "User1",IDC_COLOR_SWATCH1,"ColorSwatch",WS_TABSTOP,6,5,
+                    45,21
+    CONTROL         "User1",IDC_COLOR_SWATCH2,"ColorSwatch",WS_TABSTOP,57,5,
+                    45,21
+    CONTROL         "User1",IDC_COLOR_SWATCH3,"ColorSwatch",WS_TABSTOP,6,32,
+                    45,21
+    CONTROL         "User1",IDC_COLOR_SWATCH4,"ColorSwatch",WS_TABSTOP,57,32,
+                    45,21
+    PUSHBUTTON      "New Floater",IDC_COLORCLIP_NEWFLOAT,6,59,96,13
+    PUSHBUTTON      "Close",IDOK,31,76,46,13
+END
+
+IDD_COLORCLIP_FLOATER DIALOG DISCARDABLE  0, 0, 122, 71
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Color Clipboard"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_COLOR_SWATCH1,"ColorSwatch",WS_TABSTOP,2,3,28,16
+    CONTROL         "",IDC_COLOR_SWATCH2,"ColorSwatch",WS_TABSTOP,32,3,28,16
+    CONTROL         "",IDC_COLOR_SWATCH3,"ColorSwatch",WS_TABSTOP,62,3,28,16
+    CONTROL         "",IDC_COLOR_SWATCH4,"ColorSwatch",WS_TABSTOP,92,3,28,16
+    CONTROL         "",IDC_COLOR_SWATCH5,"ColorSwatch",WS_TABSTOP,2,21,28,16
+    CONTROL         "",IDC_COLOR_SWATCH6,"ColorSwatch",WS_TABSTOP,32,21,28,
+                    16
+    CONTROL         "",IDC_COLOR_SWATCH7,"ColorSwatch",WS_TABSTOP,62,21,28,
+                    16
+    CONTROL         "",IDC_COLOR_SWATCH8,"ColorSwatch",WS_TABSTOP,92,21,28,
+                    16
+    CONTROL         "",IDC_COLOR_SWATCH9,"ColorSwatch",WS_TABSTOP,2,39,28,16
+    CONTROL         "",IDC_COLOR_SWATCH10,"ColorSwatch",WS_TABSTOP,32,39,28,
+                    16
+    CONTROL         "",IDC_COLOR_SWATCH11,"ColorSwatch",WS_TABSTOP,62,39,28,
+                    16
+    CONTROL         "",IDC_COLOR_SWATCH12,"ColorSwatch",WS_TABSTOP,92,39,28,
+                    16
+    PUSHBUTTON      "Open...",IDC_COLOR_LOAD,2,57,38,12
+    PUSHBUTTON      "Save",IDC_COLOR_SAVE,42,57,38,12
+    PUSHBUTTON      "Save As...",IDC_COLOR_SAVEAS,82,57,38,12
+END
+
+IDD_ASCIIOUT_PANEL DIALOG DISCARDABLE  0, 0, 108, 77
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Close",IDOK,31,52,46,13
+    CONTROL         "Pick Object",IDC_ASCIIOUT_PICK,"CustButton",WS_TABSTOP,
+                    20,10,66,13
+    CONTROL         "Object Space",IDC_OBJECT_SPACE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,24,26,59,10
+    CONTROL         "Shapes As Beziers",IDC_SHAPES_AS_BEZIERS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,16,37,75,10
+END
+
+IDD_UTILTEST_PANEL DIALOG DISCARDABLE  0, 0, 108, 429
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Close",IDOK,29,412,46,13
+    PUSHBUTTON      "Make Object",IDC_TESTER_MAKEOBJECT,8,6,92,14
+    PUSHBUTTON      "Make Group",IDC_TESTER_MAKEGROUP,8,41,92,14
+    PUSHBUTTON      "Group Objects",IDC_TESTER_GROUPOBJS,8,59,92,14
+    PUSHBUTTON      "Open Group",IDC_TESTER_OPENGROUP,8,78,92,14
+    PUSHBUTTON      "Close Group",IDC_TESTER_CLOSEGROUP,8,97,92,14
+    GROUPBOX        "Group Tests",IDC_STATIC,4,28,100,125
+    PUSHBUTTON      "Explode",IDC_TESTER_EXPLODEGROUP,8,116,92,14
+    PUSHBUTTON      "Ungroup",IDC_TESTER_UNGROUP,8,135,92,14
+    GROUPBOX        "File IO Tests",IDC_STATIC,4,154,100,53
+    PUSHBUTTON      "SaveToFile()",IDC_TESTER_SAVETOFILE,8,167,92,14
+    PUSHBUTTON      "LoadFromFile()",IDC_TESTER_LOADFROMFILE,8,185,92,14
+    GROUPBOX        "Misc. Tests",IDC_STATIC,4,208,100,50
+    PUSHBUTTON      "Set Environment Map",IDC_TESTER_SETENV,8,221,92,14
+    PUSHBUTTON      "Set WAV",IDC_TESTER_SETWAV,8,239,92,14
+    GROUPBOX        "Animate Button Test",IDC_STATIC,4,259,100,36
+    PUSHBUTTON      "On",IDS_TESTER_ANIMON,13,273,37,14
+    PUSHBUTTON      "Off",IDS_TESTER_ANIMOFF,55,273,37,14
+    GROUPBOX        "Render Test",IDC_STATIC,4,296,100,33
+    PUSHBUTTON      "Render",IDS_TESTER_RENDER,13,309,80,14
+    GROUPBOX        "Set Key Mode",IDC_STATIC,4,331,100,71
+    CONTROL         "On/Off",IDC_SETKEY_MODE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,31,345,44,10
+    PUSHBUTTON      "Commit",IDC_SETKEY_COMMIT,28,360,50,14
+    PUSHBUTTON      "Restore",IDC_SETKEY_RESTORE,28,378,50,14
+END
+
+IDD_APPDATA_PANEL DIALOG DISCARDABLE  0, 0, 108, 150
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Close",IDOK,29,133,46,13
+    EDITTEXT        IDC_APPDATA_EDIT,4,4,100,76,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN
+    PUSHBUTTON      "Get",IDC_APPDATA_GET,4,84,47,14
+    PUSHBUTTON      "Put",IDC_APPDATA_PUT,57,84,47,14
+    CONTROL         "Go through XRef Object",IDC_APPDATA_XREF,"Button",
+					BS_AUTOCHECKBOX | WS_TABSTOP,4,102,95,10
+    CONTROL         "",IDC_APPDATA_SLOT,"CustEdit",WS_TABSTOP,39,116,35,10
+    CONTROL         "",IDC_APPDATA_SLOTSPIN,"SpinnerControl",0x0,75,116,7,10
+    RTEXT           "Slot:",IDC_APPDATA_SLOTLABEL,20,117,18,8
+END
+
+IDD_COLLAPSE_PANEL DIALOG DISCARDABLE  0, 0, 108, 198
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Collapse Selected",IDC_C_COLLAPSE,5,28,98,14
+    CONTROL         "Modifier Stack Result",IDC_C_STACKRESULT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,13,58,83,10
+    CONTROL         "Mesh",IDC_C_MESH,"Button",BS_AUTORADIOBUTTON,13,70,33,
+                    10
+    CONTROL         "Multiple Objects",IDC_C_MULTIPLE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,13,100,69,10
+    CONTROL         "Single Object",IDC_C_SINGLE,"Button",BS_AUTORADIOBUTTON,
+                    13,112,69,10
+    CONTROL         "Boolean",IDC_C_BOOL,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,24,124,63,10
+    CONTROL         "Union",IDC_C_UNION,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,36,135,62,10
+    CONTROL         "Intersection",IDC_C_INTERSECTION,"Button",
+                    BS_AUTORADIOBUTTON,36,146,62,10
+    CONTROL         "Subtraction",IDC_C_SUBTRACTION,"Button",
+                    BS_AUTORADIOBUTTON,36,157,62,10
+    PUSHBUTTON      "Close",IDOK,29,180,46,13
+    GROUPBOX        "Collapse To:",IDC_C_COLLPASETOLABEL,4,87,100,87
+    GROUPBOX        "Output Type:",IDC_STATIC,4,44,100,41
+    LTEXT           "Sphere01",IDC_SEL_NAME,10,10,89,8
+    GROUPBOX        "Selected Object:",IDC_STATIC,4,0,100,23
+END
+
+IDD_RAND_KEYS DIALOGEX 0, 0, 186, 95
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Randomize Keys"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "Randomize Time",IDC_RANDKEYS_TIME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,7,69,10
+    CONTROL         "",IDC_RANDKEYS_POSTIME,"CustEdit",WS_TABSTOP,20,20,35,
+                    10
+    CONTROL         "",IDC_RANDKEYS_NEGTIME,"CustEdit",WS_TABSTOP,20,33,35,
+                    10
+    CONTROL         "Randomize Value",IDC_RANDKEYS_VAL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,50,71,10
+    CONTROL         "",IDC_RANDKEYS_POSVAL,"CustEdit",WS_TABSTOP,20,63,35,10
+    CONTROL         "",IDC_RANDKEYS_NEGVAL,"CustEdit",WS_TABSTOP,20,76,35,10
+    PUSHBUTTON      "Apply",IDC_RANDKEYS_APPLY,81,72,92,14
+    CONTROL         "",IDC_RANDKEYS_POSTIMESPIN,"SpinnerControl",0x0,56,20,7,
+                    10
+    RTEXT           "+",IDC_RANDKEYS_POSTIMELABEL,9,20,9,8
+    CONTROL         "",IDC_RANDKEYS_NEGTIMESPIN,"SpinnerControl",0x0,56,33,7,
+                    10
+    RTEXT           "-",IDC_RANDKEYS_NEGTIMELABEL,8,33,9,8
+    CONTROL         "",IDC_RANDKEYS_POSVALSPIN,"SpinnerControl",0x0,56,63,7,
+                    10
+    RTEXT           "+",IDC_RANDKEYS_POSVALLABEL,10,63,9,8
+    CONTROL         "",IDC_RANDKEYS_NEGVALSPIN,"SpinnerControl",0x0,56,76,7,
+                    10
+    RTEXT           "-",IDC_RANDKEYS_NEGVALLABEL,8,76,9,8
+    GROUPBOX        "Randomize:",IDC_STATIC,81,6,92,61
+    LTEXT           "Keys in selected tracks which lie in the range:\n\n0 - 100",
+                    IDC_RANDKEYS_TEXT,87,18,80,41
+END
+
+IDD_ORT_KEYS DIALOGEX 0, 0, 108, 89
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Create Out of Range Keys"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_ORTKEYS_BEFORE,"CustEdit",WS_TABSTOP,44,18,35,10
+    PUSHBUTTON      "Apply",IDC_ORTKEYS_APPLY,6,71,96,14
+    CONTROL         "",IDC_ORTKEYS_BEFORESPIN,"SpinnerControl",0x0,80,18,7,
+                    10
+    RTEXT           "Before:",IDC_STATIC,16,18,27,8
+    CONTROL         "",IDC_ORTKEYS_AFTER,"CustEdit",WS_TABSTOP,44,33,35,10
+    CONTROL         "",IDC_ORTKEYS_AFTERSPIN,"SpinnerControl",0x0,80,33,7,10
+    RTEXT           "After:",IDC_STATIC,16,33,27,8
+    GROUPBOX        "Time Range:",IDC_STATIC,6,4,96,46
+    CONTROL         "",IDC_ORTKEYS_SAMPLES,"CustEdit",WS_TABSTOP,44,55,35,10
+    CONTROL         "",IDC_ORTKEYS_SAMPLESSPIN,"SpinnerControl",0x0,80,55,7,
+                    10
+    RTEXT           "Samples:",IDC_STATIC,7,55,36,8
+END
+
+IDD_SEL_KEYS DIALOG DISCARDABLE  0, 0, 186, 58
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Select Keys by Time"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,129,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,129,24,50,14
+    CONTROL         "",IDC_SELKEYS_START,"CustEdit",WS_TABSTOP,55,7,35,10
+    CONTROL         "",IDC_SELKEYS_STARTSPIN,"SpinnerControl",0x0,91,7,7,10
+    RTEXT           "Start Time:",IDC_STATIC,15,7,37,8
+    CONTROL         "",IDC_SELKEYS_END,"CustEdit",WS_TABSTOP,55,20,35,10
+    CONTROL         "",IDC_SELKEYS_ENDSPIN,"SpinnerControl",0x0,91,20,7,10
+    RTEXT           "End Time:",IDC_STATIC,15,20,37,8
+    CONTROL         "Clear Previous Selection",IDC_SELKEYS_CLEAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,19,35,93,10
+END
+
+IDD_FOLLOW_PANEL DIALOG DISCARDABLE  0, 0, 108, 198
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Collapse Selected",IDC_FOLLOW_APPLY,5,28,98,14
+    PUSHBUTTON      "Close",IDOK,29,180,46,13
+    LTEXT           "Sphere01",IDC_SEL_NAME,10,10,89,8
+    GROUPBOX        "Selected Object:",-1,4,0,100,23
+END
+
+IDD_REFERENCE_PANEL DIALOG DISCARDABLE  0, 0, 108, 73
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Close",IDOK,31,52,46,13
+    PUSHBUTTON      "Reference Object",IDC_REF_OBJECT,5,28,98,14
+    LTEXT           "Sphere01",IDC_SEL_NAME,10,10,89,8
+    GROUPBOX        "Selected Object:",IDC_STATIC,4,0,100,23
+END
+
+IDD_PRSLINKINFO DIALOG DISCARDABLE  0, 0, 108, 102
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "X",IDC_INHERIT_XTRANS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,16,18,10
+    CONTROL         "Y",IDC_INHERIT_YTRANS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,42,16,18,10
+    CONTROL         "Z",IDC_INHERIT_ZTRANS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,69,16,18,10
+    CONTROL         "X",IDC_INHERIT_XROT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,47,18,10
+    CONTROL         "Y",IDC_INHERIT_YROT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,42,47,18,10
+    CONTROL         "Z",IDC_INHERIT_ZROT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,69,47,18,10
+    CONTROL         "X",IDC_INHERIT_XSCALE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,80,18,10
+    CONTROL         "Y",IDC_INHERIT_YSCALE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,42,80,18,10
+    CONTROL         "Z",IDC_INHERIT_ZSCALE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,69,80,18,10
+    GROUPBOX        "Move:",IDC_STATIC,5,3,99,30
+    GROUPBOX        "Rotate:",IDC_STATIC,5,35,99,30
+    GROUPBOX        "Scale:",IDC_STATIC,5,67,99,30
+END
+
+IDD_CELLTEX_PARAMS DIALOG DISCARDABLE  0, 0, 216, 224
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_CELLTEX_CELLCOLOR,"ColorSwatch",0x0,16,17,38,19
+    CONTROL         "",IDC_CELLTEX_CELLCOLOR_MAP,"CustButton",WS_TABSTOP,59,
+                    24,130,12
+    CONTROL         "",IDC_CELLTEX_CELLCOLOR_USEMAP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,191,26,13,8
+    CONTROL         "",IDC_CELLTEX_VAR,"CustEdit",WS_TABSTOP,97,41,29,10
+    CONTROL         "",IDC_CELLTEX_VARSPIN,"SpinnerControl",0x0,127,41,7,10
+    CONTROL         "",IDC_CELLTEX_DIVCOL1,"ColorSwatch",0x0,16,72,38,19
+    CONTROL         "",IDC_CELLTEX_DIVCOL2,"ColorSwatch",0x0,16,96,38,19
+    CONTROL         "",IDC_CELLTEX_DIVCOL1_MAP,"CustButton",WS_TABSTOP,57,79,
+                    130,12
+    CONTROL         "",IDC_CELLTEX_DIVCOL2_MAP,"CustButton",WS_TABSTOP,57,
+                    103,130,12
+    CONTROL         "",IDC_CELLTEX_DIVCOL1_USEMAP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,189,81,13,8
+    CONTROL         "",IDC_CELLTEX_DIVCOL2_USEMAP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,189,105,13,8
+    CONTROL         "Circular",IDC_CELLTEX_CIRCULAR,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,25,134,39,10
+    CONTROL         "Chips",IDC_CELLTEX_IRREGULAR,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,78,134,41,10
+    CONTROL         "Fractal",IDC_CELLTEX_FRACTAL,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,162,135,37,10
+    RTEXT           "Bump Smoothing:",IDC_STATIC,13,175,56,8
+    CONTROL         "",IDC_CELLTEX_SIZE,"CustEdit",WS_TABSTOP,70,149,29,10
+    CONTROL         "",IDC_CELLTEX_SIZESPIN,"SpinnerControl",0x0,100,149,7,
+                    10
+    CONTROL         "",IDC_CELLTEX_SPREAD,"CustEdit",WS_TABSTOP,70,162,29,10
+    CONTROL         "",IDC_CELLTEX_SPREADSPIN,"SpinnerControl",0x0,100,162,7,
+                    10
+    CONTROL         "",IDC_CELLTEX_BUMPSMOOTH,"CustEdit",WS_TABSTOP,70,175,
+                    29,10
+    CONTROL         "",IDC_CELLTEX_BUMPSMOOTHSPIN,"SpinnerControl",0x0,100,
+                    175,7,10
+    CONTROL         "",IDC_CELLTEX_ITER,"CustEdit",WS_TABSTOP,162,149,29,10
+    GROUPBOX        "Cell Characteristics:",IDC_STATIC,6,123,204,67
+    CONTROL         "Adaptive",IDC_CELLTEX_ADAPTIVE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,162,160,44,10
+    CONTROL         "",IDC_CELLTEX_ROUGH,"CustEdit",WS_TABSTOP,162,175,29,10
+    CONTROL         "",IDC_CELLTEX_ROUGHSPIN,"SpinnerControl",0x0,192,175,7,
+                    10
+    CONTROL         "",IDC_CELLTEX_LOW,"CustEdit",WS_TABSTOP,32,202,29,10
+    CONTROL         "",IDC_CELLTEX_LOWSPIN,"SpinnerControl",0x0,62,202,7,10
+    CONTROL         "",IDC_CELLTEX_MID,"CustEdit",WS_TABSTOP,96,202,29,10
+    CONTROL         "",IDC_CELLTEX_MIDSPIN,"SpinnerControl",0x0,126,202,7,10
+    CONTROL         "",IDC_CELLTEX_HIGH,"CustEdit",WS_TABSTOP,163,202,29,10
+    CONTROL         "",IDC_CELLTEX_HIGHSPIN,"SpinnerControl",0x0,193,202,7,
+                    10
+    RTEXT           "Size:",IDC_STATIC,48,150,21,8
+    RTEXT           "Spread:",IDC_STATIC,39,162,30,8
+    RTEXT           "High:",IDC_STATIC,141,202,21,8
+    RTEXT           "Variation:",IDC_STATIC,59,42,37,8
+    GROUPBOX        "Cell Color:",IDC_STATIC,6,2,204,56
+    GROUPBOX        "Division Colors:",IDC_STATIC,6,59,204,62
+    RTEXT           "Low:",IDC_STATIC,10,202,21,8
+    GROUPBOX        "Thresholds:",IDC_STATIC,6,192,204,26
+    RTEXT           "Mid:",IDC_STATIC,74,202,21,8
+    RTEXT           "Iterations:",IDC_CELLTEX_ITERLABEL,126,150,35,8
+    CONTROL         "",IDC_CELLTEX_ITERSPIN,"SpinnerControl",0x0,192,149,7,
+                    10
+    RTEXT           "Roughness:",IDC_CELLTEX_ROUGHLABEL,120,175,41,8
+END
+
+IDD_PIPEMAKER_PANEL DIALOG DISCARDABLE  0, 0, 122, 266
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Tilt Up",IDC_PIPE_UP,43,70,31,25,BS_MULTILINE
+    PUSHBUTTON      "Tilt Down",IDC_PIPE_DOWN,43,13,31,25,BS_MULTILINE
+    PUSHBUTTON      "Turn Left",IDC_PIPE_LEFT,8,41,31,25,BS_MULTILINE
+    PUSHBUTTON      "Turn Right",IDC_PIPE_RIGHT,78,41,31,25,BS_MULTILINE
+    PUSHBUTTON      "Move Forward",IDC_PIPE_FORWARD,43,41,31,25,BS_CENTER | 
+                    BS_VCENTER | BS_MULTILINE
+    PUSHBUTTON      "Back",IDC_PIPE_BACK,35,106,50,14
+    PUSHBUTTON      "Analyze Pipes",IDC_PIPE_JOIN,24,159,72,14
+    GROUPBOX        "Pipe Creation",IDC_STATIC,3,1,115,142
+    GROUPBOX        "Pipe Analysis",IDC_STATIC,3,144,115,54
+    CONTROL         "Progress1",IDC_PIPE_PROG,"msctls_progress32",WS_BORDER,
+                    7,181,106,11
+    CONTROL         "Auto Zoom Extents",IDC_PIPE_AUTOZOOM,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,21,129,76,10
+END
+
+IDD_ABOUT_PIPEMAKER DIALOG DISCARDABLE  0, 0, 186, 79
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "About Pipe Maker"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,67,58,50,14
+    LTEXT           "A Sample Front End Controller",IDC_STATIC,45,33,95,8
+    LTEXT           "Pipe Maker",IDC_STATIC,74,17,37,8
+END
+
+IDD_RESCALE_PANEL DIALOG DISCARDABLE  0, 0, 108, 59
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Rescale...",IDC_RESCALE,14,22,74,13
+END
+
+IDD_RESCALE_DLG DIALOG DISCARDABLE  0, 0, 186, 77
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Rescale World Units"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,35,58,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,107,58,50,14
+    CONTROL         "",IDC_RESCALE_EDIT,"CustEdit",WS_TABSTOP,53,25,35,10
+    CONTROL         "",IDC_RESCALE_SPIN,"SpinnerControl",0x0,89,25,9,10
+    RTEXT           "Scale Factor:",IDC_STATIC,2,25,48,8
+    CONTROL         "Scene",IDC_RESC_SCENE,"Button",BS_AUTORADIOBUTTON,117,
+                    20,50,10
+    CONTROL         "Selection",IDC_RESC_SEL,"Button",BS_AUTORADIOBUTTON,117,
+                    32,51,10
+    GROUPBOX        "Affect",IDC_STATIC,109,11,63,37
+END
+
+IDD_SHAPE_CHECK_PANEL DIALOG DISCARDABLE  0, 0, 108, 63
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Close",IDOK,29,42,46,13
+    CONTROL         "Pick Object",IDC_SHAPECHECK_PICK,"CustButton",
+                    WS_TABSTOP,20,10,66,13
+    CTEXT           "Shape Check Message",IDC_CHECK_MESSAGE,8,27,93,10,
+                    SS_SUNKEN
+END
+
+IDD_SETKEY_PANEL DIALOG DISCARDABLE  0, 0, 108, 365
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    LISTBOX         IDC_MOD_TRACK_LIST,5,102,97,125,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "All",IDC_SELECT_ALL,28,229,23,11
+    PUSHBUTTON      "None",IDC_SELECT_NONE,54,229,23,11
+    PUSHBUTTON      "Invert",IDC_SELECT_INVERT,79,229,23,11
+    CONTROL         "Position Key",IDC_ALWYAS_CREATE_POSKEY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,25,255,55,10
+    CONTROL         "Rotation Key",IDC_ALWYAS_CREATE_ROTKEY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,25,266,57,10
+    CONTROL         "Scale Key",IDC_ALWYAS_CREATE_SCLKEY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,25,277,48,10
+    PUSHBUTTON      "Set Key",IDC_SETKEY_COMMIT,16,299,75,21
+    PUSHBUTTON      "Revert Changes",IDC_SETKEY_RESTORE,16,323,75,14
+    PUSHBUTTON      "Close",IDOK,29,348,46,13
+    LTEXT           "Modified Tracks:",IDC_STATIC,5,93,54,8
+    GROUPBOX        "Always Create:",IDC_ALWAYS_CREATE_LABEL,5,244,98,47
+    RTEXT           "Select:",IDC_STATIC,3,230,23,8
+    GROUPBOX        "Show Modified Tracks For:",IDC_STATIC,5,27,98,60
+    CONTROL         "Scene",IDC_SHOWTRACKS_ALL,"Button",BS_AUTORADIOBUTTON,
+                    13,39,37,10
+    CONTROL         "Selected Objects",IDC_SHOWTRACKS_SEL_OBJ,"Button",
+                    BS_AUTORADIOBUTTON,13,50,70,10
+    CONTROL         "Selected Hierarchies",IDC_SHOWTRACKS_SEL_HIERARCHY,
+                    "Button",BS_AUTORADIOBUTTON,13,61,81,10
+    CONTROL         "Set Key Mode",IDC_SETKEY_MODE,"CustButton",WS_TABSTOP,7,
+                    6,92,14
+    CONTROL         "Entire Hierarchy",IDC_ENTIRE_HIERARCHY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,23,72,66,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_COLORCLIP_FLOATER, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 58
+    END
+
+    IDD_ASCIIOUT_PANEL, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 74
+    END
+
+    IDD_UTILTEST_PANEL, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 425
+    END
+
+    IDD_APPDATA_PANEL, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 146
+    END
+
+    IDD_SEL_KEYS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 51
+    END
+
+    IDD_CELLTEX_PARAMS, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 222
+    END
+
+    IDD_ABOUT_PIPEMAKER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 72
+    END
+
+    IDD_RESCALE_PANEL, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 51
+    END
+
+    IDD_RESCALE_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 70
+    END
+
+    IDD_SHAPE_CHECK_PANEL, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 60
+    END
+
+    IDD_SETKEY_PANEL, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 361
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_PIPEMAKER_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Reset",                      ID_FILE_RESET
+        MENUITEM "&Open",                       ID_FILE_OPEN
+        MENUITEM SEPARATOR
+        MENUITEM "&Save",                       ID_FILE_SAVE
+        MENUITEM "Save &As",                    ID_FILE_SAVEAS
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_FILE_EXIT
+    END
+    POPUP "&Test"
+    BEGIN
+        MENUITEM "Item One",                    ID_TEST_ITEMONE
+        MENUITEM "Item Two",                    ID_TEST_ITEMTWO
+        MENUITEM "Item Three",                  ID_TEST_ITEMTHREE
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About Pipe Maker",           ID_HELP_ABOUTPIPEMAKER
+    END
+END
+
+IDR_MENU_POPUP MENU DISCARDABLE 
+BEGIN
+    POPUP "Pipe Maker"
+    BEGIN
+        MENUITEM "Properties",                  ID_PIPEMAKER_PROPERTIES
+    END
+END
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_ASCIIOBJECTOUT   "ASCII Object Output"
+    IDS_RB_ASCIIFILES       "ASCII files(*.asc)"
+    IDS_RB_SAVEOBJECT       "Save Object"
+    IDS_RB_COLORCLIPBOARD   "Color Clipboard"
+    IDS_RB_COLORNUM         "Color %d"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_APPDATATEST      "App Data Tester"
+    IDS_RB_FILEEXISTS       "%s already exists.\nDo you want to replace it?"
+    IDS_RB_COLLAPSE         "Collapse"
+    IDS_RB_BOOLEAN          "Boolean:"
+    IDS_RB_MULTISEL         "Multiple Selected"
+    IDS_RB_NONESEL          "None"
+    IDS_RB_RANDKEYS         "Randomize Keys"
+    IDS_RANDKEYS_KEYTEXT    "All selected keys."
+    IDS_RANDKEYS_TIMETEXT   "Keys in selected tracks that are in the range:\n\n%s to %s"
+    IDS_RB_RANDOMIZEKEYS    "Randomize Keys"
+    IDS_RB_ORTKEYS          "Create Out of Range Keys"
+    IDS_RB_CREATEORTKEYS    "Create Out of Range Keys"
+    IDS_RB_SELKEYS          "Select Keys by Time"
+    IDS_RB_REFOBJ           "Reference Object"
+    IDS_RB_COLORCLIPFILES   "Color Clipboard Files(*.ccb)"
+    IDS_RB_LOADCOLOR        "Load Color Clipboard File"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_SAVECOLOR        "Save Color Clipboard File"
+    IDS_RB_CANTOPENFILE     "Can not open file:%s"
+    IDS_RB_COLORCLIPSHORT   "Color"
+    IDS_RB_LINKINFO         "Link Inheritance (Selected)"
+    IDS_DS_RESCALE          "Rescale World Units"
+    IDS_RB_CELLULAR         "Cellular"
+    IDS_RB_NONE             "None"
+    IDS_RB_CELLCOLOR        "Cell Color"
+    IDS_RB_DIVCOLOR1        "Division Color1"
+    IDS_RB_DIVCOLOR2        "Division Color2"
+    IDS_RB_PARAMETERS       "Parameters"
+    IDS_RB_COORDINATES      "Coordinates"
+    IDS_RB_OUTPUT           "Output"
+    IDS_RB_VARIATION        "Variation"
+    IDS_RB_SIZE             "Size"
+    IDS_RB_SPREAD           "Spread"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_LOW              "Low"
+    IDS_RB_MID              "Mid"
+    IDS_RB_HIGH             "High"
+    IDS_RB_TYPE             "Type"
+    IDS_RB_FRACTAL          "Fractal"
+    IDS_RB_ITERATIONS       "Iterations"
+    IDS_RB_ROUGHNESS        "Roughness"
+    IDS_RB_BUMPSMOOTHING    "Bump smoothing"
+    IDS_RB_PARAMETER        "Parameter"
+    IDS_RB_DEFUTIL          "Standard utilities (Discreet)"
+    IDS_RB_CELLPARAMS       "Cellular Parameters"
+    IDS_RB_SHAPE_CHECK      "Shape Check"
+    IDS_NO_SHAPE_SELECTED   "No Shape Selected"
+    IDS_SHAPE_OK            "Shape OK"
+    IDS_SHAPE_INTERSECTS    "Shape Self-Intersects"
+    IDS_RB_CELLMAP          "CellMap"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_DIVMAP1          "DivisionMap1"
+    IDS_RB_DIVMAP2          "DivisionMap2"
+    IDS_PW_MAP1_ON          "Map1 On"
+    IDS_PW_MAP2_ON          "Map2 On"
+    IDS_PW_MAP3_ON          "Map3 On"
+    IDS_PW_ADAPTIVE         "Adaptive"
+    IDS_PW_OUTPUT           "Output"
+    IDS_PW_COORDS           "Coords"
+    IDS_RB_CELLULAR_CDESC   "Cellular"
+    IDS_RB_SETKEY_COMMIT_UNDO "Set Key"
+    IDS_RB_SETKEY_REVERT_UNDO "Revert Changes"
+    IDS_UTILITY_TESTER      "Utility Tester"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

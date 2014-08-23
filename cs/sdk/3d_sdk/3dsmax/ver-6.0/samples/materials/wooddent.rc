@@ -1,0 +1,272 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "woodres.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "woodres.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_XYZGEN DIALOG DISCARDABLE  0, 0, 217, 81
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "XYZ",IDC_COORD_XYZ,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,51,11,30,10
+    CONTROL         "UVW",IDC_COORD_UVW,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,95,11,33,10
+    CONTROL         "",IDC_XOFFS_EDIT,"CustEdit",WS_TABSTOP,34,36,34,10
+    CONTROL         "",IDC_YOFFS_EDIT,"CustEdit",WS_TABSTOP,34,49,34,10
+    CONTROL         "",IDC_ZOFFS_EDIT,"CustEdit",WS_TABSTOP,34,62,34,10
+    CONTROL         "",IDC_XSCL_EDIT,"CustEdit",WS_TABSTOP,94,36,28,10
+    CONTROL         "",IDC_YSCL_EDIT,"CustEdit",WS_TABSTOP,94,49,28,10
+    CONTROL         "",IDC_ZSCL_EDIT,"CustEdit",WS_TABSTOP,94,62,28,10
+    CONTROL         "",IDC_XANG_EDIT,"CustEdit",WS_TABSTOP,146,36,32,10
+    CONTROL         "",IDC_YANG_EDIT,"CustEdit",WS_TABSTOP,146,49,32,10
+    CONTROL         "",IDC_ZANG_EDIT,"CustEdit",WS_TABSTOP,146,62,32,10
+    GROUPBOX        "Coordinates",IDC_STATIC,5,0,206,77
+    LTEXT           "Offset",IDC_STATIC,44,27,21,8
+    LTEXT           "X:",IDC_XLABEL,21,38,11,8
+    LTEXT           "Y:",IDC_YLABEL,21,51,11,8
+    LTEXT           "Z:",IDC_ZLABEL,21,63,11,8
+    CONTROL         "0,255,0",IDC_XOFFS_SPIN,"SpinnerControl",0x0,68,36,11,
+                    10
+    CONTROL         "0,255,0",IDC_YOFFS_SPIN,"SpinnerControl",0x0,68,49,11,
+                    10
+    CONTROL         "0,255,0",IDC_ZOFFS_SPIN,"SpinnerControl",0x0,68,62,11,
+                    10
+    CONTROL         "0,255,0",IDC_XSCL_SPIN,"SpinnerControl",0x0,122,36,11,
+                    10
+    CONTROL         "0,255,0",IDC_YSCL_SPIN,"SpinnerControl",0x0,122,49,11,
+                    10
+    CONTROL         "0,255,0",IDC_ZSCL_SPIN,"SpinnerControl",0x0,122,62,11,
+                    10
+    CONTROL         "0,255,0",IDC_XANG_SPIN,"SpinnerControl",0x0,178,36,11,
+                    10
+    CONTROL         "0,255,0",IDC_YANG_SPIN,"SpinnerControl",0x0,178,49,11,
+                    10
+    CONTROL         "0,255,0",IDC_ZANG_SPIN,"SpinnerControl",0x0,178,62,11,
+                    10
+    LTEXT           "Tiling",IDC_STATIC,102,27,18,8
+    LTEXT           "Angle:",IDC_STATIC,156,27,20,8
+END
+
+IDD_WOOD DIALOG DISCARDABLE  0, 0, 217, 80
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_R1_EDIT,"CustEdit",WS_TABSTOP,166,5,32,10
+    PUSHBUTTON      "Swap",IDC_WOOD_SWAP,4,47,28,12
+    RTEXT           "Grain Thickness:",IDC_STATIC,5,5,56,8
+    CONTROL         "0,255,0",IDC_WOODSIZE_SPIN,"SpinnerControl",0x0,101,5,
+                    11,11
+    RTEXT           "Radial Noise:",IDC_STATIC,117,5,44,8
+    CONTROL         "0,255,0",IDC_R1_SPIN,"SpinnerControl",0x0,199,5,11,10
+    LTEXT           "Color #1",IDC_STATIC,36,43,29,8
+    CONTROL         "",IDC_WOOD_COL1,"ColorSwatch",0x0,65,40,40,14
+    LTEXT           "Color #2",IDC_STATIC,36,58,30,8
+    CONTROL         "",IDC_WOOD_COL2,"ColorSwatch",0x0,65,57,40,14
+    LTEXT           "Maps",IDC_STATIC,156,32,20,8
+    CONTROL         "",IDC_R2_EDIT,"CustEdit",WS_TABSTOP,166,19,32,10
+    RTEXT           "Axial Noise:",IDC_STATIC,121,19,40,8
+    CONTROL         "0,255,0",IDC_R2_SPIN,"SpinnerControl",0x0,199,19,11,10
+    CONTROL         "",IDC_WOODSIZE_EDIT,"CustEdit",WS_TABSTOP,68,5,32,11
+    CONTROL         "Custom1",IDC_WOOD_TEX1,"CustButton",WS_TABSTOP,109,41,
+                    92,12
+    CONTROL         "Custom1",IDC_WOOD_TEX2,"CustButton",WS_TABSTOP,109,58,
+                    92,12
+    CONTROL         "",IDC_MAPON1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,204,
+                    44,8,8
+    CONTROL         "",IDC_MAPON2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,204,
+                    60,8,8
+END
+
+IDD_DENT DIALOG DISCARDABLE  0, 0, 217, 81
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    RTEXT           "Size:",IDC_STATIC,17,5,24,8
+    CONTROL         "",IDC_DENTSIZE_EDIT,"CustEdit",WS_TABSTOP,44,5,32,11
+    CONTROL         "0,255,0",IDC_DENTSIZE_SPIN,"SpinnerControl",0x0,77,5,11,
+                    11
+    RTEXT           "Strength:",IDC_STATIC,118,5,40,8
+    CONTROL         "",IDC_KM_EDIT,"CustEdit",WS_TABSTOP,163,5,32,10
+    CONTROL         "0,255,0",IDC_KM_SPIN,"SpinnerControl",0x0,196,5,11,10
+    RTEXT           "Iterations:",IDC_STATIC,128,19,32,8
+    CONTROL         "",IDC_NITS_EDIT,"CustEdit",WS_TABSTOP,163,19,32,10
+    CONTROL         "0,255,0",IDC_NITS_SPIN,"SpinnerControl",0x0,196,19,11,
+                    10
+    LTEXT           "Maps",IDC_STATIC,156,32,20,8
+    PUSHBUTTON      "Swap",IDC_DENT_SWAP,4,47,28,12
+    LTEXT           "Color #1",IDC_STATIC,35,43,29,8
+    CONTROL         "",IDC_DENT_COL1,"ColorSwatch",0x0,67,40,40,14
+    CONTROL         "Custom1",IDC_DENT_TEX1,"CustButton",WS_TABSTOP,111,42,
+                    91,12
+    CONTROL         "",IDC_MAPON1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,205,
+                    44,8,8
+    LTEXT           "Color #2",IDC_STATIC,35,58,30,8
+    CONTROL         "",IDC_DENT_COL2,"ColorSwatch",0x0,67,56,40,14
+    CONTROL         "Custom1",IDC_DENT_TEX2,"CustButton",WS_TABSTOP,111,57,
+                    91,12
+    CONTROL         "",IDC_MAPON2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,206,
+                    59,8,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_WOOD, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 53
+    END
+
+    IDD_DENT, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 70
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DS_COORDINATES      "Coordinates"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DS_COLOR1           "Color 1"
+    IDS_DS_COLOR2           "Color 2"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DS_PARAMETERS       "Parameters"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DS_NONE             "None"
+    IDS_DS_WOOD             "Wood"
+    IDS_DS_DENT             "Dent"
+    IDS_WOODDENT            "Wood and dent 3D textures (Discreet)"
+    IDS_PW_MAP1             "Map1"
+    IDS_PW_MAP2             "Map2"
+    IDS_PW_MAP1ENABLE       "MapOn1"
+    IDS_PW_MAP2ENABLE       "MapOn2"
+    IDS_PW_SEED             "Seed"
+    IDS_DS_DENT_CDESC       "Dent"
+    IDS_DS_WOOD_CDESC       "Wood"
+    IDS_DS_WOOD_PARAMS      "Wood Parameters"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DS_PARAMCHG         "Param Change"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DS_DENTPARMS        "Dent Parameters"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DS_WOODPARMS        "Wood  Parameters"
+    IDS_DS_WOODSIZE         "Grain Thickness"
+    IDS_DS_WOODR1           "Radial Noise"
+    IDS_DS_WOODR2           "Axial Noise"
+    IDS_DS_DENTSIZE         "Size"
+    IDS_DS_DENT_KM          "Strength"
+    IDS_DS_DENT_NITS        "Iterations"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DS_DENT_PARAMS      "Dent Parameters"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

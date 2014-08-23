@@ -1,0 +1,239 @@
+<html>
+
+<head>
+<title>Classes: ObjectLoader</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="metool.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="MeshEditTool"></a></td>
+    <td width="96" align="left"><a href="objrep.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="ObjectReplacement"></a></td>
+    <td width="96" align="left"><a href="../classes.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Classes"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>ObjectLoader</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwobjimp.h">lwobjimp.h</a></small></p>
+    <p>Object loaders read object files that aren't in LightWave's native object file format.</p>
+    <p>When an object loader's activation function is called, it should open the object file
+    and try to recognize its contents. LightWave calls all of the installed object loaders in
+    sequence until one of them recognizes the file. Each object loader is therefore
+    responsible for identifying the files it can load. If the file isn't one the loader
+    understands, the loader sets the <tt>result</tt> field of the <tt>local</tt> structure to <tt>LWOBJIM_NOREC</tt>
+    and returns <tt>AFUNC_OK</tt>.</p>
+    <p>If, on the other hand, the loader understands the object file, it reads the file and
+    submits its contents to the host through the functions provided in the <tt>local</tt>
+    structure.</p>
+    <p><strong>Handler Activation Function</strong></p>
+    <pre>   XCALL_( int ) MyObjImport( long version, GlobalFunc *global,
+      LWObjectImport *local, void *serverData );</pre>
+    <p>The <tt>local</tt> argument to an object loader's activation function is an
+    LWObjectImport.</p>
+    <pre>   typedef struct st_LWObjectImport {
+      int         <strong>result</strong>;
+      const char *<strong>filename</strong>;
+      LWMonitor  *<strong>monitor</strong>;
+      char       *<strong>failedBuf</strong>;
+      int         <strong>failedLen</strong>;
+      void       *<strong>data</strong>;
+      void       (*<strong>done</strong>)    (void *);
+      void       (*<strong>layer</strong>)   (void *, short int lNum, const char *name);
+      void       (*<strong>pivot</strong>)   (void *, const LWFVector pivot);
+      void       (*<strong>parent</strong>)  (void *, int lNum);
+      void       (*<strong>lFlags</strong>)  (void *, int flags);
+      LWPntID    (*<strong>point</strong>)   (void *, const LWFVector xyz);
+      void       (*<strong>vmap</strong>)    (void *, LWID type, int dim,
+                               const char *name);
+      void       (*<strong>vmapVal</strong>) (void *, LWPntID point, const float *val);
+      LWPolID    (*<strong>polygon</strong>) (void *, LWID type, int flags, int numPts,
+                               const LWPntID *);
+      void       (*<strong>polTag</strong>)  (void *, LWPolID polygon, LWID type,
+                               const char *tag);
+      void       (*<strong>surface</strong>) (void *, const char *, const char *, int,
+                               void *);
+      void       (*<strong>vmapPDV</strong>) (void *, LWPntID point, LWPolID polygon,
+                               const float *val);
+   } LWObjectImport;</pre>
+    <dl>
+      <tt>
+      <dt><strong>result</strong></dt>
+      </tt>
+      <dd>Set this to indicate whether the object was loaded successfully. The result codes are<dl>
+          <tt>
+          <dt><br>
+            LWOBJIM_OK</dt>
+          </tt>
+          <dd>The object was loaded successfully.</dd>
+          <tt>
+          <dt>LWOBJIM_NOREC</dt>
+          </tt>
+          <dd>The loader didn't recognize the file format. This can happen frequently, since all
+            loaders are called in sequence until one of them <em>doesn't</em> return this result.</dd>
+          <tt>
+          <dt>LWOBJIM_BADFILE</dt>
+          </tt>
+          <dd>The loader couldn't open the file. If the loader is able to open the file but believes
+            it has found an error in the contents, it should return <tt>IPSTAT_NOREC</tt>.</dd>
+          <tt>
+          <dt>LWOBJIM_ABORTED</dt>
+          </tt>
+          <dd>Use this to indicate that the user cancelled the load operation. This can happen if you
+            use the monitor to indicate the progress of a lengthy image loading operation..</dd>
+          <tt>
+          <dt>LWOBJIM_FAILED</dt>
+          </tt>
+          <dd>An error occurred during loading, for example a memory allocation failed.</dd>
+        </dl>
+      </dd>
+      <tt>
+      <dt><br>
+        <strong>filename</strong></dt>
+      </tt>
+      <dd>The name of the file to load.</dd>
+      <tt>
+      <dt><br>
+        <strong>monitor</strong></dt>
+      </tt>
+      <dd>A monitor for displaying the progress of the load to the user. You don't have to use
+        this, but you're encouraged to if your object loading takes an unusual amount of time.
+        This is the same structure as that returned by the <a href="../globals/modmon.html">monitor</a>
+        global's <tt>create</tt> function.</dd>
+      <tt>
+      <dt><br>
+        <strong>failedBuf</strong><br>
+        <strong>failedLen</strong></dt>
+      </tt>
+      <dd>These are used to display an error message to the user when object loading fails. Use <tt>strcpy</tt>
+        or a similar function to copy a single-line error string into <tt>failedBuf</tt>. <tt>failedLen</tt>
+        is the maximum size of this string, and it may be 0.</dd>
+      <tt>
+      <dt><br>
+        <strong>data</strong></dt>
+      </tt>
+      <dd>An opaque pointer to data used internally by LightWave during object loading. Pass this
+        as the first argument to the loading functions.</dd>
+      <tt>
+      <dt><br>
+        <strong>done</strong>( data )</dt>
+      </tt>
+      <dd>Call this when object loading is complete, after setting the <tt>result</tt> field.</dd>
+      <tt>
+      <dt><br>
+        <strong>layer</strong>( data, layernum, layername )</dt>
+      </tt>
+      <dd>Create a new layer. All of the geometry you load will be put in this layer until you
+        call <tt>layer</tt> again. Even if your object format doesn't support anything that could
+        be interpreted as layers, this needs to be called at least once to initialize a layer that
+        will receive your geometry. The layer name is optional and can be NULL. Layers are
+        ordinarily created in increasing numerical order, starting at 1, but this isn't required.</dd>
+      <tt>
+      <dt><br>
+        <strong>pivot</strong>( data, pivpoint )</dt>
+      </tt>
+      <dd>Set the pivot point for the current layer. The pivot point is the origin for rotations
+        in the layer.</dd>
+      <tt>
+      <dt><br>
+        <strong>parent</strong>( data, layernum )</dt>
+      </tt>
+      <dd>Set the parent layer for the current layer. Layer parenting is a mechanism for creating
+        object hierarchies.</dd>
+      <tt>
+      <dt><br>
+        <strong>lFlags</strong>( data, layerflags )</dt>
+      </tt>
+      <dd>Set flags for the current layer. The only flag currently defined is the low order bit,
+        1&nbsp;&lt;&lt;&nbsp;0, which when set signifies that the layer is hidden.</dd>
+      <tt>
+      <dt><br>
+        pointID = <strong>point</strong>( data, pos )</dt>
+      </tt>
+      <dd>Create a point in the current layer. Returns a point ID that can be used later to refer
+        to the point in polygon vertex lists.</dd>
+      <tt>
+      <dt><br>
+        <strong>vmap</strong>( data, type, dim, name )</dt>
+      </tt>
+      <dd>Create or select a vertex map. If the vmap doesn't exist, this function creates it.
+        Otherwise it selects the vmap for subsequent calls to <tt>vmapVal</tt>. The <a
+        href="../../include/lwmeshes.h">lwmeshes.h</a> header defines common vmap IDs, but you can
+        create custom vmap types for special purposes.<p><tt>LWVMAP_PICK</tt> - selection set<br>
+        <tt>LWVMAP_WGHT</tt> - weight map<br>
+        <tt>LWVMAP_MNVW</tt> - subpatch weight map<br>
+        <tt>LWVMAP_TXUV</tt> - texture UV coordinates<br>
+        <tt>LWVMAP_MORF</tt> - relative vertex displacement (morph)<br>
+        <tt>LWVMAP_SPOT</tt> - absolute vertex displacement (morph)<br>
+        <tt>LWVMAP_RGB</tt>, <tt>LWVMAP_RGBA</tt> - vertex color</p>
+        <p>The dimension of a vmap is just the number of values per point.</p>
+      </dd>
+      <tt>
+      <dt><strong>vmapVal</strong>( data, point, valarray )</dt>
+      </tt>
+      <dd>Set the value of the current vmap for the point. The number of elements in the value
+        array should be the same as the dimension of the vmap.</dd>
+      <tt>
+      <dt><br>
+        polID = <strong>polygon</strong>( data, type, flags, npoints, point_array )</dt>
+      </tt>
+      <dd>Create a polygon in the current layer. The type will usually be one of the polygon types
+        defined in <a href="../../include/lwmeshes.h">lwmeshes.h</a>.<p><tt>LWPOLTYPE_FACE</tt> -
+        face<br>
+        <tt>LWPOLTYPE_CURV</tt> - higher order curve<br>
+        <tt>LWPOLTYPE_PTCH</tt> - subdivision control cage polygon<br>
+        <tt>LWPOLTYPE_MBAL</tt> - metaball<br>
+        <tt>LWPOLTYPE_BONE</tt> - bone</p>
+        <p>The flags are specific to each type. The point array contains <tt>npoints</tt> point
+        IDs returned by calls to the <tt>point</tt> function.</p>
+      </dd>
+      <tt>
+      <dt><strong>polTag</strong>( data, polygon, type, tag )</dt>
+      </tt>
+      <dd>Associate a tag string with a polygon. A polygon's surface is set, for example, by
+        passing <tt>LWPTAG_SURF</tt> as the type and the surface name as the tag. Note that you
+        can do this without first having called <tt>surface</tt>.</dd>
+      <tt>
+      <dt><br>
+        <strong>surface</strong>( data, basename, refname, chunk_size, surf_chunk )</dt>
+      </tt>
+      <dd>Set parameters for a surface. The base name is the name of the surface, while the
+        reference name is the name of a &quot;parent&quot; surface (which can be NULL). Parameters
+        not explicitly defined for the surface will be taken from its reference, or parent,
+        surface. The surface data is passed as the memory image of a LightWave object file <tt>SURF</tt>
+        chunk. See the object file <a href="../filefmts/lwo2.html#Hs_base">format</a> document for
+        a detailed description of the contents of a <tt>SURF</tt> chunk. <p>Note that this method
+        of specifying surface parameters doesn't allow you to associate envelopes or image
+        textures with a surface. In the <tt>SURF</tt> chunk, envelopes and images are referenced
+        by index into <tt>ENVL</tt> and <tt>CLIP</tt> chunks, respectively, and object loaders
+        have no way to create these.</p>
+      </dd>
+      <tt>
+      <dt><strong>vmapPDV</strong>( data, point, polygon, valarray )</dt>
+      </tt>
+      <dd>Like <tt>vmapVal</tt>, but sets the per-polygon, or discontinuous, vmap vector for a
+        polygon vertex.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>The <a href="../../sample/vidscape/">vidscape</a> sample loads VideoScape ASCII object
+    files. Several examples of this simple format (the files with <tt>.geo</tt> extensions)
+    are included in the directory. The singular merit of the VideoScape format is that it's
+    easy to write, even by hand, but in particular using languages like LScript, Perl and
+    BASIC. The qbasic program that generated the <tt>ball.geo</tt> object is included. The
+    vidscape sample also demonstrates the use of a <a href="me.html">MeshDataEdit</a> plug-in
+    to <em>save</em> objects in non-LightWave formats.</td>
+  </tr>
+</table>
+</body>
+</html>

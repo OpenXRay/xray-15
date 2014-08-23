@@ -1,0 +1,1389 @@
+<html>
+
+<head>
+<title>Commands: Layout</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="common.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="Common Commands"></a></td>
+    <td width="96" align="left"><a href="modeler.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Modeler Commands"></a></td>
+    <td width="96" align="left"><a href="../commands.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Commands"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Layout Commands</h3>
+    <p>Layout commands are case-sensitive. Layout's native command mechanism is the <tt>evaluate</tt>
+    function, with the command name and its arguments passed as a single, space-delimited
+    string. Commands issued using the <tt>lookup</tt> and <tt>execute</tt> functions will be
+    translated into <tt>evaluate</tt> strings before being processed, and the command
+    arguments passed to <tt>execute</tt> must all be <a href="../dynaval.html">DynaValues</a>
+    of type <tt>DY_STRING</tt>.</p>
+    <p>Layout doesn't strip quote marks from arguments. They're treated literally, so they
+    should only be included when they're actually part of the argument. (There aren't any
+    commands whose argument lists require anything other than spaces to delimit the
+    arguments.)</p>
+    <p>Most Layout command arguments are optional. If the argument isn't supplied, Layout will
+    prompt the user for the argument. In the command list that follows, the data types of the
+    arguments are denoted by the initial letter. (The same letters are used in C <tt>printf</tt>
+    formatting.)</p>
+    <blockquote>
+      <dl>
+        <dt><strong>n</strong>umber</dt>
+        <dd>An integer.</dd>
+        <dt><strong>g</strong>float</dt>
+        <dd>A floating-point number.</dd>
+        <dt><strong>s</strong>tring</dt>
+        <dd>A string, such as a filename or channel name.</dd>
+        <dt>he<strong>x</strong></dt>
+        <dd>A hexadecimal number, such as an item identifier.</dd>
+      </dl>
+    </blockquote>
+    <p>The commands are divided into 15 categories, roughly according to what they do and
+    which <a href="../globals.html">globals</a> provide the current values of the parameters
+    they set.</p>
+    <div align="center"><center><table border="0" cellpadding="4" cellspacing="0">
+      <tr>
+        <td width="150"><a href="#selection">Selection</a><br>
+        <a href="#objects">Objects<br>
+        </a><a href="#bones">Bones<br>
+        </a><a href="#lights">Lights<br>
+        </a><a href="#gillum">Global Illumination</td>
+        <td width="150"></a><a href="#cameras">Cameras<br>
+        </a><a href="#items">Items<br>
+        </a><a href="#motion">Motion<br>
+        </a><a href="#effects">Effects<br>
+        </a><a href="#scenes">Scenes </td>
+        <td width="150"></a><a href="#navigation">Navigation<br>
+        </a><a href="#display">Display<br>
+        </a><a href="#tools">Tools<br>
+        </a><a href="#panels">Panels<br>
+        </a><a href="#misc">Miscellaneous</td>
+      </tr>
+    </table>
+    </center></div><p></a><a name="selection"><strong>Selection</strong></a></p>
+    <p>Most item-specific commands operate on the currently selected item. The <a
+    href="../globals/intinfo.html">Interface Info</a> global returns a list of the currently
+    selected items.<dl>
+      <tt>
+      <dt>SelectItem <strong>x</strong>ID<br>
+        SelectByName <strong>s</strong>name<br>
+        AddToSelection <strong>x</strong>ID<br>
+        RemoveFromSelection <strong>x</strong>ID</dt>
+      </tt>
+      <dd>Select an item by item ID or by name, or add and remove an item from the list of
+        selected items.</dd>
+      <tt>
+      <dt><br>
+        SelectAllObjects<br>
+        SelectAllBones<br>
+        SelectAllLights<br>
+        SelectAllCameras</dt>
+      </tt>
+      <dd>Select all items of a given type.</dd>
+      <tt>
+      <dt><br>
+        EditObjects<br>
+        EditBones<br>
+        EditLights<br>
+        EditCameras</dt>
+      </tt>
+      <dd>Set the edit mode. This may affect the scope of some commands that depend on the
+        contents of the scene or the item selection.</dd>
+      <tt>
+      <dt><br>
+        PreviousItem<br>
+        NextItem<br>
+        FirstItem<br>
+        LastItem</dt>
+      </tt>
+      <dd>Select items by traversing the item list.</dd>
+      <tt>
+      <dt><br>
+        SelectParent<br>
+        SelectChild<br>
+        PreviousSibling<br>
+        NextSibling</dt>
+      </tt>
+      <dd>Select items by traversing the parenting tree.</dd>
+    </dl>
+    <p><a name="objects"><strong>Objects</strong></a></p>
+    <p>Commands that set object parameters operate on the currently selected object. You can
+    use the functions returned by the <a href="../globals/objinfo.html">Object Info</a> global
+    to get the current values of these parameters. <dl>
+      <tt>
+      <dt>LoadObject <strong>s</strong>filename<br>
+        LoadObjectLayer <strong>n</strong>layer <strong>s</strong>filename</dt>
+      </tt>
+      <dd>Load an object, or an object layer, and add it to the scene.</dd>
+      <tt>
+      <dt><br>
+        ReplaceWithObject <strong>s</strong>filename<br>
+        ReplaceObjectLayer <strong>n</strong>layer <strong>s</strong>filename</dt>
+      </tt>
+      <dd>Replace the selected object or object layer.</dd>
+      <tt>
+      <dt><br>
+        AddNull <strong>s</strong>name<br>
+        ReplaceWithNull <strong>s</strong>name</dt>
+      </tt>
+      <dd>Add a null object to the scene, or replace the selected object with a null.</dd>
+      <tt>
+      <dt><br>
+        AddPartigon <strong>s</strong>filename</dt>
+      </tt>
+      <dd>Add a partigon (a particle object) to the scene. The filename is used to save the
+        object.</dd>
+      <tt>
+      <dt><br>
+        SaveAllObjects</dt>
+      </tt>
+      <dd>Save all objects in the scene. This updates (overwrites) the object files and is useful
+        primarily for saving any surface changes that may have been made in Layout.</dd>
+      <tt>
+      <dt><br>
+        SaveObject <strong>s</strong>filename</dt>
+      </tt>
+      <dd>Save the selected object to a different file. Later references to the object in the
+        scene will use the new filename.</dd>
+      <tt>
+      <dt><br>
+        SaveTransformed <strong>s</strong>filename</dt>
+      </tt>
+      <dd>Save a copy of the selected object in its current state, generally after patching,
+        deformations and motions have been applied in the current frame.</dd>
+      <tt>
+      <dt><br>
+        SaveEndomorph <strong>s</strong>filename</dt>
+      </tt>
+      <dd>Save an endomorph of the selected object. This is the geometry of the object after
+        transforming the points using a vertex map of type <tt>MORF</tt> or <tt>SPOT</tt>.</dd>
+      <tt>
+      <dt><br>
+        SaveObjectCopy <strong>s</strong>filename</dt>
+      </tt>
+      <dd>Save a copy of the selected object.</dd>
+      <tt>
+      <dt><br>
+        ClearAllObjects</dt>
+      </tt>
+      <dd>Remove all objects from the scene.</dd>
+      <tt>
+      <dt><br>
+        SubdivisionOrder <strong>n</strong>order</dt>
+      </tt>
+      <dd>Set the subdivision order for subpatches in the selected object. The argument can be any
+        of the values returned by the <a href="../globals/objinfo.html">Object Info</a> <tt>subdivOrder</tt>
+        function.</dd>
+      <tt>
+      <dt><br>
+        SubPatchLevel <strong>n</strong>display <strong>n</strong>render<br>
+        MetaballResolution <strong>n</strong>display <strong>n</strong>render</dt>
+      </tt>
+      <dd>Set the patch resolution for subpatches and metaballs.</dd>
+      <tt>
+      <dt><br>
+        MorphTarget <strong>x</strong>ID</dt>
+      </tt>
+      <dd>Set the selected object's morph target. The argument is the item ID of the target
+        object.</dd>
+      <tt>
+      <dt><br>
+        MorphAmount <strong>g</strong>amount</dt>
+      </tt>
+      <dd>Set the selected object's morph amount, usually a value between 0.0 and 1.0.</dd>
+      <tt>
+      <dt><br>
+        MorphMTSE<br>
+        MorphSurfaces</dt>
+      </tt>
+      <dd>Toggle the selected object's MTSE (Multiple Target Single Envelope) and Morph Surfaces
+        options.</dd>
+      <tt>
+      <dt><br>
+        ObjectDissolve <strong>g</strong>dissolve</dt>
+      </tt>
+      <dd>Set the selected object's dissolve, usually a value between 0.0 and 1.0.</dd>
+      <tt>
+      <dt><br>
+        PolygonSize <strong>g</strong>size</dt>
+      </tt>
+      <dd>Set the selected object's polygon size. The default size is 1.0.</dd>
+      <tt>
+      <dt><br>
+        UnseenByRays<br>
+        UnseenByCamera<br>
+        UnaffectedByFog</dt>
+      </tt>
+      <dd>Toggle options affecting the participation of the object in certain rendering
+        components.</dd>
+      <tt>
+      <dt><br>
+        SelfShadow<br>
+        CastShadow<br>
+        ReceiveShadow</dt>
+      </tt>
+      <dd>Toggle the selected object's raytraced shadow options.</dd>
+      <tt>
+      <dt><br>
+        IncludeLight <strong>x</strong>ID<br>
+        ExcludeLight <strong>x</strong>ID</dt>
+      </tt>
+      <dd>Include or exclude a light. The argument is the item ID of the light.</dd>
+      <tt>
+      <dt><br>
+        ShadowExclusion</dt>
+      </tt>
+      <dd>A toggle that's on by default and applies to the whole scene. When turned off, shadow
+        calculations will ignore light exclusion.</dd>
+      <tt>
+      <dt><br>
+        PolygonEdgeFlags <strong>n</strong>flags<br>
+        PolygonEdgeColor <strong>g</strong>red <strong>g</strong>green <strong>g</strong>blue</dt>
+      </tt>
+      <dd>Set the flags and color of the object's polygon edges. See the <a
+        href="../globals/objinfo.html">Object Info</a> <tt>edgeOpts</tt> function for a list of
+        possible flags.</dd>
+      <tt>
+      <dt><br>
+        EnableDeformations</dt>
+      </tt>
+      <dd>Enable or disable deformations for all objects in the scene.</dd>
+    </dl>
+    <p><a name="bones"><strong>Bones</strong></a></p>
+    <p>Commands that set bone parameters operate on the currently selected bone. You can use
+    the functions returned by the <a href="../globals/boneinfo.html">Bone Info</a> global to
+    get the current values of these parameters. <dl>
+      <tt>
+      <dt>AddBone <strong>s</strong>name<br>
+        AddChildBone <strong>s</strong>name</dt>
+      </tt>
+      <dd>Add a bone to the scene. The currently selected bone becomes the parent of new child
+        bones.</dd>
+      <tt>
+      <dt><br>
+        DrawBones<br>
+        DrawChildBones</dt>
+      </tt>
+      <dd>Activates a mode in which bones can be added by clicking and dragging in the interface.</dd>
+      <tt>
+      <dt><br>
+        ClearAllBones</dt>
+      </tt>
+      <dd>Remove all bones from the scene.</dd>
+      <tt>
+      <dt><br>
+        SkelegonsToBones</dt>
+      </tt>
+      <dd>Convert skelegons in the object to scene bones.</dd>
+      <tt>
+      <dt><br>
+        BoneActive</dt>
+      </tt>
+      <dd>Make the bone active or inactive. An inactive bone is ignored during deformation
+        calculations.</dd>
+      <tt>
+      <dt><br>
+        BoneFalloffType <strong>n</strong>type</dt>
+      </tt>
+      <dd>Set the falloff function for the bone. The falloff is proportional to the distance
+        raised to the power -2<tt><sup>type</sup></tt>. A <tt>type</tt> of 0 is inverse distance,
+        1 is inverse distance squared, 2 is inverse distance to the fourth power, and so on.</dd>
+      <tt>
+      <dt><br>
+        BoneRestPosition <strong>g</strong>X <strong>g</strong>Y <strong>g</strong>Z<br>
+        BoneRestRotation <strong>g</strong>H <strong>g</strong>P <strong>g</strong>B<br>
+        BoneRestLength <strong>g</strong>length<br>
+        BoneStrength <strong>g</strong>strength</dt>
+      </tt>
+      <dd>Set bone parameters.</dd>
+      <tt>
+      <dt><br>
+        BoneStrengthMultiply</dt>
+      </tt>
+      <dd>When set, the strength will be multiplied by the rest length.</dd>
+      <tt>
+      <dt><br>
+        RecordRestPosition</dt>
+      </tt>
+      <dd>Take the bone's current position to be its rest position.</dd>
+      <tt>
+      <dt><br>
+        BoneWeightMapName <strong>s</strong>name<br>
+        BoneWeightMapOnly<br>
+        BoneNormalization</dt>
+      </tt>
+      <dd>Set a weight map for a bone. If the Weight Map Only option is toggled on, the
+        normalization toggle is also turned on by default. With normalization on, the displacement
+        of a point is divided by the sum of the weights.</dd>
+      <tt>
+      <dt><br>
+        BoneLimitedRange<br>
+        BoneMinRange <strong>g</strong>distance<br>
+        BoneMaxRange <strong>g</strong>distance</dt>
+      </tt>
+      <dd>Toggle limited range, and set the minimum and maximum extents of the range.</dd>
+      <tt>
+      <dt><br>
+        BoneJointComp<br>
+        BoneJointCompParent<br>
+        BoneJointCompAmounts <strong>g</strong>self <strong>g</strong>parent</dt>
+      </tt>
+      <dd>Toggle joint compensation and the inclusion of the parent in the calculations, and set
+        the compensation amounts. Both joint compensation and muscle flexing are deformation
+        adjustments designed to preserve volume, and they can optionally take the parent into
+        account when the adjustment is calculated.</dd>
+      <tt>
+      <dt><br>
+        BoneMuscleFlex<br>
+        BoneMuscleFlexParent<br>
+        BoneMuscleFlexAmounts <strong>g</strong>self <strong>g</strong>parent</dt>
+      </tt>
+      <dd>Toggle muscle flexing and the inclusion of the parent in the calculations, and set the
+        flex amounts.</dd>
+    </dl>
+    <p><a name="lights"><strong>Lights</strong></a></p>
+    <p>Commands that set light parameters operate on the currently selected light. You can use
+    the functions returned by the <a href="../globals/lightinf.html">Light Info</a> global to
+    get the current values of these parameters. <dl>
+      <tt>
+      <dt>AddDistantLight <strong>s</strong>name<br>
+        AddPointLight <strong>s</strong>name<br>
+        AddSpotlight <strong>s</strong>name<br>
+        AddLinearLight <strong>s</strong>name<br>
+        AddAreaLight <strong>s</strong>name</dt>
+      </tt>
+      <dd>Add a light of the given type to the scene.</dd>
+      <tt>
+      <dt><br>
+        ClearAllLights</dt>
+      </tt>
+      <dd>Remove all lights from the scene.</dd>
+      <tt>
+      <dt><br>
+        SaveLight</dt>
+      </tt>
+      <dd>Save the light's parameters to a file. The user is prompted for the filename. The light
+        information is stored in the format used for scene files.</dd>
+      <tt>
+      <dt><br>
+        DistantLight<br>
+        PointLight<br>
+        Spotlight<br>
+        LinearLight<br>
+        AreaLight</dt>
+      </tt>
+      <dd>Set the type of the light.</dd>
+      <tt>
+      <dt><br>
+        LightColor <strong>g</strong>red <strong>g</strong>green <strong>g</strong>blue<br>
+        LightIntensity <strong>g</strong>intensity</dt>
+      </tt>
+      <dd>Set the color and intensity of the selected light.</dd>
+      <tt>
+      <dt><br>
+        LightFalloffType <strong>n</strong>type<br>
+        LightRange <strong>g</strong>distance</dt>
+      </tt>
+      <dd>Set the falloff type and range (or nominal distance) for the light. The falloff type
+        affects the interpretation of the range value. These parameters aren't valid for distant
+        lights.</dd>
+      <tt>
+      <dt><br>
+        AffectDiffuse<br>
+        AffectSpecular<br>
+        AffectCaustics<br>
+        AffectOpenGL</dt>
+      </tt>
+      <dd>Toggle these effects for the light.</dd>
+      <tt>
+      <dt><br>
+        LightConeAngle <strong>g</strong>angle<br>
+        LightEdgeAngle <strong>g</strong>angle</dt>
+      </tt>
+      <dd>Set the cone angle and soft edge angle for a spotlight.</dd>
+      <tt>
+      <dt><br>
+        LightQuality <strong>n</strong>quality</dt>
+      </tt>
+      <dd>Set the quality level for a linear or area light.</dd>
+      <tt>
+      <dt><br>
+        ShadowType <strong>n</strong>type</dt>
+      </tt>
+      <dd>Set the light's shadow type.</dd>
+      <tt>
+      <dt><br>
+        CacheShadowMap</dt>
+      </tt>
+      <dd>Toggle the Cache Shadow Map option for a shadow-mapped light.</dd>
+      <tt>
+      <dt><br>
+        ShadowMapSize <strong>n</strong>size</dt>
+      </tt>
+      <dd>Set the dimension of the shadow map for a light. A shadow map is a 2D array of pixels.
+        The amount of memory it uses is proportional to the square of the size.</dd>
+      <tt>
+      <dt><br>
+        ShadowMapFuzziness <strong>g</strong>fuzziness</dt>
+      </tt>
+      <dd>Set the amount of blur or softness for the shadow map.</dd>
+      <tt>
+      <dt><br>
+        ShadowMapFitCone</dt>
+      <dt>ShadowMapAngle <strong>g</strong>angle</dt>
+      </tt>
+      <dd>Set the &quot;field of view&quot; for a shadow map. This is the angle subtended by the
+        shadow map at the position of the light. The <tt>FitCone</tt> toggle sets this angle equal
+        to the cone angle of a spotlight.</dd>
+      <tt>
+      <dt><br>
+        LensFlare</dt>
+      </tt>
+      <dd>Toggle a lens flare effect for the light.</dd>
+      <tt>
+      <dt><br>
+        FlareIntensity <strong>g</strong>intensity</dt>
+      </tt>
+      <dd>Set the lens flare intensity.</dd>
+      <tt>
+      <dt><br>
+        VolumetricLighting</dt>
+      </tt>
+      <dd>Toggle volumetrics for the light.</dd>
+    </dl>
+    <p><a name="gillum"><strong>Global Illumination</strong></a><dl>
+      <tt>
+      <dt>EnableLensFlares<br>
+        EnableShadowMaps<br>
+        EnableVolumetricLights<br>
+        EnableRadiosity<br>
+        EnableCaustics</dt>
+      </tt>
+      <dd>Toggle these features for the whole scene.</dd>
+      <tt>
+      <dt><br>
+        AmbientColor <strong>g</strong>red <strong>g</strong>green <strong>g</strong>blue<br>
+        AmbientIntensity <strong>g</strong>intensity</dt>
+      </tt>
+      <dd>Set the ambient light color and intensity.</dd>
+      <tt>
+      <dt><br>
+        NoiseReduction</dt>
+      </tt>
+      <dd>Toggle the Shader Noise Reduction feature.</dd>
+      <tt>
+      <dt><br>
+        RadiosityType <strong>n</strong>type</dt>
+      </tt>
+      <dd>Set the radiosity type, which can be one of the following. <p>0 - Backdrop Only<br>
+        1 - Monte Carlo<br>
+        2 - Interpolated</p>
+      </dd>
+      <tt>
+      <dt>CacheRadiosity<br>
+        CacheCaustics</dt>
+      </tt>
+      <dd>Toggle caching of the solutions for radiosity and caustics.</dd>
+      <tt>
+      <dt><br>
+        RadiosityIntensity <strong>g</strong>intensity</dt>
+      </tt>
+      <dt><tt>RadiosityTolerance <strong>g</strong>tolerance<br>
+        CausticIntensity <strong>g</strong>intensity</tt></dt>
+      <dd>Set the radiosity intensity and tolerance and the caustic intensity.</dd>
+      <tt>
+      <dt><br>
+        VolumetricRadiosity</dt>
+      </tt>
+      <dd>A toggle that's on by default, this controls whether volumetrics are taken into account
+        by radiosity.</dd>
+    </dl>
+    <p><a name="cameras"><strong>Cameras</strong></a></p>
+    <p>Commands that set camera parameters operate on the currently selected camera. You can
+    use the functions returned by the <a href="../globals/caminfo.html">Camera Info</a> global
+    to get the current values of these parameters. <dl>
+      <tt>
+      <dt>AddCamera <strong>s</strong>name</dt>
+      </tt>
+      <dd>Add a camera to the scene.</dd>
+      <tt>
+      <dt><br>
+        ClearAllCameras</dt>
+      </tt>
+      <dd>Remove all cameras from the scene and restore the default camera.</dd>
+      <tt>
+      <dt><br>
+        FrameSize <strong>n</strong>width <strong>n</strong>height<br>
+        ResolutionMultiplier <strong>g</strong>multiplier</dt>
+      </tt>
+      <dd>Set the size of the output image. The resolution multiplier makes it easier to scale the
+        image up or down without affecting (or knowing) the base frame size.</dd>
+      <tt>
+      <dt><br>
+        PixelAspect <strong>g</strong>aspect</dt>
+      </tt>
+      <dd>Set the ratio of width to height for a pixel. Aspects less than 1.0 produce pixels that
+        are taller than they are wide.</dd>
+      <tt>
+      <dt><br>
+        CameraMask<br>
+        MaskPosition <strong>n</strong>left <strong>n</strong>top <strong>n</strong>width <strong>n</strong>height<br>
+        MaskColor <strong>g</strong>red <strong>g</strong>green <strong>g</strong>blue</dt>
+      </tt>
+      <dd>Enabling the camera mask causes the mask color to be drawn into the image outside the
+        mask rectangle.</dd>
+      <tt>
+      <dt><br>
+        LimitedRegion</dt>
+      </tt>
+      <dd>Toggle limited region rendering. When this is enabled, only the part of the image inside
+        the limited region rectangle will be rendered.</dd>
+      <tt>
+      <dt><br>
+        ZoomFactor <strong>g</strong>factor</dt>
+      </tt>
+      <dd>Set the camera zoom. This is the distance of the camera from the plane of projection.
+        The image on this plane always has a half-height of 1.0.</dd>
+      <tt>
+      <dt><br>
+        ApertureHeight <strong>g</strong>height</dt>
+      </tt>
+      <dd>Set the aperture height of the camera. The focal length is <tt>zoom * ApertureHeight / 2</tt>.</dd>
+      <tt>
+      <dt><br>
+        Antialiasing <strong>n</strong>level</dt>
+      </tt>
+      <dd>Set the antialiasing level. <p>0 - Off<br>
+        1 - Low (5 passes)<br>
+        2 - Medium (9 passes)<br>
+        3 - High (17 passes)<br>
+        4 - Extreme (33 passes)</p>
+      </dd>
+      <tt>
+      <dt>EnhancedAA</dt>
+      </tt>
+      <dd>Toggles Enhanced antialiasing.</dd>
+      <tt>
+      <dt><br>
+        AdaptiveSampling</dt>
+      </tt>
+      <dd>Toggles adaptive sampling.</dd>
+      <tt>
+      <dt><br>
+        AdaptiveThreshold <strong>g</strong>threshold</dt>
+      </tt>
+      <dd>Sets the threshold at which adjacent pixels are sufficiently different to receive
+        antialiasing attention. Pixels with luminosity differences smaller than this will be
+        skipped during antialiasing when adaptive sampling is enabled.</dd>
+      <tt>
+      <dt><br>
+        ParticleBlur</dt>
+      </tt>
+      <dd>Toggle particle blur.</dd>
+      <tt>
+      <dt><br>
+        MotionBlur <strong>n</strong>type</dt>
+      </tt>
+      <dd>Set the motion blur option. <p>0 - Off<br>
+        1 - Normal<br>
+        2 - Dithered</p>
+      </dd>
+      <tt>
+      <dt>BlurLength <strong>g</strong>length</dt>
+      </tt>
+      <dd>Set the blur length as a fraction of the time between successive frames.</dd>
+      <tt>
+      <dt><br>
+        Stereoscopic<br>
+        EyeSeparation <strong>g</strong>separation</dt>
+      </tt>
+      <dd>Toggle stereoscopic rendering and set the interoccular distance.</dd>
+      <tt>
+      <dt><br>
+        DepthOfField<br>
+        FocalDistance <strong>g</strong>distance<br>
+        LensFStop <strong>g</strong>fstop</dt>
+      </tt>
+      <dd>Toggle depth of field rendering and set the focus distance and f-stop.</dd>
+    </dl>
+    <p><a name="items"><strong>Items</strong></a></p>
+    <p>These commands operate on the currently selected item and work with items of all types.
+    Use the <a href="../globals/iteminfo.html">Item Info</a> or <a
+    href="../globals/intinfo.html">Interface Info</a> globals to get the current values of the
+    parameters set by many of these commands. <dl>
+      <tt>
+      <dt>ClearSelected</dt>
+      </tt>
+      <dd>Remove the selected items from the scene.</dd>
+      <tt>
+      <dt><br>
+        Rename <strong>s</strong>name</dt>
+      </tt>
+      <dd>Rename the item. This works for all item types except objects, which derive their names
+        from their filenames.</dd>
+      <tt>
+      <dt><br>
+        Clone <strong>n</strong>clones</dt>
+      </tt>
+      <dd>Create one or more clones of the item.</dd>
+      <tt>
+      <dt><br>
+        ItemActive <strong>n</strong>active</dt>
+      </tt>
+      <dd>Make the item active or inactive. An inactive item doesn't participate in rendering
+        calculations. Inactive objects are 100% dissolved, and inactive lights have an intensity
+        of 0. For bones, the command is a synonym for the <tt>BoneActive</tt> command. It
+        currently has no effect on cameras.</dd>
+      <tt>
+      <dt><br>
+        ApplyServer <strong>s</strong>class <strong>s</strong>server</dt>
+      </tt>
+      <dd>Apply a plug-in. The arguments are the first and second fields of the <a
+        href="../server.html#servdesc">ServerRecord</a> for the plug-in.</dd>
+      <tt>
+      <dt><br>
+        RemoveServer <strong>s</strong>class <strong>n</strong>index</dt>
+      </tt>
+      <dd>Remove a plug-in. The index refers to the list of applied servers of a given class. The
+        first server in each list has an index of 1.</dd>
+      <tt>
+      <dt><br>
+        AddEnvelope <strong>s</strong>channel<br>
+        RemoveEnvelope <strong>s</strong>channel</dt>
+      </tt>
+      <dd>Create or remove the envelope associated with a parameter in Layout. These commands
+        &quot;press the E button&quot; for envelopes Layout itself maintains. Use them for
+        envelopes <em>not</em> created by your plug-in through either the <a
+        href="../globals/vparam.html">Variant Parameters</a> or <a href="../globals/anenvel.html">Animation
+        Envelopes</a> globals. The <tt>channel</tt> argument is the same as the channel name
+        displayed in the Scene Editor when an item's channel list is expanded.</dd>
+      <tt>
+      <dt><br>
+        SchematicPosition <strong>n</strong>X <strong>n</strong>Y</dt>
+      </tt>
+      <dd>Set the position of the current item within schematic views. The coordinates are
+        relative to the upper left corner of the view pane.</dd>
+      <tt>
+      <dt><br>
+        ItemLock <strong>n</strong>locked</dt>
+      </tt>
+      <dd>Lock or unlock the selected item. A locked item can't be selected by clicking on it in
+        the view.</dd>
+      <tt>
+      <dt><br>
+        ItemVisibility <strong>n</strong>visibility</dt>
+      </tt>
+      <dd>Set the visibility of the selected item. The argument can be any of the values returned
+        by the <a href="../globals/intinfo.html">Interface Info</a> global's <tt>itemVis</tt>
+        function.</dd>
+      <tt>
+      <dt><br>
+        ItemColor <strong>n</strong>color</dt>
+      </tt>
+      <dd>Set the wireframe color of the selected item. The argument is an index into a color
+        table.<table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="15">&nbsp; </td>
+          </tr>
+          <tr>
+            <td width="23" align="center">0</td>
+            <td width="23" align="center">1</td>
+            <td width="23" align="center">2</td>
+            <td width="23" align="center">3</td>
+            <td width="23" align="center">4</td>
+            <td width="23" align="center">5</td>
+            <td width="23" align="center">6</td>
+            <td width="23" align="center">7</td>
+            <td width="23" align="center">8</td>
+            <td width="23" align="center">9</td>
+            <td width="23" align="center">10</td>
+            <td width="23" align="center">11</td>
+            <td width="23" align="center">12</td>
+            <td width="23" align="center">13</td>
+            <td width="23" align="center">14</td>
+          </tr>
+          <tr>
+            <td width="345" align="center" colspan="15"><img width="335" height="13"
+            src="../images/uicolors.gif"> </td>
+          </tr>
+        </table>
+      </dd>
+    </dl>
+    <p><a name="motion"><strong>Motion</strong></a></p>
+    <p>Motion commands operate on the current item. Use the <tt>param</tt> function of the <a
+    href="../globals/iteminfo.html">Item Info</a> global, as well as the <a
+    href="../globals/anenvel.html">Animation Envelopes</a> and <a
+    href="../globals/chaninfo.html">Channel Info</a> globals, to read motion-related settings.
+    <dl>
+      <tt>
+      <dt>CreateKey <strong>g</strong>time</dt>
+      </tt>
+      <dd>Create a key for all nine motion channels (position, rotation and scale). If a key
+        already exists, this changes its settings.</dd>
+      <tt>
+      <dt><br>
+        DeleteKey <strong>g</strong>time</dt>
+      </tt>
+      <dd>Delete all of an item's motion keys at a given time.</dd>
+      <tt>
+      <dt><br>
+        AutoKey</dt>
+      </tt>
+      <dd>Toggle the Auto Key setting. When on, changes in the position, rotation or scale of an
+        item are automatically recorded to a key. When off, a key must be created explicitly. </dd>
+      <tt>
+      <dt><br>
+        Position <strong>g</strong>X <strong>g</strong>Y <strong>g</strong>Z<br>
+        Rotation <strong>g</strong>H <strong>g</strong>P <strong>g</strong>B<br>
+        Scale <strong>g</strong>X <strong>g</strong>Y <strong>g</strong>Z</dt>
+      </tt>
+      <dd>Position, rotate or scale the item. This has no effect on keys at the current time
+        unless Auto Key has been turned on.</dd>
+      <tt>
+      <dt><br>
+        AddPosition <strong>g</strong>X <strong>g</strong>Y <strong>g</strong>Z<br>
+        AddRotation <strong>g</strong>H <strong>g</strong>P <strong>g</strong>B<br>
+        AddScale <strong>g</strong>X <strong>g</strong>Y <strong>g</strong>Z</dt>
+      </tt>
+      <dd>Increment the motion. Like <tt>Position</tt>, <tt>Rotation</tt> and <tt>Scale</tt>, but
+        the values are relative rather than absolute.</dd>
+      <tt>
+      <dt><br>
+        PivotPosition <strong>g</strong>X <strong>g</strong>Y <strong>g</strong>Z<br>
+        PivotRotation <strong>g</strong>H <strong>g</strong>P <strong>g</strong>B</dt>
+      </tt>
+      <dd>Set the position and rotation of the pivot (the origin of the item's rotation).</dd>
+      <tt>
+      <dt><br>
+        RecordPivotRotation</dt>
+      </tt>
+      <dd>Add the current item rotation angles to the pivot rotation, and reset the item rotation
+        angles to (0, 0, 0).</dd>
+      <tt>
+      <dt><br>
+        Numeric</dt>
+      </tt>
+      <dd>Prepare for numeric entry. The specific behavior depends on which tool is active. For
+        the Move, Rotate and Size tools, this activates the vector edit fields, and values typed
+        after this will be entered there.</dd>
+      <tt>
+      <dt><br>
+        EnableXH<br>
+        EnableYP<br>
+        EnableZB</dt>
+      </tt>
+      <dd>Unlock or lock a channel against changes caused by mouse dragging. Which channel is
+        affected depends on which tool is active. If the Move tool is active, for example, <tt>EnableXH</tt>
+        toggles the enable state of the X channel, and when it's disabled, moving an item by
+        dragging the mouse may affect the Y and Z components of its position, but not the X
+        component.</dd>
+      <tt>
+      <dt><br>
+        WorldCoordinateSystem<br>
+        ParentCoordinateSystem<br>
+        LocalCoordinateSystem</dt>
+      </tt>
+      <dd>These affect the coordinate system in which mouse movement is interpreted for the motion
+        tools. Moving the mouse can move an item along the world, parent or local (item) axes.</dd>
+      <tt>
+      <dt><br>
+        LoadMotion <strong>s</strong>filename<br>
+        SaveMotion <strong>s</strong>filename</dt>
+      </tt>
+      <dd>Load or save an item's keyframes in a motion file. The format of the file is similar to
+        the format of the key data in <a href="../filefmts/lwsc.html">scene files</a>.</dd>
+      <dt><tt><br>
+        Undo</tt></dt>
+      <dd>Undo the most recent motion change.</dd>
+      <tt>
+      <dt><br>
+        Reset</dt>
+      </tt>
+      <dd>Set an item's animation channels to the values they had when the object was created or
+        loaded. Which channels are affected depends on which tool is currently active. Channels
+        disabled by <tt>EnableXH</tt>, <tt>EnableYP</tt> or <tt>EnableZB</tt> are not reset.</dd>
+      <dt><tt><br>
+        ParentItem <strong>x</strong>ID</tt></dt>
+      <dd>Set the parent of the current item to the item given by the ID. The item's motion is
+        relative to that of its parent.</dd>
+      <tt>
+      <dt><br>
+        ParentInPlace</dt>
+      </tt>
+      <dd>A global setting. When turned off, setting a parent relationship causes the child item
+        to jump to a new (world coordinate) position, since the child's position setting suddenly
+        becomes relative to that of its parent. When turned on, parenting in place prevents the
+        jump, adjusting the child's position relative to its parent so that its world position
+        doesn't change. This setting can be read as a flag using the <a
+        href="../globals/intinfo.html">Interface Info</a> global.</dd>
+      <tt>
+      <dt><br>
+        TargetItem <strong>x</strong>ID</dt>
+      </tt>
+      <dd>Set the target of the current item to the item given by the ID. The item will rotate so
+        that it points toward the target.</dd>
+      <tt>
+      <dt><br>
+        PathAlignLookAhead <strong>g</strong>time</dt>
+      </tt>
+      <dd>Set the look-ahead interval, in seconds, for motion channels controlled by Align to
+        Path. This is the amount of time by which changes in orientation of the item anticipate
+        changes in the path direction. </dd>
+      <tt>
+      <dt><br>
+        EnableIK</dt>
+      </tt>
+      <dd>A global toggle that enables or disables inverse kinematics calculations for all items.</dd>
+      <tt>
+      <dt><br>
+        UnaffectedByIK</dt>
+      </tt>
+      <dd>Toggle the Unaffected by IK of Descendents option. When on, the item is isolated from
+        the motion effects of inverse kinematics applied to the item's children. The item becomes
+        the base of the IK chain containing its children.</dd>
+      <tt>
+      <dt><br>
+        GoalItem <strong>x</strong>ID</dt>
+      </tt>
+      <dd>Set the IK goal of the current item to the item given by the ID.</dd>
+      <tt>
+      <dt><br>
+        FullTimeIK</dt>
+      </tt>
+      <dd>Toggle Full-time IK for the item. This determines whether IK is recalculated each time
+        the item's goal is moved.</dd>
+      <tt>
+      <dt><br>
+        GoalStrength <strong>g</strong>strength</dt>
+      </tt>
+      <dd>Set the strength, or amount of influence, of an item's IK goal. The goal strength is
+        relative to that of the other goals associated with an IK chain.</dd>
+      <tt>
+      <dt><br>
+        MatchGoalOrientation</dt>
+      </tt>
+      <dd>When on, this toggle causes the item's rotation and scale to match that of its goal.</dd>
+      <tt>
+      <dt><br>
+        KeepGoalWithinReach</dt>
+      </tt>
+      <dd>When on, this toggle constrains the motion of the goal so that it's always
+        &quot;attached&quot; to the item.</dd>
+      <tt>
+      <dt><br>
+        HController <strong>n</strong>controller<br>
+        PController <strong>n</strong>controller<br>
+        BController <strong>n</strong>controller</dt>
+      </tt>
+      <dd>Set the controller for each rotation channel. The argument can be any of the values
+        returned by the <a href="../globals/iteminfo.html">Item Info</a> <tt>controller</tt>
+        function.</dd>
+      <tt>
+      <dt><br>
+        HLimits <strong>g</strong>min <strong>g</strong>max<br>
+        PLimits <strong>g</strong>min <strong>g</strong>max<br>
+        BLimits <strong>g</strong>min <strong>g</strong>max</dt>
+      </tt>
+      <dd>Set minimum and maximum limits for each rotation channel.</dd>
+      <tt>
+      <dt>&nbsp;</dt>
+      </tt>
+      <dt><tt>RecordMinAngles<br>
+        RecordMaxAngles</tt></dt>
+      <dd>Use the current rotation of the item as the minimum or maximum limit for all three
+        rotation channels.</dd>
+      <dt><tt><br>
+        LimitH<br>
+        LimitP<br>
+        LimitB</tt></dt>
+      <dd>Enable or disable rotation limits.</dd>
+      <tt>
+      <dt><br>
+        HStiffness <strong>g</strong>stiffness<br>
+        PStiffness <strong>g</strong>stiffness<br>
+        BStiffness <strong>g</strong>stiffness</dt>
+      </tt>
+      <dd>Set the stiffness (resistance to rotation via IK).</dd>
+    </dl>
+    <p><a name="effects"><strong>Effects</strong></a></p>
+    <p>These commands affect settings on the Effects panel. Use the <a
+    href="../globals/bkdpinfo.html">Backdrop Info</a> and <a href="../globals/foginfo.html">Fog
+    Info</a> globals to read these settings.<dl>
+      <tt>
+      <dt>GradientBackdrop<br>
+        ZenithColor <strong>g</strong>red <strong>g</strong>green <strong>g</strong>blue<br>
+        SkyColor <strong>g</strong>red <strong>g</strong>green <strong>g</strong>blue<br>
+        GroundColor <strong>g</strong>red <strong>g</strong>green <strong>g</strong>blue<br>
+        NadirColor <strong>g</strong>red <strong>g</strong>green <strong>g</strong>blue</dt>
+      </tt>
+      <dd>Enable or disable the gradient backdrop, and set its key colors.</dd>
+      <tt>
+      <dt><br>
+        FogType <strong>n</strong>type</dt>
+      </tt>
+      <dd>Set the fog type. The type can be any of the values that are valid for the <a
+        href="../globals/foginfo.html">Fog Info</a> <tt>type</tt> field.</dd>
+      <tt>
+      <dt><br>
+        FogMinDistance <strong>g</strong>distance<br>
+        FogMaxDistance <strong>g</strong>distance</dt>
+      </tt>
+      <dd>Set the distance extents of the fog.</dd>
+      <tt>
+      <dt><br>
+        FogMinAmount <strong>g</strong>amount<br>
+        FogMaxAmount <strong>g</strong>amount</dt>
+      </tt>
+      <dd>Set the fog amounts at the minimum and maximum distances.</dd>
+      <tt>
+      <dt><br>
+        FogColor <strong>g</strong>red <strong>g</strong>green <strong>g</strong>blue</dt>
+      </tt>
+      <dd>Set the fog color.</dd>
+    </dl>
+    <p><a name="scenes"><strong>Scenes</strong></a></p>
+    <p>These commands involve render options and scene loading and saving. You can read many
+    of the parameters using the <a href="../globals/sceneinf.html">Scene Info</a> global.<dl>
+      <tt>
+      <dt>ClearScene</dt>
+      </tt>
+      <dd>Clear the scene. All items are removed and all scene parameters are reset to their
+        default values.</dd>
+      <tt>
+      <dt><br>
+        LoadScene <strong>s</strong>filename</dt>
+      </tt>
+      <dd>Load a scene file.</dd>
+      <tt>
+      <dt><br>
+        LoadFromScene <strong>s</strong>filename</dt>
+      </tt>
+      <dd>Load the objects, and optionally the lights, from a scene file.</dd>
+      <tt>
+      <dt><br>
+        SaveScene<br>
+        SaveSceneAs <strong>s</strong>filename</dt>
+      </tt>
+      <dd>Save the scene.</dd>
+      <tt>
+      <dt><br>
+        SaveLWSC1 <strong>s</strong>filename</dt>
+      </tt>
+      <dd>Save the scene in version 1 format. This is the scene file format used by versions of
+        LightWave prior to 6.0. Some information may be lost, since the old format doesn't support
+        many of the newer features.</dd>
+      <tt>
+      <dt><br>
+        SaveSceneCopy <strong>s</strong>filename</dt>
+      </tt>
+      <dd>Save a copy of the scene. Unlike <tt>SaveSceneAs</tt>, <tt>SaveSceneCopy</tt> doesn't
+        rename the scene.</dd>
+      <tt>
+      <dt><br>
+        ContentDirectory <strong>s</strong>dirname</dt>
+      </tt>
+      <dd>Set the content directory (a file system path). Objects and other files referenced in
+        the scene are listed relative to this path.</dd>
+      <tt>
+      <dt><br>
+        FirstFrame <strong>n</strong>frame<br>
+        LastFrame <strong>n</strong>frame<br>
+        FrameStep <strong>n</strong>frames</dt>
+      </tt>
+      <dd>Set the frame range and step size for rendering.</dd>
+      <tt>
+      <dt><br>
+        FramesPerSecond <strong>g</strong>fps</dt>
+      </tt>
+      <dd>Set the playback speed of the animation. This is used to convert between frame numbers
+        and elapsed time in seconds.</dd>
+      <tt>
+      <dt><br>
+        AutoFrameAdvance</dt>
+      </tt>
+      <dd>Toggle the Auto Frame Advance feature. During rendering with this turned off, the user
+        must confirm before each frame is rendered.</dd>
+      <tt>
+      <dt><br>
+        EnableVIPER</dt>
+      </tt>
+      <dd>Enable or disable the VIPER (Virtual Interactive Preview Render) system. Enabling VIPER
+        allows it to store buffers from the most recently rendered frame, but doesn't open the
+        VIPER window.</dd>
+      <tt>
+      <dt><br>
+        RayTraceShadows<br>
+        RayTraceReflection<br>
+        RayTraceRefraction<br>
+        RayTraceTransparency</dt>
+      </tt>
+      <dd>Toggle raytracing of shadows, reflection, refraction and transparency.</dd>
+      <tt>
+      <dt><br>
+        RenderFrame<br>
+        RenderSelected<br>
+        RenderScene</dt>
+      </tt>
+      <dd>Render the current frame, render only the currently selected objects in the frame, or
+        render all frames.</dd>
+    </dl>
+    <p><a name="navigation"><strong>Navigation</strong></a></p>
+    <p>These commands are concerned with the user's navigation within Layout's interface, but
+    being able to set the current frame and animate the display is also useful to plug-ins.
+    The current frame is available from the <a href="../globals/intinfo.html">Interface Info</a>
+    global as the current time. Use the <tt>framesPerSecond</tt> field from the <a
+    href="../globals/sceneinf.html">Scene Info</a> global to convert this to a frame number.</p>
+    <p>Some of these commands operate on a single view pane, the one that currently contains
+    the mouse cursor.<dl>
+      <tt>
+      <dt>GoToFrame <strong>n</strong>frame<br>
+        PreviousFrame<br>
+        NextFrame<br>
+        PreviousKey<br>
+        NextKey</dt>
+      </tt>
+      <dd>Shuttle the display to a specific frame, an adjacent frame, or the next or previous
+        frame containing a motion key.</dd>
+      <tt>
+      <dt><br>
+        Refresh<br>
+        RefreshNow</dt>
+      </tt>
+      <dd>Tell Layout to recompute motions and geometry. After changing the current frame,
+        plug-ins that bake geometry can issue the <tt>RefreshNow</tt> command so that vertex
+        positions are updated immediately. By default, <tt>Refresh</tt> runs during idle time,
+        which won't occur while a plug-in's code is executing.</dd>
+      <tt>
+      <dt><br>
+        Redraw<br>
+        RedrawNow</dt>
+      </tt>
+      <dd>Redraw the display. Like <tt>RefreshNow</tt>, <tt>RedrawNow</tt> executes immediately
+        rather than waiting for idle time. But the draw commands by themselves don't cause motions
+        and geometry to be recomputed.</dd>
+      <tt>
+      <dt><br>
+        PlayForward<br>
+        PlayBackward<br>
+        Pause</dt>
+      </tt>
+      <dd>Animate the display, or make it stop animating.</dd>
+      <tt>
+      <dt><br>
+        PreviewFirstFrame <strong>n</strong>frame<br>
+        PreviewLastFrame <strong>n</strong>frame<br>
+        PreviewFrameStep <strong>n</strong>frames</dt>
+      </tt>
+      <dd>Set the range of frames and the frame step for animating the display. The frame range
+        also affects the range of frames that are accessible to the user through the frame shuttle
+        control.</dd>
+      <tt>
+      <dt><br>
+        MakePreview<br>
+        PlayPreview<br>
+        FreePreview<br>
+        LoadPreview<br>
+        SavePreview</dt>
+      </tt>
+      <dd>Manage pre-rendered previews. These store the animated display as an image sequence.</dd>
+      <tt>
+      <dt><br>
+        ClearAudio<br>
+        LoadAudio<br>
+        PlayAudio</dt>
+      </tt>
+      <dd>Manage Layout's audio track.</dd>
+      <tt>
+      <dt><br>
+        FractionalFrames</dt>
+      </tt>
+      <dd>When this toggle is set, Layout allows the user to move the frame shuttle to non-integer
+        frame numbers.</dd>
+      <tt>
+      <dt><br>
+        CenterMouse</dt>
+      </tt>
+      <dd>Center a view over the current mouse position.</dd>
+      <tt>
+      <dt><br>
+        CenterItem</dt>
+      </tt>
+      <dd>Center a view over the position of the selected item. This is a toggle that causes the
+        view to remain centered on the item while it's being moved.</dd>
+      <tt>
+      <dt><br>
+        FitAll<br>
+        FitSelected</dt>
+      </tt>
+      <dd>Scale and move a view so that it contains all items or all selected items.</dd>
+      <tt>
+      <dt><br>
+        ZoomIn<br>
+        ZoomOut<br>
+        ZoomInX2<br>
+        ZoomOutX2</dt>
+      </tt>
+      <dd>Scale a view. The <tt>X2</tt> versions scale the view by a factor twice as large.</dd>
+    </dl>
+    <p><a name="display"><strong>Display</strong></a></p>
+    <p>These commands set display options. Many of these can be read from the <a
+    href="../globals/intinfo.html">Interface Info</a> global. As with some navigation
+    commands, many of these commands operate on the view pane that contains the mouse cursor. <dl>
+      <tt>
+      <dt>GridSize <strong>g</strong>size<br>
+        IncreaseGrid<br>
+        DecreaseGrid</dt>
+      </tt>
+      <dd>Set the grid size, or scale it in approximately logarithmic steps: 1, 2, 5, 10, 20, 50,
+        and so on. The grid size is the interval in meters between grid lines in the display. The
+        scale of the view is relative to this size, so the entire scene (but not the grid) will <em>appear
+        to</em> grow or shrink in the view panes as this number is changed.</dd>
+      <tt>
+      <dt><br>
+        DynamicUpdate <strong>n</strong>level</dt>
+      </tt>
+      <dd>Set the amount of display interactivity. The level can be any of the values that are
+        valid for the <a href="../globals/intinfo.html">Interface Info</a> <tt>dynaUpdate</tt>
+        field.</dd>
+      <tt>
+      <dt><br>
+        ShowMotionPaths<br>
+        ShowHandles<br>
+        ShowIKChains<br>
+        ShowCages<br>
+        ShowSafeAreas<br>
+        ShowFieldChart<br>
+        ShowTargetLines</dt>
+      </tt>
+      <dd>Toggle the drawing of these display components.</dd>
+      <tt>
+      <dt><br>
+        BoundingBoxThreshold <strong>n</strong>threshold</dt>
+      </tt>
+      <dd>Set the minimum number of points at which an object will be drawn initially as a
+        bounding box. Lower numbers improve interactivity, but plug-ins that bake geometry
+        transformations may need to set this above the number of points in the object they're
+        baking. Otherwise only the bounding box vertex positions will be computed by Layout.</dd>
+      <tt>
+      <dt><br>
+        TopView<br>
+        BottomView<br>
+        BackView<br>
+        FrontView<br>
+        RightView<br>
+        LeftView<br>
+        XYView<br>
+        XZView<br>
+        ZYView<br>
+        PerspectiveView<br>
+        LightView<br>
+        CameraView<br>
+        SchematicView</dt>
+      </tt>
+      <dd>Set the type of view in a view pane. The first six are orthographic views in the
+        direction of the world -Y, +Y, -Z, +Z, -X and +X axes, respectively. <tt>XYView</tt> (X
+        increasing to the right on the display, Y increasing upwards) is a synonym for <tt>BackView</tt>.
+        <tt>XZView</tt> (X right, Y up) is a synonym for <tt>TopView</tt>, and <tt>ZYView</tt> (Z
+        right, Y up) is a synonym for <tt>RightView</tt>. The light and camera views look through
+        the selected light and camera. The schematic view is a diagram of the parenting hierarchy.</dd>
+      <tt>
+      <dt><br>
+        ViewLayout <strong>n</strong>layout<br>
+        PreviousViewLayout<br>
+        NextViewLayout<br>
+        SingleView</dt>
+      </tt>
+      <dd>Select a view layout, the arrangement of up to four view panes. The layout indexes are <table
+        border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="12">&nbsp; </td>
+          </tr>
+          <tr>
+            <td width="23" align="center">0</td>
+            <td width="23" align="center">1</td>
+            <td width="23" align="center">2</td>
+            <td width="23" align="center">3</td>
+            <td width="23" align="center">4</td>
+            <td width="23" align="center">5</td>
+            <td width="23" align="center">6</td>
+            <td width="23" align="center">7</td>
+            <td width="23" align="center">8</td>
+            <td width="23" align="center">9</td>
+            <td width="23" align="center">10</td>
+            <td width="23" align="center">11</td>
+          </tr>
+          <tr>
+            <td width="276" align="center" colspan="12"><img width="268" height="13"
+            src="../images/layouts.gif"> </td>
+          </tr>
+        </table>
+        <p><tt>SingleView</tt> is a synonym for <tt>ViewLayout 0</tt>.</p>
+      </dd>
+      <tt>
+      <dt>SaveViewLayout</dt>
+      </tt>
+      <dd>Make the current view layout the default.</dd>
+      <tt>
+      <dt><br>
+        Layout_SetWindowPos <strong>n</strong>X <strong>n</strong>Y<br>
+        Scene_SetWindowPos <strong>n</strong>X <strong>n</strong>Y<br>
+        Item_SetWindowPos <strong>n</strong>X <strong>n</strong>Y</dt>
+      </tt>
+      <dd>Set the position of Layout's main window and the Scene Editor and Item Properties
+        panels. The arguments are the screen coordinates of the upper left corner.</dd>
+      <tt>
+      <dt><br>
+        Layout_SetWindowSize <strong>n</strong>width <strong>n</strong>height<br>
+        Scene_SetWindowSize <strong>n</strong>width <strong>n</strong>height</dt>
+      </tt>
+      <dd>Set the dimensions of Layout's main window and the Scene Editor panel.</dd>
+      <tt>
+      <dt><br>
+        HideToolbar</dt>
+      </tt>
+      <dd>Toggle the visibility of the toolbar (the vertical strip of buttons next to the view
+        area).</dd>
+      <tt>
+      <dt><br>
+        AddButton <strong>s</strong>command <strong>s</strong>group</dt>
+      </tt>
+      <dd>Add a button to the toolbar or one of the other menu areas. The <tt>group</tt> is the
+        name of the menu group in which the button will be added.</dd>
+      <tt>
+      <dt><br>
+        AlertLevel <strong>n</strong>level</dt>
+      </tt>
+      <dd>Set the alert level. This controls the method used to display warning, error and
+        informational messages. The level can be any of the values returned by the <a
+        href="../globals/intinfo.html">Interface Info</a> <tt>alertLevel</tt> function.</dd>
+      <tt>
+      <dt><br>
+        AutoConfirm <strong>n</strong>on_off</dt>
+      </tt>
+      <dd>Set the auto-confirm switch. When this is turned on, confirmation dialogs that would
+        otherwise be displayed to the user are suppressed. Plug-ins can use this to issue a large
+        number of commands without inundating the user with requests to confirm each operation.
+        Remember to turn it off again when you no longer need it.</dd>
+    </dl>
+    <p><a name="tools"><strong>Tools</strong></a></p>
+    <p>These enable specific tools. Once a tool is active, the user's mouse movements and
+    button clicking are interpreted as operations of the tool. These are available as commands
+    primarily so that the user can map them to shortcut keys, but a few of the commands
+    (Reset, for example) use the active tool as a context.</p>
+    <pre>MoveTool
+RotateTool
+SizeTool
+StretchTool
+SquashTool
+MovePivotTool
+RotatePivotTool
+MovePathTool
+MorphAmountTool
+RestLengthTool
+ConeAngleTool
+CameraZoomTool
+AdjustRegionTool
+LightIntensityTool
+ChangeTool</pre>
+    <p><a name="panels"><strong>Panels</strong></a></p>
+    <p>These commands open or close panels.<dl>
+      <tt>
+      <dt>EditServer <strong>s</strong>class <strong>n</strong>index<br>
+        LastPluginInterface</dt>
+      </tt>
+      <dd>Display a plug-in's interface. The <tt>class</tt> is the first field of the plug-in's <a
+        href="../server.html#servdesc">ServerRecord</a>, and the <tt>index</tt> refers to the list
+        of applied servers of a given class. The first server in each list has an index of 1. Use
+        the <a href="../globals/iteminfo.html">Item Info</a> global to examine each item's server
+        lists.</dd>
+      <tt>
+      <dt><br>
+        HideWindows</dt>
+      </tt>
+      <dd>Toggle the visibility of open panels.</dd>
+      <tt>
+      <dt><br>
+        About</dt>
+      </tt>
+      <dd>Display the About dialog.</dd>
+      <tt>
+      <dt><br>
+        SceneEditor<br>
+        GraphEditor<br>
+        SurfaceEditor<br>
+        ImageEditor<br>
+        ItemProperties<br>
+        DisplayOptions<br>
+        GeneralOptions<br>
+        FlareOptions<br>
+        VolumetricLightingOptions<br>
+        MotionOptions<br>
+        PreviewOptions<br>
+        RenderOptions<br>
+        NetRender<br>
+        Backdrop<br>
+        Volumetrics<br>
+        Compositing<br>
+        ImageProcessing<br>
+        AboutOpenGL<br>
+        VIPER<br>
+        Presets<br>
+        Statistics<br>
+        EditMenus<br>
+        EditKeys<br>
+        EditPlugins<br>
+        MasterPlugins<br>
+        Generics<br>
+        CommandHistory<br>
+        CommandInput <strong>s</strong>command</dt>
+      </tt>
+      <dd>Open one of the panels, or close the panel if it's open.</dd>
+    </dl>
+    <p><a name="misc"><strong>Miscellaneous</strong></a></p>
+    <p>These commands don't easily fit into any of the other categories. <dl>
+      <tt>
+      <dt>Model</dt>
+      </tt>
+      <dd>Switch to Modeler. If Modeler isn't running, it will be started. If the Hub isn't
+        running, the command has no effect.</dd>
+      <tt>
+      <dt><br>
+        Synchronize</dt>
+      </tt>
+      <dd>Synchronize objects in the scene with Modeler (reload objects that have been modified in
+        Modeler).</dd>
+      <tt>
+      <dt><br>
+        AddPlugins <strong>s</strong>filename</dt>
+      </tt>
+      <dd>Install the plug-ins found in the file.</dd>
+      <tt>
+      <dt><br>
+        SaveCommandList</dt>
+      </tt>
+      <dd>Save a list of these commands as a text file. The list will also contain all of the
+        installed <a href="../classes/generic.html">LayoutGeneric</a> class plug-ins, as well as
+        commands for some of the editors.</dd>
+      <tt>
+      <dt><br>
+        Quit</dt>
+      </tt>
+      <dd>Quit Layout.</dd>
+    </dl>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

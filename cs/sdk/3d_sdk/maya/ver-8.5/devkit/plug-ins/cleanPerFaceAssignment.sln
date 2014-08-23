@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cleanPerFaceAssignment", "cleanPerFaceAssignment.vcproj", "{6416330F-3FF2-4515-937C-246BDE1DCA64}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{6416330F-3FF2-4515-937C-246BDE1DCA64}.Debug.ActiveCfg = Debug|Win32
+		{6416330F-3FF2-4515-937C-246BDE1DCA64}.Debug.Build.0 = Debug|Win32
+		{6416330F-3FF2-4515-937C-246BDE1DCA64}.Release.ActiveCfg = Release|Win32
+		{6416330F-3FF2-4515-937C-246BDE1DCA64}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

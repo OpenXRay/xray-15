@@ -1,0 +1,181 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "cammap.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_WSMOD DIALOG DISCARDABLE  0, 0, 108, 95
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Current Camera Object",IDC_STATIC,3,3,102,45,WS_GROUP
+    LTEXT           "None",IDC_CAMERA_NAME,10,15,89,8
+    CONTROL         "",IDC_PICK,"CustButton",WS_GROUP | WS_TABSTOP,9,29,90,
+                    14
+    GROUPBOX        "Channel:",IDC_STATIC,3,51,102,41,WS_GROUP
+    CONTROL         "Map Channel:",IDC_MAP_CHAN_1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,9,63,56,10
+    CONTROL         "Vertex Color Channel",IDC_MAP_CHAN_0,"Button",
+                    BS_AUTORADIOBUTTON,9,76,81,10
+    CONTROL         "",IDC_MAP_CHAN_EDIT,"CustEdit",WS_GROUP | WS_TABSTOP,67,
+                    63,25,10
+    CONTROL         "",IDC_MAP_CHAN_SPIN,"SpinnerControl",WS_GROUP,92,63,7,
+                    10
+END
+
+IDD_OBJ DIALOG DISCARDABLE  0, 0, 108, 31
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CTEXT           "- Any Geometric Object",IDC_STATIC,17,10,74,8
+END
+
+IDD_MOD DIALOG DISCARDABLE  0, 0, 108, 95
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Current Camera Object",IDC_STATIC,3,3,102,45,WS_GROUP
+    LTEXT           "None",IDC_CAMERA_NAME,10,15,89,8
+    CONTROL         "",IDC_PICK,"CustButton",WS_GROUP | WS_TABSTOP,9,29,90,
+                    14
+    GROUPBOX        "Channel:",IDC_STATIC,3,51,102,41,WS_GROUP
+    CONTROL         "Map Channel:",IDC_MAP_CHAN_1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,9,63,56,10
+    CONTROL         "Vertex Color Channel",IDC_MAP_CHAN_0,"Button",
+                    BS_AUTORADIOBUTTON,9,76,81,10
+    CONTROL         "",IDC_MAP_CHAN_EDIT,"CustEdit",WS_GROUP | WS_TABSTOP,67,
+                    63,25,10
+    CONTROL         "",IDC_MAP_CHAN_SPIN,"SpinnerControl",WS_GROUP,92,63,7,
+                    10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_WSMOD, DIALOG
+    BEGIN
+        LEFTMARGIN, 3
+        RIGHTMARGIN, 105
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 92
+    END
+
+    IDD_OBJ, DIALOG
+    BEGIN
+        LEFTMARGIN, 3
+        RIGHTMARGIN, 105
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 28
+    END
+
+    IDD_MOD, DIALOG
+    BEGIN
+        LEFTMARGIN, 3
+        RIGHTMARGIN, 105
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 92
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "cammap.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CAMMAPCLASSNAME     "CameraMap"
+    IDS_CAMERAMAP           "Camera Map"
+    IDS_CAMERAMAPPING       "Camera Mapping"
+    IDS_MAXSURFACE          "MAX SURFACE"
+    IDS_CAMERAMAPBINDING    "Camera Map Binding"
+    IDS_CAMERAMAPMODIFIER   "Camera Map Modifier"
+    IDS_CAMMAPTITLE         "Camera mapping modifier and world space modifier (Discreet)"
+    IDS_CAMMAPOBJECT        "Camera Mapping Object"
+    IDS_CAMERAMAPPINGMODIFIER "Camera Mapping Modifier"
+    IDS_NONE                "None"
+    IDS_PICKCAMERA          "Pick Camera"
+    IDS_ILLEGALCAM          "Illegal Camera"
+    IDS_SOT                 "Supports Objects of Type"
+    IDS_SHOULDRESET         "Do you also want to reset the Camera Map modifier\nto inherit the mapping from the new channel?\n\nChanges made within the Camera Map modifier will be lost."
+    IDS_SETCHANNEL          "Set UVW Channel"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

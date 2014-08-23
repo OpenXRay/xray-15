@@ -1,0 +1,230 @@
+<html>
+
+<head>
+<title>6.0B Changes</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="96" align="left"><a href="65.html"><img width="64" height="20" border="0"
+    src="images/navrt.gif" alt="6.5 Changes"></a></td>
+    <td width="504" align="right"><a href="index.html"><img width="230" height="20" border="0"
+    src="images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>6.0B Changes</h3>
+    <p><small>May 11, 2000</small> </p>
+    <p>This is a list of the changes in the LightWave 6.0B patch that affect the SDK. In most
+    cases, the changes are additions to global services that won't affect the operation of
+    existing code. In some cases, however, you will have to recompile, and in a few, it may be
+    necessary to rewrite a small amount of your code that was written prior to the release of
+    the patch.</p>
+    <p><tt><a href="../include/lwenvel.h">lwenvel.h</a></tt><ul>
+      <li>Added <tt>server</tt> function to the <a href="globals/chaninfo.html">Channel Info</a>
+        global.</li>
+    </ul>
+    <p><tt><a href="../include/lwfilter.h">lwfilter.h</a></tt><ul>
+      <li>Added <tt>LWBUF_MOTION_X</tt> and <tt>LWBUF_MOTION_Y</tt> for vector blur feature. The
+        buffers will be filled in with the image coordinate movement at each pixel during the time
+        the shutter was open. For example, if part of an object has moved 11 pixels right and 6
+        pixels down since the previous frame, and the blur length is 50%, the motion buffers will
+        contain 5.5 and 3.0 in that part of the frame. Camera motion is also taken into account.
+        This information can be used by filters to perform a Photoshop-style vector motion blur.</li>
+    </ul>
+    <p><tt><a href="../include/lwgeneric.h">lwgeneric.h</a></tt><ul>
+      <li><a href="classes/generic.html">Generic</a> plug-ins are now first activated with a
+        version number of 4. If that doesn't work, the <tt>saveScene</tt> function is replaced
+        with one that saves old format scenes, and version numbers 3, 2, and 1 are tried.</li>
+    </ul>
+    <p><tt><a href="../include/lwhost.h">lwhost.h</a></tt><ul>
+      <li>Added new dialog types to <a href="globals/message.html">Message Functions</a> global,
+        incremented the service name. (3/23)</li>
+      <li>The new <a href="globals/locale.html">Locale Info</a> global has been implemented (but
+        the old Language ID global is still supported as well).</li>
+    </ul>
+    <p><tt><a href="../include/lwimage.h">lwimage.h</a></tt><ul>
+      <li>Added <tt>sceneLoad</tt> and <tt>sceneSave</tt> to <a href="globals/imglist.html">Image
+        List</a> global, now &quot;Image List 2&quot;.</li>
+      <li>Changed LWImageID to LWPixmapID in <a href="globals/imgutil.html">Image Utility</a>
+        functions.</li>
+    </ul>
+    <p><tt><a href="../include/lwmaster.h">lwmaster.h</a></tt><ul>
+      <li>Added <tt>LWMAST_LAYOUT</tt> type for <a href="classes/master.html">masters</a> that
+        survive scene clearing.</li>
+    </ul>
+    <p><tt><a href="../include/lwmodeler.h">lwmodeler.h</a></tt><ul>
+      <li><tt>mode</tt> and <tt>vmap</tt> functions added to the <a href="globals/modstate.html">state
+        query</a> global, incremented the service name.</li>
+    </ul>
+    <p><tt><a href="../include/lwpanel.h">lwpanel.h</a></tt><ul>
+      <li>fixed <tt>PAN_SETDATA</tt>, <tt>PAN_SETDRAW</tt>, <tt>PAN_SETKEYS</tt>; touched up <tt>PAN_SETH</tt>,
+        <tt>MOVE_PAN</tt>; added <tt>PAN_SETW</tt>.</li>
+    </ul>
+    <p><tt><a href="../include/lwpreview.h">lwpreview.h</a></tt><ul>
+      <li>Changed <tt>close</tt> to accept void arg.</li>
+    </ul>
+    <p><tt><a href="../include/lwprtcl.h">lwprtcl.h</a></tt><ul>
+      <li>New API.</li>
+      <li>Removed obsolete functions <tt>setDraw</tt>, <tt>setMesh</tt>, <tt>remParticle</tt>.</li>
+    </ul>
+    <p><tt><a href="../include/lwrender.h">lwrender.h</a></tt><ul>
+      <li>Only items matching the current edit mode are now eligible to have their <tt>LWITEMF_SELECTED</tt>
+        bit set by the <a href="globals/intinfo.html">Interface Info</a> <tt>itemFlags</tt>
+        function.</li>
+      <li>Added <tt>LWIP_PIVOT_ROT</tt> to let plug-ins get pivot rotation.</li>
+      <li>If the <a href="globals/iteminfo.html">Item Info</a> <tt>param</tt> function is called
+        while the user is dragging items in a viewport and the time argument matches the current
+        time, the function can now return temporary, non-keyframed data. One benefit of this
+        change is that expressions can react to interactively moved items even if Auto Key is
+        turned off.</li>
+      <li>changed flag name to <tt>LWOBJF_UNSEEN_BY_CAMERA</tt>.</li>
+      <li>A <tt>server</tt> function has been added to the <a href="globals/iteminfo.html">Item
+        Info</a> global. It takes an item ID, a class name, and an index (which starts with one,
+        as in the tag functions). The return value is the name of whatever server is applied in
+        the specified &quot;slot&quot; (or NULL if there isn't one). Naturally the ID is ignored
+        for classes like volumetrics, filters, etc.</li>
+      <li>Added <tt>flags</tt> and <tt>fog</tt> to <a href="globals/objinfo.html">Object Info</a>.</li>
+      <li>Corrected &quot;LW Comp Info&quot; to &quot;LW Compositing Info&quot;.</li>
+      <li>Added <tt>renderCamera</tt> to <a href="globals/sceneinf.html">LWSceneInfo</a>
+        structure.</li>
+      <li>Added <tt>type</tt>, <tt>color</tt>, and <tt>squeeze</tt> to <a
+        href="globals/bkdpinfo.html">LWBackdropInfo</a> structure.</li>
+      <li>A function to get the ID of the camera used for rendering has been added to the <a
+        href="globals/sceneinf.html">Scene Info</a> global. It accepts a time argument in order to
+        be ready for automated camera switching in the future.</li>
+      <li>Added <tt>serverFlags</tt> and <tt>controller</tt> to <a href="globals/iteminfo.html">Item
+        Info</a>.</li>
+      <li>The first frame, last frame, and step size used by the frame slider and by Layout
+        previews can now be obtained through the <a href="globals/intinfo.html">Interface Info</a>
+        global.</li>
+      <li>The vectors returned by the <a href="globals/iteminfo.html">Item Info</a> <tt>param</tt>
+        function now take pivot rotation into account.</li>
+      <li>Attempts by plug-ins to look up information about their items while in the process of
+        being created due to cloning should no longer fail.</li>
+    </ul>
+    <p><tt><a href="../include/lwshader.h">lwshader.h</a></tt><ul>
+      <li>Added <tt>polygonID</tt> to <a href="classes/shader.html">LWShaderAccess</a>.</li>
+      <li>Added <tt>vertsWPos</tt> to <a href="classes/shader.html">LWShaderAccess</a>.</li>
+    </ul>
+    <p><tt><a href="../include/lwshelf.h">lwshelf.h</a></tt><ul>
+      <li>New API.</li>
+      <li>Removed closed notification function typedef.</li>
+      <li>Removed closed notification from shelf subscription.</li>
+      <li>Added <tt>isOpen</tt>.</li>
+    </ul>
+    <p><tt><a href="../include/lwsurf.h">lwsurf.h</a></tt><ul>
+      <li>The <tt>byName</tt> function now has an additional object name argument. If the object
+        name is set to NULL, the function will return all the surfaces that share the same name,
+        behaving as before.</li>
+    </ul>
+    <p><tt><a href="../include/lwtxtr.h">lwtxtr.h</a></tt><ul>
+      <li><tt>layerEnvGrp</tt> renamed <tt>layerEnvGroup</tt>.</li>
+      <li>Input parameter type defines added.</li>
+      <li><tt>polygonID</tt> added to <a href="globals/txtrfunc.html">LWMicropol</a> structure.</li>
+      <li><tt>setParam</tt> and <tt>getParam</tt> functions added.</li>
+      <li>Added <tt>evaluateUV</tt>, which sets the UV values given the 3D position of the point
+        in world and local coordinates, plus the world and local dominant axis. This does the
+        coordinate transfromation and projection from 3D to 2D.</li>
+      <li>Added new tags to set and get images and vmaps.</li>
+      <li>Added <tt>vertsWPos</tt> to LWMicropol.</li>
+      <li>Added <tt>setEnvGroup</tt> and <tt>envGroup</tt> functions.</li>
+      <li>Added <tt>layerType</tt> function.</li>
+      <li>Added tags for getting and setting opacity, reference object, repeat options, pixel
+        blending, AA, AA strength.</li>
+    </ul>
+    <p><tt><a href="../include/lwtxtred.h">lwtxtred.h</a></tt><ul>
+      <li><tt>setParam</tt> and <tt>getParam</tt> functions removed (put into lwtxtr.h).</li>
+      <li>Added <tt>refresh</tt>, which refreshes the editor if some parameters have been changed
+        without user interaction. The clientID should be NULL if trying to update surface textures
+        (= default client). That's what texture guide is doing.</li>
+      <li>Added <tt>currentLayer</tt>, which gets the currently selected layer in the texture
+        editor. If client is NULL, uses surface's texture editor.</li>
+    </ul>
+    <p><tt><a href="../include/lwvolume.h">lwvolume.h</a></tt><ul>
+      <li>Removed adaptive flag.</li>
+      <li>The <tt>flags</tt> function of each <a href="classes/volume.html">volumetric</a> plug-in
+        is now called to determine whether to include it in reflection, refraction, or shadow
+        computations.</li>
+      <li>The <tt>LWVEF_RAYTRACE</tt> bit in the LWVolumeAccess structure is now set when
+        evaluating volumetric plug-ins for a ray.</li>
+    </ul>
+    <p><tt><a href="../include/lwxpanel.h">lwxpanel.h</a></tt><ul>
+      <li>Added focus event code.</li>
+      <li>Added refresh codes.</li>
+      <li>Added <tt>XpXREQCFG</tt>, <tt>XpBORDER</tt>, <tt>XpDLGTYPE</tt> hints.</li>
+    </ul>
+    <p><a href="commands/layout.html">Commands: Layout</a><ul>
+      <li>The usage string for the <tt>AddPlugins</tt> command now shows that it accepts a
+        filename argument.</li>
+      <li>The <tt>AddToSelection</tt> and <tt>RemoveFromSelection</tt> commands have been added to
+        allow plug-ins and scripts to create and manage multiple selections. They accept a
+        hexadecimal item ID as an argument, and the usual selection rules apply (for example, if
+        only one item of the current type is selected, it can't be deselected).</li>
+      <li>Other new commands include <tt>SubdivisionOrder</tt> and <tt>ResolutionMultiplier</tt>,
+        which work just like the identically named scene file lines.</li>
+      <li>A <tt>RemoveServer</tt> command has been added. Like <tt>ApplyServer</tt>, it takes a
+        class name argument, but it differs in that it takes an index rather than a server name
+        (in case there are multiple instances of the same server). Consistent with the <a
+        href="globals/iteminfo.html">Item Info</a> <tt>server</tt> function, these indices count
+        from one. Item-specific plug-ins like <a href="classes/itemmot.html">motion</a> and <a
+        href="classes/displace.html">displacement</a> handlers are removed from the current item.</li>
+    </ul>
+    <p><a href="commands/modeler.html">Commands: Modeler</a><ul>
+      <li>The <tt>SaveCommandList</tt> command in Layout has been duplicated in Modeler.</li>
+      <li>A new batch command <tt>maketesball2</tt> has been added which takes the new segments
+        parameter for tesselated spheres. The old <tt>maketesball</tt> command still works using
+        the old level parameter. The segments parameter directly sets the number of segments along
+        the the edges between the 12 polyhedral vertices. Power of two segment values are
+        equivalent to the old level values: 1 = level 0, 2 = level 1, 4 = level 2, 8 = level 3, 16
+        = level 4, 32 = level 5, etc.</li>
+      <li>A new <tt>maketext2</tt> batch command has been added which accepts alignment settings.
+        It also takes fonts as zero-based indices, fixing a long lived bug.</li>
+      <li>Added more arguments to the <tt>bevel</tt> batch command to bring it more in line with
+        the options of the Bevel tool.</li>
+      <li>There are new plug-in commands for selecting the current object and for setting the vmap
+        for the current morph, texture or weight map.</li>
+    </ul>
+    <p><a href="commands/common.html">Commands: Surfaces</a><ul>
+      <li>The <tt>Surf_SetSurf</tt> command now has an additional object name argument. This
+        specifies in which object library the surface should be set (there can be multiple
+        surfaces with the same name in different objects).</li>
+      <li><tt>Surf_RemoveShader</tt> command now works this way: Removes all shaders that use the
+        specified name, and if name is NULL, removes all shaders.</li>
+    </ul>
+    <p><a href="commands/common.html">Commands: Envelopes</a><ul>
+      <li>Added <tt>Env_ApplyServer</tt> &lt;classname&gt; &lt;servername&gt;.</li>
+      <li>Added <tt>Env_RemoveServer</tt> &lt;clasname&gt; &lt;index&gt;.</li>
+    </ul>
+    <p><a href="../sample/">Sample Code</a><ul>
+      <li><a href="../sample/modlib/">modlib</a>: Added object name argument to <tt>mgGetSurfacesByName</tt>
+        in surface.c.</li>
+      <li><a href="../sample/rapts/">rapts</a>: Changed <tt>layerEnvGrp</tt> to <tt>layerEnvGroup</tt>.</li>
+    </ul>
+    <p>Miscellaneous<ul>
+      <li>A new Plug-in Options panel has been added. It contains the controls for <a
+        href="classes/generic.html">generic</a> and <a href="classes/master.html">master</a>
+        plug-ins that used to be on the General Options panel, as well as an Add Plug-ins button
+        and some UI ranch space for the masters.</li>
+      <li>There is now a dedicated options button which calls <tt>ServerInterface</tt> for the
+        current animation saver. This is intended to be the official way to edit compression
+        settings, etc. Saver plug-ins whose interfaces are in their <tt>load</tt> or <tt>open</tt>
+        functions should be rewritten.</li>
+      <li>The DirectoryType config file entry for images is now used as the default location for
+        image loading, replacing the ImagesDirectory line. Several other old config file lines
+        have also been discontinued in favor of new DirectoryType entries.</li>
+      <li>Envelopes for displacement and clip map channels are now added to the envelope groups of
+        the objects they belong to. This makes them appear in the right place in the Graph Editor
+        hierarchy.</li>
+    </ul>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

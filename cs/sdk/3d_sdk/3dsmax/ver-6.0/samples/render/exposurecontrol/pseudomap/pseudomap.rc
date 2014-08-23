@@ -1,0 +1,210 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PSEUDOEXPCTL DIALOG DISCARDABLE  0, 0, 211, 71
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Display",IDC_STATIC,3,3,202,24,WS_GROUP
+    CONTROL         "Colored",IDC_RS_COLORED,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,51,14,40,10
+    CONTROL         "Gray scale",IDC_RS_GRAYSCALE,"Button",
+                    BS_AUTORADIOBUTTON,111,14,49,10
+    CONTROL         "Automatic Minimum and Maximum",IDC_RS_AUTOMATIC,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,13,30,122,10
+    RTEXT           "Mi&nimum :",IDC_STATIC,8,43,36,8
+    CONTROL         "",IDC_RS_MINIMUM,"CustEdit",WS_GROUP | WS_TABSTOP,50,43,
+                    32,10
+    CONTROL         "0,255,0",IDC_RS_MINIMUMSPIN,"SpinnerControl",0x0,84,43,
+                    9,10
+    RTEXT           "&Maximum :",IDC_STATIC,103,43,36,8
+    CONTROL         "",IDC_RS_MAXIMUM,"CustEdit",WS_TABSTOP,145,43,32,10
+    CONTROL         "0,255,0",IDC_RS_MAXIMUMSPIN,"SpinnerControl",0x0,179,43,
+                    9,10
+    RTEXT           "&Physical Scale:",IDC_STATIC,28,57,62,8
+    CONTROL         "",IDC_RS_SCALE,"CustEdit",WS_TABSTOP,96,57,32,10
+    CONTROL         "0,255,0",IDC_RS_SCALESPIN,"SpinnerControl",0x0,130,57,9,
+                    10
+END
+
+IDD_PSEUDOMAP_MAINDIALOG DIALOGEX 0, 0, 212, 136
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Display Type",IDC_STATIC,4,4,100,68,WS_GROUP
+    LTEXT           "Quantity:",IDC_STATIC,8,22,29,8
+    COMBOBOX        IDC_MAIN_QUANTITY,40,20,60,32,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Style:",IDC_STATIC,8,38,18,8
+    COMBOBOX        IDC_MAIN_STYLE,40,36,60,32,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Scale:",IDC_STATIC,8,54,21,8
+    COMBOBOX        IDC_MAIN_SCALE,40,52,60,32,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Display Range",IDC_STATIC,108,4,100,68,WS_GROUP
+    CONTROL         "Automatic",IDC_MAIN_AUTOMATIC,"Button",BS_AUTOCHECKBOX | 
+                    NOT WS_VISIBLE | WS_TABSTOP,112,20,47,10
+    LTEXT           "Min.:",IDC_STATIC,112,38,16,8
+    CONTROL         "",IDC_MAIN_MINIMUM_EDIT,"CustEdit",WS_TABSTOP,132,37,32,
+                    10
+    CONTROL         "0,255,0",IDC_MAIN_MINIMUM_SPINNER,"SpinnerControl",0x0,
+                    166,37,9,10
+    LTEXT           "cd/m^2",IDC_MINIMUM_UNIT,180,38,26,8,0,
+                    WS_EX_TRANSPARENT
+    LTEXT           "Max.:",IDC_STATIC,112,54,18,8
+    CONTROL         "",IDC_MAIN_MAXIMUM_EDIT,"CustEdit",WS_TABSTOP,132,53,32,
+                    10
+    CONTROL         "0,255,0",IDC_MAIN_MAXIMUM_SPINNER,"SpinnerControl",0x0,
+                    166,53,9,9
+    LTEXT           "cd/m^2",IDC_MAXIMUM_UNIT,180,54,26,8,0,
+                    WS_EX_TRANSPARENT
+    RTEXT           "Physical Scale:",IDC_STATIC,76,81,49,8
+    CONTROL         "",IDC_PHYSICALSCALE_EDIT,"CustEdit",WS_TABSTOP,132,80,
+                    32,10
+    CONTROL         "0,255,0",IDS_PHYSICALSCALE_SPINNER,"SpinnerControl",
+                    WS_GROUP,166,80,9,10
+    LTEXT           "cd",IDC_PHYSICALSCALE_UNIT,180,81,8,8
+    CONTROL         "",IDC_COLOR_LEGEND,"CustImage",0x0,4,100,204,16
+    LTEXT           "0",IDC_LEGEND_0,4,118,24,8
+    CTEXT           "25",IDC_LEGEND_25,43,118,24,8
+    CTEXT           "50",IDC_LEGEND_50,94,118,24,8
+    CTEXT           "75",IDC_LEGEND_75,145,118,24,8
+    RTEXT           "100",IDC_LEGEND_100,184,118,24,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_PSEUDOMAP_MAINDIALOG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 211
+        BOTTOMMARGIN, 36
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_EXPCTL_LIBRARY      "Pseudo Color Radiance Map Library (Discreet)"
+    IDS_AUTOMATIC           "Automatic"
+    IDS_ACTIVE              "Active"
+    IDS_PROC_BG             "Process Background"
+    IDS_PARAM_CHANGE        "Pseudo Color Radiance Map Change"
+    IDS_MAXIMUM             "Maximum"
+    IDS_MINIMUM             "Minimum"
+    IDS_DISPLAY             "Display"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PSEUDO_EXP_CTL_PARAMETERS "Pseudo Color Madiance Map Parameters"
+    IDS_PSEUDO_EXP_CTL_TITLE "Pseudo Color Exposure Control"
+    IDS_QUANTITY            "Quantity"
+    IDS_PSEUDO_EXP_CTL_CLASS_NAME "Pseudo Color Exposure Control"
+    IDS_SCALE               "Physical Scale"
+    IDS_QUANTITY_ILLUMINANCE "Illuminance"
+    IDS_QUANTITY_LUMINANCE  "Luminance"
+    IDS_STYLE_COLORED       "Colored"
+    IDS_STYLE_GRAYSCALE     "Gray Scale"
+    IDS_SCALE_LOGARITHMIC   "Logarithmic"
+    IDS_SCALE_LINEAR        "Linear"
+    IDS_SCALE_FUNC          "Scale Function"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LUMINATION_PARAMS   "Luminance PB"
+    IDS_LUMINATION_RE       "Luminance Render Element"
+    IDS_ILLUMINATION_PARAMS "Illuminance PB"
+    IDS_ILLUMINATION_RE     "Illuminance Render Element"
+    IDS_ENABLED             "enabled"
+    IDS_FILTER_ON           "filter on"
+    IDS_ATMOSPHERE_ON       "atmosphere on"
+    IDS_SHADOW_ON           "shadows on"
+    IDS_ELEMENT_NAME        "element name"
+    IDS_BITMAP              "bitmap"
+    IDS_UNITSYSTEM_USED     "Unit System in Use"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

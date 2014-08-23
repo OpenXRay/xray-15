@@ -1,0 +1,88 @@
+<html>
+
+<head>
+<title>Globals: Font List</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="foginfo.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="Fog Info"></a></td>
+    <td width="96" align="left"><a href="gmempool.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Global Memory"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Font List</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwmodeler.h">lwmodeler.h</a></small></p>
+    <p>The font list global provides a set of functions for managing Modeler's internal list
+    of fonts.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWFontListFuncs *fontf;
+   fontf = global( LWFONTLISTFUNCS_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWFontListFuncs.</p>
+    <pre>   typedef struct st_LWFontListFuncs {
+      int          (*<strong>count</strong>) (void);
+      int          (*<strong>index</strong>) (const char *name);
+      const char * (*<strong>name</strong>)  (int index);
+      int          (*<strong>load</strong>)  (const char *filename);
+      void         (*<strong>clear</strong>) (int index);
+   } LWFontListFuncs;</pre>
+    <dl>
+      <dt><tt>numfonts = <strong>count</strong>()</tt></dt>
+      <dd>Returns the number of fonts in the list.</dd>
+      <dt><tt><br>
+        fontindex = <strong>index</strong>( fontname )</tt></dt>
+      <dd>Returns the list index for a named font, or -1 if a font of that name isn't in the list.</dd>
+      <dt><tt><br>
+        fontname = <strong>name</strong>( fontindex )</tt></dt>
+      <dd>Returns the name of a font given its list index, or NULL if the index is less than 0 or
+        greater than <tt>numfonts - 1</tt>.</dd>
+      <dt><tt><br>
+        fontindex = <strong>load</strong>( filename )</tt></dt>
+      <dd>Adds the Postscript Type 1 font to the list and returns its list index, or -1 if the
+        font couldn't be loaded. Since the font list is kept in an order that may differ from the
+        order in which fonts are added, a font added by <tt>load</tt> might be inserted anywhere
+        in the list, not just at the end, and fonts with higher indexes will be shifted downward
+        (incrementing their indexes).<p>Note that only Postscript fonts can be added to the list
+        in this way. TrueType fonts are made available to Modeler indirectly, through operating
+        system calls, rather than directly by reading their file contents.</p>
+      </dd>
+      <dt><tt><strong>clear</strong>( fontindex )</tt></dt>
+      <dd>Removes the font at the given index from the list. Fonts at higher indexes will be
+        shifted up (their indexes will decrement) to fill the gap left by the removed font.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>This code fragment loads the Postscript font Helvetica.</p>
+    <pre>   #include &lt;lwserver.h&gt;
+   #include &lt;lwmodeler.h&gt;
+
+   LWFontListFuncs *fontf;
+   int index;
+
+   fontf = global( LWFONTLISTFUNCS_GLOBAL, GFUSE_TRANSIENT );
+   if ( !fontf ) return AFUNC_BADGLOBAL;
+
+   /* You can get the default fonts directory from the
+      <a
+href="dirinfo.html">Directory Info</a> global. */
+
+   index = fontf-&gt;load( &quot;Helvetica.pfd&quot; );
+</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

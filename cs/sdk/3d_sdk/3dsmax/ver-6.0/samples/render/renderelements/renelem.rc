@@ -1,0 +1,487 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "renElemRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+#include "buildver.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "renElemRes.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""buildver.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+#if defined(APSTUDIO_INVOKED) || !defined(TABBED_RENDER_DIALOG)
+IDD_BLEND_ELEMENT DIALOG  0, 0, 281, 50
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Ambient",IDC_AMBIENT_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,24,4,60,10
+    CONTROL         "Diffuse",IDC_DIFFUSE_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,24,20,59,10
+    CONTROL         "Specular",IDC_SPECULAR_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,24,36,61,10
+    CONTROL         "Self-Illumination",IDC_EMISSION_ON,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,85,4,71,10
+    CONTROL         "Reflection",IDC_REFLECTION_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,85,20,72,10
+    CONTROL         "Refraction",IDC_REFRACTION_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,85,36,72,10
+    CONTROL         "Apply Shadows",IDC_SHADOW_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,159,20,100,10
+    CONTROL         "Apply Atmosphere",IDC_ATMOS_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,159,4,94,10
+    CONTROL         "Paint",IDC_PAINT_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,159,36,32,10
+    CONTROL         "Ink",IDC_INK_ON,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    236,36,32,10
+END
+#endif
+
+#if defined(APSTUDIO_INVOKED) || !defined(TABBED_RENDER_DIALOG)
+IDD_Z_ELEMENT DIALOG  0, 0, 281, 34
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Z Max:",IDC_STATIC,175,12,22,8
+    LTEXT           "Z Min:",IDC_STATIC,79,12,22,8
+    CONTROL         "",IDC_ZMAX_EDIT,"CustEdit",WS_TABSTOP,200,12,50,10
+    CONTROL         "",IDC_ZMAX_SPIN,"SpinnerControl",0x0,250,12,7,10
+    CONTROL         "",IDC_ZMIN_EDIT,"CustEdit",WS_TABSTOP,101,12,50,10
+    CONTROL         "",IDC_ZMIN_SPIN,"SpinnerControl",0x0,151,12,7,10
+END
+#endif
+
+IDD_BLEND_BAKE_ELEMENT DIALOG  0, 0, 281, 42
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Ambient",IDC_AMBIENT_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,80,7,60,10
+    CONTROL         "Diffuse",IDC_DIFFUSE_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,80,24,59,10
+    CONTROL         "Specular",IDC_SPECULAR_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,143,7,61,10
+    CONTROL         "Self-Illumination",IDC_EMISSION_ON,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,143,24,71,10
+    CONTROL         "Reflection",IDC_REFLECTION_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,218,7,63,10
+    CONTROL         "Refraction",IDC_REFRACTION_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,218,24,62,10
+    CONTROL         "Lighting On",IDC_LIGHTING_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,7,59,10
+    CONTROL         "Shadows On",IDC_SHADOWS_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,24,59,10
+END
+
+IDD_LIGHT_SHADOW DIALOG  0, 0, 281, 22
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Lighting On",IDC_LIGHTING_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,49,6,59,10
+    CONTROL         "Shadows On",IDC_SHADOWS_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,163,6,59,10
+END
+
+IDD_SHADOW DIALOG  0, 0, 281, 22
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Shadows On",IDC_SHADOWS_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,110,6,59,10
+END
+
+IDD_LIGHT_BAKE DIALOG  0, 0, 281, 27
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Shadows On",IDC_SHADOWS_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,201,9,59,10
+    CONTROL         "Indirect Light On",IDC_INDIRECT_ON,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,109,9,75,10
+    CONTROL         "Direct Light On",IDC_DIRECT_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,18,9,65,10
+END
+
+#if defined(APSTUDIO_INVOKED) || !defined(TABBED_RENDER_DIALOG)
+IDD_DIFFUSE_ELEMENT DIALOG  0, 0, 281, 23
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Lighting",IDC_LIGHTING,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,110,4,60,10
+END
+#endif
+
+#if defined(APSTUDIO_INVOKED) || !defined(TABBED_RENDER_DIALOG)
+IDD_MATTE_ELEMENT DIALOGEX 0, 0, 281, 56
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    CONTROL         "Effect ID",IDC_MTL_ID,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,79,5,57,10
+    CONTROL         "",IDC_GBUF_EDIT,"CustEdit",WS_TABSTOP,155,19,39,10
+    CONTROL         "",IDC_GBUF_SPIN,"SpinnerControl",0x0,194,19,7,10
+    CONTROL         "",IDC_MTLID_EDIT,"CustEdit",WS_TABSTOP,155,5,39,10
+    CONTROL         "",IDC_MTLID_SPIN,"SpinnerControl",0x0,194,5,7,10
+    CONTROL         "G-Buffer ID",IDC_GBUF_ID,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,79,19,57,10
+    CONTROL         "",IDC_INCLUDE_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,79,34,15,10
+    PUSHBUTTON      "Include",IDC_INCLUDE_BUTTON,93,33,109,14
+END
+#endif
+
+#if defined(APSTUDIO_INVOKED) || defined(TABBED_RENDER_DIALOG)
+#if defined(APSTUDIO_INVOKED)
+IDD_BLEND_ELEMENT$(TABBED_RENDER_DIALOG) DIALOG  0, 0, 211, 82
+#else
+IDD_BLEND_ELEMENT DIALOG  0, 0, 211, 82
+#endif
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Ambient",IDC_AMBIENT_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,24,4,60,10
+    CONTROL         "Diffuse",IDC_DIFFUSE_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,24,20,59,10
+    CONTROL         "Specular",IDC_SPECULAR_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,24,36,61,10
+    CONTROL         "Self-Illumination",IDC_EMISSION_ON,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,24,52,71,10
+    CONTROL         "Reflection",IDC_REFLECTION_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,24,68,72,10
+    CONTROL         "Refraction",IDC_REFRACTION_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,107,4,72,10
+    CONTROL         "Apply Atmosphere",IDC_ATMOS_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,107,20,93,10
+    CONTROL         "Apply Shadows",IDC_SHADOW_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,107,36,92,10
+    CONTROL         "Paint",IDC_PAINT_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,107,52,32,10
+    CONTROL         "Ink",IDC_INK_ON,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    107,68,32,10
+END
+#endif
+
+#if defined(APSTUDIO_INVOKED) || defined(TABBED_RENDER_DIALOG)
+#if defined(APSTUDIO_INVOKED)
+IDD_Z_ELEMENT$(TABBED_RENDER_DIALOG) DIALOG  0, 0, 211, 34
+#else
+IDD_Z_ELEMENT DIALOG  0, 0, 211, 34
+#endif
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Z Max:",IDC_STATIC,112,12,22,8
+    LTEXT           "Z Min:",IDC_STATIC,16,12,22,8
+    CONTROL         "",IDC_ZMAX_EDIT,"CustEdit",WS_TABSTOP,137,12,50,10
+    CONTROL         "",IDC_ZMAX_SPIN,"SpinnerControl",0x0,187,12,7,10
+    CONTROL         "",IDC_ZMIN_EDIT,"CustEdit",WS_TABSTOP,38,12,50,10
+    CONTROL         "",IDC_ZMIN_SPIN,"SpinnerControl",0x0,88,12,7,10
+END
+#endif
+
+#if defined(APSTUDIO_INVOKED) || defined(TABBED_RENDER_DIALOG)
+#if defined(APSTUDIO_INVOKED)
+IDD_DIFFUSE_ELEMENT$(TABBED_RENDER_DIALOG) DIALOGEX 0, 0, 211, 23
+#else
+IDD_DIFFUSE_ELEMENT DIALOGEX 0, 0, 211, 23
+#endif
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    CONTROL         "Lighting",IDC_LIGHTING,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,75,4,60,10
+END
+#endif
+
+#if defined(APSTUDIO_INVOKED) || defined(TABBED_RENDER_DIALOG)
+#if defined(APSTUDIO_INVOKED)
+IDD_MATTE_ELEMENT$(TABBED_RENDER_DIALOG) DIALOGEX 0, 0, 211, 56
+#else
+IDD_MATTE_ELEMENT DIALOGEX 0, 0, 211, 56
+#endif
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    CONTROL         "Effect ID",IDC_MTL_ID,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,44,5,57,10
+    CONTROL         "",IDC_GBUF_EDIT,"CustEdit",WS_TABSTOP,120,19,39,10
+    CONTROL         "",IDC_GBUF_SPIN,"SpinnerControl",0x0,159,19,7,10
+    CONTROL         "",IDC_MTLID_EDIT,"CustEdit",WS_TABSTOP,120,5,39,10
+    CONTROL         "",IDC_MTLID_SPIN,"SpinnerControl",0x0,159,5,7,10
+    CONTROL         "G-Buffer ID",IDC_GBUF_ID,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,44,19,57,10
+    CONTROL         "",IDC_INCLUDE_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,44,34,15,10
+    PUSHBUTTON      "Include",IDC_INCLUDE_BUTTON,58,33,109,14
+END
+#endif
+
+#if defined(APSTUDIO_INVOKED) || !defined(TABBED_RENDER_DIALOG)
+IDD_LIGHT_ELEMENT DIALOG  0, 0, 281, 27
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Shadows On",IDC_SHADOWS_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,201,9,59,10
+    CONTROL         "Indirect Light On",IDC_INDIRECT_ON,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,109,9,75,10
+    CONTROL         "Direct Light On",IDC_DIRECT_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,18,9,65,10
+END
+#endif
+
+#if defined(APSTUDIO_INVOKED) || defined(TABBED_RENDER_DIALOG)
+#if defined(APSTUDIO_INVOKED)
+IDD_LIGHT_ELEMENT$(TABBED_RENDER_DIALOG) DIALOGEX 0, 0, 211, 47
+#else
+IDD_LIGHT_ELEMENT DIALOGEX 0, 0, 211, 47
+#endif
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    CONTROL         "Shadows On",IDC_SHADOWS_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,71,32,59,10
+    CONTROL         "Indirect Light On",IDC_INDIRECT_ON,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,71,19,69,10
+    CONTROL         "Direct Light On",IDC_DIRECT_ON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,71,6,61,10
+END
+#endif
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_BLEND_ELEMENT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 274
+        BOTTOMMARGIN, 47
+    END
+
+    IDD_Z_ELEMENT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 274
+        BOTTOMMARGIN, 31
+    END
+
+    IDD_LIGHT_BAKE, DIALOG
+    BEGIN
+        RIGHTMARGIN, 279
+    END
+
+    IDD_DIFFUSE_ELEMENT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 274
+        BOTTOMMARGIN, 20
+    END
+
+    IDD_MATTE_ELEMENT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 274
+        BOTTOMMARGIN, 53
+    END
+
+    "IDD_BLEND_ELEMENT$(TABBED_RENDER_DIALOG)", DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 204
+        BOTTOMMARGIN, 79
+    END
+
+    "IDD_Z_ELEMENT$(TABBED_RENDER_DIALOG)", DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 204
+        BOTTOMMARGIN, 31
+    END
+
+    IDD_LIGHT_ELEMENT, DIALOG
+    BEGIN
+        RIGHTMARGIN, 279
+    END
+
+    "IDD_LIGHT_ELEMENT$(TABBED_RENDER_DIALOG)", DIALOG
+    BEGIN
+        BOTTOMMARGIN, 42
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_KE_RENDER_ELEMENT_DESC "Standard Render Elements (Discreet)"
+    IDS_KE_BEAUTY_RENDER_ELEMENT "Beauty"
+    IDS_KE_PARAMETERS       "Parameters"
+    IDS_KE_ENABLE           "Enable"
+    IDS_KE_BEAUTY_DEFAULT_NAME "Beauty"
+    IDS_KE_BEAUTY_TYPE_NAME "Beauty"
+    IDS_ENABLED             "enabled"
+    IDS_FILTER_ON           "FilteringOn"
+    IDS_ATMOSPHERE_ON       "AtmosphereOn"
+    IDS_ELEMENT_NAME        "ElementName"
+    IDS_PATH_NAME           "PathName"
+    IDS_SHADOW_ON           "ShadowsOn"
+    IDS_KE_DIFFUSE_RENDER_ELEMENT "Diffuse"
+    IDS_KE_SPECULAR_RENDER_ELEMENT "Specular"
+    IDS_KE_REFLECTION_RENDER_ELEMENT "Reflection"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_KE_REFRACTION_RENDER_ELEMENT "Refraction"
+    IDS_KE_EMISSION_RENDER_ELEMENT "Self-Illumination"
+    IDS_KE_SHADOW_RENDER_ELEMENT "Shadow"
+    IDS_KE_ATMOS_RENDER_ELEMENT "Atmosphere"
+    IDS_KE_BLEND_RENDER_ELEMENT "Blend"
+    IDS_BLEND_ELEMENT_PARAMS "Blend Element Parameters"
+    IDS_DIFFUSE_ON          "Diffuse"
+    IDS_AMBIENT_ON          "Ambient"
+    IDS_SPECULAR_ON         "Specular"
+    IDS_EMISSION_ON         "Self-Illum"
+    IDS_REFLECTION_ON       "Reflection"
+    IDS_REFRACTION_ON       "Refraction"
+    IDS_BITMAP              "Bitmap"
+    IDS_KE_Z_RENDER_ELEMENT "Z Depth"
+    IDS_Z_ELEMENT_PARAMS    "Z Element Parameters"
+    IDS_ZMIN                "Z Min"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ZMAX                "Z Max"
+    IDS_KE_ALPHA_RENDER_ELEMENT "Alpha"
+    IDS_KE_CLR_SHADOW_RENDER_ELEMENT "Colored Shadow"
+    IDS_KE_BGND_RENDER_ELEMENT "Background"
+    IDS_KE_SPECULAR_COMP_RENDER_ELEMENT "Composited Specular"
+    IDS_KE_DIFFUSE_BAKE_ELEMENT "DiffuseMap"
+    IDS_KE_SPECULAR_BAKE_ELEMENT "SpecularMap"
+    IDS_OUTPUTSIZE_X        "output width"
+    IDS_OUTPUTSIZE_Y        "output height"
+    IDS_SHADOWS_ON          "Shadows"
+    IDS_LIGHTING_ON         "Lighting"
+    IDS_BLEND_BAKE_PARAMS   "Blend Texture Parameters"
+    IDS_KE_REFLECTREFRACT_BAKE_ELEMENT "FixedReflectRefractMap"
+    IDS_KE_BLEND_BAKE_ELEMENT "BlendMap"
+    IDS_KE_NORMALS_BAKE_ELEMENT "NormalsMap"
+    IDS_KE_LIGHT_BAKE_ELEMENT "LightingMap"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_KE_SHADOW_BAKE_ELEMENT "ShadowsMap"
+    IDS_KE_COMPLETE_BAKE_ELEMENT "CompleteMap"
+    IDS_DIFFUSE_BAKE_PARAMS "Diffuse Bake Element Parameters"
+    IDS_SPECULAR_BAKE_PARAMS "Specular Bake Element Parameters"
+    IDS_LIGHT_BAKE_PARAMS   "Light Map Bake Parameters"
+    IDS_COMPLETE_BAKE_PARAMS "Complete Lighting Bake Element Parameters"
+    IDS_DIRECT_ILLUM_ON     "Direct Light On"
+    IDS_INDIRECT_ILLUM_ON   "Indirect Light On"
+    IDS_FILENAME_UNIQUE     "Filename Unique"
+    IDS_AUTOSIZE_ON         "Auto Size On"
+    IDS_KE_ALPHA_BAKE_ELEMENT "AlphaMap"
+    IDS_INK_ON              "Ink"
+    IDS_PAINT_ON            "Paint"
+    IDS_DIFFUSE_ELEMENT_PARAMS "Diffuse Texture Element"
+    IDS_KE_LIGHTING_RENDER_ELEMENT "Lighting"
+    IDS_LIGHTING_ELEMENT_PARAMS "Lighting Texture Element"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_MATTE_ELEMENT_PARAMS "Matte Texture Element"
+    IDS_KE_MATTE_RENDER_ELEMENT "Matte"
+    IDS_MTLID_ON            "Material ID Filter On"
+    IDS_GBUFID_ON           "G-Buffer ID Filter On"
+    IDS_MTLID               "Material ID"
+    IDS_GBUFID              "G-Buffer ID"
+    IDS_INCLUDE_ON          "Include On"
+    IDS_INCLUDE             "Include"
+    IDS_EXCLUDE             "Exclude"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

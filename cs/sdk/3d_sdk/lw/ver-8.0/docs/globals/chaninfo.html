@@ -1,0 +1,169 @@
+<html>
+
+<head>
+<title>Globals: Channel Info</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="caminfo.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="Camera Info"></a></td>
+    <td width="96" align="left"><a href="colorpik.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Color Picker"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Channel Info</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwenvel.h">lwenvel.h</a></small></p>
+    <p>A channel is an animation parameter that varies as a function of time. In contrast to
+    envelopes, which are arrays of keys, channels may include the effects of other plug-ins
+    and calculations. The channel info global gives you access to Layout's list of grouped
+    channels. A channel's underlying envelope data may also be read (see the <a
+    href="anenvel.html">Animation Envelopes</a> page for more information).</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWChannelInfo *chaninfo;
+   chaninfo = global( LWCHANNELINFO_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global call returns a pointer to an LWChannelInfo.</p>
+    <pre>   typedef struct st_LWChannelInfo {
+      LWChanGroupID (*<strong>nextGroup</strong>)       (LWChanGroupID parent,
+                                          LWChanGroupID group);
+      LWChannelID   (*<strong>nextChannel</strong>)     (LWChanGroupID, LWChannelID);
+      const char *  (*<strong>groupName</strong>)       (LWChanGroupID); 
+      const char *  (*<strong>channelName</strong>)     (LWChannelID); 
+      LWChanGroupID (*<strong>groupParent</strong>)     (LWChanGroupID); 
+      LWChanGroupID (*<strong>channelParent</strong>)   (LWChannelID); 
+      int           (*<strong>channelType</strong>)     (LWChannelID); 
+      double        (*<strong>channelEvaluate</strong>) (LWChannelID, LWTime); 
+      const LWEnvelopeID (*<strong>channelEnvelope</strong>) (LWChannelID); 
+      int           (*<strong>setChannelEvent</strong>) (LWChannelID,
+                                          LWChanEventFunc, void *); 
+      const char *  (*<strong>server</strong>)          (LWChannelID, const char *class,
+                                          int index);
+      unsigned int  (*<strong>serverFlags</strong>)     (LWChannelID, const char *class,
+                                          int index );
+      LWInstance    (*<strong>serverInstance</strong>)  (LWChannelID, const char *class,
+                                          int index );
+      int           (*<strong>serverApply</strong>)     (LWChannelID, const char *class,
+                                          const char *name, int flags );
+      void          (*<strong>serverRemove</strong>)    (LWChannelID, const char *class,
+                                          const char *name, LWInstance);
+   } LWChannelInfo;</pre>
+    <dl>
+      <dt><tt>group = <strong>nextGroup</strong>( parent_group, prev_group )</tt></dt>
+      <dd>Returns the next channel group in the group list. If the parent is NULL, this returns
+        groups from the root of the channel tree, and if the previous group is NULL, it returns
+        the first group.</dd>
+      <dt><tt><br>
+        channel = <strong>nextChannel</strong>( group, prev_channel )</tt></dt>
+      <dd>Returns the next channel in the group. If the previous channel is NULL, this returns the
+        first channel in the group.</dd>
+      <dt><tt><br>
+        gname = <strong>groupName</strong>( group )</tt></dt>
+      <dd>Returns the name of the channel group.</dd>
+      <dt><tt><br>
+        cname = <strong>channelName</strong>( channel )</tt></dt>
+      <dd>Returns the name of the channel.</dd>
+      <dt><tt><br>
+        parent = <strong>groupParent</strong>( group )</tt></dt>
+      <dd>Returns the parent group of a channel group.</dd>
+      <dt><tt><br>
+        parent = <strong>channelParent</strong>( channel )</tt></dt>
+      <dd>Returns the group a channel belongs to.</dd>
+      <dt><tt><br>
+        type = <strong>channelType</strong>( channel )</tt></dt>
+      <dd>Returns the value type of the channel, which determines how the value is interpreted and
+        displayed to the user. It can be one of the following. <pre>LWET_FLOAT
+LWET_DISTANCE
+LWET_PERCENT
+LWET_ANGLE</pre>
+      </dd>
+      <dt><tt>value = <strong>channelEvaluate</strong>( channel, time )</tt></dt>
+      <dd>Returns the value of the channel at the specified time.</dd>
+      <dt><tt><br>
+        envelope = <strong>channelEnvelope</strong>( channel )</tt></dt>
+      <dd>Returns the underlying envelope for a channel. The envelope can be examined and modified
+        using the <a href="anenvel.html">Animation Envelopes</a> global.</dd>
+      <dt><tt><br>
+        result = <strong>setChannelEvent</strong>( channel, event_func, data )</tt></dt>
+      <dd>Set a callback for a channel. Whenever the channel's underlying envelope is modified,
+        your <tt>event_func</tt> function will be called with <tt>data</tt> as its first argument.
+        The result is true (non-zero) if the function succeeds and false (0) if it fails. The
+        callback receives the same event codes as the <a href="anenvel.html">envelope</a> global's
+        <tt>setEnvEvent</tt> function, plus <tt>LWCEVNT_VALUE</tt>.</dd>
+      <dt><tt><br>
+        servname = <strong>server</strong>( channel, class, index )</dt>
+      </tt>
+      <dd>Returns the name of a plug-in applied to the channel. The <tt>class</tt> argument is the
+        class string, which will often be <tt>LWCHANNEL_HCLASS</tt> but may be others. The index
+        specifies the &quot;slot,&quot; or position in the server list, and counts from 1.</dd>
+      <dt><tt><br>
+        flags = <strong>serverFlags</strong>( channel, class, index )</dt>
+      </tt>
+      <dd>Returns flags for the plug-in applied to the channel. This is the channel-specific
+        version of the <a href="iteminfo.html">Item Info</a> <tt>serverFlags</tt> function.</dd>
+      <dt><tt><br>
+        instance = <strong>serverInstance</strong>( channel, class, index )</dt>
+      </tt>
+      <dd>Returns an opaque pointer to the plug-in's instance data. This is the LWInstance created
+        and used by the plug-in's LWInstanceFuncs callbacks.</dd>
+      <dt><tt><br>
+        index = <strong>serverApply</strong>( channel, class, name, flags )</dt>
+      </tt>
+      <dd>Apply the plug-in to the channel. Returns the server list index, or 0 if it fails. The <tt>name</tt>
+        is the server name, the string in the <tt>name</tt> field of the plug-in's ServerRecord.
+        The <tt>flags</tt> can be any combination of those returned by <tt>serverFlags</tt>.</dd>
+      <dt><tt><br>
+        <strong>serverRemove</strong>( channel, class, name, instance )</dt>
+      </tt>
+      <dd>Remove the plug-in from the channel. The <tt>instance</tt> is the pointer returned by <tt>serverInstance</tt>.</dd>
+    </dl>
+    <p><strong>History</strong></p>
+    <p>In LightWave&reg; 7.0, the service name for this global was incremented from &quot;Channel
+    Info&quot; to &quot;Channel Info 2&quot;, and the <tt>serverFlags</tt>, <tt>serverInstance</tt>,
+    <tt>serverApply</tt> and <tt>serverRemove</tt> functions were added, along with the <tt>LWCEVNT_VALUE</tt>
+    event code.</p>
+    <p><strong>Example</strong></p>
+    <p>The <tt>find_channels</tt> function finds all of the channels belonging to a group and
+    prints the name and type of each channel. It calls itself recursively to examine the
+    subgroups of the parent group.</p>
+    <pre>   #include &lt;lwserver.h&gt;
+   #include &lt;lwenvel.h&gt;
+
+   static void find_channels( LWChannelInfo *chinfo,
+      LWChanGroupID parent, int indent )
+   {
+      LWChanGroupID group;
+      LWChannelID chan;
+
+      group = chinfo-&gt;nextGroup( parent, NULL );
+      while ( group ) {
+         printf( &quot;%*s(G) \&quot;%s\&quot;\n&quot;, indent, &quot; &quot;,
+            chinfo-&gt;groupName( group ));
+         find_channels( chinfo, group, indent + 2 );
+         chan = chinfo-&gt;nextChannel( group, NULL );
+         while ( chan ) {
+            printf( &quot;%*s(C) \&quot;%s\&quot; type %d\n&quot;, indent + 2, &quot; &quot;,
+               chinfo-&gt;channelName( chan ),
+               chinfo-&gt;channelType( chan ));
+            chan = chinfo-&gt;nextChannel( group, chan );
+         }
+         group = chinfo-&gt;nextGroup( parent, group );
+      }
+   }</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

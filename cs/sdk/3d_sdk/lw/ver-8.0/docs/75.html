@@ -1,0 +1,203 @@
+<html>
+
+<head>
+<title>7.5 Changes</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="65b.html"><img width="96" height="20" border="0"
+    src="images/navlt.gif" alt="6.5b Changes"></a></td>
+    <td width="96" align="left"><a href="75b.html"><img width="64" height="20" border="0"
+    src="images/navrt.gif" alt="7.5b Changes"></a></td>
+    <td width="384" align="right"><a href="index.html"><img width="230" height="20" border="0"
+    src="images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 >
+<tr>
+<td WIDTH="600"><br>
+<h3>7.5 Changes</h3>
+<font size=-1>May 1, 2002</font>
+<p>This is a list of the changes in the LightWave 7.5 release that affect
+the SDK. The changes include a new Layout tool class and a new globals,
+as well as enhancement of many of the info globals defined in <tt><a href="include/lwrender.h">lwrender.h</a></tt>.&nbsp;
+<p>Structures associated with the <a href="globals/iteminfo.html">Item
+Info,</a> <a href="globals/objinfo.html">Object Info</a>, <a href="globals/lightinf.html">Light
+Info</a>, <a href="globals/sceneinf.html">Scene Info</a>, and <a href="globals/intinfo.html">Interface
+Info</a>, globals were changed, but the shader version number and the global
+name strings weren't incremented. In all cases, the changes involve members
+added to the ends of structures, so they have no effect on existing plug-ins.
+New plug-ins can use the <a href="globals/prodinfo.html">Product Info</a>
+global to verify that they're running in at least LightWave 7.0 before
+they use the new structure members.
+<p><tt><a href="include/lwcustobj.h">lwcustobj.h</a></tt>
+<ul>&nbsp;
+<li>
+A bit definitions for the <tt>flags</tt> function return value has been
+added.&nbsp; The <tt>LWCOF_VIEWPORT_INDEX</tt> flag tells layout to use
+the viewport number instead of its type in the LWCustomObjAccess view element&nbsp;</li>
+
+<li>
+<tt>The LWCOF_NO_DEPTH_BUFFER</tt> flag prevent textured quads from being
+obscured by OpenGL drawing that is done in front of them.</li>
+
+<li>
+The <tt>text</tt> function justification argument values are now defined.</li>
+</ul>
+<tt><a href="include/lwfilter.h">lwfilter.h</a></tt>
+<ul>&nbsp;
+<li>
+A new flag tor the PixelFiltel, <tt>LWPFF_EVERYPIXEL</tt>, has been added.
+It tells layout to call this filter for every pixel, despite adaptive sampling
+settings.</li>
+</ul>
+<tt><a href="include/lwhost.h">lwhost.h</a></tt>
+<ul>&nbsp;
+<li>
+A formal define for the content directory string passed to the <a href="globals/dirinfo.html">Directory
+Info</a> global, <tt>LWFTYPE_CONTENT</tt>, has been added.</li>
+</ul>
+<tt><a href="include/lwenvel.h">lwenvel.h</a></tt>
+<br>&nbsp;
+<ul>
+<li>
+A new event code, <tt>LWCEVNT_TRACK</tt>, has been added to signal temporary
+changes to channels done during interactive editing. Caution should be
+used when handling these events, ad they will be plentiful, and ambitious
+callbacks could result in significant performance degradation.</li>
+
+<li>
+A new event code, <tt>LWCEVNT_CREATE</tt>, has been added to signal the
+addition of a channel to a group.</li>
+
+<li>
+A new event code, <tt>LWCEVNT_RENAME</tt>, has been added to signal than
+a channel group has been renamed.</li>
+</ul>
+<tt><a href="include/lwlaytool.h">lwlaytool.h</a></tt>
+<ul>&nbsp;
+<li>
+The new plug-in class,
+<a href="classes/laytool.h">LayoutTool</a> actually
+works now.</li>
+</ul>
+<tt><a href="include/lwmaster.h">lwmaster.h</a></tt>
+<ul>&nbsp;
+<li>
+An <tt>LWEVNT_RENDER_DONE</tt> event code has been added (<a href="classes/master.html">MasterHandler</a>).</li>
+</ul>
+<tt><a href="include/lwmodtool.h">lwmodtool.h</a></tt>
+<br>&nbsp;
+<ul>
+<li>
+Per-vertex and per-polygon custom allocation available to MeshEdits is
+now available to MeshEditTools via the bit definitions in the return values
+of the <tt>Test</tt> function. These bits are conveniently defined by the
+<tt>LWT_VMEM()</tt>
+and <tt>LWT_PMEM()</tt> preprocessor macros, which take the memory size
+as arguments.</li>
+</ul>
+<tt><a href="include/lwtxtr.h">lwtxtr.h</a></tt>
+<ul>&nbsp;
+<li>
+The <tt>LWTEXTUREFUNCS_GLOBAL</tt> global (<a href="globals/txtrfunc.html">Texture
+Functions</a>) has incremented to "Texture Functions 3" due to the new
+tags supported by <tt>getParam</tt> and <tt>setParam</tt>.</li>
+
+<li>
+New tag definitions were added: <tt>TXTAG_ACTIVE</tt>, <tt>TXTAG_INVERT</tt>
+and <tt>TXTAG_BLEND</tt>.</li>
+
+<li>
+The possible blend modes have been enumerated:&nbsp;</li>
+
+<br>t<tt>ypedef enum LWTextureBlendMode {</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; TXBLN_NORMAL=0,</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; TXBLN_SUBTRACT,</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; TXBLN_DIFFERENCE,</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; TXBLN_MULTIPLY,</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; TXBLN_DIVIDE,</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; TXBLN_ALPHA,</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; TXBLN_DISPLACE,</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; TXBLN_ADD&nbsp; }</tt></ul>
+<tt><a href="include/lwserver.h">lwserver.h</a></tt>
+<ul>&nbsp;
+<li>
+New server tag <tt>SRVTAG_SELECTCMD</tt> has been added to generate a command
+upon selection of the item to which the plugin is applied.</li>
+</ul>
+<tt><a href="include/lwrender.h">lwrender.h</a></tt>
+<br>&nbsp;
+<br>&nbsp;
+<ul>
+<li>
+A function to retrieve the state of the UI motion locks (<tt>axisLocks</tt>)
+has been added to LWItemInfo (<a href="globals/iteminfo.html">Item Info</a>).</li>
+
+<li>
+Three new functions (<tt>matteColor, thickness, </tt>and<tt> edgeZScale</tt>)
+have been added to LWObjectInfo. The <tt>thickness</tt> function uses one
+of the following types:&nbsp;</li>
+
+<br><tt>LWTHICK_SILHOUETTE&nbsp;</tt>
+<br><tt>LWTHICK_UNSHARED&nbsp;</tt>
+<br><tt>LWTHICK_CREASE&nbsp;</tt>
+<br><tt>LWTHICK_SURFACE&nbsp;</tt>
+<br><tt>LWTHICK_OTHER&nbsp;</tt>
+<br><tt>LWTHICK_LINE&nbsp;</tt>
+<br><tt>LWTHICK_PARTICLE_HEAD&nbsp;</tt>
+<br><tt>LWTHICK_PARTICLE_TAIL&nbsp;</tt>
+<li>
+The LWObjectInfo <tt>flags</tt> function returns new flags <tt>LWOBJF_MATTE,
+</tt>and<tt>
+LWOBJF_UNSEEN_BY_ALPHA</tt>.</li>
+
+<li>
+Three new functions (<tt>animFilename, RGBPrefix, </tt>and <tt>alphaPrefix</tt>
+) have been added to LWSceneInfo.</li>
+
+<li>
+A new function, <tt>shadowColor</tt>, has been added to LWLightInfo.</li>
+
+<li>
+Four new bit definitions are available in the LWSceneInfo <tt>renderOpts</tt>:
+<tt>LWROPT_ENHANCEDAA,
+LWROPT_SAVEANIM, LWROPT_SAVERGB,</tt> and <tt>LWROPT_SAVEALPHA</tt>..</li>
+
+<li>
+The LWInterfaceInfo structure now contains<font size=-1> </font><tt>autoKeyCreate,
+</tt>with
+values defined as <tt>LWAKC_OFF, LWAKC_MODIFIED, </tt>and<tt> LWAKC_ALL</tt>.&nbsp;
+The <tt>generalFlags</tt> can now reveal the AutoKey state in the <tt>LWGENF_AUTOKEY</tt>
+bit.</li>
+
+<li>
+A new global (<a href="globals/viewinfo.html">Viewport Info</a>) has been
+added to facilitate custom drawing and tool handle processing. The server
+name is <tt>LWVIEWPORTINFO_GLOBAL</tt>.</li>
+</ul>
+
+<p><br>Miscellaneous
+<br>&nbsp;
+<ul>
+<li>
+The <a href="globals/iteminfo.html">Item Info</a> <tt>first</tt> function
+now returns <tt>LWITEM_NULL</tt> when called with <tt>LWI_BONE</tt> type
+and <tt>LWITEM_NULL</tt> as the id of the parent object, instead of returning
+the id of the first bone in the scene..</li>
+</ul>
+</td>
+</tr>
+
+<tr>
+<td></td>
+</tr>
+</table>
+
+</body>
+</html>

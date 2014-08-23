@@ -1,0 +1,150 @@
+//_____________________________________________________________________________
+//
+//	File:		DiffuseReflect.nvv
+//	
+//_____________________________________________________________________________
+
+
+//_____________________________________________________________________________
+//
+//	Include files	
+//
+//_____________________________________________________________________________
+
+#include "ShaderConst.h"
+
+//_____________________________________________________________________________
+//
+//	Defines	
+//
+//_____________________________________________________________________________
+
+//#define EYE_VERTEX		r0
+//#define EYE_NORMAL		r1
+//#define EYE_VECTOR		r2
+//#define DOT2			r3
+
+vs_1_1
+
+dcl_position	v0
+dcl_normal		v1
+dcl_texcoord0	v3
+dcl_texcoord1	v4
+
+//_____________________________________
+//
+//	Transform 
+//
+//_____________________________________
+
+//dp4 oPos.x, V_POSITION, c[CV_WORLDVIEWPROJ_0]
+//dp4 oPos.y, V_POSITION, c[CV_WORLDVIEWPROJ_1]
+//dp4 oPos.z, V_POSITION, c[CV_WORLDVIEWPROJ_2]
+//dp4 oPos.w, V_POSITION, c[CV_WORLDVIEWPROJ_3]
+
+//_____________________________________
+//
+//	Transform 
+//
+//_____________________________________
+
+//dp4 EYE_VERTEX.x, V_POSITION, c[CV_WORLDVIEW_0]
+//dp4 EYE_VERTEX.y, V_POSITION, c[CV_WORLDVIEW_1]
+//dp4 EYE_VERTEX.z, V_POSITION, c[CV_WORLDVIEW_2]
+//dp4 EYE_VERTEX.w, V_POSITION, c[CV_WORLDVIEW_3]
+
+//_____________________________________
+//
+//	Normalize 
+//
+//_____________________________________
+
+//dp3 EYE_VECTOR.w, EYE_VERTEX, EYE_VERTEX
+//rsq EYE_VECTOR.w, EYE_VECTOR.w		
+//mul EYE_VECTOR,   EYE_VERTEX, EYE_VECTOR.w
+
+//_____________________________________
+//
+//	Transform 
+//
+//_____________________________________
+
+//dp3 EYE_NORMAL.x, V_NORMAL, c[CV_WORLDVIEWIT_0]
+//dp3 EYE_NORMAL.y, V_NORMAL, c[CV_WORLDVIEWIT_1]
+//dp3 EYE_NORMAL.z, V_NORMAL, c[CV_WORLDVIEWIT_2]
+
+//_____________________________________
+//
+//	Normalize 
+//
+//_____________________________________
+
+//dp3 EYE_NORMAL.w, EYE_NORMAL, EYE_NORMAL
+//rsq EYE_NORMAL.w, EYE_NORMAL.w
+//mul EYE_NORMAL,   EYE_NORMAL, EYE_NORMAL.w
+
+//_____________________________________
+//
+//	Reflection 
+//
+//_____________________________________
+
+//dp3 DOT2, EYE_VECTOR, EYE_NORMAL
+//add DOT2, DOT2, DOT2
+//mul EYE_NORMAL, EYE_NORMAL, DOT2
+
+//_____________________________________
+//
+//	Output eye vector 
+//
+//_____________________________________
+
+//add oT1, EYE_VECTOR, -EYE_NORMAL
+//mov oT1.w, c[CV_ONE].x
+
+//_____________________________________
+//
+//	Output texture 
+//
+//_____________________________________
+
+//Added max's cubemap shader - NH
+dp4 oPos.x, v0, c[NH_CV_WORLDVIEWPROJ_0]
+dp4 oPos.y, v0, c[NH_CV_WORLDVIEWPROJ_1]
+dp4 oPos.z, v0, c[NH_CV_WORLDVIEWPROJ_2]
+dp4 oPos.w, v0, c[NH_CV_WORLDVIEWPROJ_3]
+
+; Transform position to World Space
+dp4 r8.x, v0, c[NH_CV_WORLD_0]
+dp4 r8.y, v0, c[NH_CV_WORLD_1]
+dp4 r8.z, v0, c[NH_CV_WORLD_2]
+dp4 r8.w, v0, c[NH_CV_WORLD_3]
+
+; Create r3, the normalized vector from
+; the eye to the vertex in World Space
+add r3, r8, -c[NH_CV_EYE_WORLD]
+rsq r3.w, r3.w		
+mul r3, r3, r3.w
+
+; Transform normal to World Space
+; We use the inverse transpose of the
+; world matrix to do this
+dp3 r9.x, v1, c[NH_CV_WORLDIT_0]
+dp3 r9.y, v1, c[NH_CV_WORLDIT_1]
+dp3 r9.z, v1, c[NH_CV_WORLDIT_2]
+
+; Need to re-normalize normal
+dp3 r9.w, r9, r9
+rsq r9.w, r9.w
+mul r9, r9, r9.w
+
+; Calculate E - 2*(E dot N)*N
+dp3 r4, r3, r9
+add r4, r4, r4
+mul r9, r9, r4
+add oT1, r3, -r9
+mov oT1.w, c[CV_ONE].x
+
+mov oT0.xy,  V_TEXTURE_0	// Diffuse 1
+mov oT2.xy,  V_TEXTURE_1	// Diffuse 2 
+

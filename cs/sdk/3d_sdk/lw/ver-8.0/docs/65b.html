@@ -1,0 +1,214 @@
+<html>
+
+<head>
+<title>6.5B Changes</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="65.html"><img width="96" height="20" border="0"
+    src="images/navlt.gif" alt="6.5 Changes"></a></td>
+    <td width="96" align="left"><a href="70.html"><img width="64" height="20" border="0"
+    src="images/navrt.gif" alt="7.0 Changes"></a></td>
+    <td width="384" align="right"><a href="index.html"><img width="230" height="20" border="0"
+    src="images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>6.5B Changes</h3>
+    <p><small>May 8, 2001</small> </p>
+    <p>This is a list of the changes in the LightWave&reg; 6.5B patch that affect the SDK. As with
+    previous changes, these in most cases won't require you to rewrite or recompile your
+    existing code.</p>
+    <p>Structures associated with the <a href="classes/custobj.html">CustomObjHandler</a>
+    class and the <a href="globals/particle.html">Particle Services</a>, <a
+    href="globals/objinfo.html">Object Info</a> and <a href="globals/intinfo.html">Interface
+    Info</a> globals were changed, but the custom object version number and the global name
+    strings weren't incremented. This was discovered too close to the release of 6.5B to be
+    remedied. In all cases, the changes involve members added to the ends of structures, so
+    they have no effect on existing plug-ins. New plug-ins that need to distinguish between
+    the old and new structures can use the program build numbers returned by the <a
+    href="globals/prodinfo.html">Product Info</a> global.</p>
+    <p><tt><a href="../include/lwcustobj.h">lwcustobj.h</a></tt><ul>
+      <li>A <tt>text</tt> function was added to LWCustomObjAccess (<a href="classes/custobj.html">Custom
+        Objects</a>).</li>
+      <li>Added <tt>LWVIEW_SCHEMA</tt> to the codes for the <tt>view</tt> field of the
+        LWCustomObjAccess structure.</li>
+      <li>Added <tt>LWCOF_SCHEMA_OK</tt> to the flags that can be returned from the
+        LWCustomObjHandler <tt>flags</tt> callback</li>
+    </ul>
+    <p><tt><a href="../include/lwhost.h">lwhost.h</a></tt><ul>
+      <li>Added preprocessor symbols for some of the file type strings used with the <a
+        href="globals/filetype.html">File Type</a> and <a href="globals/dirinfo.html">Directory
+        Info</a> globals. </li>
+    </ul>
+    <p><tt><a href="../include/lwmaster.h">lwmaster.h</a></tt><ul>
+      <li>Added <tt>LWEVNT_TIME</tt> to the event codes that can be passed to the <a
+        href="classes/master.html">Master</a> class <tt>event</tt> callback. This event notice is
+        sent whenever the frame slider is moved, which includes playing the scene, but not playing
+        back a preview.</li>
+    </ul>
+    <p><tt><a href="../include/lwmath.h">lwmath.h</a></tt><ul>
+      <li>Bracketed <tt>MIN</tt>, <tt>MAX</tt> and <tt>ABS</tt> macros within preprocessor
+        conditionals so that they won't conflict with versions of the macros that might be defined
+        elsewhere.</li>
+    </ul>
+    <p><tt><a href="../include/lwmeshes.h">lwmeshes.h</a></tt><ul>
+      <li>Incremented <tt>LWOBJECTFUNCS_GLOBAL</tt> (<a href="globals/sceneobj.html">Scene Objects</a>)
+        to &quot;Scene Objects 3&quot;</li>
+      <li>Added <tt>userName</tt> and <tt>refName</tt> functions to the LWObjectFuncs structure.
+        These return, respectively, the name of the object as seen by the user, and an unambiguous
+        internal name for the object that can be used to refer to it in commands.</li>
+    </ul>
+    <p><tt><a href="../include/lwpanel.h">lwpanel.h</a></tt><ul>
+      <li>Added LWValPointer to the data types in the LWValue union used by <a
+        href="globals/panel.html">Panels</a>. Besides being more type-friendly, this change is in
+        anticipation of 64-bit operating systems on which ints and pointers may not be the same
+        size.</li>
+      <li>LWValPointer used in the definitions of the <tt>CON_PAN</tt>, <tt>CON_PANFUN</tt> and <tt>CON_SETEVENT</tt>
+        macros.</li>
+    </ul>
+    <p><tt><a href="../include/lwprtcl.h">lwprtcl.h</a></tt><ul>
+      <li>The <tt>LWPSB_ENB</tt> buffer (<a href="globals/particle.html">Particle Services</a>)
+        now encodes three states (<tt>LWPST_DEAD</tt>, <tt>LWPST_ALIVE</tt>, <tt>LWPST_LIMBO</tt>)
+        instead of two (on/off).</li>
+      <li>Added <tt>LWPSB_CAGE</tt> (collision age) buffer containing the time since the last
+        collision.</li>
+      <li>Added <tt>remParticle</tt> function to LWPSysFuncs.</li>
+    </ul>
+    <p><tt><a href="../include/lwrender.h">lwrender.h</a></tt><ul>
+      <li>Incremented <tt>LWSCENEINFO_GLOBAL</tt> (<a href="globals/sceneinf.html">Scene Info</a>)
+        to &quot;LW Scene Info 3&quot;.</li>
+      <li>Added <tt>numThreads</tt> to LWSceneInfo.</li>
+      <li>Added <tt>LWROPT_PARTICLEBLUR</tt> option for the LWSceneInfo <tt>renderOpts</tt>
+        function.</li>
+      <li>Added <tt>patchLevel</tt> and <tt>metaballRes</tt> functions to LWObjectInfo (<a
+        href="globals/objinfo.html">Object Info</a>).</li>
+      <li>Added <tt>LWLFL_NO_OPENGL</tt> to the flags for LWLightInfo (<a
+        href="globals/lightinf.html">Light Info</a>).</li>
+      <li>Incremented <tt>LWCAMERAINFO_GLOBAL</tt> (<a href="globals/caminfo.html">Camera Info</a>)
+        to &quot;LW Camera Info 2&quot;.</li>
+      <li>Added <tt>flags</tt>, <tt>resolution</tt>, <tt>pixelAspect</tt>, <tt>separation</tt>, <tt>regionLimits</tt>,
+        <tt>maskLimits</tt> and <tt>maskColor</tt> functions to LWCameraInfo.</li>
+      <li>Added <tt>LWCAMF_STEREO</tt>, <tt>LWCAMF_LIMITED_REGION</tt> and <tt>LWCAMF_MASK</tt>
+        camera info flags.</li>
+      <li>Added <tt>itemVis</tt> function and <tt>displayFlags</tt> and <tt>generalFlags</tt>
+        fields to the LWInterfaceInfo (<a href="globals/intinfo.html">Interface Info</a>)
+        structure.</li>
+    </ul>
+    <p><tt><a href="../include/lwserver.h">lwserver.h</a></tt><ul>
+      <li>Added <tt>LANGID_KOREAN</tt> definition.</li>
+    </ul>
+    <p><tt><a href="../include/lwtxtr.h">lwtxtr.h</a></tt><ul>
+      <li>Added <tt>itemName</tt> to LWTxtrParamDesc (<a href="globals/txtrfunc.html">Texture
+        Functions</a>)</li>
+    </ul>
+    <p><tt><a href="../include/lwxpanel.h">lwxpanel.h</a></tt><ul>
+      <li>Added <tt>XPTAG_NULL</tt> define, which replaces <tt>NULL</tt> in the Xp macros for <a
+        href="globals/xpanel.html">XPanels</a>.</li>
+    </ul>
+    <p><a href="commands/layout.html">Commands: Layout</a><ul>
+      <li>The arguments to the new <tt>AddPosition</tt>, <tt>AddRotation</tt> and <tt>AddScale</tt>
+        are relative rather than absolute. These are useful for multiple selections and should
+        also improve the reusability of scripts generated by macro recorders.</li>
+      <li>An <tt>EditServer</tt> command has been added which opens a plug-in's interface. The
+        syntax is the same as the <tt>RemoveServer</tt> command, with class name and index
+        arguments. If the index isn't specified, the last plug-in in the list is used, making it
+        easy for a script to add a plug-in and immediately open its interface without having to
+        know its index.</li>
+      <li>The <tt>AutoConfirm</tt> command now recognizes an argument value of -1, which will
+        automatically respond negatively to all Yes/No or OK/Cancel dialogs.</li>
+      <li>The <tt>AddEnvelope</tt> and <tt>RemoveEnvelope</tt> commands now operate on all three
+        parts of a color envelope as a unit (&quot;.R&quot;, &quot;.G&quot;, and &quot;.B&quot;
+        suffixes are ignored).</li>
+      <li>Other new commands:<pre>ShadowExclusion        GradientBackdrop      ParentInPlace
+NoiseReduction         ZenithColor           FractionalFrames
+RadiosityIntensity     SkyColor              PolygonEdgeFlags
+CausticIntensity       GroundColor           BoneFalloffType
+VolumetricRadiosity    NadirColor            ShadowMapSize
+DynamicUpdate</pre>
+      </li>
+    </ul>
+    <p><a href="commands/modeler.html">Commands: Modeler</a><ul>
+      <li>The new <tt>meshedit</tt> command allows plug-ins to execute <a href="classes/me.html">MeshDataEdit</a>
+        class plug-ins.</li>
+    </ul>
+    <p><a href="commands/common.html">Commands: Common</a><ul>
+      <li>The <tt>Surf_SetSurf</tt> command was using the display name rather than the filename to
+        identify objects. This has been corrected.</li>
+    </ul>
+    <p>Miscellaneous<ul>
+      <li>The <a href="meshinfo.html">mesh info</a> <tt>pntBasePos</tt> and <tt>pntOtherPos</tt>
+        functions obtained from the <a href="globals/objinfo.html">Object Info</a> global now
+        provide better information for frozen meshes. The revised <tt>pntBasePos</tt> returns the
+        same point positions that Layout uses for object coordinate texture mapping. These are
+        completely undeformed positions in the case of regular polygons and subpatches, and
+        positions at freezing time for metaballs and partigons. <tt>pntOtherPos</tt> now returns
+        the actual world coordinates used by Layout. The new behavior of these functions should
+        remove the need to use &quot;helper&quot; <a href="classes/displace.html">displacement</a>
+        plug-ins to gather vertex positions.</li>
+      <li>An Alert Level popup has been added to the General Options panel. At the Intermediate
+        and Advanced levels, messages displayed using the <a href="globals/message.html">message</a>
+        global's <tt>info</tt>, <tt>warn</tt> and <tt>error</tt> functions may appear in the
+        status line rather than in separate dialog windows.</li>
+      <li>The <tt>changeID</tt> <a href="handler.html">handler</a> callback is now called when all
+        lights or all cameras are cleared at once.</li>
+      <li>The <tt>illuminate</tt> <a href="raytrace.html">raytracing</a> function was returning 0
+        if the position was partially shadowed, which can happen when the light is a linear or
+        area light. The return value is now 1.0 in such cases, and the partial shadowing is
+        accounted for in the returned color.</li>
+      <li>The <tt>source</tt> member of the LWVolumeAccess structure is now set to the camera ID
+        for directly viewed <a href="classes/volume.html">volumetrics</a>, to the light ID for
+        shadow rays, and to <tt>LWITEM_NULL</tt> for other types of rays.</li>
+      <li>The Z buffer given to <a href="classes/imgfilt.html">image filters</a> no longer has
+        unfilled holes when unenhanced antialiasing is used with adaptive sampling and without
+        motion blur or depth of field.</li>
+      <li>Previously, if an <a href="classes/objrep.html">object replacement</a> plug-in tried to
+        replace an object that had been cloned with an object of the same filename, the change was
+        ignored, since two objects with the same name weren't allowed to have different geometry.
+        This has been fixed by freeing and replacing all instances of the object in such cases,
+        just as manual object replacement does.</li>
+      <li>Objects loaded by <a href="classes/objload.html">object import</a> plug-ins no longer
+        cause a crash when the scene is later saved.</li>
+      <li><a href="classes/custobj.html">Custom object</a> plug-ins were unable to draw points
+        unless one of the other drawing functions had been called first. This has been fixed.</li>
+      <li><a href="classes/custobj.html">Custom objects</a> using the <tt>LWCSYS_ICON</tt> mode
+        are no longer affected by object scaling.</li>
+      <li>When the <a href="globals/iteminfo.html">Item Info</a> <tt>param</tt> function was
+        called during a <a href="classes/custobj.html">custom object</a> plug-in's <tt>evaluate</tt>
+        function, and FSPE was turned on, the interactive (non-keyframed) position of the item
+        being queried could be forgotten. This has been fixed (but it's generally more efficient
+        for plug-ins to call <tt>param</tt> during their newTime functions).</li>
+      <li>When an object is cloned, the clones are now named earlier in the copying process so
+        that <a href="classes/custobj.html">custom object</a> and <a href="classes/displace.html">displacement</a>
+        plug-ins can look up the names from inside their <tt>create</tt> functions.</li>
+      <li>The viewports are now updated whenever a <a href="classes/custobj.html">custom object</a>,
+        <a href="classes/displace.html">displacement</a> or <a href="classes/itemmot.html">item
+        motion</a> plug-in is added, edited, or removed.</li>
+      <li>Keyframe shifting and scaling now work by looping through all members of the envelope
+        group of each affected item, including <a href="globals/anenvel.html">envelopes</a> added
+        by plug-ins.</li>
+      <li>Manual operation of the envelope (E) button for color settings is now properly recorded
+        in the command history.</li>
+      <li>Item selections made by clicking in the viewports or the Scene Editor or by using the
+        current item popups are now recorded in the command history so that <a
+        href="classes/master.html">master</a> plug-ins are notified when these selection changes
+        occur.</li>
+      <li><a href="classes/master.html">Master</a> plug-ins whose <tt>flags</tt> functions return <tt>LWMAST_LAYOUT</tt>
+        are no longer cleared with the scene.</li>
+      <li>The <a href="classes/me.html">MeshEditOp</a> <tt>pntVMap</tt> function no longer crashes
+        when passed polygons created during the same mesh edit.</li>
+      <li>The <a href="classes/me.html">MeshEditOp</a> polygon creation functions no longer crash
+        when passed null vertex pointers. They instead return an error.</li>
+    </ul>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

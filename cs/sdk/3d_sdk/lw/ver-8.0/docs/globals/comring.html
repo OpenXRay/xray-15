@@ -1,0 +1,105 @@
+<html>
+
+<head>
+<title>Globals: Particle Services</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="panel.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="Panels"></a></td>
+    <td width="96" align="left"><a href="preview.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Preview Functions"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="700"><br>
+    <h3>Communication Ring</h3>
+      <p><small><strong>Availability</strong>&nbsp; LightWave&reg;&nbsp;8.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+      <small><strong>Header</strong>&nbsp; </small><a href="../../include/lwcomring.h"><small>lwcomring.h</small></a></p>
+      <p>The Communication Ring provides a mechanism that allows plug-ins to
+      notify other plug-ins of events.&nbsp; The &quot;ring&quot; nature of the
+      mechanism allows any plug-in to create a &quot;ring&quot; and any other
+      plug-in to &quot;subscribe&quot; to events on that ring.&nbsp; Any member
+      of the ring can generate events on the ring, and all members on the ring
+      will receive the event.&nbsp; Each event will include an event code, and a
+      pointer that can optionally contain data associated with the event.</p>
+      <p>As events are generated, each subscriber on the ring (except for the
+      event owner) is notified to process the event.&nbsp; This notification
+      takes place in real-time, so processing of each event should take place as
+      quickly as possible to avoid noticeable delays in the main application.</p>
+      <p>A ring is destroyed when the last subscriber detaches from it.&nbsp;</p>
+    <p><strong>Global Call</strong></p>
+      <pre>   LWComRing *cmFunc;
+   cmFunc = global( LWCOMRING_GLOBAL, GFUSE_TRANSIENT );</pre>
+      <p>The global function returns a pointer to an <kbd>LWDopetrackProxy</kbd>
+      structure.</p>
+      <pre>    typedef struct st_LWComRing {
+        int     (*ringAttach)(char *topic,LWInstance pidata,RingEvent eventCallback);
+        void    (*ringDetach)(char *topic,LWInstance pidata);
+        void    (*ringMessage)(char *topic,int eventCode,void *eventData);
+    } LWComRing;</pre>
+      <dl>
+      <p><strong>Event Support</strong></p>
+      <p>Each subscriber to a ring uses the <code>ringAttach()</code> function
+      to register their subscription.&nbsp; Each ring has a unique topic, which
+      is simply a string that distinguishes that particular communication ring
+      from any others.&nbsp; In addition, you provide a pointer to some unique
+      data to identify your particular subscription on the ring.&nbsp; Because
+      you might have multiple instances of a single plug-in subscribed to a
+      single ring, it would be a good idea to use your plug-in's instance data
+      pointer as this argument.
+      <p> When attaching to (or creating) a ring, you must provide a pointer to
+      a callback function that will be invoked whenever an event occurs on that
+      ring.&nbsp; The function has the following prototype:<p><code>&nbsp;&nbsp;&nbsp;
+      </code><code>typedef void (*<b>RingEvent</b>)(void *clientData,void *portData,int
+      code,void *data);</code><p>The <code>clientData</code> pointer is the one
+      provided to the <code>ringAttach()</code> function when the you subscribe
+      to a ring.&nbsp; The <code>code</code> value is a user-defined code for
+      the event, and <code>data</code> is a pointer to any data associated with
+      the event (it may be NULL if the event includes no data).<p>The <code>portData</code>
+      pointer is only used internally, and currently has no useful purpose for a
+      ring client.
+      <p><strong>Exported ComRing Functions</strong></p>
+      <pre><code>success = </code><tt><strong>ringAttach</strong>( topic, id, callback )</tt></pre>
+      <dd>Register a subscription with a Communication Ring.&nbsp; The <code>topic</code>
+        should be unique among Communication Rings, and the <code>id</code>
+        should be unique among instances of your plug-in.&nbsp; The callback
+        pointer is where your plug-in will be called when events occur on the
+        ring.&nbsp; A return value of one (1) indicates a successful
+        subscription, while zero (0) indicates an error of some kind occurred.
+      </dd>
+      <pre><tt><strong>ringDetach</strong>( topic, id )</tt></pre>
+      <dd>When a plug-in is finished using a Communication Ring, it needs to
+        detach from it.&nbsp; <code>topic</code> and <code>id</code> should be
+        the same values used when you subscribed to the ring.
+      </dd>
+      <pre><tt><strong>ringMessage</strong>( topic, code, data )</tt></pre>
+      <dd>This function generates an event on the ring specified by <code>topic</code>.&nbsp;
+        The event <code>code</code> is an integer value whose value is
+        completely user-defined.&nbsp; The <code>data</code> pointer should be
+        set to NULL if the event being generated contains no data, or can be a
+        pointer to any kind of data that should be provided to other plug-ins
+        when their Communication Ring event callback is invoked.
+      </dd>
+      <dt>&nbsp;</dt>
+      <p><strong>Example</strong></p>
+      <p>The <a href="../../sample/Layout/CustomObject/ComRing/">ComRing</a>
+      SDK example project illustrates the usage of the Communication Ring system
+      by allowing a Master LScript to control the appearance of a CustomObject
+      plug-in in real-time.</p>
+      </td>
+  </tr>
+</table>
+</body>
+</html>

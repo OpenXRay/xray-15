@@ -1,0 +1,7 @@
+LIBRARY MorpherMXS
+EXPORTS
+	LibDescription			@1
+	LibInit					@2
+	LibVersion				@3
+SECTIONS
+	.data READ WRITE

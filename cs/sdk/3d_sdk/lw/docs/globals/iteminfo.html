@@ -1,0 +1,397 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Win98; U) [Netscape]">
+   <title>Globals: Item Info</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#000080" vlink="#800000" alink="#0000FF">
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 BGCOLOR="#D0D0D0" >
+<tr>
+<td ALIGN=LEFT WIDTH="120"><a href="intinfo.html"><img SRC="navlt.gif" ALT="Interface Info" BORDER=0 height=20 width=96></a></td>
+
+<td ALIGN=LEFT WIDTH="96"><a href="laymon.html"><img SRC="navrt.gif" ALT="Layout Monitor" BORDER=0 height=20 width=64></a></td>
+
+<td ALIGN=LEFT WIDTH="96"><a href="../globals.html"><img SRC="navup.gif" ALT="Globals" BORDER=0 height=20 width=56></a></td>
+
+<td ALIGN=RIGHT WIDTH="288"><a href="../index.html"><img SRC="proglw.gif" ALT="Table of Contents" BORDER=0 height=20 width=230></a></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 >
+<tr>
+<td WIDTH="600">
+<h3>
+Item Info</h3>
+<font size=-1><b>Availability</b>&nbsp; LightWave 6.0</font>
+<br><font size=-1><b>Component</b>&nbsp; Layout</font>
+<br><font size=-1><b>Header</b>&nbsp; <a href="../../include/lwrender.h">lwrender.h</a></font>
+<p>The item info global returns functions for traversing a list of the
+items in a scene and for getting information about any one of them. The
+information available through this global is common to all item types.
+Information specific to certain item types is provided through separate
+global functions.
+<p><b>Global Call</b>
+<pre>&nbsp;&nbsp; LWItemInfo *iteminfo;
+&nbsp;&nbsp; iteminfo = global( LWITEMINFO_GLOBAL, GFUSE_TRANSIENT );</pre>
+The global function returns a pointer to an LWItemInfo.
+<pre>&nbsp;&nbsp; typedef struct st_LWItemInfo {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWItemID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>first</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LWItemType, LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWItemID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>next</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWItemID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>firstChild</b>)&nbsp; (LWItemID parent);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWItemID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>nextChild</b>)&nbsp;&nbsp; (LWItemID parent, LWItemID prevChild);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWItemID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>parent</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWItemID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>target</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWItemID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>goal</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWItemType&nbsp;&nbsp;&nbsp; (*<b>type</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const char *&nbsp; (*<b>name</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>param</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LWItemID, LWItemParam, LWTime,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWDVector);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int&nbsp; (*<b>limits</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LWItemID, LWItemParam,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWDVector min, LWDVector max);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const char *&nbsp; (*<b>getTag</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LWItemID, int);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>setTag</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LWItemID, int, const char *);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWChanGroupID (*<b>chanGroup</b>)&nbsp;&nbsp; (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const char *&nbsp; (*<b>server</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LWItemID, const char *, int);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int&nbsp; (*<b>serverFlags</b>) (LWItemID, const char *, int);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>controller</b>)&nbsp; (LWItemID, LWItemParam, int type[3]);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int&nbsp; (*<b>flags</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWTime&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>lookAhead</b>)&nbsp;&nbsp; (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>goalStrength</b>)(LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>stiffness</b>)&nbsp;&nbsp; (LWItemID, LWItemParam, LWDVector);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int&nbsp; (*<b>axisLocks</b>)&nbsp;&nbsp; (LWItemID, LWItemParam);</pre>
+
+<pre>&nbsp;&nbsp; } LWItemInfo;</pre>
+
+<dl>
+<dt>
+<tt>id = <b>first</b>( itemtype, bone_object )</tt>&nbsp;</dt>
+
+<dd>
+Returns the ID of the first item of a given type, or <tt>LWITEM_NULL</tt>
+if there are no items of this type in the scene. Valid item types are&nbsp;</dd>
+
+<pre>LWI_OBJECT
+LWI_LIGHT
+LWI_CAMERA
+LWI_BONE</pre>
+If <tt>itemtype</tt> is <tt>LWI_BONE</tt>, the second argument is the ID
+of the boned object. Otherwise it should be <tt>LWITEM_NULL</tt>.&nbsp;
+<dt>
+<tt>id = <b>next</b>( item )</tt></dt>
+
+<dd>
+Returns the next item of the same type as the <tt>item</tt> argument. If
+there are no more, this returns <tt>LWITEM_NULL</tt>.&nbsp;</dd>
+
+<dt>
+</dt>
+
+<br><tt>id = <b>firstChild</b>( parent )</tt>
+<dd>
+Returns the first child item of the parent item, or <tt>LWITEM_NULL</tt>
+if the parent item has no children.&nbsp;</dd>
+
+<dt>
+</dt>
+
+<br><tt>id = <b>nextChild</b>( parent, child )</tt>
+<dd>
+Returns the next child item given a parent item and the previous child,
+or <tt>LWITEM_NULL</tt> if there are no more children.&nbsp;</dd>
+
+<dt>
+</dt>
+
+<br><tt>id = <b>parent</b>( item )</tt>
+<dd>
+Returns the item's parent, if any, or <tt>LWITEM_NULL</tt>.&nbsp;</dd>
+
+<dt>
+</dt>
+
+<br><tt>id = <b>target</b>( item )</tt>
+<dd>
+Returns the item's target, if any, or <tt>LWITEM_NULL</tt>.&nbsp;</dd>
+
+<dt>
+</dt>
+
+<br><tt>id = <b>goal</b>( item )</tt>
+<dd>
+Returns the item's goal, if any, or <tt>LWITEM_NULL</tt>.&nbsp;</dd>
+
+<dt>
+</dt>
+
+<br><tt>itemtype = <b>type</b>( item )</tt>
+<dd>
+Returns the type of an item.&nbsp;</dd>
+
+<dt>
+</dt>
+
+<br><tt>itemname = <b>name</b>( item )</tt>
+<dd>
+Returns the name of the item as it appears to the user.&nbsp;</dd>
+
+<br><a NAME="param"></a>
+<dt>
+</dt>
+
+<br><tt><b>param</b>( item, param_type, time, vector )</tt>
+<dd>
+Returns vector parameters associated with an item. This data is read-only.
+The <tt>param_type</tt> argument identifies which parameter vector you
+want. The parameters are&nbsp;</dd>
+
+<dl>
+<dt>
+</dt>
+
+<br><tt>LWIP_POSITION</tt>
+<dd>
+The keyframed position <i>before</i> parenting. Equivalently, if the item
+is parented, this is its position relative to its parent.</dd>
+
+<dt>
+<tt>LWIP_W_POSITION</tt></dt>
+
+<dd>
+The keyframed position in world coordinates (<i>after</i> parenting).&nbsp;</dd>
+
+<dt>
+<tt>LWIP_ROTATION</tt></dt>
+
+<dd>
+The keyframed rotation, in radians (relative to its parent's rotation).&nbsp;</dd>
+
+<dt>
+<tt>LWIP_SCALING</tt></dt>
+
+<dd>
+The keyframed scale factors (relative to the parent's scale).&nbsp;</dd>
+
+<dt>
+<tt>LWIP_PIVOT</tt></dt>
+
+<br><tt>LWIP_PIVOT_ROT</tt>
+<dd>
+The item's pivot point position and rotation, in its own coordinates. The
+pivot point is the origin for the item's rotations.</dd>
+
+<dt>
+<tt>LWIP_RIGHT</tt></dt>
+
+<br><tt>LWIP_UP</tt>
+<br><tt>LWIP_FORWARD</tt>
+<dd>
++X, +Y and +Z direction vectors for the item, in world coordinates. Together
+they form the item's rotation and scale transformation matrix. Since they
+include scaling, these vectors aren't normalized.&nbsp;</dd>
+
+<dt>
+<tt>LWIP_W_RIGHT</tt></dt>
+
+<br><tt>LWIP_W_UP</tt>
+<br><tt>LWIP_W_FORWARD</tt>
+<dd>
++X, +Y and +Z direction vectors for the world, in item coordinates. In
+other words, these are the inverse of the previous parameters.&nbsp;</dd>
+</dl>
+The value is written to the vector array for the given time.&nbsp;
+<dt>
+<tt>flags = <b>limits</b>( item, param_type, minvec, maxvec )</tt></dt>
+
+<dd>
+Get upper and lower bounds on vector parameters. These may be limits set
+by the user on joint angles or ranges of movement. The function returns
+an integer containing bit flags that indicate which of the three vector
+components contain limits. The symbols for these bits are&nbsp;</dd>
+
+<pre>LWVECF_0
+LWVECF_1
+LWVECF_2</pre>
+If the bit is set, then the corresponding element of the vector array contains
+a valid limit. If the bit is 0, the channel is unbounded.
+<dt>
+<tt>tag = <b>getTag</b>( item, tagnum )</tt></dt>
+
+<dd>
+Retrieve a tag string associated with an item.The tags are numbered starting
+at 1. <tt>getTag</tt> returns NULL if the tag number is out of range. Tags
+strings are stored with the item in the scene file.</dd>
+
+<dt>
+</dt>
+
+<br><tt><b>setTag</b>( item, tagnum, tag )</tt>
+<dd>
+Associate a tag string with an item. If <tt>tagnum</tt> is 0, a new tag
+is created for the item. If <tt>tagnum</tt> is the number of an existing
+tag, the tag string for that tag is replaced. If <tt>tagnum</tt> is outside
+these values, the <tt>setTag</tt> call is ignored.</dd>
+
+<dt>
+</dt>
+
+<br><tt>changroup = <b>chanGroup</b>( item )</tt>
+<dd>
+Returns the channel group associated with an item. Use this with the <a href="anenvel.html">Animation
+Envelopes</a> and <a href="chaninfo.html">Channel Info</a> globals.</dd>
+
+<dt>
+</dt>
+
+<br><tt>servname = <b>server</b>( item, class, index )</tt>
+<dd>
+Returns the name of a plug-in applied to an item. The class argument is
+the class name, and the index refers to the position in the server list
+for that class. The first server in the list has an index of 1. Returns
+NULL if no plug-in matching the arguments can be found. This function can
+also be used to query the names of servers that aren't associated with
+items, such as <a href="../classes/pxlfilt.html">pixel</a> and <a href="../classes/imgfilt.html">image
+filters</a> and <a href="../classes/volume.html">volumetrics</a>, and for
+those the item ID is ignored.</dd>
+
+<dt>
+</dt>
+
+<br><tt>flags = <b>serverFlags</b>( item, class, index )</tt>
+<dd>
+Returns flags for the plug-in identified by the item, class name and server
+list index. Currently the possible flags are&nbsp;</dd>
+
+<pre>LWSRVF_DISABLED
+LWSRVF_HIDDEN</pre>
+
+<dt>
+<tt><b>controller</b>( item, param_type, hpb_controllers )</tt></dt>
+
+<dd>
+Returns a code indicating which mechanism controls the item's rotation.
+The third argument is an array of three integers, one each for heading,
+pitch and bank, that receive a controller code for keyframes, targeting,
+alignment to a path, or inverse kinematics.&nbsp;</dd>
+
+<pre>LWMOTCTL_KEYFRAMES
+LWMOTCTL_TARGETING
+LWMOTCTL_ALIGN_TO_PATH
+LWMOTCTL_IK</pre>
+
+<dt>
+<tt>itemflags = <b>flags</b>( item )</tt></dt>
+
+<dd>
+Returns certain item settings as a set of bit flags.</dd>
+
+<pre>LWITEMF_ACTIVE
+LWITEMF_UNAFFECT_BY_IK
+LWITEMF_FULLTIME_IK
+LWITEMF_GOAL_ORIENT
+LWITEMF_REACH_GOAL</pre>
+
+<dt>
+<tt>time = <b>lookAhead</b>( item )</tt></dt>
+
+<dd>
+Returns the look-ahead interval, in seconds, for motion channels controlled
+by <tt>LWMOTCTL_ALIGN_TO_PATH</tt>. This is the amount of time by which
+changes in orientation of the item anticipate changes in the path direction.</dd>
+
+<dt>
+</dt>
+
+<br><tt>strength = <b>goalStrength</b>( item )</tt>
+<dd>
+Returns the item's IK goal strength.</dd>
+
+<dt>
+</dt>
+
+<br><tt><b>stiffness</b>( item, param_type, vector )</tt>
+<dd>
+Fills <tt>vector</tt> with the item's joint stiffness settings in heading,
+pitch and bank. Use <tt>LWIP_ROTATION</tt> as the <tt>param_type</tt>.</dd>
+</dl>
+<tt>flags = <b>axisLocks</b>( item, param_type )</tt>
+<dd>
+Returns bits indicating which channels are locked in the UI. See <b>limits().</b></dd>
+
+<dd>
+</dd>
+
+<br><b>History</b>
+<p>LightWave 7.5 added the <tt>axisLocks</tt> function, but <tt>LWITEMINFO_GLOBAL</tt>
+was <i>not</i> incremented. If you ask for "LW Item Info 3", use the <a href="prodinfo.html">Product
+Info</a> global to determine whether you're running in LightWave 7.0 or
+later before attempting to call these functions.
+<p><b>Example</b>
+<p>This code fragment traverses the object list, collecting names and some
+parameters.
+<pre>&nbsp;&nbsp; #include &lt;lwserver.h>
+&nbsp;&nbsp; #include &lt;lwrender.h>
+
+&nbsp;&nbsp; LWItemInfo *iteminfo;
+&nbsp;&nbsp; LWItemID id;
+&nbsp;&nbsp; char *name;
+&nbsp;&nbsp; LWTime t = 3.0;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* seconds */
+&nbsp;&nbsp; LWDVector rt, up, fd;
+
+&nbsp;&nbsp; iteminfo = global( LWITEMINFO_GLOBAL, GFUSE_TRANSIENT );
+&nbsp;&nbsp; if ( iteminfo ) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; id = iteminfo->first( LWI_OBJECT, NULL );
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while ( id ) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; name = iteminfo->name( id );
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; iteminfo->param( id, LWIP_RIGHT, t, rt );
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; iteminfo->param( id, LWIP_UP, t, up );
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; iteminfo->param( id, LWIP_FORWARD, t, fd );
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ( rt[ 0 ] > 0.0 ) { ...
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; id = iteminfo->next( id );
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp; }</pre>
+The vectors returned by the <tt>param</tt> function can be used to transform
+points between item and world coordinates. In the following fragments,
+<tt>p</tt> is the position of a point in item coordinates and <tt>q</tt>
+is the same point's position in world coordinates:
+<pre>&nbsp;&nbsp; LWDVector p, q, rt, up, fd, wrt, wup, wfd, wpos, piv;
+&nbsp;&nbsp; LWItemID id;
+&nbsp;&nbsp; ...
+&nbsp;&nbsp; iteminfo->param( id, LWIP_RIGHT,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t, rt );
+&nbsp;&nbsp; iteminfo->param( id, LWIP_UP,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t, up );
+&nbsp;&nbsp; iteminfo->param( id, LWIP_FORWARD,&nbsp;&nbsp;&nbsp; t, fd );
+&nbsp;&nbsp; iteminfo->param( id, LWIP_W_POSITION, t, wpos );
+&nbsp;&nbsp; iteminfo->param( id, LWIP_PIVOT,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t, piv );</pre>
+To convert from item to world coordinates, subtract the pivot position
+(to move the rotation origin to the world origin), multiply by the matrix
+formed from the direction vectors, and offset the result by the world position
+of the item.
+<pre>&nbsp;&nbsp; for ( i = 0; i &lt; 3; i++ )
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; q[ i ] = ( p[ 0 ] - piv[ 0 ] ) * rt[ i ]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + ( p[ 1 ] - piv[ 1 ] ) * up[ i ]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + ( p[ 2 ] - piv[ 2 ] ) * fd[ i ]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + wpos[ i ];</pre>
+To transform from world to item coordinates, just apply the same procedure
+in reverse, using the inverse direction vectors.
+<pre>&nbsp;&nbsp; iteminfo->param( id, LWIP_W_RIGHT,&nbsp;&nbsp; t, wrt );
+&nbsp;&nbsp; iteminfo->param( id, LWIP_W_UP,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t, wup );
+&nbsp;&nbsp; iteminfo->param( id, LWIP_W_FORWARD, t, wfd );
+
+&nbsp;&nbsp; for ( i = 0; i &lt; 3; i++ )
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; p[ i ] = ( q[ 0 ] - wpos[ 0 ] ) * wrt[ i ]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + ( q[ 1 ] - wpos[ 1 ] ) * wup[ i ]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + ( q[ 2 ] - wpos[ 2 ] ) * wfd[ i ]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + piv[ i ];</pre>
+</td>
+</tr>
+
+<tr>
+<td></td>
+</tr>
+</table>
+
+</body>
+</html>

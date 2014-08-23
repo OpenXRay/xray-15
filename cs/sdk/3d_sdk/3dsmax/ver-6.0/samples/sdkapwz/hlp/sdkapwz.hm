@@ -1,0 +1,9 @@
+// MAKEHELP.BAT generated Help Map file.  Used by SDKAPWZ.HPJ. 
+ 
+// Dialogs (IDD_*) 
+HIDD_CUSTOM1                            0x20081
+HIDD_CUSTOM2                            0x20082
+HIDD_CUSTOM3                            0x20083
+HIDD_DIALOG1                            0x20096
+HIDD_CHOOSE_DIR                         0x20098
+ 

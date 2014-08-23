@@ -1,0 +1,168 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PANEL DIALOGEX 0, 0, 108, 171
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    LTEXT           "This utility is used to lock standard materials' diffuse and ambient colors when they are different.\n\nAfter scaning for the materials to be changed, you will be able to remove materials that you wish to remain the same.",
+                    IDC_STATIC,7,7,94,76
+    CONTROL         "Find All...",IDC_FIND_ALL,"CustButton",WS_TABSTOP,26,97,
+                    54,14
+    CONTROL         "Find Selected...",IDC_FIND_SELECTED,"CustButton",
+                    WS_TABSTOP,26,120,54,14
+    CONTROL         "Help...",IDC_DO_HELP,"CustButton",WS_TABSTOP,26,143,54,
+                    14
+END
+
+IDD_FIXUP_MTLS DIALOGEX 0, 0, 184, 265
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU | 
+    WS_THICKFRAME
+CAPTION "Different Ambient And Diffuse Materials"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "No materials were found with different diffuse and ambient colors.",
+                    IDC_FIX_MESSAGE,6,7,171,64,WS_BORDER
+    CONTROL         "",IDC_MTL_LIST,"SysListView32",LVS_LIST | LVS_ALIGNLEFT | 
+                    WS_BORDER | WS_TABSTOP,6,81,171,157
+    PUSHBUTTON      "Cancel",IDCANCEL,127,244,50,14
+    DEFPUSHBUTTON   "Fix Selected",IDOK,64,244,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_PANEL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 164
+    END
+
+    IDD_FIXUP_MTLS, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 177
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 258
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_LIBDESCRIPTION      "Ambient Color Fixup Utility"
+    IDS_CLASS_NAME          "Fix Ambient"
+    IDS_PARAMS              "Parameters"
+    IDS_FIX_AMBIENT         "Fix Ambient"
+    IDS_AMBIENT_VALUE       "The environment has a non-zero value for ambient light. Changing the ambient colors of these materials will change the way they render."
+    IDS_AMBIENT_LIGHT       "There are ambient-only lights in the scene. Changing the ambient colors of these materials may change the way they render."
+    IDS_AMBIENT_VALUE_AND_LIGHT 
+                            "The environment has a non-zero value for ambient light and there are ambient-only lights in the scene. Changing the ambient colors of these materials will change the way they render."
+    IDS_ALL_OK              "The ambient colors of these materials are not being used, and can be safely changed."
+    IDS_FIXUP_ERROR         "The ambient and diffuse colors of these materials could not be locked."
+    IDS_FIXUP_ALL           "Fix All"
+    IDS_PROMPT              "prompt"
+    IDS_FIXUP_SELECTED      "Fix Selected"
+    IDS_FIND_ALL            "Find All"
+    IDS_MTLSFOUND           "mtlsFound"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_FIND_SELECTED       "Find Selected"
+    IDS_FIND                "Find"
+    IDS_OBJECTS             "Objects"
+    IDS_FIXUP_MTLS          "Fix"
+    IDS_MTLS                "mtls"
+    IDS_FIXUP_SELECTED_IS_ENABLED "Fix Ambient Selected Is Enabled"
+    IDS_FIX_AMBIENT_ACTIONS "Fix Ambient Actions"
+    IDS_FIX_AMBIENT_COLORS  "Fix Ambient Colors"
+    IDS_FIND_MTLS           "Find Materials"
+    IDS_FIX_AMBIENT_ALL     "Fix Ambient All"
+    IDS_FIX_AMBIENT_SELECTED "Fix Ambient Selected"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

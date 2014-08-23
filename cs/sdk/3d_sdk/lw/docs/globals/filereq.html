@@ -1,0 +1,105 @@
+<html>
+
+<head>
+<title>Globals: File Request</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="fileio.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="File I/O"></a></td>
+    <td width="96" align="left"><a href="filereq2.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="File Request 2"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>File Request</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwhost.h">lwhost.h</a></small></p>
+    <p>The file request global returns a function that prompts the user for a file selection.
+    The request displays the file dialog currently installed in LightWave. This may be the
+    default system dialog or a <a href="../classes/freq.html">custom file dialog</a> plug-in.
+    See the <a href="filereq2.html">File Request 2</a> global for a newer interface to the
+    file dialog mechanism.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWFileReqFunc *filereq;
+   filereq = global( LWFILEREQFUNC_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWFileReqFunc.</p>
+    <pre>   typedef int LWFileReqFunc (const char *<strong>hail</strong>, char *<strong>name</strong>, char *<strong>path</strong>,
+      char *<strong>fullName</strong>, int <strong>buflen</strong>);</pre>
+    <dl>
+      <dt><strong><tt>hail</tt></strong></dt>
+      <dd>The title string. This is generally displayed near the top of the file dialog and tells
+        the user what kind of file is being requested.</dd>
+      <dt><tt><br>
+        <strong>name</strong></tt> </dt>
+      <dd>The initial file name, not including the path. This can be empty, or it can contain a
+        default name. It can also contain file type patterns that on most systems will filter the
+        names displayed in the dialog. Pattern strings for certain types of files can be obtained
+        from the <a href="filetype.html">File Type Pattern</a> global. If you construct your own
+        pattern strings, remember that these are platform-specific and may also be
+        locale-specific.<p>Some systems display different dialogs for loading and saving. If the
+        first character of the name is '&lt;', a load dialog will be displayed, and if it's
+        '&gt;', a save dialog will be displayed. These initial characters won't appear as part of
+        the initial name or file type pattern.</p>
+        <p>If the user selects a file, the initial name is replaced with the name (not including
+        the path) of the selected file.</p>
+      </dd>
+      <dt><strong><tt>path</tt></strong></dt>
+      <dd>The initial path. Default paths for certain file types can be obtained from the <a
+        href="dirinfo.html">Directory Info</a> global. If you construct your own path string,
+        remember that path lexics depend on the platform. If the user selects a file, the initial
+        path is replaced with the path of the selected file.</dd>
+      <dt><tt><br>
+        <strong>fullName</strong></tt> </dt>
+      <dd>The file request returns the selected file name, including the path, in this string. The
+        initial contents are ignored.</dd>
+      <dt><tt><br>
+        <strong>bufLen</strong></tt> </dt>
+      <dd>The size in bytes of the <tt>name</tt>, <tt>path</tt> and <tt>fullName</tt> strings.
+        Note that all of them must be at least this size and must be large enough to hold the
+        largest file name string you expect to process (a minimum of 256 bytes is recommended).</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>This code fragment asks the user for the name of a file to save.</p>
+    <pre>   #include &lt;lwhost.h&gt;
+   #define MAXFILESZ 260
+
+   static char
+      node[ MAXFILESZ ] = &quot;&quot;,
+      path[ MAXFILESZ ] = &quot;&quot;,
+      name[ MAXFILESZ ] = &quot;&quot;;
+
+   LWFileReqFunc *filereq;
+   LWMessageFuncs *message;
+   int result;
+
+   filereq = global( LWFILEREQFUNC_GLOBAL, GFUSE_TRANSIENT );
+   message = global( LWMESSAGEFUNCS_GLOBAL, GFUSE_TRANSIENT );
+   if ( !filereq || !message ) return AFUNC_BADGLOBAL;
+
+   result = filereq( &quot;Save Widget&quot;, node, path, name, MAXFILESZ );
+   if ( result ) {
+      save_widget( widget, name );
+      message-&gt;info( &quot;The widget has been saved to&quot;, node );
+   }
+   else
+      /* the user cancelled the file dialog */
+      ...
+</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

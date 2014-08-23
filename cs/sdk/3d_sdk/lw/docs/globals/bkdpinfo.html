@@ -1,0 +1,98 @@
+<html>
+
+<head>
+<title>Globals: Backdrop Info</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="anenvel.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="Animation Envelopes"></a></td>
+    <td width="96" align="left"><a href="boneinfo.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Bone Info"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Backdrop Info</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwrender.h">lwrender.h</a></small></p>
+    <p>The backdrop info global returns a function that evaluates the color of the backdrop in
+    a specific direction at a given time, as well as the type, colors and squeeze values for
+    the default solid backdrop. The parameters are read-only, but you can set them using <a
+    href="../commands/layout.html#effects">commands</a>.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWBackdropInfo *bkdropinfo;
+   bkdropinfo = global( LWBACKDROPINFO_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWBackdropInfo.</p>
+    <pre>   typedef struct st_LWBackdropInfo {
+      void     (*<strong>backdrop</strong>) (LWTime, const double ray[3], double color[3]);
+      int       <strong>type</strong>;
+      void     (*<strong>color</strong>)    (LWTime, double zenith[3], double sky[3],
+                              double ground[3], double nadir[3]);
+      void     (*<strong>squeeze</strong>)  (LWTime, double *sky, double *ground);
+   } LWBackdropInfo;</pre>
+    <dl>
+      <tt>
+      <dt><strong>backdrop</strong>( time, ray, color )</dt>
+      </tt>
+      <dd>Sets the <tt>color</tt> argument to the RGB levels of the backdrop color in the <tt>ray</tt>
+        direction at the specified time. Several effects can cause this color to differ entirely
+        from the one implied by the other members of the LWBackdropInfo.</dd>
+      <tt>
+      <dt><br>
+        <strong>type</strong></dt>
+      </tt>
+      <dd><tt>LWBACK_SOLID</tt> (the default backdrop is a single uniform color) or <tt>LWBACK_GRADIENT</tt>
+        (the default backdrop is a gradient derived from the zenith, sky, ground and nadir
+        colors).</dd>
+      <tt>
+      <dt><br>
+        <strong>color</strong>( time, zenith, sky, ground, nadir )</dt>
+      </tt>
+      <dd>The arrays are filled with the RGB levels for each of the four gradient nodes.</dd>
+      <tt>
+      <dt><br>
+        <strong>squeeze</strong>( time, sky, ground )</dt>
+      </tt>
+      <dd>The squeeze amount is stored in the <tt>sky</tt> and <tt>ground</tt> arguments. A
+        squeeze of 1.0 produces a linear interpolation between the horizon and the pole, while
+        higher amounts cause the color to vary more quickly near the horizon.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>This code fragment shows how to obtain the backdrop color in a given direction.</p>
+    <pre>   #include &lt;lwserver.h&gt;
+   #include &lt;lwrender.h&gt;
+
+   LWBackDropInfo *bkdropinfo;
+   double ray[ 3 ], color[ 3 ], dx, dy, dz, d;
+   LWTime t;
+
+   bkdropinfo = global( LWBACKDROPINFO_GLOBAL, GFUSE_TRANSIENT );
+   if ( !bkdropinfo ) return AFUNC_BADGLOBAL;
+   ...
+
+   /* normalize the direction ray */
+   d = sqrt( dx * dx + dy * dy + dz * dz );
+
+   if ( d &gt; 0 ) {
+      ray[ 0 ] = dx / d;
+      ray[ 1 ] = dy / d;
+      ray[ 2 ] = dz / d;
+      bkdropinfo-&gt;backdrop( t, ray, color );
+      ...</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

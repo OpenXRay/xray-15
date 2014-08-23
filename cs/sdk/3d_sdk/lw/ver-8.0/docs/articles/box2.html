@@ -1,0 +1,368 @@
+<html>
+
+<head>
+<title>Tutorial: Box2</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="box1.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="Part 1"></a></td>
+    <td width="96" align="left"><a href="box3.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Part 3"></a></td>
+    <td width="96" align="left"><a href="../articles.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Articles"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Let's Make Another Box</h3>
+    <p><small><strong>Author</strong>&nbsp; Ernie Wright<br>
+    <strong>Date</strong>&nbsp; 1 June 2001</small></p>
+    <p>In the first installment of this tutorial, we looked at a simple plug-in that creates a
+    box in Modeler by calling the <tt>MAKEBOX</tt> command. In this installment we'll assume
+    you're comfortable with the plug-in basics covered <a href="box1.html">there</a>. We'll
+    call <tt>MAKEBOX</tt> in a different way, and we'll add a user interface. The complete
+    source is in <tt>sample/boxes/box2/<a href="../../sample/Modeler/CommandSequence/boxes/box2/box.c">box.c</a></tt>.</p>
+    <p><strong>Our Second Box Plug-in</strong></p>
+    <p>In this plug-in, we'll move the box creation out of the activation function into its
+    own function, and we'll use <tt>lookup</tt> and <tt>execute</tt> rather than <tt>evaluate</tt>
+    to issue the <tt>MAKEBOX</tt> command.</p>
+    <p>Here's our new <tt>makebox</tt> function.</p>
+    <pre>   int makebox( LWModCommand *local, float *size, float *center,
+      int nsegments )
+   {
+      static LWCommandCode ccode = 0;
+      DynaValue argv[ 3 ];
+
+      argv[ 0 ].type = DY_VFLOAT;
+      argv[ 0 ].fvec.val[ 0 ] = center[ 0 ] - 0.5f * size[ 0 ];
+      argv[ 0 ].fvec.val[ 1 ] = center[ 1 ] - 0.5f * size[ 1 ];
+      argv[ 0 ].fvec.val[ 2 ] = center[ 2 ] - 0.5f * size[ 2 ];
+
+      argv[ 1 ].type = DY_VFLOAT;
+      argv[ 1 ].fvec.val[ 0 ] = center[ 0 ] + 0.5f * size[ 0 ];
+      argv[ 1 ].fvec.val[ 1 ] = center[ 1 ] + 0.5f * size[ 1 ];
+      argv[ 1 ].fvec.val[ 2 ] = center[ 2 ] + 0.5f * size[ 2 ];
+
+      if ( nsegments ) {
+         argv[ 2 ].type = DY_VINT;
+         argv[ 2 ].ivec.val[ 0 ] =
+         argv[ 2 ].ivec.val[ 1 ] =
+         argv[ 2 ].ivec.val[ 2 ] = nsegments;
+      }
+      else argv[ 2 ].type = DY_NULL;
+
+      if ( !ccode )
+         ccode = local-&gt;lookup( local-&gt;data, &quot;MAKEBOX&quot; );
+
+      return local-&gt;execute( local-&gt;data, ccode, 3, argv, 0, NULL );
+   }</pre>
+    <p>Now we're getting into some stuff! Before I explain it, you might wonder why we'd
+    bother with this apparently more complicated method at all, when we can use the simpler <tt>evaluate</tt>
+    function. One answer is speed.</p>
+    <p>The <tt>lookup</tt> and <tt>execute</tt> functions are Modeler's <em>native</em>
+    mechanism for processing commands. When you use <tt>evaluate</tt> instead, Modeler parses
+    the command string you pass and then calls the <tt>lookup</tt> and <tt>execute</tt>
+    functions itself. You save some time by using <tt>lookup</tt> and <tt>execute</tt>
+    directly, rather than building an <tt>evaluate</tt> string in your plug-in that Modeler is
+    just going to take apart again.</p>
+    <p>Also on the plus side, you only have to write your <tt>makebox</tt> function once.
+    After that, you can call it as often as you like with a single line of code, and you can
+    cut and paste it into other plug-ins. The <a href="../../sample/Modeler/Utility/modlib/">modlib</a> SDK
+    sample is a library of about a hundred functions like <tt>makebox</tt>, each of which
+    issues one of the Modeler commands.</p>
+    <p>And if the low and high corner arguments to the <tt>MAKEBOX</tt> command are
+    inconvenient, you can make up your own, as we did above with the size and center
+    arguments. Obviously, your <tt>makebox</tt> could call <tt>evaluate</tt>, but if you're
+    going to the trouble to write a <tt>makebox</tt> at all, you might as well go all the way
+    and use the faster <tt>lookup</tt> and <tt>execute</tt>.</p>
+    <p><strong>Arguments</strong></p>
+    <p>Except for the last line, <tt>makebox</tt> spends all of its time constructing the
+    arguments for the <tt>execute</tt> function, one of which is the argument list for the <tt>MAKEBOX</tt>
+    command. Let's take a closer look at all of these arguments.</p>
+    <pre>   int execute( void *<strong>mddata</strong>, LWCommandCode <strong>ccode</strong>, int <strong>argc</strong>,
+      DynaValue *<strong>argv</strong>, EltOpSelect <strong>opsel</strong>, int *<strong>result</strong> );</pre>
+    <dl>
+      <tt>
+      <dt><strong>mddata</strong></dt>
+      </tt>
+      <dd>As with <tt>evaluate</tt>, this is the <tt>data</tt> field of the LWModCommand
+        structure, which provides Modeler the context in which the command will be processed. You
+        never need to know what's in this data. You just have to pass it to the functions that
+        require it.</dd>
+      <tt>
+      <dt><strong><br>
+        ccode</strong></dt>
+      </tt>
+      <dd>A command code obtained by calling <tt>lookup</tt>. A code is used to specify the
+        command instead of the name of the command (in our case, &quot;MAKEBOX&quot;) because it's
+        faster. Modeler doesn't have to do a lot of string comparisons to figure out which command
+        you're issuing. The string search need only be done once per Modeler session, when you
+        call <tt>lookup</tt>. In our plug-in, the command code returned by <tt>lookup</tt> is
+        stored in a static variable. We only call <tt>lookup</tt> the first time through <tt>makebox</tt>,
+        when our static variable hasn't been initialized yet.</dd>
+      <tt>
+      <dt><strong><br>
+        argc, argv</strong></dt>
+      </tt>
+      <dd>The argument list for the <tt>MAKEBOX</tt> command. <tt>argv</tt> is an array of <a
+        href="../dynaval.html">DynaValues</a>, and <tt>argc</tt> is the number of elements in the <tt>argv</tt>
+        array. DynaValues are the union of a number of different data types. To initialize a
+        DynaValue, you set the type field, then set the value of the union member appropriate for
+        the type. DynaValues allow you to create a single array in which each element can be a
+        different data type.</dd>
+      <tt>
+      <dt><strong><br>
+        opsel</strong></dt>
+      </tt>
+      <dd>This is the selection mode for the command. It determines which existing geometry your
+        command will interact with. You want some commands to work only on the polygons the user
+        has selected, or on all polygons regardless of the selection, and so on. This is ignored
+        for <tt>MAKEBOX</tt>, so we just set it to 0.</dd>
+      <tt>
+      <dt><strong><br>
+        result</strong></dt>
+      </tt>
+      <dd>A few commands return command-specific result codes in this argument. <tt>MAKEBOX</tt>
+        isn't one of them, so we set this to NULL.</dd>
+    </dl>
+    <p>Before we move on to the interface part, there's one other thing to notice here. The
+    third argument to the <tt>MAKEBOX</tt> command is optional. You don't have to specify a
+    number of segments. To support this in our <tt>makebox</tt> function, we allow the <tt>nsegments</tt>
+    argument to be 0. In that case, the third element of the <tt>argv</tt> array is a
+    DynaValue of type <tt>DY_NULL</tt>. The <tt>DY_NULL</tt> type serves as a placeholder when
+    the argument list for a command contains an optional argument that you aren't supplying.</p>
+    <p><strong>The Interface</strong></p>
+    <p>Our interface function displays a modal input window, or panel, that looks like this.</p>
+    <table border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td align="center" width="600"><img src="boximage/panel.gif" width="430" height="213"></td>
+      </tr>
+    </table>
+    <p>This is built with <a href="../globals/xpanel.html">XPanels</a>, a component of the
+    platform-independent user interface API. The panel layout and event handling in XPanels
+    are highly automated, so to create this panel, all we have to do is create a list of
+    controls and initialize them, display the panel, and then collect the results.</p>
+    <p>Here's the source code for our interface function.</p>
+    <pre>   int get_user( LWXPanelFuncs *xpanf, double *size, double *center,
+      int *nsegments )
+   {
+      LWXPanelID panel;
+      int ok = 0;
+
+      enum { ID_SIZE = 0x8001, ID_CENTER, ID_NSEGMENTS };
+      LWXPanelControl ctl[] = {
+         { ID_SIZE,      &quot;Size&quot;,     &quot;distance3&quot; },
+         { ID_CENTER,    &quot;Center&quot;,   &quot;distance3&quot; },
+         { ID_NSEGMENTS, &quot;Segments&quot;, &quot;integer&quot;   },
+         { 0 }
+      };
+      LWXPanelDataDesc cdata[] = {
+         { ID_SIZE,      &quot;Size&quot;,     &quot;distance3&quot; },
+         { ID_CENTER,    &quot;Center&quot;,   &quot;distance3&quot; },
+         { ID_NSEGMENTS, &quot;Segments&quot;, &quot;integer&quot;   },
+         { 0 }
+      };
+      LWXPanelHint hint[] = {
+         XpMIN( ID_NSEGMENTS, 0 ),
+         XpMAX( ID_NSEGMENTS, 200 ),
+         XpDIVADD( ID_SIZE ),
+         XpDIVADD( ID_CENTER ), 
+         XpEND
+      };
+
+      panel = xpanf-&gt;create( LWXP_FORM, ctl );
+      if ( !panel ) return 0;
+
+      xpanf-&gt;describe( panel, cdata, NULL, NULL );
+      xpanf-&gt;hint( panel, 0, hint );
+      xpanf-&gt;formSet( panel, ID_SIZE, size );
+      xpanf-&gt;formSet( panel, ID_CENTER, center );
+      xpanf-&gt;formSet( panel, ID_NSEGMENTS, nsegments );
+   
+      ok = xpanf-&gt;post( panel );
+
+      if ( ok ) {
+         double *d;
+         int *i;
+
+         d = xpanf-&gt;formGet( panel, ID_SIZE );
+         size[ 0 ] = d[ 0 ];
+         size[ 1 ] = d[ 1 ];
+         size[ 2 ] = d[ 2 ];
+
+         d = xpanf-&gt;formGet( panel, ID_CENTER );
+         center[ 0 ] = d[ 0 ];
+         center[ 1 ] = d[ 1 ];
+         center[ 2 ] = d[ 2 ];
+
+         i = xpanf-&gt;formGet( panel, ID_NSEGMENTS );
+         *nsegments = *i;
+      }
+
+      xpanf-&gt;destroy( panel );
+      return ok;
+   }</pre>
+    <p><strong>Dissecting the Interface</strong></p>
+    <p>Let's take a closer look.</p>
+    <pre>   int get_user( LWXPanelFuncs *xpanf, double *size, double *center,
+      int *nsegments )</pre>
+    <p>The first argument to <tt>get_user</tt> is a pointer to LWXPanelFuncs. When we get to
+    our activation function, I'll explain where this comes from. But for now, it's a structure
+    containing the functions we need to work with our panel. The other three arguments are
+    used to initialize our controls, and they'll be modified with the values entered by the
+    user. Note that <tt>size</tt> and <tt>center</tt> are arrays of three doubles, while <tt>nsegments</tt>
+    is a pointer to a single integer.</p>
+    <pre>      LWXPanelID panel;
+      int ok = 0;</pre>
+    <p>LWXPanelID is just an opaque pointer that LightWave&reg; uses to identify our panel. The
+    double and integer pointers will be used when we retrieve the user's entries from the
+    controls, and <tt>ok</tt> will be true if the user presses OK to dismiss the panel.</p>
+    <pre>      enum { ID_SIZE = 0x8001, ID_CENTER, ID_NSEGMENTS };</pre>
+    <p>XPanels uses integer codes to identify panel controls. User-defined controls have IDs
+    that start at 0x8001.</p>
+    <pre>      LWXPanelControl ctl[] = {
+         { ID_SIZE,      &quot;Size&quot;,     &quot;distance3&quot; },
+         { ID_CENTER,    &quot;Center&quot;,   &quot;distance3&quot; },
+         { ID_NSEGMENTS, &quot;Segments&quot;, &quot;integer&quot;   },
+         { 0 }
+      };
+      LWXPanelDataDesc cdata[] = {
+         { ID_SIZE,      &quot;Size&quot;,     &quot;distance3&quot; },
+         { ID_CENTER,    &quot;Center&quot;,   &quot;distance3&quot; },
+         { ID_NSEGMENTS, &quot;Segments&quot;, &quot;integer&quot;   },
+         { 0 }
+      };</pre>
+    <p>These two arrays define our controls. They look redundant, and to a certain extent, for
+    what we're doing, they are. XPanels distinguishes between controls (the widgets drawn on
+    your panel) and data descriptions, which define how you'll represent the values of your
+    controls. You can define controls that don't have corresponding data descriptions, and
+    vice versa. This amount of abstraction is useful for more sophisticated panels, but we're
+    setting up the simplest kind of relationship between our controls and their values, so our
+    control list and our data descriptions are parallel.</p>
+    <p>Note that XPanels, as of this writing, doesn't support controls of type
+    &quot;integer3&quot;. We could simulate one with three separate &quot;integer&quot;
+    controls, but for the sake of simplicity I chose not to do this. As a result, our <tt>makebox</tt>
+    will create the same number of segments along all three axes.</p>
+    <pre>      LWXPanelHint hint[] = {
+         XpMIN( ID_NSEGMENTS, 1 ),
+         XpMAX( ID_NSEGMENTS, 200 ),
+         XpDIVADD( ID_SIZE ),
+         XpDIVADD( ID_CENTER ), 
+         XpEND
+      };</pre>
+    <p>XPanels automates most aspects of control layout. The rules it uses resemble those used
+    to build LightWave&reg;'s own interface, so your plug-in's panels are aesthetically and
+    functionally consistent with the rest of the program. In exchange for this, you must
+    sacrifice some low-level control over the appearance of your panel. You can't specify the
+    pixel positions of your controls, for example.</p>
+    <p>Instead, you use hints to describe your controls and the appearance of your panel in a
+    more abstract way. Here we define a sane range for the segments control and add dividers
+    between the controls. The positions and sizes of the controls, their labels, and
+    decorations like the dividers are all calculated for us. You can also use hints to group
+    controls, put controls on different tabs, establish dependencies between controls, and
+    lots of other things. </p>
+    <pre>      panel = xpanf-&gt;create( LWXP_FORM, ctl );
+      if ( !panel ) return 0;</pre>
+    <p>This is where we create the panel. If panel creation fails for some reason, we return
+    0, which is also what we return when the user presses the Cancel button.</p>
+    <p>XPanels supports two kinds of panels, called <em>forms</em> and <em>views</em>. Views
+    are designed primarily for the panels associated with <a href="../handler.html">handler</a>
+    class plug-ins in Layout. Views work with <em>instances</em>, the unique data pointers
+    returned by each invocation of a handler plug-in. But you're free to choose. You can use
+    forms in your handlers, and we could have used a view here. Forms are just a little easier
+    to grasp initially.</p>
+    <pre>      xpanf-&gt;describe( panel, cdata, NULL, NULL );
+      xpanf-&gt;hint( panel, 0, hint );
+      xpanf-&gt;formSet( panel, ID_SIZE, size );
+      xpanf-&gt;formSet( panel, ID_CENTER, center );
+      xpanf-&gt;formSet( panel, ID_NSEGMENTS, nsegments );</pre>
+    <p>These calls initialize the panel. The last two arguments to the <tt>describe</tt>
+    function are NULL because our panel is a form. If it had been a view, these arguments
+    would contain pointers to our get and set callbacks. The IDs in the <tt>formSet</tt> calls
+    are value IDs corresponding to entries in the data description array (as opposed to
+    control IDs from our control array). This is a distinction without a difference for us
+    now, but I wanted to plant this in the back of your mind for a time when it <em>will</em>
+    make a difference.</p>
+    <pre>      ok = xpanf-&gt;post( panel );</pre>
+    <p>The <tt>post</tt> function displays the panel and waits for the user. Using <tt>post</tt>
+    makes the panel modal, which just means that everything else stops until the user presses
+    OK or Cancel on the panel.</p>
+    <pre>      if ( ok ) {
+         double *d;
+         int *i
+
+         d = xpanf-&gt;formGet( panel, ID_SIZE );
+         size[ 0 ] = d[ 0 ];
+         size[ 1 ] = d[ 1 ];
+         size[ 2 ] = d[ 2 ];
+
+         d = xpanf-&gt;formGet( panel, ID_CENTER );
+         center[ 0 ] = d[ 0 ];
+         center[ 1 ] = d[ 1 ];
+         center[ 2 ] = d[ 2 ];
+
+         i = xpanf-&gt;formGet( panel, ID_NSEGMENTS );
+         nsegments[ 2 ] = nsegments[ 1 ] = nsegments[ 0 ] = *i;
+      }</pre>
+    <p>If the user presses OK, we retrieve the value of each control and store it for use
+    later in our plug-in. The <tt>formGet</tt> function returns a pointer to a variable of the
+    appropriate type for the value.</p>
+    <pre>      xpanf-&gt;destroy( panel );
+      return ok;
+   }</pre>
+    <p>We're done with the panel, so we destroy it. If we needed to open this panel more than
+    once, we could create it once, post it as many times as we need it, then destroy it when
+    we exit.</p>
+    <p><strong>Activation</strong></p>
+    <p>All that remains is our activation function, which really hasn't changed very much. </p>
+    <pre>   XCALL_( int )
+   Activate( long version, GlobalFunc *global, LWModCommand *local,
+      void *serverData )
+   {
+      LWXPanelFuncs *xpanf;
+      double size[ 3 ]   = { 1.0, 1.0, 1.0 };
+      double center[ 3 ] = { 0.0, 0.0, 0.0 };
+      int nsegments = 1;
+
+      if ( version != LWMODCOMMAND_VERSION )
+         return AFUNC_BADVERSION;
+
+      xpanf = global( LWXPANELFUNCS_GLOBAL, GFUSE_TRANSIENT );
+      if ( !xpanf ) return AFUNC_BADGLOBAL;
+
+      if ( get_user( xpanf, size, center, &amp;nsegments ))
+         makebox( local, size, center, nsegments );
+
+      return AFUNC_OK;
+   }</pre>
+    <p>We've added storage for the box parameters so that these can be user-defined, and we
+    call our <tt>get_user</tt> and <tt>makebox</tt> functions rather than <tt>sprintf</tt> and
+    <tt>evaluate</tt>. We've also added a couple of lines having to do with that LWXPanelFuncs
+    pointer, and as promised, I'll now explain where that pointer comes from.</p>
+    <pre>   LWXPanelFuncs *xpanf;
+   xpanf = global( LWXPANELFUNCS_GLOBAL, GFUSE_TRANSIENT );
+   if ( !xpanf ) return AFUNC_BADGLOBAL;</pre>
+    <p>The second argument to every activation function is the <em>global function</em>. The
+    globals returned by this function are services provided by LightWave&reg;. The XPanels global
+    is a common example. When called with an <tt>LWXPANELFUNCS_GLOBAL</tt> argument, the
+    global function returns a pointer to an LWXPanelFuncs structure containing the functions
+    you need to build and display an XPanels interface. The <a href="../globals.html">Globals</a>
+    page of the SDK describes the global function in detail and lists the globals available in
+    LightWave&reg;.</p>
+    <p><strong>What's Next</strong></p>
+    <p>We'll be taking our user interface with us into the <a href="box3.html">next
+    installment</a>, but we'll be leaving behind the <tt>MAKEBOX</tt> command as we explore
+    the construction of boxes from individual points and polygons.</td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,132 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_BPSPANEL DIALOG  0, 0, 217, 37
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_EDIT,"CustEdit",WS_TABSTOP,41,14,12,10
+    CONTROL         "",IDC_SPIN,"SpinnerControl",0x0,54,14,7,10
+    CONTROL         "Animate Texture Coordinates",IDC_ANIMATE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,89,15,105,8
+    LTEXT           "Effect ",IDC_STATIC,14,14,20,12
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_BPSPANEL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 205
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 31
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_PSCLASS_NAME        "Pixel Shader"
+    IDS_PSPARAMS            "DirectX Shader - Membrane"
+    IDS_SPIN                "Spin"
+    IDS_COORDS              "Coordinates"
+    IDS_PSCATEGORY          "DXViewportEffect"
+    IDS_VSCATEGORY          "ViewportShader"
+    IDS_VSCLASS_NAME        "Vertex Shader"
+    IDS_VSPARAMS            "Parameters"
+    IDS_BPSCLASS_NAME       "Membrane Shader"
+    IDS_CUBEMAPFILENAME     "Cube Map"
+    IDS_VSFILENAME          "Vertex Shader File"
+    IDS_CM_FILE_TYPES       "D3D(*.dds)|*.dds"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_VS_FILE_TYPES       "D3D(*.njv)|*.njv"
+    IDS_VS_FAIL             "Vertex Shader File not found"
+    IDS_HS                  "Hardware Shader"
+    IDS_VSLOAD_FAIL         "Loading Vertex Shader File failed"
+    IDS_TV                  "Animate TVs"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

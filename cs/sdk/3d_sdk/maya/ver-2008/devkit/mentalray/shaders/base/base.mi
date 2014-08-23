@@ -1,0 +1,1184 @@
+#*****************************************************************************
+# Copyright 1986-2006 by mental images GmbH, Fasanenstr. 81, D-10623 Berlin,
+# Germany. All rights reserved.
+#*****************************************************************************
+# Created:	21.10.1997
+# Module:	baseshader
+# Purpose:	.mi declarations for built-in Phenomena baseshaders
+#
+# Exports:
+#					texture space mapping
+#	mib_texture_vector
+#	mib_texture_remap
+#	mib_texture_rotate
+#	mib_bump_basis
+#	mib_bump_map
+#	mib_passthrough_bump_map
+#					Environments and Compositing
+#	mib_lookup_spherical
+#	mib_lookup_cube1
+#	mib_lookup_cube6
+#	mib_lookup_background
+#	mib_lookup_cylindrical
+#					Textures
+#	mib_texture_lookup
+#	mib_texture_filter_lookup
+#	mib_texture_checkerboard
+#	mib_texture_polkadot
+#	mib_texture_polkasphere
+#	mib_texture_turbulence
+#	mib_texture_wave
+#					Sample Compositing
+#	mib_reflect
+#	mib_refract
+#	mib_transparency
+#	mib_opacity
+#       mib_continue
+#	mib_dielectric
+#	mib_ray_marcher
+#	mib_twosided
+#	mib_refraction_index
+#       mib_bent_normal_env
+#       mib_glossy_reflection
+#       mib_glossy_refraction
+#					Illumination
+#	mib_illum_lambert
+#	mib_illum_phong
+#	mib_illum_blinn
+#	mib_illum_cooktorr
+#	mib_illum_ward
+#	mib_illum_ward_deriv
+#	mib_illum_hair
+#					Volume
+#	mib_volume
+#					Data Conversion
+#	mib_color_alpha
+#	mib_color_average
+#	mib_color_intensity
+#	mib_color_interpolate
+#	mib_color_mix
+#	mib_color_spread
+#					Geometry
+#	mib_geo_cube
+#	mib_geo_sphere
+#	mib_geo_cone
+#	mib_geo_cylinder
+#	mib_geo_square
+#	mib_geo_instance
+#	mib_geo_instance_mlist
+#	mib_geo_add_uv_texsurf
+#	mib_geo_torus
+#
+#					Light
+#	mib_light_point
+#	mib_light_spot
+#	mib_light_infinite
+#	mib_light_photometric
+#
+#					Light utils
+#	mib_cie_d
+#	mib_blackbody
+#
+#					Photon
+#	mib_photon_basic
+#					Lightmap
+#	mib_lightmap_write
+#	mib_lightmap_sample
+#
+#					Lens
+#	mib_lens_clamp
+#	mib_lens_stencil
+#					Occlusion
+#       mib_amb_occlusion
+#
+#					Hair
+#                    
+#
+# History:
+#	28.10.97 gunter:  added geometry shaders
+#	17.11.97 thomas:  added ambience parameter to illuminance base shaders
+#	08.12.97 henrik:  renamed mib_twoside to mib_twosided
+#	12.01.98 thomas:  added mib_opacity
+#	29.01.98 henrik:  added mib_photon_basic
+#	26.05.98 thomas:  introduced project in texture_vector and bump_basis
+#	16.09.99 steve:	  added color_base in mib_color_mix (now version 2)
+#	11.01.00 thomas:  added offset parameter to mib_texture_remap
+#	26.01.00 thomas:  added clamp parameter to mib_bump_map*
+#	11.01.02 carsten: added mib_illum_hair
+#	14.11.03 jurgen:  added mib_light_photometric, lens shaders
+#       27.05.04 alf:     added mib_continue
+#       26.07.04 alf:     added mib_amb_occlusion
+#       17.02.05 alf:     added mib_fg_occlusion    
+#       13.05.05 alf:     added mib_glossy_reflection,refraction
+#
+#****************************************************************************/
+
+# guard against multiple inclusions
+$ifndef "base_mi_included"
+set "base_mi_included" "true"
+
+min version "2.0.20"
+max version "3.6.99"
+
+#-------------------------------------------- texture space mapping
+
+declare shader
+	vector "mib_texture_vector" (
+		integer		"select",
+		integer		"selspace",
+		integer		"vertex",
+		integer		"project"
+	)
+	version 2
+	apply texture
+end declare
+
+declare shader
+	vector "mib_texture_remap" (
+		vector		"input",
+		transform	"transform",
+		vector		"repeat",
+		boolean		"alt_x",
+		boolean		"alt_y",
+		boolean		"alt_z",
+		boolean		"torus_x",
+		boolean		"torus_y",
+		boolean		"torus_z",
+		vector		"min",
+		vector		"max",
+		vector		"offset"
+	)
+	version 1
+	apply texture
+end declare
+
+declare shader
+	struct {
+		vector		"u",
+		vector		"v"
+	} "mib_texture_rotate" (
+		vector		"input",
+		scalar		"angle",
+		scalar		"min",
+		scalar		"max"
+	)
+	version 1
+	apply texture
+end declare
+
+declare shader
+	struct {
+		vector		"u",
+		vector		"v"
+	} "mib_bump_basis" (
+		integer		"project",
+		integer		"ntex"
+	)
+	version 2
+	apply texture
+end declare
+
+declare shader
+	vector "mib_bump_map" (
+		vector		"u",
+		vector		"v",
+		vector		"coord",
+		vector		"step",
+		scalar		"factor",
+		boolean		"torus_u",
+		boolean		"torus_v",
+		boolean		"alpha",
+		color texture	"tex",
+		boolean		"clamp"
+	)
+	version 2
+	apply texture
+end declare
+
+declare shader
+	color "mib_passthrough_bump_map" (
+		vector		"u",
+		vector		"v",
+		vector		"coord",
+		vector		"step",
+		scalar		"factor",
+		boolean		"torus_u",
+		boolean		"torus_v",
+		boolean		"alpha",
+		color texture	"tex",
+		boolean		"clamp"
+	)
+	version 2
+	apply texture
+end declare
+
+# -------------------
+# -- mib_bump_map2 --
+# -------------------
+declare shader
+    color "mib_bump_map2" (
+        scalar          "factor",
+        scalar          "scale",
+        color texture   "tex",
+        color           "color",
+	)
+	version 1
+end declare
+
+
+#-------------------------------------------- Environments and Compositing
+
+declare shader
+	color "mib_lookup_spherical" (
+		vector		"dir",
+		scalar		"rotate",
+		color texture   "tex"
+	)
+	version 1
+	apply environment
+end declare
+
+declare shader
+	color "mib_lookup_cube1" (
+		vector		"point",
+		vector		"dir",
+		vector		"size",
+		color texture   "tex"
+	)
+	version 1
+	apply environment
+end declare
+
+declare shader
+	color "mib_lookup_cube6" (
+		vector		"point",
+		vector		"dir",
+		vector		"size",
+		color texture   "tex_mx",
+		color texture   "tex_px",
+		color texture   "tex_my",
+		color texture   "tex_py",
+		color texture   "tex_mz",
+		color texture   "tex_pz"
+	)
+	version 1
+	apply environment
+end declare
+
+declare shader
+	color "mib_lookup_background" (
+		vector		"zoom",
+		vector		"pan",
+		boolean		"torus_u",
+		boolean		"torus_v",
+		color texture   "tex"
+	)
+	version 1
+	apply texture, environment, lens
+end declare
+
+declare shader
+	color "mib_lookup_cylindrical" (
+		transform	"xform",
+		scalar		"begin",
+		scalar		"end",
+		color texture	"tex"
+	)
+	version 1
+	apply environment
+end declare
+
+#-------------------------------------------- Textures
+
+declare shader
+	color "mib_texture_lookup" (
+		color texture	"tex",
+		vector		"coord"
+	)
+	version 1
+	apply texture
+end declare
+
+declare shader
+	color "mib_texture_lookup2" (
+		color texture	"tex",
+		scalar		"factor"
+	)
+	version 1
+	apply texture
+end declare
+
+declare shader
+	color "mib_texture_filter_lookup" (
+		color texture	"tex",
+		vector		"coord",
+		scalar		"eccmax",
+		scalar		"maxminor",
+		scalar		"disc_r",
+		boolean		"bilinear",
+		integer		"space",
+		shader		"remap"
+	)
+	version 3
+	apply texture
+end declare
+
+declare shader
+	color "mib_texture_checkerboard" (
+		vector		"coord",
+		scalar		"xsize",
+		scalar		"ysize",
+		scalar		"zsize",
+		color		"color000",
+		color		"color001",
+		color		"color010",
+		color		"color011",
+		color		"color100",
+		color		"color101",
+		color		"color110",
+		color		"color111"
+	)
+	version 1
+	apply texture
+end declare
+
+declare shader
+	color "mib_texture_polkadot" (
+		vector		"coord",
+		scalar		"radius",
+		color		"fgcolor",
+		color		"bgcolor"
+	)
+	version 1
+	apply texture
+end declare
+
+declare shader
+	color "mib_texture_polkasphere" (
+		vector		"coord",
+		scalar		"radius",
+		color		"fgcolor",
+		color		"bgcolor"
+	)
+	version 1
+	apply texture
+end declare
+
+declare shader
+	scalar "mib_texture_turbulence" (
+		vector		"coord",
+		scalar		"spacing",
+		scalar		"strength",
+		scalar		"power",
+		integer		"iteration",
+		integer		"polar_dim"
+	)
+	version 1
+end declare
+
+declare shader
+	color "mib_texture_wave" (
+		vector		"coord",
+		scalar		"amplitude_x",
+		scalar		"amplitude_y",
+		scalar		"amplitude_z",
+		scalar		"offset"
+	)
+	version 1
+end declare
+
+#-------------------------------------------- Sample Compositing
+
+declare shader
+	color "mib_reflect" (
+		color		"input",
+		color		"reflect",
+		boolean		"notrace"
+	)
+	version 2
+end declare
+
+declare shader
+	color "mib_refract" (
+		color		"input",
+		color		"refract",
+		scalar		"ior"
+	)
+	version 2
+end declare
+
+declare shader
+	color "mib_transparency" (
+		color		"input",
+		color		"transp"
+	)
+	version 2
+end declare
+
+declare shader
+	color "mib_continue" (
+		color		"input",
+		color		"transp"
+	)
+	version 1
+end declare
+
+declare shader
+	color "mib_opacity" (
+		color		"input",
+		color		"opacity"
+	)
+	version 2
+end declare
+
+declare shader
+	color "mib_twosided" (
+		color		"front",
+		color		"back"
+	)
+	version 1
+end declare
+
+declare shader
+	struct {
+		scalar		"ior",
+		boolean		"enter"
+	} "mib_refraction_index" (
+		scalar		"mtl_ior"
+	)
+	version 1
+end declare
+
+declare shader
+	color "mib_dielectric" (
+		color		"input",
+		color		"absorb",
+		scalar		"refract",
+		scalar		"ior"
+	)
+	version 1
+end declare
+
+declare shader
+	color "mib_ray_marcher" (
+		shader		"shader",
+		scalar		"distance",
+		integer		"num",
+		integer		"subdiv",
+		color		"contrast"
+	)
+	version 1
+end declare
+
+#-------------------------------------------- Illumination
+
+declare shader
+	color "mib_illum_lambert" (
+		color		"ambience",
+		color		"ambient",
+		color 		"diffuse",
+		integer		"mode",      # light selection mode 0,1,2,4
+		array light	"lights"
+	)
+	version 2
+end declare
+
+declare shader
+	color "mib_illum_phong" (
+		color		"ambience",
+		color		"ambient",
+		color 		"diffuse",
+		color 		"specular",
+		scalar		"exponent",  # phong exponent
+		integer		"mode",      # light selection mode 0,1,2,4
+		array light	"lights"
+	)
+	version 2
+end declare
+
+declare shader
+	color "mib_illum_ward" (
+		color		"ambience",
+		color		"ambient",
+		color 		"diffuse",
+		color 		"glossy",
+		scalar		"shiny_u",   # shinyness in u direction
+		scalar		"shiny_v",   # shinyness in v direction
+		vector		"u",         # u direction
+		vector		"v",         # v direction
+		integer		"mode",      # light selection mode 0,1,2,4
+		array light	"lights"
+	)
+	version 1
+end declare
+
+declare shader
+	color "mib_illum_ward_deriv" (
+		color		"ambience",
+		color		"ambient",
+		color 		"diffuse",
+		color 		"glossy",
+		scalar		"shiny_u",   # shinyness in u direction
+		scalar		"shiny_v",   # shinyness in v direction
+		integer		"mode",      # light selection mode 0,1,2,4
+		array light	"lights"
+	)
+	version 1
+	derivative 1 	# requires surface derivatives	
+end declare
+
+declare shader
+	color "mib_illum_blinn" (
+		color		"ambience",
+		color		"ambient",
+		color 		"diffuse",
+		color 		"specular",
+		scalar		"roughness", # average microfacet slope
+		scalar          "ior",       # rel. ior
+		integer		"mode",      # light selection mode 0,1,2,4
+		array light	"lights"
+	)
+	version 2
+end declare
+
+declare shader
+	color "mib_illum_cooktorr" (
+		color		"ambience",
+		color		"ambient",
+		color 		"diffuse",
+		color 		"specular",
+		scalar		"roughness", # average microfacet slope
+		color           "ior",       # rel. ior for three wavelengths
+		integer		"mode",      # light selection mode 0,1,2,4
+		array light	"lights"
+	)
+	version 2
+end declare
+
+declare shader
+	color "mib_illum_hair" (
+		color		"ambience",
+		color		"ambient",
+		color		"diffuse",
+		color		"specular",
+		scalar		"exponent",
+		integer		"mode",
+		array light	"lights"
+	)
+	version 1
+end declare
+
+
+#-------------------------------------------- Volume
+
+declare shader
+	color "mib_volume" (
+		color		"color",
+		scalar		"max",
+		boolean		"lightrays"
+	)
+	version 1
+end declare
+
+
+#-------------------------------------------- Data Conversion
+
+declare shader
+	color "mib_color_alpha" (
+		color		"input",
+		scalar		"factor"
+	)
+	version 2
+end declare
+
+declare shader
+	color "mib_color_average" (
+		color		"input",
+		scalar		"factor"
+	)
+	version 2
+end declare
+
+declare shader
+	color "mib_color_intensity" (
+		color		"input",
+		scalar		"factor"
+	)
+	version 2
+end declare
+
+declare shader
+	color "mib_color_interpolate" (
+		scalar		"input",
+		integer		"num",
+		scalar		"weight_1",
+		scalar		"weight_2",
+		scalar		"weight_3",
+		scalar		"weight_4",
+		scalar		"weight_5",
+		scalar		"weight_6",
+		color		"color_0",
+		color		"color_1",
+		color		"color_2",
+		color		"color_3",
+		color		"color_4",
+		color		"color_5",
+		color		"color_6",
+		color		"color_7"
+	)
+	version 1
+end declare
+
+declare shader
+	color "mib_color_mix" (
+		integer		"num",
+		integer		"mode_0",
+		integer		"mode_1",
+		integer		"mode_2",
+		integer		"mode_3",
+		integer		"mode_4",
+		integer		"mode_5",
+		integer		"mode_6",
+		integer		"mode_7",
+		scalar		"weight_0",
+		scalar		"weight_1",
+		scalar		"weight_2",
+		scalar		"weight_3",
+		scalar		"weight_4",
+		scalar		"weight_5",
+		scalar		"weight_6",
+		scalar		"weight_7",
+		color		"color_0",
+		color		"color_1",
+		color		"color_2",
+		color		"color_3",
+		color		"color_4",
+		color		"color_5",
+		color		"color_6",
+		color		"color_7",
+		color		"color_base"
+	)
+	version 2
+end declare
+
+declare shader
+	struct {
+		color		"out_0",
+		color		"out_1",
+		color		"out_2",
+		color		"out_3",
+		color		"out_4",
+		color		"out_5",
+		color		"out_6",
+		color		"out_7"
+	} "mib_color_spread" (
+		color		"input",
+		integer		"num",
+		integer		"mode_0",
+		integer		"mode_1",
+		integer		"mode_2",
+		integer		"mode_3",
+		integer		"mode_4",
+		integer		"mode_5",
+		integer		"mode_6",
+		integer		"mode_7",
+		color		"weight_0",
+		color		"weight_1",
+		color		"weight_2",
+		color		"weight_3",
+		color		"weight_4",
+		color		"weight_5",
+		color		"weight_6",
+		color		"weight_7"
+	)
+	version 1
+end declare
+
+#-------------------------------------------- Geometry
+
+declare shader
+	geometry "mib_geo_cube" (
+	)
+	version 1
+end declare
+
+declare shader
+	geometry "mib_geo_torus" (
+		scalar 		"radius",
+		scalar		"thickness",
+		integer		"uSpans",
+		integer		"vSpans"
+	)
+	version 1
+end declare
+
+declare shader
+	geometry "mib_geo_sphere" (
+		integer		"u_subdiv",
+		integer		"v_subdiv"
+	)
+	version 1
+end declare
+
+declare shader
+	geometry "mib_geo_cone" (
+		integer		"u_subdiv",
+		integer		"v_subdiv",
+		boolean		"capped"
+	)
+	version 1
+end declare
+
+declare shader
+	geometry "mib_geo_cylinder" (
+		integer		"u_subdiv",
+		integer		"v_subdiv",
+		boolean		"bottom_capped",
+		boolean		"top_capped"
+	)
+	version 1
+end declare
+
+declare shader
+	geometry "mib_geo_square" (
+	)
+	version 1
+end declare
+
+declare shader
+	geometry "mib_geo_instance" (
+		geometry	"object",
+		transform	"matrix",
+		shader		"material"
+	)
+	version 1
+end declare
+
+declare shader
+	geometry "mib_geo_instance_mlist" (
+		geometry	"object",
+		transform	"matrix",
+		array material	"material"
+	)
+	version 1
+end declare
+
+declare shader
+	geometry "mib_geo_add_uv_texsurf" (
+		geometry	"object"
+	)
+	version 1
+end declare
+
+#-------------------------------------------- Photon
+
+declare shader
+	color "mib_photon_basic" (
+		color		"diffuse",
+		color		"specular",
+		color		"transp",
+		scalar		"ior_frac"
+	)
+	version 1
+end declare
+
+#-------------------------------------------- Lights
+
+declare shader
+	color "mib_light_infinite" (
+		color		"color",
+		boolean		"shadow",
+		scalar		"factor"
+	)
+	version 1
+	apply light
+end declare
+
+declare shader
+	color "mib_light_point" (
+		color		"color",
+		boolean		"shadow",
+		scalar		"factor",
+		boolean		"atten",
+		scalar		"start",
+		scalar		"stop"
+	)
+	version 1
+	apply light
+end declare
+
+declare shader
+	color "mib_light_spot" (
+		color		"color",
+		boolean		"shadow",
+		scalar		"factor",
+		boolean		"atten",
+		scalar		"start",
+		scalar		"stop",
+		scalar		"cone"
+	)
+	version 1
+	apply light
+end declare
+
+declare shader
+	color "mib_light_photometric" (
+		color		"color",
+		boolean		"shadow",
+		scalar		"factor",
+		scalar		"start",
+		scalar		"stop",
+		lightprofile	"profile"
+	)
+	version 1
+	apply light
+end declare
+
+#-------------------------------------------- Light utils
+
+declare shader
+	color "mib_cie_d" (
+		scalar		"temperature",
+		scalar		"intensity"
+	)
+	version 1
+	apply light
+end declare
+
+declare shader
+	color "mib_blackbody" (
+		scalar		"temperature",
+		scalar		"intensity"
+	)
+	version 1
+	apply light
+end declare
+	
+#-------------------------------------------- Shadow
+
+declare shader
+	color "mib_shadow_transparency" (
+		color		"color",
+		color		"transp",
+		integer		"mode",
+		array light	"light"
+	)
+	version 1
+	apply shadow
+end declare
+
+#-------------------------------------------- Lens
+
+declare shader
+	color "mib_lens_stencil" (
+		scalar		"floor",	# tex vals below -> floor_color
+		scalar		"ceiling",	# tex vals above -> ceil_color
+		color		"floor_color",  # two stencil colors
+		color		"ceil_color",
+		scalar texture	"stencil"	# stencil values
+	)
+	version 1
+	apply lens
+end declare
+
+declare shader
+	color "mib_lens_clamp" (
+		scalar		"floor",	# anything smaller -> 0
+		scalar		"ceiling",	# anything larger  -> 1
+		boolean		"luminance",	# rgb or luminance
+		color		"floor_color",
+		color		"ceil_color"
+	)
+	version 1
+	apply lens
+end declare
+
+#-------------------------------------------- Lightmap
+
+declare shader
+	struct {
+		vector 		"point",
+		vector 		"normal",
+		vector 		"tex"
+	}
+	"mib_lightmap_write" (
+		color texture 	"texture",	#output texture
+		shader		"coord",	#texture coords to use
+		shader		"input"		#to evaluate the texture output
+	)
+	version 1
+end declare
+
+declare shader
+	color "mib_lightmap_sample" (
+		boolean 	"indirect",	#use indirect illumination?
+		integer		"flip",		#0=no, 1=yes , 2=both
+		array light 	"lights"	#direct illumination
+	)
+	version 1
+end declare
+
+
+#
+# Simple ambient occlusion shader 
+#
+
+declare shader
+      color "mib_amb_occlusion" (
+            integer "samples"      default 16,
+            color   "bright"       default 1 1 1 1,
+            color   "dark"         default 0 0 0 0,
+            scalar  "spread"       default 0.8,
+            scalar  "max_distance" default 0,
+            boolean "reflective"   default off,
+            integer "output_mode"  default 0,
+            boolean "occlusion_in_alpha" default off,
+        # Version 2 parameters
+            scalar  "falloff"        default 1.0,
+            integer "id_inclexcl"    default 0,
+            integer "id_nonself"     default 0,
+        )
+        version 2
+        apply texture, light
+end declare
+
+#
+#  Create occlusion values using final gathering
+#
+
+declare shader
+    color "mib_fg_occlusion" (
+        color "result_when_fg_is_off" default 1 1 1 1
+    )
+    version 1
+    apply texture, light
+end declare
+
+
+#
+# bent normal shader, good to combine with mib_amb_occlusion
+#
+
+declare shader
+	color "mib_bent_normal_env" (
+        color      "bent_normals" default 0 0 0 1,
+    	boolean    "occlusion_in_alpha" default on,
+        color      "occlusion" default 1 1 1,
+        scalar     "strength" default 0.2,
+        shader     "environment",
+        integer    "coordinate_space" default 2,
+        integer    "env_samples" default 1,
+        scalar     "samples_spread" default 0.0,
+        transform  "matrix" default 1 0 0 0
+                                    0 1 0 0
+                                    0 0 1 0
+                                    0 0 0 1
+	)
+	version 1
+	apply texture
+end declare
+
+# multisampled glossy reflections
+# with optional distance limiting,
+# dispersion and fresnel effect
+
+
+declare shader "mib_glossy_reflection" (
+        shader   "base_material",
+        color    "reflection_color",
+        scalar   "max_distance",
+        scalar   "falloff"                default 2.0,
+        color    "environment_color",
+        scalar   "reflection_base_weight" default 0.6,
+        scalar   "reflection_edge_weight" default 1.0,
+        scalar   "edge_factor"            default 5.0,
+        shader   "environment",
+        boolean  "single_env_sample" default true,
+        integer  "samples"           default 16,
+        scalar   "u_spread"          default 0.1,
+        scalar   "v_spread"          default 0.1,
+        vector   "u_axis",
+        vector   "v_axis",
+        scalar      "dispersion"        default 0.0,
+        array color "spectrum"
+    )
+    apply material, texture
+    version 3
+	gui "gui_mib_glossy_reflection" {
+		control "Global" "Global" (
+			"uiName" "mi Glossy Reflection (mi)",
+		)
+        control "base_material" "shader" (
+			"uiName" "Base material",
+            "value" "mib_illum_phong"
+        )
+        control "reflection_color" "color" (
+			"uiName" "Reflection color",
+            "value" 1.0 1.0 1.0
+        )
+        control "max_distance" "scalar" (
+			"uiName" "Max distance",
+            "value" 0.0
+        )
+        control "falloff" "scalar" (
+			"uiName" "Falloff shape (power function)",
+            "value" 2.0
+        )
+        control "environment_color" "color" (
+			"uiName" "Environment reflection color",
+            "value" 1.0 1.0 1.0
+        )
+        control "reflection_base_weight" "scalar" (
+			"uiName" "Reflection facing weight",
+            "value" 0.6
+        )
+        control "reflection_edge_weight" "scalar" (
+			"uiName" "Reflection edge weight",
+            "value" 1.0
+        )
+        control "edge_factor" "scalar" (
+			"uiName" "Edge factor",
+            "value" 5.0
+        )
+        control "single_env_sample" "boolean" (
+			"uiName" "Single environment sampling",
+            "value" on
+        )
+        control "environment" "shader" (
+			"uiName" "Specific environment shader",
+        )
+        control "samples" "integer" (
+			"uiName" "Samples",
+            "value" 8
+        )
+        control "u_spread" "scalar" (
+			"uiName" "U Spread",
+            "value" 0.2
+        )
+        control "v_spread" "scalar" (
+			"uiName" "V Spread",
+            "value" 0.2
+        )
+        control "u_axis" "vector" (
+			"uiName" "U axis",
+            "value" 0.0 0.0 0.0
+        )
+        control "v_axis" "vector" (
+			"uiName" "U axis",
+            "value" 0.0 0.0 0.0
+        )
+        control "dispersion" "scalar" (
+			"uiName" "Dispersion (rainbow effect)",
+            "value" 0.0
+        )
+        control "spectrum" "array color" (
+			"uiName" "Spectrum"
+        )
+	}
+end declare
+
+# multisampled glossy refractions
+# with optional distance limiting,
+# dispersion and fresnel effect
+
+declare shader "mib_glossy_refraction" (
+        shader   "top_material",
+        shader   "deep_material",
+        shader   "back_material",
+        boolean  "render_reverse_of_back_material" default on,
+        color    "refraction_color"       default 1 1 1,
+        scalar   "max_distance"           default 0,
+        scalar   "falloff"                default 2.0,
+        scalar   "refraction_base_weight" default 1.0,
+        scalar   "refraction_edge_weight" default 0.6,
+        scalar   "edge_factor"   default 5.0,
+        scalar   "ior"           default 1.0,
+        integer  "samples"       default 16,
+        scalar   "u_spread"      default 0.1,
+        scalar   "v_spread"      default 0.1,
+        vector   "u_axis",
+        vector   "v_axis",
+        scalar      "dispersion"        default 0.0,
+        array color "spectrum"
+    )
+    apply material, texture
+    version 3
+
+	gui "gui_mib_glossy_refraction" {
+		control "Global" "Global" (
+			"uiName" "mi Glossy Refraction (mi)",
+		)
+        control "top_material" "shader" (
+			"uiName" "Top material"
+        )
+        control "deep_material" "shader" (
+			"uiName" "Deep material"
+        )
+        control "back_material" "shader" (
+			"uiName" "Back material"
+        )
+        control "render_reverse_of_back_material" "boolean" (
+			"uiName" "Render reverse side of Back material",
+            "value" 1
+        )
+        control "refraction_color" "color" (
+			"uiName" "Refraction color",
+            "value" 1.0 1.0 1.0
+        )
+        control "max_distance" "scalar" (
+			"uiName" "Max distance",
+            "value" 0.0
+        )
+        control "falloff" "scalar" (
+			"uiName" "Falloff shape (power function)",
+            "value" 2.0
+        )
+        control "refraction_base_weight" "scalar" (
+			"uiName" "Refraction facing weight",
+            "value" 1.0
+        )
+        control "refraction_edge_weight" "scalar" (
+			"uiName" "Refraction edge weight",
+            "value" 0.6
+        )
+        control "edge_factor" "scalar" (
+			"uiName" "Edge factor",
+            "value" 5.0
+        )
+        control "ior" "scalar" (
+			"uiName" "Index of Refraction",
+            "value" 1.2
+        )
+        control "samples" "integer" (
+			"uiName" "Samples",
+            "value" 8
+        )
+        control "u_spread" "scalar" (
+			"uiName" "U Spread",
+            "value" 0.2
+        )
+        control "v_spread" "scalar" (
+			"uiName" "V Spread",
+            "value" 0.2
+        )
+        control "u_axis" "vector" (
+			"uiName" "U axis",
+            "value" 0.0 0.0 0.0
+        )
+        control "v_axis" "vector" (
+			"uiName" "U axis",
+            "value" 0.0 0.0 0.0
+        )
+        control "dispersion" "scalar" (
+			"uiName" "Dispersion (rainbow effect)",
+            "value" 0.0
+        )
+        control "spectrum" "array color" (
+			"uiName" "Spectrum"
+        )
+	}
+end declare
+
+
+$endif # if not "base_mi_included"
+

@@ -1,0 +1,126 @@
+//{{NO_DEPENDENCIES}}
+// Microsoft Visual C++ generated include file.
+// Used by renelem.rc
+//
+#define IDS_KE_RENDER_ELEMENTS_DESC     1
+#define IDS_KE_RENDER_ELEMENT_DESC      1
+#define IDS_KE_BEAUTY_RENDER_ELEMENT    2
+#define IDS_KE_PARAMETERS               3
+#define IDS_KE_ENABLE                   4
+#define IDS_KE_BEAUTY_DEFAULT_NAME      5
+#define IDS_KE_BEAUTY_TYPE_NAME         6
+#define IDS_ENABLED                     7
+#define IDS_FILTER_ON                   8
+#define IDS_ATMOSPHERE_ON               9
+#define IDS_ELEMENT_NAME                10
+#define IDS_PATH_NAME                   11
+#define IDS_SHADOW_ON                   12
+#define IDS_KE_DIFFUSE_RENDER_ELEMENT   13
+#define IDS_KE_SPECULAR_RENDER_ELEMENT  14
+#define IDS_KE_REFLECTION_RENDER_ELEMENT 15
+#define IDS_KE_REFRACTION_RENDER_ELEMENT 16
+#define IDS_KE_EMISSION_RENDER_ELEMENT  17
+#define IDS_KE_SHADOW_RENDER_ELEMENT    18
+#define IDS_KE_ATMOS_RENDER_ELEMENT     19
+#define IDS_KE_BLEND_RENDER_ELEMENT     20
+#define IDS_BLEND_ELEMENT_PARAMS        21
+#define IDS_DIFFUSE_ON                  22
+#define IDS_AMBIENT_ON                  23
+#define IDS_SPECULAR_ON                 24
+#define IDS_EMISSION_ON                 25
+#define IDS_REFLECTION_ON               26
+#define IDS_REFRACTION_ON               27
+#define IDS_BITMAP                      28
+#define IDS_KE_Z_RENDER_ELEMENT         29
+#define IDS_Z_ELEMENT_PARAMS            30
+#define IDS_ZMIN                        31
+#define IDS_ZMAX                        32
+#define IDS_KE_ALPHA_RENDER_ELEMENT     33
+#define IDS_KE_CLR_SHADOW_RENDER_ELEMENT 34
+#define IDS_KE_BGND_RENDER_ELEMENT      35
+#define IDS_KE_SPECULAR_COMP_RENDER_ELEMENT 36
+#define IDS_KE_DIFFUSE_BAKE_ELEMENT     37
+#define IDS_KE_SPECULAR_BAKE_ELEMENT    38
+#define IDS_OUTPUTSIZE_X                39
+#define IDS_OUTPUTSIZE_Y                40
+#define IDS_SHADOWS_ON                  41
+#define IDS_LIGHTING_ON                 42
+#define IDS_BLEND_BAKE_PARAMS           43
+#define IDS_KE_REFLECTREFRACT_BAKE_ELEMENT 44
+#define IDS_KE_BLEND_BAKE_ELEMENT       45
+#define IDS_KE_NORMALS_BAKE_ELEMENT     46
+#define IDS_KE_LIGHT_BAKE_ELEMENT       47
+#define IDS_KE_SHADOW_BAKE_ELEMENT      48
+#define IDS_KE_COMPLETE_BAKE_ELEMENT    49
+#define IDS_DIFFUSE_BAKE_PARAMS         50
+#define IDS_SPECULAR_BAKE_PARAMS        51
+#define IDS_LIGHT_BAKE_PARAMS           52
+#define IDS_COMPLETE_BAKE_PARAMS        53
+#define IDS_DIRECT_ILLUM_ON             54
+#define IDS_INDIRECT_ILLUM_ON           55
+#define IDS_FILENAME_UNIQUE             56
+#define IDS_AUTOSIZE_ON                 57
+#define IDS_KE_ALPHA_BAKE_ELEMENT       58
+#define IDS_INK_ON                      59
+#define IDS_PAINT_ON                    60
+#define IDS_DIFFUSE_ELEMENT_PARAMS      61
+#define IDS_KE_LIGHTING_RENDER_ELEMENT  62
+#define IDS_LIGHTING_ELEMENT_PARAMS     63
+#define IDS_MATTE_ELEMENT_PARAMS        64
+#define IDS_KE_MATTE_RENDER_ELEMENT     65
+#define IDS_MTLID_ON                    66
+#define IDS_GBUFID_ON                   67
+#define IDS_MTLID                       68
+#define IDS_GBUFID                      69
+#define IDS_INCLUDE_ON                  70
+#define IDS_INCLUDE                     71
+#define IDS_EXCLUDE                     72
+#define IDD_BLEND_ELEMENT               110
+#define IDD_Z_ELEMENT                   111
+#define IDD_BLEND_BAKE_ELEMENT          112
+#define IDD_LIGHT_SHADOW                113
+#define IDD_SHADOW                      114
+#define IDD_LIGHT_BAKE                  115
+#define IDD_DIFFUSE_ELEMENT             116
+#define IDD_MATTE_ELEMENT               117
+#define IDD_LIGHT_BAKE1                 118
+#define IDD_LIGHT_ELEMENT               118
+#define IDC_ZMAX_EDIT                   1723
+#define IDC_ZMAX_SPIN                   1724
+#define IDC_ZMIN_EDIT                   1725
+#define IDC_ZMIN_SPIN                   1726
+#define IDC_AMBIENT_ON                  1728
+#define IDC_DIFFUSE_ON                  1729
+#define IDC_SPECULAR_ON                 1730
+#define IDC_EMISSION_ON                 1731
+#define IDC_REFLECTION_ON               1732
+#define IDC_LIGHTING                    1732
+#define IDC_REFRACTION_ON               1733
+#define IDC_SHADOW_ON                   1734
+#define IDC_LIGHTING_ON                 1734
+#define IDC_MTL_ID                      1734
+#define IDC_ATMOS_ON                    1735
+#define IDC_SHADOWS_ON                  1735
+#define IDC_GBUF_ID                     1735
+#define IDC_INDIRECT_ON                 1736
+#define IDC_PAINT_ON                    1736
+#define IDC_MTLID_EDIT                  1736
+#define IDC_DIRECT_ON                   1737
+#define IDC_INK_ON                      1737
+#define IDC_MTLID_SPIN                  1737
+#define IDC_GBUF_EDIT                   1738
+#define IDC_GBUF_SPIN                   1739
+#define IDC_INCLUDE_CHECK               1740
+#define IDC_INCLUDE_BUTTON              1741
+#define IDC_STATIC                      -1
+
+// Next default values for new objects
+// 
+#ifdef APSTUDIO_INVOKED
+#ifndef APSTUDIO_READONLY_SYMBOLS
+#define _APS_NEXT_RESOURCE_VALUE        116
+#define _APS_NEXT_COMMAND_VALUE         40001
+#define _APS_NEXT_CONTROL_VALUE         1742
+#define _APS_NEXT_SYMED_VALUE           101
+#endif
+#endif

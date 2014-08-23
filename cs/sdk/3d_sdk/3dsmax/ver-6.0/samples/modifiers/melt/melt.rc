@@ -1,0 +1,149 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "RESOURCE.H"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "RESOURCE.H\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MELT DIALOG DISCARDABLE  0, 0, 108, 203
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_SPREAD_EDIT,"CustEdit",WS_TABSTOP,52,46,30,10
+    GROUPBOX        "Melt",IDC_STATIC,5,3,98,27
+    CONTROL         "",IDC_SPREAD_SPIN,"SpinnerControl",0x0,84,46,7,10
+    CONTROL         "",IDC_AMT_EDIT,"CustEdit",WS_TABSTOP,52,14,30,10
+    CONTROL         "",IDC_AMT_SPIN,"SpinnerControl",0x0,84,14,7,10
+    LTEXT           "Amount :",IDC_STATIC,20,14,28,8
+    GROUPBOX        "Spread",IDC_STATIC,5,32,98,32
+    LTEXT           "% of Melt :",IDC_STATIC,16,46,34,8
+    GROUPBOX        "Solidity",IDC_STATIC,5,70,98,80
+    CONTROL         "Ice (Default)",IDC_S1,"Button",BS_AUTORADIOBUTTON,12,82,
+                    56,11
+    CONTROL         "Glass",IDC_S2,"Button",BS_AUTORADIOBUTTON,12,93,45,11
+    CONTROL         "Jelly",IDC_S3,"Button",BS_AUTORADIOBUTTON,12,104,28,11
+    CONTROL         "Plastic",IDC_S4,"Button",BS_AUTORADIOBUTTON,12,115,45,
+                    11
+    CONTROL         "Custom :",IDC_S5,"Button",BS_AUTORADIOBUTTON,12,132,41,
+                    11
+    CONTROL         "",IDC_VIS_EDIT,"CustEdit",WS_TABSTOP,57,133,30,10
+    CONTROL         "",IDC_VIS_SPIN,"SpinnerControl",0x0,89,133,7,10
+    LTEXT           "2.0",IDC_STATIC,86,84,11,8
+    LTEXT           "12.0",IDC_STATIC,82,95,15,8
+    LTEXT           "0.4",IDC_STATIC,86,106,11,8
+    LTEXT           "0.7",IDC_STATIC,86,117,11,8
+    GROUPBOX        "Axis to Melt",IDC_STATIC,5,153,98,43
+    CONTROL         "Z",IDC_AX,"Button",BS_AUTORADIOBUTTON,71,166,21,10
+    CONTROL         "Y",IDC_AY,"Button",BS_AUTORADIOBUTTON,43,166,21,10
+    CONTROL         "X",IDC_AZ,"Button",BS_AUTORADIOBUTTON,15,166,21,10
+    CONTROL         "Flip Axis",IDC_NEGATIVE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,16,179,70,10
+END
+
+
+
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.K.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MELTMOD             "Melt"
+    IDS_TITLE               "Parameters"
+    IDS_LIBDESC             "Melt modifier (Discreet)"
+    IDS_CATEGORY            "MAX STANDARD"
+    IDS_MELTAMOUNT          "Melt Amount"
+    IDS_SPREAD              "Spread %"
+    IDS_CUTOFF              "Cut Off (obsolete)"
+    IDS_CONFINE             "Confine To Gizmo"
+    IDS_SOLIDITY            "Solidity Preset"
+    IDS_SOLIDITYVAL         "Solidity Custom Value"
+    IDS_AXIS                "Axis"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_NEGAXIS             "Negative Axis"
+END
+
+#endif    // English (U.K.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

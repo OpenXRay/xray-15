@@ -1,0 +1,316 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+   <title>Globals: Object Info</title>
+   <style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#000080" vlink="#800000" alink="#0000FF">
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 BGCOLOR="#D0D0D0" >
+<tr>
+<td ALIGN=LEFT WIDTH="120"><a href="mtutil.html"><img SRC="navlt.gif" ALT="Multithreading Utilities" BORDER=0 height=20 width=96></a></td>
+
+<td ALIGN=LEFT WIDTH="96"><a href="panel.html"><img SRC="navrt.gif" ALT="Panels" BORDER=0 height=20 width=64></a></td>
+
+<td ALIGN=LEFT WIDTH="96"><a href="../globals.html"><img SRC="navup.gif" ALT="Globals" BORDER=0 height=20 width=56></a></td>
+
+<td ALIGN=RIGHT WIDTH="288"><a href="../index.html"><img SRC="proglw.gif" ALT="Table of Contents" BORDER=0 height=20 width=230></a></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 >
+<tr>
+<td WIDTH="600">
+<h3>
+Object Info</h3>
+<font size=-1><b>Availability</b>&nbsp; LightWave&reg; 6.0</font>
+<br><font size=-1><b>Component</b>&nbsp; Layout</font>
+<br><font size=-1><b>Header</b>&nbsp; <a href="../../include/lwrender.h">lwrender.h</a></font>
+<p>The object info global returns functions for getting object-specific
+information about any of the objects in a scene. Use the <a href="iteminfo.html">Item
+Info</a> global to get the object list and for generic item information.
+See also the <a href="sceneobj.html">Scene Objects</a> global. The data
+returned by the object info functions is read-only, but you can use <a href="../commands/layout.html#objects">commands</a>
+to set many of the parameters.
+<p><b>Global Call</b>
+<pre>&nbsp;&nbsp; LWObjectInfo *objinfo;
+&nbsp;&nbsp; objinfo = global( LWOBJECTINFO_GLOBAL, GFUSE_TRANSIENT );</pre>
+The global function returns a pointer to an LWObjectInfo.
+<pre>&nbsp;&nbsp; typedef struct st_LWObjectInfo {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const char * (*<b>filename</b>)&nbsp;&nbsp;&nbsp; (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>numPoints</b>)&nbsp;&nbsp; (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>numPolygons</b>) (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int (*<b>shadowOpts</b>)&nbsp; (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>dissolve</b>)&nbsp;&nbsp;&nbsp; (LWItemID, LWTime);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWMeshInfoID (*<b>meshInfo</b>)&nbsp;&nbsp;&nbsp; (LWItemID, int frozen);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int (*<b>flags</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>fog</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LWItemID, LWTime);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWTextureID&nbsp; (*<b>dispMap</b>)&nbsp;&nbsp;&nbsp;&nbsp; (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWTextureID&nbsp; (*<b>clipMap</b>)&nbsp;&nbsp;&nbsp;&nbsp; (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>patchLevel</b>)&nbsp; (LWItemID, int *display, int *render);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>metaballRes</b>) (LWItemID, double *display,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double *render);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWItemID&nbsp;&nbsp;&nbsp;&nbsp; (*<b>boneSource</b>)&nbsp; (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWItemID&nbsp;&nbsp;&nbsp;&nbsp; (*<b>morphTarget</b>) (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>morphAmount</b>) (LWItemID, LWTime);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int (*<b>edgeOpts</b>)&nbsp;&nbsp;&nbsp; (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>edgeColor</b>)&nbsp;&nbsp; (LWItemID, LWTime, LWDVector color);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>subdivOrder</b>) (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>polygonSize</b>) (LWItemID, LWTime);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>excluded</b>)&nbsp;&nbsp;&nbsp; (LWItemID object, LWItemID light);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>matteColor</b>)&nbsp; (LWItemID, LWTime, LWDVector color);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>thickness</b>)&nbsp;&nbsp; (LWItemID, LWTime, int type);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>edgeZScale</b>)&nbsp; (LWItemID, LWTime);
+&nbsp;&nbsp; } LWObjectInfo;</pre>
+
+<dl>
+<dt>
+<tt>name = <b>filename</b>( object )</tt></dt>
+
+<dd>
+Returns the filename for the object file.&nbsp;</dd>
+
+<br><tt>count = <b>numPoints</b>( object )</tt>
+<dd>
+Returns the number of points in the object mesh.</dd>
+
+<br><tt>count = <b>numPolygons</b>( object )</tt>
+<dd>
+Returns the number of polygons in the object mesh.&nbsp;</dd>
+
+<br><tt>sopts = <b>shadowOpts</b>( object )</tt>
+<dd>
+Returns bits for shadow options.&nbsp;</dd>
+
+<pre>LWOSHAD_SELF
+LWOSHAD_CAST
+LWOSHAD_RECEIVE</pre>
+
+<dt>
+<tt>amount = <b>dissolve</b>( object, time )</tt></dt>
+
+<dd>
+Returns the object dissolve amount at the given time.</dd>
+
+<br><tt>meshinfo = <b>meshInfo</b>( object, frozen )</tt>
+<dd>
+Returns a mesh info structure for the object. This is a complete description
+of the object's geometry. See the <a href="../meshinfo.html">Mesh Info</a>
+page for a detailed discussion of mesh info structures.&nbsp;</dd>
+
+<br>&nbsp;
+<p>&nbsp;
+<p>If <tt>frozen</tt> is true, the mesh for objects with subpatches and
+metaballs will contain the geometry that results from subdivision and isosurface
+calculation. The <tt>pntBasePos</tt> function will return the same point
+positions that Layout uses for object coordinate texture mapping. These
+are completely undeformed positions in the case of regular polygons and
+subpatches, and positions at freezing time for metaballs and partigons.
+<tt>pntOtherPos</tt>
+will return the actual world coordinates used by Layout. These should only
+be considered final if the mesh is obtained after all object transformations
+have been completed.
+<dt>
+<tt>f = <b>flags</b>( object )</tt></dt>
+
+<dd>
+Returns the state of certain object settings as bits combined using bitwise-or.
+Possible flags are&nbsp;</dd>
+
+<pre>LWOBJF_UNSEEN_BY_CAMERA
+LWOBJF_UNSEEN_BY_RAYS
+LWOBJF_UNAFFECT_BY_FOG
+LWOBJF_MORPH_MTSE
+LWOBJF_MORPH_SURFACES</pre>
+
+<dt>
+<tt>foglevel = <b>fog</b>( object, time )</tt></dt>
+
+<dd>
+Returns the amount by which the object is affected by fog.</dd>
+
+<br><tt>texture = <b>dispMap</b>( object )</tt>
+<dd>
+Returns the texture ID of the displacement image map applied to the object.</dd>
+
+<br><tt>texture = <b>clipMap</b>( object )</tt>
+<dd>
+Returns the texture ID of the clip map applied to the object.</dd>
+
+<dt>&nbsp;
+</dt>
+
+<dt>
+<tt><b>patchLevel</b>( object, display, render )</tt></dt>
+
+<dd>
+Returns the interface and render patch level for the object's subpatches.</dd>
+
+<dt>&nbsp;
+</dt>
+
+<dt>
+<tt><b>metaballRes</b>( object, display, render )</tt></dt>
+
+<dd>
+Returns the interface and render resolution of the object's metaballs.</dd>
+
+<br><tt>boneobj = <b>boneSource</b>( object )</tt>
+<dd>
+Returns the object whose bones are being used to deform the given object.
+(An object can be deformed by the bones of another object.)</dd>
+
+<br><tt>morphobj = <b>morphTarget</b>( object )</tt>
+<dd>
+Returns the morph target of the given object.</dd>
+
+<br><tt>amount = <b>morphAmount</b>( object, time )</tt>
+<dd>
+Returns the morph amount at a given time. If <tt>flags</tt> returns the
+<tt>LWOBJF_MORPH_MTSE</tt>
+bit, Multiple Target/Single Envelope morphing is enabled, and the morph
+amount includes an index into a chain of morph targets. Assume A's target
+is B, and B's target is C. Morph amounts between 0.0 and 1.0 morph A to
+B, while amounts between 1.0 and 2.0 morph A to C. The interpolant is the
+fractional part of the morph amount, and the index is the integer part.</dd>
+
+<br><tt>options = <b>edgeOpts</b>( object )</tt>
+<dd>
+Returns the object's edge rendering options, which can be any of the following
+combined using bitwise-or.&nbsp;</dd>
+
+<dl><tt>LWEDGEF_SILHOUETTE</tt>
+<br><tt>LWEDGEF_UNSHARED</tt>
+<br><tt>LWEDGEF_CREASE</tt>
+<br><tt>LWEDGEF_SURFACE</tt>
+<br><tt>LWEDGEF_OTHER</tt>
+<dd>
+Edge lines are drawn in the indicated areas. An unshared edge belongs to
+only one polygon. A crease is an edge where two polygons meet at an angle
+exceeding the max smoothing angle of the surface. A surface edge is where
+the polygons on either side have different surfaces.</dd>
+
+<br><tt>LWEDGEF_SHRINK_DIST</tt>
+<dd>
+The thickness of the lines is proportional to distance from the camera.</dd>
+</dl>
+<tt><b>edgeColor</b>( object, time, color )</tt>
+<dd>
+The color used to render edges is written in the <tt>color</tt> argument.</dd>
+
+<br><tt>index = <b>subdivOrder</b>( object )</tt>
+<dd>
+Returns the subdivision order as a 0-based index into a list of options.&nbsp;</dd>
+
+<br>&nbsp;
+<p>&nbsp;
+<p>0 - First
+<br>1 - After Morphing
+<br>2 - After Bones
+<br>3 - After Displacement
+<br>4 - After Motion
+<br>5 - Last
+<br>&nbsp;
+<dt>
+<tt>size = <b>polygonSize</b>( object, time )</tt></dt>
+
+<dd>
+Returns the polygon size setting. This is a scale factor with a default
+of 1.0.</dd>
+
+<br><tt>state = <b>excluded</b>( object, light )</tt>
+<dd>
+Returns true if the light is excluded from the object. Light exclusion
+is a user setting that prevents the light from affecting the rendering
+of the object.</dd>
+
+<p><br><tt><b>matteColor</b>(object,&nbsp; time,&nbsp; color)</tt>
+<dd>
+The matte color set for the object is writen into the <tt>color</tt> argument.</dd>
+</dl>
+<tt>thick<b> = thickness</b>(object,&nbsp; time,&nbsp; type)</tt>
+<dl>
+<dd>
+Returns the thickness for the specified edge type, where <tt>type</tt>
+is one of the following:</dd>
+
+<dd>
+<tt>LWTHICK_SILHOUETTE</tt></dd>
+
+<dd>
+<tt>LWTHICK_UNSHARED</tt></dd>
+
+<dd>
+<tt>LWTHICK_CREASE</tt></dd>
+
+<dd>
+<tt>LWTHICK_SURFACE</tt></dd>
+
+<dd>
+<tt>LWTHICK_OTHER</tt></dd>
+
+<dd>
+<tt>LWTHICK_LINE</tt></dd>
+
+<dd>
+<tt>LWTHICK_PARTICLE_HEAD</tt></dd>
+
+<dd>
+<tt>LWTHICK_PARTICLE_TAIL</tt></dd>
+</dl>
+<tt>zsc<b> = edgeZScale</b>(object,&nbsp; time)</tt>
+<dl>
+<dd>
+Returns the Edge Z Scale setting for edge rendering of<tt> object.</tt></dd>
+</dl>
+
+<p><b>History</b>
+<p>In LightWave&reg; 7.5, the&nbsp; following functions and flags were added.
+<pre>&nbsp;&nbsp; matteColor
+&nbsp;&nbsp; thickness
+&nbsp;&nbsp; edgeZScale
+
+&nbsp;&nbsp; LWOBJF_UNSEEN_BY_ALPHA
+&nbsp;&nbsp; LWOBJF_MATTE
+&nbsp;&nbsp; LWOBJF_MORPH_SURFACES</pre>
+<b>Example</b>
+<p>The <a href="../../sample/Layout/Generic/scenscan/">scenscan</a> and <a href="../../sample/Layout/Generic/unwrap/">unwrap</a>
+SDK samples use the ObjectInfo global.
+<p>The following code fragment collects information about the first object.
+<pre>&nbsp;&nbsp; #include &lt;lwserver.h&gt;
+&nbsp;&nbsp; #include &lt;lwrender.h&gt;
+
+&nbsp;&nbsp; LWItemInfo *iteminfo;
+&nbsp;&nbsp; LWObjectInfo *objinfo;
+&nbsp;&nbsp; LWItemID id;
+&nbsp;&nbsp; LWTime t = 3.0;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* seconds */
+&nbsp;&nbsp; char *fname;
+&nbsp;&nbsp; int npoints, npols;
+&nbsp;&nbsp; unsigned int shopts;
+&nbsp;&nbsp; double dissolve;
+
+&nbsp;&nbsp; iteminfo = global( LWITEMINFO_GLOBAL, GFUSE_TRANSIENT );
+&nbsp;&nbsp; objinfo&nbsp; = global( LWOBJECTINFO_GLOBAL, GFUSE_TRANSIENT );
+
+&nbsp;&nbsp; if ( iteminfo &amp;&amp; objinfo ) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; id = iteminfo-&gt;first( LWI_OBJECT, NULL );
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ( id ) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fname&nbsp;&nbsp;&nbsp; = objinfo-&gt;filename( id );
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; npoints&nbsp; = objinfo-&gt;numPoints( id );
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; npols&nbsp;&nbsp;&nbsp; = objinfo-&gt;numPolygons( id );
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; shopts&nbsp;&nbsp; = objinfo-&gt;shadowOpts( id );
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dissolve = objinfo-&gt;dissolve( id, t );
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp; }</pre>
+</td>
+</tr>
+
+<tr>
+<td></td>
+</tr>
+</table>
+
+</body>
+</html>

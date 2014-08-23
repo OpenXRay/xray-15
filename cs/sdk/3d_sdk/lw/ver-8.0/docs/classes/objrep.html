@@ -1,0 +1,137 @@
+<html>
+
+<head>
+<title>Classes: ObjReplacementHandler</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="objload.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="ObjectLoader"></a></td>
+    <td width="96" align="left"><a href="pxlfilt.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="PixelFilterHandler"></a></td>
+    <td width="96" align="left"><a href="../classes.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Classes"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>ObjReplacementHandler<br>
+    ObjReplacementInterface</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwobjrep.h">lwobjrep.h</a></small></p>
+    <p>Object replacement handlers are called at each time step to decide whether Layout
+    should use a different object file to represent an object. An object's geometry might be
+    replaced depending on its camera distance (level of detail replacement), or a time (object
+    sequence loading), or some other criterion (previewing versus rendering, for example). </p>
+    <p>Object replacement can be used in combination with <a href="objload.html">ObjectLoaders</a>
+    to perform procedural object animation. The replacement plug-in might write a brief
+    description file for the parameters of a time step, which the object import server would
+    then convert into a complete mesh during loading. </p>
+    <p><strong>Handler Activation Function</strong></p>
+    <pre>   XCALL_( int ) MyObjReplace( long version, GlobalFunc *global,
+      LWObjReplacementHandler *local, void *serverData );</pre>
+    <p>The <tt>local</tt> argument to an object replacement's activation function is an
+    LWObjReplacementHandler.</p>
+    <pre>   typedef struct st_LWObjReplacementHandler {
+      LWInstanceFuncs *<strong>inst</strong>;
+      LWItemFuncs     *<strong>item</strong>;
+      void            (*<strong>evaluate</strong>) (LWInstance, LWObjReplacementAccess *);
+   } LWObjReplacementHandler;</pre>
+    <p>The first two members of this structure are standard <a href="../handler.html">handler
+    functions</a>. The <tt>context</tt> argument to the <tt>inst-&gt;create</tt> function is
+    the LWItemID of the item associated with this instance. An object replacement handler
+    provides an evaluation function in addition to the standard handler functions.<dl>
+      <dt><tt><strong>evaluate</strong>( instance, access )</tt></dt>
+      <dd>This is where the object replacement happens. The access structure passed to this
+        function contains information about the currently loaded object and the evaluation time.
+        You compare these and provide a new filename if a different object should be loaded. If
+        the currently loaded geometry can be used for the new frame and time, set the new filename
+        to NULL.</dd>
+    </dl>
+    <p><strong>Interface Activation Function</strong></p>
+    <pre>   XCALL_( int ) MyInterface( long version, GlobalFunc *global,
+      LWInterface *local, void *serverData );</pre>
+    <p>This is the standard <a href="../handler.html#ui">interface activation</a> for
+    handlers.</p>
+    <p><strong>Object Replacement Access</strong></p>
+    <p>The access structure is the data passed to the handler's evaluation function. All of
+    the fields of this structure are read-only except for <tt>newFilename</tt>.</p>
+    <pre>   typedef struct st_LWObjReplacementAccess {
+      LWItemID    <strong>objectID</strong>;
+      LWFrame     <strong>curFrame</strong>, <strong>newFrame</strong>;
+      LWTime      <strong>curTime</strong>,  <strong>newTime</strong>;
+      int         <strong>curType</strong>,  <strong>newType</strong>;
+      const char *<strong>curFilename</strong>;
+      const char *<strong>newFilename</strong>;
+   } LWObjReplacementAccess;</pre>
+    <dl>
+      <tt>
+      <dt><strong>objectID</strong></dt>
+      </tt>
+      <dd>Item ID of the object.</dd>
+      <tt>
+      <dt><br>
+        <strong>curFrame</strong>, <strong>curTime</strong></dt>
+      </tt>
+      <dd>The frame number and time at which the currently loaded object file was most recently
+        evaluated.</dd>
+      <tt>
+      <dt><strong><br>
+        newFrame</strong>, <strong>newTime</strong></dt>
+      </tt>
+      <dd>The evaluation frame and time. If you provide a new filename, this is the time at which
+        that object file will be loaded. Because of network rendering, the new frame and time may
+        not follow the <tt>curFrame</tt> and <tt>curTime</tt> values sequentially.</dd>
+      <tt>
+      <dt><strong><br>
+        curType</strong>, <strong>newType</strong></dt>
+      </tt>
+      <dd>These describe the current geometry and the type needed for the new time. An object
+        replacement handler might ignore the time values and only perform replacements when the
+        types differ. The type can be<dl>
+          <tt>
+          <dt><br>
+            LWOBJREP_NONE</dt>
+          </tt>
+          <dd>The current geometry for the object is a null object. This value only appears in <tt>curType</tt>.</dd>
+          <tt>
+          <dt>LWOBJREP_PREVIEW</dt>
+          </tt>
+          <dd>The object will be used during previewing and user interaction with the interface.</dd>
+          <tt>
+          <dt>LWOBJREP_RENDER</dt>
+          </tt>
+          <dd>The object will be used during rendering.</dd>
+        </dl>
+      </dd>
+      <tt>
+      <dt><br>
+        <strong>curFilename</strong></dt>
+      </tt>
+      <dd>The filename of the currently loaded object file. This will be NULL if the <tt>curType</tt>
+        is <tt>LWOBJREP_NONE</tt>.</dd>
+      <tt>
+      <dt>&nbsp;</dt>
+      </tt>
+      <dt><strong><tt>newFilename</tt></strong></dt>
+      <dd>If you want to replace the currently loaded object file, set this to the name of a
+        different file. Set this to NULL if the object file shouldn't be changed. The memory that
+        holds this string must persist after the evaluation function returns.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>The <a href="../../sample/Layout/ObjectReplacement/objseq/">objseq</a> sample lets the user select a list of
+    files from a file dialog. It sorts the selected filenames and then replaces the object at
+    frame 1 with the first file, at frame 2 with the second file, and so on.</td>
+  </tr>
+</table>
+</body>
+</html>

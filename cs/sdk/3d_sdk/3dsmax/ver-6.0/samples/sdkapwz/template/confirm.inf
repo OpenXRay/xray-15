@@ -1,0 +1,10 @@
+MaxSdk AppWizard will create project:
+Named: $$ROOT$$.mak
+
+Features:
+Your plugin project will have: 
+	$$ROOT$$.cpp
+	$$ROOT$$.def
+	$$ROOT$$.h
+	$$ROOT$$.rc
+	resource.h

@@ -1,0 +1,1110 @@
+//-
+// ==========================================================================
+// Copyright (C) 1995 - 2005 Alias Systems Corp. and/or its licensors.  All 
+// rights reserved. 
+// 
+// The coded instructions, statements, computer programs, and/or related 
+// material (collectively the "Data") in these files are provided by Alias 
+// Systems Corp. ("Alias") and/or its licensors for the exclusive use of the 
+// Customer (as defined in the Alias Software License Agreement that 
+// accompanies this Alias software). Such Customer has the right to use, 
+// modify, and incorporate the Data into other products and to distribute such 
+// products for use by end-users.
+//  
+// THE DATA IS PROVIDED "AS IS".  ALIAS HEREBY DISCLAIMS ALL WARRANTIES 
+// RELATING TO THE DATA, INCLUDING, WITHOUT LIMITATION, ANY AND ALL EXPRESS OR 
+// IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY AND/OR FITNESS FOR A 
+// PARTICULAR PURPOSE. IN NO EVENT SHALL ALIAS BE LIABLE FOR ANY DAMAGES 
+// WHATSOEVER, WHETHER DIRECT, INDIRECT, SPECIAL, OR PUNITIVE, WHETHER IN AN 
+// ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, OR IN EQUITY, 
+// ARISING OUT OF ACCESS TO, USE OF, OR RELIANCE UPON THE DATA.
+// ==========================================================================
+//+
+
+
+global proc
+vrml2BrowseForScript()
+{
+    string $file = `fileDialog`;
+    textField -e -text $file vrml2Script;
+}
+
+global proc int vrml2TranslatorOpts ( string $parent,
+									string $action,
+									string $initialSettings,
+									string $resultCallback )
+//
+//	Description:
+//		This script posts the VRML2 file translator options.
+//		The optionsString is of the form:
+//			varName1=value1;varName2=value2;...
+//
+//	Parameters:
+//		$parent	- the elf parent layout for this options layout. It is
+//					always a scrollLayout.
+//		$action	- the action that is to be performed with this invokation
+//					of this proc. Valid options are:
+//						"query" - construct the options string and pass it
+//									to the resultCallback.
+//						"post"	- post all the elf controls.
+//		$initialSettings - the current options string in effect at the
+//						   time this script is invoked.
+//		$resultCallback	-
+//				This is the proc to be called with the result string. 
+//				resultCallback ( string $optionsString )
+//
+//	Returns:
+//		1 if successfull.
+//		0 otherwise.
+//
+{
+	int		$intVal;
+	float	$floatVal;
+	int		$bResult;
+	string	$strVal;
+	string	$currentOptions;
+	string	$optionList[];
+	string	$optionBreakDown[];
+	int		$index;
+
+	if ($action == "post") {
+		setParent $parent;
+
+		// We would like to hide some of the generation of the UI here.
+		// So we are going to hide the current optionsBoxForm
+		// Will make it visible after all of this is done.
+		// The scroll bars update while doing this.
+
+		// Magic name of "optionsBoxForm"
+
+        setUITemplate -pushTemplate DefaultTemplate;
+
+		formLayout -e -vis false optionsBoxForm;
+		
+	    columnLayout -adj true;
+
+            frameLayout
+                    -cll true
+                    -cl false
+                    -bv true 
+                    -bs "etchedIn"
+                    -l "Animation Options"
+                    vrml2AnimateFrame;
+
+				columnLayout -adj true vrml2AnimateOptions;
+
+            		checkBoxGrp  
+						-l "Range control:"
+						-ncb 3
+						-va3 false false true
+						-la3 "Loop" "TimeSlider" "Enabled" vrml2LoopFlags;
+
+            		intSliderGrp -l "Start:" -f true 
+								-min 0 -max 1000 vrml2AnimStart;
+
+            		intSliderGrp -l "End:" -f true 
+								-min 0 -max 1000 vrml2AnimEnd;
+
+            		intSliderGrp -l "Step:" -f true 
+								-min 1 -max 100 vrml2AnimStep;
+					intSliderGrp -e -v 1 vrml2AnimStep;
+
+            		floatSliderGrp -l "Frames per sec." -f true 
+								-min 0.01 -max 250.0 vrml2AnimFramesPerSec;
+            		floatSliderGrp -e -v 30.0 vrml2AnimFramesPerSec;
+
+		            checkBoxGrp
+        	            -l "Animate:"
+            	        -ncb 2
+            	        -va2 false true
+            	        -la2 "Vertices" "Transf" vrml2AnimFlags;
+
+            		checkBoxGrp
+						-l " "
+            	        -ncb 3
+            	        -va3 true true true 
+            	        -la3 "Materials" "Lights" "Cameras" vrml2AnimFlags2;
+
+            		checkBoxGrp
+            	        -l "Keyframe using:"
+            	        -ncb 1
+  	        	        -v1 false
+            	        -l1 "Anim Curves" vrml2AnimKeyframe;
+
+                setParent ..; // columnLayout
+            setParent ..; // frameLayout
+
+            frameLayout
+                    -cll true
+                    -cl false
+                    -bv true
+                    -bs "etchedIn"
+                    -l "Export Options"
+                    vrml2ExportFrame;
+
+                columnLayout -adj true vrml2ExportOptions;
+
+					radioButtonGrp
+						-l "Hierarchy:"
+						-nrb 3
+						-la3 "World" "Flat" "Full" vrml2HrcType;
+					radioButtonGrp -e -sl 2 vrml2HrcType;
+
+                    checkBoxGrp
+                        -l " "
+                        -ncb 1
+                        -v1 false
+                        -l1 "Joints" vrmlJoints;
+	
+            		radioButtonGrp
+                	    -l "Export:"
+                	    -nrb 3
+                	    -la3 "All" "Picked" "Active" vrml2ExportSel;
+					radioButtonGrp -e -sl 1 vrml2ExportSel;
+
+					radioButtonGrp
+						-l "Tesselation:"
+						-nrb 2
+						-la2 "Tri" "Quad" vrml2Tesselation;
+					radioButtonGrp -e -sl 1 vrml2Tesselation;
+					
+            		checkBoxGrp
+                	    -l "Include:"
+                	    -ncb 2
+                	    -va2 true true
+                	    -la2 "Cameras" "Lights" vrml2CameraLights;
+
+            		checkBoxGrp
+                	    -l "Debug Info:"
+                	    -ncb 3
+                	    -va3 false false false
+                	    -la3 "Geo/Mat" "Cameras" "Lights" vrml2DebugLevel;
+
+                setParent ..; // columnLayout
+            setParent ..; // frameLayout
+
+            frameLayout  
+                    -cll true
+                    -cl false 
+                    -bv true 
+                    -bs "etchedIn"
+                    -l "Texture Options"
+                    vrml2TextureFrame;
+
+                columnLayout -adj true vrml2TextureOptions;
+
+            		checkBoxGrp
+						-l "Texture Options:"
+                	    -ncb 3
+                	    -va3 true true false
+                	    -la3 "Evaluate" "Sample" "Original" vrml2TextureFlags;
+
+            		intSliderGrp -l "X Tex Res" -field true 
+								-max 10000 -fmx 4096 vrml2Xtexres;
+            		intSliderGrp -l "Y Tex Res" -field true 
+								-max 10000 -fmx 4096 vrml2Ytexres;
+
+            		intSliderGrp -l "Max X Tex Res" -field true 
+								-max 10000 -fmx 4096 vrml2MaxXtexres;
+            		intSliderGrp -l "Max Y Tex Res" -field true 
+								-max 10000 -fmx 4096 vrml2MaxYtexres;
+            		intSliderGrp -e -v 256 vrml2Xtexres;
+            		intSliderGrp -e -v 256 vrml2Ytexres;
+            		intSliderGrp -e -v 4096 vrml2MaxXtexres;
+            		intSliderGrp -e -v 4096 vrml2MaxYtexres;
+
+            		text -l "Texture Search path:" -al "left";
+						textField vrml2TexSearchPath;
+
+                setParent ..; // columnLayout               
+            setParent ..; // frameLayout
+
+            frameLayout
+                    -cll true
+                    -cl false
+                    -bv true
+                    -bs "etchedIn"
+                    -l "vrml2 Options"
+                    vrml2OtherFrame;
+
+                columnLayout -adj true vrml2OtherOptions;
+
+            		checkBoxGrp
+                	    -l "Navigation:"
+                	    -ncb 3
+                	    -va3 false true false
+                	    -la3 "Walk" "Examine" "Fly" vrml2Viewer;
+
+            		checkBoxGrp
+                	    -l " "
+                	    -ncb 2  
+                	    -va2 true false
+                	    -la2 "Any" "None" vrml2Viewer2;
+
+            		checkBoxGrp
+                	    -l "Options:"
+                	    -ncb 1
+                	    -v1 true 
+                	    -l1 "Headlight" vrml2NavigationFlags;
+
+            		floatSliderGrp -l "Navigation speed" -f true
+                            -min 0.01 -max 250.0 vrml2NavigSpeed;
+            		floatSliderGrp -e -v 1.0 vrml2NavigSpeed;
+
+
+            		optionMenu -l "Float precision:" vrml2Precision;
+                        menuItem -label ".x";
+                        menuItem -label ".xx";
+                        menuItem -label ".xxx";
+                        menuItem -label ".xxxx";
+                        menuItem -label ".xxxxx";
+                        menuItem -label ".xxxxxx";
+            		optionMenu -e -sl 3 vrml2Precision;
+
+
+            		checkBoxGrp
+                	    -l "Export:"
+                	    -ncb 2 
+               		    -va2 false false 
+                	    -la2 "Normals" "Opposite" vrml2ExportFlags;
+
+            		checkBoxGrp 
+						-l " "
+						-ncb 2
+						-va2 true false
+						-la2 "Textures" "Long Lines" vrml2ExportFlags2;
+
+					checkBoxGrp
+						-l " "
+						-ncb 2
+						-va2 false false
+						-la2 "Verbose" "Launch viewer" vrml2ExportFlags3;
+
+            		checkBoxGrp
+            	        -l " "
+            	        -ncb 2
+            	        -va2 false false
+            	        -la2 "Compressed" "Reversed" vrml2ExportFlags4;
+
+                    checkBoxGrp
+                        -l " "
+                        -ncb 1 
+                        -v1 false
+                        -l1 "ColorPerVertex" vrml2ExportFlags5;
+
+
+            		text -l "Texture path:" -al "left";
+            			textField vrml2TextPath;
+
+                    text -l "Run script when done:" -al "left";
+
+                    rowLayout -nc 2 -cw2 360 60; //-cl2 "both" "both";
+                        textField vrml2Script;
+                        button -l " Browse " -rs true -al "center"
+							 -c vrml2BrowseForScript vrml2ScriptBrowser;
+                    setParent ..; // rowLayout
+
+                    text -l "(Use forward slash (\"/\") for path delimiter)" -al "left";
+                    checkBoxGrp
+                            -l " "
+                            -ncb 1
+                            -v1 true
+                            -l1 "Append file name to script"
+                            vrml2ScriptAppend;
+
+                setParent ..; // columnLayout
+            setParent ..; // frameLayout
+
+        setParent ..; // columnLayout
+
+		// ---------------------------------------------------
+		//
+		// End of the UI generation portion
+		//
+		// ---------------------------------------------------
+
+		
+		// Now set to current settings.
+
+		$currentOptions = $initialSettings;
+		if (size($currentOptions) > 0) {
+			tokenize($currentOptions, ";", $optionList);
+			for ($index = 0; $index < size($optionList); $index++) {
+				tokenize($optionList[$index], "=", $optionBreakDown);
+
+				// Frame settings
+
+				if ( $optionBreakDown[0] == "animFrame") {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 1 ) { 
+						frameLayout -e -cl true vrml2AnimateFrame;
+					} else {
+						frameLayout -e -cl false vrml2AnimateFrame;
+					}
+				}
+                else if ( $optionBreakDown[0] == "exportFrame") {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 1 ) { 
+                        frameLayout -e -cl true vrml2ExportFrame;
+                    } else {
+                        frameLayout -e -cl false vrml2ExportFrame;
+                    }   
+                }   
+                else if ( $optionBreakDown[0] == "textureFrame") {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 1 ) { 
+                        frameLayout -e -cl true vrml2TextureFrame;
+                    } else {
+                        frameLayout -e -cl false vrml2TextureFrame;
+                    }   
+                }   
+                else if ( $optionBreakDown[0] == "otherFrame") {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 1 ) { 
+                        frameLayout -e -cl true vrml2OtherFrame;
+                    } else {
+                        frameLayout -e -cl false vrml2OtherFrame;
+                    }   
+                }   
+
+
+				// Hierarchy setting
+				
+                if ($optionBreakDown[0] == "hrcType") {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 1 ) {
+                        radioButtonGrp -e -sl 1 vrml2HrcType;
+                    } else if ( $intVal == 2 ) {
+                        radioButtonGrp -e -sl 2 vrml2HrcType;
+                    } else {
+						radioButtonGrp -e -sl 3 vrml2HrcType;
+					}
+
+                }
+
+                else if ( $optionBreakDown[0] == "joints" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v1 false vrmlJoints;
+                    } else {
+                        checkBoxGrp -e -v1 true vrmlJoints;
+                    }
+                }
+
+                else if ($optionBreakDown[0] == "exportSel") {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 1 ) {
+                        radioButtonGrp -e -sl 1 vrml2ExportSel;
+                    } else if ( $intVal == 2 ) {
+                        radioButtonGrp -e -sl 2 vrml2ExportSel;
+                    } else {
+						radioButtonGrp -e -sl 3 vrml2ExportSel;
+					}
+
+                }
+
+                else if ($optionBreakDown[0] == "tesselation") {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 1 ) {
+                        radioButtonGrp -e -sl 1 vrml2Tesselation;
+                    } else {
+                        radioButtonGrp -e -sl 2 vrml2Tesselation;
+                    }
+
+                }
+
+                else if ( $optionBreakDown[0] == "cameras" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v1 false vrml2CameraLights;
+                    } else {
+                        checkBoxGrp -e -v1 true vrml2CameraLights;
+                    }
+                }
+
+                else if ( $optionBreakDown[0] == "lights" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v2 false vrml2CameraLights;
+                    } else {
+                        checkBoxGrp -e -v2 true vrml2CameraLights;
+                    }
+                }
+
+                else
+                 if ( $optionBreakDown[0] == "keyCurves" )
+                 {
+                     $intVal = $optionBreakDown[1];
+                     checkBoxGrp -e -v1 $intVal vrml2AnimKeyframe;
+                 }
+
+                else if ( $optionBreakDown[0] == "debug" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v1 false vrml2DebugLevel;
+                    } else {
+                        checkBoxGrp -e -v1 true vrml2DebugLevel;
+                    }   
+                }   
+                else if ( $optionBreakDown[0] == "debugC" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v2 false vrml2DebugLevel;
+                    } else {
+                        checkBoxGrp -e -v2 true vrml2DebugLevel;
+                    }   
+                }   
+                else if ( $optionBreakDown[0] == "debugL" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v3 false vrml2DebugLevel;
+                    } else {
+                        checkBoxGrp -e -v3 true vrml2DebugLevel;
+                    }   
+                }   
+
+
+// order is  Walk Examine Fly All None 
+                else if ( $optionBreakDown[0] == "vwalk" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v1 false vrml2Viewer;
+                    } else {
+                        checkBoxGrp -e -v1 true vrml2Viewer;
+                    }   
+                }  
+                else if ( $optionBreakDown[0] == "vexamine" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v2 false vrml2Viewer;
+                    } else {
+                        checkBoxGrp -e -v2 true vrml2Viewer;
+                    }
+                } 
+                else if ( $optionBreakDown[0] == "vfly" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v3 false vrml2Viewer;
+                    } else {
+                        checkBoxGrp -e -v3 true vrml2Viewer;
+                    }
+                } 
+                else if ( $optionBreakDown[0] == "vany" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v1 false vrml2Viewer2;
+                    } else {
+                        checkBoxGrp -e -v1 true vrml2Viewer2;
+                    }
+                } 
+                else if ( $optionBreakDown[0] == "vnone" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v2 false vrml2Viewer2;
+                    } else {
+                        checkBoxGrp -e -v2 true vrml2Viewer2;
+                    }
+                } 
+
+
+// Set Animation loop
+//
+				else
+				 if ( $optionBreakDown[0] == "loop" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) { 
+						checkBoxGrp -e -v1 false vrml2LoopFlags;
+					} else { 
+						checkBoxGrp -e -v1 true vrml2LoopFlags; 
+					}
+                 }
+
+                else
+                 if ( $optionBreakDown[0] == "timeslider" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {  
+                        checkBoxGrp -e -v2 false vrml2LoopFlags;
+                    } else { 
+                        checkBoxGrp -e -v2 true vrml2LoopFlags;
+                    }
+                 }
+
+// Set the overall Global Animation Enable flag
+
+                else
+                 if ( $optionBreakDown[0] == "animEnabled" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v3 false vrml2LoopFlags;
+                    } else {
+                        checkBoxGrp -e -v3 true vrml2LoopFlags;
+                    }
+                 }
+
+// Set Animation sliders
+//
+				else
+				 if ( $optionBreakDown[0] == "animStart" ) {
+					$intVal = $optionBreakDown[1];
+					intSliderGrp -e -v $intVal vrml2AnimStart;
+				 }
+				else
+				 if ( $optionBreakDown[0] == "animEnd" ) {
+					$intVal = $optionBreakDown[1];
+					intSliderGrp -e -v $intVal vrml2AnimEnd;
+				 }
+				else
+				 if ( $optionBreakDown[0] == "animStep" ) {
+					$intVal = $optionBreakDown[1];
+					intSliderGrp -e -v $intVal vrml2AnimStep;
+				 }
+				else
+				 if ( $optionBreakDown[0] == "animFramesPerSec" ) {
+					$floatVal = $optionBreakDown[1];
+					floatSliderGrp -e -v $floatVal vrml2AnimFramesPerSec;
+				 }
+
+// Post Animation flags
+//
+				else
+				 if ( $optionBreakDown[0] == "animVertices" ) {
+					$intVal = $optionBreakDown[1];
+					if ( $intVal == 0 ) { 
+						checkBoxGrp -e -v1 false vrml2AnimFlags; 
+					} else { 
+						checkBoxGrp -e -v1 true vrml2AnimFlags; }
+				 }
+
+				else
+				 if ( $optionBreakDown[0] == "animTransforms" ) {
+					$intVal = $optionBreakDown[1];
+					if ( $intVal == 0 ) { 
+						checkBoxGrp -e -v2 false vrml2AnimFlags; 
+					} else { 
+						checkBoxGrp -e -v2 true vrml2AnimFlags; 
+					}
+				 }
+				else
+				 if ( $optionBreakDown[0] == "animShaders" ) {
+					$intVal = $optionBreakDown[1];
+					if ( $intVal == 0 ) { 
+						checkBoxGrp -e -v1 false vrml2AnimFlags2; 
+					} else { 
+						checkBoxGrp -e -v1 true vrml2AnimFlags2; 
+					}
+				 }
+				else
+				 if ( $optionBreakDown[0] == "animLights" ) {
+					$intVal = $optionBreakDown[1];
+					if ( $intVal == 0 ) { 
+						checkBoxGrp -e -v2 false vrml2AnimFlags2; 
+					} else { 
+						checkBoxGrp -e -v2 true vrml2AnimFlags2; 
+					}
+				 }
+				else
+				 if ( $optionBreakDown[0] == "animCameras" ) {
+					$intVal = $optionBreakDown[1];
+					if ( $intVal == 0 ) {
+						checkBoxGrp -e -v3 false vrml2AnimFlags2;
+					} else {
+						checkBoxGrp -e -v3 true vrml2AnimFlags2;
+					}
+				 }
+				else
+// Post navigation options
+//
+				 if ( $optionBreakDown[0] == "navigationSpeed" ) {
+					$floatVal = $optionBreakDown[1];
+					floatSliderGrp -e -v $floatVal vrml2NavigSpeed;
+				 }
+
+				else
+				 if ( $optionBreakDown[0] == "headlight" ) {
+					$intVal = $optionBreakDown[1];
+					if ( $intVal == 0 ) { 
+						checkBoxGrp -e -v1 false vrml2NavigationFlags; 
+					} else { 
+						checkBoxGrp -e -v1 true vrml2NavigationFlags;
+					}
+				 }
+
+// Post texture options
+//
+                else
+                 if ( $optionBreakDown[0] == "texsample" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+						checkBoxGrp -e -v2 false vrml2TextureFlags; 
+					} else { 
+						checkBoxGrp -e -v2 true vrml2TextureFlags; 
+					}
+                 }  
+
+                else
+                 if ( $optionBreakDown[0] == "texevaluate" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v1 false vrml2TextureFlags;          
+                    } else { 
+                        checkBoxGrp -e -v1 true vrml2TextureFlags;          
+                    }
+                 }  
+
+                else
+                 if ( $optionBreakDown[0] == "texoriginal" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v3 false vrml2TextureFlags;
+                    } else {
+                        checkBoxGrp -e -v3 true vrml2TextureFlags;
+                    }
+                 }
+
+
+                else
+                 if ( $optionBreakDown[0] == "Xtexres" ) {
+                    $intVal = $optionBreakDown[1];
+                    intSliderGrp -e -v $intVal vrml2Xtexres;
+                 }
+                else
+                 if ( $optionBreakDown[0] == "Ytexres" ) {
+                    $intVal = $optionBreakDown[1];
+                    intSliderGrp -e -v $intVal vrml2Ytexres;
+                 }
+                else
+                 if ( $optionBreakDown[0] == "MaxXtexres" ) {
+                    $intVal = $optionBreakDown[1];
+                    intSliderGrp -e -v $intVal vrml2MaxXtexres;
+                 }
+                else
+                 if ( $optionBreakDown[0] == "MaxYtexres" ) {
+                    $intVal = $optionBreakDown[1];
+                    intSliderGrp -e -v $intVal vrml2MaxYtexres;
+                 }
+
+                else
+                 if ( $optionBreakDown[0] == "searchPath" ) {
+                    if ( $optionBreakDown[1] != "" ) {
+                    	textField -e -text $optionBreakDown[1] vrml2TexSearchPath;
+					}
+                 }  
+
+// Post Export flags
+//
+                else
+                 if ( $optionBreakDown[0] == "exportCPV" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v1 false vrml2ExportFlags5;
+                    } else {
+                        checkBoxGrp -e -v1 true vrml2ExportFlags5;
+                    }
+                 }
+
+				else
+				 if ( $optionBreakDown[0] == "exportNormals" ) {
+					$intVal = $optionBreakDown[1];
+					if ( $intVal == 0 ) { 
+						checkBoxGrp -e -v1 false vrml2ExportFlags; 
+					} else { 
+						checkBoxGrp -e -v1 true vrml2ExportFlags; 
+					}
+				 }
+                else
+                 if ( $optionBreakDown[0] == "oppositeNormals" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v2 false vrml2ExportFlags;
+                    } else {
+                        checkBoxGrp -e -v2 true vrml2ExportFlags;
+                    }
+                 }
+				else
+				 if ( $optionBreakDown[0] == "exportTextures" ) {
+					$intVal = $optionBreakDown[1];
+					if ( $intVal == 0 ) { 
+						checkBoxGrp -e -v1 false vrml2ExportFlags2; 
+					} else { 
+						checkBoxGrp -e -v1 true vrml2ExportFlags2; 
+					}
+				 }
+				else
+				 if ( $optionBreakDown[0] == "longLines" ) {
+					$intVal = $optionBreakDown[1];
+					if ( $intVal == 0 ) { 
+						checkBoxGrp -e -v2 false vrml2ExportFlags2; 
+					} else { 
+						checkBoxGrp -e -v2 true vrml2ExportFlags2; 
+					}
+				 }
+				else
+				 if ( $optionBreakDown[0] == "launchViewer" ) {
+					$intVal = $optionBreakDown[1];
+					if ( $intVal == 0 ) { 
+						checkBoxGrp -e -v2 false vrml2ExportFlags3; 
+					} else { 
+						checkBoxGrp -e -v2 true vrml2ExportFlags3; 
+					}
+				 }
+                else
+                 if ( $optionBreakDown[0] == "verbose" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v1 false vrml2ExportFlags3;
+                    } else {
+                        checkBoxGrp -e -v1 true vrml2ExportFlags3;
+                    }
+                 }
+                else
+                 if ( $optionBreakDown[0] == "compressed" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v1 false vrml2ExportFlags4;
+                    } else {
+                        checkBoxGrp -e -v1 true vrml2ExportFlags4;
+                    }   
+                 }  
+				else
+                 if ( $optionBreakDown[0] == "reversed" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v2 false vrml2ExportFlags4;
+                    } else {
+                        checkBoxGrp -e -v2 true vrml2ExportFlags4;
+                    }
+                 }
+				else
+				 if ( $optionBreakDown[0] == "precision" ) {
+					$intVal = $optionBreakDown[1];
+					switch ( $intVal )
+					{
+						case 1:	optionMenu -e -sl 1 vrml2Precision;break;
+						case 2:	optionMenu -e -sl 2 vrml2Precision;break;
+						case 3:	optionMenu -e -sl 3 vrml2Precision;break;
+						case 4:	optionMenu -e -sl 4 vrml2Precision;break;
+						case 5:	optionMenu -e -sl 5 vrml2Precision;break;
+						case 6:	optionMenu -e -sl 6 vrml2Precision;break;
+					}
+				}
+
+                else
+                 if ( $optionBreakDown[0] == "script" )
+                 {
+                     textField -e -tx $optionBreakDown[1] vrml2Script;
+                 }
+                else
+                 if ( $optionBreakDown[1] == "scriptAppend" )
+                 {
+                    $intVal = $optionBreakDown[1];
+                    checkBoxGrp -e -v $intVal vrml2ScriptAppend;
+                 }
+
+			}
+		}
+		$result = 1;
+	
+		formLayout -e -vis true optionsBoxForm;
+
+        setUITemplate -popTemplate;
+
+
+	} else if ($action == "query") {
+
+
+// Frame layouts
+//
+        $intVal = `frameLayout -q -cl vrml2AnimateFrame`;
+        $currentOptions = $currentOptions + "animFrame=" + $intVal + ";";
+
+        $intVal = `frameLayout -q -cl vrml2ExportFrame`;
+        $currentOptions = $currentOptions + "exportFrame=" + $intVal + ";";
+
+        $intVal = `frameLayout -q -cl vrml2TextureFrame`;
+        $currentOptions = $currentOptions + "textureFrame=" + $intVal + ";";
+
+        $intVal = `frameLayout -q -cl vrml2OtherFrame`;
+        $currentOptions = $currentOptions + "otherFrame=" + $intVal + ";";
+
+
+// Query animation range/step
+//
+		$intVal = `intSliderGrp -q -v vrml2AnimStart`;
+		$currentOptions = $currentOptions + "animStart=" + $intVal + ";";
+
+		$intVal = `intSliderGrp -q -v vrml2AnimEnd`;
+		$currentOptions = $currentOptions + "animEnd=" + $intVal + ";";
+
+		$intVal = `intSliderGrp -q -v vrml2AnimStep`;
+		$currentOptions = $currentOptions + "animStep=" + $intVal + ";";
+
+		$floatVal = `floatSliderGrp -q -v vrml2AnimFramesPerSec`;
+		$currentOptions = $currentOptions + "animFramesPerSec=" + $floatVal + ";";
+
+// Query Anim options
+//
+        if (`checkBoxGrp -q -v1 vrml2AnimFlags` == 1) {
+            $currentOptions = $currentOptions + "animVertices=1;";
+        } else {
+            $currentOptions = $currentOptions + "animVertices=0;";
+        }
+
+        if (`checkBoxGrp -q -v2 vrml2AnimFlags` == 1) {
+            $currentOptions = $currentOptions + "animTransforms=1;";
+        } else {
+            $currentOptions = $currentOptions + "animTransforms=0;";
+        }   
+
+        if (`checkBoxGrp -q -v1 vrml2AnimFlags2` == 1) {
+            $currentOptions = $currentOptions + "animShaders=1;";
+        } else {
+            $currentOptions = $currentOptions + "animShaders=0;";
+        }   
+
+        if (`checkBoxGrp -q -v2 vrml2AnimFlags2` == 1) {
+            $currentOptions = $currentOptions + "animLights=1;";
+        } else {
+            $currentOptions = $currentOptions + "animLights=0;";
+        }   
+
+        if (`checkBoxGrp -q -v3 vrml2AnimFlags2` == 1) {
+            $currentOptions = $currentOptions + "animCameras=1;";
+        } else {
+            $currentOptions = $currentOptions + "animCameras=0;";
+        }   
+
+
+        $currentOptions = $currentOptions + "keyCurves=" 
+							+ `checkBoxGrp -q -v1 vrml2AnimKeyframe` + ";";
+
+/*
+		$intVal = `radioButtonGrp -q -sl vrml2HrcTypeGrp`;
+*/
+// Query hierarchy type
+//
+		$intVal = `radioButtonGrp -q -sl vrml2HrcType`; 
+		switch ( $intVal )
+		{
+		 case 1:	$currentOptions = $currentOptions + "hrcType=1;";break;
+		 case 2:	$currentOptions = $currentOptions + "hrcType=2;";break;
+		 case 3:	$currentOptions = $currentOptions + "hrcType=3;";break;
+		}
+
+        if (`checkBoxGrp -q -v1 vrmlJoints` == 1) {
+            $currentOptions = $currentOptions + "joints=1;";
+        } else {
+            $currentOptions = $currentOptions + "joints=0;";
+        }
+
+// Query export selection
+//
+		$intVal = `radioButtonGrp -q -sl vrml2ExportSel`;
+		switch ( $intVal )
+		{
+		 case 1:	$currentOptions = $currentOptions + "exportSel=1;";break;
+		 case 2:	$currentOptions = $currentOptions + "exportSel=2;";break;
+		 case 3:	$currentOptions = $currentOptions + "exportSel=3;";break;
+		}
+
+// Query viewer type
+//
+        if (`checkBoxGrp -q -v1 vrml2Viewer` == 1) {
+            $currentOptions = $currentOptions + "vwalk=1;";
+        } else {
+            $currentOptions = $currentOptions + "vwalk=0;";
+        }
+        if (`checkBoxGrp -q -v2 vrml2Viewer` == 1) {
+            $currentOptions = $currentOptions + "vexamine=1;";
+        } else {
+            $currentOptions = $currentOptions + "vexamine=0;";
+        }
+        if (`checkBoxGrp -q -v3 vrml2Viewer` == 1) {
+            $currentOptions = $currentOptions + "vfly=1;";
+        } else {
+            $currentOptions = $currentOptions + "vfly=0;";
+        }
+        if (`checkBoxGrp -q -v1 vrml2Viewer2` == 1) {
+            $currentOptions = $currentOptions + "vany=1;";
+        } else {
+            $currentOptions = $currentOptions + "vany=0;";
+        }
+        if (`checkBoxGrp -q -v2 vrml2Viewer2` == 1) {
+            $currentOptions = $currentOptions + "vnone=1;";
+        } else {
+            $currentOptions = $currentOptions + "vnone=0;";
+        }
+
+
+// Query navigation speed
+//
+		$floatVal = `floatSliderGrp -q -v vrml2NavigSpeed`;
+		$currentOptions = $currentOptions + "navigationSpeed=" + $floatVal + ";";
+
+// Query headlight
+//
+		if (`checkBoxGrp -q -v1 vrml2NavigationFlags` == 1) {
+			$currentOptions = $currentOptions + "headlight=1;";
+		} else {
+			$currentOptions = $currentOptions + "headlight=0;";
+		}
+
+// Query Loop Mode
+//
+        if (`checkBoxGrp -q -v1 vrml2LoopFlags` == 1) {
+            $currentOptions = $currentOptions + "loop=1;";
+        } else {
+            $currentOptions = $currentOptions + "loop=0;";
+        }
+
+        if (`checkBoxGrp -q -v2 vrml2LoopFlags` == 1) {
+            $currentOptions = $currentOptions + "timeslider=1;";
+        } else {
+            $currentOptions = $currentOptions + "timeslider=0;";
+        }
+
+        if (`checkBoxGrp -q -v3 vrml2LoopFlags` == 1) {
+            $currentOptions = $currentOptions + "animEnabled=1;";
+        } else {
+            $currentOptions = $currentOptions + "animEnabled=0;";
+        }
+
+// Query Texture options
+//
+        if (`checkBoxGrp -q -v2 vrml2TextureFlags` == 1) {
+            $currentOptions = $currentOptions + "texsample=1;";
+        } else {
+            $currentOptions = $currentOptions + "texsample=0;";
+        }   
+
+        if (`checkBoxGrp -q -v1 vrml2TextureFlags` == 1) {
+            $currentOptions = $currentOptions + "texevaluate=1;";
+        } else {
+            $currentOptions = $currentOptions + "texevaluate=0;";
+        }   
+
+        if (`checkBoxGrp -q -v3 vrml2TextureFlags` == 1) {
+            $currentOptions = $currentOptions + "texoriginal=1;";
+        } else {
+            $currentOptions = $currentOptions + "texoriginal=0;";
+        }
+
+        $intVal = `intSliderGrp -q -v vrml2Xtexres`;
+        $currentOptions = $currentOptions + "Xtexres=" + $intVal + ";";
+
+        $intVal = `intSliderGrp -q -v vrml2Ytexres`;
+        $currentOptions = $currentOptions + "Ytexres=" + $intVal + ";";
+
+        $intVal = `intSliderGrp -q -v vrml2MaxXtexres`;
+        $currentOptions = $currentOptions + "MaxXtexres=" + $intVal + ";";
+        
+        $intVal = `intSliderGrp -q -v vrml2MaxYtexres`;
+        $currentOptions = $currentOptions + "MaxYtexres=" + $intVal + ";";
+
+		$strVal = `textField -q -text vrml2TexSearchPath`;
+		$currentOptions = $currentOptions + "searchPath=" + $strVal + ";"; 	
+
+// Query hierarchy type
+//
+        if (`radioButtonGrp -q -sl vrml2Tesselation` == 1) {
+            $currentOptions = $currentOptions + "tesselation=1;";
+        } else {
+            $currentOptions = $currentOptions + "tesselation=2;";
+        }
+
+
+// Query float precision
+//
+		$intVal = `optionMenu -q -sl vrml2Precision`;
+                $currentOptions = $currentOptions + "precision=" + `optionMenu -q -sl vrml2Precision` + ";";
+
+
+// Query export flags
+//
+        if (`checkBoxGrp -q -v1 vrml2ExportFlags5` == 1) {
+            $currentOptions = $currentOptions + "exportCPV=1;";
+        } else {
+            $currentOptions = $currentOptions + "exportCPV=0;";
+        }
+
+		if (`checkBoxGrp -q -v1 vrml2ExportFlags` == 1) {
+			$currentOptions = $currentOptions + "exportNormals=1;";
+		} else {
+			$currentOptions = $currentOptions + "exportNormals=0;";
+		}
+
+        if (`checkBoxGrp -q -v2 vrml2ExportFlags` == 1) {
+            $currentOptions = $currentOptions + "oppositeNormals=1;";
+        } else {
+            $currentOptions = $currentOptions + "oppositeNormals=0;";
+        }
+
+
+		if (`checkBoxGrp -q -v1 vrml2ExportFlags2` == 1) {
+			$currentOptions = $currentOptions + "exportTextures=1;";
+		} else {
+			$currentOptions = $currentOptions + "exportTextures=0;";
+		}
+
+        if (`checkBoxGrp -q -v2 vrml2ExportFlags3` == 1) {
+            $currentOptions = $currentOptions + "launchViewer=1;";
+        } else {
+            $currentOptions = $currentOptions + "launchViewer=0;";
+        }
+
+        if (`checkBoxGrp -q -v2 vrml2ExportFlags2` == 1) {
+            $currentOptions = $currentOptions + "longLines=1;";
+        } else {
+            $currentOptions = $currentOptions + "longLines=0;";
+        }   
+
+        if (`checkBoxGrp -q -v1 vrml2ExportFlags3` == 1) {
+            $currentOptions = $currentOptions + "verbose=1;";
+        } else {
+            $currentOptions = $currentOptions + "verbose=0;";
+        }   
+
+		// check for debug info levels
+
+        if (`checkBoxGrp -q -v1 vrml2DebugLevel` == 1) {
+            $currentOptions = $currentOptions + "debug=1;";
+        } else {
+            $currentOptions = $currentOptions + "debug=0;";
+        }
+        if (`checkBoxGrp -q -v2 vrml2DebugLevel` == 1) {
+            $currentOptions = $currentOptions + "debugC=1;";
+        } else {
+            $currentOptions = $currentOptions + "debugC=0;";
+        }
+        if (`checkBoxGrp -q -v3 vrml2DebugLevel` == 1) {
+            $currentOptions = $currentOptions + "debugL=1;";
+        } else {
+            $currentOptions = $currentOptions + "debugL=0;";
+        }
+
+
+        if (`checkBoxGrp -q -v1 vrml2ExportFlags4` == 1) {
+            $currentOptions = $currentOptions + "compressed=1;";
+        } else {
+            $currentOptions = $currentOptions + "compressed=0;";
+        }
+
+        if (`checkBoxGrp -q -v2 vrml2ExportFlags4` == 1) {
+            $currentOptions = $currentOptions + "reversed=1;";
+        } else {
+            $currentOptions = $currentOptions + "reversed=0;";
+        }
+
+        $currentOptions = $currentOptions + "script=" 
+							+ `textField -q -text vrml2Script` + ";";
+
+        $currentOptions = $currentOptions + "scriptAppend=" 
+							+ `checkBoxGrp -q -v1 vrml2ScriptAppend` + ";";
+
+		eval($resultCallback+" \""+$currentOptions+"\"");
+		$result = 1;
+	} else {
+		$bResult = 0;
+	}
+	
+	return $bResult;
+}

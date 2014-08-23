@@ -1,0 +1,95 @@
+<html>
+
+<head>
+<title>Classes: ItemMotionHandler</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="imgsave.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="ImageSaver"></a></td>
+    <td width="96" align="left"><a href="generic.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="LayoutGeneric"></a></td>
+    <td width="96" align="left"><a href="../classes.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Classes"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+      <h3>AnimUV</h3>
+      <p><small><strong>Availability</strong>&nbsp; LightWave® 8.0</small><br>
+      <small><strong>Component</strong>&nbsp; Layout</small><br>
+      <small><strong>Header</strong>&nbsp; <a href="file:///G:/WWW/NewTek/new_design/products/lightwave/developer/8lwsdk/include/lwanimuv.h">lwanimuv.h</a></small></p>
+      <p>The AnimUV plug-in class allows the developer to transform the UV
+      coordinates of a texture during animation..</p>
+    <p><strong>Handler Activation Function</strong></p>
+    <pre>   XCALL_( int ) AnimUVActive( long version, GlobalFunc *global,
+      LWAnimUVHandler *local, void *serverData );</pre>
+    <p>The <tt>local</tt> argument to a motion handler's activation function is an
+    LWAnimUVHandler.</p>
+    <pre>    typedef struct st_LWAnimUVHandler {
+	    LWInstanceFuncs	 *inst;
+	    LWItemFuncs	 *item;
+	    int	(*GetOptions)( LWInstance, char * );
+	    int	(*SetOptions)( LWInstance, char * );
+	    int	(*Begin)( LWInstance, char *, double, int, int, int );
+	    int	(*Evaluate)( LWInstance, int, double * );
+	    int	(*End)( LWInstance );
+    } LWAnimUVHandler;</pre>
+    <p>The first two members of this structure are standard <a href="../handler.html">handler
+    functions</a>. The <tt>context</tt> argument to the <tt>inst-&gt;create</tt> function is
+    the LWItemID of the item associated with this instance.</p>
+    <p>In addition to the standard handler functions, a motion handler provides an evaluation
+    function and a flags function.<dl>
+      <dt><tt>success = <strong>Begin</strong>( instance, options, time,
+        vertCount, wRepeat, hRepeat )</tt></dt>
+      <dd>This function is called for each new surface, before it is
+        drawn.&nbsp; This function should return one (1) if the UV coordinates
+        were successfully updated, or zero (0) on error.</dd>
+      <dt>&nbsp;</dt>
+      <dt>
+        <tt>success = <strong>Evaluate</strong>( instance, vertexNumber, uv )</tt></dt>
+      <dd>This function is called for each vertex, just before it is drawn.&nbsp;
+        <code>vertexNumber</code> indicates which vertex is currently being
+        evaluated (i.e., 0, 1, 2..).&nbsp; <code>uv</code> is an array of UV
+        values for the indicated vertex.&nbsp; This function should return one
+        (1) if the UV coordinates were successfully updated, or zero (0) on
+        error.</dd>
+      <dt><br>
+        <tt>success = <strong>End</strong>( instance )</tt></dt>
+      <dd>This function is called after each vertex has been drawn.&nbsp; This
+        function should return one (1) if the UV coordinates were successfully
+        updated, or zero (0) on error.</dd>
+      <dt>&nbsp;</dt>
+      <dt><tt>success = <strong>SetOptions</strong>( instance, options )</tt></dt>
+      <dd>Copies the options array into the AnimUV options structure.&nbsp; This
+        function should return one (1) if the UV coordinates were successfully
+        updated, or zero (0) if it failed to copy the options array.</dd>
+    </dl>
+      <dl>
+      <dt><tt>success = <strong>GetOptions</strong>( instance, options )</tt></dt>
+      <dd>Returns the number and the array of options data. If the options array
+        is NULL, simply return the number of bytes in options array.&nbsp; This
+        function should return the number of options bytes. If the options array
+        is not NULL, then the options bytes are copied into the array.</dd>
+    </dl>
+    <p><strong>Interface Activation Function</strong></p>
+    <pre>   XCALL_( int ) AnimUVInterface( long version, GlobalFunc *global,
+      LWInterface *local, void *serverData );</pre>
+    <p>The interface activation's local data is the standard <a href="../handler.html#ui">interface</a>
+    structure for handlers.</p>
+    <p><strong>Example</strong></p>
+      <p>The <a href="../../sample/Layout/AnimUV/animuv/">AnimUV</a> SDK sample project
+      illustrates the usage of this class.</p>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,156 @@
+//_____________________________________________________________________________
+//
+//	File:		SpotLightNormal.nvv
+//	
+//_____________________________________________________________________________
+
+
+//_____________________________________________________________________________
+//
+//	Include files	
+//
+//_____________________________________________________________________________
+
+#include "ShaderConst.h"
+
+//_____________________________________________________________________________
+//
+//	Defines	
+//
+//_____________________________________________________________________________
+
+#define S_WORLD 		r0
+#define T_WORLD 		r1
+#define SxT_WORLD 		r2
+#define LIGHT_LOCAL 	r3
+#define WORLD_TEMP	 	r4
+#define POSITION_WORLD	r5
+#define LIGHT_ATTEN		r6
+#define ALIGN			r7
+
+vs.1.0
+
+
+//_____________________________________
+//
+//	Transform 
+//
+//_____________________________________
+
+dp4 oPos.x, V_POSITION, c[CV_WORLDVIEWPROJ_0]
+dp4 oPos.y, V_POSITION, c[CV_WORLDVIEWPROJ_1]
+dp4 oPos.z, V_POSITION, c[CV_WORLDVIEWPROJ_2]
+dp4 oPos.w, V_POSITION, c[CV_WORLDVIEWPROJ_3]
+
+
+//_____________________________________
+//
+//	Transform 
+//
+//_____________________________________
+
+dp4 POSITION_WORLD.x, V_POSITION, c[CV_WORLD_0]
+dp4 POSITION_WORLD.y, V_POSITION, c[CV_WORLD_1]
+dp4 POSITION_WORLD.z, V_POSITION, c[CV_WORLD_2]
+
+//_____________________________________
+//
+//	Vector 
+//
+//_____________________________________
+
+add LIGHT_LOCAL, c[CV_LIGHT_POSITION], -POSITION_WORLD.xyz 
+
+
+//_____________________________________
+//
+//	Normalize 
+//
+//_____________________________________
+
+dp3 LIGHT_LOCAL.w, LIGHT_LOCAL, LIGHT_LOCAL
+rsq LIGHT_LOCAL.w, LIGHT_LOCAL.w
+rcp LIGHT_ATTEN,   LIGHT_LOCAL.w
+mul LIGHT_ATTEN,   LIGHT_ATTEN.w, c[CV_LIGHT_OUTER_RANGE].x
+mul LIGHT_LOCAL,   LIGHT_LOCAL, LIGHT_LOCAL.w
+
+
+//_____________________________________
+//
+//	Output atten 
+//
+//_____________________________________
+
+sub LIGHT_ATTEN, c[CV_ONE], LIGHT_ATTEN.x
+
+//_____________________________________
+//
+//	Back projection 
+//
+//_____________________________________
+
+dp3 ALIGN, LIGHT_LOCAL, c[CV_LIGHT_DIR]
+sge ALIGN, ALIGN, -c[CV_ZERO].x      
+mul oD0, LIGHT_ATTEN.x, ALIGN.x
+
+//_____________________________________
+//
+//	Transform basis
+//
+//_____________________________________
+
+m3x3 S_WORLD,    V_S,			c[CV_WORLD_0]
+m3x3 SxT_WORLD,  V_NORMAL,		c[CV_WORLD_0]
+mul  WORLD_TEMP, S_WORLD.zxyw,	SxT_WORLD.yzxw   
+mad  T_WORLD,    S_WORLD.yzxw,	SxT_WORLD.zxyw, -WORLD_TEMP
+
+//_____________________________________
+//
+//	Scale bumps 
+//
+//_____________________________________
+
+mul S_WORLD.xyz, S_WORLD.xyz, c[CV_SCALE].w
+mul T_WORLD.xyz, T_WORLD.xyz, c[CV_SCALE].w
+
+
+//_____________________________________
+//
+//	Output light
+//
+//_____________________________________
+
+dp3 oT1.x, S_WORLD.xyz,   c[CV_LIGHT_DIR]
+dp3 oT1.y, T_WORLD.xyz,   c[CV_LIGHT_DIR]
+dp3 oT1.z, SxT_WORLD.xyz, c[CV_LIGHT_DIR]
+mov oT1.w, c[CV_ONE].w
+
+//_____________________________________
+//
+//	Output spot texture 
+//
+//_____________________________________
+
+dp4 oT3.x,  V_POSITION, c[CV_TEXMAT_0]
+dp4 oT3.y,  V_POSITION, c[CV_TEXMAT_1]
+dp4 oT3.z,  V_POSITION, c[CV_TEXMAT_2]
+dp4 oT3.w,  V_POSITION, c[CV_TEXMAT_3]
+
+
+//_____________________________________
+//
+//	Output texture 
+//
+//_____________________________________
+
+mov oT0.xy,  V_TEXTURE_3
+
+
+
+
+
+
+
+
+
+

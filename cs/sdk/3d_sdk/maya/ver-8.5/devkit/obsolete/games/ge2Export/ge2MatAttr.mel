@@ -1,0 +1,399 @@
+
+//-
+// ==========================================================================
+// Copyright (C) 1995 - 2005 Alias Systems Corp. and/or its licensors.  All 
+// rights reserved. 
+// 
+// The coded instructions, statements, computer programs, and/or related 
+// material (collectively the "Data") in these files are provided by Alias 
+// Systems Corp. ("Alias") and/or its licensors for the exclusive use of the 
+// Customer (as defined in the Alias Software License Agreement that 
+// accompanies this Alias software). Such Customer has the right to use, 
+// modify, and incorporate the Data into other products and to distribute such 
+// products for use by end-users.
+//  
+// THE DATA IS PROVIDED "AS IS".  ALIAS HEREBY DISCLAIMS ALL WARRANTIES 
+// RELATING TO THE DATA, INCLUDING, WITHOUT LIMITATION, ANY AND ALL EXPRESS OR 
+// IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY AND/OR FITNESS FOR A 
+// PARTICULAR PURPOSE. IN NO EVENT SHALL ALIAS BE LIABLE FOR ANY DAMAGES 
+// WHATSOEVER, WHETHER DIRECT, INDIRECT, SPECIAL, OR PUNITIVE, WHETHER IN AN 
+// ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, OR IN EQUITY, 
+// ARISING OUT OF ACCESS TO, USE OF, OR RELIANCE UPON THE DATA.
+// ==========================================================================
+//+
+
+// This file is what is used to add Material/Shader attributes to the shaders
+// so that GameExchange2.0 attributes can be utilized. If the appropriate AEtemplates
+// are sourced (e.g. AElambertGe2Revision, AEblinnGe2Revision, etc.) then the
+// materials will be grouped in collapsible frame layouts: N64, Psx, etc. If these
+// AE templates aren't showing up for some reason, you can add the ge2MatAttr call
+// just before 'editorTemplate -addExtraControls' call.
+
+// You can also modify the ge2MatAttr function that is in this file to group the data
+// according to how you'd like to see it. The function should be relatively self-
+// explanatory -- add any extra groups or domains as you need, just add them according
+// to how it looks here.
+// ge2tags is where the attributes get added to the shaders, but it uses ge2GetAllAttrs()
+// and ge2GetAllTypes(), which are both in this file and should be easy to modify
+// Make sure you add a 'type' for any attribute you add (otherwise addAttr won't know how
+// to create the attribute), and make sure you modify ge2GetAllAttrTypes in the same order
+// you modifiy ge2GetAllAttrs().
+
+// Adding an attribute to one of the domains that's here is easy -- just add the attribute
+// to the appropriate string array and an appropriate type to AttrType string array.
+
+global proc string
+ge2StripName(string $attr)
+{
+	int $i;
+	string $prefix;
+	string $stripped;
+	string $types[] = { "ge2N64", "ge2Psx", "ge2Gl_Shade" };
+
+	for ( $type in $types )
+	{
+		$typeLength = size( $type );
+		$prefix = substring( $attr, 1, $typeLength );
+		if ( $prefix == $type )
+		{
+			$stripped = substring( $attr, $typeLength+1, size( $attr ) );
+			return $stripped;
+		}
+	}
+
+	return $attr;
+}
+
+global proc string[]
+ge2GetN64Attrs()
+{
+	string	$attrs[];
+
+	$attrs = {	"ge2N64UseTextureMap",
+				"ge2N64FacingControl",
+				"ge2N64OmitFace",
+				"ge2N64Preshade",
+				"ge2N64UseLightOption",
+				"ge2N64BlendColor",
+				"ge2N64UseZBuffer",
+				"ge2N64UseFog",
+				"ge2N64UseReflectionMapping" 
+	};
+
+	return $attrs;
+}
+
+global proc string[]
+ge2GetN64AttrTypes()
+{
+	string $types[];
+
+	$types = {	"-at bool",
+				"-at short",
+				"-at bool",
+				"-at bool",
+				"-at bool",
+				"-at bool",
+				"-at bool",
+				"-at bool",
+				"-at bool" 
+	};
+
+	return $types;
+}
+
+global proc string[]
+ge2GetPsxAttrs()
+{
+	string	$attrs[];
+
+	$attrs = {	"ge2PsxUseTextureMap",
+				"ge2PsxOmitFace",
+				"ge2PsxLightCalculation",
+				"ge2PsxFacingControl",
+				"ge2PsxABE",
+				"ge2PsxABR",
+				"ge2PsxPreshade",
+				"ge2PsxPerformSubdivision",
+				"ge2PsxPerformActiveSubdivision",
+				"ge2PsxClip",
+				"ge2PsxMipmap" 
+	};
+				
+	return $attrs;
+}
+
+global proc string[]
+ge2GetPsxAttrTypes()
+{
+	string $types[];
+
+	$types = {	"-at bool",
+				"-at bool",
+				"-at bool",
+				"-at short",
+				"-at bool",
+				"-at short",
+				"-at bool",
+				"-at bool",
+				"-at bool",
+				"-at bool",
+				"-at bool" 
+	};
+
+	return $types;
+}
+
+global proc string[]
+ge2GetGlShadeAttrs()
+{
+	string $attrs[];
+
+	$attrs = { 
+	};
+
+	return $attrs;
+}
+
+global proc string[]
+ge2GetGlShadeAttrTypes()
+{
+	string $types[];
+
+	$types = {
+	};
+
+	return $types;
+}
+
+global proc string[]
+ge2GetCustomAttrs()
+{
+	string $attrs[];
+
+	$attrs = { 
+	};
+
+	return $attrs;
+}
+
+global proc string[]
+ge2GetCustomAttrTypes()
+{
+	string $types[];
+
+	$types = { 
+	};
+
+	return $types;
+}
+
+global proc string[]
+ge2GetAllAttrs()
+{
+	string	$retArray[];
+	string	$n64Attrs[] = ge2GetN64Attrs();
+	string	$psxAttrs[] = ge2GetPsxAttrs();
+	string	$glAttrs[] = ge2GetGlShadeAttrs();
+	string	$customAttrs[] = ge2GetCustomAttrs();
+
+	int		$index = 0;
+
+	for ( $attr in $n64Attrs )
+		$retArray[$index++] = $attr;
+
+	for ( $attr in $psxAttrs )
+		$retArray[$index++] = $attr;
+
+	for ( $attr in $glAttrs )
+		$retArray[$index++] = $attr;
+
+	for ( $attr in $customAttrs )
+		$retArray[$index++] = $attr;
+
+	return $retArray;
+}
+
+global proc string[]
+ge2GetAllAttrTypes()
+{
+	string	$retArray[];
+	string	$n64Types[] = ge2GetN64AttrTypes();
+	string	$psxTypes[] = ge2GetPsxAttrTypes();
+	string	$glTypes[] = ge2GetGlShadeAttrTypes();
+	string	$customTypes[] = ge2GetCustomAttrTypes();
+
+	int		$index = 0;
+
+	for ( $type in $n64Types )
+		$retArray[$index++] = $type;
+
+	for ( $type in $psxTypes )
+		$retArray[$index++] = $type;
+
+	for ( $type in $glTypes )
+		$retArray[$index++] = $type;
+
+	for ( $type in $customTypes )
+		$retArray[$index++] = $type;
+
+	return $retArray;
+}
+
+global proc AEge2FaceControlNew ( string $attrName )
+{
+	string $list[];
+	tokenize( $attrName, ".", $list);
+	string $nodeName = $list[0];
+	string $attr = $list[1];
+	string $nodeType = `nodeType $nodeName`;
+	string $grpName = $attr + $nodeType;
+	print ( "New grpName: " + $grpName + "\n" );
+
+	if ( !`attributeQuery -ex -node $nodeName $attr` )
+	{
+		return;
+	}
+
+	setUITemplate -pst attributeEditorTemplate;
+
+	optionMenuGrp -label "Facing Control"
+		$grpName;
+
+		menuItem -label "Both" -data 0;
+		menuItem -label "Front" -data 1;
+		menuItem -label "Back" -data 2;
+
+	connectControl -index 2 $grpName $attrName;
+
+	setUITemplate -ppt;
+}
+
+
+global proc AEge2FaceControlReplace ( string $attrName )
+{
+	string $list[];
+	tokenize( $attrName, ".", $list);
+	string $nodeName = $list[0];
+	string $attr = $list[1];
+	string $nodeType = `nodeType $nodeName`;
+	string $grpName = $attr + $nodeType;
+	print ( "Replace grpName: " + $grpName + "\n" );
+
+	// If the control doesn't exist, create it.
+	//
+	if ( !`optionMenuGrp -ex $grpName`)
+	{
+		AEge2FaceControlNew( $attrName );
+	} else 
+	{
+		connectControl -index 2 $grpName $attrName;
+		optionMenuGrp -edit $grpName;
+	}
+}
+
+global proc AEge2ABRNew ( string $attrName )
+{
+	string $list[];
+	tokenize( $attrName, ".", $list);
+	string $nodeName = $list[0];
+	string $attr = $list[1];
+	string $nodeType = `nodeType $nodeName`;
+
+	if ( !`attributeQuery -ex -node $nodeName $attr` )
+	{
+		return;
+	}
+
+	setUITemplate -pst attributeEditorTemplate;
+
+	optionMenuGrp -label "ABR"
+		AEge2PsxABRGrp;
+
+		menuItem -label "0" -data 0;
+		menuItem -label "1" -data 1;
+		menuItem -label "2" -data 2;
+		menuItem -label "3" -data 3;
+
+	connectControl -index 2 AEge2PsxABRGrp $attrName;
+
+	setUITemplate -ppt;
+}
+
+
+global proc AEge2ABRReplace ( string $attrName )
+{
+	string $list[];
+	tokenize( $attrName, ".", $list);
+	string $nodeName = $list[0];
+	string $attr = $list[1];
+	string $nodeType = `nodeType $nodeName`;
+
+	// If the control doesn't exist, create it.
+	//
+	if ( !`optionMenuGrp -ex AEge2PsxABRGrp`)
+	{
+		AEge2ABRReplace( $attrName );
+	} else 
+	{
+		connectControl -index 2 AEge2PsxABRGrp $attrName;
+		optionMenuGrp -edit AEge2PsxABRGrp;
+	}
+}
+
+global proc
+ge2MatAttr()
+{
+	editorTemplate -beginLayout "ge2 Material Attributes";
+		editorTemplate -beginLayout "N64 Attributes";
+			$domainAttrs = ge2GetN64Attrs();
+			for ( $attr in $domainAttrs )
+			{
+				if ( "ge2N64FacingControl" == $attr )
+				{
+					editorTemplate -ccu "AEge2FaceControlNew" "AEge2FaceControlReplace" $attr;
+					editorTemplate -suppress $attr;
+				}
+				else
+					editorTemplate -adc $attr;
+			}
+		editorTemplate -endLayout;
+
+		editorTemplate -beginLayout "PSX Attributes";
+			$domainAttrs = ge2GetPsxAttrs();
+			for ( $attr in $domainAttrs )
+			{
+				if ( "ge2PsxFacingControl" == $attr )
+				{
+					editorTemplate -ccu "AEge2FaceControlNew" "AEge2FaceControlReplace" $attr;
+					editorTemplate -suppress $attr;
+				}
+				else if ( "ge2PsxABR" == $attr )
+				{
+					editorTemplate -ccu "AEge2ABRNew" "AEge2ABRReplace" $attr;
+					editorTemplate -suppress $attr;
+				}
+				else {
+					editorTemplate -adc $attr;
+				}
+			}
+		editorTemplate -endLayout;
+
+		editorTemplate -beginLayout "GL_Shade Attributes";
+			$domainAttrs = ge2GetGlShadeAttrs();
+			for ( $attr in $domainAttrs )
+			{
+				editorTemplate -adc $attr;
+			}
+		editorTemplate -endLayout;
+
+		editorTemplate -beginLayout "Custom Attributes";
+			$customAttrs = ge2GetCustomAttrs();
+			for ( $attr in $customAttrs )
+			{
+				editorTemplate -adc $attr;
+			}
+		editorTemplate -endLayout;
+
+	editorTemplate -endLayout;
+}

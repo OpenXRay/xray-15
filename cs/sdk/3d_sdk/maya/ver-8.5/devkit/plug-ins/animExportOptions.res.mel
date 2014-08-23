@@ -1,0 +1,46 @@
+// Copyright (C) 1997-2006 Autodesk, Inc., and/or its licensors.
+// All rights reserved.
+//
+// The coded instructions, statements, computer programs, and/or related
+// material (collectively the "Data") in these files contain unpublished
+// information proprietary to Autodesk, Inc. ("Autodesk") and/or its licensors,
+// which is protected by U.S. and Canadian federal copyright law and by
+// international treaties.
+//
+// The Data is provided for use exclusively by You. You have the right to use,
+// modify, and incorporate this Data into other products for purposes authorized 
+// by the Autodesk software license agreement, without fee.
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND. AUTODESK
+// DOES NOT MAKE AND HEREBY DISCLAIMS ANY EXPRESS OR IMPLIED WARRANTIES
+// INCLUDING, BUT NOT LIMITED TO, THE WARRANTIES OF NON-INFRINGEMENT,
+// MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, OR ARISING FROM A COURSE 
+// OF DEALING, USAGE, OR TRADE PRACTICE. IN NO EVENT WILL AUTODESK AND/OR ITS
+// LICENSORS BE LIABLE FOR ANY LOST REVENUES, DATA, OR PROFITS, OR SPECIAL,
+// DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES, EVEN IF AUTODESK AND/OR ITS
+// LICENSORS HAS BEEN ADVISED OF THE POSSIBILITY OR PROBABILITY OF SUCH DAMAGES.
+
+displayString -replace -value "All" m_animExportOptions.kAll;
+displayString -replace -value "All keyable" m_animExportOptions.kAllKeyable;
+displayString -replace -value "Below" m_animExportOptions.kBelow;
+displayString -replace -value "Channels:" m_animExportOptions.kChannels;
+displayString -replace -value "Control points:" m_animExportOptions.kControlPoints;
+displayString -replace -value "Custom" m_animExportOptions.kCustom;
+displayString -replace -value "Double (17)" m_animExportOptions.kDouble17;
+displayString -replace -value "End time:" m_animExportOptions.kEndTime;
+displayString -replace -value "File contents:" m_animExportOptions.kFileContents;
+displayString -replace -value "Float (8)" m_animExportOptions.kFloat8;
+displayString -replace -value "From Channel Box" m_animExportOptions.kFromChannelBox;
+displayString -replace -value "Help images:" m_animExportOptions.kHelpImages;
+displayString -replace -value "Hierarchy:" m_animExportOptions.kHierarchy;
+displayString -replace -value "Keys" m_animExportOptions.kKeys;
+displayString -replace -value "Method:" m_animExportOptions.kMethod;
+displayString -replace -value "No channels selected in Channel Box" m_animExportOptions.kNoChannelSelected;
+displayString -replace -value "Precision:" m_animExportOptions.kPrecision;
+displayString -replace -value "Segments" m_animExportOptions.kSegments;
+displayString -replace -value "Selected" m_animExportOptions.kSelected;
+displayString -replace -value "Shapes:" m_animExportOptions.kShapes;
+displayString -replace -value "Start/End" m_animExportOptions.kStartEnd;
+displayString -replace -value "Start time:" m_animExportOptions.kStartTime;
+displayString -replace -value "Time range:" m_animExportOptions.kTimeRange;
+displayString -replace -value "Use node and leaf attribute names" m_animExportOptions.kUseNode;
+displayString -replace -value "Verbose units" m_animExportOptions.kVerboseUnits;

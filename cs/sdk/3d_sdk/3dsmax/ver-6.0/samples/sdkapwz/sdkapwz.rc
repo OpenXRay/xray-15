@@ -1,0 +1,173 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "#include ""afxres.rc""  // Standard components\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CUSTOM1 DIALOG DISCARDABLE  0, 0, 303, 197
+STYLE DS_CONTROL | WS_CHILD | WS_TABSTOP
+FONT 8, "MS Sans Serif"
+BEGIN
+    LISTBOX         IDC_PLUGIN_TYPES,142,48,116,97,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "",IDC_PICTURE,"Static",SS_BLACKFRAME,8,12,112,133
+    LTEXT           "Select the type of Plugin you want to create",
+                    IDC_STATIC,142,26,114,21
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,127,1,1,195
+    GROUPBOX        "",IDC_STATIC,8,148,112,36,BS_FLAT
+    CTEXT           "3ds max Plugin Wizard\nCode and Design by \nRavi K Karra",
+                    IDC_STATIC,12,156,103,26
+END
+
+IDD_CUSTOM2 DIALOG DISCARDABLE  0, 0, 303, 197
+STYLE DS_CONTROL | WS_CHILD | WS_TABSTOP
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Please enter the class name:",IDC_STATIC,148,24,99,8
+    EDITTEXT        IDC_CLASS_NAME,148,36,99,15,ES_AUTOHSCROLL
+    LTEXT           "Select the class your plugin should be derived from",
+                    IDC_STATIC,148,56,99,17
+    LISTBOX         IDC_CLASS_TYPES,147,74,101,26,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,127,1,1,195
+    EDITTEXT        IDC_CATEGORY,147,115,102,15,ES_AUTOHSCROLL
+    LTEXT           "Please enter Plugin category",IDC_STATIC,147,104,99,10
+    EDITTEXT        IDC_LIBDESC,147,145,102,15,ES_AUTOHSCROLL
+    LTEXT           "Please enter Plugin Description",IDC_STATIC,147,135,99,
+                    10
+    CONTROL         "",IDC_PICTURE,"Static",SS_BLACKFRAME,8,12,112,133
+END
+
+IDD_CUSTOM3 DIALOG DISCARDABLE  0, 0, 303, 197
+STYLE DS_CONTROL | WS_CHILD | WS_TABSTOP
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_SDKPATH,147,34,113,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_SDK_BROWSE,260,34,15,14
+    EDITTEXT        IDC_PLUGPATH,147,65,113,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_PLUGIN_BROWSE,260,65,15,14
+    EDITTEXT        IDC_EXEPATH,147,96,113,14,ES_AUTOHSCROLL | NOT 
+                    WS_VISIBLE
+    PUSHBUTTON      "...",IDC_EXE_BROWSE,259,96,15,14,NOT WS_VISIBLE
+    CONTROL         "Implement Parameter Maps",IDC_PARAM_MAPS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,147,119,104,14
+    CONTROL         "Add source code comments",IDC_COMMENTS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,147,149,120,14
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,127,1,1,195
+    LTEXT           "Enter your MAX SDK path: ",IDC_STATIC,147,23,131,10
+    LTEXT           "Enter your Plugin output path:",IDC_STATIC,147,53,131,
+                    11
+    CONTROL         "",IDC_PICTURE,"Static",SS_BLACKFRAME,8,12,112,133
+    LTEXT           "Enter your 3dsmax.exe path:",IDC_STATIC,147,84,131,11,
+                    NOT WS_VISIBLE
+    CONTROL         "Implement Extension Channels",IDC_EXTENSION,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,147,134,120,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEMPLATE
+//
+
+NEWPROJ.INF             TEMPLATE DISCARDABLE    "template\\newproj.inf"
+CONFIRM.INF             TEMPLATE DISCARDABLE    "template\\confirm.inf"
+RESOURCE.H              TEMPLATE DISCARDABLE    "Template\\resource.h"
+ROOT.CPP                TEMPLATE DISCARDABLE    "Template\\root.cpp"
+ROOT.DEF                TEMPLATE DISCARDABLE    "Template\\root.def"
+ROOT.H                  TEMPLATE DISCARDABLE    "Template\\root.h"
+DLLENTRY.CPP            TEMPLATE DISCARDABLE    "Template\\DllEntry.cpp"
+ROOT.RC                 TEMPLATE DISCARDABLE    "Template\\root.rc"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON1               ICON    DISCARDABLE     "bitmaps\\icon1.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_MAX2                BITMAP  DISCARDABLE     "Bitmaps\\max2.bmp"
+IDB_MAX1                BITMAP  DISCARDABLE     "Bitmaps\\max1.bmp"
+IDB_MAX3                BITMAP  DISCARDABLE     "Bitmaps\\max3.bmp"
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+#include "afxres.rc"  // Standard components
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,121 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_BRITECON_EFFECT DIALOG DISCARDABLE  0, 0, 211, 40
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    RTEXT           "Brightness",IDC_STATIC,22,9,35,8
+    CONTROL         "",IDC_BRIGHTNESS,"CustEdit",WS_TABSTOP,61,8,30,10
+    CONTROL         "0,255,0",IDC_BRIGHTNESS_SPIN,"SpinnerControl",0x0,91,8,
+                    7,10
+    RTEXT           "Contrast",IDC_STATIC,27,21,30,8
+    CONTROL         "",IDC_CONTRAST,"CustEdit",WS_TABSTOP,61,20,30,10
+    CONTROL         "0,255,0",IDC_CONTRAST_SPIN,"SpinnerControl",0x0,91,20,7,
+                    10
+    CONTROL         "Ignore Background",IDC_IGN_BACKGROUND,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFT | BS_VCENTER | WS_TABSTOP,111,
+                    9,77,9
+END
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LIBDESCRIPTION      "Brightness and contrast rendering effect (Discreet)"
+    IDS_PARAMS              "Brightness and Contrast Parameters"
+    IDS_NAME                "Brightness and Contrast"
+    IDS_CLASS_NAME          "Brightness and Contrast"
+    IDS_CDESC_CLASS_NAME    "Brightness and Contrast"
+    IDS_BRIGHTNESS          "Brightness"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CONTRAST            "Contrast"
+    IDS_IGN_BACK            "Ignore Background"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

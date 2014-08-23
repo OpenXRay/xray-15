@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="7.10"
+	Name="AshliShader"
+	ProjectGUID="{2F72A8B3-E1FD-4834-AD56-0B16F850C2FB}">
+	<Platforms>
+		<Platform
+			Name="Win32"/>
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="Debug"
+			IntermediateDirectory="Debug"
+			ConfigurationType="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/Gm /GX /ZI /I &quot;.&quot; /D &quot;WIN32&quot; /D &quot;_DEBUG&quot; /YX /GZ /c"
+				Optimization="0"
+				AdditionalIncludeDirectories="&quot;C:\Program Files\Alias\Maya8.0\include&quot;;.\Ashli\include"
+				PreprocessorDefinitions="WIN32,_DEBUG,_WINDOWS,_AFXDLL,_MBCS,NT_PLUGIN,REQUIRE_IOSTREAM"
+				RuntimeLibrary="3"
+				PrecompiledHeaderFile="Debug/glslTestShader.pch"
+				WarningLevel="3"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/subsystem:windows /dll /incremental:yes /debug /machine:I386 /export:initializePlugin /export:uninitializePlugin"
+				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaUI.lib OpenMayaFX.lib OpenMayaRender.lib Image.lib OpenGL32.lib AshliFX.lib"
+				OutputFile="Debug\glslTestShader.mll"
+				AdditionalLibraryDirectories="&quot;C:\Program Files\Alias\Maya8.0\lib&quot;;.\Ashli\lib"
+				ProgramDatabaseFile="Debug/glslTestShader.pdb"
+				ImportLibrary="Debug/glslTestShader.lib"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="Release"
+			IntermediateDirectory="Release"
+			ConfigurationType="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/GX /I &quot;.&quot; /YX /c"
+				Optimization="2"
+				AdditionalIncludeDirectories="&quot;C:\Program Files\Alias\Maya8.0\include&quot;;.\Ashli\include"
+				PreprocessorDefinitions="WIN32,NDEBUG,_WINDOWS,_AFXDLL,_MBCS,NT_PLUGIN,REQUIRE_IOSTREAM"
+				RuntimeLibrary="2"
+				PrecompiledHeaderFile="Release/glslTestShader.pch"
+				WarningLevel="3"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/subsystem:windows /incremental:no /machine:I386 /export:initializePlugin /export:uninitializePlugin"
+				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaUI.lib OpenMayaFX.lib OpenMayaRender.lib Image.lib OpenGL32.lib AshliFX.lib Ashli.lib"
+				OutputFile="Release\glslTestShader.mll"
+				AdditionalLibraryDirectories="&quot;C:\Program Files\Alias\Maya8.0\lib&quot;;.\Ashli\lib"
+				ProgramDatabaseFile="Release/glslTestShader.pdb"
+				ImportLibrary="Release/glslTestShader.lib"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="Release 8.0|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/GX /I &quot;.&quot; /YX /c"
+				Optimization="2"
+				AdditionalIncludeDirectories="&quot;C:\Program Files\Alias\Maya8.0\include&quot;;.\Ashli\include"
+				PreprocessorDefinitions="WIN32,NDEBUG,_WINDOWS,_AFXDLL,_MBCS,NT_PLUGIN,REQUIRE_IOSTREAM"
+				RuntimeLibrary="2"
+				PrecompiledHeaderFile="Release/glslTestShader.pch"
+				WarningLevel="3"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/subsystem:windows /incremental:no /machine:I386 /export:initializePlugin /export:uninitializePlugin"
+				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaUI.lib OpenMayaFX.lib OpenMayaRender.lib Image.lib OpenGL32.lib AshliFX.lib Ashli.lib"
+				OutputFile="$(ConfigurationName)\glslTestShader.mll"
+				AdditionalLibraryDirectories="&quot;C:\Program Files\Alias\Maya8.0\lib&quot;;.\Ashli\lib"
+				ProgramDatabaseFile="$(ConfigurationName)/glslTestShader.pdb"
+				ImportLibrary="$(ConfigurationName)/glslTestShader.lib"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="Debug 8.0|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/Gm /GX /ZI /I &quot;.&quot; /D &quot;WIN32&quot; /D &quot;_DEBUG&quot; /YX /GZ /c"
+				Optimization="0"
+				AdditionalIncludeDirectories="&quot;C:\Program Files\Alias\Maya8.0\include&quot;;.\Ashli\include"
+				PreprocessorDefinitions="WIN32,_DEBUG,_WINDOWS,_AFXDLL,_MBCS,NT_PLUGIN,REQUIRE_IOSTREAM"
+				RuntimeLibrary="3"
+				PrecompiledHeaderFile="Debug/glslTestShader.pch"
+				WarningLevel="3"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/subsystem:windows /dll /incremental:yes /debug /machine:I386 /export:initializePlugin /export:uninitializePlugin"
+				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaUI.lib OpenMayaFX.lib OpenMayaRender.lib Image.lib OpenGL32.lib AshliFX.lib"
+				OutputFile="Debug\glslTestShader.mll"
+				AdditionalLibraryDirectories="&quot;C:\Program Files\Alias\Maya8.0\lib&quot;;.\Ashli\lib"
+				ProgramDatabaseFile="Debug/glslTestShader.pdb"
+				ImportLibrary="Debug/glslTestShader.lib"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Source Files"
+			Filter="cpp">
+			<File
+				RelativePath=".\AshliPluginMain.cpp">
+			</File>
+			<File
+				RelativePath=".\defaultShader.cpp">
+			</File>
+			<File
+				RelativePath=".\glExtensions.cpp">
+			</File>
+			<File
+				RelativePath=".\glslFXShader.cpp">
+			</File>
+			<File
+				RelativePath=".\GLSLShaderNode.cpp">
+			</File>
+			<File
+				RelativePath=".\hlslFXShader.cpp">
+			</File>
+			<File
+				RelativePath=".\hlslFXShader2.cpp">
+			</File>
+			<File
+				RelativePath=".\Observer.cpp">
+			</File>
+			<File
+				RelativePath=".\ResourceManager.cpp">
+			</File>
+			<File
+				RelativePath=".\shader.cpp">
+			</File>
+		</Filter>
+		<Filter
+			Name="Header Files"
+			Filter="h">
+			<File
+				RelativePath=".\DefaultShader.h">
+			</File>
+			<File
+				RelativePath=".\glExtensions.h">
+			</File>
+			<File
+				RelativePath=".\glslFXShader.h">
+			</File>
+			<File
+				RelativePath=".\GLSLShaderNode.h">
+			</File>
+			<File
+				RelativePath=".\hlslFXShader.h">
+			</File>
+			<File
+				RelativePath=".\hlslFXShader2.h">
+			</File>
+			<File
+				RelativePath=".\Observer.h">
+			</File>
+			<File
+				RelativePath=".\ResourceManager.h">
+			</File>
+			<File
+				RelativePath=".\Shader.h">
+			</File>
+		</Filter>
+		<Filter
+			Name="Miscellaneous Files"
+			Filter="txt">
+			<File
+				RelativePath=".\Options.txt">
+			</File>
+			<File
+				RelativePath=".\ReadMe.txt">
+			</File>
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

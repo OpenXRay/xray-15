@@ -1,0 +1,782 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+   <title>Globals: Texture Functions</title>
+   <style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#000080" vlink="#800000" alink="#0000FF">
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 BGCOLOR="#D0D0D0" >
+<tr>
+<td ALIGN=LEFT WIDTH="120"><a href="txtred.html"><img SRC="navlt.gif" ALT="Texture Editor" BORDER=0 height=20 width=96></a></td>
+
+<td ALIGN=LEFT WIDTH="96"><a href="timeinfo.html"><img SRC="navrt.gif" ALT="Time Info" BORDER=0 height=20 width=64></a></td>
+
+<td ALIGN=LEFT WIDTH="96"><a href="../globals.html"><img SRC="navup.gif" ALT="Globals" BORDER=0 height=20 width=56></a></td>
+
+<td ALIGN=RIGHT WIDTH="288"><a href="../index.html"><img SRC="proglw.gif" ALT="Table of Contents" BORDER=0 height=20 width=230></a></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 >
+<tr>
+<td WIDTH="600">
+<h3>
+Texture Functions</h3>
+<font size=-1><b>Availability</b>&nbsp; LightWave&reg; 6.0</font>
+<br><font size=-1><b>Component</b>&nbsp; Layout, Modeler</font>
+<br><font size=-1><b>Header</b>&nbsp; <a href="../../include/lwtxtr.h">lwtxtr.h</a></font>
+<p>The Texture Functions global gives plug-ins access to LightWave&reg;'s texture
+engine. A plug-in can create and use textures to modulate its parameters,
+and it can read and modify the settings of existing textures.
+<p><b>Global Call</b>
+<pre>&nbsp;&nbsp; LWTextureFuncs *txfunc;
+&nbsp;&nbsp; txfunc = global( LWTEXTUREFUNCS_GLOBAL, GFUSE_TRANSIENT );</pre>
+The global function returns a pointer to an LWTextureFuncs.
+<pre>&nbsp;&nbsp; typedef struct st_LWTextureFuncs {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWTxtrContextID (*<b>contextCreate</b>)(LWTxtrParamFuncs);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>contextDestroy</b>) (LWTxtrContextID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>contextAddParam</b>)(LWTxtrContextID,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWTxtrParamDesc);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWTextureID&nbsp;&nbsp; (*<b>create</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (int returnType, const char *name,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWTxtrContextID, void *userdata);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>destroy</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LWTextureID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>copy</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LWTextureID to, LWTextureID from);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>newtime</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LWTextureID, LWTime, LWFrame);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>cleanup</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LWTextureID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>load</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LWTextureID, const LWLoadState *);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>save</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LWTextureID, const LWSaveState *);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>evaluate</b>)&nbsp;&nbsp;&nbsp;&nbsp; (LWTextureID, LWMicropolID, double *);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>setEnvGroup</b>)&nbsp; (LWTextureID, LWChanGroupID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWTLayerID&nbsp;&nbsp;&nbsp; (*<b>firstLayer</b>)&nbsp;&nbsp; (LWTextureID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWTLayerID&nbsp;&nbsp;&nbsp; (*<b>lastLayer</b>)&nbsp;&nbsp;&nbsp; (LWTextureID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWTLayerID&nbsp;&nbsp;&nbsp; (*<b>nextLayer</b>)&nbsp;&nbsp;&nbsp; (LWTextureID, LWTLayerID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWTLayerID&nbsp;&nbsp;&nbsp; (*<b>layerAdd</b>)&nbsp;&nbsp;&nbsp;&nbsp; (LWTextureID, int type);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>layerSetType</b>) (LWTLayerID, int type);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>layerType</b>)&nbsp;&nbsp;&nbsp; (LWTLayerID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>layerEvaluate</b>)(LWTLayerID, LWMicropolID, double *);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWChanGroupID (*<b>layerEnvGrp</b>)&nbsp; (LWTLayerID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>setParam</b>)&nbsp;&nbsp;&nbsp;&nbsp; (LWTLayerID, int tag, void *data);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>getParam</b>)&nbsp;&nbsp;&nbsp;&nbsp; (LWTLayerID, int tag, void *data);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>evaluateUV</b>)&nbsp;&nbsp; (LWTLayerID, int wAxis, int oAxis,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double oPos[3], double wPos[3],
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double uv[2]);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>noise</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (double p[3]);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>userData</b>)&nbsp;&nbsp;&nbsp;&nbsp; (LWTextureID);
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWChanGroupID (*<b>envGroup</b>)&nbsp;&nbsp;&nbsp;&nbsp; (LWTextureID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWTextureID&nbsp;&nbsp; (*<b>texture</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LWTLayerID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const char *&nbsp; (*<b>name</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LWTextureID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>type</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LWTextureID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWTxtrContextID (*<b>context</b>)&nbsp;&nbsp;&nbsp; (LWTextureID);
+&nbsp;&nbsp; } LWTextureFuncs;</pre>
+It's helpful to divide these functions into three categories according
+to whether they deal with contexts, handler calls, or texture settings.
+Plug-ins that use textures to modify their own parameters will mostly use
+functions in the first two groups, since typically the texture settings
+are supplied by the user through the Texture Editor. The last group is
+more often useful when plug-ins want to query or modify existing textures.
+<p><b><i>Contexts</i></b>
+<p>Some texture layer types use additional parameters to modify the texture
+value. Currently this is a gradient thing. The texture context is used
+to populate and support the Input Parameter menu for gradient layers in
+the Texture Editor.
+<dl>&nbsp;
+<dt>
+<tt>context = <b>contextCreate</b>( paramfuncs )</tt></dt>
+
+<dd>
+Create a texture context. The Texture Editor uses the callbacks in the
+<tt>paramfuncs</tt> argument to get the value of the parameters.</dd>
+
+<dt>
+</dt>
+
+<br><tt><b>contextDestroy</b>( context )</tt>
+<dd>
+Free resources allocated by <tt>contextCreate</tt>.</dd>
+
+<dt>
+</dt>
+
+<br><tt><b>contextAddParam</b>( context, param )</tt>
+<dd>
+Add a parameter to the context. For gradient layers, this parameter will
+be added to the Input Parameter menu.</dd>
+</dl>
+<b><i>Handler Calls</i></b>
+<p>The functions in this group call the texture's <a href="../handler.html">handler</a>
+callbacks. See the document for the <a href="../classes/texture.html">procedural
+texture</a> plug-in class for more information about the other side of
+these calls. In most cases, you'll call these from within your own plug-in's
+handler callbacks. In all cases, however, these functions must be called
+in proper handler order. The <tt>newtime</tt> function, for example, must
+be called before calling <tt>evaluate</tt>.
+<dl>&nbsp;
+<dt>
+<tt>texture = <b>create</b>( returntype, name, context, userdata )</tt></dt>
+
+<dd>
+Create a texture. The LWTextureID returned by this function is a container
+that will hold one or more texture layers. The final value of the texture
+is a combination of the values calculated for each layer. The data type
+of the texture value can be one of the following.&nbsp;</dd>
+
+<pre>TRT_VECTOR
+TRT_COLOR
+TRT_PERCENT
+TRT_SCALAR
+TRT_DISPLACEMENT</pre>
+The <tt>name</tt> is used to identify the texture in the user interface.
+The <tt>context</tt> is a context ID returned by <tt>contextCreate</tt>,
+or NULL if you don't want to add any input parameters for the texture.
+The <tt>userdata</tt> is any data you'd like to associate with the texture.
+You can retrieve it using the <tt>userdata</tt> function.
+<dt>
+<tt><b>destroy</b>( texture )</tt></dt>
+
+<dd>
+Free the texture.</dd>
+
+<dt>
+</dt>
+
+<br><tt><b>copy</b>( to, from )</tt>
+<dd>
+Copy a texture.</dd>
+
+<dt>
+</dt>
+
+<br><tt><b>newtime</b>( texture, time, frame )</tt>
+<dd>
+Prepare the texture to be evaluated at a new render time. This allows the
+texture to do time-dependent precalculations.</dd>
+
+<dt>
+</dt>
+
+<br><tt><b>cleanup</b>( texture )</tt>
+<dd>
+Call this when calculations using the texture are completed, typically
+after the last frame has been rendered.</dd>
+
+<dt>
+</dt>
+
+<br><tt><b>load</b>( texture, loadstate )</tt>
+<dd>
+Read the texture from a file.</dd>
+
+<dt>
+</dt>
+
+<br><tt><b>save</b>( texture, savestate )</tt>
+<dd>
+Write the texture to a file.</dd>
+
+<dt>
+</dt>
+
+<br><tt>alpha = <b>evaluate</b>( texture, micropol, value )</tt>
+<dd>
+Evaluate the texture. You must initialize the LWMicropol structure, described
+later. The result is returned in <tt>value</tt>.</dd>
+</dl>
+<b><i>Texture Data</i></b>
+<p>These functions are used to get and set the data that defines a texture.
+<dl>&nbsp;
+<dt>
+<tt><b>setEnvGroup</b>( texture, changroup )</tt></dt>
+
+<dd>
+Set the channel group to be used by the texture. Envelopes created for
+parameters in the texture's layers will belong to this group.</dd>
+
+<dt>
+</dt>
+
+<br><tt>tlayer = <b>firstLayer</b>( texture )</tt>
+<br><tt>tlayer = <b>lastLayer</b>( texture )</tt>
+<br><tt>tlayer = <b>nextLayer</b>( texture, tlayer )</tt>
+<dd>
+Enumerate the texture's layers. The layer ID returned by these functions
+can be passed to functions that return the layer's data.</dd>
+
+<dt>
+</dt>
+
+<br><tt>tlayer = <b>layerAdd</b>( texture, type )</tt>
+<dd>
+Add a texture layer. The type is one of the following.</dd>
+
+<dl>&nbsp;
+<dt>
+</dt>
+
+<br><tt>TLT_IMAGE</tt>
+<dd>
+An image map.</dd>
+
+<dt>
+<tt>TLT_PROC</tt></dt>
+
+<dd>
+A procedural texture.</dd>
+
+<dt>
+<tt>TLT_GRAD</tt></dt>
+
+<dd>
+A gradient.</dd>
+</dl>
+
+<dt>
+</dt>
+
+<br><tt><b>layerSetType</b>( tlayer, type )</tt>
+<dd>
+Change the layer type.</dd>
+
+<dt>
+</dt>
+
+<br><tt>type = <b>layerType</b>( tlayer )</tt>
+<dd>
+Returns the layer type.</dd>
+
+<dt>
+</dt>
+
+<br><tt>alpha = <b>layerEvaluate</b>( tlayer, micropol, value )</tt>
+<dd>
+Evaluate the layer. Like the <tt>evaluate</tt> function, but it calculates
+the texture value only for the specified layer.</dd>
+
+<dt>
+</dt>
+
+<br><tt>changroup = <b>layerEnvGroup</b>( tlayer )</tt>
+<dd>
+Returns the channel group for the layer's enveloped parameters.</dd>
+
+<dt>
+</dt>
+
+<br><tt>result = <b>setParam</b>( tlayer, tag, value )</tt>
+<br><tt>result = <b>getParam</b>( tlayer, tag, value )</tt>
+<dd>
+Set or get a layer parameter. The tag identifies the parameter and its
+data type.</dd>
+
+<dl>&nbsp;
+<dt>
+</dt>
+
+<br><tt>TXTAG_POSI (double [3])</tt>
+<br><tt>TXTAG_ROTA (double [3])</tt>
+<br><tt>TXTAG_SIZE (double [3])</tt>
+<dd>
+The origin, rotation and scale of the texture layer.</dd>
+
+<dt>
+<tt>TXTAG_FALL (double [3])</tt></dt>
+
+<dd>
+Falloff, an amount per unit distance.</dd>
+
+<dt>
+<tt>TXTAG_PROJ (int *)</tt></dt>
+
+<dd>
+Projection type for image maps, which can be one of the following.&nbsp;</dd>
+
+<pre>TXPRJ_PLANAR
+TXPRJ_CYLINDRICAL
+TXPRJ_SPHERICAL
+TXPRJ_CUBIC
+TXPRJ_FRONT
+TXPRJ_UVMAP</pre>
+
+<dt>
+<tt>TXTAG_AXIS (int *)</tt></dt>
+
+<dd>
+The texture axis, for image map projections that require one.</dd>
+
+<dt>
+<tt>TXTAG_WWRP (double *)</tt></dt>
+
+<br><tt>TXTAG_HWRP (double *)</tt>
+<dd>
+Width and height wrap amount. Some projection types use this to tile the
+texture image.</dd>
+
+<dt>
+<tt>TXTAG_COORD (int *)</tt></dt>
+
+<dd>
+The coordinate system. This is 1 for world coordinates (the texture doesn't
+move with the object), and 0 for object coordinates.</dd>
+
+<dt>
+<tt>TXTAG_IMAGE (LWImageID *)</tt></dt>
+
+<dd>
+The image for image mapped layers. The value is a pointer to an image ID,
+typically obtained from the <a href="imglist.html">Image List</a> <tt>load</tt>
+function.</dd>
+
+<dt>
+<tt>TXTAG_VMAP (VMapID *)</tt></dt>
+
+<dd>
+The vertex map used, for example, by UV mapped and weight mapped textures.
+The value is the opaque pointer returned by the <a href="../classes/me.html">MeshEditOp</a>
+<tt>pointVSet</tt> function or the <a href="../meshinfo.html">mesh info</a>
+<tt>pntVLookup</tt> function.</dd>
+
+<dt>
+<tt>TXTAG_ROBJ (LWItemID *)</tt></dt>
+
+<dd>
+The reference object, from which the texture origin, rotation and scale
+will be taken. The item ID is typically obtained from the <a href="iteminfo.html">Item
+Info</a> <tt>first</tt> and <tt>next</tt> functions.</dd>
+
+<dt>
+<tt>TXTAG_OPAC (double *)</tt></dt>
+
+<dd>
+Layer opacity.</dd>
+
+<dt>
+<tt>TXTAG_AA (int *)</tt></dt>
+
+<dd>
+Boolean, whether texture antialiasing is enabled for the layer.</dd>
+
+<dt>
+<tt>TXTAG_AAVAL (double *)</tt></dt>
+
+<dd>
+Antialiasing threshold. The texture value will only be antialiased if it
+differs from adjacent values by an amount greater than this threshold.</dd>
+
+<dt>
+<tt>TXTAG_PIXBLEND (int *)</tt></dt>
+
+<dd>
+Boolean, whether pixel blending is enabled. Pixel blending is a form of
+antialiasing that's active in regions where the texture resolution is lower
+than the output resolution.</dd>
+
+<dt>
+<tt>TXTAG_WREPEAT (int *)</tt></dt>
+
+<br><tt>TXTAG_HREPEAT (int *)</tt>
+<dd>
+Width and height repeat behavior.</dd>
+
+<pre>TXRPT_RESET
+TXRPT_REPEAT
+TXRPT_MIRROR
+TXRPT_EDGE</pre>
+<tt>TXTAG_ACTIVE (int *)</tt>
+<dd>
+Boolean, whether texture layer is active.</dd>
+
+<br><tt>TXTAG_INVERT (int *)</tt>
+<dd>
+Boolean, whether texture layer is inverted.</dd>
+
+<br><tt>TXTAG_BLEND (int *)</tt>
+<dd>
+Texture blending mode:</dd>
+
+<dd>
+<tt></tt></dd>
+
+<dd>
+<tt>TXBLN_NORMAL&nbsp;</tt></dd>
+
+<dd>
+<tt>TXBLN_SUBTRACT&nbsp;</tt></dd>
+
+<dd>
+<tt>TXBLN_DIFFERENCE&nbsp;</tt></dd>
+
+<dd>
+<tt>TXBLN_MULTIPLY&nbsp;</tt></dd>
+
+<dd>
+<tt>TXBLN_DIVIDE&nbsp;</tt></dd>
+
+<dd>
+<tt>TXBLN_ALPHA</tt></dd>
+
+<dd>
+<tt>TXBLN_DISPLACE&nbsp;</tt></dd>
+
+<dd>
+<tt>TXBLN_ADD</tt></dd>
+</dl>
+
+<dt>
+</dt>
+
+<br><tt><b>evaluateUV</b>( tlayer, waxis, oaxis, opos, wpos, uv )</tt>
+<dd>
+For texture layers that use one of the implicit image mapping projections
+(planar, cubic, cylindrical, spherical), returns the UV coordinates for
+a given position. If the texture uses an explicit UV mapping, the UV coordinates
+can be obtained directly from the vertex map through <a href="../meshinfo.html">mesh
+info</a> or <a href="../classes/me.html">MeshEditOp</a> functions.&nbsp;</dd>
+
+<p><br>The <tt>w</tt> arguments are in world coordinates, and the <tt>o</tt>
+arguments are in object coordinates. The axis arguments are the dominant
+axis for cubic mapping and can be 0, 1 or 2 for the X, Y or Z axis. This
+is usually chosen as the polygon normal component that's largest in absolute
+value. For projections other than cubic, these arguments are ignored. The
+position arguments specify the position for which the UV should be returned.
+<dt>
+<tt>value = <b>noise</b>( pos )</tt></dt>
+
+<dd>
+Easy access to a noise function.</dd>
+
+<dt>
+</dt>
+
+<br><tt>data = <b>userData</b>( texture )</tt>
+<dd>
+Returns whatever was passed as the user data argument to the <tt>create</tt>
+function.</dd>
+
+<dt>
+</dt>
+
+<br><tt>changroup = <b>envGroup</b>( texture )</tt>
+<dd>
+Returns the channel group for the texture.</dd>
+
+<dt>
+</dt>
+
+<br><tt>id = <b>texture</b>( layer )</tt>
+<dd>
+Returns the texture ID, given any layer in the texture.</dd>
+
+<dt>
+</dt>
+
+<br><tt>tname = <b>name</b>( texture )</tt>
+<br><tt>datatype = <b>type</b>( texture )</tt>
+<br><tt>ctxt = <b>context</b>( texture )</tt>
+<dd>
+These return information about the texture. The information is the same
+as that supplied in the first three arguments to the <tt>create</tt> function.</dd>
+</dl>
+<b>Parameter Callbacks</b>
+<p>The argument to the <tt>contextCreate</tt> function is an LWTxtrParamFuncs,
+which contains callbacks for evaluating the input parameters. These callbacks
+are functions in your plug-in that determine the value of the parameter.
+<pre>&nbsp;&nbsp; typedef struct st_LWTxtrParamFuncs {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp; (*<b>paramEvaluate</b>)(LWTxtrParamDesc *, int paramnum,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWMicropol *, gParamData);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gParamData (*<b>paramTime</b>)&nbsp;&nbsp;&nbsp; (void *userData, LWTxtrParamDesc *,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int paramnum, LWTime, LWFrame);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>paramCleanup</b>) (LWTxtrParamDesc *, int paramnum,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gParamData);
+&nbsp;&nbsp; } LWTxtrParamFuncs;</pre>
+
+<dl>
+<dt>
+<tt>value = <b>paramEvaluate</b>( pdesc, pindex, micropol, pdata )</tt></dt>
+
+<dd>
+Returns the value of the parameter. The <tt>pdesc</tt> is the parameter
+description you passed to <tt>contextAddParam</tt> for this parameter.
+The <tt>pindex</tt> is an integer identifying the parameter by the order
+in which it was created. It's 1 for the parameter created by your first
+call to the <tt>contextAddParam</tt> function, 2 for the second parameter,
+and so on. The 0 index is reserved for the Previous Layer parameter, which
+always exists. The <tt>micropol</tt> is the micropolygon passed to the
+texture. The <tt>pdata</tt> argument is the user data you returned from
+your <tt>paramTime</tt> callback.</dd>
+
+<dt>
+</dt>
+
+<br><tt>pdata = <b>paramTime</b>( userdata, pdesc, pindex, time, frame
+)</tt>
+<dd>
+The init function for the parameter. This is called before <tt>paramEvaluate</tt>
+so that you can perform precalculations for your parameter. The <tt>userdata</tt>
+is the same as that returned by the <tt>userdata</tt> function.</dd>
+
+<dt>
+</dt>
+
+<br><tt><b>paramCleanup</b>( pdesc, pindex, pdata )</tt>
+<dd>
+The cleanup function for the parameter. This allows you to free any resources
+allocated in your <tt>paramTime</tt>.</dd>
+</dl>
+<b>Parameter Descriptor</b>
+<p>The second argument to <tt>contextAddParam</tt> is a description of
+the parameter contained in an LWTxtrParamDesc structure. This structure
+is also passed to your parameter callbacks.
+<pre>&nbsp;&nbsp; typedef struct st_LWTxtrParamDesc{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char&nbsp;&nbsp;&nbsp;&nbsp; *<b>name</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp; <b>start</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp; <b>end</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>type</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>flags</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>itemType</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWItemID&nbsp; <b>itemID</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char&nbsp;&nbsp;&nbsp;&nbsp; *<b>itemName;
+</b>&nbsp;&nbsp; } LWTxtrParamDesc;</pre>
+
+<dl>
+<dt>
+<b><tt>name</tt></b></dt>
+
+<dd>
+The name of the parameter as it should appear in the user interface.</dd>
+
+<dt>
+</dt>
+
+<br><tt><b>start</b>, <b>end</b></tt>
+<dd>
+The nominal limits of the parameter's value. These form the endpoints of
+a gradient.</dd>
+
+<dt>
+</dt>
+
+<br><b><tt>type</tt></b>
+<dd>
+The data type of the parameter, which can be one of the following.&nbsp;</dd>
+
+<pre>LWIPT_FLOAT
+LWIPT_DISTANCE
+LWIPT_PERCENT
+LWIPT_ANGLE</pre>
+
+<dt>
+<b><tt>flags</tt></b></dt>
+
+<dd>
+Parameter flags.</dd>
+
+<dl>&nbsp;
+<dt>
+</dt>
+
+<br><tt>LWGF_FIXED_MIN</tt>
+<dd>
+The minimum parameter value is fixed.</dd>
+
+<dt>
+<tt>LWGF_FIXED_MAX</tt></dt>
+
+<dd>
+The maximum value is fixed.</dd>
+
+<dt>
+<tt>LWGF_FIXED_START</tt></dt>
+
+<dd>
+The start value is fixed.</dd>
+
+<dt>
+<tt>LWGF_FIXED_END</tt></dt>
+
+<dd>
+The end value is fixed.</dd>
+</dl>
+
+<dt>
+</dt>
+
+<br><b><tt>itemType, itemID, itemName</tt></b>
+<dd>
+If the parameter depends on a scene item, these fields describe the item.
+The type can be one of the following. (If the parameter doesn't use an
+item, the type should be <tt>LWGI_NONE</tt>.)&nbsp;</dd>
+
+<pre>LWGI_NONE
+LWGI_OBJECT
+LWGI_LIGHT
+LWGI_CAMERA
+LWGI_BONE
+LWGI_VMAP</pre>
+</dl>
+<b>Micropolygon Descriptor</b>
+<p>The micropolygon provides the geometry information used to evaluate
+a texture. You need to initialize one of these before calling <tt>evaluate</tt>
+or <tt>layerEvaluate</tt>. You also receive one of these in your parameter
+callbacks.
+<pre>&nbsp;&nbsp; typedef struct st_LWMicropol {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>oPos</b>[3];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>wPos</b>[3];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>oScl</b>[3];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>gNorm</b>[3];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>wNorm</b>[3];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>ray</b>[3];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>bumpHeight</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>txVal</b>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>spotSize</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>raySource</b>[3];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>rayLength</b>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>cosine</b>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>oXfrm</b>[9];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>wXfrm</b>[9];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWItemID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>objID</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWItemID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>srfID</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWPntID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>verts</b>[4];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>weights</b>[4];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>vertsWPos</b>[4][3];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>polNum</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>oAxis</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>wAxis</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>context</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWIlluminateFunc *<b>illuminate</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWRayTraceFunc&nbsp;&nbsp; *<b>rayTrace</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWRayCastFunc&nbsp;&nbsp;&nbsp; *<b>rayCast</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWRayShadeFunc&nbsp;&nbsp; *<b>rayShade</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *<b>userData</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWPolID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>polygon</b>;
+&nbsp;&nbsp; } LWMicropol;</pre>
+Almost all of the micropolygon fields correspond to fields of the same
+name in LWShaderAccess. See the <a href="../classes/shader.html">shader</a>
+page for descriptions of those fields.
+<dl>&nbsp;
+<dt>
+<b><tt>oScl</tt></b></dt>
+
+<dd>
+Texture scale in object coordinates.</dd>
+
+<dt>
+</dt>
+
+<br><b><tt>ray</tt></b>
+<dd>
+The direction of the incoming viewing ray.</dd>
+
+<dt>
+</dt>
+
+<br><b><tt>txVal</tt></b>
+<dd>
+The initial value that will be modified by the texture.</dd>
+
+<dt>
+</dt>
+
+<br><b><tt>srfID</tt></b>
+<dd>
+The ID of the surface associated with the texture. (Note: This is incorrectly
+typed as an LWItemID. Just cast the LWSurfaceID to LWItemID when setting
+this field.)</dd>
+
+<dt>
+</dt>
+
+<br><b><tt>context</tt></b>
+<dd>
+This will be <tt>TCC_ANY</tt> in most cases. The other two are used when
+the texture needs to be evaluated in two separate steps, which is unusual.&nbsp;</dd>
+
+<dl>
+<dt>
+</dt>
+
+<br><tt>TCC_ANY</tt>
+<dd>
+All layers will be evaluated.</dd>
+
+<dt>
+<tt>TCC_OBJECT</tt></dt>
+
+<dd>
+Only object coordinate layers will be evaluated.</dd>
+
+<dt>
+<tt>TCC_WORLD</tt></dt>
+
+<dd>
+Only world coordinate layers will be evaluated.</dd>
+</dl>
+</dl>
+<b>History</b>
+<p>In LightWave&reg; 7.5, the server name for this global (<tt>LWTEXTUREFUNCS_GLOBAL</tt>)
+was incremented from "Texture Functions 2" to "Texture Functions 3", and
+the <tt>TXTAG_ACTIVE, TXTAG_INVERT </tt>and<tt> TXTAG_BLEND</tt> tags were
+added to LWTextureFuncs.
+<p><b>Example</b>
+<p>The <a href="../../sample/Layout/ChannelFilter/txchan/">txchan</a> sample contains motion,
+channel, image filter and environment plug-ins, all of which use a texture
+to modulate their data. The texture layers are defined by the user and
+evaluated through the Texture Functions global.
+<p>The following code fragment demonstrates how to extract UV values for
+image maps associated with a surface.
+<pre>&nbsp;&nbsp; #include &lt;lwserver.h&gt;
+&nbsp;&nbsp; #include &lt;lwsurf.h&gt;
+&nbsp;&nbsp; #include &lt;lwtxtr.h&gt;
+
+&nbsp;&nbsp; LWSurfaceFuncs *surff;
+&nbsp;&nbsp; LWTextureFuncs *txtrf;
+&nbsp;&nbsp; LWSurfaceID surf;
+&nbsp;&nbsp; LWTextureID tex;
+&nbsp;&nbsp; LWTLayerID tlayer;
+&nbsp;&nbsp; int type;</pre>
+As always, you need to get the globals before you can use them.
+<pre>&nbsp;&nbsp; surff = global( LWSURFACEFUNCS_GLOBAL, GFUSE_TRANSIENT );
+&nbsp;&nbsp; txtrf = global( LWTEXTUREFUNCS_GLOBAL, GFUSE_TRANSIENT );</pre>
+Each surface has many channels (Color, Diffuse, Luminous, Specular, etc.),
+and each channel can be textured. If a channel is textured, the texture
+can have many layers. It's at the level of the texture layer that you want
+to look for UVs.
+<pre>&nbsp;&nbsp; tex = surff-&gt;getTex( surf, SURF_COLR );
+&nbsp;&nbsp; if ( tex ) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tlayer = txtrf-&gt;firstLayer( tex );
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while ( tlayer ) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; type = txtrf-&gt;layerType( tlayer );
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ( type == TLT_IMAGE ) {</pre>
+Now you have an image texture layer. You can ask what the projection is.
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int proj;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; txtrf-&gt;getParam( tlayer, TXTAG_PROJ, &amp;proj );
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ( proj == TXPRJ_UVMAP ) {</pre>
+If the projection type is UV, get the vmap.
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void *vmap;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; txtrf-&gt;getParam( tlayer, TXTAG_VMAP, &amp;vmap );</pre>
+Use this with the <a href="../classes/me.html">mesh edit</a> <tt>pointVSet</tt>
+and <tt>pointVEval</tt> functions to get the UVs. (You can also use the
+<a href="../meshinfo.html">mesh info</a> <tt>pntVSet</tt>, <tt>pntVGet</tt>
+and <tt>pntVPGet</tt> functions.)
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; edit-&gt;pointVSet( edit-&gt;state, vmap, 0, NULL );
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for each point
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; edit-&gt;pointVEval( edit-&gt;state, pntID, polID, uv );
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else {</pre>
+If the projection is <i>not</i> UV, use <tt>evaluateUV</tt>.
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for each point
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; txtrf-&gt;evaluateUV( tlayer, wAxis, oAxis, oPos, wPos,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uv );
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tlayer = txtrf-&gt;layerNext( tlayer );
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp; }</pre>
+</td>
+</tr>
+</table>
+
+</body>
+</html>

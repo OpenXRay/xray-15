@@ -1,0 +1,65 @@
+base shaders for mental ray 2.1 and 3.x
+=======================================================================
+
+Date: Wed Jul 30 11:46:05 MST 2006
+
+
+LEGAL
+-----
+
+This directory contains unsupported shader source code by mental images
+GmbH, Berlin, Germany. You may use this shaders without restriction and
+without fee, at your own risk. mental images does not assume liability
+or provide support for these shaders.
+
+You may redistribute this package only if either (1) its contents are
+completely unchanged, or (2) you clearly mark your changes both in the
+changed source file comment header and in this README, including author
+information and the nature of the change, *and* renaming the library
+DSO/DLL and the tar or zip archive. In any case, mental images' name as
+the original author may not be removed from any file.
+
+The latter restrictions ensure that mental images does not receive bug
+reports for libraries that appear to be supported standard libraries
+but are really modified versions. This would be a real mess for us to
+sort out. But if you fix bugs, we would appreciate hearing about it.
+
+
+RESOURCES
+---------
+
+The shader mailing lists hosted at www.mentalimages.com (follow the
+"mental ray" / "Forum" links) are a useful resource for shader writers.
+You must subscribe to a list before posting. Shader writers should read
+the book Programming mental ray'', available as a book from Springer
+Verlag (see http://www.mentalimages.com/books.html) and also with most
+3D applications that include mental ray.
+
+The home location of this shader library is
+ftp://ftp.mentalimages.com/pub/shaders .
+
+
+EDITING
+-------
+
+If you want to change the source code (see above for conditions), you
+can find the necessary information in the Programming mental ray''
+book. Here are some quick reminders for portability issues:
+
+- pointers and longs may be either 32 bits or 64 bits.
+- some systems allow 64-bit types such as doubles on non-8-byte
+  boundaries (at some performance penalty); others hit bus errors.
+- avoid fp underflow situations, Alpha processors are very brittle.
+- do not use "if (!did_init) {initialize}"; use init shaders.
+- don't forget mi_eval_* to access parameters.
+- never write to shader parameters; use mi_query(miQ_FUNC_USERPTR) for
+  precomputed shader instance data storage.
+- avoid statics; they can cause much trouble on multithreaded hosts or
+  applications that allow concurrent multi-frame rendering.
+- locks protect critical sections but reduce parallel efficiency.
+- don't assume that your shaders will never run on multiprocessor
+  machines! If you haven't tested on multi-CPU machines, add a note to
+  the README to spare future users much grief.
+- do not use printf, you'll confuse slave networking.
+- mi_debug and mi_vdebug carry a performance penalty even if disabled.
+

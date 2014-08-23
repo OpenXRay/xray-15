@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AshliShader", "AshliShader.vcproj", "{2F72A8B3-E1FD-4834-AD56-0B16F850C2FB}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{2F72A8B3-E1FD-4834-AD56-0B16F850C2FB}.Debug.ActiveCfg = Debug|Win32
+		{2F72A8B3-E1FD-4834-AD56-0B16F850C2FB}.Debug.Build.0 = Debug|Win32
+		{2F72A8B3-E1FD-4834-AD56-0B16F850C2FB}.Release.ActiveCfg = Debug|Win32
+		{2F72A8B3-E1FD-4834-AD56-0B16F850C2FB}.Release.Build.0 = Debug|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

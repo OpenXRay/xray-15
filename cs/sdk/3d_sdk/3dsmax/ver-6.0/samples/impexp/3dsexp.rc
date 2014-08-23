@@ -1,0 +1,162 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "3dseres.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_EXPORTOPTIONS DIALOG DISCARDABLE  0, 0, 145, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_SYSMENU | WS_CAPTION
+EXSTYLE WS_EX_CONTEXTHELP
+CAPTION "Export Scene to .3DS File"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,16,32,48,16
+    PUSHBUTTON      "Cancel",IDCANCEL,80,32,48,16
+    CONTROL         "Preserve MAX's Texture Coordinates ",IDC_MAX_UVS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,8,136,16
+END
+
+IDD_ERROR_MSGS DIALOG DISCARDABLE  0, 0, 400, 125
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Output Warnings:"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Close",IDOK,182,106,35,14
+    LISTBOX         IDC_ERROR_MSG_LIST,0,2,398,100,LBS_USETABSTOPS | 
+                    LBS_NOINTEGRALHEIGHT | LBS_DISABLENOSCROLL | WS_VSCROLL | 
+                    WS_TABSTOP
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "3dseres.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_EXPORTOPTIONS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 138
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TH_3DSEXP           "3DSEXP"
+    IDS_TH_SCENEEXPORT      "Scene Export"
+    IDS_TH_3DSEXPORTDLL     "3DS file exporter (Discreet)"
+    IDS_TH_NODATATOEXPORT   "No data to export"
+    IDS_TH_CANTCREATE       "Can't create output file"
+    IDS_TH_WRITEERROR       "Write error on file"
+    IDS_OBJ_TOO_MANY_FACES  "Object [%s] has too many faces (more than 64K) to export."
+    IDS_OBJ_TOO_MANY_VERTS  "Object [%s] has too many vertices (more than 64K) to export."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TH_3DSTUDIO         "3D Studio"
+    IDS_TH_3DSSCENEFILE     "Autodesk 3D Studio Scene File"
+    IDS_TH_3DSFILE          "3D Studio"
+    IDS_TH_TOM_HUDSON       "Tom Hudson"
+    IDS_TH_COPYRIGHT_YOST_GROUP "Copyright 1996 Yost Group"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_UVVERT_MISMATCH     "Object [%s] has incompatible texture mapping."
+    IDS_UVVERT_TOO_MANY_PER_VERT 
+                            "Object [%s] has one or more vertices with multiple texture vertices."
+    IDS_OBJ_WITH_MULTI_MTL  "Object [%s] cannot export with a multi/sub-object material."
+    IDS_START               "\t------------------------------<start>-----------------------------"
+    IDS_END                 "\t-------------------------------<end>------------------------------"
+    IDS_DIR_LIGHT           "Object [%s] cannot export Directional lights."
+    IDS_FSPOT_LIGHT         "Object [%s] cannot export Free Spot lights."
+    IDS_MATERIAL_LIMIT      "Number of materials in the scene exceeds 3ds's maximum of 256."
+    IDS_EIGHT_DOT_THREE     "Non 8.3 bitmap filename [%s] has been renamed to [%s]."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

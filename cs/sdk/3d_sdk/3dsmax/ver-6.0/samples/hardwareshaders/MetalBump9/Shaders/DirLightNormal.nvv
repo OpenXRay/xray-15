@@ -1,0 +1,94 @@
+//_____________________________________________________________________________
+//
+//	File:		DirLightNormal.nvv
+//	
+//_____________________________________________________________________________
+
+
+//_____________________________________________________________________________
+//
+//	Include files	
+//
+//_____________________________________________________________________________
+
+#include "ShaderConst.h"
+
+//_____________________________________________________________________________
+//
+//	Defines	
+//
+//_____________________________________________________________________________
+
+#define S_WORLD 		r0
+#define T_WORLD 		r1
+#define SxT_WORLD 		r2
+#define LIGHT_LOCAL 	r3
+#define WORLD_TEMP	 	r4
+
+vs_1_1
+
+dcl_position	v0
+dcl_normal		v1
+dcl_normal1		v2
+dcl_texcoord3	v6
+
+//_____________________________________
+//
+//	Transform 
+//
+//_____________________________________
+
+dp4 oPos.x, V_POSITION, c[CV_WORLDVIEWPROJ_0]
+dp4 oPos.y, V_POSITION, c[CV_WORLDVIEWPROJ_1]
+dp4 oPos.z, V_POSITION, c[CV_WORLDVIEWPROJ_2]
+dp4 oPos.w, V_POSITION, c[CV_WORLDVIEWPROJ_3]
+
+//_____________________________________
+//
+//	Transform basis
+//
+//_____________________________________
+
+m3x3 S_WORLD,   V_S,	  c[CV_WORLD_0]
+m3x3 SxT_WORLD, V_NORMAL, c[CV_WORLD_0]
+mul WORLD_TEMP, S_WORLD.zxy, SxT_WORLD.yzx   
+mad T_WORLD,    S_WORLD.yzx, SxT_WORLD.zxy, -WORLD_TEMP
+            
+
+//_____________________________________
+//
+//	Scale bumps 
+//
+//_____________________________________
+
+mul S_WORLD.xyz, S_WORLD.xyz, c[CV_SCALE].w
+mul T_WORLD.xyz, T_WORLD.xyz, c[CV_SCALE].w
+
+//_____________________________________
+//
+//	Transform light
+//
+//_____________________________________
+
+dp3 oT1.x, S_WORLD.xyz,   c[CV_LIGHT_DIR]
+dp3 oT1.y, T_WORLD.xyz,   c[CV_LIGHT_DIR]
+dp3 oT1.z, SxT_WORLD.xyz, c[CV_LIGHT_DIR]
+mov oT1.w, c[CV_ONE].w
+
+//_____________________________________
+//
+//	Output texture 
+//
+//_____________________________________
+
+mov oT0.xy,  V_TEXTURE_3
+
+
+
+
+
+
+
+
+
+

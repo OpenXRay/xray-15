@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="7.10"
+	Name="tiffFloatReader"
+	ProjectGUID="{2F72A8B3-E1FD-4834-AD56-0B16F850C2FB}">
+	<Platforms>
+		<Platform
+			Name="Win32"/>
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="Debug"
+			IntermediateDirectory="Debug"
+			ConfigurationType="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/Gm /GX /ZI /I &quot;.&quot; /D &quot;WIN32&quot; /D &quot;_DEBUG&quot; /YX /GZ /c"
+				Optimization="0"
+				AdditionalIncludeDirectories="C:\Program Files\GnuWin32\include;U:\aw\Perforce\branches\Maya\8.0\build\Release\runTime\include"
+				PreprocessorDefinitions="WIN32,_DEBUG,_WINDOWS,_AFXDLL,_MBCS,NT_PLUGIN,REQUIRE_IOSTREAM"
+				RuntimeLibrary="3"
+				PrecompiledHeaderFile="Debug/tiffFloatReader.pch"
+				WarningLevel="3"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/subsystem:windows /dll /incremental:yes /debug /machine:I386 /export:initializePlugin /export:uninitializePlugin"
+				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaUI.lib OpenMayaFX.lib OpenMayaRender.lib Image.lib OpenMayaRender.lib libtiff.lib"
+				OutputFile="Debug\tiffFloatReader.mll"
+				AdditionalLibraryDirectories="C:\Program Files\GnuWin32\lib;U:\aw\Perforce\branches\Maya\8.0\build\Release\runTime\lib"
+				ProgramDatabaseFile="Debug/tiffFloatReader.pdb"
+				ImportLibrary="Debug/tiffFloatReader.lib"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="Release"
+			IntermediateDirectory="Release"
+			ConfigurationType="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/GX /I &quot;.&quot; /YX /c"
+				Optimization="2"
+				AdditionalIncludeDirectories="%MAYA_SDK_LOCATION%\include;&quot;%TIFFSDK_DIR%\Include&quot;"
+				PreprocessorDefinitions="WIN32,NDEBUG,_WINDOWS,_AFXDLL,_MBCS,NT_PLUGIN,REQUIRE_IOSTREAM"
+				RuntimeLibrary="2"
+				PrecompiledHeaderFile="Release/tiffFloatReader.pch"
+				WarningLevel="3"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/subsystem:windows /incremental:no /machine:I386 /export:initializePlugin /export:uninitializePlugin"
+				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaUI.lib OpenMayaFX.lib OpenMayaRender.lib Image.lib OpenMayaRender.lib libtiff.lib"
+				OutputFile="Release\tiffFloatReader.mll"
+				AdditionalLibraryDirectories="%MAYA_SDK_LOCATION%\lib;&quot;%TIFFSDK%\Lib\&quot;"
+				ProgramDatabaseFile="Release/tiffFloatReader.pdb"
+				ImportLibrary="Release/tiffFloatReader.lib"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Source Files"
+			Filter="cpp">
+			<File
+				RelativePath=".\tiffFloatReader.cpp">
+			</File>
+		</Filter>
+		<Filter
+			Name="Header Files"
+			Filter="h">
+		</Filter>
+		<Filter
+			Name="Miscellaneous Files"
+			Filter="txt">
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

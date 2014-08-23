@@ -1,0 +1,157 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "ddsres.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include <windows.h>
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "ddsres.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include <windows.h>\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DDS_ABOUT DIALOG DISCARDABLE  0, 0, 166, 97
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "About DDS Image File I/O"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,108,77,50,14
+    RTEXT           "DDS File I/O Module",IDC_STATIC,37,9,118,9
+    RTEXT           "Version 1.0",IDC_STATIC,37,19,118,9
+    GROUPBOX        "",IDC_STATIC,8,2,151,29
+    RTEXT           "Author: Sean L. Palmer",IDC_STATIC,9,38,148,8
+    RTEXT           "Copyright 2001 Treyarch LLC",IDC_STATIC,9,50,148,8
+    RTEXT           "Using NVIDIA nvDXTlib DDS converter",IDC_STATIC,9,62,
+                    148,8
+END
+
+IDD_DDS_CONFIG DIALOG DISCARDABLE  0, 0, 177, 185
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "DDS Configuration"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Colors",-1,6,2,164,127,WS_GROUP
+    CONTROL         "DXT1 Compression",IDC_DDS_DXT1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,29,15,128,10
+    CONTROL         "DXT1 with 1 bit alpha",IDC_DDS_DXT1ALPHA,"Button",
+                    BS_AUTORADIOBUTTON,29,29,125,10
+    CONTROL         "DXT3 Compressed with alpha",IDC_DDS_DXT3,"Button",
+                    BS_AUTORADIOBUTTON,29,43,125,10
+    CONTROL         "DXT5 Compressed with alpha",IDC_DDS_DXT5,"Button",
+                    BS_AUTORADIOBUTTON,29,57,125,10
+    CONTROL         "ARGB 4444",IDC_DDS_ARGB4444,"Button",BS_AUTORADIOBUTTON,
+                    29,71,125,10
+    CONTROL         "ARGB 1555",IDC_DDS_ARGB1555,"Button",BS_AUTORADIOBUTTON,
+                    29,85,125,10
+    CONTROL         "RGB 565",IDC_DDS_RGB565,"Button",BS_AUTORADIOBUTTON,29,
+                    99,125,10
+    CONTROL         "ARGB 8888",IDC_DDS_ARGB8888,"Button",BS_AUTORADIOBUTTON,
+                    29,113,125,10
+    DEFPUSHBUTTON   "OK",IDOK,38,165,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,94,165,50,14
+    CONTROL         "Dither",IDC_DDS_DITHER,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,30,135,95,9
+    CONTROL         "Generate Mipmaps",IDC_DDS_MIPMAPS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,30,148,96,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_DDS_CONFIG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 170
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 179
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DDS                 "DDS"
+    IDS_BITMAP_IO           "Bitmap I/O"
+    IDS_DDS_FILE            "DDS Image File"
+    IDS_UNSUPPORTED         "Unsupported DDS Image File"
+    IDS_CONVERT_ERROR       "Error converting bitmap"
+    IDS_DDS_DESC            "DDS file I/O"
+    IDS_NONPOWEROF2_ERROR   "Dimensions not power of 2"
+    IDS_UNSUPPORTEDFORMAT_ERROR "Unsupported format"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

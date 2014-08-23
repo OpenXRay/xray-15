@@ -1,0 +1,205 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PANEL_MMCLEAN DIALOGEX 0, 0, 108, 74
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CTEXT           "This utility is used to clean unused sub-materials from assigned multi-materials.",
+                    IDC_STATIC,7,7,94,29
+    CONTROL         "Find All",IDC_FIND_ALL,"CustButton",WS_TABSTOP,26,41,54,
+                    14
+END
+
+IDD_PANEL_INSTANCEDUPLMAP DIALOGEX 0, 0, 108, 74
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CTEXT           "This utility is used to substitute all indentical maps with instances",
+                    IDC_STATIC,7,7,94,29
+    CONTROL         "Find All",IDC_FIND_ALL,"CustButton",WS_TABSTOP,26,41,54,
+                    14
+END
+
+IDD_FIXUP_MMCLEAN DIALOGEX 0, 0, 186, 238
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Clean Multi-Materials"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "",IDC_FIX_MESSAGE,8,7,171,34,WS_BORDER
+    CONTROL         "",IDC_MTL_LIST,"SysListView32",LVS_LIST | LVS_ALIGNLEFT | 
+                    WS_BORDER | WS_TABSTOP,8,49,171,157
+    PUSHBUTTON      "Cancel",IDC_CANCEL,129,217,50,14
+    DEFPUSHBUTTON   "OK",IDC_OK,75,217,50,14
+END
+
+IDD_FIXUP_INSTDUPLMAP DIALOGEX 0, 0, 258, 212
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU | 
+    WS_THICKFRAME
+CAPTION "Instance Duplicate Maps"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Close",IDC_CLOSE,160,191,50,14
+    LTEXT           "",IDC_FIX_MESSAGE,7,7,244,29,WS_BORDER
+    CONTROL         "",IDC_MAP_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,74,244,111
+    DEFPUSHBUTTON   "Instance",IDC_PROC,104,191,50,14
+    LTEXT           "Duplicated Textures:",IDC_STATIC,7,38,71,8
+    LTEXT           "Duplicates:",IDC_STATIC,7,65,40,8
+    DEFPUSHBUTTON   "Instance All",IDC_PROC_ALL,48,191,50,14
+    LTEXT           "0",IDC_STATIC_DUPL,45,65,17,8
+    LTEXT           "0",IDC_STATIC_TEXT,75,38,17,8
+    COMBOBOX        IDC_DUPL_LIST,7,48,244,139,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_PANEL_MMCLEAN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 67
+    END
+
+    IDD_PANEL_INSTANCEDUPLMAP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 67
+    END
+
+    IDD_FIXUP_MMCLEAN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 231
+    END
+
+    IDD_FIXUP_INSTDUPLMAP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 251
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 205
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r"" \r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_LIBDESCRIPTION      "Material Editor utilities (Discreet)"
+    IDS_INSTANCEDUPLMAP_CLASS_NAME "Instance Duplicate Maps"
+    IDS_MMCLEAN_CLASS_NAME  "Clean MultiMaterial"
+    IDS_PARAMS              "Parameters"
+    IDS_FIX_MMCLEAN         "Clean MultiMaterial"
+    IDS_ALL_OK              "Select multi-materials to have their unused sub-materials cleared."
+    IDS_MMCLEAN_INTERFACE   "MultiMaterial Clean Interface"
+    IDS_MMCLEAN_ACTIONS     "MultiMaterial Clean Actions"
+    IDS_MMCLEAN_ALL         "Clean  MultiMaterial"
+    IDS_INSTANCEDUPLMAP_ACTIONS "Instance Duplicate Map Actions"
+    IDS_MMCLEAN_MENU        "Clean MultiMaterial..."
+    IDS_NO_MTL              "No multi-materials with unused sub-materials were found in the scene."
+    IDS_FIX_INSTDUPLMAP     "Instance Duplicates"
+    IDS_NO_MAP              "No duplicate textures were found in the scene."
+    IDS_MAP_FOUND           "Select textures to display their duplicates."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_MAP_INSTANCE        "Select duplicates and press “Instance” to consolidate."
+    IDS_MAP_ANIM            "The selected duplicates contain parameters that are animated. Animation is not supported as criteria for determining duplication so differences in the animation will be lost."
+    IDS_MAPNAME             "Map Name"
+    IDS_MAPPATH             "Map Path"
+    IDS_PMTL                "Parent Material"
+    IDS_MAP_PAIR            "At least two maps must be selected in order to proceed."
+    IDS_INSTANCEDUPLMAP_MENU "Instance Duplicate Map..."
+    IDS_INSTANCEDUPLMAP_ALL "Instance Duplicate Map"
+    IDS_INSTANCEDUPLMAP_INTERFACE "Instance Duplicate Map Interface"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#include "veroverrides.h"
+#include "maxversion.r" 
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

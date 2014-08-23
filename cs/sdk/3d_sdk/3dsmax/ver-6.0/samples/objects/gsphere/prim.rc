@@ -1,0 +1,177 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_GSPHERE1 DIALOG DISCARDABLE  0, 0, 108, 18
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Diameter",IDC_CREATEDIAMETER,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,10,4,43,10
+    CONTROL         "Center",IDC_CREATERADIUS,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,62,4,35,10
+END
+
+IDD_GSPHERE2 DIALOG DISCARDABLE  0, 0, 108, 105
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    RTEXT           "Radius:",IDC_STATIC,23,6,25,8
+    CONTROL         "",IDC_RADIUS,"CustEdit",WS_TABSTOP,49,4,36,10
+    CONTROL         "",IDC_RADSPINNER,"SpinnerControl",0x0,86,4,7,10
+    RTEXT           "Segments:",IDC_STATIC,12,17,36,8
+    CONTROL         "",IDC_SEGMENTS,"CustEdit",WS_TABSTOP,49,17,36,10
+    CONTROL         "",IDC_SEGSPINNER,"SpinnerControl",0x0,86,17,7,10
+    GROUPBOX        "Geodesic Base Type",IDC_STATIC,5,29,98,22
+    CONTROL         "Tetra",IDC_TETRA,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,7,40,30,10
+    CONTROL         "Octa",IDC_OCTA,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,
+                    40,40,28,10
+    CONTROL         "Icosa",IDC_ICOSA,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,71,40,30,10
+    CONTROL         "Smooth",IDC_OBSMOOTH,"Button",BS_AUTOCHECKBOX,7,56,39,
+                    10
+    CONTROL         "Hemisphere",IDC_HEMI,"Button",BS_AUTOCHECKBOX,7,68,50,
+                    10
+    CONTROL         "Base to Pivot",IDC_BASEPIVOT,"Button",BS_AUTOCHECKBOX,7,
+                    80,58,10
+    CONTROL         "Generate Mapping Coords.",IDC_MAPPING,"Button",
+                    BS_AUTOCHECKBOX,7,92,101,10
+END
+
+IDD_GSPHERE3 DIALOG DISCARDABLE  0, 0, 108, 87
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_TI_POSX,"CustEdit",WS_TABSTOP,40,8,36,10
+    CONTROL         "",IDC_TI_POSY,"CustEdit",WS_TABSTOP,40,21,36,10
+    CONTROL         "",IDC_TI_POSZ,"CustEdit",WS_TABSTOP,40,34,36,10
+    CONTROL         "",IDC_RADIUS,"CustEdit",WS_TABSTOP,40,50,36,10
+    CONTROL         "Create",IDC_TI_CREATE,"CustButton",WS_TABSTOP,40,66,44,
+                    12
+    CONTROL         "",IDC_TI_POSXSPIN,"SpinnerControl",0x0,77,8,7,10
+    CONTROL         "",IDC_TI_POSYSPIN,"SpinnerControl",0x0,77,21,7,10
+    CONTROL         "",IDC_TI_POSZSPIN,"SpinnerControl",0x0,77,34,7,10
+    CONTROL         "",IDC_RADSPINNER,"SpinnerControl",0x0,77,50,7,10
+    RTEXT           "X:",IDC_STATIC,14,9,25,8
+    RTEXT           "Y:",IDC_STATIC,14,22,25,8
+    RTEXT           "Radius:",IDC_STATIC,14,51,25,8
+    RTEXT           "Z:",IDC_STATIC,14,35,25,8
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_PRIMITIVES       "Standard Primitives"
+    IDS_GEOSPHERE           "GeoSphere"
+    IDS_KEYBOARD_ENTRY      "Keyboard Entry"
+    IDS_CREATION_METHOD     "Creation Method"
+    IDS_BASETYPE            "Base Type"
+    IDS_LIBDESCRIPTION      "Geodesic sphere object (Discreet)"
+    IDS_PARAMETERS          "Parameters"
+    IDS_HEMI                "Hemisphere"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_RADIUS           "Radius"
+    IDS_RB_SEGS             "Segments"
+    IDS_RB_POS              "Position"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_SMOOTH           "Smooth"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_BASEPIVOT           "Base to Pivot"
+    IDS_MAPPING             "Generate mapping coords."
+    IDS_SM_NURBS_SURFACE    "NURBS"
+    IDS_CT_SURF             "Surf"
+    IDS_CT_CAP              "Cap"
+    IDS_GEOSPHERE_CLASS     "GeoSphere"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

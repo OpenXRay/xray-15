@@ -1,0 +1,398 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_FEX_PARAM DIALOG DISCARDABLE  0, 0, 108, 86
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_FEX_AMOUNT,"CustEdit",WS_TABSTOP,42,6,36,10
+    CONTROL         "",IDC_FEX_AMOUNTSPIN,"SpinnerControl",0x0,79,6,7,10
+    RTEXT           "Amount:",IDC_STATIC,14,7,27,8
+    CONTROL         "",IDC_FEX_SCALE,"CustEdit",WS_TABSTOP,42,20,36,10
+    CONTROL         "",IDC_FEX_SCALESPIN,"SpinnerControl",0x0,79,20,7,10
+    RTEXT           "Scale:",IDC_STATIC,20,21,21,8
+    CONTROL         "Group Normal",IDC_FEX_TYPE_GROUP,"Button",
+                    BS_AUTORADIOBUTTON,9,44,59,10
+    GROUPBOX        "Extrusion Type",IDC_STATIC,4,34,99,48
+    CONTROL         "Local Normal",IDC_FEX_TYPE_LOCAL,"Button",
+                    BS_AUTORADIOBUTTON,9,56,57,10
+    CONTROL         "From Center",IDC_FEX_TYPE_CENTER,"Button",
+                    BS_AUTORADIOBUTTON,9,68,54,10
+END
+
+IDD_VCH_PARAM DIALOG DISCARDABLE  0, 0, 108, 22
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_VCH_AMOUNT,"CustEdit",WS_TABSTOP,42,6,36,10
+    CONTROL         "",IDC_VCH_AMOUNTSPIN,"SpinnerControl",0x0,79,6,7,10
+    RTEXT           "Amount:",-1,14,7,27,8
+END
+
+IDD_ECH_PARAM DIALOG DISCARDABLE  0, 0, 108, 22
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_ECH_AMOUNT,"CustEdit",WS_TABSTOP,42,6,36,10
+    CONTROL         "",IDC_ECH_AMOUNTSPIN,"SpinnerControl",0x0,79,6,7,10
+    RTEXT           "Amount:",-1,14,7,27,8
+END
+
+IDD_VW_PARAM DIALOG DISCARDABLE  0, 0, 108, 22
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_VW_THRESH,"CustEdit",WS_TABSTOP,42,6,36,10
+    CONTROL         "",IDC_VW_THRESHSPIN,"SpinnerControl",0x0,79,6,7,10
+    RTEXT           "Threshold:",-1,2,7,39,8
+END
+
+IDD_SYM_PARAM DIALOG DISCARDABLE  0, 0, 108, 84
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "X",IDC_SYM_X,"Button",BS_AUTORADIOBUTTON | WS_GROUP | 
+                    WS_TABSTOP,17,13,21,10
+    CONTROL         "Y",IDC_SYM_Y,"Button",BS_AUTORADIOBUTTON,42,13,21,10
+    CONTROL         "Z",IDC_SYM_Z,"Button",BS_AUTORADIOBUTTON,67,13,21,10
+    GROUPBOX        "Mirror Axis:",-1,4,1,99,38
+    CONTROL         "Weld Seam",IDC_SYM_WELD,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,9,55,53,10
+    CONTROL         "Slice Along Mirror",IDC_SYM_SLICE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,43,71,10
+    CONTROL         "",IDC_SYM_THRESH,"CustEdit",WS_TABSTOP,52,67,36,10
+    CONTROL         "",IDC_SYM_THRESHSPIN,"SpinnerControl",0x0,89,67,7,10
+    RTEXT           "Threshold:",IDC_SYM_THRESH_LABEL,11,68,39,8
+    CONTROL         "Flip",IDC_SYM_FLIP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,24,26,27,10
+END
+
+IDD_EP_CHOICE DIALOG DISCARDABLE  0, 0, 108, 53
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    COMBOBOX        IDC_EMOD_LIST,8,15,92,99,CBS_DROPDOWNLIST | WS_TABSTOP
+    LTEXT           "Editing Operation:",IDC_STATIC,25,3,57,8
+    PUSHBUTTON      "Commit",IDC_EP_COMMIT,28,34,50,14
+END
+
+IDD_EP_VE_EXTRUDE DIALOG DISCARDABLE  0, 0, 108, 38
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_EXTRUDE_HEIGHT,"CustEdit",WS_TABSTOP,42,6,36,10
+    CONTROL         "",IDC_EXTRUDE_HEIGHTSPIN,"SpinnerControl",0x0,79,6,7,10
+    RTEXT           "Height:",-1,14,7,24,8
+    CONTROL         "",IDC_EXTRUDE_WIDTH,"CustEdit",WS_TABSTOP,42,21,36,10
+    CONTROL         "",IDC_EXTRUDE_WIDTHSPIN,"SpinnerControl",0x0,80,21,7,10
+    RTEXT           "Width:",-1,14,21,24,8
+END
+
+IDD_EP_F_EXTRUDE DIALOG DISCARDABLE  0, 0, 108, 72
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_EXTRUDE_HEIGHT,"CustEdit",WS_TABSTOP,42,6,36,10
+    CONTROL         "",IDC_EXTRUDE_HEIGHTSPIN,"SpinnerControl",0x0,79,6,7,10
+    RTEXT           "Height:",-1,14,7,24,8
+    CONTROL         "Group Normal",IDC_FEX_TYPE_GROUP,"Button",
+                    BS_AUTORADIOBUTTON,9,30,59,10
+    GROUPBOX        "Extrusion Type",-1,4,20,99,48
+    CONTROL         "Local Normal",IDC_FEX_TYPE_LOCAL,"Button",
+                    BS_AUTORADIOBUTTON,9,42,57,10
+    CONTROL         "By Polygon",IDC_FEX_TYPE_BYFACE,"Button",
+                    BS_AUTORADIOBUTTON,9,54,51,10
+END
+
+IDD_EP_SELECT DIALOG DISCARDABLE  0, 0, 108, 104
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_EP_SELTYPE,"CustToolbar",WS_TABSTOP,12,4,83,14
+    CONTROL         "By Vertex",IDC_EP_SEL_BYVERT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,18,49,43,10
+    CONTROL         "Ignore Backfacing",IDC_EP_IGNORE_BACKFACING,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,18,61,74,10
+    LTEXT           "123456 Faces Selected",IDC_MS_NUMBER_SEL,4,91,99,8
+    CONTROL         "Get Pipe Selection",IDC_EP_GET_PIPE_SELECTION,
+                    "CustButton",WS_TABSTOP,18,75,82,11
+    CONTROL         "Use Pipe Selection",IDC_EP_SEL_PIPE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,23,76,10
+    CONTROL         "Make Explicit Selection",IDC_EP_SEL_EXPLICIT,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,7,36,89,10
+END
+
+IDD_EP_WELD DIALOG DISCARDABLE  0, 0, 108, 22
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_VW_THRESH,"CustEdit",WS_TABSTOP,42,6,36,10
+    CONTROL         "",IDC_VW_THRESHSPIN,"SpinnerControl",0x0,79,6,7,10
+    RTEXT           "Threshold:",-1,2,7,39,8
+END
+
+IDD_EP_CHAMFER DIALOG DISCARDABLE  0, 0, 108, 22
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_VCH_AMOUNT,"CustEdit",WS_TABSTOP,42,6,36,10
+    CONTROL         "",IDC_VCH_AMOUNTSPIN,"SpinnerControl",0x0,79,6,7,10
+    RTEXT           "Amount:",-1,14,7,27,8
+END
+
+IDD_EP_BEVEL DIALOG DISCARDABLE  0, 0, 108, 90
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_EP_BEVEL_HEIGHT,"CustEdit",WS_TABSTOP,42,6,36,10
+    CONTROL         "",IDC_EP_BEVEL_HEIGHTSPIN,"SpinnerControl",0x0,79,6,7,
+                    10
+    RTEXT           "Height:",-1,14,7,24,8
+    CONTROL         "",IDC_EP_BEVEL_OUTLINE,"CustEdit",WS_TABSTOP,42,21,36,
+                    10
+    CONTROL         "",IDC_EP_BEVEL_OUTLINESPIN,"SpinnerControl",0x0,80,21,7,
+                    10
+    RTEXT           "Outline:",-1,14,21,24,8
+    CONTROL         "Group Normal",IDC_FEX_TYPE_GROUP,"Button",
+                    BS_AUTORADIOBUTTON,9,45,59,10
+    GROUPBOX        "Extrusion Type",-1,4,35,99,48
+    CONTROL         "Local Normal",IDC_FEX_TYPE_LOCAL,"Button",
+                    BS_AUTORADIOBUTTON,9,57,57,10
+    CONTROL         "By Polygon",IDC_FEX_TYPE_BYFACE,"Button",
+                    BS_AUTORADIOBUTTON,9,69,51,10
+END
+
+IDD_EP_EXTRUDE_ALONG_SPLINE DIALOG DISCARDABLE  0, 0, 108, 119
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    RTEXT           "Segments",IDC_EXTRUSION_SEGMENTS_LABEL,5,6,50,8
+    CONTROL         "",IDC_EP_EXTRUDE_SEGMENTS,"CustEdit",WS_TABSTOP,58,5,36,
+                    10
+    CONTROL         "",IDC_EP_EXTRUDE_SEGMENTS_SPIN,"SpinnerControl",0x0,96,
+                    5,7,10
+    RTEXT           "Taper Amount",IDC_EXTRUSION_TAPER_LABEL,5,21,50,8
+    CONTROL         "",IDC_EP_EXTRUDE_TAPER,"CustEdit",WS_TABSTOP,58,20,36,
+                    10
+    CONTROL         "",IDC_EP_EXTRUDE_TAPER_SPIN,"SpinnerControl",0x0,96,20,
+                    7,10
+    RTEXT           "Taper Curve",IDC_EXTRUSION_TAPER_LABEL2,5,36,50,8
+    CONTROL         "",IDC_EP_EXTRUDE_TAPER_CURVE,"CustEdit",WS_TABSTOP,58,
+                    35,36,10
+    CONTROL         "",IDC_EP_EXTRUDE_TAPER_CURVE_SPIN,"SpinnerControl",0x0,
+                    96,35,7,10
+    RTEXT           "Twist",IDC_EXTRUSION_TWIST_LABEL,5,51,50,8
+    CONTROL         "",IDC_EP_EXTRUDE_TWIST,"CustEdit",WS_TABSTOP,58,50,36,
+                    10
+    CONTROL         "",IDC_EP_EXTRUDE_TWIST_SPIN,"SpinnerControl",0x0,96,50,
+                    7,10
+    RTEXT           "Rotation",IDC_EXTRUDE_ROTATION_LABEL,5,65,50,8
+    CONTROL         "",IDC_EP_EXTRUDE_ROTATION,"CustEdit",WS_TABSTOP,58,65,
+                    36,10
+    CONTROL         "",IDC_EP_EXTRUDE_ROTATION_SPIN,"SpinnerControl",0x0,96,
+                    65,7,10
+    CONTROL         "Pick Spline",IDC_EP_EXTRUDE_PICK_SPLINE,"CustButton",
+                    WS_TABSTOP,7,80,94,11
+    CONTROL         "Align to face normal",IDC_EP_EXTRUDE_ALIGN_NORMAL,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,100,85,10
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""buildver.h""\r\n"
+    "#if defined(GAME_VER)\r\n"
+    "  #include ""mods_gmax.rc""\r\n"
+    "#endif\r\n"
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_SELTYPES            BITMAP  DISCARDABLE     "polysubs.bmp"
+IDB_SELMASK             BITMAP  DISCARDABLE     "polymask.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_FACE_EXTRUDE_MOD    "Face Extrude 2"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_FEX_TYPE            "Extrusion Type"
+    IDS_BASIC_OPS           "Basic Operations"
+    IDS_FEX_SCALE           "Scale"
+    IDS_FEX_AMOUNT          "Amount"
+    IDS_PARAMETERS          "Parameters"
+    IDS_FEX_CENTER          "Face Extrude Center"
+    IDS_MAX_STANDARD        "MAX STANDARD"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_VERTEX_CHAMFER_MOD  "Vertex Chamfer"
+    IDS_VCH_AMOUNT          "Amount"
+    IDS_EDGE_CHAMFER_MOD    "Edge Chamfer"
+    IDS_ECH_AMOUNT          "Amount"
+    IDS_VERTEX_WELD_MOD     "Vertex Weld"
+    IDS_VW_THRESHOLD        "Threshold"
+    IDS_SYMMETRY_MOD        "Symmetry"
+    IDS_SYM_MIRROR          "Mirror"
+    IDS_SYM_AXIS            "Axis"
+    IDS_SYM_THRESHOLD       "Threshold"
+    IDS_SYM_WELD            "Weld Seam"
+    IDS_SYM_SLICE           "Slice"
+    IDS_EDIT_POLY_MOD       "Edit Poly"
+    IDS_EP_EXTRUDE_FACE     "Extrude Face"
+    IDS_EP_CHAMFER_VERTEX   "Chamfer Vertex"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_EP_BREAK_VERTEX     "Break Vertex"
+    IDS_EP_WELD_VERTEX      "Weld Vertex"
+    IDS_EP_CHOOSE_OP        "Choose Edit"
+    IDS_EP_EDIT_TYPE        "Edit Poly Type"
+    IDS_WELD_THRESHOLD      "Weld Threshold"
+    IDS_EXTRUDE_HEIGHT      "Extrude Height"
+    IDS_EXTRUDE_WIDTH       "Extrude Width"
+    IDS_CHAMFER_AMOUNT      "Chamfer Amount"
+    IDS_EXTRUDE_TYPE        "Extrude Type"
+    IDS_EP_SELECTION        "Selection"
+    IDS_EP_SELECT_BY_VERTEX "Select by Vertex"
+    IDS_EP_IGNORE_BACKFACING "Ignore Backfacing"
+    IDS_EP_WELD_THRESHOLD   "Weld Threshold"
+    IDS_EP_CHAMFER_AMOUNT   "Chamfer Amount"
+    IDS_EP_EXTRUDE_HEIGHT   "Extrude Height"
+    IDS_EP_EXTRUDE_WIDTH    "Extrude Width"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_EP_EXTRUDE_TYPE     "Extrude Type"
+    IDS_EP_PARAMETERS       "Parameters"
+    IDS_EP_WHICHVERTSEL     "Vertex %d Selected"
+    IDS_EP_NUMVERTSEL       "%d Vertices Selected"
+    IDS_EP_WHICHEDGESEL     "Edge %d Selected"
+    IDS_EP_NUMEDGESEL       "%d Edges Selected"
+    IDS_EP_WHICHFACESEL     "Face %d Selected"
+    IDS_EP_NUMFACESEL       "%d Faces Selected"
+    IDS_EP_OBJECTSEL        "Whole Object Selected"
+    IDS_EP_VERTEX           "Vertex"
+    IDS_EP_EDGE             "Edge"
+    IDS_EP_FACE             "Face"
+    IDS_EP_BORDER           "Border"
+    IDS_EP_ELEMENT          "Element"
+    IDS_EP_EXPLICIT_SELECTION "Explicit Selection"
+    IDS_EP_GET_PIPE_SELECTION "Get Pipe Selection"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_EP_EXTRUDE_VERTEX   "Extrude Vertex"
+    IDS_EP_EXTRUDE_EDGE     "Extrude Edge"
+    IDS_EP_CHAMFER_EDGE     "Chamfer Edge"
+    IDS_EP_BEVEL_FACE       "Bevel Face"
+    IDS_EP_BEVEL_HEIGHT     "Bevel Height"
+    IDS_EP_BEVEL_OUTLINE    "Bevel Outline"
+    IDS_EP_EXTRUDE_ALONG_SPLINE "Extrude Along Spline"
+    IDS_EP_EXTRUDE_SEGMENTS "Extrude Along Spline Segments"
+    IDS_EP_EXTRUDE_TAPER    "Extrude Along Spline Taper"
+    IDS_EP_EXTRUDE_TAPER_CURVE "Extrude Along Spline Taper Curve"
+    IDS_EP_EXTRUDE_ROTATION "Extrude Along Spline Rotation"
+    IDS_EP_EXTRUDE_TWIST    "Extrude Along Spline Twist"
+    IDS_EP_EXTRUDE_ALIGN    "Extrude Along Spline Align to Face Normal"
+    IDS_EP_EXTRUDE_SPLINE   "Extrude Along Spline Node"
+    IDS_EP_PICK_SPLINE      "Pick Spline"
+    IDS_SYM_FLIP            "Flip"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_EP_COMMIT           "Commit"
+    IDS_EP_RETRIANGULATE    "Retriangulate"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#include "buildver.h"
+#if defined(GAME_VER)
+  #include "mods_gmax.rc"
+#endif
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,143 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "jpegrc.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+#include <dlgs.h>
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "jpegrc.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "#include <dlgs.h>\r\n"
+    "\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_JPEG_ABOUT DIALOG DISCARDABLE  0, 0, 166, 60
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "About JPEG Image File I/O"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,108,38,50,14
+    RTEXT           "JFIF File I/O Module",IDC_STATIC,37,9,118,9
+    RTEXT           "Version 1.0",IDC_STATIC,37,19,118,9
+    GROUPBOX        "",IDC_STATIC,6,2,153,31
+END
+
+IDD_JPEG_CONTROL DIALOG DISCARDABLE  0, 0, 201, 159
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "JPEG Image Control"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,37,138,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,109,138,50,14
+    CONTROL         "Generic1",IDC_QUALITY,"msctls_trackbar32",TBS_AUTOTICKS,
+                    16,33,166,19
+    CTEXT           "Worse",IDC_STATIC,12,21,23,11
+    CTEXT           "Best",IDC_STATIC,165,21,18,11
+    CTEXT           "100",IDC_QUALITY_TEXT,108,22,16,8
+    CONTROL         "Generic1",IDC_FILE_SIZE,"msctls_trackbar32",
+                    TBS_AUTOTICKS,16,66,166,19
+    CTEXT           "Small",IDC_STATIC,163,54,23,11
+    CTEXT           "Large",IDC_STATIC,14,53,19,11
+    CONTROL         "Generic1",IDC_SMOOTH,"msctls_trackbar32",TBS_AUTOTICKS,
+                    17,102,166,19
+    LTEXT           "Normal",IDC_STATIC,12,91,23,11
+    LTEXT           "Max",IDC_STATIC,168,91,15,11
+    CTEXT           "100",IDC_SMOOTH_TEXT,117,92,16,8
+    RTEXT           "Quality:",IDC_STATIC,76,21,30,11
+    CTEXT           "File Size",IDC_STATIC,85,56,30,11
+    RTEXT           "Smoothing:",IDC_STATIC,67,91,48,11
+    GROUPBOX        " Image Control ",IDC_STATIC,5,6,189,125
+END
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_JPEG                "JPEG"
+    IDS_JPEG_FILE           "JPEG File"
+    IDS_BITMAP_IO           "Bitmap I/O"
+    IDS_READ_ERROR          "Error Reading Jpeg File"
+    IDS_WRITE_ERROR         "Error Writing Jpeg File"
+    IDS_JPEG_DESC           "JPEG file I/O (Discreet)"
+    IDS_JPEGIO_INTERFACE    "JPeg File Interface"
+    IDS_JPEGIO_GETQUALITY   "Get Quality"
+    IDS_JPEGIO_SETQUALITY   "Set Quality"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_JPEGIO_GETSMOOTHING "Get Smoothing"
+    IDS_JPEGIO_SETSMOOTHING "Set Smoothing"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

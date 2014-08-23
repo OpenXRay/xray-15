@@ -1,0 +1,157 @@
+*****************************************************************************
+Copyright (C) 1995 - 2005 Alias Systems Corp. and/or its licensors.  All 
+rights reserved. 
+
+The coded instructions, statements, computer programs, and/or related 
+material (collectively the "Data") in these files are provided by Alias 
+Systems Corp. ("Alias") and/or its licensors for the exclusive use of the 
+Customer (as defined in the Alias Software License Agreement that 
+accompanies this Alias software). Such Customer has the right to use, 
+modify, and incorporate the Data into other products and to distribute such 
+products for use by end-users.
+
+THE DATA IS PROVIDED "AS IS".  ALIAS HEREBY DISCLAIMS ALL WARRANTIES 
+RELATING TO THE DATA, INCLUDING, WITHOUT LIMITATION, ANY AND ALL EXPRESS OR 
+IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY AND/OR FITNESS FOR A 
+PARTICULAR PURPOSE. IN NO EVENT SHALL ALIAS BE LIABLE FOR ANY DAMAGES 
+WHATSOEVER, WHETHER DIRECT, INDIRECT, SPECIAL, OR PUNITIVE, WHETHER IN AN 
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, OR IN EQUITY, 
+ARISING OUT OF ACCESS TO, USE OF, OR RELIANCE UPON THE DATA.
+*****************************************************************************
+
+Overview
+--------
+
+This is the documentation for the channelParse config file format and
+the channelParse utility function.  The channelParse code is provided
+only as an example and is NOT supported as part of the mocap library
+apart from its usage within the externServer.
+
+channelParse Config File Format
+-------------------------------
+
+channelParse Config files are of the form:
+
+BEGIN_CHANNEL_INFO 
+<list of channel or interpretation directives>
+END_CHANNEL_INFO
+
+Channel directives assign a range of input values to a named, typed,
+server data channel.  These directives are of the form:
+
+<channel type> <channel name>
+
+Where channel name is the unique name for the channel, and channel type is
+one of:
+
+Short   Long        Num
+Name    Name        Values
+-----   ----------  -------
+UNK     UNKNOWN     1
+POS     POSITION    3
+ROT     ROTATION    3
+QUAT    QUATERNION  4
+PR      POS_ROT     6
+PQ      POS_QUAT    7
+X       XPOS        1
+Y       YPOS        1
+Z       ZPOS        1
+RX      XROT        1
+RY      YROT        1
+RZ      ZROT        1
+SX      XSCALE      1
+SY      YSCALE      1
+SZ      ZSCALE      1
+S       SCALE       1
+SXYZ    SCALE3      3
+
+Interpretation directives control how **subsequent** channel directives
+interpret the incoming values.  These directives are of the form:
+
+<directive name> <directive argument>
+
+
+Short   Long        Argument   
+Name    Name        
+-----   ----------  -------
+RO      ROTORDER    <rotation order>
+OP      OFFSETPOS   float
+OR      OFFSETROT   float
+OS      OFFSETSCALE float
+SP      SCALEPOS    float
+SR      SCALEROT    float
+SS      SCALESCALE  float
+UN      UNIT        <unit name> 
+
+Unit Names:
+
+Short   Long
+Name    Name
+-----   -----
+DEG     DEGREE
+RAD     RADIAN
+MM      MILLIMETER
+CM      CENTIMETER
+M       METER
+IN      INCH
+FT      FOOT
+
+
+Rotation Order:
+
+Short   Long    Equivalent 
+Name    Name    Rotation order
+-----   -----   --------------
+XY      XYZ     CAP_ROT_XYZ      (depends on CAP_ROTATION_ORDER)
+XZ      XZY     CAP_ROT_XZY
+YX      YXZ     CAP_ROT_YXZ
+YZ      YZX     CAP_ROT_YZX
+ZX      ZXY     CAP_ROT_ZXY
+ZY      ZYX     CAP_ROT_ZYX
+
+KXY     KXYZ    CAP_ROT_XYZ_KIN  (Kinemation style, reversed from Maya)
+KXZ     KXZY    CAP_ROT_XZY_KIN
+KYX     KYXZ    CAP_ROT_YXZ_KIN
+KYZ     KYZX    CAP_ROT_YZX_KIN
+KZX     KZXY    CAP_ROT_ZXY_KIN
+KZY     KZYX    CAP_ROT_ZYX_KIN
+
+MXY     MXYZ    CAP_ROT_XYZ_MAYA (The same as the rotation orders in maya)
+MXZ     MXZY    CAP_ROT_XZY_MAYA
+MYX     MYXZ    CAP_ROT_YXZ_MAYA
+MYZ     MYZX    CAP_ROT_YZX_MAYA
+MZX     MZXY    CAP_ROT_ZXY_MAYA
+MZY     MZYX    CAP_ROT_ZYX_MAYA
+
+
+
+Channel Parse Utility Functions
+-------------------------------
+The interface to the channelParse parser and interpreter is 
+channelInfoCreate and channelInfoSetData. channelInfoCreate parses the 
+configuration file and creates a channel informationrecord for each 
+channel directive. channelInfoSetData applies the interpretation 
+directives to the raw data and sets the matching CapChannel values.
+
+The prototypes for these are:
+
+channelInfo *channelInfoCreate(
+    FILE *configFile,   /* the config file to read */
+    int lookForBegin,   /* if != 0 skip through file until BEGIN_CHANNEL_INFO
+                         * if 0, begin parsing a current file position. */
+    channelInfo *head); /* if != NULL, use as the head of the channelInfo
+                         * linked list. */
+
+/* Description:
+ *  Read the file open on "FILE" until finding an  END_CHANNEL_INFO
+ */
+
+void channelInfoSetData(
+    channelInfo *chan,    /* channel to set, head of linked list iff follow */
+    int         follow,   /* SetData for all channels linked to chan */
+    float       *rawData);/* raw data to set.  If null use the "current"
+                           * value field of the channelInfo struct. */
+/* Description:
+ *  Using the rawData values, compute and set the CapChannel data
+ *  in the server channels corresponding to chan (and following).
+ */

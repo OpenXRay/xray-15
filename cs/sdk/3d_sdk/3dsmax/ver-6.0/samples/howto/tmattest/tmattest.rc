@@ -1,0 +1,293 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAIN DIALOG DISCARDABLE  0, 0, 108, 156
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Use Translation",IDC_CHECK_USE_TR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,19,18,69,10
+    CONTROL         "Use Scaling",IDC_CHECK_USE_SC,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,19,30,58,10
+    CONTROL         "Use X rotation",IDC_CHECK_USE_X,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,19,42,64,10
+    CONTROL         "Use Y rotation",IDC_CHECK_USE_Y,"Button",
+                    BS_AUTOCHECKBOX,19,54,67,10
+    CONTROL         "Use Z rotation",IDC_CHECK_USE_Z,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,19,66,67,10
+    PUSHBUTTON      "Update Node TM",IDC_NODE_TM,17,81,72,14
+    CONTROL         "Auto Update TM",IDC_CHECK_AUTO,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,19,100,67,10
+    PUSHBUTTON      "View Current Matrix",IDC_VIEW_CURRENT,8,119,92,14
+    PUSHBUTTON      "Reset to Defaults",IDC_RESET,8,135,92,14
+    GROUPBOX        "Apply Transform to Node",IDC_STATIC,8,6,92,109
+END
+
+IDD_ROT DIALOG DISCARDABLE  0, 0, 108, 157
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_SEDIT_ROT,"CustEdit",WS_TABSTOP,56,29,30,9
+    PUSHBUTTON      "View Matrix",IDC_BUTTON_VIEW,20,133,69,14
+    LTEXT           "|  1  0  0  |",IDC_MATLINE1,33,98,44,8
+    LTEXT           "s = (float) sin(angle);",IDC_STATIC,17,76,68,8
+    LTEXT           "c = (float) cos(angle);",IDC_STATIC,17,58,71,8
+    LTEXT           "|  0 -s  c  |",IDC_MATLINE3,33,114,43,8
+    LTEXT           "|  0  c  s  |",IDC_MATLINE2,33,106,43,8
+    CONTROL         "",IDC_SPIN_ROT,"SpinnerControl",0x0,88,29,6,9
+    LTEXT           "Angle (deg):",IDC_STATIC,14,29,39,8
+    CTEXT           "c = xxxx.xxxx",IDC_C,28,67,46,8
+    CTEXT           "s = xxxx.xxxx",IDC_S,27,88,45,8
+    CONTROL         "X",IDC_RADIOX,"Button",BS_AUTORADIOBUTTON,35,15,21,10
+    CONTROL         "Y",IDC_RADIOY,"Button",BS_AUTORADIOBUTTON,57,15,21,10
+    CONTROL         "Z",IDC_RADIOZ,"Button",BS_AUTORADIOBUTTON,77,15,21,10
+    LTEXT           "Axis:",IDC_STATIC,16,16,16,8
+    GROUPBOX        "Choose Axis -- Enter Angle",IDC_STATIC,5,4,98,40,
+                    BS_CENTER
+    GROUPBOX        "X Rotation Matrix Layout",IDC_BORDER,5,47,98,105,
+                    BS_CENTER
+    LTEXT           "|  0  0  0  |",IDC_MATLINE4,33,122,43,8
+END
+
+IDD_TRANS DIALOG DISCARDABLE  0, 0, 108, 99
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_SEDIT_XTR,"CustEdit",WS_TABSTOP,56,5,34,9
+    CONTROL         "",IDC_SEDIT_YTR,"CustEdit",WS_TABSTOP,56,17,34,9
+    CONTROL         "",IDC_SEDIT_ZTR,"CustEdit",WS_TABSTOP,56,29,34,9
+    PUSHBUTTON      "View Matrix",IDC_BUTTON_EDITTR,9,78,90,14
+    LTEXT           "|  1  0  0  |",IDC_STATIC,34,42,32,8
+    LTEXT           "|  0  0  1  |",IDC_STATIC,34,58,32,8
+    LTEXT           "|  0  1  0  |",IDC_STATIC,34,50,32,8
+    CONTROL         "",IDC_SPIN_XTR,"SpinnerControl",0x0,92,5,6,9
+    LTEXT           "X translate",IDC_STATIC,14,6,40,8
+    CONTROL         "",IDC_SPIN_YTR,"SpinnerControl",0x0,92,17,6,9
+    LTEXT           "Y translate",IDC_STATIC,15,18,40,8
+    CONTROL         "",IDC_SPIN_ZTR,"SpinnerControl",0x0,92,29,6,9
+    LTEXT           "Z translate",IDC_STATIC,15,30,40,8
+    LTEXT           "|  x  y  z   |",IDC_STATIC,34,66,32,8
+END
+
+IDD_SCALE DIALOG DISCARDABLE  0, 0, 108, 101
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_SEDIT_XSC,"CustEdit",WS_TABSTOP,50,5,34,9
+    CONTROL         "",IDC_SEDIT_YSC,"CustEdit",WS_TABSTOP,50,17,34,9
+    CONTROL         "",IDC_SEDIT_ZSC,"CustEdit",WS_TABSTOP,50,29,34,9
+    PUSHBUTTON      "View Matrix",IDC_BUTTON_EDITSC,9,80,90,14
+    LTEXT           "|  x  0  0  |",IDC_STATIC,34,43,39,8
+    LTEXT           "|  0  0  z  |",IDC_STATIC,34,59,39,8
+    LTEXT           "|  0  y  0  |",IDC_STATIC,34,51,39,8
+    CONTROL         "",IDC_SPIN_XSC,"SpinnerControl",0x0,86,5,6,9
+    LTEXT           "X scale",IDC_STATIC,20,5,28,8
+    CONTROL         "",IDC_SPIN_YSC,"SpinnerControl",0x0,86,17,6,9
+    LTEXT           "Y scale",IDC_STATIC,20,17,28,8
+    CONTROL         "",IDC_SPIN_ZSC,"SpinnerControl",0x0,86,29,6,9
+    LTEXT           "Z scale",IDC_STATIC,20,29,30,8
+    LTEXT           "|  0  0  0  |",IDC_STATIC,34,67,39,8
+END
+
+IDD_VIEW DIALOG DISCARDABLE  0, 0, 274, 119
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "View Transformation Matrix"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,110,98,50,14
+    EDITTEXT        IDC_M00,56,24,50,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_M10,56,41,50,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_M20,56,59,50,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_M30,56,76,50,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_M01,109,24,50,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_M11,109,41,50,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_M21,109,59,50,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_M31,109,77,50,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_M02,162,24,50,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_M12,162,41,50,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_M22,162,59,50,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_M32,162,77,50,14,ES_AUTOHSCROLL | ES_READONLY
+    CTEXT           "4x3 Transformation Matrix Values",IDC_VIEW_TITLE,1,8,
+                    272,8
+END
+
+IDD_VIEW_TM DIALOG DISCARDABLE  0, 0, 108, 152
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "GetNoteTM()",IDC_NODETM,8,21,92,14
+    PUSHBUTTON      "GetObjectTM()",IDC_OBJECTTM,8,37,92,14
+    PUSHBUTTON      "GetObjTMBeforeWSM()",IDC_OBJTMBEFORE,8,69,92,14
+    PUSHBUTTON      "GetObjTMAfterWSM()",IDC_OBJTMAFTER,8,85,92,14
+    PUSHBUTTON      "GetParent()",IDC_PARENTTM,8,101,92,14
+    PUSHBUTTON      "GetTargetTM()",IDC_TARGETTM,8,117,92,14
+    PUSHBUTTON      "ObjectState.GetTM()",IDC_OBJECTSTATE,8,133,92,14
+    PUSHBUTTON      "Show TM Controller",IDC_TM,7,5,93,14
+    PUSHBUTTON      "Object Offset Transform",IDC_OBJ_OFFSET,8,53,92,14
+END
+
+IDD_VIEW_FLOAT DIALOG DISCARDABLE  0, 0, 270, 170
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "View Transformation Matrix"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_M00,63,78,50,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_M10,63,95,50,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_M20,63,113,50,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_M30,63,131,50,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_M01,117,78,50,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_M11,117,95,50,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_M21,117,113,50,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_M31,117,131,50,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_M02,169,78,50,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_M12,169,95,50,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_M22,169,113,50,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_M32,169,131,50,14,ES_AUTOHSCROLL | ES_READONLY
+    CTEXT           "Start Value:",IDC_VIEW_TITLE,51,16,170,8
+    GROUPBOX        "Matrix Validity Interval",IDC_STATIC,9,4,254,57
+    GROUPBOX        "4x3 Matrix Values",IDC_STATIC,9,65,254,89
+    CTEXT           "Start Value:",IDC_VIEW_TITLE2,51,26,170,8
+    CTEXT           "Start Value:",IDC_VIEW_TITLE3,51,36,170,8
+    CTEXT           "Start Value:",IDC_VIEW_TITLE4,51,46,170,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_MAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 106
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 154
+    END
+
+    IDD_ROT, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 106
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 155
+    END
+
+    IDD_TRANS, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 106
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 97
+    END
+
+    IDD_SCALE, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 106
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 99
+    END
+
+    IDD_VIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 1
+        RIGHTMARGIN, 273
+        TOPMARGIN, 1
+        BOTTOMMARGIN, 117
+    END
+
+    IDD_VIEW_TM, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 106
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 150
+    END
+
+    IDD_VIEW_FLOAT, DIALOG
+    BEGIN
+        LEFTMARGIN, 1
+        RIGHTMARGIN, 269
+        TOPMARGIN, 1
+        BOTTOMMARGIN, 168
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

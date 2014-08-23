@@ -1,0 +1,116 @@
+<html>
+
+<head>
+<title>Globals: Raster Services</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="prodinfo.html"><img width="96" height="20"
+    border="0" src="../images/navlt.gif" alt="Product Info"></a></td>
+    <td width="96" align="left"><a href="sceneinf.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Scene Info"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Raster Services</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwpanel.h">lwpanel.h</a></small></p>
+    <p>Raster services are a set of functions for manipulating bitmaps (rasters) used as
+    interface elements in your <a href="panel.html">panels</a>. A raster isn't visible until
+    you call <tt>blitPanel</tt> to draw it on a panel.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWRasterFuncs *rastf;
+   rastf = global( LWRASTERFUNCS_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWRasterFuncs.</p>
+    <pre>   typedef struct st_LWRasterFuncs {
+      void       (*<strong>drawPixel</strong>)   (LWRasterID, int color, int x, int y);
+      void       (*<strong>drawRGBPixel</strong>)(LWRasterID, int r, int g, int b,
+                                   int x, int y);
+      void       (*<strong>drawLine</strong>)    (LWRasterID, int color, int x, int y,
+                                   int x2, int y2);
+      void       (*<strong>drawBox</strong>)     (LWRasterID, int color, int x, int y,
+                                   int w, int h);
+      void       (*<strong>drawRGBBox</strong>)  (LWRasterID, int r, int g, int b,
+                                   int x, int y, int w, int h);
+      void       (*<strong>eraseBox</strong>)    (LWRasterID, int x, int y, int w,
+                                   int h);
+      void       (*<strong>drawBorder</strong>)  (LWRasterID, int indent, int x, int y,
+                                   int w, int h);
+      void       (*<strong>drawText</strong>)    (LWRasterID, char *, int color, int x,
+                                   int y);
+      LWRasterID (*<strong>create</strong>)      (int w, int h, int flags);
+      void       (*<strong>destroy</strong>)     (LWRasterID);
+      void       (*<strong>blitPanel</strong>)   (LWRasterID, int x, int y, LWPanelID,
+                                   int x, int y, int w, int h);
+   } LWRasterFuncs;</pre>
+    <dl>
+      <tt>
+      <dt><strong>drawPixel</strong>( raster, color, x, y )<br>
+        <strong>drawRGBPixel</strong>( raster, r, g, b, x, y )</dt>
+      </tt>
+      <dd>Set the color of a pixel. The color is either one of the predefined colors in lwpanel.h
+        or 8-bit levels of red, green and blue.</dd>
+      <tt>
+      <dt><br>
+        <strong>drawLine</strong>( raster, color, x, y, x2, y2 )</dt>
+      </tt>
+      <dd>Draw a line from (<tt>x</tt>, <tt>y</tt>) to (<tt>x2</tt>, <tt>y2</tt>) inclusive.</dd>
+      <tt>
+      <dt><br>
+        <strong>drawBox</strong>( raster, color, x, y, w, h )<br>
+        <strong>drawRGBBox</strong>( raster, r, g, b, x, y, w, h )<br>
+        <strong>eraseBox</strong>( raster, x, y, w, h )</dt>
+      </tt>
+      <dd>Draw a filled box. The color for <tt>eraseBox</tt> is the panel's background color.</dd>
+      <tt>
+      <dt><br>
+        <strong>drawBorder</strong>( raster, indent, x, y, w, h )</dt>
+      </tt>
+      <dd>Draw a LightWave&reg;-style rectangular border. The <tt>indent</tt> controls the border
+        thickness.</dd>
+      <tt>
+      <dt><br>
+        <strong>drawText</strong>( raster, text, color, x, y )</dt>
+      </tt>
+      <dd>Draw a line of text. The coordinates specify the upper left corner of the first
+        character cell. You can get information about the pixel dimensions of the text using the
+        LWDisplayMetrics functions returned by the <a href="panel.html">Panels</a> global.</dd>
+      <tt>
+      <dt><br>
+        raster = <strong>create</strong>( w, h, flags )</dt>
+      </tt>
+      <dd>Create a raster. No flags are currently defined, so <tt>flags</tt> should be 0.</dd>
+      <tt>
+      <dt><br>
+        <strong>destroy</strong>( raster )</dt>
+      </tt>
+      <dd>Free a raster.</dd>
+      <tt>
+      <dt><br>
+        <strong>blitPanel</strong>( raster, srcx, srcy, panel, dstx, dsty, w, h )</dt>
+      </tt>
+      <dd>Transfer a raster image, or part of one, to the surface of a panel. <tt>srcx</tt> and <tt>srcy</tt>
+        are the upper left corner of the source rectangle, while <tt>dstx</tt> and <tt>dsty</tt>
+        are the upper left corner of the destination, relative to the upper left corner of the
+        panel window.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>The <a href="../../sample/Layout/Generic/binview/">binview</a> SDK sample makes extensive use of the
+    raster functions to create and display its own fixed-pitch font glyphs. It also uses a
+    raster to display an icon.</td>
+  </tr>
+</table>
+</body>
+</html>

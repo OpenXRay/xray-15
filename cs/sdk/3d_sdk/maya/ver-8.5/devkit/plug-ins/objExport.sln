@@ -1,0 +1,32 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "objExport", "objExport.vcproj", "{B2E57368-EC68-4951-BDC4-7DBDA23E110C}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 1
+		SccProjectUniqueName0 = objExport.vcproj
+		SccProjectName0 = Perforce\u0020Project
+		SccLocalPath0 = .
+		SccProvider0 = MSSCCI:Perforce\u0020SCM
+		CanCheckoutShared = true
+	EndGlobalSection
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+		ReleaseDebug = ReleaseDebug
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{B2E57368-EC68-4951-BDC4-7DBDA23E110C}.Debug.ActiveCfg = Debug|Win32
+		{B2E57368-EC68-4951-BDC4-7DBDA23E110C}.Debug.Build.0 = Debug|Win32
+		{B2E57368-EC68-4951-BDC4-7DBDA23E110C}.Release.ActiveCfg = Release|Win32
+		{B2E57368-EC68-4951-BDC4-7DBDA23E110C}.Release.Build.0 = Release|Win32
+		{B2E57368-EC68-4951-BDC4-7DBDA23E110C}.ReleaseDebug.ActiveCfg = ReleaseDebug|Win32
+		{B2E57368-EC68-4951-BDC4-7DBDA23E110C}.ReleaseDebug.Build.0 = ReleaseDebug|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

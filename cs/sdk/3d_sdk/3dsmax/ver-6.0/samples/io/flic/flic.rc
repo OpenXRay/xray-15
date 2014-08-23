@@ -1,0 +1,178 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include <windows.h>
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_FLC_CONTROL DIALOG DISCARDABLE  0, 0, 311, 111
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "FLC  Image Control"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Palette Method:",IDC_STATIC,11,8,51,8
+    DEFPUSHBUTTON   "OK",IDOK,82,90,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,169,90,50,14
+    CONTROL         "Low",IDC_PAL_LOW,"Button",BS_AUTORADIOBUTTON | WS_GROUP | 
+                    WS_TABSTOP,18,21,111,10
+    CONTROL         "Medium",IDC_PAL_MED,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,18,38,111,10
+    CONTROL         "Custom: Use Palette from File:",IDC_PAL_CUSTOM,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,18,54,111,10
+    CONTROL         "Uniform Palette",IDC_PAL_UNIFORM,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,18,71,111,10
+    LTEXT           "Number of Palette Colors:",IDC_STATIC,145,29,90,8
+    CONTROL         "",IDC_PALCOLS,"CustEdit",WS_TABSTOP,229,27,32,10
+    CONTROL         "0,255,0",IDC_PALCOLS_SPIN,"SpinnerControl",0x0,262,27,7,
+                    10
+    LTEXT           "Filename",IDC_CUST_PALFILE,142,55,145,8
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,138,50,155,17
+    PUSHBUTTON      "Browse ..",IDC_LOAD_PAL,187,69,47,14
+END
+
+IDD_ABOUT DIALOG DISCARDABLE  0, 0, 171, 66
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About Flic Image File I/O"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,109,46,50,14
+    RTEXT           "Flic File I/O Module",IDC_STATIC,37,9,118,9
+    RTEXT           "Version 1.0",IDC_STATIC,37,19,118,9
+    GROUPBOX        "",IDC_STATIC,7,2,152,30
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include <windows.h>\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_FLC_CONTROL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 304
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 104
+    END
+
+    IDD_ABOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 164
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 59
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_FLIC                "Flic"
+    IDS_FLIC_FILE           "Autodesk Flic Image File"
+    IDS_FLIC_CLASS          "Autodesk Animator Flic"
+    IDS_BITMAP_IO           "Bitmap I/O"
+    IDS_FLIC_NORAM          "No RAM for Flic quantization tables."
+    IDS_CANT_OPEN_FLIC      "Can't open Flic  file for processing"
+    IDS_ERROR_READ          "Error reading Flic for processing."
+    IDS_CANT_CREATE         "Can't create Flic file"
+    IDS_WRITE_ERROR         "Error writing Flic File"
+    IDS_FLIC_WRITE          "Writing Flic"
+    IDS_PAL_ERROR           "Error Creating Palette"
+    IDS_SELECT_PALFILE      "Select Palette File"
+    IDS_COULDNT_OPEN        "Couldn't open file."
+    IDS_NO_PALETTE          "Bitmap doesn't have a palette"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PALFILE_ERROR       "Palette File Error"
+    IDS_LOAD_PALETTE        "Load Palette"
+    IDS_BAD_FILE            "Bad Flic File"
+    IDS_FILE_READ_ERROR     "Error Reading Flic File"
+    IDS_FINISH_ERROR        "Error finishing flic"
+    IDS_CLOSE_ERROR         "Error closing output flic"
+    IDS_FLIC_DESC           "FLI/FLC file I/O (Discreet)"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

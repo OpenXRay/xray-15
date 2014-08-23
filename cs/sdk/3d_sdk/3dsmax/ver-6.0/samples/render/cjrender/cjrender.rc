@@ -1,0 +1,182 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+#include "..\..\..\include\buildver.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+#if defined(APSTUDIO_INVOKED) || !defined(TABBED_RENDER_DIALOG)
+IDD_CCJRENDERDLG DIALOG  0, 0, 281, 76
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Options",IDC_STATIC,7,7,187,62
+    CONTROL         "",IDC_DEPTH,"CustEdit",WS_TABSTOP,87,26,25,10
+    CONTROL         "",IDC_DEPTH_SPIN,"SpinnerControl",0x0,113,26,7,10
+    RTEXT           "RayTrace Depth:",IDC_STATIC,23,26,61,8
+    CONTROL         "None",IDC_AA_NONE,"Button",BS_AUTORADIOBUTTON,211,22,33,
+                    10
+    CONTROL         "Medium",IDC_AA_MEDIUM,"Button",BS_AUTORADIOBUTTON,211,
+                    36,41,10
+    CONTROL         "High",IDC_AA_HIGH,"Button",BS_AUTORADIOBUTTON,211,50,31,
+                    10
+    GROUPBOX        "Antialiasing",IDC_STATIC,199,7,75,62
+    CONTROL         "Reflect environment",IDC_REFLENV,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,30,45,79,10
+END
+#endif
+
+IDD_CCJRENDERDLG_PROG DIALOG  0, 0, 222, 46
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    RTEXT           "RayTrace Depth:",IDC_STATIC,7,8,74,8
+    LTEXT           "0",IDC_PROG_DEPTH,85,8,78,8
+    RTEXT           "Antialias Level:",IDC_STATIC,7,19,74,8
+    LTEXT           "0",IDC_PROG_ANTIALIAS,85,19,78,8
+    RTEXT           "Reflect Environment",IDC_STATIC,7,30,74,8
+    LTEXT           "0",IDC_PROG_REFLENV,85,30,78,8
+END
+
+#if defined(APSTUDIO_INVOKED) || defined(TABBED_RENDER_DIALOG)
+#if defined(APSTUDIO_INVOKED)
+IDD_CCJRENDERDLG$(TABBED_RENDER_DIALOG) DIALOG  0, 0, 211, 76
+#else
+IDD_CCJRENDERDLG DIALOG  0, 0, 211, 76
+#endif
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Options",IDC_STATIC,7,7,118,62
+    CONTROL         "",IDC_DEPTH,"CustEdit",WS_TABSTOP,81,26,25,10
+    CONTROL         "",IDC_DEPTH_SPIN,"SpinnerControl",0x0,107,26,7,10
+    RTEXT           "RayTrace Depth:",IDC_STATIC,17,26,61,8
+    CONTROL         "None",IDC_AA_NONE,"Button",BS_AUTORADIOBUTTON,142,22,33,
+                    10
+    CONTROL         "Medium",IDC_AA_MEDIUM,"Button",BS_AUTORADIOBUTTON,142,
+                    36,41,10
+    CONTROL         "High",IDC_AA_HIGH,"Button",BS_AUTORADIOBUTTON,142,50,31,
+                    10
+    GROUPBOX        "Antialiasing",IDC_STATIC,130,7,75,62
+    CONTROL         "Reflect environment",IDC_REFLENV,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,24,45,79,10
+END
+#endif
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_CCJRENDERDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 274
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 69
+    END
+
+    IDD_CCJRENDERDLG_PROG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 215
+        TOPMARGIN, 8
+        BOTTOMMARGIN, 39
+    END
+
+    "IDD_CCJRENDERDLG$(TABBED_RENDER_DIALOG)", DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 204
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 69
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "#include ""..\\..\\..\\include\\buildver.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_YES                 "Yes"
+    IDS_NO                  "No"
+    IDS_LIB_DESCRIPTION     "Sample renderer (Discreet)"
+    IDS_TAB_ROLLOUT         "Sample Renderer"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

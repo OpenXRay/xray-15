@@ -1,0 +1,444 @@
+<html>
+
+<head>
+<title>File I/O</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="dynaval.html"><img width="96" height="20" border="0"
+    src="images/navlt.gif" alt="DynaValues"></a></td>
+    <td width="96" align="left"><a href="imageio.html"><img width="64" height="20" border="0"
+    src="images/navrt.gif" alt="Image I/O"></a></td>
+    <td width="384" align="right"><a href="index.html"><img width="230" height="20" border="0"
+    src="images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>File I/O</h3>
+    <p>This page describes the mechanism LightWave provides to move plug-in data into and out
+    of files. The file I/O functions are used by <a href="handler.html">handlers</a> in their <tt>load</tt>
+    and <tt>save</tt> callbacks to store and retrieve instance data in scene and object files.
+    These functions can also be used by any plug-in class to read and write files accessed
+    through the <a href="globals/fileio.html">File I/O</a> global.</p>
+    <p><strong>Loading</strong></p>
+    <p>Data is loaded from files using the functions in an LWLoadState. The <tt>lwio.h</tt>
+    header file also defines macros for most of these functions. Both the functions and the
+    corresponding macros are listed in the definitions.</p>
+    <pre>   typedef struct st_LWLoadState {
+      int   <strong>ioMode</strong>;
+      void *<strong>readData</strong>;
+      int  (*<strong>read</strong>)    (void *data, char  *, int len);
+      int  (*<strong>readI1</strong>)  (void *data, char  *, int n);
+      int  (*<strong>readI2</strong>)  (void *data, short *, int n);
+      int  (*<strong>readI4</strong>)  (void *data, long  *, int n);
+      int  (*<strong>readU1</strong>)  (void *data, unsigned char  *, int n);
+      int  (*<strong>readU2</strong>)  (void *data, unsigned short *, int n);
+      int  (*<strong>readU4</strong>)  (void *data, unsigned long  *, int n);
+      int  (*<strong>readFP</strong>)  (void *data, float *, int n);
+      int  (*<strong>readStr</strong>) (void *data, char  *, int max);
+      LWID (*<strong>findBlk</strong>) (void *data, const LWBlockIdent *);
+      void (*<strong>endBlk</strong>)  (void *data);
+      int  (*<strong>depth</strong>)   (void *data);
+   } LWLoadState;</pre>
+    <dl>
+      <dt><strong><tt>ioMode</tt></strong></dt>
+      <dd>Indicates whether the file contents will be interpreted as binary (<tt>LWIO_BINARY</tt>)
+        or text (<tt>LWIO_ASCII</tt>). Handler plug-ins that receive the LWLoadState in their
+        instance load function can usually infer from the <tt>ioMode</tt> whether they're reading
+        their data from a scene file or an object file. If the LWLoadState is created by the <a
+        href="globals/fileio.html">File I/O</a> global's <tt>openLoad</tt> function, the <tt>ioMode</tt>
+        matches the one passed to <tt>openLoad</tt>. This global supports a third <tt>ioMode</tt>,
+        <tt>LWIO_BINARY_IFF</tt>.<p>In ASCII mode, all of the read functions are line-buffered,
+        meaning that they won't wrap around to the next line when reading an array of values. If
+        you ask for six numbers and the current line contains only five, the read functions will
+        return five values rather than trying to get the sixth from the following line.</p>
+      </dd>
+      <dt><strong><tt>readData</tt></strong></dt>
+      <dd>An opaque pointer to data used by the LWLoadState functions. Pass this as the first
+        argument to these functions.</dd>
+      <dt><tt><br>
+        rn = <strong>read</strong>( readData, buf, n )</tt></dt>
+      <dd>Read raw bytes. In binary mode, <tt>n</tt> bytes are read directly from the file. In
+        ASCII mode, up to <tt>n</tt> bytes of the current line are read from the file, possibly
+        leaving more bytes to be read later (the file pointer isn't moved to the next line until
+        all of the current line is read). The return value is the number of bytes actually read
+        (which may be zero in ASCII mode if the current line is empty), or -1 for end of data.</dd>
+      <dt><tt><br>
+        rn = <strong>readI1</strong>( readData, bytebuf, n )<br>
+        rn = <strong>LWLOAD_I1</strong>( ls, bytebuf, n )</tt></dt>
+      <dd>Read an array of bytes. These are interpreted as numbers rather than text characters.
+        Returns the number of bytes read.</dd>
+      <dt><tt><br>
+        rn = <strong>readI2</strong>( readData, shortbuf, n )<br>
+        rn = <strong>LWLOAD_I2</strong>( ls, shortbuf, n )</tt></dt>
+      <dd>Read an array of two-byte integers. Returns the number of short integers read.</dd>
+      <dt><tt><br>
+        rn = <strong>readI4</strong>( readData, longbuf, n )<br>
+        rn = <strong>LWLOAD_I4</strong>( ls, longbuf, n )</tt></dt>
+      <dd>Read an array of four-byte integers. Returns the number of integers read.</dd>
+      <dt><tt><br>
+        rn = <strong>readU1</strong>( readData, ubytebuf, n )<br>
+        rn = <strong>LWLOAD_U1</strong>( ls, ubytebuf, n )</tt></dt>
+      <dd>Read an array of unsigned bytes. These are interpreted as numbers rather than text
+        characters. Returns the number of bytes read.</dd>
+      <dt><tt><br>
+        rn = <strong>readU2</strong>( readData, ushortbuf, n )<br>
+        rn = <strong>LWLOAD_U2</strong>( ls, ushortbuf, n )</tt></dt>
+      <dd>Read an array of unsigned two-byte integers. Returns the number of short integers read.</dd>
+      <dt><tt><br>
+        rn = <strong>readU4</strong>( readData, ulongbuf, n )<br>
+        rn = <strong>LWLOAD_U4</strong>( ls, ulongbuf, n )</tt></dt>
+      <dd>Read an array of unsigned four-byte integers. Returns the number of integers read.</dd>
+      <dt><tt><br>
+        rn = <strong>readFP</strong>( readData, floatbuf, n )<br>
+        rn = <strong>LWLOAD_FP</strong>( ls, floatbuf, n )</tt></dt>
+      <dd>Read an array of floating point numbers. Returns the number of floats read.</dd>
+      <dt><tt><br>
+        len = <strong>readStr</strong>( readData, strbuf, maxn )<br>
+        len = <strong>LWLOAD_STR</strong>( ls, strbuf, maxn )</tt></dt>
+      <dd>Read a string. Double quotes used to delimit the string in a text file are removed.
+        Returns the length of the string.</dd>
+      <dt><tt><br>
+        id = <strong>findBlk</strong>( readData, idlist )<br>
+        id = <strong>LWLOAD_FIND</strong>( ls, idlist )</tt></dt>
+      <dd>Read ahead, looking for the next block. The ID list is a 0-terminated array of
+        LWBlockIdent structures, and the function returns when it finds any one of the blocks in
+        the list. In binary mode, a block is identified by a 4-byte integer constructed using the <tt>LWID_</tt>
+        macro defined in the <tt>lwtypes.h</tt> header file. In ASCII mode, the block ID is a
+        string token. Returns 0 if no blocks in the list were found.</dd>
+      <dt><tt><br>
+        <strong>endBlk</strong>( readData )<br>
+        <strong>LWLOAD_END</strong>( ls )</tt></dt>
+      <dd>Move the file pointer to the end of the current block. Call this when you've finished
+        reading a block.</dd>
+      <dt><tt><br>
+        d = <strong>depth</strong>( readData)<br>
+        d = <strong>LWLOAD_DEPTH</strong>( ls )</tt></dt>
+      <dd>Returns the current block nesting level, where 0 means we've entered no blocks.</dd>
+    </dl>
+    <p><strong>Saving</strong></p>
+    <p>Data is saved to files using the functions in an LWSaveState.</p>
+    <pre>   typedef struct st_LWSaveState {
+      int   <strong>ioMode</strong>;
+      void *<strong>writeData</strong>;
+      void (*<strong>write</strong>)    (void *data, const char  *, int len);
+      void (*<strong>writeI1</strong>)  (void *data, const char  *, int n);
+      void (*<strong>writeI2</strong>)  (void *data, const short *, int n);
+      void (*<strong>writeI4</strong>)  (void *data, const long  *, int n);
+      void (*<strong>writeU1</strong>)  (void *data, const unsigned char  *, int n);
+      void (*<strong>writeU2</strong>)  (void *data, const unsigned short *, int n);
+      void (*<strong>writeU4</strong>)  (void *data, const unsigned long  *, int n);
+      void (*<strong>writeFP</strong>)  (void *data, const float *, int n);
+      void (*<strong>writeStr</strong>) (void *data, const char  *);
+      void (*<strong>beginBlk</strong>) (void *data, const LWBlockIdent *, int leaf);
+      void (*<strong>endBlk</strong>)   (void *data);
+      int  (*<strong>depth</strong>)    (void *data);
+   } LWSaveState;</pre>
+    <dl>
+      <dt><strong><tt>ioMode</tt></strong></dt>
+      <dd>Indicates whether the file contents will be interpreted as binary (<tt>LWIO_BINARY</tt>)
+        or text (<tt>LWIO_ASCII</tt>). Handler plug-ins that receive the LWSaveState in their
+        instance save function can usually infer from the <tt>ioMode</tt> whether they're writing
+        their data to a scene file or an object file. If the LWSaveState is created by the <a
+        href="globals/fileio.html">File I/O</a> global's <tt>openSave</tt> function, the <tt>ioMode</tt>
+        matches the one passed to <tt>openSave</tt>. This global supports a third <tt>ioMode</tt>,
+        <tt>LWIO_BINARY_IFF</tt>.<p>In ASCII mode, the write functions are line-buffered, meaning
+        that each call to a write function results in a single newline-terminated line in the
+        file.</p>
+      </dd>
+      <dt><tt><strong>writeData</strong></tt></dt>
+      <dd>An opaque pointer to data used by the LWSaveState functions. Pass this as the first
+        argument to these functions.</dd>
+      <dt><tt><br>
+        <strong>write</strong>( writeData, buf, len )</tt></dt>
+      <dd>Write raw bytes. In binary mode, <tt>len</tt> bytes are written directly to the file. In
+        ASCII mode, the <tt>buf</tt> argument is assumed to be a null-terminated string and the
+        length is computed from that. This string is written with a newline at the end.</dd>
+      <dt><tt><br>
+        <strong>writeI1</strong>( writeData, bytebuf, n )<br>
+        <strong>LWSAVE_I1</strong>( ss, bytebuf, n )</tt></dt>
+      <dd>Write an array of bytes. The values are treated as numbers rather than text characters.</dd>
+      <dt><tt><br>
+        <strong>writeI2</strong>( writeData, shortbuf, n )<br>
+        <strong>LWSAVE_I2</strong>( ss, shortbuf, n )</tt></dt>
+      <dd>Write an array of two-byte integers. In ASCII mode, these <tt>n</tt> numbers are all
+        written to a single line. A newline is written after the numbers unless you're currently
+        inside a leaf block.</dd>
+      <dt><tt><br>
+        <strong>writeI4</strong>( writeData, longbuf, n )<br>
+        <strong>LWSAVE_I4</strong>( ss, longbuf, n )</tt></dt>
+      <dd>Write an array of four-byte integers.</dd>
+      <dt><tt><strong><br>
+        writeU1</strong>( writeData, ubytebuf, n )<br>
+        <strong>LWSAVE_U1</strong>( ss, ubytebuf, n )</tt></dt>
+      <dd>Write an array of unsigned bytes. The values are treated as numbers rather than text
+        characters. In text files, each byte is written as a pair of hexadecimal digits.</dd>
+      <dt><tt><br>
+        <strong>writeU2</strong>( writeData, ushortbuf, n )<br>
+        <strong>LWSAVE_U2</strong>( ss, ushortbuf, n )</tt></dt>
+      <dd>Write an array of unsigned two-byte integers. In text files, the values are written in
+        hex.</dd>
+      <dt><tt><br>
+        <strong>writeU4</strong>( writeData, ulongbuf, n )<br>
+        <strong>LWSAVE_U4</strong>( ss, ulongbuf, n )</tt></dt>
+      <dd>Write an array of unsigned four-byte integers. In text files, the values are written in
+        hex.</dd>
+      <dt><tt><br>
+        <strong>writeFP</strong>( writeData, floatbuf, n )<br>
+        <strong>LWSAVE_FP</strong>( ss, floatbuf, n )</tt></dt>
+      <dd>Write an array of floats.</dd>
+      <dt><tt><br>
+        <strong>writeStr</strong>( writeData, strbuf )<br>
+        <strong>LWSAVE_STR</strong>( ss, strbuf )</tt></dt>
+      <dd>Write a string. In ASCII mode, the string may be contained in double quote marks (which
+        will be removed when the string is later read by the LWLoadState <tt>readStr</tt>
+        function).</dd>
+      <dt><tt><br>
+        <strong>beginBlk</strong>( writeData, blockid, leaf )<br>
+        <strong>LWSAVE_BEGIN</strong>( ss, blockid, leaf )</tt></dt>
+      <dd>Create a new block. <tt>blockid</tt> is an LWBlockIdent that will be used to label the
+        block. The <tt>leaf</tt> flag is true if this block will not contain sub-blocks.</dd>
+      <dt><tt><br>
+        <strong>endBlk</strong>( writeData )<br>
+        <strong>LWSAVE_END</strong>( ss )</tt></dt>
+      <dd>End the current block.</dd>
+      <dt><tt><br>
+        d = <strong>depth</strong>( writeData )<br>
+        d = <strong>LWSAVE_DEPTH</strong>( ss )</tt></dt>
+      <dd>Return the current block nesting level, where zero means you've entered no blocks.</dd>
+    </dl>
+    <p><strong>Block Identifiers</strong></p>
+    <p>The LWBlockIdent structure is used to label blocks.</p>
+    <pre>   typedef struct st_LWBlockIdent {
+      LWID        <strong>id</strong>;
+      const char *<strong>token</strong>;
+   } LWBlockIdent;</pre>
+    <dl>
+      <tt>
+      <dt><strong>id</strong></dt>
+      </tt>
+      <dd>A four-byte code usually built by the <tt>LWID_</tt> macro defined in <a
+        href="../include/lwtypes.h">lwtypes.h</a>. Used when writing to binary files. This is also
+        the value returned by findBlk for both binary and ASCII files, which makes it useful as
+        the descriminator in a case statement.</dd>
+      <tt>
+      <dt><br>
+        <strong>token</strong></dt>
+      </tt>
+      <dd>A plain text label used when writing to ASCII files. This string should contain no
+        spaces.</dd>
+    </dl>
+    <p>When creating custom files for your own use, you may use any ID and label you like.
+    Their only purpose is to identify the data that follows them when you read the file back
+    in.</p>
+    <p><strong>Example</strong></p>
+    <p>Most of the file I/O functions are straightforward, so this example code concentrates
+    on the use of the block functions to write and read block-structured data.</p>
+    <p>LightWave <a href="filefmts/lwsc.html">scene files</a> use blocks to create
+    keyword-value pairs and to delimit keyframe data. Blocks also appear as the subchunks in
+    each SURF chunk of an <a href="filefmts/lwo2.html">object file</a>. Block structure makes
+    the data self-documenting and more human-readable. It also makes your file format
+    extensible without sacrificing backward compatibility. Older readers will automatically
+    skip blocks they don't recognize and can find blocks even if they've been written in a
+    different order.</p>
+    <p>We'll create a data structure well suited to blocky storage. This structure is borrowed
+    from an astronomy application, where it describes the circumstances of an observer.</p>
+    <pre>   #include &lt;lwserver.h&gt;
+   #include &lt;lwio.h&gt;
+
+   typedef struct {
+      float    timezone;
+      char     tzname[ 4 ];
+      int      ltim[ 6 ];          /* yr mon day hr min sec */
+      float    location[ 2 ];      /* lat lon */
+      int      horizon_type;
+      float    temperature;
+      float    pressure;
+      float    elevation;
+      float    epoch;
+   } Observer;</pre>
+    <p>We need labels for each of the blocks. These will be used for both saving and loading.
+    The ID arrays are divided into root blocks in the first and subblocks of the horizon block
+    in the second, which is what we'll need when we read this data back in. The <tt>#define</tt>s
+    may seem like an extra step now, but they'll come in handy later.</p>
+    <pre>   #define ID_TZON  LWID_( 'T','Z','O','N' )
+   #define ID_TZNM  LWID_( 'T','Z','N','M' )
+   #define ID_LTIM  LWID_( 'L','T','I','M' )
+   #define ID_LOCA  LWID_( 'L','O','C','A' )
+   #define ID_EPOC  LWID_( 'E','P','O','C' )
+   #define ID_HRZN  LWID_( 'H','R','Z','N' )
+   #define ID_TYPE  LWID_( 'T','Y','P','E' )
+   #define ID_TEMP  LWID_( 'T','E','M','P' )
+   #define ID_PRES  LWID_( 'P','R','E','S' )
+   #define ID_ELEV  LWID_( 'E','L','E','V' )
+
+   static LWBlockIdent idroot[] = {
+      ID_TZON, &quot;TimeZone&quot;,
+      ID_TZNM, &quot;TimeZoneName&quot;,
+      ID_LTIM, &quot;LocalTime&quot;,
+      ID_LOCA, &quot;Location&quot;,
+      ID_EPOC, &quot;Epoch&quot;,
+      ID_HRZN, &quot;Horizon&quot;,
+      0
+   };
+
+   static LWBlockIdent idhrzn[] = {
+      ID_TYPE, &quot;Type&quot;,
+      ID_TEMP, &quot;Temperature&quot;,
+      ID_PRES, &quot;Pressure&quot;,
+      ID_ELEV, &quot;Elevation&quot;,
+      0
+   };</pre>
+    <p>This is the save function. Note that it doesn't care whether the LWSaveState's <tt>ioMode</tt>
+    is <tt>LWIO_ASCII</tt> or <tt>LWIO_BINARY</tt>. It also doesn't care whether the
+    LWSaveState came from a <a href="handler.html">handler</a>'s <tt>save</tt> callback or
+    from the <a href="globals/fileio.html">file I/O</a> global's <tt>openSave</tt> function.</p>
+    <pre>   int write_obs( LWSaveState *save, Observer *obs )
+   {
+      LWSAVE_BEGIN( save, &amp;idroot[ 0 ], 1 );
+         LWSAVE_FP( save, &amp;obs-&gt;timezone, 1 );
+      LWSAVE_END( save );
+
+      LWSAVE_BEGIN( save, &amp;idroot[ 1 ], 1 );
+         LWSAVE_STR( save, obs-&gt;tzname );
+      LWSAVE_END( save );
+
+      LWSAVE_BEGIN( save, &amp;idroot[ 2 ], 1 );
+         LWSAVE_I4( save, obs-&gt;ltim, 6 );
+      LWSAVE_END( save );
+
+      LWSAVE_BEGIN( save, &amp;idroot[ 3 ], 1 );
+         LWSAVE_FP( save, obs-&gt;location, 2 );
+      LWSAVE_END( save );
+
+      LWSAVE_BEGIN( save, &amp;idroot[ 4 ], 1 );
+         LWSAVE_FP( save, &amp;obs-&gt;epoch, 1 );
+      LWSAVE_END( save );
+
+      LWSAVE_BEGIN( save, &amp;idroot[ 5 ], 0 );
+
+         LWSAVE_BEGIN( save, &amp;idhrzn[ 0 ], 1 );
+            LWSAVE_I4( save, &amp;obs-&gt;horizon_type, 1 );
+         LWSAVE_END( save );
+
+         LWSAVE_BEGIN( save, &amp;idhrzn[ 1 ], 1 );
+            LWSAVE_FP( save, &amp;obs-&gt;temperature, 1 );
+         LWSAVE_END( save );
+
+         LWSAVE_BEGIN( save, &amp;idhrzn[ 2 ], 1 );
+            LWSAVE_FP( save, &amp;obs-&gt;pressure, 1 );
+         LWSAVE_END( save );
+
+         LWSAVE_BEGIN( save, &amp;idhrzn[ 3 ], 1 );
+            LWSAVE_FP(  save, &amp;obs-&gt;elevation, 1 );
+         LWSAVE_END( save );
+
+      LWSAVE_END( save );
+
+      return 1;
+   }</pre>
+    <p>If the <tt>ioMode</tt> is <tt>LWIO_ASCII</tt>, the output of the <tt>write_obs</tt>
+    function looks like this.</p>
+    <pre>   TimeZone 4
+   TimeZoneName &quot;EDT&quot;
+   LocalTime 2000 4 24 2 5 30
+   Location 37.75 -122.55
+   Epoch 2000
+   { Horizon
+     Type 1
+     Temperature 40
+     Pressure 30
+     Elevation 100
+   }</pre>
+    <p>Each leaf block is a single line containing a keyword (the LWBlockIdent token) and a
+    list of values. Non-leaf blocks are delimited by curly brackets and indented to show the
+    block nesting level.</p>
+    <p>A hex dump of the same data written to a binary file would look like the following.
+    Each block begins with the 4-byte ID and a 2-byte size field. All of the numbers are in
+    big-endian (Internet, Motorola) byte order.</p>
+    <pre>   54 5A 4F 4E 00 04   <strong>TZON</strong> 4
+   40 80 00 00           4.0
+   54 5A 4E 4D 00 04   <strong>TZNM</strong> 4
+   45 44 54 00           &quot;EDT&quot;
+   4C 54 49 4D 00 18   <strong>LTIM</strong> 24
+   00 00 07 D0           2000
+   00 00 00 04           4
+   00 00 00 18           24
+   00 00 00 02           2
+   00 00 00 05           5
+   00 00 00 1E           30
+   4C 4F 43 41 00 08   <strong>LOCA</strong> 8
+   42 17 00 00           37.75
+   C2 F5 19 9A           -122.55
+   45 50 4F 43 00 04   <strong>EPOC</strong> 4
+   44 FA 00 00           2000.0
+   48 52 5A 4E 00 28   <strong>HRZN</strong> 40
+   54 59 50 45 00 04     <strong>TYPE</strong> 4
+   00 00 00 01             1
+   54 45 4D 50 00 04     <strong>TEMP</strong> 4
+   42 20 00 00             40.0
+   50 52 45 53 00 04     <strong>PRES</strong> 4
+   41 F0 00 00             30.0
+   45 4C 45 56 00 04     <strong>ELEV</strong> 4
+   42 C8 00 00             100.0</pre>
+    <p>The function to read this data just searches for blocks in a loop and switches to load
+    each one. The outer <tt>while</tt> loop reads root blocks, and the inner loop reads
+    horizon blocks when the <tt>HRZN</tt> root block is found.</p>
+    <pre>   int read_obs( LWLoadState *load, Observer *obs )
+   {
+      LWID id;
+
+      while ( id = LWLOAD_FIND( load, idroot )) {
+         switch ( id ) {
+            case ID_TZON:
+               LWLOAD_FP( load, &amp;obs-&gt;timezone, 1 );
+               break;
+            case ID_TZNM:
+               LWLOAD_STR( load, obs-&gt;tzname, 4 );
+               break;
+            case ID_LTIM:
+               LWLOAD_I4( load, obs-&gt;ltim, 6 );
+               break;
+            case ID_LOCA:
+               LWLOAD_FP( load, obs-&gt;location, 2 );
+               break;
+            case ID_EPOC:
+               LWLOAD_FP( load, &amp;obs-&gt;epoch, 1 );
+               break;
+            case ID_HRZN:
+               while ( id = LWLOAD_FIND( load, idhrzn )) {
+                  switch ( id ) {
+                     case ID_TYPE:
+                        LWLOAD_I4( load, &amp;obs-&gt;horizon_type, 1 );
+                        break;
+                     case ID_TEMP:
+                        LWLOAD_FP( load, &amp;obs-&gt;temperature, 1 );
+                        break;
+                     case ID_PRES:
+                        LWLOAD_FP( load, &amp;obs-&gt;pressure, 1 );
+                        break;
+                     case ID_ELEV:
+                        LWLOAD_FP( load, &amp;obs-&gt;elevation, 1 );
+                        break;
+                  }
+                  LWLOAD_END( load );
+               }
+               break;            
+         }
+         LWLOAD_END( load );
+      }
+
+      return 1;
+   }</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

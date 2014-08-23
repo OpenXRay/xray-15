@@ -1,0 +1,170 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include <windows.h>
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include <windows.h>\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_STARS_ABOUT DIALOG DISCARDABLE  0, 0, 189, 65
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "About Stars"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,129,46,50,14
+    RTEXT           "Starfield",IDC_STATIC,54,19,118,9
+    GROUPBOX        "",IDC_STATIC,9,10,170,32
+    RTEXT           "Version 1.0",IDC_STATIC,54,29,118,11
+END
+
+IDD_STARS_CONTROL DIALOG DISCARDABLE  0, 0, 231, 245
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Stars Control"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "General",IDC_STATIC,7,46,216,55
+    RTEXT           "Dimmest Star:",IDC_STATIC,16,60,48,8
+    CONTROL         "",IDC_DIM_EDIT,"CustEdit",WS_TABSTOP,69,60,28,10
+    CONTROL         "",IDC_DIM_SPIN,"SpinnerControl",WS_TABSTOP,99,60,10,10
+    RTEXT           "Brightest Star:",IDC_STATIC,120,60,48,8
+    CONTROL         "",IDC_BRITE_EDIT,"CustEdit",WS_TABSTOP,173,60,28,10
+    CONTROL         "",IDC_BRITE_SPIN,"SpinnerControl",WS_TABSTOP,203,60,10,
+                    10
+    CONTROL         "Linear",IDC_LINEAR,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,65,73,35,10
+    CONTROL         "Logarithmic",IDC_LOG,"Button",BS_AUTORADIOBUTTON,114,73,
+                    52,10
+    RTEXT           "Star Size (Pixels):",IDC_STATIC,66,87,55,8
+    CONTROL         "",IDC_SIZE_EDIT,"CustEdit",WS_TABSTOP,124,86,28,10
+    CONTROL         "",IDC_SIZE_SPIN,"SpinnerControl",WS_TABSTOP,154,86,10,
+                    10
+    GROUPBOX        "Motion Blur",IDC_STATIC,7,106,216,28
+    CONTROL         "Use",IDC_USEBLUR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    18,118,31,10
+    RTEXT           "Amount:",IDC_STATIC,57,118,31,8
+    CONTROL         "",IDC_AMOUNT_EDIT,"CustEdit",WS_TABSTOP,93,118,28,10
+    CONTROL         "",IDC_AMOUNT_SPIN,"SpinnerControl",WS_TABSTOP,123,118,
+                    10,10
+    RTEXT           "Dimming:",IDC_STATIC,139,118,31,8
+    CONTROL         "",IDC_DIMMING_EDIT,"CustEdit",WS_TABSTOP,175,118,28,10
+    CONTROL         "",IDC_DIMMING_SPIN,"SpinnerControl",WS_TABSTOP,205,118,
+                    10,10
+    GROUPBOX        "Star Database",IDC_STATIC,7,141,216,46
+    CONTROL         "Random",IDC_RANDOM,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,17,154,43,10
+    CONTROL         "Custom",IDC_CUSTOM,"Button",BS_AUTORADIOBUTTON,17,167,
+                    39,10
+    RTEXT           "Seed:",IDC_STATIC,63,155,25,8
+    CONTROL         "",IDC_SEED_EDIT,"CustEdit",WS_TABSTOP,92,155,28,10
+    CONTROL         "",IDC_SEED_SPIN,"SpinnerControl",WS_TABSTOP,122,155,10,
+                    10
+    RTEXT           "Count:",IDC_STATIC,136,155,25,8
+    CONTROL         "",IDC_COUNT_EDIT,"CustEdit",WS_TABSTOP,165,155,34,10
+    CONTROL         "",IDC_COUNT_SPIN,"SpinnerControl",WS_TABSTOP,201,155,10,
+                    10
+    EDITTEXT        IDC_CUST_FILENAME,68,167,146,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,46,226,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,132,226,50,14
+    GROUPBOX        "Compositing",IDC_STATIC,7,190,216,30
+    CONTROL         "Background",IDC_BACK,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,43,203,55,10
+    CONTROL         "Foreground",IDC_FORE,"Button",BS_AUTORADIOBUTTON,135,
+                    203,52,10
+    GROUPBOX        "Source Camera",IDC_STATIC,7,6,216,35
+    COMBOBOX        IDC_CAMERAS,37,20,157,58,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_STARS               "Stars"
+    IDS_IMAGE_FILTER        "Image Filter"
+    IDS_STARS_FILTER        "Stars image filter (Discreet)"
+    IDS_NOT_PERSPECTIVE     "Not a perspective view"
+    IDS_NO_RENDERINFO       "No rendering info"
+    IDS_CANT_OPEN           "Can't locate star database file"
+    IDS_BAD_FILE            "Error in star database file"
+    IDS_STARFIELD_ERROR     "Starfield Error"
+    IDS_CAMERA_NOT_FOUND    "Camera not found"
+    IDS_OUT_OF_MEMORY       "Not enough memory"
+    IDS_STARFIELD           "Starfield"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

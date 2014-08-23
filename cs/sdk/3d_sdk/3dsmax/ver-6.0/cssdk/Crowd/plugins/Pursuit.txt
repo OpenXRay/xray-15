@@ -1,0 +1,36 @@
+
+Pursuit Behavior.
+Behavior Description.
+
+The Pursuit behavior lets you specify an object as a target for delegates to pursue.  It is similar to the Seek behavior in this respect.  However, the delegates, instead of seeking the target at its current position, they will seek a position ahead of the target, based upon the target's speed and it's distance from the delegate.
+
+Procedure.
+
+To Use The Pursuit Behavior.
+
+First of all, since the Pursuit behavior is an example demonstrating the use of Crowd SDK, it originally won't be present as a useable behavior.  In order to use the Pursuit Behavior from within crowd, the pursuit.dlc file needs to be in your 'plugin' directory path.  
+
+Then,
+
+1. Add a Pursuit behavior to the Crowd object.
+2. In the Pursuit behavior rollout, use the -None- button to designate an object to be sought.
+3. Change the default settings as desired.
+4. Use BehaviorAssignments to assign the behavior to a delegate or team.
+
+Interface.
+
+None(label).  Specifies a single target.  Click this button, and then click the target object in the viewport.  The target's name then appears on the button.
+
+Color Swatch (1st).  Shows the color used to draw the target icon.  Click the button to select a different color. Default = dark blue.
+
+Display Target.  Enables display of the target icon, the location where the delegate is seeking, while the simulation is running.
+
+Target Scale.  Specifies the overall size of the target icon.  Default = 5.0.
+
+Color Swatch (2nd).  Shows the color used to draw the Pursuit force vector during the solution.  Click the button to select a different color.  Default = light green.
+ 
+
+
+ 
+
+

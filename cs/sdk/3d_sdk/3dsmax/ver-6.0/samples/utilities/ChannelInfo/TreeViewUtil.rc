@@ -1,0 +1,310 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PANEL DIALOGEX 0, 0, 108, 34
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    PUSHBUTTON      "Channel Info",IDC_BUTTON1,7,7,94,20
+END
+
+IDD_COLORCLIP_FLOATER DIALOGEX 0, 0, 382, 156
+STYLE DS_SETFONT | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU | WS_THICKFRAME
+CAPTION "Map Channel Info"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "List1",IDC_MAPLIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | 
+                    WS_TABSTOP,0,29,382,127,WS_EX_CLIENTEDGE
+    CONTROL         "Copy",IDC_COPY,"CustButton",WS_TABSTOP,1,1,26,14
+    CONTROL         "Paste",IDC_PASTE,"CustButton",WS_TABSTOP,28,1,26,14
+    CONTROL         "Name",IDC_NAME,"CustButton",WS_TABSTOP,55,1,26,14
+    CONTROL         "Clear",IDC_CLEAR,"CustButton",WS_TABSTOP,82,1,26,14
+    CONTROL         "Lock",IDC_LOCK,"CustButton",WS_TABSTOP,188,1,24,14
+    CONTROL         "Update",IDC_UPDATE,"CustButton",WS_TABSTOP,213,1,28,14
+    CONTROL         "Add",IDC_ADD,"CustButton",WS_TABSTOP,109,1,26,14
+    CONTROL         "SubComp",IDC_SUBCOMPONENTS,"CustButton",WS_TABSTOP,136,
+                    1,35,14
+    LTEXT           "Copy Buffer Info:",IDC_COPYBUFFERSTATIC,0,18,311,8
+    CONTROL         "AutoCollapse",IDC_COLLAPSE,"CustButton",NOT WS_VISIBLE | 
+                    WS_DISABLED | WS_TABSTOP,277,1,45,14
+END
+
+IDD_MAPCHANNELDELETEPANEL DIALOGEX 0, 0, 108, 33
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    CONTROL         "",IDC_EDIT,"CustEdit",WS_TABSTOP,58,7,35,10
+    CONTROL         "",IDC_SPIN,"SpinnerControl",0x0,94,7,7,10
+    RTEXT           "Map Channel:",-1,7,7,45,8
+END
+
+IDD_NAME DIALOG  0, 0, 182, 44
+STYLE DS_SETFONT | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | 
+    WS_THICKFRAME
+CAPTION "Channel Name"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_NAME,"CustEdit",WS_TABSTOP,7,8,111,10
+    DEFPUSHBUTTON   "OK",IDOK,126,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,126,24,50,14
+END
+
+IDD_MAPCHANNELPASTEPANEL DIALOGEX 0, 0, 108, 45
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    CONTROL         "",IDC_EDIT,"CustEdit",NOT WS_VISIBLE | WS_DISABLED | 
+                    WS_TABSTOP,58,26,35,10
+    CONTROL         "",IDC_SPIN,"SpinnerControl",NOT WS_VISIBLE | 
+                    WS_DISABLED,94,26,7,10
+    RTEXT           "Map Channel:",-1,7,26,45,8,NOT WS_VISIBLE | WS_DISABLED
+    CONTROL         "Use Map Channel",IDC_USEMAPCHANNEL_CHECK,"Button",
+                    BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_DISABLED | 
+                    WS_TABSTOP,7,7,94,12
+END
+
+IDD_MAPCHANNELADDPANEL DIALOG  0, 0, 108, 33
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+END
+
+IDD_SELECTBYCHANNELPANEL DIALOG  0, 0, 108, 73
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    COMBOBOX        IDC_SELTYPECOMBO,7,19,94,75,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_SELCHANNELCOMBO,7,52,94,75,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "Selection Type",IDC_STATIC,7,7,94,10
+    LTEXT           "Selection Channel",IDC_STATIC,7,39,94,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_PANEL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 27
+    END
+
+    IDD_MAPCHANNELDELETEPANEL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 26
+    END
+
+    IDD_MAPCHANNELPASTEPANEL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 38
+    END
+
+    IDD_MAPCHANNELADDPANEL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 26
+    END
+
+    IDD_SELECTBYCHANNELPANEL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 64
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\r\n"
+    "\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#include ""veroverrides.h"" \r\n"
+    "#include ""maxversion.r""\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU1 MENU 
+BEGIN
+    POPUP "MapInfo"
+    BEGIN
+        MENUITEM "Copy",                        ID_MAPINFO_COPY
+        MENUITEM "Paste",                       ID_MAPINFO_PASTE
+        MENUITEM "Name",                        ID_MAPINFO_RENAME
+        MENUITEM "Clear",                       ID_MAPINFO_CLEAR
+        MENUITEM "Add",                         ID_MAPINFO_ADD
+        MENUITEM SEPARATOR
+        MENUITEM "Update",                      ID_MAPINFO_UPDATE
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_LIBDESCRIPTION      "Channel Info"
+    IDS_CATEGORY            "Channel Info"
+    IDS_CLASS_NAME          "Channel Info"
+    IDS_PARAMS              "Parameters"
+    IDS_SPIN                "Spin"
+    IDS_MAPCHANNELDELETENAME "UVW Mapping Clear"
+    IDS_MAPID               "Map ID"
+    IDS_MAPCHANNELPASTENAME "UVW Mapping Paste"
+    IDS_USEMAP              "Use Map"
+    IDS_MAPCHANNELADDNAME   "UVW Mapping Add"
+    IDS_SELTYPE             "Selection Type"
+    IDS_REPLACE             "Replace"
+    IDS_ADD                 "Add"
+    IDS_SUBTRACT            "Subtract"
+    IDS_SELECTBYCHANNELNAME "Select By Channel"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_MAPSUBID            "Map Sub ID"
+    IDS_DELETECHANNEL       "Delete Channel"
+    IDS_PASTECHANNEL        "Paste"
+    IDS_ADDCHANNEL          "Add Channel"
+    IDS_NONE                "-none-"
+    IDS_OBJECTNAME          "Object Name"
+    IDS_ID                  "ID"
+    IDS_CHANNELNAME         "Channel Name"
+    IDS_NUMVERTS            "Num Verts"
+    IDS_DEADVERTS           "Dead Verts"
+    IDS_SIZEKB              "Size(KB)"
+    IDS_vsel                "vsel"
+    IDS_mesh                "mesh"
+    IDS_meshx               "mesh:X"
+    IDS_meshy               "mesh:Y"
+    IDS_meshz               "mesh:Z"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_poly                "poly"
+    IDS_polyx               "poly:X"
+    IDS_polyy               "poly:Y"
+    IDS_polyz               "poly:Z"
+    IDS_patch               "patch"
+    IDS_patchx              "patch:X"
+    IDS_patchy              "patch:Y"
+    IDS_patchz              "patch:Z"
+    IDS_alpha               "Alpha"
+    IDS_alphax              "Alpha:R"
+    IDS_alphay              "Alpha:G"
+    IDS_alphaz              "Alpha:B"
+    IDS_illum               "Illum"
+    IDS_illumx              "Illum:R"
+    IDS_illumy              "Illum:G"
+    IDS_illumz              "Illum:B"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_vc                  "vc"
+    IDS_vcx                 "vc:R"
+    IDS_vcy                 "vc:G"
+    IDS_vcz                 "vc:B"
+    IDS_map                 "map"
+    IDS_mapx                "map:X"
+    IDS_mapy                "map:Y"
+    IDS_mapz                "map:Z"
+    IDS_kb                  "kb"
+    IDS_NUMFACES            "Num Faces"
+    IDS_MAPCHANNEL          "Map Channel"
+    IDS_COPY                "Copy"
+    IDS_COPYBUFFER          "Copy Buffer Info : Node:"
+    IDS_SELCHANNEL          "Sel Channel"
+    IDS_GEOMCHANNEL         "Geom Channel"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#include "veroverrides.h" 
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

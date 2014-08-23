@@ -1,0 +1,42 @@
+// Copyright (C) 1997-2006 Autodesk, Inc., and/or its licensors.
+// All rights reserved.
+//
+// The coded instructions, statements, computer programs, and/or related
+// material (collectively the "Data") in these files contain unpublished
+// information proprietary to Autodesk, Inc. ("Autodesk") and/or its licensors,
+// which is protected by U.S. and Canadian federal copyright law and by
+// international treaties.
+//
+// The Data is provided for use exclusively by You. You have the right to use,
+// modify, and incorporate this Data into other products for purposes authorized 
+// by the Autodesk software license agreement, without fee.
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND. AUTODESK
+// DOES NOT MAKE AND HEREBY DISCLAIMS ANY EXPRESS OR IMPLIED WARRANTIES
+// INCLUDING, BUT NOT LIMITED TO, THE WARRANTIES OF NON-INFRINGEMENT,
+// MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, OR ARISING FROM A COURSE 
+// OF DEALING, USAGE, OR TRADE PRACTICE. IN NO EVENT WILL AUTODESK AND/OR ITS
+// LICENSORS BE LIABLE FOR ANY LOST REVENUES, DATA, OR PROFITS, OR SPECIAL,
+// DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES, EVEN IF AUTODESK AND/OR ITS
+// LICENSORS HAS BEEN ADVISED OF THE POSSIBILITY OR PROBABILITY OF SUCH DAMAGES.
+
+displayString -replace -value "Clipboard" m_animImportOptions.kClipboard;
+displayString -replace -value "Clipboard adjustment:" m_animImportOptions.kClipboardAdjustment;
+displayString -replace -value "Connect:" m_animImportOptions.kConnect;
+displayString -replace -value "Copies:" m_animImportOptions.kCopies;
+displayString -replace -value "Current" m_animImportOptions.kCurrent;
+displayString -replace -value "End time:" m_animImportOptions.kEndTime;
+displayString -replace -value "Entire curve" m_animImportOptions.kEntireCurve;
+displayString -replace -value "Fit" m_animImportOptions.kFit;
+displayString -replace -value "Help images:" m_animImportOptions.kHelpImages;
+displayString -replace -value "Insert" m_animImportOptions.kInsert;
+displayString -replace -value "Merge" m_animImportOptions.kMerge;
+displayString -replace -value "Paste method:" m_animImportOptions.kPasteMethod;
+displayString -replace -value "Preserve" m_animImportOptions.kPreserve;
+displayString -replace -value "Replace" m_animImportOptions.kReplace;
+displayString -replace -value "Replace region:" m_animImportOptions.kReplaceRegion;
+displayString -replace -value "Scale" m_animImportOptions.kScale;
+displayString -replace -value "Start" m_animImportOptions.kStart;
+displayString -replace -value "Start/End" m_animImportOptions.kStartEnd;
+displayString -replace -value "Start time:" m_animImportOptions.kStartTime;
+displayString -replace -value "Time range:" m_animImportOptions.kTimeRange;
+displayString -replace -value "Time range" m_animImportOptions.kTimeRangeRadioButton;

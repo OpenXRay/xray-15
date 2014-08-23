@@ -1,0 +1,208 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif\r\n"
+    "#include ""res\\Notify.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif#include ""buildver.h""\r\n"
+    "#if defined(DESIGN_VER)\r\n"
+    "  #include ""notify_viz.rc""\r\n"
+    "#endif\r\n"
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 145, 125
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About Notify"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,44,103,56,14,WS_GROUP
+    CTEXT           "Produced exclusively for Discreet, a division of Autodesk, Inc.",
+                    IDC_STATIC,19,68,106,18
+    GROUPBOX        "",IDC_LOGO,7,61,131,37
+    CTEXT           "Network Renderer Alert Notification",IDC_STATIC,17,24,
+                    111,9
+    CTEXT           "Copyright 1997 Yost Group, Inc.",IDC_STATIC,20,43,106,9
+    GROUPBOX        "",IDC_STATIC,7,7,131,50
+    CTEXT           "Release 1.0 - Alpha",IDC_STATIC,26,34,93,8
+    CTEXT           "3ds max from Discreet",IDC_STATIC_LN1,26,15,93,8
+    CTEXT           "by Yost Group, Inc.",IDC_STATIC,22,85,101,8
+END
+
+IDD_SOUNDS DIALOGEX 0, 0, 282, 105
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CONTEXTHELP
+CAPTION "3DS Max Notification Setup"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,72,84,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,159,84,50,14
+    GROUPBOX        " Sounds ",IDC_STATIC,7,7,268,73
+    RTEXT           "Failures:",IDC_STATIC,13,22,43,8
+    EDITTEXT        IDC_FAILURE_ED,61,19,149,14,ES_AUTOHSCROLL,
+                    WS_EX_ACCEPTFILES
+    RTEXT           "Completion:",IDC_STATIC,15,61,43,8
+    EDITTEXT        IDC_PROGRESS_ED,61,39,149,14,ES_AUTOHSCROLL,
+                    WS_EX_ACCEPTFILES
+    RTEXT           "Progress:",IDC_STATIC,13,42,43,8
+    EDITTEXT        IDC_COMPLETION_ED,61,58,149,14,ES_AUTOHSCROLL,
+                    WS_EX_ACCEPTFILES
+    PUSHBUTTON      "Browse...",IDC_BROWSE_FAILURE,213,19,36,14
+    PUSHBUTTON      "Browse...",IDC_BROWSE_PROGRESS,213,39,36,14
+    PUSHBUTTON      "Browse...",IDC_BROWSE_COMPLETION,213,58,36,14
+    PUSHBUTTON      ">",IDC_PLAY_FAILURE,254,19,13,14
+    PUSHBUTTON      ">",IDC_PLAY_PROGRESS,254,39,13,14
+    PUSHBUTTON      ">",IDC_PLAY_COMPLETION,254,58,13,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 138
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 118
+    END
+
+    IDD_SOUNDS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 275
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 98
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\Notify.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About Notify..."
+    IDS_COMPLETION_TITLE    "Select Completion Notification Sound"
+    IDS_FAILURE_TITLE       "Select Failure Notification Sound"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PROGRESS_TITLE      "Select Progress Notification Sound"
+    IDS_APPTITLE            "3DS Max Notification Setup"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif
+#include "res\Notify.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+#endif
+
+#ifndef APSTUDIO_INVOKED
+#include "buildver.h"
+#if defined(DESIGN_VER)
+  #include "notify_viz.rc"
+#endif
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

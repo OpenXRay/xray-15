@@ -1,0 +1,148 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_CL_PANEL, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 104
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 168
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""buildver.h""\r\n"
+    "#if defined(GAME_VER)\r\n"
+    "  #include ""collector_gmax.rc""\r\n"
+    "#elif defined(RENDER_VER)\r\n"
+    "  #include ""collector_vizr.rc""\r\n"
+    "#endif\r\n"
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CL_PANEL DIALOG DISCARDABLE  0, 0, 108, 174
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_PATH,4,15,100,12,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "Browse",IDC_BROWSE,58,29,46,12
+    CONTROL         "Collect Bitmaps /",IDC_PACKMAPS,"Button",
+                    BS_AUTOCHECKBOX | BS_TOP | WS_TABSTOP,16,61,76,10
+    CONTROL         "Update Materials",IDC_UPMAP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,20,137,69,10
+    CONTROL         "Include MAX File",IDC_PACKMAX,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,16,86,69,9
+    CONTROL         "Compress Files",IDC_PACKUP,"Button",BS_AUTOCHECKBOX | 
+                    WS_DISABLED | WS_TABSTOP,16,96,78,11
+    PUSHBUTTON      "Begin",IDC_GO,20,150,67,18
+    LTEXT           "Output Path :",IDC_STATIC,4,5,43,8
+    LTEXT           "( Uses WINZIP )",IDC_STATICPACK,28,107,53,8,WS_DISABLED
+    GROUPBOX        "Resource Options",IDC_STATIC,4,49,100,70
+    CONTROL         "Copy",IDC_TYPE,"Button",BS_AUTORADIOBUTTON,19,122,32,10
+    CONTROL         "Move",IDC_TYPE2,"Button",BS_AUTORADIOBUTTON,56,122,34,
+                    10
+    LTEXT           "Photometric Files",IDC_STATIC,28,71,65,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LIBDESCRIPTION      "Asset collector utility (Discreet)"
+    IDS_CLASS_NAME          "Collector"
+    IDS_PARAMS              "Parameters"
+    IDS_UV_NAME             "Collector"
+    IDS_RESOURCE_COLLECTOR  "Resource Collector"
+    IDS_TARGET_DIRECTORY    "Target Directory"
+    IDS_CHOOSE_OUTPUT       "Choose Output"
+    IDS_NO_VALID_FILE_PATH  "No valid MAX File Path"
+    IDS_WARNING             "WARNING"
+    IDS_PARAMETERS          "Parameters"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#include "buildver.h"
+#if defined(GAME_VER)
+  #include "collector_gmax.rc"
+#elif defined(RENDER_VER)
+  #include "collector_vizr.rc"
+#endif
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

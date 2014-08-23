@@ -1,0 +1,319 @@
+<html>
+
+<head>
+<title>Globals: Animation Envelopes</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="xpanel.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="XPanel"></a></td>
+    <td width="96" align="left"><a href="bkdpinfo.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Backdrop Info"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Animation Envelopes</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwenvel.h">lwenvel.h</a></small></p>
+    <p>A key is a structure that holds the value of an animation parameter at a specific time.
+    An envelope is an array of keys, along with methods for interpolation (tweening) and
+    extrapolation (what happens to the parameter value before the first key and after the last
+    one). The Animation Envelopes global returns functions that allow you to create and manage
+    envelopes and their keys, including a function to display an interface to the user for
+    editing envelopes.</p>
+    <p>Other global mechanisms are built on top of envelopes. A <a href="chaninfo.html">channel</a>
+    contains the continuous value of a parameter as a function of time, and this is based on
+    both the underlying envelope and on external effects, including plug-ins (<a
+    href="../classes/channel.html">channel</a> and <a href="../classes/itemmot.html">item
+    motion</a> classes, for example) that can alter channel values. And the <a
+    href="vparam.html">Variant Parameters</a> global defines a data type used by <a
+    href="xpanel.html">XPanel</a> envelope controls.</p>
+    <p>See also the <a href="../commands/layout.html#motion">Motions</a> section of the Layout
+    commands page, as well as the commands supported by the <a
+    href="../commands/common.html#graph">Graph</a> and <a
+    href="../commands/common.html#surface">Surface</a> Editors.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWEnvelopeFuncs *envfunc;
+   envfunc = global( LWENVELOPEFUNCS_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWEnvelopeFuncs.</p>
+    <pre>   typedef struct st_LWEnvelopeFuncs {
+      LWEnvelopeID    (*<strong>create</strong>)      (LWChanGroupID, const char *, int);
+      void            (*<strong>destroy</strong>)     (LWEnvelopeID);
+      LWChanGroupID   (*<strong>createGroup</strong>) (LWChanGroupID parent, const char *);
+      void            (*<strong>destroyGroup</strong>)(LWChanGroupID);
+      LWError         (*<strong>copy</strong>)        (LWEnvelopeID to, LWEnvelopeID from);
+      LWError         (*<strong>load</strong>)        (LWEnvelopeID, LWLoadState *);
+      LWError         (*<strong>save</strong>)        (LWEnvelopeID, LWSaveState *);
+      double          (*<strong>evaluate</strong>)    (LWEnvelopeID, LWTime);
+      int             (*<strong>edit</strong>)        (LWChanGroupID, LWEnvelopeID,
+                                        int flags, void *data);
+      int             (*<strong>envAge</strong>)      (LWEnvelopeID);
+      LWEnvKeyframeID (*<strong>createKey</strong>)   (LWEnvelopeID, LWTime, double value);
+      void            (*<strong>destroyKey</strong>)  (LWEnvelopeID, LWEnvKeyframeID);
+      LWEnvKeyframeID (*<strong>findKey</strong>)     (LWEnvelopeID, LWTime);
+      LWEnvKeyframeID (*<strong>nextKey</strong>)     (LWEnvelopeID, LWEnvKeyframeID);
+      LWEnvKeyframeID (*<strong>prevKey</strong>)     (LWEnvelopeID, LWEnvKeyframeID);
+      int             (*<strong>keySet</strong>)      (LWEnvelopeID, LWEnvKeyframeID,
+                                        LWKeyTag, void *value);
+      int             (*<strong>keyGet</strong>)      (LWEnvelopeID, LWEnvKeyframeID,
+                                        LWKeyTag, void *value);
+      int             (*<strong>setEnvEvent</strong>) (LWEnvelopeID, LWEnvEventFunc,
+                                        void *data); 
+      int             (*<strong>egSet</strong>)       (LWEnvelopeID, LWChanGroupID,
+                                        int tag, void *value); 
+      int             (*<strong>egGet</strong>)       (LWEnvelopeID, LWChanGroupID,
+                                        int tag, void *value); 
+   } LWEnvelopeFuncs;</pre>
+    <dl>
+      <dt><tt>env = <strong>create</strong>( group, name, type )</tt></dt>
+      <dd>Create a new envelope. The type defines how the envelope's values are interpreted and
+        displayed to the user in the graph editor. It can be one of the following. <tt><p>LWET_FLOAT<br>
+        LWET_DISTANCE<br>
+        LWET_PERCENT<br>
+        LWET_ANGLE</tt></p>
+      </dd>
+      <dt><tt><strong>destroy</strong>( env )</tt></dt>
+      <dd>Destroy an envelope created using <tt>create</tt>.</dd>
+      <dt><tt><br>
+        group = <strong>createGroup</strong>( parent, name )</tt></dt>
+      <dd>Create a new envelope group. An envelope group is just a way to organize related
+        envelopes.</dd>
+      <dt><tt><br>
+        <strong>destroyGroup</strong>( group )</tt></dt>
+      <dd>Destroy an envelope group created using <tt>createGroup</tt>.</dd>
+      <dt><tt><br>
+        error = <strong>copy</strong>( to, from )</tt></dt>
+      <dd>Copy an envelope. This is meant to be called from within a <a href="../handler.html">handler</a>'s
+        <tt>copy</tt> callback.</dd>
+      <dt><tt><br>
+        error = <strong>load</strong>( env, loadstate )</tt></dt>
+      <dd>Load an envelope. This is meant to be called from within a <a href="../handler.html">handler</a>'s
+        <tt>load</tt> callback.</dd>
+      <dt><tt><br>
+        error = <strong>save</strong>( env, savestate )</tt></dt>
+      <dd>Save an envelope. This is meant to be called from within a <a href="../handler.html">handler</a>'s
+        <tt>save</tt> callback.</dd>
+      <dt><tt><br>
+        value = <strong>evaluate</strong>( env, time )</tt></dt>
+      <dd>Returns the interpolated value of the envelope.</dd>
+      <dt><tt><br>
+        result = <strong>edit</strong>( group, env, flags, data )</tt></dt>
+      <dd>Open the graph editor window and allow the user to edit the envelope. The flags and data
+        arguments are currently unused. </dd>
+      <dt><tt><br>
+        age = <strong>envAge</strong>( env )</tt></dt>
+      <dd>Returns an integer containing the number of times the envelope has been changed.</dd>
+      <dt><tt><br>
+        key = <strong>createKey</strong>( env, time, value )</tt></dt>
+      <dd>Create a new key in an envelope.</dd>
+      <dt><tt><br>
+        <strong>destroyKey</strong>( env, key )</tt></dt>
+      <dd>Delete a key in an envelope.</dd>
+      <dt><tt><br>
+        key = <strong>findKey</strong>( env, time )</tt></dt>
+      <dd>Returns the key for a given time.</dd>
+      <dt><tt><br>
+        key = <strong>nextKey</strong>( env, key )</tt></dt>
+      <dd>Returns the next key in the envelope.</dd>
+      <dt><tt><br>
+        key = <strong>prevKey</strong>( env, key )</tt></dt>
+      <dd>Returns the previous key in the envelope.</dd>
+      <dt><tt><br>
+        result = <strong>keySet</strong>( env, key, tag, value )</tt></dt>
+      <dd>Set a value associated with a key. This can be the value of the key itself, the shape of
+        the key, or one of the interpolation parameters. The result is true (non-zero) if the
+        function succeeds and false (0) if it fails. The tag describing the value can be one of
+        the following. <dl>
+          <tt>
+          <dt><br>
+            LWKEY_VALUE</dt>
+          </tt>
+          <dd>The value of the key.</dd>
+          <tt>
+          <dt>LWKEY_SHAPE</dt>
+          </tt>
+          <dd>The curve type, an integer corresponding to the options in the graph editor: <dl>
+              <dd>0 - TCB (Kochanek-Bartels)<br>
+                1 - Hermite<br>
+                2 - 1D Bezier (obsolete, equivalent to Hermit)<br>
+                3 - Linear<br>
+                4 - Stepped<br>
+                5 - 2D Bezier</dd>
+            </dl>
+          </dd>
+          <tt>
+          <dt>LWKEY_TENSION<br>
+            LWKEY_CONTINUITY<br>
+            LWKEY_BIAS</dt>
+          </tt>
+          <dd>The Kochanek-Bartels blending parameters.</dd>
+          <tt>
+          <dt>LWKEY_PARAM_0<br>
+            LWKEY_PARAM_1<br>
+            LWKEY_PARAM_2<br>
+            LWKEY_PARAM_3</dt>
+          </tt>
+          <dd>The curve parameters. These are the Hermite coefficients for Hermite curves, and the
+            incoming and outgoing tangents for 2D Bezier curves.</dd>
+        </dl>
+      </dd>
+      <dt><tt><br>
+        result = <strong>keyGet</strong>( env, key, tag, value )</tt></dt>
+      <dd>Get a value associated with a key. The result is true (non-zero) if the function
+        succeeds and false (0) if it fails. The tags are the same as those for <tt>keySet</tt>,
+        along with <tt>LWKEY_TIME</tt>, the time of the key.</dd>
+      <dt><tt><br>
+        result = <strong>setEnvEvent</strong>( env, event_func, data )</tt></dt>
+      <dd>Set a callback for an envelope. Whenever the envelope is modified, your <tt>event_func</tt>
+        function will be called with <tt>data</tt> as its first argument. Currently the result is
+        false (0) if <tt>event_func</tt> is NULL and true (non-zero) otherwise.<p>When you no
+        longer need it, you must unhook your event callback by calling <tt>setEnvEvent</tt> again
+        with a NULL <tt>event_func</tt> argument. (But if your callback has already been called
+        for an <tt>LWEEVNT_DESTROY</tt> event, don't try to unhook it, since at that point the
+        envelope no longer exists.) The <tt>data</tt> argument should be the same as it was in the
+        original call. This argument is used to uniquely identify the owner of a callback, which
+        is necessary because more than one event callback can be set for a given envelope. For the
+        same reason, <tt>data</tt> should not be NULL. </p>
+      </dd>
+      <dt><tt>result = <strong>egSet</strong>( env, group, tag, value )</tt></dt>
+      <dd>Set a value associated with the envelope. The result is true (non-zero) if the function
+        succeeds and false (0) if it fails.<dl>
+          <tt>
+          <dt><br>
+            LWENVTAG_VISIBLE</dt>
+          </tt>
+          <dd>Invisible envelopes won't appear in the graph editor. You can use these to store
+            internal variables. The value for this tag is an integer containing true (1) or false (0).</dd>
+          <tt>
+          <dt>LWENVTAG_PREBEHAVE<br>
+            LWENVTAG_POSTBEHAVE</dt>
+          </tt>
+          <dd>Pre- and post-behavior setting, an integer corresponding to the options in the graph
+            editor:<dl>
+              <dd>0 - Reset<br>
+                1 - Constant<br>
+                2 - Repeat<br>
+                3 - Oscillate<br>
+                4 - Offset Repeat<br>
+                5 - Linear</dd>
+            </dl>
+          </dd>
+        </dl>
+      </dd>
+      <dt><tt><br>
+        result = <strong>egGet</strong>( env, group, tag, value )</tt></dt>
+      <dd>Get a value associated with an envelope. In addition to the value types defined for <tt>egSet</tt>,
+        you can use <tt>LWENVTAG_KEYCOUNT</tt> to get the number of keys defined for the envelope.
+        The result is true (non-zero) if the function succeeds and false (0) if it fails. </dd>
+    </dl>
+    <p><strong>Event Callback</strong></p>
+    <p>The <tt>setEnvEvent</tt> function lets you set a callback that LightWave will call
+    whenever an envelope is modified. The callback looks like this.</p>
+    <pre>   typedef int (*LWEnvEventFunc) (void *data, LWEnvelopeID env,
+      LWEnvEvent event, void *eventData);</pre>
+    <p><tt>data</tt> is what you passed as the third argument to the <tt>setEnvEvent</tt>
+    function. The <tt>eventData</tt> depends on the event, which can be one of the following. </p>
+    <pre>   LWEEVNT_DESTROY
+   LWEEVNT_KEY_INSERT
+   LWEEVNT_KEY_DELETE
+   LWEEVNT_KEY_VALUE
+   LWEEVNT_KEY_TIME</pre>
+    <p>For the <tt>KEY</tt> events, the <tt>eventData</tt> is the LWKeyframeID. For the <tt>DESTROY</tt>
+    event, the <tt>eventData</tt> is currently undefined and the LWEnvelopeID is invalid. When
+    your callback is called for a <tt>DESTROY</tt> event, the envelope has already been
+    destroyed, and you should ensure that you invalidate any of your own references to the
+    envelope.</p>
+    <p><strong>Example</strong></p>
+    <p>The <a href="../../sample/envelope/">envelope</a> sample shows how envelopes are
+    interpolated. It also uses the the envelope global functions to create and examine the
+    envelope to be interpolated.</p>
+    <p>The following code fragment finds a key for the red level of the first light at 5
+    seconds. If the light doesn't have a color envelope, we add it using the <tt>AddEnvelope</tt>
+    <a href="../commands/layout.html">command</a>, and if there's no key at 5 seconds, we
+    create it. The key value (the red level) is set to 0.75.</p>
+    <p>In order to do this, we need to find the item ID for the first light, the channel group
+    for that light, the red channel in the channel group, the underlying envelope for the red
+    channel, and the key in that envelope at 5 seconds, if it exists. In addition to the
+    envelope global, we use the <a href="chaninfo.html">channel info</a>, <a
+    href="iteminfo.html">item info</a> and <a href="message.html">message</a> globals.</p>
+    <pre>   #include &lt;lwserver.h&gt;
+   #include &lt;lwenvel.h&gt;
+   #include &lt;lwhost.h&gt;
+
+   LWEnvelopeFuncs *envf;
+   LWChannelInfo *chinfo;
+   LWItemInfo *iteminfo;
+   LWMessageFuncs *msgf;
+   LWItemID id;
+   LWChanGroupID group;
+   LWEnvelopeID envred;
+   LWEnvKeyframeID key;
+   char buf[ 128 ];
+   double val;
+
+   chinfo = global( LWCHANNELINFO_GLOBAL, GFUSE_TRANSIENT );
+   envf = global( LWENVELOPEFUNCS_GLOBAL, GFUSE_TRANSIENT );
+   iteminfo = global( LWITEMINFO_GLOBAL, GFUSE_TRANSIENT );
+   msg = global( LWMESSAGEFUNCS_GLOBAL, GFUSE_TRANSIENT );
+
+   if ( !chinfo || !envf || !iteminfo || !msgf )
+      return AFUNC_BADGLOBAL;
+
+   id = iteminfo-&gt;first( LWI_LIGHT, NULL );
+   group = iteminfo-&gt;chanGroup( id );
+
+   envred = findEnv( group, &quot;Color.R&quot; );
+   if ( !envred ) {
+      sprintf( buf, &quot;SelectItem %x&quot;, id );
+      local-&gt;evaluate( local-&gt;data, buf );
+      local-&gt;evaluate( local-&gt;data, &quot;AddEnvelope Color.R&quot; );
+      envred = findEnv( group, &quot;Color.R&quot; );
+   }
+   if ( !envred ) {
+      msgf-&gt;info( &quot;Couldn't create an envelope for&quot;,
+         iteminfo-&gt;name( id ));
+      return AFUNC_OK;
+   }
+
+   val = 0.75;
+   key = envf-&gt;findKey( envred, 5.0 );
+   if ( !key )
+      key = envf-&gt;createKey( envred, 5.0, val );
+   if ( key )
+      envf-&gt;keySet( envred, key, LWKEY_VALUE, &amp;val );
+   else {
+      sprintf( buf, &quot;%s.Color.R&quot;, iteminfo-&gt;name( id ));
+      msg-&gt;info( &quot;Couldn't create a key in&quot;, buf );
+   }</pre>
+    <p>Our <tt>findEnv</tt> function simply loops through the channels in a channel group
+    searching for a given channel name. If a match is found, it returns the envelope ID for
+    the channel.</p>
+    <pre>   LWEnvelopeID findEnv( LWChanGroupID group, char *name )
+   {
+      LWChannelID chan;
+
+      chan = chinfo-&gt;nextChannel( group, NULL );
+      while ( chan ) {
+         if ( !strcmp( chinfo-&gt;channelName( chan ), name ))
+            return chinfo-&gt;channelEnvelope( chan );
+         chan = chinfo-&gt;nextChannel( group, chan );
+      }
+      return NULL;
+   }</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

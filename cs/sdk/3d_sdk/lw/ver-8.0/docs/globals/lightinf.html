@@ -1,0 +1,240 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Win98; U) [Netscape]">
+   <title>Globals: Light Info</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#000080" vlink="#800000" alink="#0000FF">
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 BGCOLOR="#D0D0D0" >
+<tr>
+<td ALIGN=LEFT WIDTH="120"><a href="laymon.html"><img SRC="navlt.gif" ALT="Layout Monitor" BORDER=0 height=20 width=96></a></td>
+
+<td ALIGN=LEFT WIDTH="96"><a href="locale.html"><img SRC="navrt.gif" ALT="Locale Info" BORDER=0 height=20 width=64></a></td>
+
+<td ALIGN=LEFT WIDTH="96"><a href="../globals.html"><img SRC="navup.gif" ALT="Globals" BORDER=0 height=20 width=56></a></td>
+
+<td ALIGN=RIGHT WIDTH="288"><a href="../index.html"><img SRC="proglw.gif" ALT="Table of Contents" BORDER=0 height=20 width=230></a></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 >
+<tr>
+<td WIDTH="600">
+<h3>
+Light Info</h3>
+<font size=-1><b>Availability</b>&nbsp; LightWave&reg; 6.0</font>
+<br><font size=-1><b>Component</b>&nbsp; Layout, Modeler</font>
+<br><font size=-1><b>Header</b>&nbsp; <a href="../../include/lwrender.h">lwrender.h</a></font>
+<p>The light info global returns functions for getting light-specific information
+about any of the lights in a scene. Use the <a href="iteminfo.html">Item
+Info</a> global to get the light list and for generic item information.
+The information returned by these functions is read-only, but you can use
+<a href="../commands/layout.html#lights">commands</a>
+to set many of the parameters.
+<p><b>Global Call</b>
+<pre>&nbsp;&nbsp; LWLightInfo *lightinfo;
+&nbsp;&nbsp; lightinfo = global( LWLIGHTINFO_GLOBAL, GFUSE_TRANSIENT );</pre>
+The global function returns a pointer to an LWLightInfo.
+<pre>&nbsp;&nbsp; typedef struct st_LWLightInfo {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>ambient</b>)&nbsp;&nbsp;&nbsp;&nbsp; (LWTime, LWDVector color);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>type</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>color</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LWItemID, LWTime, LWDVector color);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>shadowType</b>)&nbsp; (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>coneAngles</b>)&nbsp; (LWItemID, LWTime, double *radius,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double *edge);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int (*<b>flags</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>range</b>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (LWItemID, LWTime);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>falloff</b>)&nbsp;&nbsp;&nbsp;&nbsp; (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWImageID&nbsp;&nbsp;&nbsp; (*<b>projImage</b>)&nbsp;&nbsp; (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>shadMapSize</b>) (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>shadMapAngle</b>)(LWItemID, LWTime);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>shadMapFuzz</b>) (LWItemID, LWTime);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>quality</b>)&nbsp;&nbsp;&nbsp;&nbsp; (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>rawColor</b>)&nbsp;&nbsp;&nbsp; (LWItemID, LWTime, LWDVector color);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>intensity</b>)&nbsp;&nbsp; (LWItemID, LWTime);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>shadowColor</b>)&nbsp; (LWItemID, LWTime, LWDVector color);</pre>
+
+<pre>&nbsp;&nbsp; } LWLightInfo;</pre>
+
+<dl>
+<dt>
+<tt><b>ambient</b>( time, color )</tt></dt>
+
+<dd>
+Returns the color of the global ambient light for the scene at the given
+time. The RGB levels include the effect of the user's intensity setting
+for the ambient light.</dd>
+
+<br><tt>lighttype = <b>type</b>( light )</tt>
+<dd>
+Returns the type of the light as one of the following values.&nbsp;</dd>
+
+<pre>LWLIGHT_DISTANT
+LWLIGHT_POINT
+LWLIGHT_SPOT
+LWLIGHT_LINEAR
+LWLIGHT_AREA</pre>
+
+<dt>
+<tt><b>color</b>( light, time, rgb )</tt></dt>
+
+<dd>
+Sets the <tt>rgb</tt> argument to the color of the light (with intensity
+factored in) at the given time. Use the <tt>rawColor</tt> and <tt>intensity</tt>
+functions for separate access to these settings.</dd>
+
+<br><tt>shadowtype = <b>shadowType</b>( light )</tt>
+<dd>
+Returns the shadow type for the light as one of the following values.&nbsp;</dd>
+
+<pre>LWLSHAD_OFF
+LWLSHAD_RAYTRACE
+LWLSHAD_MAP</pre>
+
+<dt>
+<tt><b>coneAngles</b>( light, time, radius, edge )</tt></dt>
+
+<dd>
+Returns the cone angles for spotlights. <tt>radius</tt> receives an angle
+that is half the total light cone angle, and <tt>edge</tt> receives the
+angular width of the soft edge. Both angles are in radians.</dd>
+
+<br><tt>settings = <b>flags</b>( light )</tt>
+<dd>
+Returns flag bits for settings related to the light.&nbsp;</dd>
+
+<pre>LWLFL_LIMITED_RANGE
+LWLFL_NO_DIFFUSE
+LWLFL_NO_SPECULAR
+LWLFL_NO_CAUSTICS
+LWLFL_LENS_FLARE
+LWLFL_VOLUMETRIC
+LWLFL_NO_OPENGL
+LWLFL_FIT_CONE
+LWLFL_CACHE_SHAD_MAP</pre>
+The <tt>FIT_CONE</tt> flag indicates that the shadow map angle is set to
+the light's spotlight cone angle.&nbsp;
+<dt>
+<tt>dist = <b>range</b>( light, time )</tt></dt>
+
+<dd>
+Returns the range or nominal distance for the light. The interpretation
+of this value depends on the falloff type. If falloff is linear, the value
+is the distance at which the intensity of the light falls to 0. For inverse
+distance falloff types, the value is the distance at which the intensity
+equals the user's intensity setting for the light. When there's no falloff
+(the <tt>falloff</tt> function returns <tt>LWLFALL_OFF</tt>, or the <tt>LWLFL_LIMITED_RANGE</tt>
+flag bit is clear), the return value is undefined.</dd>
+
+<br><tt>falloff_type = <b>falloff</b>( light )</tt>
+<dd>
+Returns the falloff type. Falloff scales the intensity of a light as a
+function of <i>d</i> (distance from the light) and <i>r</i> (the value
+returned by the <tt>range</tt> function).</dd>
+
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 >
+<tr>
+<td WIDTH="180">
+<br><tt>LWLFALL_OFF</tt></td>
+
+<td>
+<br>1 (no falloff)</td>
+</tr>
+
+<tr>
+<td WIDTH="180"><tt>LWLFALL_LINEAR</tt></td>
+
+<td>1 - <i>d</i> / <i>r</i> (or 0 when <i>d</i> > <i>r</i>)</td>
+</tr>
+
+<tr>
+<td WIDTH="180"><tt>LWFALL_INV_DIST</tt></td>
+
+<td><i>r</i> / <i>d</i></td>
+</tr>
+
+<tr>
+<td WIDTH="180"><tt>LWFALL_INV_DIST_2</tt></td>
+
+<td>(<i>r</i> / <i>d</i>)<sup>2</sup></td>
+</tr>
+</table>
+
+<p><tt>image = <b>projImage</b>( light )</tt>
+<dd>
+Returns the image ID of the projection image. Use the <a href="imglist.html">Image
+List</a> global to get information about the image.</dd>
+
+<br><tt>size = <b>shadMapSize</b>( light )</tt>
+<dd>
+The size of the shadow map. Shadow maps are square arrays of pixels, so
+the amount of memory used by a shadow map is proportional to the square
+of the size.</dd>
+
+<br><tt>angle = <b>shadMapAngle</b>( light, time )</tt>
+<dd>
+The angle subtended by the shadow map, in radians.</dd>
+
+<br><tt>fuzziness = <b>shadMapFuzz</b>( light, time )</tt>
+<dd>
+The amount of fuzziness at the edges of shadows in the shadow map.</dd>
+
+<br><tt>index = <b>quality</b>( light )</tt>
+<dd>
+The quality level of an extended (linear or area) light source, proportional
+to the number of sample points on the light.</dd>
+
+<br><tt><b>rawColor</b>( light, time, rgb )</tt>
+<br><tt>level = <b>intensity</b>( light, time )</tt>
+<dd>
+These return the separate components of the light color returned by the
+<tt>color</tt>
+function.</dd>
+
+<dd>
+</dd>
+
+<br><tt><b>shadowColor</b>( light, time, rgb )</tt>
+<dd>
+Returns the shadow color for the light in<tt> rgb.</tt></dd>
+</dl>
+<b>History</b>
+<p>In LightWave&reg; 7.5, the <tt>shadowColor</tt> function was added.
+<p><b>Example</b>
+<p>This code fragment collects information about the first light.
+<pre>&nbsp;&nbsp; #include &lt;lwserver.h>
+&nbsp;&nbsp; #include &lt;lwrender.h>
+
+&nbsp;&nbsp; LWItemInfo *iteminfo;
+&nbsp;&nbsp; LWLightInfo *ltinfo;
+&nbsp;&nbsp; LWItemID id;
+&nbsp;&nbsp; LWTime t = 3.0;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* seconds */
+&nbsp;&nbsp; LWDVector color;
+&nbsp;&nbsp; double range, radius, edge;
+&nbsp;&nbsp; int lighttype, shadowtype;
+&nbsp;&nbsp; unsigned int flags;
+
+&nbsp;&nbsp; iteminfo = global( LWITEMINFO_GLOBAL, GFUSE_TRANSIENT );
+&nbsp;&nbsp; ltinfo&nbsp;&nbsp; = global( LWLIGHTINFO_GLOBAL, GFUSE_TRANSIENT );
+
+&nbsp;&nbsp; if ( iteminfo &amp;&amp; ltinfo ) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; id = iteminfo->first( LWI_LIGHT, NULL );
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lighttype&nbsp; = ltinfo->type( id );
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; shadowtype = ltinfo->shadowType( id );
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flags&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = ltinfo->flags( id );
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ltinfo->color( id, t, color );
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ( type == LWLIGHT_SPOT )
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ltinfo->coneAngles( id, &amp;radius, &amp;edge );
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ( flags &amp; LWLFL_LIMITED_RANGE )
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; range = ltinfo->range( id );
+&nbsp;&nbsp; }</pre>
+</td>
+</tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,189 @@
+<html>
+
+<head>
+<title>Globals: Bone Info</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="bkdpinfo.html"><img width="96" height="20"
+    border="0" src="../images/navlt.gif" alt="Backdrop Info"></a></td>
+    <td width="96" align="left"><a href="caminfo.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Camera Info"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Bone Info</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout</small><br>
+    <small><strong>Header</strong><a href="../../include/lwrender.h">lwrender.h</a></small></p>
+    <p>The bone info global returns functions for getting bone-specific information about any
+    of the bones in a scene. Use the <a href="iteminfo.html">item info</a> global to get the
+    bone list and for generic item information. The data returned by these functions is
+    read-only, but you can use <a href="../commands/layout.html#bones">commands</a> to set
+    many of the parameters.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWBoneInfo *boneinfo;
+   boneinfo = global( LWBONEINFO_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWBoneInfo.</p>
+    <pre>   typedef struct st_LWBoneInfo {
+      unsigned int (*<strong>flags</strong>)     (LWItemID);
+      void         (*<strong>restParam</strong>) (LWItemID, LWItemParam, LWDVector vec);
+      double       (*<strong>restLength</strong>)(LWItemID);
+      void         (*<strong>limits</strong>)    (LWItemID, double *inner, double *outer);
+      const char * (*<strong>weightMap</strong>) (LWItemID);
+      double       (*<strong>strength</strong>)  (LWItemID);
+      int          (*<strong>falloff</strong>)   (LWItemID);
+      void         (*<strong>jointComp</strong>) (LWItemID, double *self, double *parent);
+      void         (*<strong>muscleFlex</strong>)(LWItemID, double *self, double *parent);
+   } LWBoneInfo;</pre>
+    <dl>
+      <tt>
+      <dt>boneflags = <strong>flags</strong>( bone )</dt>
+      </tt>
+      <dd>Returns a set of flag bits combined using bitwise-or. The flags are <dl>
+          <tt>
+          <dt><br>
+            LWBONEF_ACTIVE</dt>
+          </tt>
+          <dd>The bone is active.</dd>
+          <tt>
+          <dt>LWBONEF_LIMITED_RANGE</dt>
+          </tt>
+          <dd>The bone has a limited range.</dd>
+          <tt>
+          <dt>LWBONEF_SCALE_STRENGTH</dt>
+          </tt>
+          <dd>The strength of the bone is scaled by the rest length.</dd>
+          <tt>
+          <dt>LWBONEF_WEIGHT_MAP_ONLY</dt>
+          </tt>
+          <dd>Deformation will be based solely on the weight map.</dd>
+          <tt>
+          <dt>LWBONEF_WEIGHT_NORM</dt>
+          </tt>
+          <dd>The weight normalization option is turned on. The relative strength of each weight map
+            value is scaled so that the total for all values is 1.0.</dd>
+          <tt>
+          <dt>LWBONEF_JOINT_COMP<br>
+            LWBONEF_JOINT_COMP_PAR</dt>
+          </tt>
+          <dd>Joint compensation is enabled for the bone. This can also account for the rotation of
+            the bone's parent.</dd>
+          <tt>
+          <dt>LWBONEF_MUSCLE_FLEX<br>
+            LWBONEF_MUSCLE_FLEX_PAR</dt>
+          </tt>
+          <dd>Muscle flexing is enabled for the bone. Like joint compensation, this is a volume
+            preserving adjustment to the deformation caused by the bone and can include the effect of
+            the bone's parent.</dd>
+        </dl>
+      </dd>
+      <tt>
+      <dt><br>
+        <strong>restParam</strong>( bone, param_type, vector )</dt>
+      </tt>
+      <dd>Gets vector parameters for the rest position of a given bone. Parameters of the animated
+        bone can be read from the normal <a href="iteminfo.html">item info</a> functions. See the
+        item info <a href="iteminfo.html#param">parameter list</a> for the values that can be
+        passed in the <tt>param_type</tt> argument.</dd>
+      <tt>
+      <dt><br>
+        length = <strong>restLength</strong>( bone )</dt>
+      </tt>
+      <dd>Returns the rest length of the bone. </dd>
+      <tt>
+      <dt><br>
+        <strong>limits</strong>( bone, inner_limit, outer_limit )</dt>
+      </tt>
+      <dd>For limited range bones, this gets the inner and outer limit radii for the bone.</dd>
+      <tt>
+      <dt><br>
+        name = <strong>weightMap</strong>( bone )</dt>
+      </tt>
+      <dd>Returns the name of the weight map for the bone. The weight map is a vertex map of type <tt>LWVMAP_WGHT</tt>.
+        The <a href="objinfo.html">object info</a> and <a href="sceneobj.html">scene objects</a>
+        globals provide functions for reading the values in a vmap.</dd>
+      <tt>
+      <dt><br>
+        bone_strength = <strong>strength</strong>( bone )</dt>
+      </tt>
+      <dd>Returns the bone strength setting.</dd>
+      <tt>
+      <dt><br>
+        type = <strong>falloff</strong>( bone )</dt>
+      </tt>
+      <dd>Returns the falloff as an index into an options list. In general, the falloff function
+        is the distance raised to the power -2<tt><sup>type</sup></tt>. A <tt>type</tt> of 0 is
+        inverse distance, 1 is inverse distance squared, 2 is inverse distance to the fourth
+        power, and so on.</dd>
+      <tt>
+      <dt><br>
+        <strong>jointComp</strong>( bone, self, parent )</dt>
+      </tt>
+      <dd>Fills in <tt>self</tt> and <tt>parent</tt> with the joint compensation amount.</dd>
+      <tt>
+      <dt><br>
+        <strong>muscleFlex</strong>( bone, self, parent )</dt>
+      </tt>
+      <dd>Fills in <tt>self</tt> and <tt>parent</tt> with the muscle flexing amount.</dd>
+    </dl>
+    <p><strong>History</strong></p>
+    <p>In LightWave 7.0, the server name for this global (<tt>LWBONEINFO_GLOBAL</tt>) was
+    incremented from &quot;LW Bone Info 2&quot; to &quot;LW Bone Info 3&quot;. The following
+    functions and flags were added.</p>
+    <pre>   strength
+   falloff
+   jointComp
+   muscleFlex
+
+   LWBONEF_JOINT_COMP
+   LWBONEF_JOINT_COMP_PAR
+   LWBONEF_MUSCLE_FLEX
+   LWBONEF_MUSCLE_FLEX_PAR</pre>
+    <p><strong>Example</strong></p>
+    <p>This code fragment collects information about the bones in the scene.</p>
+    <pre>   #include &lt;lwserver.h&gt;
+   #include &lt;lwrender.h&gt;
+
+   LWItemInfo *iteminfo;
+   LWBoneInfo *boneinfo;
+   LWItemID object, bone;
+   unsigned int flags;
+   LWDVector pos;
+   double restlen;
+
+   iteminfo = global( LWITEMINFO_GLOBAL, GFUSE_TRANSIENT );
+   boneinfo = global( LWBONEINFO_GLOBAL, GFUSE_TRANSIENT );
+   if ( !iteminfo || !boneinfo ) return AFUNC_BADGLOBAL;
+
+   object = iteminfo-&gt;first( LWI_OBJECT, NULL );
+   while ( object ) {
+      bone = iteminfo-&gt;first( LWI_BONE, object );
+      while ( bone ) {
+         flags = boneinfo-&gt;flags( bone );
+         boneinfo-&gt;restParam( bone, LWIP_POSITION, pos );
+         restlen = boneinfo-&gt;restLength( bone );
+         ...
+
+         bone = iteminfo-&gt;next( bone );
+      }
+      object = iteminfo-&gt;next( object );
+   }
+
+</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

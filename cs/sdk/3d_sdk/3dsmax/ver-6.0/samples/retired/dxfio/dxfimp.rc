@@ -1,0 +1,204 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "dxfires.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_IMPORTOPTIONS DIALOGEX 0, 0, 133, 266
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Import DXF File"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,67,233,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,67,249,50,14
+    GROUPBOX        "Derive Objects From:",IDC_STATIC,6,4,120,45
+    CONTROL         "&Layer",IDC_OBJ_LAYER,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,44,15,29,10
+    CONTROL         "&Color",IDC_OBJ_COLOR,"Button",BS_AUTORADIOBUTTON,44,26,
+                    28,10
+    CONTROL         "&Entity",IDC_OBJ_ENTITY,"Button",BS_AUTORADIOBUTTON,44,
+                    36,30,10
+    GROUPBOX        "Weld Vertices:",IDC_STATIC,4,54,122,36
+    RTEXT           "Weld Threshold:",IDC_STATIC,13,65,55,8
+    CONTROL         "",IDC_WELDENTRY,"CustEdit",WS_TABSTOP,69,64,36,10
+    CONTROL         "",IDC_WELDSPINNER,"SpinnerControl",0x0,106,64,7,10
+    CONTROL         "&Weld",IDC_WELD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    42,77,30,10
+    GROUPBOX        "Auto-Smooth:",IDC_STATIC,4,96,123,37
+    RTEXT           "Smooth Angle:",IDC_STATIC,16,107,48,8
+    CONTROL         "",IDC_SMOOTHENTRY,"CustEdit",WS_TABSTOP,65,107,36,10
+    CONTROL         "",IDC_SMOOTHSPINNER,"SpinnerControl",0x0,102,107,7,10
+    CONTROL         "&Auto-Smooth",IDC_AUTOSMOOTH,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,34,118,53,10
+    GROUPBOX        "Arc Subdivision:",IDC_STATIC,4,137,124,41
+    RTEXT           "Polygon:",IDC_STATIC,17,150,34,8,0,WS_EX_RIGHT
+    CONTROL         "00",IDC_ARCENTRY,"CustEdit",WS_TABSTOP,53,150,28,10
+    CONTROL         "",IDC_ARCSPINNER,"SpinnerControl",0x0,82,150,7,10
+    GROUPBOX        "Miscellaneous:",IDC_STATIC,4,182,124,46
+    CONTROL         "&Remove Double Faces",IDC_REMOVEDOUBLES,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,19,193,85,10
+    CONTROL         "Ca&p Closed Entities",IDC_FILLPOLYLINES,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,19,203,84,10
+    CONTROL         "&Unify Normals",IDC_UNIFYNORMALS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,19,213,56,10
+    RTEXT           "Spline:",IDC_STATIC,22,164,29,8,0,WS_EX_RIGHT
+    CONTROL         "00",IDC_ARCSUB,"CustEdit",WS_TABSTOP,53,164,28,10
+    CONTROL         "",IDC_ARCSUB_SPIN,"SpinnerControl",0x0,82,164,7,10
+    LTEXT           "Degrees",IDC_STATIC,91,151,29,8
+    LTEXT           "Degrees",IDC_STATIC,91,164,32,8
+END
+
+IDD_MERGEORREPL DIALOG DISCARDABLE  0, 0, 173, 92
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "DXF Import"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,109,56,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,109,73,50,14
+    CONTROL         "&Merge objects with current scene.",IDC_3DS_MERGE,
+                    "Button",BS_AUTORADIOBUTTON,24,20,125,10
+    CONTROL         "Completely &replace current scene.",IDC_3DS_REPLACE,
+                    "Button",BS_AUTORADIOBUTTON,24,33,125,10
+    GROUPBOX        "Do you want to:",IDC_STATIC,8,8,153,41
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_IMPORTOPTIONS, DIALOG
+    BEGIN
+        RIGHTMARGIN, 123
+    END
+
+    IDD_MERGEORREPL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 166
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 85
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TH_DXFIMP           "DXFIMP"
+    IDS_TH_DXFIMPORTDLL     "DXF file importer (Discreet)"
+    IDS_TH_PARTIALREAD      "Partial file read"
+    IDS_TH_UNKNOWNERR       "Unknown Error in DXF file"
+    IDS_TH_FINALIZING       "Finalizing"
+    IDS_TH_IMPORTINGDXF     "Importing DXF"
+    IDS_TH_INVALIDRATSNEST  "Invalid ratsnest in DXF"
+    IDS_TH_INVALIDSPLINEMESH "Invalid spline mesh in DXF"
+    IDS_TH_INVALID3DMESH    "Invalid 3D mesh in DXF"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TH_ERR_OPENING_FILE "Error opening file"
+    IDS_TH_OUTOFMEMORY      "Out of memory"
+    IDS_TH_AUTOCAD          "AutoCAD"
+    IDS_TH_AUTOCADDXFFILE   "AutoCAD DXF File"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TH_SCENEIMPORT      "Scene Import"
+    IDS_TH_TOM_HUDSON       "Tom Hudson"
+    IDS_TH_COPYRIGHT_YOST_GROUP "Copyright 1996 Yost Group"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TH_ERRORINDXF       "Error in DXF file"
+    IDS_TH_BADPOLYLINE      "A Polyline must have at least 2 points."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#define DXF_IMPORT_RESOURCES
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

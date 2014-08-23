@@ -1,0 +1,143 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_VSPANEL DIALOG DISCARDABLE  0, 0, 108, 106
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_EDIT,"CustEdit",WS_TABSTOP,50,34,35,10
+    CONTROL         "",IDC_SPIN,"SpinnerControl",0x0,88,34,7,10
+    LTEXT           "Ripple Vertex Shader",IDC_STATIC,17,17,68,8
+    LTEXT           "Amount",IDC_STATIC,13,33,31,10
+    CONTROL         "Show Normals",IDC_NORMAL,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,14,65,73,8
+    CONTROL         "",IDC_HEIGHTEDIT,"CustEdit",WS_TABSTOP,50,47,35,10
+    CONTROL         "",IDC_HEIGHTSPIN,"SpinnerControl",0x0,88,47,7,10
+    LTEXT           "Height",IDC_STATIC,13,47,31,10
+    CONTROL         "WireFrame Mode",IDC_WIREFRAME,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,78,73,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_VSPANEL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 99
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CATEGORY            "Sparks 3D Demos"
+    IDS_PSCLASS_NAME        "Pixel Shader"
+    IDS_PSPARAMS            "Parameters"
+    IDS_AMOUNT              "Amount"
+    IDS_COORDS              "Coordinates"
+    IDS_PSCATEGORY          "PixelShaders"
+    IDS_VSCATEGORY          "Ripple Vertex Shader"
+    IDS_VSCLASS_NAME        "Ripple Vertex Shader"
+    IDS_VSPARAMS            "Parameters"
+    IDS_BPSCLASS_NAME       "BumpPixelShader"
+    IDS_CUBEMAPFILENAME     "Cube Map"
+    IDS_VSFILENAME          "Vertex Shader File"
+    IDS_CM_FILE_TYPES       "D3D(*.dds)|*.dds"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_VS_FILE_TYPES       "D3D(*.njv)|*.njv"
+    IDS_VS_FAIL             "Vertex Shader File not found"
+    IDS_HS                  "Hardware Shader"
+    IDS_VSLOAD_FAIL         "Loading Vertex Shader File failed"
+    IDS_NORMAL              "Normals"
+    IDS_HEIGHT              "Height"
+    IDS_WIREFRAME           "WireFrame"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#include "veroverrides.h"
+#include "maxversion.r"
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

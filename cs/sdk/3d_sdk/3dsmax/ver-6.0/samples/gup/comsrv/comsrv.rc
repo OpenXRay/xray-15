@@ -1,0 +1,127 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "1 TYPELIB ""comsrv.tlb""\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// REGISTRY
+//
+
+IDR_Comsrv              REGISTRY                "comsrv.rgs"
+IDR_MAXRENDERER         REGISTRY                "MaxRenderer.rgs"
+IDR_BITMAPINFO          REGISTRY                "BitmapInfo.rgs"
+IDR_MAXAPP              REGISTRY                "maxapp.rgs"
+IDR_MAXDOCUMENT         REGISTRY                "maxdocument.rgs"
+IDR_MAXMATERIAL         REGISTRY                "MaxMaterial.rgs"
+IDR_MAXMATERIALCOLLECTION REGISTRY                "MaxMaterialCollection.rgs"
+IDR_TESTMARSHALSPEED    REGISTRY                "TestMarshalSpeed.rgs"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_MAXICON             ICON                    "mxmain.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_PROJNAME            "comsrv"
+    IDS_NO_FILE_ERROR       "Error loading scene %s"
+    IDS_NO_CAMERA_ERROR     "Camera %s not found."
+    IDS_OPEN_RENDERER_ERROR "Error opening MAX Renderer"
+    IDS_SET_MATERIAL        "Set Material"
+    IDS_THREAD_ERROR        "Error creating render thread."
+    IDS_MAX_BUSY            "MAX is busy rendering."
+    IDS_SINK_ERROR          "Connection Point Uninitialized (Advise)"
+    IDS_MTLEDITOR           "Material Editor"
+    IDS_CONVERT_TO_ARCHMAT  "The material you are trying to edit needs to be converted before you can edit it. Do you want to convert it?"
+    IDS_STREAM_ERROR        "Stream Error"
+    IDS_BITMAP_NOT_CREATED  "Bitmap not created error."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RENDERER_NOT_OPEN   "Renderer not open error."
+    IDS_UNDEFINED_TYPE      "Undefined Channel Type."
+    IDS_SCRIPT_ERROR        "Scripting error."
+    IDS_RECT_NOT_SET        "Region not defined."
+    IDS_CONVERT_TO_ARCHMAT_FAILED "The material conversion failed."
+    IDS_HIT_FAILED          "Nothing found there and no material by that name in the scene."
+    IDS_HIT_FAILED_CAPTION  "Material dropped."
+    IDS_REPLACE_CAP         "Confirm Material Change"
+    IDS_REPLACE             " will be redefined. "
+    IDS_PUT_MTL             "Put Material"
+    IDS_TOGGLE_PERSIST      "Toggle material persistence"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+1 TYPELIB "comsrv.tlb"
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

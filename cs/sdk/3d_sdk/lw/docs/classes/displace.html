@@ -1,0 +1,109 @@
+<html>
+
+<head>
+<title>Classes: DisplacementHandler</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="custobj.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="CustomObjHandler"></a></td>
+    <td width="96" align="left"><a href="environ.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="EnvironmentHandler"></a></td>
+    <td width="96" align="left"><a href="../classes.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Classes"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>DisplacementHandler<br>
+    DisplacementInterface</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwdisplce.h">lwdisplce.h</a></small></p>
+    <p>Displacement plug-ins deform objects by moving their points at each time step.</p>
+    <p><strong>Handler Activation Function</strong></p>
+    <pre>   XCALL_( int ) MyDisplacement( long version, GlobalFunc *global,
+      LWDisplacementHandler *local, void *serverData );</pre>
+    <p>The <tt>local</tt> argument to a displacement plug-in's activation function is an
+    LWDisplacementHandler.</p>
+    <pre>   typedef struct st_LWDisplacementHandler {
+      LWInstanceFuncs *<strong>inst</strong>;
+      LWItemFuncs     *<strong>item</strong>;
+      LWRenderFuncs   *<strong>rend</strong>;
+      void            (*<strong>evaluate</strong>) (LWInstance, LWDisplacementAccess *);
+      unsigned int    (*<strong>flags</strong>)    (LWInstance);
+   } LWDisplacementHandler;</pre>
+    <p>The first three members of this structure are the standard <a href="../handler.html">handler
+    functions</a>. The <tt>context</tt> argument to the <tt>inst-&gt;create</tt> function is
+    the LWItemID of the object associated with this instance.</p>
+    <p>In addition to the standard functions, a displacement plug-in provides an evaluation
+    function and a flags function.<dl>
+      <dt><tt><strong>evaluate</strong>( instance, access )</tt></dt>
+      <dd>This is where the displacement happens. At each time step, the evaluation function is
+        called for each vertex in the object. The position of the vertex is examined and modified
+        through the access structure described below.</dd>
+      <dt><br>
+        <tt>f = <strong>flags</strong>( instance )</tt></dt>
+      <dd>Returns bit flags combined using bitwise-or. The flags tell Layout whether the
+        displacement will be in world coordinates and whether it should occur before or after the
+        object has been deformed by bones. Only one of these flags should be set.<tt><p>LWDMF_WORLD<br>
+        LWDMF_BEFOREBONES</tt></p>
+      </dd>
+    </dl>
+    <p><strong>Interface Activation Function</strong></p>
+    <pre>   XCALL_( int ) MyInterface( long version, GlobalFunc *global,
+      LWInterface *local, void *serverData );</pre>
+    <p>This is the standard <a href="../handler.html#ui">interface activation</a> for
+    handlers.</p>
+    <p><strong>Displacement Access</strong></p>
+    <p>The LWDisplacementAccess passed to the evaluation function contains two point
+    positions, the point ID, and a <a href="../meshinfo.html">mesh info</a> for the object the
+    point belongs to.</p>
+    <pre>   typedef struct st_LWDisplacementAccess {
+      LWDVector    <strong>oPos</strong>;
+      LWDVector    <strong>source</strong>;
+      LWPntID      <strong>point</strong>;
+      LWMeshInfo  *<strong>info</strong>;
+   } LWDisplacementAccess;</pre>
+    <dl>
+      <dt><strong><tt>oPos</tt></strong></dt>
+      <dd>The original point location in object coordinates. This is read-only.</dd>
+      <dt><strong><tt><br>
+        source</tt></strong></dt>
+      <dd>The location to be transformed in place by the displacement. If the flags function
+        returned the <tt>LWDMF_WORLD</tt> bit, the source is in world coordinates and has already
+        been modified by morphing, bones and object motion. Otherwise the source is in object
+        coordinates (after morphing, before item motion, and before or after bone effects,
+        depending on whether the flags function returned <tt>LWDMF_BEFOREBONES</tt>).</dd>
+      <tt>
+      <dt><br>
+        <strong>point</strong></dt>
+      </tt>
+      <dd>The point ID. This can be used to retrieve other information about the point from the
+        mesh info structure.</dd>
+      <tt>
+      <dt><br>
+        <strong>info</strong></dt>
+      </tt>
+      <dd>A <a href="../meshinfo.html">mesh info</a> structure for the object.</dd>
+    </dl>
+    <p><strong>History</strong></p>
+    <p>In LightWave 7.0, <tt>LWDISPLACEMENT_VERSION</tt> was incremented to 5. This reflects
+    additions to the LWMeshInfo structure, but in all other respects, displacement handlers
+    were unchanged.</p>
+    <p><strong>Example</strong></p>
+    <p>The <a href="../../sample/inertia/">inertia</a> sample is a displacement handler that
+    causes points to &quot;lag behind&quot; as the object moves. This plug-in was formerly
+    known as LazyPoints.</td>
+  </tr>
+</table>
+</body>
+</html>

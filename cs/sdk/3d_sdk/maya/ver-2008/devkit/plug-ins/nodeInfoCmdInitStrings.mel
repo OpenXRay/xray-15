@@ -1,0 +1,7 @@
+// Procedure to register and initialize string resources
+// for the nodeInfoCmd plugin
+
+global proc nodeInfoCmdInitStrings()
+{
+    loadPluginLanguageResources("nodeInfoCmd", "nodeInfoCmd.pres.mel");
+}

@@ -1,0 +1,225 @@
+<html>
+
+<head>
+<title>Classes: VolumetricHandler</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="shader.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="ShaderHandler"></a></td>
+    <td width="96" align="left"><a href="animload.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="AnimLoaderHandler"></a></td>
+    <td width="96" align="left"><a href="../classes.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Classes"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>VolumetricHandler</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwvolume.h">lwvolume.h</a></small></p>
+    <p>Volumetric handlers model the attenuation and scattering of light in gases, differences
+    in density in 3D medical imaging data, or the shapes of surfaces too complex to model
+    explicitly with geometry. They do this by participating in LightWave&reg;'s raytracing
+    mechanism.</p>
+    <p>For each ray fired into the scene, the volumetric handler calculates a color and
+    opacity for one or more samples. It hands each sample back to LightWave&reg;, which integrates
+    all of the samples from all of the volumetrics to produce the final color seen from the
+    source of the ray.</p>
+    <p>A <em>sample</em> represents a segment of the ray over which the color and opacity are
+    constant.&nbsp; Consider a simple cloud pierced by a ray. The handler that draws the cloud
+    isn't interested in the parts of the ray that are outside it, so it creates no samples
+    there. In the simplest case, it may create a single sample that begins at the point where
+    the ray enters the cloud and extends as far as the ray remains inside. If the cloud is
+    somewhat transparent, the color might be a linear combination of the cloud color and the
+    backdrop color, and the opacity will be somewhat less than 1.0.</p>
+    <p><strong>Handler Activation Function</strong></p>
+    <pre>   XCALL_( int ) MyVolumetric( long version, GlobalFunc *global,
+      LWVolumetricHandler *local, void *serverData );</pre>
+    <p>The <tt>local</tt> argument to a volumetric handler's activation function is an
+    LWVolumetricHandler.</p>
+    <pre>   typedef struct st_LWVolumetricHandler {
+      LWInstanceFuncs *<strong>inst</strong>;
+      LWItemFuncs     *<strong>item</strong>;
+      LWRenderFuncs   *<strong>rend</strong>;
+      double          (*<strong>evaluate</strong>) (LWInstance, LWVolumeAccess *);
+      unsigned int    (*<strong>flags</strong>)    (LWInstance);
+   } LWVolumetricHandler;</pre>
+    <p>The first three members of this structure point to the standard <a
+    href="../handler.html">handler functions</a>. In addition to these, a volumetric handler
+    provides an evaluation function and a flags function.<dl>
+      <dt><tt>d = <strong>evaluate</strong>( instance, access )</tt></dt>
+      <dd>Called for each ray fired into the scene. The evaluation function adds zero or more
+        samples to the ray, based on the information in the access structure, described below.</dd>
+      <dt><br>
+        <tt>f = <strong>flags</strong>( instance )</tt></dt>
+      <dd>Returns an int that tells the renderer which effects the handler supplies. The return
+        value contains bitfields combined using bitwise-or.<dl>
+          <tt>
+          <dt><br>
+            LWVOLF_SHADOWS</dt>
+          </tt>
+          <dd>The evaluation function can be called for shadow rays.</dd>
+          <tt>
+          <dt>LWVOLF_REFLECTIONS</dt>
+          </tt>
+          <dd>Can be evaluated for reflection rays.</dd>
+          <tt>
+          <dt>LWVOLF_REFRACTIONS</dt>
+          </tt>
+          <dd>Can be evaluated for refraction rays.</dd>
+        </dl>
+      </dd>
+    </dl>
+    <p><strong>Interface Activation Function</strong></p>
+    <pre>   XCALL_( int ) MyInterface( long version, GlobalFunc *global,
+      LWInterface *local, void *serverData );</pre>
+    <p>This is the standard <a href="../handler.html#ui">interface activation</a> for
+    handlers.</p>
+    <p><strong>Volumetric Access</strong></p>
+    <p>This is the structure passed to the handler's evaluation function. </p>
+    <pre>   typedef struct st_LWVolumeAccess {
+      void             *<strong>ray</strong>;
+      int               <strong>flags</strong>;
+      LWItemID          <strong>source</strong>;
+      double            <strong>o</strong>[3], <strong>dir</strong>[3];
+      double            <strong>rayColor</strong>[3];
+      double            <strong>farClip</strong>, <strong>nearClip</strong>;
+      double            <strong>oDist</strong>, <strong>frustum</strong>;
+      void             (*<strong>addSample</strong>) (void *ray, LWVolumeSample *smp);
+      double           (*<strong>getOpacity</strong>)(void *ray, double dist,
+                                       double opa[3]);
+      LWIlluminateFunc *<strong>illuminate</strong>;
+      LWRayTraceFunc   *<strong>rayTrace</strong>;
+      LWRayCastFunc    *<strong>rayCast</strong>;
+      LWRayShadeFunc   *<strong>rayShade</strong>;
+   } LWVolumeAccess;</pre>
+    <dl>
+      <tt>
+      <dt><strong>ray</strong></dt>
+      </tt>
+      <dd>An opaque pointer to LightWave&reg;'s representation of the ray. Pass this as the first
+        argument to the <tt>addSample</tt> and <tt>getOpacity</tt> functions.</dd>
+      <dt><strong><tt><br>
+        flags</tt></strong></dt>
+      <dd>Evaluation flags. Some of these allow the evaluation function to streamline its
+        calculations.<dl>
+          <tt>
+          <dt><br>
+            LWVEF_OPACITY</dt>
+          </tt>
+          <dd>Calculate an opacity value for each sample. When this flag is absent, the opacity
+            calculation can be omitted.</dd>
+          <tt>
+          <dt>LWVEF_COLOR</dt>
+          </tt>
+          <dd>Calculate a color for each sample.</dd>
+          <tt>
+          <dt>LWVEF_RAYTRACE</dt>
+          </tt>
+          <dd>If this flag is absent, the evaluation function is being called during the volumetric
+            pass that occurs before pixel filtering but after normal rendering. Otherwise the
+            evaluation function is being called during &quot;regular&quot; raytracing (reflection,
+            refraction or shadow rays, for example).</dd>
+        </dl>
+      </dd>
+      <dt><strong><tt><br>
+        source</tt></strong></dt>
+      <dd>The item from which the ray originated. This can be a light (for shadow rays), a camera,
+        or <tt>LWITEM_NULL</tt> for other sources. </dd>
+      <dt><tt><strong><br>
+        o</strong>, <strong>dir</strong></tt></dt>
+      <dd>The origin and direction of the ray. The origin is the position of the source item or of
+        a spot on the surface of the source object.</dd>
+      <dt><tt><strong><br>
+        far</strong>, <strong>near</strong></tt></dt>
+      <dd>Far and near clipping distances. These are distances along the ray measured from the
+        origin <tt>o</tt> along the direction <tt>dir</tt>. All sample segments will normally fall
+        between these two.</dd>
+      <dt><tt><br>
+        <strong>rayColor</strong></tt></dt>
+      <dd>The color seen from the origin of the ray, before volumetric effects are applied.</dd>
+      <dt><strong><tt><br>
+        oDist</tt></strong></dt>
+      <dd>Distance from the origin <tt>o</tt> to the true start of the viewing path. This is
+        non-zero for reflection and refraction rays. If the origin <tt>o</tt> is a spot on the
+        surface of an object, <tt>oDist</tt> is the distance from that spot to the camera. This is
+        good to know if your calculations will be based on the length of the path to the viewer
+        (the camera) and not just on the length of the ray fired from the spot on the object.</dd>
+      <dt><strong><tt><br>
+        frustum</tt></strong></dt>
+      <dd>Pixel frustum, equal to <tt>2 * tan(0.5 * hfov)/w</tt>, where <tt>hfov</tt> is the
+        horizontal field of view and <tt>w</tt> is the width of the rendered image in pixels. The
+        frustum is a measure of the size of a pixel relative to the ray. (It's the actual size of
+        the pixel at a distance of 1.0.) This quantity plays a role in calculating sample size, or
+        <em>stride</em>, during raymarching. A typical calculation of the stride might look like <pre>increment = scale_factor * frustum;
+stride = dist * increment;</pre>
+      </dd>
+      <dt><tt><strong>addSample</strong>( ray, sample )</tt></dt>
+      <dd>Add a new volume sample to the ray. This is how volumetric handlers submit their
+        contributions to the integration of opacity and color along the ray. The sample structure
+        is described below.</dd>
+      <dt><tt><br>
+        opacity = <strong>getOpacity</strong>( ray, dist, opa )</tt></dt>
+      <dd>Returns the currently calculated opacity (vector and scalar) at the specified distance.</dd>
+      <dt>&nbsp;</dt>
+      <dt><tt>lit = <strong>illuminate</strong>( lightID, position, direction, color )<br>
+        len = <strong>rayTrace</strong>( position, direction, color )<br>
+        len = <strong>rayCast</strong>( position, direction )<br>
+        len = <strong>rayShade</strong>( position, direction, shaderAccess )</dt>
+      </tt>
+      <dd>See the <a href="../raytrace.html">raytracing functions</a> page for a description of
+        these.</dd>
+    </dl>
+    <p><strong>Volume Sample</strong></p>
+    <p>A volume sample is a single ray segment with a uniform color and opacity. The distance
+    and stride define the position and size of the sample, and the opacity and color are given
+    as color vectors. By the way, you can create surface samples by setting <tt>stride</tt> to
+    0 and <tt>dist</tt> to <tt>0.9999 * farClip</tt>.</p>
+    <pre>   typedef struct st_LWVolumeSample {
+      double  <strong>dist</strong>;
+      double  <strong>stride</strong>;
+      double  <strong>opacity</strong>[3];
+      double  <strong>color</strong>[3];
+   } LWVolumeSample;</pre>
+    <dl>
+      <tt>
+      <dt><strong>dist</strong></dt>
+      </tt>
+      <dd>The starting point of the sample expressed as a distance from the origin of the ray.
+        This should be greater than or equal to <tt>nearClip</tt>.</dd>
+      <tt>
+      <dt><br>
+        <strong>stride</strong></dt>
+      </tt>
+      <dd>The length of the sample. <tt>dist + stride</tt> should be less than or equal to <tt>farClip</tt>.</dd>
+      <tt>
+      <dt><br>
+        <strong>opacity</strong></dt>
+      </tt>
+      <dd>The red, green and blue components of the opacity of this sample.</dd>
+      <tt>
+      <dt><br>
+        <strong>color</strong></dt>
+      </tt>
+      <dd>The color at this sample.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>The <a href="../../sample/Layout/Volumetrics/atmosphere/">atmosphere</a> sample is a straightforward
+    implementation of some of the volumetric techniques discussed in chapter 14 (K. Musgrave,
+    L. Gritz, S. Worley) of <em>Texturing and Modeling</em>, 2nd ed., Academic Press, 1998. It
+    includes both a fast analytical solution that creates a single sample and a more refined
+    solution that uses raymarching and multiple samples per ray.</td>
+  </tr>
+</table>
+</body>
+</html>

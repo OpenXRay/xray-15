@@ -1,0 +1,204 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_FILE_OUT_EFFECT DIALOG DISCARDABLE  0, 0, 211, 199
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Destination",IDT_VP_EVENT_UPPER_FRAME,5,3,200,50
+    LTEXT           "Upper Text",IDT_UPPER_TEXT,15,16,170,10
+    PUSHBUTTON      "Files...",IDB_FILES,15,31,45,15
+    PUSHBUTTON      "Devices...",IDB_DEVICES,65,31,45,15
+    PUSHBUTTON      "Clear",IDB_CLEAR,149,31,45,15
+    GROUPBOX        "Driver",IDT_VP_EVENT_LOWER_FRAME,5,56,200,50
+    LTEXT           "Lower Text",IDT_LOWER_TEXT,15,69,178,10
+    PUSHBUTTON      "About...",IDB_ABOUT,15,84,45,15
+    PUSHBUTTON      "Setup...",IDB_SETUP,65,84,45,15
+    GROUPBOX        "Parameters",IDT_VP_EVENT_LOWER_FRAME2,5,109,200,84
+    LTEXT           "Channel",IDC_STATIC,15,122,30,8
+    COMBOBOX        IDC_CHANNEL_LIST,15,132,85,51,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Affect Source Bitmap",IDB_AFFECT_SRC,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,149,81,11
+    CONTROL         "Active",IDB_ACTIVE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,176,35,11
+    LTEXT           "Z From Camera Clip Planes",IDC_PICK_CAM_TEXT,114,122,86,
+                    8
+    CONTROL         "Copy",IDB_COPY,"CustButton",WS_TABSTOP,114,132,30,12
+    CONTROL         "pick camera",IDB_PICK_CAM,"CustButton",WS_TABSTOP,147,
+                    132,51,12
+    CONTROL         "",IDC_NEARZ_EDIT,"CustEdit",WS_TABSTOP,114,150,50,10
+    CONTROL         "",IDC_NEARZ_SPIN,"SpinnerControl",0x0,164,150,7,10
+    LTEXT           "Near Z",IDC_NEARZ_TEXT,174,152,23,8
+    CONTROL         "",IDC_FARZ_EDIT,"CustEdit",WS_TABSTOP,114,163,50,10
+    CONTROL         "",IDC_FARZ_SPIN,"SpinnerControl",0x0,164,163,7,10
+    LTEXT           "Far Z",IDC_FARZ_TEXT,174,163,20,8
+    CONTROL         "Fit Entire Scene",IDB_FIT_SCENE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,114,176,62,11
+END
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_FILE_OUT_EFFECT, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 198
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_FILE_OUT_EFFECT DLGINIT
+BEGIN
+    IDC_CHANNEL_LIST, 0x403, 5, 0
+0x6772, 0x6162, "\000" 
+    IDC_CHANNEL_LIST, 0x403, 16, 0
+0x6c61, 0x6870, 0x2061, 0x7267, 0x7965, 0x6373, 0x6c61, 0x0065, 
+    IDC_CHANNEL_LIST, 0x403, 20, 0
+0x756c, 0x696d, 0x616e, 0x636e, 0x2065, 0x7267, 0x7965, 0x6373, 0x6c61, 
+0x0065, 
+    IDC_CHANNEL_LIST, 0x403, 19, 0
+0x207a, 0x7562, 0x6666, 0x7265, 0x6720, 0x6572, 0x7379, 0x6163, 0x656c, 
+"\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LIBDESCRIPTION      "File output rendering effect (Discreet)"
+    IDS_FILE_OUT_PARAMS     "File Output Parameters"
+    IDS_FILE_OUT            "File Output"
+    IDS_CHANNEL_TYPE        "Channel Type"
+    IDS_ACTIVE              "Active"
+    IDS_BITMAP              "Bitmap"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_NONE_AVAIL          "None Available"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_UNDEFINED           "Undefined"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ERROR_TITLE         "Render Effects Error"
+    IDS_ERROR_WRITE         "Error Writing %s\n"
+    IDS_CAM_NODE            "Camera Node"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_NEARZ               "Near Z Depth"
+    IDS_FARZ                "Far Z Depth"
+    IDS_PICK_CAM_PROMPT     "Pick a Camera Node"
+    IDS_IMAGE               "Whole Image"
+    IDS_DEPTH               "Depth (greyscale)"
+    IDS_LUM                 "Luminance (greyscale)"
+    IDS_ALPHA               "Alpha (greyscale)"
+    IDS_PICK_CAM_TIP        "Pick Camera"
+    IDS_COPY_VALS_TIP       "Copy Camera Values"
+    IDS_AFFECT_SRC          "Affect Source"
+    IDS_AFFECT_SRC_TIP      "Changes Rendered Bitmap"
+    IDS_FIT_SCENE           "Fit Entire Scene"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

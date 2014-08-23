@@ -1,0 +1,10 @@
+<LEP>
+sphere
+move 5 5 0
+cone
+move -5 5 0
+sphere
+move -5 -5 0
+cylinder
+move 5 -5 0
+

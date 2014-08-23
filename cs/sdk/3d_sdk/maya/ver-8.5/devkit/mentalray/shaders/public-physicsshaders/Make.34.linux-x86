@@ -1,0 +1,15 @@
+#!/bin/sh
+# automatically generated Thu Jul 29 12:13:25 MST 2004
+rm -f shader.h geoshader.h mi_version.h
+cp shader.34.h shader.h
+cp geoshader.34.h geoshader.h
+cp mi_version.34.h mi_version.h
+cp raylib.34.rc raylib.rc
+gcc -ansi -fPIC -I/usr/X11R6/include -c -O3  -mcpu=pentiumpro -fexpensive-optimizations -finline-functions -funroll-loops -fomit-frame-pointer -frerun-cse-after-loop -fstrength-reduce -fforce-mem -fforce-addr   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include dgsutil.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -O3  -mcpu=pentiumpro -fexpensive-optimizations -finline-functions -funroll-loops -fomit-frame-pointer -frerun-cse-after-loop -fstrength-reduce -fforce-mem -fforce-addr   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include dgsshade.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -O3  -mcpu=pentiumpro -fexpensive-optimizations -finline-functions -funroll-loops -fomit-frame-pointer -frerun-cse-after-loop -fstrength-reduce -fforce-mem -fforce-addr   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include dielecshade.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -O3  -mcpu=pentiumpro -fexpensive-optimizations -finline-functions -funroll-loops -fomit-frame-pointer -frerun-cse-after-loop -fstrength-reduce -fforce-mem -fforce-addr   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include partishade.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -O3  -mcpu=pentiumpro -fexpensive-optimizations -finline-functions -funroll-loops -fomit-frame-pointer -frerun-cse-after-loop -fstrength-reduce -fforce-mem -fforce-addr   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include pathshade.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -O3  -mcpu=pentiumpro -fexpensive-optimizations -finline-functions -funroll-loops -fomit-frame-pointer -frerun-cse-after-loop -fstrength-reduce -fforce-mem -fforce-addr   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include physlight.cpp
+gcc -ansi -fPIC -I/usr/X11R6/include -c -O3  -mcpu=pentiumpro -fexpensive-optimizations -finline-functions -funroll-loops -fomit-frame-pointer -frerun-cse-after-loop -fstrength-reduce -fforce-mem -fforce-addr   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include physlens.cpp
+g++ -shared -export-dynamic -static-libgcc -Wl,-Bsymbolic  -Wl,--whole-archive -o physics.so dgsutil.o dgsshade.o dielecshade.o partishade.o pathshade.o physlight.o physlens.o  -Wl,--no-whole-archive

@@ -1,0 +1,295 @@
+<html>
+
+<head>
+<title>Handlers</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="globals.html"><img width="96" height="20" border="0"
+    src="images/navlt.gif" alt="Globals"></a></td>
+    <td width="96" align="left"><a href="commands.html"><img width="64" height="20" border="0"
+    src="images/navrt.gif" alt="Commands"></a></td>
+    <td width="384" align="right"><a href="index.html"><img width="230" height="20" border="0"
+    src="images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Handlers</h3>
+    <p>Formally, handlers are plug-in classes that manage persistent instance data through
+    callbacks identified in the activation function. Handlers don't simply run and exit. They
+    tell LightWave in their activation functions where they can be reached, and then they hang
+    around, waiting for LightWave to call them.</p>
+    <p><strong>Instance Functions</strong></p>
+    <p>An <em>instance</em> is a block of data you create to describe a specific invocation of
+    your handler plug-in. An <a href="classes/itemmot.html">ItemMotionHandler</a>, for
+    example, can be invoked for any number of items in the scene, and might even be invoked
+    more than once for a given item, but for each slot it occupies, the plug-in will create
+    and use an instance specifically for that item slot. The instance data is where the
+    plug-in settings for that invocation are stored, and every one of the plug-in's callbacks
+    receives this data as one of its arguments.</p>
+    <p>The instance callbacks are where your plug-in creates, destroys, copies, loads, saves
+    and describes each instance data block. They're collected together in an LWInstanceFuncs
+    structure which is part of the local data passed to your activation function. Your
+    activation function needs to fill in this structure to tell LightWave where your instance
+    callbacks are.</p>
+    <pre>   typedef struct st_LWInstanceFuncs {
+      void         *<strong>priv</strong>;
+      LWInstance   (*<strong>create</strong>)  (void *priv, void *context, LWError *);
+      void         (*<strong>destroy</strong>) (LWInstance);
+      LWError      (*<strong>copy</strong>)    (LWInstance, LWInstance from);
+      LWError      (*<strong>load</strong>)    (LWInstance, const LWLoadState *);
+      LWError      (*<strong>save</strong>)    (LWInstance, const LWSaveState *);
+      const char * (*<strong>descln</strong>)  (LWInstance);
+   } LWInstanceFuncs;</pre>
+    <dl>
+      <dt><strong><tt>priv</tt></strong></dt>
+      <dd>Passed as the first argument to <tt>create</tt>. Set this to point to data you'd like
+        your <tt>create</tt> function to have.</dd>
+      <dt><tt><br>
+        instance = <strong>create</strong>( priv, context, error )</tt></dt>
+      <dd>Create an instance. Called, for example, when the user selects your plug-in on the
+        interface and when Layout loads a scene or an object file that refers to your plug-in.
+        Typically, you'll use <tt>malloc</tt> to allocate memory for a data structure, fill in
+        some of the structure's fields with default values, and return the pointer to this
+        structure. <tt>priv</tt> is the same as the <tt>priv</tt> field of the LWInstanceFuncs
+        structure and contains whatever your activation function put there. The <tt>context</tt>
+        varies depending on the plug-in class, but this is often an item ID for the item this
+        instance will be associated with. If you can't create an instance, set <tt>error</tt> to
+        an error message string and return NULL.</dd>
+      <dt><tt><br>
+        <strong>destroy</strong>( instance )</tt></dt>
+      <dd>Destroy an instance. Called, for example, when the user deselects your plug-in and when
+        the scene is cleared. Typically you'll free any memory and resources obtained in <tt>create</tt>
+        when this instance was created.</dd>
+      <dt><tt><br>
+        <strong>copy</strong>( dest, source )</tt></dt>
+      <dd>Copy the contents of the <tt>source</tt> instance to <tt>dest</tt>. If your instance
+        data contains pointers, you may have to allocate memory for the pointer fields in <tt>dest</tt>.</dd>
+      <dt><tt><br>
+        <strong>load</strong>( instance, loadstate )</tt></dt>
+      <dd>Read instance data from a file. LightWave provides an LWLoadState containing functions
+        used to read the data. See the <a href="fileio.html">File I/O</a> page.</dd>
+      <dt><tt><br>
+        <strong>save</strong>( instance, savestate )</tt></dt>
+      <dd>Write instance data to a file using the LWSaveState functions. See the <a
+        href="fileio.html">File I/O</a> page.</dd>
+      <dt><tt><br>
+        <strong>descln</strong>( instance )</tt></dt>
+      <dd>Provide a human-readable description of the instance data. This is a single string
+        displayed to the user on the LightWave interface and should be short enough to fit there.
+        It can contain anything, but typically it contains shorthand descriptions of the most
+        important settings. This serves as a reminder to the user, who would otherwise have to
+        open your plug-in's interface to check these settings.</dd>
+    </dl>
+    <p><strong>Item Handler Extensions</strong></p>
+    <p>Handler classes that work on items in the scene provide a pair of callbacks that allow
+    them to manage dependencies on other items.</p>
+    <pre>   typedef struct st_LWItemFuncs {
+      const LWItemID *  (*<strong>useItems</strong>) (LWInstance);
+      void              (*<strong>changeID</strong>) (LWInstance, const LWItemID *);
+   } LWItemFuncs;</pre>
+    <dl>
+      <dt><tt>idlist = <strong>useItems</strong>( instance )</tt></dt>
+      <dd>Returns an array of items this instance depends on. If your plug-in's behavior&nbsp;is
+        based on the parameters of other items (such as the positions of objects), you'll want to
+        be re-evaluated after those parameters change, and you use this function to inform Layout
+        of that. The array is terminated by <tt>LWITEM_NULL</tt>. The function can return NULL if
+        the instance doesn't use any items. It can also return <tt>LWITEM_ALL</tt> to indicate
+        that it wants to be evaluated after any change occurs.</dd>
+      <dt><tt><br>
+        <strong>changeID</strong>( instance, idlist )</tt></dt>
+      <dd>Notification about a change in item IDs. This function is called if the IDs of items are
+        going to change for any reason. The null-terminated item array passed to this function is
+        of the form &quot;old-1, new-1, old-2, new-2, ...&quot; where the old ID is the value that
+        is changing and the new ID is its new value. Clients should be careful to renumber each
+        item only once. <p>The <tt>changeID</tt> callback may also be called when an item's data,
+        such as the geometry of an object, has changed, and when called for this reason, the old
+        and new item IDs will be the same.</p>
+      </dd>
+    </dl>
+    <p>Handlers with an LWItemFuncs in their local data are ordinarily called by Layout, but
+    some handler classes (currently <a href="classes/imgfilt.html">image</a> and <a
+    href="classes/pxlfilt.html">pixel</a> filters, <a href="classes/shader.html">shaders</a>
+    and <a href="classes/texture.html">textures</a>) can also be called by Modeler for
+    previewing. When called by Modeler, the LWItemFuncs pointer will be NULL. <em>Handlers
+    must test the value of the LWItemFuncs pointer before attempting to fill in the <tt>useItems</tt>
+    and <tt>changeID</tt> fields.</em></p>
+    <p><strong>Render Handler Extensions</strong></p>
+    <p>Certain handlers involved directly in rendering also provide callbacks for the start
+    and end of a render session and the start of a new sampling pass.</p>
+    <pre>   typedef struct st_LWRenderFuncs {
+      LWError (*<strong>init</strong>)    (LWInstance, int);
+      void    (*<strong>cleanup</strong>) (LWInstance);
+      LWError (*<strong>newTime</strong>) (LWInstance, LWFrame, LWTime);
+   } LWRenderFuncs;</pre>
+    <dl>
+      <dt><tt>errormsg = <strong>init</strong>( instance, mode )</tt></dt>
+      <dd>Prepare the instance for a new rendering session. This is called before the first frame
+        of a rendering session is begun. The mode will be either <tt>LWINIT_PREVIEW</tt> or <tt>LWINIT_RENDER</tt>.
+        Returns a string containing an error message if an error occurs, otherwise returns NULL.</dd>
+      <dt><tt><br>
+        <strong>cleanup</strong>( instance )</tt></dt>
+      <dd>Called after the last frame of a rendering session is completed.</dd>
+      <dt><tt><br>
+        errormsg = <strong>newTime</strong>( instance, frame, time )</tt></dt>
+      <dd>Called at the start of a new sampling pass. This may be called more than once for the
+        same frame but for slightly different times. Returns an error message string or NULL.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>This activation function is for an environment handler. The local data includes both
+    the item and render extensions. All of the names on the right side of the equals sign are
+    functions your plug-in provides.</p>
+    <pre>   XCALL_( static int )
+   Handler( long version, GlobalFunc *global,
+      LWEnvironmentHandler *local, void *serverData )
+   {
+      if ( version != LWENVIRONMENT_VERSION )
+         return AFUNC_BADVERSION;
+
+      local-&gt;inst-&gt;create   = Create;
+      local-&gt;inst-&gt;destroy  = Destroy;
+      local-&gt;inst-&gt;copy     = Copy;
+      local-&gt;inst-&gt;load     = Load;
+      local-&gt;inst-&gt;save     = Save;
+      local-&gt;inst-&gt;descln   = Descln;
+
+      if ( local-&gt;item ) {
+         local-&gt;item-&gt;useItems = UseItems;
+         local-&gt;item-&gt;changeID = ChangeID;
+      }
+
+      local-&gt;rend-&gt;init     = Init;
+      local-&gt;rend-&gt;cleanup  = Cleanup;
+      local-&gt;rend-&gt;newTime  = NewTime;
+ 
+      local-&gt;evaluate = Evaluate;
+      local-&gt;flags    = Flags;
+
+      return AFUNC_OK;
+   }</pre>
+    <a name="ui"><p><strong>The Interface Class</strong></a> </p>
+    <p>Each handler class has an associated interface class with its own activation function.
+    As mentioned in the <a href="../server.html#servdesc">server description</a>
+    documentation, LightWave matches handlers with their interfaces by finding matching name
+    strings in the ServerRecord array for a plug-in file.</p>
+    <p>The interface activation function receives the instance data as the first field of an
+    LWInterface structure. This is the pointer returned by the handler's <tt>create</tt>
+    function. The interface activation fills in the other fields of the LWInterface to tell
+    LightWave how the plug-in wants its interface to be presented to the user.</p>
+    <pre>   typedef struct st_LWInterface {
+      LWInstance  <strong>inst</strong>;
+      LWXPanelID  <strong>panel</strong>;
+      LWError    (*<strong>options</strong>) (LWInstance);
+      LWError    (*<strong>command</strong>) (LWInstance, const char *);
+   } LWInterface;</pre>
+    <dl>
+      <dt><tt><strong>inst</strong></tt></dt>
+      <dd>An instance returned by the handler's <tt>create</tt> function. This is read-only.</dd>
+      <dt><tt><strong><br>
+        panel</strong></tt></dt>
+      <dd>An xpanel containing the controls for a user interface. The xpanel is created by calling
+        the functions returned by the <a href="globals/xpanel.html">XPanels</a> global. If this is
+        NULL, LightWave will use the <tt>options</tt> callback instead. Some classes receive real
+        estate on LightWave's panels for displaying their non-modal xpanel interfaces, so for
+        those classes, the plug-in's interface is &quot;always on,&quot; rather than being
+        explicitly invoked by the user.</dd>
+      <dt><tt><br>
+        error = <strong>options</strong>( instance )</tt></dt>
+      <dd>A callback that typically displays a modal panel. This is equivalent to the way the
+        interface activation function itself worked in versions of LightWave prior to 6.0.
+        LightWave calls this whenever the user explicitly opens the interface for the associated
+        handler, often by double-clicking on the handler's name in a list. If <tt>options</tt> is
+        NULL, LightWave uses the <tt>panel</tt> to display the plug-in's interface. (Exactly one
+        of the <tt>panel</tt> and <tt>options</tt> fields should be non-NULL.)</dd>
+      <dt><tt><br>
+        error = <strong>command</strong>( instance, cmdstring )</tt></dt>
+      <dd>A callback that processes batch commands. This isn't used in LightWave 6.0 and can
+        safely be set to NULL.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>The <a href="../../sample/avisave/">avisave</a> sample plug-in uses the <tt>options</tt>
+    function to display the standard Windows codec selection dialog. This is also the approach
+    to take if you're going to display a classic <a href="../globals/panel.html">panels</a>
+    interface.</p>
+    <pre>   XCALL_( int )
+   Interface( long version, GlobalFunc *global, LWInterface *local,
+      void *serverData )
+   {
+      if ( version != LWINTERFACE_VERSION )
+         return AFUNC_BADVERSION;
+
+      local-&gt;panel   = NULL;
+      local-&gt;options = Options;
+      local-&gt;command = NULL;
+
+      return AFUNC_OK;
+   }</pre>
+    <p><tt>Options</tt> uses the Win32 <tt>ICCompressorChoose</tt> function to display the
+    dialog. The window handle of Layout's main window, obtained from the <a
+    href="../globals/display.html">Host Display Info</a> global, is passed as the parent
+    window for the dialog.</p>
+    <pre>   XCALL_( static LWError )
+   Options( SampleAVI *avi )
+   {
+      ...
+      result = ICCompressorChoose( hdi-&gt;window,
+         ICMF_CHOOSE_ALLCOMPRESSORS, NULL, NULL, &amp;cv,
+         &quot;SampleAVI Options&quot; );
+      ...
+      return NULL;
+   }</pre>
+    <p>The <a href="../../sample/noisychan/">NoisyChan</a> sample creates an <tt>LWXP_VIEW</tt>
+    <a href="../globals/xpanel.html">xpanel</a> that draws its controls in the lower right
+    corner of Layout's graph editor window.</p>
+    <pre>   XCALL_( static int )
+   NoisyChannel_UI( long version, GlobalFunc *global, LWInterface *UI,
+      void *serverData )
+   {
+      if ( version != LWINTERFACE_VERSION )
+         return AFUNC_BADVERSION;
+
+      GGlobal = global;
+
+      UI-&gt;panel   = NoisyXPanel( global, UI-&gt;inst );
+      UI-&gt;options = NULL;
+      UI-&gt;command = NULL;
+
+      return AFUNC_OK;
+   }</pre>
+    <p>The <tt>NoisyXPanel</tt> function creates the xpanel.</p>
+    <pre>   LWXPanelID NoisyXPanel( GlobalFunc *global, NoisyData *dat )
+   {
+      LWXPanelFuncs *lwxpf = NULL;
+      LWXPanelID     panID = NULL;
+      static LWXPanelHint hint[] = {
+         XpLABEL(0,&quot;Noisy Channel&quot;),
+         XpEND
+      };
+
+      lwxpf = (LWXPanelFuncs*)(*global)( LWXPANELFUNCS_GLOBAL,
+         GFUSE_TRANSIENT );
+      if ( lwxpf ) {
+         panID = (*lwxpf-&gt;create)( LWXP_VIEW, ctrl_list );
+         if ( panID ) {
+            (*lwxpf-&gt;hint)    ( panID, 0, hint );
+            (*lwxpf-&gt;describe)( panID, data_descrip, NoiseData_get,
+               NoiseData_set );
+            (*lwxpf-&gt;viewInst)( panID, dat );
+            (*lwxpf-&gt;setData) ( panID, 0, dat);
+         }
+      }
+      return panID;
+   }
+</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

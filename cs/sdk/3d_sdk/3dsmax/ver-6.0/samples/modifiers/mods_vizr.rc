@@ -1,0 +1,340 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "modsres.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "modsres.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\r\n"
+    "\0"
+END
+
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_UVWXFORMPARAM_VIZR DIALOG DISCARDABLE  0, 0, 108, 151
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Mapping:",-1,5,1,98,132,WS_GROUP
+    RTEXT           "U Tile:",-1,9,14,25,8
+    CONTROL         "",IDC_MAP_UTILE,"CustEdit",WS_GROUP | WS_TABSTOP,35,14,
+                    31,10
+    CONTROL         "",IDC_MAP_UTILESPIN,"SpinnerControl",WS_GROUP,67,14,7,
+                    10
+    CONTROL         "Flip",IDC_MAP_UFLIP,"Button",BS_AUTOCHECKBOX | WS_GROUP | 
+                    WS_TABSTOP,77,16,24,10
+    RTEXT           "V Tile:",-1,9,27,25,8
+    CONTROL         "",IDC_MAP_VTILE,"CustEdit",WS_GROUP | WS_TABSTOP,35,27,
+                    31,10
+    CONTROL         "",IDC_MAP_VTILESPIN,"SpinnerControl",WS_GROUP,67,27,7,
+                    10
+    CONTROL         "Flip",IDC_MAP_VFLIP,"Button",BS_AUTOCHECKBOX | WS_GROUP | 
+                    WS_TABSTOP,77,29,24,10
+    RTEXT           "W Tile:",-1,9,40,25,8
+    CONTROL         "",IDC_MAP_WTILE,"CustEdit",WS_GROUP | WS_TABSTOP,35,40,
+                    31,10
+    CONTROL         "",IDC_MAP_WTILESPIN,"SpinnerControl",WS_GROUP,67,40,7,
+                    10
+    CONTROL         "Flip",IDC_MAP_WFLIP,"Button",BS_AUTOCHECKBOX | WS_GROUP | 
+                    WS_TABSTOP,77,42,24,10
+    RTEXT           "U Offset:",-1,13,59,34,8
+    CONTROL         "",IDC_MAP_UOFFSET,"CustEdit",WS_GROUP | WS_TABSTOP,48,
+                    59,31,10
+    CONTROL         "",IDC_MAP_UOFFSETSPIN,"SpinnerControl",WS_GROUP,80,59,7,
+                    10
+    RTEXT           "V Offset:",-1,13,72,34,8
+    CONTROL         "",IDC_MAP_VOFFSET,"CustEdit",WS_GROUP | WS_TABSTOP,48,
+                    72,31,10
+    CONTROL         "",IDC_MAP_VOFFSETSPIN,"SpinnerControl",WS_GROUP,80,72,7,
+                    10
+    RTEXT           "W Offset:",-1,13,85,34,8
+    CONTROL         "",IDC_MAP_WOFFSET,"CustEdit",WS_GROUP | WS_TABSTOP,48,
+                    85,31,10
+    CONTROL         "",IDC_MAP_WOFFSETSPIN,"SpinnerControl",WS_GROUP,80,85,7,
+                    10
+    RTEXT           "Rotation:",-1,13,104,34,8
+    CONTROL         "",IDC_MAP_WANGLE,"CustEdit",WS_GROUP | WS_TABSTOP,48,
+                    104,31,10
+    CONTROL         "",IDC_MAP_WANGLESPIN,"SpinnerControl",WS_GROUP,80,104,7,
+                    10
+    CONTROL         "Rotate about center",IDC_MAP_ROTCENTER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,118,86,10
+    CONTROL         "Use sub-object selection",IDC_MAP_USE_SOSEL,"Button",
+                    BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_DISABLED | 
+                    WS_TABSTOP,6,138,97,10
+END
+
+IDD_SMOOTHPARAM_VIZR DIALOGEX 0, 0, 108, 29
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_SMOOTH_THRESH,"CustEdit",WS_TABSTOP,51,15,36,10
+    CONTROL         "",IDC_SMOOTH_THRESHSPIN,"SpinnerControl",0x0,88,15,7,10
+    RTEXT           "Threshold:",IDC_SMOOTH_THRESH_LABEL,10,16,40,8
+    CONTROL         "Auto Smooth",IDC_SMOOTH_AUTO,"Button",BS_AUTOCHECKBOX | 
+                    NOT WS_VISIBLE | WS_TABSTOP,5,3,58,10
+    CONTROL         "Prevent Indirect Smoothing",IDC_SMOOTH_PREVENTINDIRECT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,3,99,10
+END
+
+IDD_MESH_SELECT_VIZR DIALOGEX 0, 0, 108, 88
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_MS_SELTYPE,"CustToolbar",WS_TABSTOP,12,5,83,14
+    CONTROL         "By Vertex",IDC_MS_SEL_BYVERT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,23,43,10
+    CONTROL         "Ignore Backfaces",IDC_MS_IGNORE_BACKFACES,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,35,72,10
+    CONTROL         "Ignore Visible Edges",IDC_MS_IGNORE_VISEDGE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,47,80,10
+    RTEXT           "Planar Thresh:",IDC_MS_PLANAR_TEXT,9,59,49,8
+    CONTROL         "",IDC_MS_PLANAR,"CustEdit",WS_TABSTOP,60,58,30,10
+    CONTROL         "",IDC_MS_PLANARSPINNER,"SpinnerControl",0x0,91,58,7,10
+    LTEXT           "123456 Faces Selected",IDC_MS_NUMBER_SEL,5,74,98,8
+    CONTROL         "Get Face Selection",IDC_MS_GETFACE,"CustButton",NOT 
+                    WS_VISIBLE | WS_TABSTOP,13,26,80,11
+    CONTROL         "Get Edge Selection",IDC_MS_GETEDGE,"CustButton",NOT 
+                    WS_VISIBLE | WS_TABSTOP,13,40,80,11
+    CONTROL         "Get Vertex Selection",IDC_MS_GETVERT,"CustButton",NOT 
+                    WS_VISIBLE | WS_TABSTOP,13,12,80,11
+    GROUPBOX        "Get from Other Levels",IDC_STATIC,3,0,102,56,NOT 
+                    WS_VISIBLE
+    CONTROL         "",IDC_MS_MATID,"CustEdit",NOT WS_VISIBLE | WS_TABSTOP,
+                    16,14,30,10
+    CONTROL         "Select",IDC_MS_SELBYMAT,"CustButton",NOT WS_VISIBLE | 
+                    WS_TABSTOP,60,14,38,11
+    CONTROL         "",IDC_MS_MATIDSPIN,"SpinnerControl",NOT WS_VISIBLE,47,
+                    14,7,10
+    RTEXT           "ID:",IDC_MS_SELBYMAT_TEXT,3,15,11,8,NOT WS_VISIBLE
+    GROUPBOX        "Select by Material ID",IDC_MS_SELBYMAT_BOX,0,3,102,26,
+                    NOT WS_VISIBLE
+    GROUPBOX        "Named Selection Sets",IDC_STATIC,3,6,102,26,NOT 
+                    WS_VISIBLE
+    CONTROL         "Copy",IDC_MS_COPYNS,"CustButton",NOT WS_VISIBLE | 
+                    WS_TABSTOP,7,17,45,11
+    CONTROL         "Paste",IDC_MS_PASTENS,"CustButton",NOT WS_VISIBLE | 
+                    WS_TABSTOP,56,17,45,11
+    CONTROL         "Select Open Edges",IDC_MS_SELOPEN,"CustButton",NOT 
+                    WS_VISIBLE | WS_TABSTOP,13,14,83,11
+END
+
+IDD_EM_SELECT_VIZR DIALOG DISCARDABLE  0, 0, 108, 110
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_EM_SELTYPE,"CustToolbar",WS_TABSTOP,12,5,83,14
+    CONTROL         "By Vertex",IDC_EM_SEL_BYVERT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,6,23,43,10
+    CONTROL         "Ignore Backfacing",IDC_EM_IGNORE_BACKFACES,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,35,74,10
+    CONTROL         "Ignore Visible Edges",IDC_EM_IGNORE_VISEDGE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,47,80,10
+    RTEXT           "Planar Thresh:",IDC_EM_SEL_PT_TEXT,10,59,49,8
+    CONTROL         "",IDC_EM_PLANAR,"CustEdit",WS_TABSTOP,60,58,30,10
+    CONTROL         "",IDC_EM_PLANARSPINNER,"SpinnerControl",0x0,91,58,7,10
+    CONTROL         "Hide",IDC_EM_HIDE,"CustButton",WS_TABSTOP,4,94,48,11
+    CONTROL         "Unhide All",IDC_EM_UNHIDEALL,"CustButton",WS_TABSTOP,55,
+                    94,48,11
+    CONTROL         "Show Normals",IDC_EM_NORMAL_SHOW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,71,61,10
+    CONTROL         "",IDC_EM_NORMAL_SCALE,"CustEdit",WS_TABSTOP,60,81,30,10
+    CONTROL         "",IDC_EM_NORMAL_SCALESPIN,"SpinnerControl",0x0,91,81,7,
+                    10
+    RTEXT           "Scale:",IDC_EM_SCALE_TEXT,37,82,22,8
+END
+
+IDD_EM_GEOM_VIZR DIALOGEX 0, 0, 108, 47
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Delete",IDC_EM_DELETE,"CustButton",WS_TABSTOP,4,4,48,11
+    CONTROL         "Detach",IDC_EM_DETACH,"CustButton",WS_TABSTOP,55,4,48,
+                    11
+    CONTROL         "Selected",IDC_EM_WELD,"CustButton",WS_TABSTOP,7,28,45,
+                    11
+    CONTROL         "",IDC_EM_W_THR,"CustEdit",WS_TABSTOP,55,29,37,10
+    CONTROL         "",IDC_EM_W_THR_SPIN,"SpinnerControl",0x0,94,29,7,10
+    GROUPBOX        "Weld",IDC_STATIC,3,18,101,26
+END
+
+IDD_EM_SURF_FACE_VIZR DIALOGEX 0, 0, 108, 87
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Auto Smooth",IDC_EM_SMOOTH_AUTO,"CustButton",WS_TABSTOP,
+                    6,66,46,11
+    CONTROL         "",IDC_EM_SMOOTH_THRESH,"CustEdit",WS_TABSTOP,55,67,36,
+                    10
+    CONTROL         "Flip",IDC_EM_NORMAL_FLIP,"CustButton",WS_TABSTOP,6,11,
+                    46,11
+    CONTROL         "Unify",IDC_EM_NORMAL_UNIFY,"CustButton",WS_TABSTOP,55,
+                    11,46,11
+    CONTROL         "",IDC_EM_SMOOTH_THRESHSPIN,"SpinnerControl",0x0,92,67,7,
+                    10
+    GROUPBOX        "Normals:",IDC_STATIC,3,1,101,38
+    CONTROL         "Clear All",IDC_EM_SMOOTH_CLEAR,"CustButton",WS_TABSTOP,
+                    6,53,46,11
+    CONTROL         "Flip Normal Mode",IDC_EM_NORMAL_FLIPMODE,"CustButton",
+                    WS_TABSTOP,6,24,95,11
+    GROUPBOX        "Smoothing Groups:",IDC_STATIC,3,42,101,40
+END
+
+IDD_UVWMAPPARAM_VIZR DIALOGEX 0, 0, 108, 262
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "Mapping:",IDC_STATIC,5,1,98,185,WS_GROUP
+    CONTROL         "Planar",IDC_MAP_PLANAR,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,23,14,35,10
+    CONTROL         "Cylindrical",IDC_MAP_CYL,"Button",BS_AUTORADIOBUTTON,23,
+                    25,48,10
+    CONTROL         "Spherical",IDC_MAP_SPHERE,"Button",BS_AUTORADIOBUTTON,
+                    23,37,44,10
+    CONTROL         "Shrink Wrap",IDC_MAP_BALL,"Button",BS_AUTORADIOBUTTON,
+                    23,48,55,10
+    CONTROL         "Box",IDC_MAP_BOX,"Button",BS_AUTORADIOBUTTON,23,59,35,
+                    10
+    CONTROL         "Face",IDC_MAP_FACE,"Button",BS_AUTORADIOBUTTON,23,70,35,
+                    10
+    CONTROL         "XYZ to UVW",IDC_MAP_XYZTOUVW,"Button",
+                    BS_AUTORADIOBUTTON,23,81,63,10
+    CONTROL         "Cap",IDC_MAP_CAP,"Button",BS_AUTOCHECKBOX | WS_GROUP | 
+                    WS_TABSTOP,73,25,26,10
+    RTEXT           "Length:",IDC_LENGTH_LABEL,9,98,25,8
+    CONTROL         "",IDC_MAP_LENGTH,"CustEdit",WS_GROUP | WS_TABSTOP,35,98,
+                    31,10
+    CONTROL         "",IDC_MAP_LENGTHSPIN,"SpinnerControl",WS_GROUP,67,98,7,
+                    10
+    RTEXT           "Width:",IDC_WIDTH_LABEL,12,111,22,8
+    CONTROL         "",IDC_MAP_WIDTH,"CustEdit",WS_GROUP | WS_TABSTOP,35,111,
+                    31,10
+    CONTROL         "",IDC_MAP_WIDTHSPIN,"SpinnerControl",WS_GROUP,67,111,7,
+                    10
+    RTEXT           "Height:",IDC_HEIGHT_LABEL,9,124,25,8
+    CONTROL         "",IDC_MAP_HEIGHT,"CustEdit",WS_GROUP | WS_TABSTOP,35,
+                    124,31,10
+    CONTROL         "",IDC_MAP_HEIGHTSPIN,"SpinnerControl",WS_GROUP,67,124,7,
+                    10
+    RTEXT           "U Tile:",IDC_STATIC,9,141,25,8
+    CONTROL         "",IDC_MAP_UTILE,"CustEdit",WS_GROUP | WS_TABSTOP,35,141,
+                    31,10
+    CONTROL         "",IDC_MAP_UTILESPIN,"SpinnerControl",WS_GROUP,67,141,7,
+                    10
+    CONTROL         "Flip",IDC_MAP_UFLIP,"Button",BS_AUTOCHECKBOX | WS_GROUP | 
+                    WS_TABSTOP,77,142,24,10
+    RTEXT           "V Tile:",IDC_STATIC,9,154,25,8
+    CONTROL         "",IDC_MAP_VTILE,"CustEdit",WS_GROUP | WS_TABSTOP,35,154,
+                    31,10
+    CONTROL         "",IDC_MAP_VTILESPIN,"SpinnerControl",WS_GROUP,67,154,7,
+                    10
+    CONTROL         "Flip",IDC_MAP_VFLIP,"Button",BS_AUTOCHECKBOX | WS_GROUP | 
+                    WS_TABSTOP,77,155,24,10
+    RTEXT           "W Tile:",IDC_STATIC,9,167,25,8
+    CONTROL         "",IDC_MAP_WTILE,"CustEdit",WS_GROUP | WS_TABSTOP,35,167,
+                    31,10
+    CONTROL         "",IDC_MAP_WTILESPIN,"SpinnerControl",WS_GROUP,67,167,7,
+                    10
+    CONTROL         "Flip",IDC_MAP_WFLIP,"Button",BS_AUTOCHECKBOX | WS_GROUP | 
+                    WS_TABSTOP,77,168,24,10
+    GROUPBOX        "Alignment:",IDC_STATIC,5,188,98,71,WS_GROUP
+    CONTROL         "X",IDC_MAP_X,"Button",BS_AUTORADIOBUTTON | WS_GROUP | 
+                    WS_TABSTOP,18,198,21,10
+    CONTROL         "Y",IDC_MAP_Y,"Button",BS_AUTORADIOBUTTON,45,198,21,10
+    CONTROL         "Z",IDC_MAP_Z,"Button",BS_AUTORADIOBUTTON,71,198,21,10
+    CONTROL         "Fit",IDC_MAP_FIT,"CustButton",WS_GROUP | WS_TABSTOP,9,
+                    210,44,12
+    CONTROL         "Center",IDC_MAP_CENTER,"CustButton",WS_GROUP | 
+                    WS_TABSTOP,56,210,44,12
+    CONTROL         "Bitmap Fit",IDC_MAP_BITMAPFIT,"CustButton",WS_GROUP | 
+                    WS_TABSTOP,9,226,44,12
+    CONTROL         "Normal Align",IDC_MAP_NORMALALIGN,"CustButton",WS_GROUP | 
+                    WS_TABSTOP,56,226,44,12
+    CONTROL         "Reset",IDC_MAP_RESET,"CustButton",WS_GROUP | WS_TABSTOP,
+                    9,242,44,12
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO MOVEABLE PURE 
+BEGIN
+    IDD_EM_SURF_FACE_VIZR, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 86
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SS_UVWXFORMMOD_VIZR "UVW Adjust"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

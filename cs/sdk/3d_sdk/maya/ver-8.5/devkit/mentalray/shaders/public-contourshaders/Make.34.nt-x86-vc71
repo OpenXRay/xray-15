@@ -1,0 +1,11 @@
+#!/bin/sh
+# automatically generated Thu Jul 29 12:09:31 MST 2004
+rm -f shader.h geoshader.h mi_version.h
+cp shader.34.h shader.h
+cp geoshader.34.h geoshader.h
+cp mi_version.34.h mi_version.h
+cp raylib.34.rc raylib.rc
+gcc -ansi -fPIC -I/usr/X11R6/include -c -O3  -mcpu=pentiumpro -fexpensive-optimizations -finline-functions -funroll-loops -fomit-frame-pointer -frerun-cse-after-loop -fstrength-reduce -fforce-mem -fforce-addr   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include contourshade.c
+gcc -ansi -fPIC -I/usr/X11R6/include -c -O3  -mcpu=pentiumpro -fexpensive-optimizations -finline-functions -funroll-loops -fomit-frame-pointer -frerun-cse-after-loop -fstrength-reduce -fforce-mem -fforce-addr   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include outimgshade.c
+gcc -ansi -fPIC -I/usr/X11R6/include -c -O3  -mcpu=pentiumpro -fexpensive-optimizations -finline-functions -funroll-loops -fomit-frame-pointer -frerun-cse-after-loop -fstrength-reduce -fforce-mem -fforce-addr   -DLINUX -DLINUX_X86 -DX86 -DEVIL_ENDIAN -D_GNU_SOURCE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DHYPERTHREAD -DNV_CG -I. -I../../modules/include outpsshade.c
+g++ -shared -export-dynamic -static-libgcc -Wl,-Bsymbolic,--whole-archive,--allow-shlib-undefined -o contour.so contourshade.o outimgshade.o outpsshade.o  -Wl,--no-whole-archive

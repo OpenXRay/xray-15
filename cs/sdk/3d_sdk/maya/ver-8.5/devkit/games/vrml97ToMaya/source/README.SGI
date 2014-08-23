@@ -1,0 +1,174 @@
+VRML 2.0 Parser
+Copyright (C) 1996, 1997 Silicon Graphics, Inc.
+Author(s)    : Gavin Bell
+               Daniel Woods (first port)
+--
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software (the "software") to use and modify the Software for
+personal use.
+
+The Software may not be resold or licensed for a fee without Silicon 
+Graphics, Inc.'s ("SGI") prior written consent.  The above copyright notice
+and permission must be included in all copies or substantial portions of
+the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FINESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT IS SGI
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH 
+THE SOFTWARE OR THE USE OF THE SOFTWARE.
+
+Except as contained in this notice and permission, SGI's name may not be
+used in advertising or otherwise to promote the use or other dealings of
+the Software without SGI's prior written consent.
+
+--
+
+Please place the following credit in 
+  1) About Box,
+  2) README file, and
+  3) Documentation,
+for the product(s) you develop using the VRML 2.0 Parser:
+
+  "Portions of this software are based in part on the VRML Parser
+   written by Silicon Graphics, Inc., Mountain View, California, USA."
+
+
+=======================================================================
+
+VRML 2.0 PARSER
+===============
+
+What you get:
+-------------
+
+Source code (C++, Lex, and Yacc) that parsers the VRML 2.0 final spec
+file format.  The parser ONLY checks for syntactically correct
+VRML 2.0 files; it does NOT attempt to create an in-memory
+representation of the file, and does NOT attempt to validate the
+semantic correctness of VRML files.  Or, in other words, it does not
+build an in-memory scene graph structure and does not check that
+DEF/USE names match, that ROUTE statements connect eventIns and
+eventOuts with types that match, etc.
+
+Source code for a sample usage of the parsing code, "vrmlparse.cpp".
+This is a simple command-line test program that does the following:
+  -- Prompts you for the name of VRML 2.0 file.  That file is then
+  read and parsed.  Syntax errors are reported to the console.  If
+  there are no errors, vrmlparse will produce no output.
+You can trace the debugging process by giving vrmlparse a numeric
+argument:  1 means to trace the Yacc parsing, 2 means to trace the
+Lex parsing, and 3 means to trace both.
+
+standardNodes.wrl is a .wrl file that contains PROTO declarations for 
+every node in the VRML 2.0 specification.  This file is
+read in first to add all of the standard, built-in nodes to the
+set of nodes that the parser understands.  If nodes or fields are
+added, removed, or renamed in future versions of the VRML spec,
+only standardNodes.wrl must be updated.
+
+What you need:
+--------------
+
+A C++ compiler.
+
+An implementation of the Standard Template Library (STL).  For an
+explanation of what STL is and pointers to implementations, see:
+    http://www-leland.stanford.edu/~iburrell/cpp/stl.html
+
+**** Porting Note:
+   Gavin's use of STL (with Borland C++) caused some minor problems
+   for Daniel (with Microsoft Visual C++, 4.0) since Borland makes 
+   use of  "namespace std".  Seems that Borland puts the STL classes 
+   in this namespace and Microsoft does not.
+   Gavin found the following quote at 
+     http://www.microsoft.com/visualc/v4/v4tech/stlchg.htm
+   
+     "If STL and MFC headers are mixed, it can lead to the wrong
+      operator being called.  For example, an operator may be 
+      generated from an STL templatized operator when an MFC
+      operator should have been called directly.  To avoid this,
+      wrap the headers in a namespace, for example: 
+      ...
+      The namespace std is recommended by ANSI for the standard
+      template library namespace.
+     "
+**** End of Porting Note
+
+
+Optional:
+
+Flex and Bison, the GNU implementations of Lex and Yacc.  The C++
+source code for the lexer and parser are included in this distribution,
+so Flex and Bison are only really necessary if you are modifying the
+parser/lexer.  Source for Bison and Flex is available from many locations, 
+for example:
+	ftp://gatekeeper.dec.com/pub/GNU/
+Executable versions of Flex and Bison for Windows 95
+are available from:
+	ftp://ftp.winsite.com/pub/pc/win95/programr/flexbison.zip
+
+
+Support/questions:
+------------------
+
+This is free software and, therefore, is not officially support by 
+Silicon Graphics Inc.   That said, as we update the code with fixes
+supplied by us or others, we will make available the updated versions.
+
+Please feel free to post bug reports and bug fixes via email to 
+cosmoplayerbugs@sgi.com and/or via the newsgroup
+news://vrml.sgi.com/sgi.cosmoplayer .
+
+Changes from Draft 2 version of the parser:
+-------------------------------------------
+
+standardNodes.wrl updated for syntax changes.
+lexer.l and lexer.cpp updated to recognize only final VRML 2.0 header.
+Any comments in source referring to "Draft #2" changed.
+The '+' and '-' characters are no longer legal in identifiers.
+
+Files:
+------
+readme.txt       : this file
+vrmlparse.cpp    : main test application
+lexer.l          : Lexical analyzer source
+lexer.cpp        : Generated lexical analyzer
+parser.y         : Parser-generator source
+parser.cpp       : Generated parser
+vrmlnodetype.cpp : NodeType class.
+vrmlnodetype.h   : NodeType class declaration.
+standardNodes.wrl: PROTO declarations for all standard VRML nodes
+tokens.h         : VRML 2.0 tokens
+makefile         : Simple makefile for lex & yacc build.
+
+Suggestions for building on this code:
+--------------------------------------
+
+A few quick suggestions on how to get started building VRML applications 
+starting from this parsing code:
+
+1. Define a generic node class.  Modify the parser (parser.y) to create
+a node once the node's type has been determined.  Store the node
+currently being parsed as part of the currentFieldStack structure so
+that the lexer can fill in field information.
+
+2. Define classes for each VRML field type.  Come up with some way
+of storing a list of fields for each node type, and of looking up
+a field given its name (the QvLib parsing code contains a FieldData
+structure that performs these functions).
+
+3. Modify the lexer (lexer.l) to fill in the fields of the current node
+as they are read.
+
+4. Decide on how you'll manage the memory for nodes, fields, etc and
+implement a reference counting or garbage collection scheme.
+
+5. Do everything else-- deal with node names, instancing nodes (USE),
+ROUTE statements, etc.
+
+Or:  Wait a little while, VRML 2.0 libraries that do all of these things 
+for you (plus rendering and dealing with events and a lot more) will 
+eventually appear.

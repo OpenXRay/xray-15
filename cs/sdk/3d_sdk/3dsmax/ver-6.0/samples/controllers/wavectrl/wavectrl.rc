@@ -1,0 +1,215 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_WAVEPARAMS DIALOG DISCARDABLE  0, 0, 396, 202
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Waveform Parameters"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_WAVE_PERIOD,"CustEdit",WS_TABSTOP,254,60,30,10
+    CONTROL         "",IDC_WAVE_AMPLITUDE,"CustEdit",WS_TABSTOP,254,86,30,10
+    CONTROL         "",IDC_WAVE_PHASE,"CustEdit",WS_TABSTOP,254,99,30,10
+    CONTROL         "Inverted",IDC_INVERTED,"Button",BS_AUTOCHECKBOX | 
+                    BS_NOTIFY,332,35,46,10
+    RTEXT           "Amplitude:",IDC_STATIC,209,87,41,8
+    RTEXT           "Period:",IDC_STATIC,215,61,35,8
+    CONTROL         "",IDC_WAVE_AMPLITUDESPIN,"SpinnerControl",0x0,285,86,7,
+                    10
+    RTEXT           "Phase:",IDC_STATIC,222,99,27,8
+    CONTROL         "",IDC_WAVE_PHASESPIN,"SpinnerControl",0x0,285,99,7,10
+    LTEXT           "Characteristic Graph:",IDC_STATIC,7,116,73,8
+    CONTROL         "",IDC_WAVE_GRAPH,"WaveGraph",0x0,7,128,140,46
+    CONTROL         "",IDC_WAVE_PERIODSPIN,"SpinnerControl",0x0,285,60,7,10
+    CONTROL         "Flipped",IDC_FLIPPED,"Button",BS_AUTOCHECKBOX | 
+                    BS_NOTIFY,332,45,43,10
+    GROUPBOX        "Vertical Bias",IDC_STATIC,229,111,131,61
+    CONTROL         "Centered",IDC_CENTERED,"Button",BS_AUTORADIOBUTTON,256,
+                    122,45,10
+    CONTROL         "Auto > 0",IDC_POSITIVE,"Button",BS_AUTORADIOBUTTON,256,
+                    133,43,10
+    CONTROL         "Auto < 0",IDC_NEGATIVE,"Button",BS_AUTORADIOBUTTON,256,
+                    145,43,10
+    CONTROL         "Manual:",IDC_MANUAL,"Button",BS_AUTORADIOBUTTON,256,157,
+                    41,10
+    CONTROL         "",IDC_WAVE_BIAS,"CustEdit",WS_TABSTOP,300,157,30,10
+    CONTROL         "",IDC_WAVE_BIASSPIN,"SpinnerControl",0x0,331,157,7,10
+    CONTROL         "",IDC_SINE,"CustButton",WS_TABSTOP,221,37,16,16
+    CONTROL         "",IDC_SQUARE,"CustButton",WS_TABSTOP,242,37,16,16
+    CONTROL         "",IDC_TRIANGLE,"CustButton",WS_TABSTOP,263,37,16,16
+    CONTROL         "",IDC_SAWTOOTH,"CustButton",WS_TABSTOP,285,37,16,16
+    CONTROL         "",IDC_HALFSINE,"CustButton",WS_TABSTOP,307,37,16,16
+    PUSHBUTTON      "About Waveform...",IDC_ABOUT,308,182,80,14
+    LISTBOX         IDC_WAVELIST,7,5,121,104,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Add",IDC_APPEND,137,5,50,14
+    PUSHBUTTON      "Remove",IDC_REMOVE,137,40,50,14
+    PUSHBUTTON      "Move Up",IDC_MOVEUP,137,58,50,14
+    PUSHBUTTON      "Move Down",IDC_MOVEDOWN,137,76,50,14
+    GROUPBOX        "Waveform",IDC_STATIC,201,5,187,172
+    EDITTEXT        IDC_WAVENAME,240,17,132,14,ES_AUTOHSCROLL
+    LTEXT           "Name:",IDC_STATIC,215,20,22,8
+    CONTROL         "Add",IDC_ADDFUNC,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
+                    311,67,41,10
+    CONTROL         "Multiply",IDC_MULT,"Button",BS_AUTORADIOBUTTON,311,77,
+                    57,10
+    GROUPBOX        "Effect",IDC_STATIC,303,58,72,51
+    PUSHBUTTON      "Insert",IDC_INSERT,137,23,50,14
+    CONTROL         "This Wave",IDC_THIS,"Button",BS_AUTORADIOBUTTON,9,179,
+                    51,10
+    CONTROL         "This Output",IDC_THISOUT,"Button",BS_AUTORADIOBUTTON,64,
+                    179,53,10
+    CONTROL         "Final Output",IDC_FINALOUT,"Button",BS_AUTORADIOBUTTON,
+                    121,179,54,10
+    CONTROL         "",IDC_WAVE_DUTY,"CustEdit",WS_TABSTOP,254,73,30,10
+    RTEXT           "Duty Cycle:",IDC_STATIC,213,74,37,8
+    CONTROL         "",IDC_WAVE_DUTYSPIN,"SpinnerControl",0x0,285,73,7,10
+    CONTROL         "Disable",IDC_DISABLE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,143,94,39,10
+    CONTROL         "Clamp Above",IDC_CLAMPABOVE,"Button",BS_AUTORADIOBUTTON,
+                    311,87,57,10
+    CONTROL         "Clamp Below",IDC_CLAMPBELOW,"Button",BS_AUTORADIOBUTTON,
+                    311,97,57,10
+    LTEXT           "999999",IDC_HIVALUE,153,127,42,8
+    LTEXT           "999999",IDC_LOVALUE,153,167,42,8
+END
+
+IDD_ABOUT DIALOG DISCARDABLE  0, 0, 151, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About Waveform Controller"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,50,34,50,14
+    LTEXT           "Waveform Controller",IDC_STATIC,43,7,65,8
+    LTEXT           "by Tom Hudson",IDC_STATIC,50,19,51,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_WAVEPARAMS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 386
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 195
+    END
+
+    IDD_ABOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 144
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_WAVE_BUTTONS        BITMAP  DISCARDABLE     "bitmap1.bmp"
+IDB_WAVE_MASKBUTTONS    BITMAP  DISCARDABLE     "bitmap2.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TH_WAVEFLOAT        "Waveform Float"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TH_SINE             "Sine"
+    IDS_TH_SQUARE           "Square"
+    IDS_TH_TRIANGLE         "Triangle"
+    IDS_TH_SAWTOOTH         "Sawtooth"
+    IDS_TH_HALFSINE         "Half Sine"
+    IDS_TH_WAVECONTROLTITLE "Waveform Controller : "
+    IDS_TH_LIBDESCRIPTION   "Waveform controller (Discreet)"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

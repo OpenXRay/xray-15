@@ -1,0 +1,189 @@
+<html>
+
+<head>
+<title>Image I/O</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="fileio.html"><img width="96" height="20" border="0"
+    src="images/navlt.gif" alt="File I/O"></a></td>
+    <td width="96" align="left"><a href="meshinfo.html"><img width="64" height="20" border="0"
+    src="images/navrt.gif" alt="Mesh Info"></a></td>
+    <td width="384" align="right"><a href="index.html"><img width="230" height="20" border="0"
+    src="images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Image I/O</h3>
+    <p>This page describes the mechanism LightWave&reg; uses to move images to and from external
+    files. The mechanism is defined in the <a href="../include/lwimageio.h/">lwimageio.h</a>
+    header file. The LWImageProtocol structure and the pixel type codes are used by the <a
+    href="classes/imgload.html">ImageLoader</a>, <a href="classes/imgsave.html">ImageSaver</a>,
+    and <a href="classes/animload.html">AnimLoaderHandler</a> classes.</p>
+    <p>The image protocol is used somewhat differently depending on which direction the image
+    data is flowing. Loader plug-ins simply call the image protocol functions, but saver
+    plug-ins <em>provide</em> these functions as callbacks that LightWave&reg; calls. Savers fill
+    in the image protocol structure in their activation functions.</p>
+    <p>Because of the dual nature of the image protocol structure, there are places in the
+    definitions where it's convenient to refer to the <em>source</em> and the <em>destination</em>
+    of an image transfer. For loaders, the source is the plug-in and the destination is
+    LightWave&reg;. For savers, the source is LightWave&reg; and the destination is the plug-in.</p>
+    <p><strong>Image Protocol</strong></p>
+    <p>Image data is transferred using calls to the functions in an LWImageProtocol. The <tt>lwimageio.h</tt>
+    header file defines macros that loaders can use to slightly simplify calls to these
+    functions. Both the functions and the corresponding macros are listed in the definitions.</p>
+    <pre>   typedef struct st_LWImageProtocol {
+      int   <strong>type</strong>;
+      void *<strong>priv_data</strong>;
+      int  (*<strong>done</strong>)     (void *, int);
+      void (*<strong>setSize</strong>)  (void *, int w, int h);
+      void (*<strong>setParam</strong>) (void *, LWImageParam, int, float);
+      int  (*<strong>sendLine</strong>) (void *, int, const LWPixelID);
+      void (*<strong>setMap</strong>)   (void *, int, const unsigned char[3]);
+   } LWImageProtocol, *LWImageProtocolID;</pre>
+    <dl>
+      <tt>
+      <dt><strong>type</strong></dt>
+      </tt>
+      <dd>The pixel type code, described below. This identifies the kind of data that will be sent
+        in <tt>sendLine</tt>.</dd>
+      <tt>
+      <dt><br>
+        <strong>priv_data</strong></dt>
+      </tt>
+      <dd>The first argument to the protocol functions. This is a pointer to data owned by the
+        destination. Loaders just need to pass this along to the protocol functions (the macros
+        hide this from you). Savers set this field to point to anything they like, typically a
+        structure that holds data needed to process the save.</dd>
+      <tt>
+      <dt><br>
+        result = <strong>done</strong>( priv_data, error )<br>
+        result = <strong>LWIP_DONE</strong>( protocol, error )</dt>
+      </tt>
+      <dd>Called when there's no more image data to send. The incoming error code and the outgoing
+        result can be any of the result codes defined below.</dd>
+      <tt>
+      <dt><br>
+        <strong>setSize</strong>( priv_data, width, height )<br>
+        <strong>LWIP_SETSIZE</strong>( protocol, width, height )</dt>
+      </tt>
+      <dd>Set the pixel dimensions of the image. The width and height are the number of pixels in
+        a scanline and the number of scanlines, respectively. This is called before the first call
+        to <tt>sendLine</tt>.</dd>
+      <tt>
+      <dt><br>
+        <strong>setParam</strong>( priv_data, paramid, intparam, floatparam )<br>
+        <strong>LWIP_SETPARAM</strong>( protocol, paramid, intparam, floatparam )</dt>
+      </tt>
+      <dd>Set other image parameters. In most cases, only one of the two parameter arguments will
+        be used, while the other should be set to 0 by sources and ignored by destinations. The
+        parameter ID can be one of the following. <dl>
+          <dt><tt><br>
+            LWIMPAR_ASPECT</tt> (float)</dt>
+          <dd>The pixel aspect ratio, defined as width/height. This will most often be 1.0 (square
+            pixels, the default), but D1 NTSC images, for example, use a pixel aspect of 0.9, meaning
+            that each pixel is 0.9 times as wide as it is high.</dd>
+          <dt><tt>LWIMPAR_NUMCOLS</tt> (int)</dt>
+          <dd>The number of entries in the color table of an indexed-color image (an image of type <tt>LWIMTYP_INDEX8</tt>).
+            Valid values are between 2 and 256.</dd>
+          <dt><tt>LWIMPAR_PIXELWIDTH</tt> (float)</dt>
+          <dd>The physical size of a pixel in millimeters. Savers can combine this with the pixel
+            aspect to record a DPI setting for file formats that support it.</dd>
+          <dt><tt>LWIMPAR_FRAMESPERSECOND</tt> (float)</dt>
+          <dd>The playback rate in frames per second.</dd>
+          <dt><tt>LWIMPAR_BLACKPOINT</tt> (float)</dt>
+          <dd>The black point of the image. The black point and white point define a nominal minimum
+            and maximum intensity for an image. These are used, for example, when displaying the image
+            on a device with limited dynamic range.</dd>
+          <dt><tt>LWIMPAR_WHITEPOINT</tt> (float)</dt>
+          <dd>The white point of the image.</dd>
+          <dt><tt>LWIMPAR_GAMMA</tt> (float)</dt>
+          <dd>The nonlinearity of the intensity encoding in the image.</dd>
+        </dl>
+        <p>The only parameter that loaders are required to set is the <tt>LWIMPAR_NUMCOLS</tt>
+        value for <tt>LWIMTYP_INDEX8</tt> images.</p>
+      </dd>
+      <tt>
+      <dt>result = <strong>sendLine</strong>( priv_data, y, scanline_pixels )<br>
+        result = <strong>LWIP_SENDLINE</strong>( protocol, y, scanline_pixels )</dt>
+      </tt>
+      <dd>Send one scanline from the image. Loaders must call <tt>setSize</tt> before the first
+        call to <tt>sendLine</tt>. Scanlines are numbered from the top of the image, starting at
+        0. Loaders don't<br>
+        have to send scanlines in a particular order, but savers will receive scanlines in top to
+        bottom<br>
+        order (or bottom to top if they specified the <tt>IMGF_REVERSE</tt> flag in their <tt>sendData</tt>
+        call). A scanline begins with the leftmost pixel. The structure of the pixel data depends
+        on the pixel type. Returns <tt>IPSTAT_OK</tt> or an error code.</dd>
+      <tt>
+      <dt><br>
+        <strong>setMap</strong>( priv_data, index, rgb )<br>
+        <strong>LWIP_SETMAP</strong>( protocol, index, rgb )</dt>
+      </tt>
+      <dd>Set the color of an entry in the color table of an indexed-color image. Loaders need to
+        call <tt>setParam</tt> with a <tt>LWIMPAR_NUMCOLS</tt> parameter before calling <tt>setMap</tt>
+        for the first time, but <tt>setMap</tt> may be called any time after that and before the
+        first <tt>sendLine</tt>. The index identifies the color table entry, which is numbered
+        from 0 to <tt>numcolors-1</tt>.</dd>
+    </dl>
+    <p><a name="pixdata"><strong>Pixel Data</strong></a></p>
+    <p>The structure of the data in a scanline will vary, depending on the pixel type. Each
+    scanline is an array of either unsigned bytes or floats. Bytes can contain any unsigned
+    value between 0 and 255. The nominal range for float values is 0.0 to 1.0, but values
+    outside that range may also appear.</p>
+    <p>Each pixel's data is contiguous--the scanline contains all of the channel values for
+    the first pixel, followed by the values for the second, and so on. The <tt>lwimageio.h</tt>
+    header file defines structures for many of the pixel types. You can use these to cast the <tt>void
+    *</tt> argument in <tt>sendLine</tt> to a pointer of the appropriate type for the pixel
+    data.</p>
+    <p>For each pixel type, the data is organized as follows. <dl>
+      <dt><tt>LWIMTYP_RGB24</tt></dt>
+      <dd>Each scanline is an array of <tt>unsigned char</tt> in <tt>RGBRGB...</tt> order. The
+        corresponding typedef is <tt>LWPixelRGB24</tt>.</dd>
+      <dt><tt>LWIMTYP_GREY8</tt></dt>
+      <dd>Each scanline is an array of <tt>unsigned char</tt>, with one byte per grayscale pixel.</dd>
+      <dt><tt>LWIMTYP_INDEX8</tt></dt>
+      <dd>Each scanline is an array of <tt>unsigned char</tt>, with one byte per pixel containing
+        color map indexes.</dd>
+      <dt><tt>LWIMTYP_GREYFP</tt></dt>
+      <dd>Each scanline is an array of <tt>float</tt>, with one float per pixel.</dd>
+      <dt><tt>LWIMTYP_RGBFP</tt></dt>
+      <dd>Each scanline is an array of <tt>float</tt> in <tt>RGBRGB...</tt> order. The
+        corresponding typedef is <tt>LWPixelRGBFP</tt>.</dd>
+      <dt><tt>LWIMTYP_RGBA32</tt></dt>
+      <dd>Each scanline is an array of <tt>unsigned char</tt> in <tt>RGBARGBA...</tt> order and
+        contains both RGB color and alpha channel values. The corresponding typedef is <tt>LWPixelRGBA32</tt>.</dd>
+      <dt><tt>LWIMTYP_RGBAFP</tt></dt>
+      <dd>Each scanline is an array of <tt>float</tt> in <tt>RGBARGBA...</tt> order and contains
+        both RGB color and alpha channel values. The corresponding typedef is <tt>LWPixelRGBAFP</tt>.</dd>
+    </dl>
+    <p><strong>Error Handling</strong></p>
+    <p>There are two ways that sources and destinations can notify each other of an error. The
+    destination can return error codes from the <tt>sendLine</tt> and <tt>done</tt> functions,
+    and the source can pass an error code to the destination's <tt>done</tt> function.</p>
+    <p>If a loader encounters an error while reading a file, it should stop sending data to
+    LightWave&reg; and call <tt>done</tt>, setting the error argument to <tt>IPSTAT_FAILED</tt>. If
+    a saver's <tt>done</tt> callback is called with a non-zero error argument, the saver
+    should perform whatever cleanup it thinks is appropriate, which may include removing the
+    partially saved file, and return the same error code from <tt>done</tt>.</p>
+    <p>If a saver encounters an error while writing a file, it should return <tt>IPSTAT_FAILED</tt>
+    from its <tt>sendLine</tt> and <tt>done</tt> callbacks. Note that the first <tt>sendLine</tt>
+    call is a saver's first opportunity to signal an error to LightWave&reg;, so its callbacks will
+    continue to be called after the error is detected and until <tt>sendLine</tt> is called.
+    It's a good idea for savers to include an error field in their priv_data so that their
+    callbacks can respond appropriately until LightWave&reg; can be told that something's gone
+    wrong.</p>
+    <p><strong>Example</strong></p>
+    <p>See the <a href="../sample/Layout/Input-Output/ancounter/">ancounter</a> animation loader and the <a
+    href="../sample/Utility/iff/">iff</a> image loader and saver samples. </td>
+  </tr>
+</table>
+</body>
+</html>

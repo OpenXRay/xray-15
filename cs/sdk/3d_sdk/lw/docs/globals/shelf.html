@@ -1,0 +1,222 @@
+<html>
+
+<head>
+<title>Globals: Shelf Functions</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="sceneobj.html"><img width="96" height="20"
+    border="0" src="../images/navlt.gif" alt="Scene Objects"></a></td>
+    <td width="96" align="left"><a href="surfed.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Surface Editor"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Shelf Functions</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwshelf.h">lwshelf.h</a></small></p>
+    <p>The shelf is a window where users can store and retrieve presets for your plug-in. The
+    shelf API supplies functions that let you subscribe (connect), set the context (tell the
+    shelf that your interface is the active one), open the shelf window, and add, load and
+    save presets.</p>
+    <p>For some plug-in classes, you don't need to call this global in order to gain access to
+    the shelf's preset management. Beginning with LightWave 7.0, the user can load and save
+    presets for your plug-in through the VIPER (Versatile Interactive Preview Render)
+    interface. Presets can be added to the shelf or loaded into your plug-in through calls to
+    your regular <a href="../handler.html">handler</a> load and save callbacks.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWShelfFuncs *shelff;
+   shelff = global( LWSHELFFUNCS_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWShelfFuncs.</p>
+    <pre>   typedef struct st_LWSHELFFUNCS {
+      LWShelfCltID (*<strong>subscribe</strong>)(char *name, char *subName,
+                                  void *userData, int flags,
+                                  LWShelfLoadOkFunc *,
+                                  LWShelfLoadFunc *,
+                                  LWShelfSaveFunc *);
+      void (*<strong>unsubscribe</strong>)   (LWShelfCltID);
+      void (*<strong>open</strong>)          (LWShelfCltID);
+      int  (*<strong>isOpen</strong>)        (LWShelfCltID clt);
+      void (*<strong>close</strong>)         (LWShelfCltID);
+      void (*<strong>setContext</strong>)    (LWShelfCltID);
+      int  (*<strong>addPreset</strong>)     (LWShelfCltID, LWPixmapID img,
+                               LWShelfParmList parms);
+      void (*<strong>load</strong>)          (LWShelfCltID, char *filename,
+                               int prompt_user);
+      void (*<strong>save</strong>)          (LWShelfCltID, char *filename,
+                               LWImageID thumimg, LWShelfParmList);
+      int  (*<strong>addNamedPreset</strong>)(LWShelfCltID clt, LWPixmapID img,
+                               LWShelfParmList parms, const char *name,
+                               const char *comment );
+   } LWShelfFuncs;</pre>
+    <dl>
+      <tt>
+      <dt>client = <strong>subscribe</strong>( class, server, userdata, flags, loadok, load, save
+        )</dt>
+      </tt>
+      <dd>Initialize the interaction between a plug-in instance and the shelf. The client ID
+        returned by this function is passed as the first argument to all of the others. The user
+        data, typically the instance data for handlers, will be passed as the first argument to
+        the three callbacks. The flags argument is a set of flag bits combined using bitwise-or.
+        They indicate what kind of preset loading and saving the plug-in supports and can be any
+        combination of the following. <dl>
+          <tt>
+          <dt><br>
+            SHLF_BIN</dt>
+          </tt>
+          <dd>Saves to and loads from binary files.</dd>
+          <tt>
+          <dt>SHLF_ASC</dt>
+          </tt>
+          <dd>Saves to and loads from ASCII (text) files</dd>
+          <tt>
+          <dt>SHLF_SEP</dt>
+          </tt>
+          <dd>Saves to and loads from separate (non-LightWave) files.</dd>
+        </dl>
+      </dd>
+      <tt>
+      <dt><br>
+        <strong>unsubscribe</strong>( client )</dt>
+      </tt>
+      <dd>Conclude your instance's use of the shelf. You should call this before your instance is
+        destroyed.</dd>
+      <tt>
+      <dt><br>
+        <strong>open</strong>( client )</dt>
+      </tt>
+      <dd>Open the preset shelf window and set the context to your plug-in. The window will
+        display only the presets for your plug-in.</dd>
+      <tt>
+      <dt><br>
+        open = <strong>isOpen</strong>( client )</dt>
+      </tt>
+      <dd>Returns true if the shelf window is open.</dd>
+      <tt>
+      <dt><br>
+        <strong>close</strong>( client )</dt>
+      </tt>
+      <dd>Close the shelf window.</dd>
+      <tt>
+      <dt><br>
+        <strong>setContext</strong>( client )</dt>
+      </tt>
+      <dd>Set the shelf context.</dd>
+      <tt>
+      <dt><br>
+        index = <strong>addPreset</strong>( client, img, params )</dt>
+      </tt>
+      <dd>Add a preset to the shelf. The <tt>img</tt> is the preset's thumbnail in the shelf
+        window, created using the <a href="imgutil.html">Image Utility</a> functions. The <tt>params</tt>
+        are passed as a NULL-terminated array of strings (tags) that you can use in your shelf
+        load callback to tell which parameters in this preset should be loaded. In the simplest
+        case, <tt>params</tt> will be NULL. <p><tt>addPreset</tt> is implemented as a call to <tt>addNamedPreset</tt>,
+        which is passed a default name generated by the shelf system. New code should call <tt>addNamedPreset</tt>
+        directly.</p>
+      </dd>
+      <tt>
+      <dt><strong>load</strong>( client, filename, prompt_user )<br>
+        <strong>save</strong>( client, filename, thumb_img, params )</dt>
+      </tt>
+      <dd>Load or save a preset in an external file. Presets are ordinarily stored in a file
+        managed by the shelf system, but you can use these functions to load and save presets in
+        files you name. For loading, if <tt>prompt_user</tt> is true and the preset contains a
+        parameter list (<tt>params</tt> was non-NULL when <tt>save</tt> was called for the
+        preset), the user is prompted for input.</dd>
+      <tt>
+      <dt><br>
+        index = <strong>addNamedPreset</strong>( client, img, params, name, comment )</dt>
+      </tt>
+      <dd>Add a named preset to the shelf. Like <tt>addPreset</tt>, but you can also specify a
+        name and a comment that will help the user identify the preset.</dd>
+    </dl>
+    <p><strong>Callbacks</strong></p>
+    <p>The last three arguments to the <tt>subscribe</tt> function are callbacks that the
+    shelf calls when a preset is to be loaded or saved. The shelf system calls these to
+    actually load and save the preset. For all three callbacks, the first argument is the user
+    data you passed to <tt>subscribe</tt>.</p>
+    <pre>   typedef int  LWShelfLoadOkFunc (void *userdata);
+   typedef void LWShelfLoadFunc   (void *userdata, const LWLoadState *,
+                                     const char *filename,
+                                     LWShelfParmList);
+   typedef void LWShelfSaveFunc   (void *userdata, const LWSaveState *,
+                                     const char *filename );</pre>
+    <dl>
+      <tt>
+      <dt><strong>LWShelfLoadOkFunc</strong></dt>
+      </tt>
+      <dd>Returns a code that tells the shelf system whether to load the preset and whether the
+        user should be prompted first. The code can be one of the following. <dl>
+          <tt>
+          <dt><br>
+            SHLC_NOWAY</dt>
+          </tt>
+          <dd>Do not load. Your plug-in should tell the user why.</dd>
+          <tt>
+          <dt>SHLC_DFLT</dt>
+          </tt>
+          <dd>Display the default confirmation dialog.</dd>
+          <tt>
+          <dt>SHLC_FORCE</dt>
+          </tt>
+          <dd>Load without consulting the user.</dd>
+        </dl>
+        <p>Your plug-in can display its own confirmation dialog and then return <tt>NOWAY</tt> or <tt>FORCE</tt>
+        as appropriate, but you'll lose the ability to use parameter lists to selectively load
+        parameters from your presets.</p>
+      </dd>
+      <tt>
+      <dt><strong>LWShelfLoadFunc</strong></dt>
+      </tt>
+      <dd>Load the preset. The shelf calls this when the user double-clicks on a preset thumbnail
+        in the shelf window, or when you call the <tt>load</tt> function to load a preset from a
+        file. In the first case, the <tt>filename</tt> argument will be NULL, and you'll read the
+        preset's parameters by calling the <a href="../fileio.html">LWLoadState</a> functions.
+        Typically, <a href="../handler.html">handlers</a> pass this job on to their handler load
+        callback. In the second case, the LWLoadState will be NULL, and you'll read the preset
+        from the file named in <tt>filename</tt>. You can still pass this on to your handler's
+        load callback by creating an LWLoadState for the preset file using the <a
+        href="fileio.html">File I/O</a> global. <p>The parameter list is an array of strings. It
+        contains a subset of the parameter list you passed to <tt>addPreset</tt>, <tt>addNamedPreset</tt>
+        or <tt>save</tt>. The default load confirmation dialog presents the list to the user and
+        allows the user to select parameters. Only selected parameters are passed to your load
+        callback. You can use the selections to load only portions of a preset.</p>
+      </dd>
+      <tt>
+      <dt><strong>LWShelfSaveFunc</strong></dt>
+      </tt>
+      <dd>Save the preset. The shelf calls this when you call <tt>addPreset</tt>, <tt>addNamedPreset</tt>
+        or <tt>save</tt>. When adding a preset to the shelf, the <tt>filename</tt> argument will
+        be NULL, and you'll store the preset's parameters by calling the <a href="../fileio.html">LWSaveState</a>
+        functions. Typically, <a href="../handler.html">handlers</a> pass this job on to their
+        handler save callback. When saving a preset to a file, the LWSaveState will be NULL, and
+        you'll write the preset to the file named in <tt>filename</tt>. You can still pass this on
+        to your handler's save callback by creating an LWSaveState for the preset file using the <a
+        href="fileio.html">File I/O</a> global. <p>The parameter list is an array of strings
+        representing parameters or groups of parameters in your preset data. When the preset is
+        reloaded, the user can select from this list of named parameters, and the user's selection
+        will be passed to the load callback.</p>
+      </dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>The <a href="../../sample/shelf/">shelf</a> SDK sample is a Master plug-in that
+    demonstrates the shelf functions. (This is <em>all</em> it does, in fact.) The plug-in's
+    &quot;data&quot; is merely a color. The interface lets you add color presets to the shelf
+    or save them in separate files. You can then load them back into the plug-in's handler
+    instance.</td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,25 @@
+HKCR
+{
+	Comsrv.MaxBitmapInfo.1 = s 'MaxBitmapInfo Class'
+	{
+		CLSID = s '{D888A162-6543-11D2-91CC-0060081C257E}'
+	}
+	Comsrv.MaxBitmapInfo = s 'MaxBitmapInfo Class'
+	{
+		CLSID = s '{D888A162-6543-11D2-91CC-0060081C257E}'
+		CurVer = s 'Comsrv.MaxBitmapInfo.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {D888A162-6543-11D2-91CC-0060081C257E} = s 'MaxBitmapInfo Class'
+		{
+			ProgID = s 'Comsrv.MaxBitmapInfo.1'
+			VersionIndependentProgID = s 'Comsrv.MaxBitmapInfo'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '3dsmax.exe'
+			InprocHandler32 = s 'ole32.dll'
+			val AppID = s '{4AD72E62-5A4B-11D2-91CB-0060081C257E}'
+			'TypeLib' = s '{4AD72E61-5A4B-11D2-91CB-0060081C257E}'
+		}
+	}
+}

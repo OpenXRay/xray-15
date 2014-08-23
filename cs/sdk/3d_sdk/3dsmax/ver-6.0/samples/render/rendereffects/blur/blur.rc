@@ -1,0 +1,480 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MASTER DIALOG DISCARDABLE  0, 0, 211, 498
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Tab1",IDC_TAB,"SysTabControl32",TCS_FOCUSNEVER,5,5,201,
+                    488
+END
+
+IDD_BLUR_TYPES DIALOG DISCARDABLE  0, 0, 201, 473
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Uniform",IDR_BLUR_UNIF,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFT | BS_VCENTER | WS_GROUP | WS_TABSTOP,5,5,40,10
+    CONTROL         "Directional",IDR_BLUR_DIR,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFT | BS_VCENTER,5,50,50,10
+    CONTROL         "Radial",IDR_BLUR_RADIAL,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFT | BS_VCENTER,5,119,35,10
+    CONTROL         "",IDE_BUNIF_RAD,"CustEdit",WS_GROUP | WS_TABSTOP,17,18,
+                    27,10
+    CONTROL         "",IDSP_BUNIF_RAD,"SpinnerControl",0x0,44,18,7,10
+    LTEXT           "Pixel Radius (%)",IDC_STATIC,54,18,55,10,SS_CENTERIMAGE
+    CONTROL         "Affect Alpha",IDC_BUNIF_ALPHA,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFT | BS_VCENTER | WS_TABSTOP,17,30,55,10
+    CONTROL         "",IDE_BDIR_URAD,"CustEdit",WS_TABSTOP,17,63,27,10
+    CONTROL         "",IDSP_BDIR_URAD,"SpinnerControl",0x0,44,63,7,10
+    LTEXT           "U Pixel Radius (%)",IDC_STATIC,54,63,59,10,
+                    SS_CENTERIMAGE
+    CONTROL         "",IDE_BDIR_UTRAIL,"CustEdit",WS_TABSTOP,117,63,27,10
+    CONTROL         "",IDSP_BDIR_UTRAIL,"SpinnerControl",0x0,144,63,7,10
+    LTEXT           "U Trail (%)",IDC_STATIC,154,63,35,10,SS_CENTERIMAGE
+    CONTROL         "",IDE_BDIR_VRAD,"CustEdit",WS_TABSTOP,17,75,27,10
+    CONTROL         "",IDSP_BDIR_VRAD,"SpinnerControl",0x0,44,75,7,10
+    LTEXT           "V Pixel Radius (%)",IDC_STATIC,54,75,60,10,
+                    SS_CENTERIMAGE
+    CONTROL         "",IDE_BDIR_VTRAIL,"CustEdit",WS_TABSTOP,117,75,27,10
+    CONTROL         "",IDSP_BDIR_VTRAIL,"SpinnerControl",0x0,144,75,7,10
+    LTEXT           "V Trail (%)",IDC_STATIC,154,75,35,10,SS_CENTERIMAGE
+    CONTROL         "",IDE_BDIR_ROT,"CustEdit",WS_TABSTOP,17,87,27,10
+    CONTROL         "",IDSP_BDIR_ROT,"SpinnerControl",0x0,44,87,7,10
+    LTEXT           "Rotation (°)",IDC_STATIC,54,87,40,10,SS_CENTERIMAGE
+    CONTROL         "Affect Alpha",IDC_BDIR_ALPHA,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFT | BS_VCENTER | WS_TABSTOP,17,99,54,10
+    CONTROL         "",IDE_BRADIAL_RAD,"CustEdit",WS_TABSTOP,17,132,27,10
+    CONTROL         "",IDSP_BRADIAL_RAD,"SpinnerControl",0x0,44,132,7,10
+    LTEXT           "Pixel Radius (%)",IDC_STATIC,54,132,55,10,
+                    SS_CENTERIMAGE
+    CONTROL         "",IDE_BRADIAL_TRAIL,"CustEdit",WS_TABSTOP,117,132,27,10
+    CONTROL         "",IDSP_BRADIAL_TRAIL,"SpinnerControl",0x0,144,132,7,10
+    LTEXT           "Trail (%)",IDC_STATIC,154,132,30,10,SS_CENTERIMAGE
+    CONTROL         "",IDE_BRADIAL_XORIGIN,"CustEdit",WS_TABSTOP,17,144,27,
+                    10
+    CONTROL         "",IDSP_BRADIAL_XORIGIN,"SpinnerControl",0x0,44,144,7,10
+    LTEXT           "X Origin",IDC_STATIC,54,144,30,10,SS_CENTERIMAGE
+    CONTROL         "",IDB_BRADIAL_NODE,"CustButton",WS_TABSTOP,117,144,62,
+                    10
+    CONTROL         "",IDE_BRADIAL_YORIGIN,"CustEdit",WS_TABSTOP,17,156,27,
+                    10
+    CONTROL         "",IDSP_BRADIAL_YORIGIN,"SpinnerControl",0x0,44,156,7,10
+    LTEXT           "Y Origin",IDC_STATIC,54,156,30,10,SS_CENTERIMAGE
+    PUSHBUTTON      "Clear",IDB_BRADIAL_CLEAR_NODE,117,156,62,10
+    CONTROL         "Affect Alpha",IDC_BRADIAL_ALPHA,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFT | BS_VCENTER | WS_TABSTOP,17,
+                    168,55,10
+    CONTROL         "Use Object Center",IDC_BRADIAL_USE_NODE,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFT | BS_VCENTER | WS_GROUP | 
+                    WS_TABSTOP,117,168,74,10
+END
+
+IDD_SEL_TYPES DIALOG DISCARDABLE  0, 0, 201, 473
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Whole Image",IDC_SIMAGE_ACTIVE,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFT | BS_VCENTER | WS_TABSTOP,5,5,58,10
+    CONTROL         "",IDE_SIMAGE_BRIGHTEN,"CustEdit",WS_TABSTOP,17,18,27,10
+    CONTROL         "",IDSP_SIMAGE_BRIGHTEN,"SpinnerControl",0x0,44,18,7,10
+    LTEXT           "Brighten (%)",IDC_STATIC,54,18,38,10,SS_CENTERIMAGE
+    CONTROL         "",IDE_SIMAGE_BLEND,"CustEdit",WS_TABSTOP,117,17,27,10
+    CONTROL         "",IDSP_SIMAGE_BLEND,"SpinnerControl",0x0,144,17,7,10
+    LTEXT           "Blend (%)",IDC_STATIC,154,17,40,10,SS_CENTERIMAGE
+    CONTROL         "Non-Background",IDC_SIBACK_ACTIVE,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFT | BS_VCENTER | WS_TABSTOP,5,33,
+                    70,10
+    CONTROL         "",IDE_SIBACK_BRIGHTEN,"CustEdit",WS_TABSTOP,17,46,27,10
+    CONTROL         "",IDSP_SIBACK_BRIGHTEN,"SpinnerControl",0x0,44,46,7,10
+    LTEXT           "Brighten (%)",IDC_STATIC,54,46,37,10,SS_CENTERIMAGE
+    CONTROL         "",IDE_SIBACK_BLEND,"CustEdit",WS_TABSTOP,117,46,27,10
+    CONTROL         "",IDSP_SIBACK_BLEND,"SpinnerControl",0x0,144,46,7,10
+    LTEXT           "Blend (%)",IDC_STATIC,154,46,30,10,SS_CENTERIMAGE
+    CONTROL         "",IDE_SIBACK_FRAD,"CustEdit",WS_TABSTOP,17,58,27,10
+    CONTROL         "",IDSP_SIBACK_FRAD,"SpinnerControl",0x0,44,58,7,10
+    LTEXT           "Feather Radius (%)",IDC_STATIC,54,58,60,10,
+                    SS_CENTERIMAGE
+    CONTROL         "Luminance",IDC_SLUM_ACTIVE,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFT | BS_VCENTER | WS_TABSTOP,5,73,50,10
+    CONTROL         "",IDE_SLUM_BRIGHTEN,"CustEdit",WS_TABSTOP,17,86,27,10
+    CONTROL         "",IDSP_SLUM_BRIGHTEN,"SpinnerControl",0x0,44,86,7,10
+    LTEXT           "Brighten (%)",IDC_STATIC,54,86,40,10,SS_CENTERIMAGE
+    CONTROL         "",IDE_SLUM_BLEND,"CustEdit",WS_TABSTOP,117,86,27,10
+    CONTROL         "",IDSP_SLUM_BLEND,"SpinnerControl",0x0,144,86,7,10
+    LTEXT           "Blend (%)",IDC_STATIC,154,86,40,10,SS_CENTERIMAGE
+    CONTROL         "",IDE_SLUM_MIN,"CustEdit",WS_TABSTOP,17,98,27,10
+    CONTROL         "",IDSP_SLUM_MIN,"SpinnerControl",0x0,44,98,7,10
+    LTEXT           "Min (%)",IDC_STATIC,54,98,25,10,SS_CENTERIMAGE
+    CONTROL         "",IDE_SLUM_MAX,"CustEdit",WS_TABSTOP,117,98,27,10
+    CONTROL         "",IDSP_SLUM_MAX,"SpinnerControl",0x0,144,98,7,10
+    LTEXT           "Max (%)",IDC_STATIC,154,98,25,10,SS_CENTERIMAGE
+    CONTROL         "",IDE_SLUM_FRAD,"CustEdit",WS_TABSTOP,17,110,27,10
+    CONTROL         "",IDSP_SLUM_FRAD,"SpinnerControl",0x0,44,110,7,10
+    LTEXT           "Feather Radius (%)",IDC_STATIC,54,110,61,10,
+                    SS_CENTERIMAGE
+    CONTROL         "Map Mask",IDC_SMASK_ACTIVE,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFT | BS_VCENTER | WS_TABSTOP,5,125,45,10
+    CONTROL         "mask map",IDB_SMASK_MAP,"CustButton",WS_TABSTOP,17,138,
+                    90,12
+    COMBOBOX        IDCB_SMASK_CHANNEL,117,138,53,67,CBS_DROPDOWNLIST | 
+                    WS_TABSTOP
+    LTEXT           "Chan",IDC_STATIC,173,140,18,10,SS_CENTERIMAGE
+    CONTROL         "",IDE_SMASK_BRIGHTEN,"CustEdit",WS_TABSTOP,17,155,27,10
+    CONTROL         "",IDSP_SMASK_BRIGHTEN,"SpinnerControl",0x0,44,155,7,10
+    LTEXT           "Brighten (%)",IDC_STATIC,54,155,40,10,SS_CENTERIMAGE
+    CONTROL         "",IDE_SMASK_BLEND,"CustEdit",WS_TABSTOP,117,155,27,10
+    CONTROL         "",IDSP_SMASK_BLEND,"SpinnerControl",0x0,144,155,7,10
+    LTEXT           "Blend (%)",IDC_STATIC,154,155,40,10,SS_CENTERIMAGE
+    CONTROL         "",IDE_SMASK_MIN,"CustEdit",WS_TABSTOP,17,167,27,10
+    CONTROL         "",IDSP_SMASK_MIN,"SpinnerControl",0x0,44,167,7,10
+    LTEXT           "Min (%)",IDC_STATIC,54,167,25,10,SS_CENTERIMAGE
+    CONTROL         "",IDE_SMASK_MAX,"CustEdit",WS_TABSTOP,117,167,27,10
+    CONTROL         "",IDSP_SMASK_MAX,"SpinnerControl",0x0,144,167,7,10
+    LTEXT           "Max (%)",IDC_STATIC,154,167,25,10,SS_CENTERIMAGE
+    CONTROL         "",IDE_SMASK_FRAD,"CustEdit",WS_TABSTOP,17,179,27,10
+    CONTROL         "",IDSP_SMASK_FRAD,"SpinnerControl",0x0,44,179,7,10
+    LTEXT           "Feather Radius (%)",IDC_STATIC,54,179,60,10,
+                    SS_CENTERIMAGE
+    CONTROL         "Object ID",IDC_SOBJIDS_ACTIVE,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFT | BS_VCENTER | WS_TABSTOP,5,194,45,10
+    LISTBOX         IDLB_SOBJIDS,17,207,30,46,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Add",IDB_SOBJIDS_ADD,"CustButton",WS_TABSTOP,51,207,44,
+                    10
+    CONTROL         "Replace",IDB_SOBJIDS_REPLACE,"CustButton",WS_TABSTOP,51,
+                    219,44,10
+    CONTROL         "Delete",IDB_SOBJIDS_DELETE,"CustButton",WS_TABSTOP,51,
+                    231,44,10
+    CONTROL         "",IDE_SOBJIDS_NEWVAL,"CustEdit",WS_TABSTOP,51,243,27,10
+    CONTROL         "",IDSP_SOBJIDS_NEWVAL,"SpinnerControl",0x0,78,243,7,10
+    LTEXT           "ID",IDC_STATIC,88,243,9,10,SS_CENTERIMAGE
+    CONTROL         "",IDE_SOBJIDS_LUM_MIN,"CustEdit",WS_TABSTOP,117,207,27,
+                    10
+    CONTROL         "",IDSP_SOBJIDS_LUM_MIN,"SpinnerControl",0x0,144,207,7,
+                    10
+    LTEXT           "Min Lum (%)",IDC_STATIC,154,207,39,10,SS_CENTERIMAGE
+    CONTROL         "",IDE_SOBJIDS_LUM_MAX,"CustEdit",WS_TABSTOP,117,219,27,
+                    10
+    CONTROL         "",IDSP_SOBJIDS_LUM_MAX,"SpinnerControl",0x0,144,219,7,
+                    10
+    LTEXT           "Max Lum (%)",IDC_STATIC,154,219,42,10,SS_CENTERIMAGE
+    CONTROL         "",IDE_SOBJIDS_BRIGHTEN,"CustEdit",WS_TABSTOP,117,231,27,
+                    10
+    CONTROL         "",IDSP_SOBJIDS_BRIGHTEN,"SpinnerControl",0x0,144,231,7,
+                    10
+    LTEXT           "Brighten (%)",IDC_STATIC,154,231,40,10,SS_CENTERIMAGE
+    CONTROL         "",IDE_SOBJIDS_BLEND,"CustEdit",WS_TABSTOP,117,243,27,10
+    CONTROL         "",IDSP_SOBJIDS_BLEND,"SpinnerControl",0x0,144,243,7,10
+    LTEXT           "Blend (%)",IDC_STATIC,154,243,40,10,SS_CENTERIMAGE
+    CONTROL         "",IDE_SOBJIDS_FRAD,"CustEdit",WS_TABSTOP,117,255,27,10
+    CONTROL         "",IDSP_SOBJIDS_FRAD,"SpinnerControl",0x0,144,255,7,10
+    LTEXT           "F. Radius (%)",IDC_STATIC,153,255,44,10,SS_CENTERIMAGE
+    CONTROL         "Material ID",IDC_SMATIDS_ACTIVE,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFT | BS_VCENTER | WS_TABSTOP,5,
+                    268,45,10
+    LISTBOX         IDLB_SMATIDS,17,281,30,46,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Add",IDB_SMATIDS_ADD,"CustButton",WS_TABSTOP,51,281,44,
+                    10
+    CONTROL         "Replace",IDB_SMATIDS_REPLACE,"CustButton",WS_TABSTOP,51,
+                    292,44,10
+    CONTROL         "Delete",IDB_SMATIDS_DELETE,"CustButton",WS_TABSTOP,51,
+                    305,44,10
+    CONTROL         "",IDE_SMATIDS_NEWVAL,"CustEdit",WS_TABSTOP,51,316,27,10
+    CONTROL         "",IDSP_SMATIDS_NEWVAL,"SpinnerControl",0x0,79,316,7,10
+    LTEXT           "ID",IDC_STATIC,89,316,9,10,SS_CENTERIMAGE
+    CONTROL         "",IDE_SMATIDS_LUM_MIN,"CustEdit",WS_TABSTOP,117,281,27,
+                    10
+    CONTROL         "",IDSP_SMATIDS_LUM_MIN,"SpinnerControl",0x0,144,281,7,
+                    10
+    LTEXT           "Min Lum (%)",IDC_STATIC,154,281,39,10,SS_CENTERIMAGE
+    CONTROL         "",IDE_SMATIDS_LUM_MAX,"CustEdit",WS_TABSTOP,117,294,27,
+                    10
+    CONTROL         "",IDSP_SMATIDS_LUM_MAX,"SpinnerControl",0x0,144,294,7,
+                    10
+    LTEXT           "Max Lum (%)",IDC_STATIC,154,294,42,10,SS_CENTERIMAGE
+    CONTROL         "",IDE_SMATIDS_BRIGHTEN,"CustEdit",WS_TABSTOP,117,305,27,
+                    10
+    CONTROL         "",IDSP_SMATIDS_BRIGHTEN,"SpinnerControl",0x0,144,305,7,
+                    10
+    LTEXT           "Brighten (%)",IDC_STATIC,154,305,40,10,SS_CENTERIMAGE
+    CONTROL         "",IDE_SMATIDS_BLEND,"CustEdit",WS_TABSTOP,117,317,27,10
+    CONTROL         "",IDSP_SMATIDS_BLEND,"SpinnerControl",0x0,144,317,7,10
+    LTEXT           "Blend (%)",IDC_STATIC,154,317,40,10,SS_CENTERIMAGE
+    CONTROL         "",IDE_SMATIDS_FRAD,"CustEdit",WS_TABSTOP,117,329,27,10
+    CONTROL         "",IDSP_SMATIDS_FRAD,"SpinnerControl",0x0,144,329,7,10
+    LTEXT           "F. Radius (%)",IDC_STATIC,153,329,44,10,SS_CENTERIMAGE
+    GROUPBOX        "General Settings",IDC_STATIC,5,346,191,123
+    LTEXT           "Feather Falloff",IDC_STATIC,13,356,48,10
+    CONTROL         "",IDC_FALLOFF_CURVE,"Static",SS_BLACKFRAME | SS_SUNKEN,
+                    13,367,95,96
+    LTEXT           "Brightening",IDC_STATIC,117,366,38,10
+    CONTROL         "Additive",IDR_SEL_BRT_ADD,"Button",BS_AUTORADIOBUTTON,
+                    122,377,40,10
+    CONTROL         "Multiplicative",IDR_SEL_BRT_MULT,"Button",
+                    BS_AUTORADIOBUTTON,122,389,56,10
+    CONTROL         "Brighten Curve",IDC_SEL_BRT_CURVE,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFT | BS_VCENTER | WS_TABSTOP,117,
+                    442,62,10
+    CONTROL         "Blend Curve",IDC_SEL_BLEND_CURVE,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFT | BS_VCENTER | WS_TABSTOP,117,
+                    454,53,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_SEL_TYPES DLGINIT
+BEGIN
+    IDCB_SMASK_CHANNEL, 0x403, 4, 0
+0x6572, 0x0064, 
+    IDCB_SMASK_CHANNEL, 0x403, 6, 0
+0x7267, 0x6565, 0x006e, 
+    IDCB_SMASK_CHANNEL, 0x403, 5, 0
+0x6c62, 0x6575, "\000" 
+    IDCB_SMASK_CHANNEL, 0x403, 6, 0
+0x6c61, 0x6870, 0x0061, 
+    IDCB_SMASK_CHANNEL, 0x403, 10, 0
+0x756c, 0x696d, 0x616e, 0x636e, 0x0065, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_MASTER, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 369
+    END
+
+    IDD_BLUR_TYPES, DIALOG
+    BEGIN
+        RIGHTMARGIN, 200
+        BOTTOMMARGIN, 333
+    END
+
+    IDD_SEL_TYPES, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 384
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LIBDESCRIPTION      "Blur rendering effect (Discreet)"
+    IDS_PARAMS              "Blur Parameters"
+    IDS_NAME                "Blur"
+    IDS_CLASS_NAME          "Blur"
+    IDS_CDESC_CLASS_NAME    "Blur"
+    IDS_PROCESS_BLUR        "Blur - computing blur"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_BLUR_TYPE           "Blur Type"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SEL_TYPES           "Pixel Selections"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_BUNIF_PIXEL_RAD     "Blur Uniform Pixel Radius"
+    IDS_BUNIF_ALPHA         "Blur Uniform Affect Alpha"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_BDIR_UPIX_RAD       "Blur Directional U Pixel Radius"
+    IDS_BDIR_VPIX_RAD       "Blur Directional V Pixel Radius"
+    IDS_BDIR_UTRAIL         "Blur Directional U Trail"
+    IDS_BDIR_VTRAIL         "Blur Directional V Trail"
+    IDS_BDIR_ROTATION       "Blur Directional Rotation"
+    IDS_BDIR_ALPHA          "Blur Directional Affect Alpha"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RED                 "Red"
+    IDS_GREEN               "Green"
+    IDS_BLUE                "Blue"
+    IDS_ALPHA               "Alpha"
+    IDS_LUMINANCE           "Luminance"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_BRADIAL_PIXEL_RAD   "Blur Radial Pixel Radius"
+    IDS_BRADIAL_TRAIL       "Blur Radial Trail"
+    IDS_BRADIAL_ALPHA       "Blur Radial Affect Alpha"
+    IDS_BRADIAL_XORIGIN     "Blur Radial X Origin"
+    IDS_BRADIAL_YORIGIN     "Blur Radial Y Origin"
+    IDS_BRADIAL_USE_NODE    "Blur Radial Use Object"
+    IDS_BRADIAL_NODE        "Blur Radial Object"
+    IDS_BRADIAL_NODE_PROMPT "Pick an object to center on."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SIMAGE_ACTIVE       "Select Image Active"
+    IDS_SIMAGE_BRIGHTEN     "Select Image Brighten"
+    IDS_SIMAGE_BLEND        "Select Image Blend"
+    IDS_SIBACK_ACTIVE       "Select IgnBack Active"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SIBACK_BRIGHTEN     "Select Non-Bkgrnd Brighten"
+    IDS_SIBACK_BLEND        "Select Non-Bkgrnd Blend"
+    IDS_SIBACK_FEATHER_RAD  "Select Non-Bkgrnd Feather Radius"
+    IDS_SLUM_ACTIVE         "Select Luminance Active"
+    IDS_SLUM_BRIGHTEN       "Select Luminance Brighten"
+    IDS_SLUM_BLEND          "Select Luminance Blend"
+    IDS_SLUM_MIN            "Select Luminance Min"
+    IDS_SLUM_MAX            "Select Luminance Max"
+    IDS_SLUM_FEATHER_RAD    "Select Luminance Feather Radius"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SMASK_ACTIVE        "Select Mask Active"
+    IDS_SMASK_MAP           "Select Mask Map"
+    IDS_SMASK_CHANNEL       "Select Mask Channel"
+    IDS_SMASK_BRIGHTEN      "Select Mask Brighten"
+    IDS_SMASK_BLEND         "Select Mask Blend"
+    IDS_SMASK_MIN           "Select Mask Min"
+    IDS_SMASK_MAX           "Select Mask Max"
+    IDS_SMASK_FEATHER_RAD   "Select Mask Feather Radius"
+    IDS_SOBJIDS_ACTIVE      "Select ObjIds Active"
+    IDS_SOBJIDS_IDS         "Select ObjIds Ids"
+    IDS_SOBJIDS_BRIGHTEN    "Select ObjIds Brighten"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PROCESS_SELECT      "Blur - selecting pixels"
+    IDS_PROCESS_FEATHER     "Blur - feathering pixels"
+    IDS_ERR_TITLE           "Render Effects Error"
+    IDS_ERR_GBUF_INVALID    "GBuffer Invalid"
+    IDS_ERR_GBUF_RDR_INVALID "GBuffer Reader Invalid"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SOBJIDS_BLEND       "Select ObjIds Blend"
+    IDS_SOBJIDS_FEATHER_RAD "Select ObjIds Feather Radius"
+    IDS_SOBJIDS_LUM_MIN     "Select ObjIds Min Luminance"
+    IDS_SOBJIDS_LUM_MAX     "Select ObjIds Max Luminance"
+    IDS_SMATIDS_ACTIVE      "Select MatIds Active"
+    IDS_SMATIDS_IDS         "Select MatIds Ids"
+    IDS_SMATIDS_BRIGHTEN    "Select MatIds Brighten"
+    IDS_SMATIDS_BLEND       "Select MatIds Blend"
+    IDS_SMATIDS_FEATHER_RAD "Select MatIds Feather Radius"
+    IDS_SMATIDS_LUM_MIN     "Select MatIds Min Luminance"
+    IDS_SMATIDS_LUM_MAX     "Select MatIds Max Luminance"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SEL_BRIGHT_TYPE     "Select Brighten Type"
+    IDS_SEL_FALLOFF_CURVE   "Select Falloff Curve"
+    IDS_STORAGE_ERROR_TITLE "Blur effect : storage missing"
+    IDS_STORAGE_ERROR_CONTENT 
+                            "This effect needs a storage to in order to apply its effect.\n\n If the bitmap pager is enabled, turn it off and restart the application"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,33 @@
+                          ==============
+                           About ModLib
+                          ==============
+
+ModLib isn't a plug-in.  It's a static-link library that can be used to
+simplify the writing of CommandSequence and MeshDataEdit plug-ins.  It
+contains about 170 functions that take care of the details of issuing
+commands and calling mesh edit and global functions.
+
+To use ModLib with a CommandSequence plug-in, first call the csInit()
+function to initialize the library.  Then call any of the command
+sequence ("cs" prefix) or global ("mg" prefix) functions.  When you're
+done, call csDone().
+
+Call csMeshBegin() to start a mesh edit from within a CommandSequence.
+After that, you can call any of the mesh edit ("me" prefix) or global
+functions.  Command functions shouldn't be called during mesh edits.
+If NDEBUG isn't defined when you compile, assert() statements in the
+command functions will complain if the functions are called during a
+mesh edit.  When you're done mesh editing, call csMeshDone().
+
+MeshDataEdit plug-ins can also use ModLib.  They initialize and quit
+the library by calling meInit() and meDone(), and they can call any of
+the mesh edit and global functions, but not the command functions.
+
+The sample/dna/ directory contains source code for a command sequence
+plug-in that uses ModLib.
+
+
+Ernie Wright
+16 March 2000
+
+

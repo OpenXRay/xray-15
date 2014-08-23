@@ -1,0 +1,35 @@
+LibVRML97 library
+
+Author:
+
+    Chris Morley <cmorley@vermontel.net>
+
+Contributors:
+
+    Erik Andersen <andersee@debian.org>
+    Stuart Anderson <anderson@metrolink.com>
+    S. K. Bose <bose@garuda.barc.ernet.in>
+    Edward A Carter <ecarter@U.Arizona.EDU>
+    Larry D'Cunha <lpdcunha@golden.net>
+    Anton Eliens <eliens@computer.org>
+    Alex Funk <Alexander.Funk@nord-com.net>
+    Regis Houde <regie@robot.ireq.ca>
+    Gerall Kahla <kahlage@pernet.net>
+    Delman Lee <delman@sharp.co.uk>
+    Joe Longson <jlongson@es.com>
+    Shelby Moore <support@3Dize.com>
+    Ted Nolan <ted@ags.ga.erg.sri.com>
+    Greg Roelofs <newt@pobox.com>
+    Kumaran Santhanam <rhapsody@stanford.edu>
+    Steve Sycamore <sycamore@inr.net>
+    Lukas Vonblon <lvonblon@flyelite.ch>
+
+
+  "Portions of this software are based in part on the VRML Parser
+   written by Silicon Graphics, Inc., Mountain View, California, USA."
+
+  "The Graphics Interchange Format(c) is the Copyright property of
+   CompuServe Incorporated.  GIF(sm) is a Service Mark property of
+   CompuServe Incorporated."
+
+

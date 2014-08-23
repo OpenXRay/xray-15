@@ -1,0 +1,9 @@
+cl /TP -c /O2 /G6 /MD /nologo /W3 /Zc:forScope /EHsc /Ob2 -DQMC -DMI_MODULE= -DMI_PRODUCT_RAY -DWIN_NT -DEVIL_ENDIAN -D_WIN32_WINNT=0x0400 -DNV_CG -DHYPERTHREAD -DSSE_INTRINSICS -DX86 -I.  dgsutil.cpp
+cl /TP -c /O2 /G6 /MD /nologo /W3 /Zc:forScope /EHsc /Ob2 -DQMC -DMI_MODULE= -DMI_PRODUCT_RAY -DWIN_NT -DEVIL_ENDIAN -D_WIN32_WINNT=0x0400 -DNV_CG -DHYPERTHREAD -DSSE_INTRINSICS -DX86 -I.  dgsshade.cpp
+cl /TP -c /O2 /G6 /MD /nologo /W3 /Zc:forScope /EHsc /Ob2 -DQMC -DMI_MODULE= -DMI_PRODUCT_RAY -DWIN_NT -DEVIL_ENDIAN -D_WIN32_WINNT=0x0400 -DNV_CG -DHYPERTHREAD -DSSE_INTRINSICS -DX86 -I.  dielecshade.cpp
+cl /TP -c /O2 /G6 /MD /nologo /W3 /Zc:forScope /EHsc /Ob2 -DQMC -DMI_MODULE= -DMI_PRODUCT_RAY -DWIN_NT -DEVIL_ENDIAN -D_WIN32_WINNT=0x0400 -DNV_CG -DHYPERTHREAD -DSSE_INTRINSICS -DX86 -I.  partishade.cpp
+cl /TP -c /O2 /G6 /MD /nologo /W3 /Zc:forScope /EHsc /Ob2 -DQMC -DMI_MODULE= -DMI_PRODUCT_RAY -DWIN_NT -DEVIL_ENDIAN -D_WIN32_WINNT=0x0400 -DNV_CG -DHYPERTHREAD -DSSE_INTRINSICS -DX86 -I.  pathshade.cpp
+cl /TP -c /O2 /G6 /MD /nologo /W3 /Zc:forScope /EHsc /Ob2 -DQMC -DMI_MODULE= -DMI_PRODUCT_RAY -DWIN_NT -DEVIL_ENDIAN -D_WIN32_WINNT=0x0400 -DNV_CG -DHYPERTHREAD -DSSE_INTRINSICS -DX86 -I.  physlight.cpp
+cl /TP -c /O2 /G6 /MD /nologo /W3 /Zc:forScope /EHsc /Ob2 -DQMC -DMI_MODULE= -DMI_PRODUCT_RAY -DWIN_NT -DEVIL_ENDIAN -D_WIN32_WINNT=0x0400 -DNV_CG -DHYPERTHREAD -DSSE_INTRINSICS -DX86 -I.  physlens.cpp
+link /delayload:opengl32.dll /nologo /nodefaultlib:LIBC.LIB /MAP:mapfile /OPT:NOREF /INCREMENTAL:NO /MACHINE:X86 /LIBPATH:../../lib /STACK:0x200000,0x1000 ws2_32.lib user32.lib mpr.lib largeint.lib opengl32.lib gdi32.lib delayimp.lib /DLL /OUT:physics.dll dgsutil.obj dgsshade.obj dielecshade.obj partishade.obj pathshade.obj physlight.obj physlens.obj ../../nt-x86/lib/shader.lib
+

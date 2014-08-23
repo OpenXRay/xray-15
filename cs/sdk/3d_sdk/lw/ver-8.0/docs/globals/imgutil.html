@@ -1,0 +1,182 @@
+<html>
+
+<head>
+<title>Globals: Image Utility</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="imglist.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="Image List"></a></td>
+    <td width="96" align="left"><a href="message.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Info Messages"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Image Utility</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwimage.h">lwimage.h</a></small></p>
+    <p>This global provides functions for creating and saving still images. Also see the <a
+    href="imglist.html">Image List</a> global.</p>
+    <p>Pixmaps, used by this global and identified by LWPixmapID, differ from the images in
+    the image list, which are identified by LWImageID. Pixmaps are stills, and you can draw on
+    them and save them. Once saved to a file, the image can be loaded into LightWave&reg; using the
+    Image List <tt>load</tt> function. The pixmap returned by the Image List <tt>evaluate</tt>
+    function is a <em>copy</em> of the image, and drawing on this copy does not change the
+    original image.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWImageUtil *imgutil;
+   imgutil = global( LWIMAGEUTIL_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWImageUtil.</p>
+    <pre>   typedef struct st_LWImageUtil {
+      LWPixmapID   (*<strong>create</strong>)    (int w, int h, LWImageType);
+      void         (*<strong>destroy</strong>)   (LWPixmapID);
+      int          (*<strong>save</strong>)      (LWPixmapID, int saver, const char *name);
+      void         (*<strong>setPixel</strong>)  (LWPixmapID, int x, int y, void *pix);
+      void         (*<strong>getPixel</strong>)  (LWPixmapID, int x, int y, void *pix);
+      void         (*<strong>getInfo</strong>)   (LWPixmapID, int *w, int *h, int *type);
+      LWPixmapID   (*<strong>resample</strong>)  (LWPixmapID, int w, int h, int mode);
+      int          (*<strong>saverCount</strong>)(void);
+      const char * (*<strong>saverName</strong>) (int saver);
+   } LWImageUtil;</pre>
+    <dl>
+      <dt><tt>image = <strong>create</strong>( w, h, type )</tt></dt>
+      <dd>Create a new image. The type specifies the organization of the pixel data and may be any
+        of the image I/O <a href="../imageio.html#pixdata">pixel types</a>.</dd>
+      <dt><tt><br>
+        <strong>destroy</strong>( image )</tt></dt>
+      <dd>Release resources allocated by <tt>create</tt>. The image ID is no longer valid after
+        this is called.</dd>
+      <dt><tt><br>
+        result = <strong>save</strong>( image, saver_index, filename )</tt></dt>
+      <dd>Save the image to a file using the specified format. The format is determined by the
+        choice of image saver, which can be one of Layout's built-in image savers or any of the
+        installed <a href="../classes/imgsave.html">ImageSaver</a> class plug-ins. Use the <tt>saverCount</tt>
+        and <tt>saverName</tt> functions to determine what formats are available and which saver
+        index to use.</dd>
+      <dt><tt><br>
+        <strong>setPixel</strong>( image, x, y, pixel )</tt></dt>
+      <dd>Set the value of a pixel in the image. The format of the pixel data depends on the <a
+        href="../imageio.html#pixdata">pixel type</a> of the image.</dd>
+      <dt><tt><br>
+        <strong>getPixel</strong>( image, x, y, pixel )</tt></dt>
+      <dd>Get the value of a pixel in the image.</dd>
+      <dt><tt><br>
+        <strong>getInfo</strong>( image, w, h, type )</tt></dt>
+      <dd>Get the width, height and <a href="../imageio.html#pixdata">pixel type</a> of an image.</dd>
+      <dt><tt><br>
+        image2 = <strong>resample</strong>( image, w, h, mode )</tt></dt>
+      <dd>Create a new image by resizing an existing image. The mode determines how the existing
+        pixels will be resampled and can be one of the following values.<dl>
+          <tt>
+          <dt><br>
+            LWISM_SUBSAMPLING</dt>
+          <dt>LWISM_MEDIAN</dt>
+          <dt>LWISM_SUPERSAMPLING</dt>
+          <dt>LWISM_BILINEAR</dt>
+          <dt>LWISM_BSPLINE</dt>
+          <dt>LWISM_BICUBIC</dt>
+          </tt>
+        </dl>
+      </dd>
+      <dt><tt><br>
+        count = <strong>saverCount</strong>()</tt></dt>
+      <dd>Returns the number of available image savers.</dd>
+      <dt><tt><br>
+        name = <strong>saverName</strong>( saver_index )</tt></dt>
+      <dd>Returns the name of an image saver.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>This example creates a rainbow image, saves it, and loads it into Layout's internal
+    image list using the <a href="imglist.html">image list</a> global.</p>
+    <pre>   #include &lt;lwserver.h&gt;
+   #include &lt;lwimage.h&gt;
+   #include &lt;lwhost.h&gt;
+
+   LWMessageFuncs *msg;
+   LWImageUtil *imgutil;
+   LWImageList *imglist;
+   LWImageID image;
+   LWPixmapID pixmap;
+   int x, y, saver, nsavers;
+   unsigned char rgb[ 3 ];
+   char *filename = &quot;rainbow.tga&quot;;
+
+   imgutil = global( LWIMAGEUTIL_GLOBAL, GFUSE_TRANSIENT );
+   imglist = global( LWIMAGELIST_GLOBAL, GFUSE_TRANSIENT );
+   msg = global( LWMESSAGEFUNCS_GLOBAL, GFUSE_TRANSIENT );
+   if ( !imgutil || !imglist || !msg )
+      return AFUNC_BADGLOBAL;
+
+   pixmap = imgutil-&gt;create( 256, 20, LWIMTYP_RGB24 );
+   if ( !pixmap ) {
+      msg-&gt;error( &quot;Couldn't create the image.&quot;, NULL );
+      return AFUNC_OK;
+   } 
+
+   for ( x = 0; x &lt; 256; x++ )
+      for ( y = 0; y &lt; 20; y++ ) {
+         hsv2rgb( 359.0f * x / 255.0f, y / 20.0f, 1.0f, rgb );
+         imgutil-&gt;setPixel( pixmap, x, y, rgb );
+      }
+   
+   nsavers = imgutil-&gt;saverCount();
+   for ( saver = 0; saver &lt; nsavers; saver++ )
+      if ( !strcmp( &quot;Targa Format (.tga)&quot;,
+         imgutil-&gt;saverName( saver ))) break;
+   
+   if ( saver == nsavers )
+      msg-&gt;error( &quot;Couldn't find the Targa saver.&quot;, NULL );
+   else   
+      imgutil-&gt;save( pixmap, saver, filename );
+      
+   imgutil-&gt;destroy( pixmap );
+
+   image = imglist-&gt;load( filename );</pre>
+    <p>The <tt>hsv2rgb</tt> function looks like this.</p>
+    <pre>   void hsv2rgb( float h, float s, float v, char rgb[] )
+   {
+      float r, g, b, p, q, f, t;
+      int i;
+
+      if ( s == 0 ) {
+         rgb[ 0 ] = rgb[ 1 ] = rgb[ 2 ] = ( int )( v * 255 );
+         return;
+      }
+
+      h /= 60.0f;
+      i = ( int ) h;
+      f = h - i;
+      p = v * ( 1.0f - s );
+      q = v * ( 1.0f - ( s * f ));
+      t = v * ( 1.0f - ( s * ( 1.0f - f )));
+
+      switch ( i ) {
+         case 0:  r = v;  g = t;  b = p; break;
+         case 1:  r = q;  g = v;  b = p; break;
+         case 2:  r = p;  g = v;  b = t; break;
+         case 3:  r = p;  g = q;  b = v; break;
+         case 4:  r = t;  g = p;  b = v; break;
+         case 5:  r = v;  g = p;  b = q; break;
+      }
+
+      rgb[ 0 ] = ( int )( r * 255 ); 
+      rgb[ 1 ] = ( int )( g * 255 ); 
+      rgb[ 2 ] = ( int )( b * 255 ); 
+   }</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

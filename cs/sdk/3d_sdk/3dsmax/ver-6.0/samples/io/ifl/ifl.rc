@@ -1,0 +1,153 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "iflrc.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include <windows.h>
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "iflrc.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include <windows.h>\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_IFL_ABOUT DIALOG DISCARDABLE  0, 0, 167, 62
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "About IFL Image File I/O"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,109,37,50,14
+    RTEXT           "IFL File I/O Module",IDC_STATIC,37,9,118,9
+    RTEXT           "Version 1.0",IDC_STATIC,37,19,118,9
+    GROUPBOX        "",IDC_STATIC,7,2,152,31
+END
+
+IDD_IFL_CONTROL DIALOG DISCARDABLE  0, 0, 227, 148
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION " IFL Control Panel"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,171,124,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,116,124,50,14
+    GROUPBOX        " Alternate Source Path ",IDC_STATIC,3,4,221,36
+    EDITTEXT        IDC_ALT_PATH,11,17,160,14,ES_AUTOHSCROLL | WS_DISABLED
+    PUSHBUTTON      "Browse...",IDC_BROWSE_PATH,175,17,40,14,WS_DISABLED
+    CONTROL         "",IDC_FROM_ED,"CustEdit",WS_TABSTOP,33,54,28,10
+    CONTROL         "",IDC_TO_ED,"CustEdit",WS_TABSTOP,100,54,28,10
+    CONTROL         "",IDC_STEP_ED,"CustEdit",WS_TABSTOP,175,54,28,10
+    RTEXT           "From:",IDC_STATIC,12,55,18,8
+    CONTROL         "",IDC_FROM_SP,"SpinnerControl",0x0,61,54,10,10
+    RTEXT           "To:",IDC_STATIC,83,56,13,8
+    CONTROL         "",IDC_TO_SP,"SpinnerControl",0x0,128,54,10,10
+    CTEXT           "Step:",IDC_STATIC,150,55,21,8
+    CONTROL         "",IDC_STEP_SP,"SpinnerControl",0x0,203,54,10,10
+    GROUPBOX        " Sequence ",IDC_STATIC,3,43,221,32
+    GROUPBOX        " Editor ",IDC_STATIC,3,78,221,36
+    EDITTEXT        IDC_EDITOR,11,91,160,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_BROWSE_EDITOR,175,91,40,14,WS_DISABLED
+    PUSHBUTTON      "Apply",IDC_APPLY,61,124,50,14,WS_DISABLED
+    PUSHBUTTON      "Edit...",IDC_EDIT_EXEC,6,124,50,14
+END
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_IFL_ABOUT, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 57
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_IFL_ERROR_TITLE     "IFL Error"
+    IDS_IFL_EMPTY           "is Empty"
+    IDS_IFL                 "IFL"
+    IDS_BITMAP_IO           "Bitmap I/O"
+    IDS_IFL_FILE            "IFL Image File"
+    IDS_EMPTY_FILE          "Empty IFL File"
+    IDS_LIBDESCRIPTION      "IFL file I/O (Discreet)"
+    IDS_IFL_RECOURSEERROR   "Recoursive error in IFL file: %s"
+    IDS_IFL_IFLREADERROR    "Error reading IFL file: %s"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

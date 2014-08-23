@@ -1,0 +1,129 @@
+<html>
+
+<head>
+<title>Globals: Dynamic Conversion</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="dirinfo.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="Directory Info"></a></td>
+    <td width="96" align="left"><a href="modmon.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Dynamic Monitor"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Dynamic Conversion</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwdyna.h">lwdyna.h</a></small></p>
+    <p>This global returns a function that converts between <a href="../dynaval.html">DynaValues</a>
+    of different types. This is most often useful for converting between string and numeric
+    values. DynaValues are used by the <a href="../commands.html">command</a> system and by
+    the <a href="modreq.html">requester</a> API.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   DynaConvertFunc *dynacvt;
+   dynacvt = global( LWDYNACONVERTFUNC_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to a DynaConvertFunc.</p>
+    <pre>   typedef int DynaConvertFunc (const DynaValue *<strong>from</strong>, DynaValue *<strong>to</strong>,
+     const DynaStringHint *<strong>hint</strong>);</pre>
+    <dl>
+      <dt><strong><tt>from</tt></strong></dt>
+      <dd>The value to convert from.</dd>
+      <dt><strong><tt><br>
+        to</tt></strong></dt>
+      <dd>Receives the converted value of the <tt>from</tt> argument. Before calling the
+        conversion function, set the <tt>type</tt> field of the <tt>to</tt> argument to the
+        desired type for the conversion.</dd>
+      <dt><strong><tt><br>
+        hint</tt></strong></dt>
+      <dd>Specifies a mapping between <tt>DY_STRING</tt> types and certain kinds of numeric
+        values. If the types involved in the conversion don't require a hint, this is ignored and
+        may be NULL. </dd>
+    </dl>
+    <p>If the conversion succeeds, the function returns <tt>DYERR_NONE</tt>. Otherwise it
+    returns an error code. Possible error codes include <tt>DYERR_MEMORY</tt>, <tt>DYERR_BADTYPE</tt>
+    and <tt>DYERR_INTERNAL</tt>.</p>
+    <p><strong>String Hints</strong></p>
+    <p>If one of the DynaValues is a string and the other is a choice or a bitfield, the
+    conversion uses the <tt>hint</tt> argument as a lookup table for translating between them.
+    The structure used to pass hints looks like this.</p>
+    <pre>   typedef struct st_DynaStringHint {
+      DyChoiceHint   *chc;
+      DyBitfieldHint *bits;
+   } DynaStringHint;</pre>
+    <p>There are two kinds of hints in a DynaStringHint structure, only one of which will be
+    used for a given string conversion.</p>
+    <pre>   typedef struct st_DyChoiceHint {
+      const char *item;
+      int         value;
+   } DyChoiceHint;</pre>
+    <p>The choice hint is an array of DyChoiceHint used when converting between <tt>DY_STRING</tt>
+    and <tt>DY_CHOICE</tt> types. The <tt>item</tt>/<tt>value</tt> pairs indicate a mapping
+    between choice values and strings. In other words, <tt>hint-&gt;chc[i].item</tt> will be
+    converted to <tt>hint-&gt;chc[i].value</tt> and vice-versa. The array is terminated with a
+    null <tt>item</tt> string.</p>
+    <pre>   typedef struct st_DyBitfieldHint {
+      char code;
+      int  bitval;
+   } DyBitfieldHint;</pre>
+    <p>The bitfield hint is an array of DyBitfieldHint used when converting between an array
+    of characters (<tt>DY_STRING</tt>) and a bitfield (the bits in a <tt>DY_INTEGER</tt>).
+    Bitfields appear as arguments to certain <a href="../classes/cs.html">CommandSequence</a>
+    commands. In the string representation, the presence of a given character corresponds to a
+    set bit in a bitfield, and if that character isn't in the string, the bit is clear.</p>
+    <p>The DyBitfieldHint <tt>code</tt> field contains a character, and the <tt>bitval</tt>
+    field is an integer with a bit pattern. When converting from a <tt>DY_STRING</tt>, if the <tt>code</tt>
+    character (upper or lower case) is present in the string, the <tt>bitval</tt> bits will be
+    bitwise-ORed into the conversion result. When converting from a bitfield, if the <tt>bitval</tt>
+    pattern is present (<tt>value &amp; bitval == bitval</tt>), the <tt>code</tt> character is
+    appended to the string result. The hint list is terminated with a zero <tt>bitval</tt>.</p>
+    <p><strong>Example</strong></p>
+    <p>This code fragment converts between the string and the bitfield representations of a
+    set of compass point flags.</p>
+    <pre>   #include &lt;lwserver.h&gt;
+   #include &lt;lwdyna.h&gt;
+
+   #define FLAG_NORTH (1&lt;&lt;0)
+   #define FLAG_SOUTH (1&lt;&lt;1)
+   #define FLAG_EAST  (1&lt;&lt;2)
+   #define FLAG_WEST  (1&lt;&lt;3)
+
+   DyBitfieldHint compass_hint[ 5 ] = {
+      'n', FLAG_NORTH,
+      's', FLAG_SOUTH,
+      'e', FLAG_EAST,
+      'w', FLAG_WEST,
+      0, 0
+   };
+   DynaStringHint hint = { NULL, compass_hint };
+   DynaValue
+      dystr = { DY_STRING },
+      dyint = { DY_INTEGER };
+   DynaConvertFunc *dynacvt;
+   int result;
+
+   dynacvt = global( LWDYNACONVERTFUNC_GLOBAL, GFUSE_TRANSIENT );
+   if ( !dynacvt ) return AFUNC_BADGLOBAL;
+
+   dystr.str.buf = &quot;ns&quot;;
+   result = dynacvt( &amp;dystr, &amp;dyint, &amp;hint );
+
+   if ( result == DYERR_NONE ) {
+      ...dyint.intv.value should contain FLAG_NORTH | FLAG_SOUTH...
+</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

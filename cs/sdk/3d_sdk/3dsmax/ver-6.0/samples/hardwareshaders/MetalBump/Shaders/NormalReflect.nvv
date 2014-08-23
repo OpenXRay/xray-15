@@ -1,0 +1,110 @@
+//_____________________________________________________________________________
+//
+//	File:		NormalReflect.nvv
+//	
+//_____________________________________________________________________________
+
+
+//_____________________________________________________________________________
+//
+//	Include files	
+//
+//_____________________________________________________________________________
+
+#include "ShaderConst.h"
+
+//_____________________________________________________________________________
+//
+//	Defines	
+//
+//_____________________________________________________________________________
+
+#define S_WORLD 		r0
+#define T_WORLD 		r1
+#define SxT_WORLD 		r2
+#define WORLD_TEMP	 	r3
+#define WORLD_VERTEX		r4
+#define EYE_VECTOR		r5	
+
+vs.1.0
+
+//_____________________________________
+//
+//	Transform 
+//
+//_____________________________________
+
+dp4 oPos.x, V_POSITION, c[NH_CV_WORLDVIEWPROJ_0]
+dp4 oPos.y, V_POSITION, c[NH_CV_WORLDVIEWPROJ_1]
+dp4 oPos.z, V_POSITION, c[NH_CV_WORLDVIEWPROJ_2]
+dp4 oPos.w, V_POSITION, c[NH_CV_WORLDVIEWPROJ_3]
+
+//_____________________________________
+//
+//	Basis vectors 
+//
+//_____________________________________
+
+
+m3x3 S_WORLD,    V_S,			c[CV_WORLD_0]
+m3x3 SxT_WORLD,  V_NORMAL,		c[CV_WORLD_0]
+mul  WORLD_TEMP, S_WORLD.zxyw,	SxT_WORLD.yzxw   
+mad  T_WORLD,    S_WORLD.yzxw,	SxT_WORLD.zxyw, -WORLD_TEMP
+
+//_____________________________________
+//
+//	Scale 
+//
+//_____________________________________
+
+mul S_WORLD, S_WORLD, c[CV_SCALE].w
+mul T_WORLD, T_WORLD, c[CV_SCALE].w
+
+//_____________________________________
+//
+//	Transform 
+//
+//_____________________________________
+
+dp3 oT1.x, S_WORLD,     c[NH_CV_WORLDIT_0]
+dp3 oT1.y, T_WORLD,     c[NH_CV_WORLDIT_0]
+dp3 oT1.z, SxT_WORLD,   c[NH_CV_WORLDIT_0]
+
+dp3 oT2.x, S_WORLD,     c[NH_CV_WORLDIT_1]
+dp3 oT2.y, T_WORLD,     c[NH_CV_WORLDIT_1]
+dp3 oT2.z, SxT_WORLD,   c[NH_CV_WORLDIT_1]
+
+dp3 oT3.x, S_WORLD,     c[NH_CV_WORLDIT_2]
+dp3 oT3.y, T_WORLD,     c[NH_CV_WORLDIT_2]
+dp3 oT3.z, SxT_WORLD,   c[NH_CV_WORLDIT_2]
+
+//dp4 oT1.w, -V_POSITION, c[NH_CV_WORLD_0]
+//dp4 oT2.w, -V_POSITION, c[NH_CV_WORLD_1]
+//dp4 oT3.w, -V_POSITION, c[NH_CV_WORLD_2]
+
+dp4 WORLD_VERTEX.x, V_POSITION, c[NH_CV_WORLD_0]
+dp4 WORLD_VERTEX.y, V_POSITION, c[NH_CV_WORLD_1]
+dp4 WORLD_VERTEX.zw, V_POSITION, c[NH_CV_WORLD_2]
+add EYE_VECTOR, -WORLD_VERTEX, c[NH_CV_EYE_WORLD]
+
+
+; store the eye vector in the texture coordinate w for
+; the pixel shader
+mov oT1.w, EYE_VECTOR.x
+mov oT2.w, EYE_VECTOR.y
+mov oT3.w, EYE_VECTOR.z
+
+
+//_____________________________________
+//
+//	Output texture 
+//
+//_____________________________________
+
+mov oT0.xy, V_TEXTURE_0
+
+
+
+
+
+

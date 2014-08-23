@@ -1,0 +1,158 @@
+<html>
+
+<head>
+<title>Globals: Surface Functions</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="surfed.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="Surface Editor"></a></td>
+    <td width="96" align="left"><a href="sysid.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="System ID"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Surface Functions</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwsurf.h">lwsurf.h</a></small></p>
+    <p>This global allows you to get information about surfaces and surface parameters.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWSurfaceFuncs *surff;
+   surff = global( LWSURFACEFUNCS_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWSurfaceFuncs.</p>
+    <pre>   typedef struct st_LWSurfaceFuncs {
+      LWSurfaceID   (*<strong>create</strong>)      (const char *objName,
+                                      const char *surfName);
+      LWSurfaceID   (*<strong>first</strong>)       (void);
+      LWSurfaceID   (*<strong>next</strong>)        (LWSurfaceID);
+      LWSurfaceID * (*<strong>byName</strong>)      (const char *name, const char *obj);
+      LWSurfaceID * (*<strong>byObject</strong>)    (const char *name);
+      const char *  (*<strong>name</strong>)        (LWSurfaceID);
+      const char *  (*<strong>sceneObject</strong>) (LWSurfaceID);
+      int           (*<strong>getInt</strong>)      (LWSurfaceID, const char *channel);
+      double *      (*<strong>getFlt</strong>)      (LWSurfaceID, const char *channel);
+      LWEnvelopeID  (*<strong>getEnv</strong>)      (LWSurfaceID, const char *channel);
+      LWTextureID   (*<strong>getTex</strong>)      (LWSurfaceID, const char *channel);
+      LWImageID     (*<strong>getImg</strong>)      (LWSurfaceID, const char *channel);
+      LWChanGroupID (*<strong>chanGrp</strong>)     (LWSurfaceID);
+      const char *  (*<strong>getColorVMap</strong>)(LWSurfaceID surf);
+      void          (*<strong>setColorVMap</strong>)(LWSurfaceID surf,
+                                      const char *vmapName, int type);
+   } LWSurfaceFuncs;</pre>
+    <dl>
+      <dt><tt>surf = <strong>create</strong>( objname, surfname )</tt></dt>
+      <dd>Create a new surface. The object name is the filename, which you can get from the <a
+        href="objinfo.html">Object Info</a> <tt>filename</tt> function and Modeler's <a
+        href="modstate.html">State Query</a> <tt>object</tt> function, given the object's item ID.</dd>
+      <dt><tt><br>
+        surf = <strong>first</strong>()</tt></dt>
+      <dd>Returns the ID of the first surface in the surfaces list.</dd>
+      <dt><tt><br>
+        surf = <strong>next</strong>( surf )</tt></dt>
+      <dd>Returns the ID of the next surface in the surfaces list (the one following the
+        argument).</dd>
+      <dt><tt><br>
+        surfarray = <strong>byName</strong>( surfname, objname )</tt></dt>
+      <dd>Returns the IDs of the (possibly many) surfaces with a given name. Different objects can
+        have surfaces of the same name. If <tt>objname</tt> is NULL, the array will contain every
+        surface ID named <tt>surfname</tt>, regardless of which object it belongs to. The array of
+        surface IDs is terminated by an ID of NULL.</dd>
+      <dt><tt><br>
+        surfarray = <strong>byObject</strong>( objname )</tt></dt>
+      <dd>Returns the surfaces belonging to the object. The object name is the filename.</dd>
+      <dt><tt><br>
+        surfname = <strong>name</strong>( surf )</tt></dt>
+      <dd>Returns the name of a surface.</dd>
+      <dt><tt><br>
+        scenename = <strong>sceneObject</strong>( surf )</tt></dt>
+      <dd>Returns the filename of the object to which the surface belongs.</dd>
+      <dt><tt><br>
+        val = <strong>getInt</strong>( surf, channel )</tt></dt>
+      <dd>Returns the value of the surface parameter (evaluates the channel) at the current time.
+        Use this function for integer parameters and <tt>getFlt</tt> for floating-point
+        parameters. The <tt>channel</tt> is one of the channel names listed in <a
+        href="../../include/lwsurf.h">lwsurf.h</a>.</dd>
+      <dt><tt><br>
+        valarray = <strong>getFlt</strong>( surf, channel )</tt></dt>
+      <dd>Returns the value of the surface parameter. The return value in most cases points to one
+        double, but for colors, it points to three.</dd>
+      <dt><tt><br>
+        envelope = <strong>getEnv</strong>( surf, channel )</tt></dt>
+      <dd>Returns the envelope ID for the surface parameter. This can be used with the <a
+        href="anenvel.html">Animation Envelopes</a> global.</dd>
+      <dt><tt><br>
+        texture = <strong>getTex</strong>( surf, channel )</tt></dt>
+      <dd>Returns a texture ID for the surface parameter that can be used with the <a
+        href="txtrfunc.html">Texture Functions</a> global.</dd>
+      <dt><tt><br>
+        image = <strong>getImg</strong>( surf, channel )</tt></dt>
+      <dd>Returns the image associated with the surface parameter. This function is limited to use
+        with surface channels that refer directly to images, e.g. <tt>SURF_RIMG</tt> and <tt>SURF_TIMG</tt>
+        (reflection and refraction maps). Images that are part of textures have to be obtained
+        through the <a href="txtrfunc.html">Texture Functions</a> global.</dd>
+      <dt><tt><br>
+        group = <strong>chanGrp</strong>( surf )</tt></dt>
+      <dd>Returns the channel group for the surface. This is the parent group for envelopes
+        associated with the surface's parameters. It can be used with the <a href="chaninfo.html">Channel
+        Info</a> global. Note: because of a bug, this field may be NULL in some builds of
+        LightWave 6.</dd>
+      <dt><tt><br>
+        name = <strong>getColorVMap</strong>( surf )</tt></dt>
+      <dd>Returns the name of the vertex color map for the surface.</dd>
+      <dt><tt><br>
+        <strong>setColorVMap</strong>( surf, vmapname, type )</tt></dt>
+      <dd>Set the surface's vertex color map. The type can be <tt>LWVMAP_RGB</tt> (the vmap has a
+        dimension of 3 and contains red, green and blue levels) or <tt>LWVMAP_RGBA</tt> (dimension
+        of 4, with RGB and alpha levels).</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>The <a href="../../sample/scenscan/">scenscan</a> SDK sample includes a <tt>getObjectSurfs</tt>
+    function that collects surface information for all of an object's surfaces.</p>
+    <p>For some parameters, you'll want to consult the <a href="../filefmts/lwo2.html">object
+    file format</a> specification, since the form of the data returned by the <tt>get</tt>
+    functions is in some cases the same as its binary image in the object file. This code
+    fragment reads and interprets the reflection options.</p>
+    <pre>   #include &lt;lwserver.h&gt;
+   #include &lt;lwsurf.h&gt;
+
+   LWSurfaceFuncs *surff;
+   LWSurfaceID surfid;
+   LWImageID rimg;
+   double refl, rsan, *dval;
+   int rfop;
+
+   ... assume surff and surfid have been initialized ...
+
+   dval = surff-&gt;getFlt( surfid, SURF_REFL );        // reflectivity
+   refl = *dval;
+   if ( refl &gt; 0.0f ) {
+      rfop = surff-&gt;getInt( surfid, SURF_RFOP );     // options
+      switch ( rfop ) {
+         case 0:  /* backdrop only */       ... break;
+         case 1:  /* raytrace + backdrop */ ... break;
+         case 2:  /* spherical map */       ... break;
+         case 3:  /* raytrace + map */      ... break;
+      }
+      if ( rfop == 2 || rfop == 3 ) {
+         rimg = surff-&gt;getImg( surfid, SURF_RIMG );  // image map
+         dval = surff-&gt;getFlt( surfid, SURF_RSAN );  // seam angle
+         rsan = *dval;
+      }
+   }</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

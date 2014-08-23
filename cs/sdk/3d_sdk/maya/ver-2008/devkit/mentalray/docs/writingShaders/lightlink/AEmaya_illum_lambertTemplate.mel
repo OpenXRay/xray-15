@@ -1,0 +1,126 @@
+// Copyright (C) 1997-2006 Autodesk, Inc., and/or its licensors.
+// All rights reserved.
+//
+// The coded instructions, statements, computer programs, and/or related
+// material (collectively the "Data") in these files contain unpublished
+// information proprietary to Autodesk, Inc. ("Autodesk") and/or its licensors,
+// which is protected by U.S. and Canadian federal copyright law and by
+// international treaties.
+//
+// The Data is provided for use exclusively by You. You have the right to use,
+// modify, and incorporate this Data into other products for purposes authorized
+// by the Autodesk software license agreement, without fee.
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND. AUTODESK
+// DOES NOT MAKE AND HEREBY DISCLAIMS ANY EXPRESS OR IMPLIED WARRANTIES
+// INCLUDING, BUT NOT LIMITED TO, THE WARRANTIES OF NON-INFRINGEMENT,
+// MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, OR ARISING FROM A COURSE
+// OF DEALING, USAGE, OR TRADE PRACTICE. IN NO EVENT WILL AUTODESK AND/OR ITS
+// LICENSORS BE LIABLE FOR ANY LOST REVENUES, DATA, OR PROFITS, OR SPECIAL,
+// DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES, EVEN IF AUTODESK AND/OR ITS
+// LICENSORS HAS BEEN ADVISED OF THE POSSIBILITY OR PROBABILITY OF SUCH DAMAGES.
+
+//
+// AE Template file for maya_illum_lambert
+//
+
+// No longer necessary as of Maya 2008. Example now uses native mental ray
+// light linking. See docs/writingShaders/README.txt for more information.
+//
+// This procedure is called when miLightLink value is changed
+//
+//global proc AEmentalrayShaderExUpdateLightLink( string $nodeName )
+//{
+//	string $miLightLink = ($nodeName + ".miLightLink");
+//
+//	if (`getAttr $miLightLink` == 1) {
+//		// miLightLink is on, which enables magic LL in the plug-in
+//		// which operates on the light array parameters of the shader.
+//		// Set light mode to 0 and disable light linker in this case.
+//		setAttr ($nodeName + ".mode") 0;
+//		editorTemplate -dimControl $nodeName "lightLink" true;
+//
+//		// If lightLink has a connection, disconnect it.
+//		string $lightLinker[] =
+//			`listConnections -p 1 ($nodeName + ".lightLink")`;
+//		if (size($lightLinker))
+//			disconnectAttr $lightLinker ($nodeName + ".lightLink");
+//		}
+//	else {
+//		// Use true light linker connection, because magic LL is
+//		// disabled. Light mode should be set to 2 and no lights
+//		// should be connected to the light array.
+//		setAttr ($nodeName + ".mode") 2;
+//		editorTemplate -dimControl $nodeName "lightLink" false;
+//		// If lightLink has no connection, connect it.
+//		string $lightLinker[] =
+//			`listConnections -p 1 ($nodeName + ".lightLink")`;
+//		string $linkerNodes[] = `ls -typ lightLinker`;
+//		if (!size($lightLinker) && size($linkerNodes))
+//			connectAttr ($linkerNodes[0] + ".message")
+//				($nodeName + ".lightLink");
+//		}
+//}
+
+global proc AEmaya_illum_lambertTemplate ( string $nodeName ) 
+{ 
+	// Add swatch to AE
+	// To activate MR swatch rendering add your node type name to the file
+	// scripts/others/mentalrayCustomNodeClass.mel. For swatch rendering,
+	// "swatch/mentalRaySwatchGen" must be part of the returned classification
+	// string. As an example, if your node is a shader you would return:
+	//  "rendernode/mentalray/material:shader/surface:swatch/mentalRaySwatchGen"
+	// This causes the May to treat the node as a surface shader and mental ray
+	// to treat it as a material. It will also use mental ray to generate the
+	// swatch.
+	AEswatchDisplay $nodeName; 
+
+	editorTemplate -beginScrollLayout; 
+
+	// maya_illum_lambert attributes
+	editorTemplate -beginLayout "mib_illum_lambert Attributes" -collapse 0 ;
+		editorTemplate -addControl "ambience";
+		editorTemplate -addControl "ambient";
+		editorTemplate -addControl "diffuse";
+	editorTemplate -endLayout;
+
+// No longer necessary as of Maya 2008. Example now uses native mental ray
+// light linking. See docs/writingShaders/README.txt for more information.
+//
+//	// maya light attributes
+//	editorTemplate -beginLayout "Maya Light Link Attributes" -collapse 0 ;
+//		editorTemplate -beginNoOptimize;
+//		editorTemplate
+//			-label "Use Automatic Light Link"
+//			-addControl "miLightLink"
+//				AEmentalrayShaderExUpdateLightLink;
+//		editorTemplate -label "Light Linker" -addControl "lightLink";
+//		editorTemplate -endNoOptimize;
+//	editorTemplate -endLayout;
+
+
+	// Add controls for light linking and for hardware texturing support
+	// Parameters are:
+	//   - name of this node
+	//   - light link level
+	//       - 0=no light link controls
+	//       - 1=full light link controls, including the "mode" attribute
+	//       - 2=no "mode" attribute, only light list
+	//   - list of attributes to support HW texturing for in the viewport
+	AEmentalrayCommonMaterialTemplate($nodeName, 1, "diffuse ambient ambience");
+
+	editorTemplate -endScrollLayout;
+
+
+// No longer necessary if you call: AEmentalrayCommonMaterialTemplate
+// as above.
+//
+//	// mode and lights are suppressed
+//	// so that users do not explicitly connect lights list
+//	//
+//	editorTemplate -suppress "mode";
+//	editorTemplate -suppress "lights";
+//
+//	editorTemplate -suppress "caching"; 
+//	editorTemplate -suppress "nodeState"; 
+}
+

@@ -1,0 +1,132 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDC_IFLMGR_DLG DIALOG DISCARDABLE  0, 0, 108, 145
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        " Working File Prefix ",IDC_STATIC,5,4,98,26,WS_GROUP
+    CTEXT           "",IDC_FRAME,10,16,85,8
+    GROUPBOX        "",IDC_STATIC,5,29,98,70,WS_GROUP
+    RTEXT           "Start:",IDC_STATIC,8,40,37,8
+    CONTROL         "",IDC_START_ED,"CustEdit",WS_GROUP | WS_TABSTOP,53,39,
+                    35,10
+    CONTROL         "",IDC_START_SP,"SpinnerControl",WS_GROUP,89,39,7,10
+    RTEXT           "End:",IDC_STATIC,8,55,37,8
+    CONTROL         "",IDC_END_ED,"CustEdit",WS_GROUP | WS_TABSTOP,53,54,35,
+                    10
+    CONTROL         "",IDC_END_SP,"SpinnerControl",WS_GROUP,89,54,7,10
+    RTEXT           "Every nth:",IDC_STATIC,8,70,37,8
+    CONTROL         "",IDC_NTH_ED,"CustEdit",WS_GROUP | WS_TABSTOP,53,69,35,
+                    10
+    CONTROL         "",IDC_NTH_SP,"SpinnerControl",WS_GROUP,89,69,7,10
+    RTEXT           "Multiplier:",IDC_STATIC,8,85,37,8
+    CONTROL         "",IDC_MULT_ED,"CustEdit",WS_GROUP | WS_TABSTOP,53,84,35,
+                    10
+    CONTROL         "",IDC_MULT_SP,"SpinnerControl",WS_GROUP,89,84,7,10
+    PUSHBUTTON      "&Select...",IDC_SELECT,5,104,31,14,WS_GROUP
+    PUSHBUTTON      "Crea&te...",IDC_CREATE,39,104,31,14,WS_GROUP
+    PUSHBUTTON      "&Edit...",IDC_EDIT,73,104,31,14,WS_GROUP
+    PUSHBUTTON      "&Close",IDOK,29,124,46,13,WS_GROUP
+END
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CLASS_DESC          "IFL Manager"
+    IDS_ALL_FILES           "All Files (*.*)"
+    IDS_IFL_FILES           "IFL Files (*.ifl)"
+    IDS_EDIT_IFL            "Select IFL for Editing"
+    IDS_IMAGE_FILES         "Select Image Files"
+    IDS_CREATE_TITLE        "Create IFL File"
+    IDS_OVERWRITE_TXT       "Confirm overwriting %s?"
+    IDS_OVERWRITE_TIT       "File Already Exists"
+    IDS_LIBDESCRIPTION      "IFL file management utility (Discreet)"
+    IDS_BAD_FILETYPE        "%s is an unsupported file type."
+    IDS_NOLISTCREATED       "No List Created."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

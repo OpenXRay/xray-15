@@ -1,0 +1,256 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Win98; U) [Netscape]">
+   <title>Globals: Interface Info</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#000080" vlink="#800000" alink="#0000FF">
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 BGCOLOR="#D0D0D0" >
+<tr>
+<td ALIGN=LEFT WIDTH="120"><a href="instupdt.html"><img SRC="navlt.gif" ALT="Instance Update" BORDER=0 height=20 width=96></a></td>
+
+<td ALIGN=LEFT WIDTH="96"><a href="iteminfo.html"><img SRC="navrt.gif" ALT="Item Info" BORDER=0 height=20 width=64></a></td>
+
+<td ALIGN=LEFT WIDTH="96"><a href="../globals.html"><img SRC="navup.gif" ALT="Globals" BORDER=0 height=20 width=56></a></td>
+
+<td ALIGN=RIGHT WIDTH="288"><a href="../index.html"><img SRC="proglw.gif" ALT="Table of Contents" BORDER=0 height=20 width=230></a></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 >
+<tr>
+<td WIDTH="600">
+<h3>
+Interface Info</h3>
+<font size=-1><b>Availability</b>&nbsp; LightWave 6.0</font>
+<br><font size=-1><b>Component</b>&nbsp; Layout</font>
+<br><font size=-1><b>Header</b>&nbsp; <a href="../../include/lwrender.h">lwrender.h</a></font>
+<p>The interface info global returns information about the state of Layout's
+user interface. The data is read-only, but you can set the parameters using
+<a href="../commands/layout.html#selection">selection</a>,
+<a href="../commands/layout.html#navigation">navigation</a> and <a href="../commands/layout.html#display">display</a>
+commands.
+<p><b>Global Call</b>
+<pre>&nbsp;&nbsp; LWInterfaceInfo *intinfo;
+&nbsp;&nbsp; intinfo = global( LWINTERFACEINFO_GLOBAL, GFUSE_TRANSIENT );</pre>
+The global function returns a pointer to an LWInterfaceInfo.
+<pre>&nbsp;&nbsp; typedef struct st_LWInterfaceInfo {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWTime&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>curTime</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const LWItemID *<b>selItems</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int&nbsp; (*<b>itemFlags</b>) (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LWFrame&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>previewStart</b>, <b>previewEnd</b>, <b>previewStep</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>dynaUpdate</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>schemaPos</b>) (LWItemID, double *x, double *y);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>itemVis</b>)&nbsp;&nbsp; (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int&nbsp;&nbsp;&nbsp; <b>displayFlags</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int&nbsp;&nbsp;&nbsp; <b>generalFlags</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>boxThreshold</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (*<b>itemColor</b>) (LWItemID);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>alertLevel</b>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>autoKeyCreate</b>;
+&nbsp;&nbsp; } LWInterfaceInfo;</pre>
+
+<dl>
+<dt>
+<b><tt>curTime</tt></b></dt>
+
+<dd>
+The current animation time selected in the Layout interface.</dd>
+
+<br><b><tt>selItems</tt></b>
+<dd>
+A NULL-terminated array of item IDs for the items currently selected in
+the interface.</dd>
+
+<br><tt>flags = <b>itemFlags</b>( item )</tt>
+<dd>
+Returns a set of bit flags for the item. These can be any combination of
+the following.&nbsp;</dd>
+
+<pre>LWITEMF_SELECTED
+LWITEMF_SHOWCHILDREN
+LWITEMF_SHOWCHANNELS
+LWITEMF_LOCKED</pre>
+
+<dt>
+<tt><b>previewStart</b>, <b>previewEnd</b>, <b>previewStep</b></tt></dt>
+
+<dd>
+The range and step size used by the frame slider and by Layout previews.
+These differ from the range and step for rendering, which are returned
+by the <a href="sceneinf.html">scene info</a> global.</dd>
+
+<br><b><tt>dynaUpdate</tt></b>
+<dd>
+Contains the current state of Layout's Dynamic Update setting, which controls
+how frequently the interface is updated while the user makes changes. Possible
+values are&nbsp;</dd>
+
+<pre>LWDYNUP_OFF
+LWDYNUP_DELAYED
+LWDYNUP_INTERACTIVE</pre>
+
+<dt>
+<tt><b>schemaPos</b>( item, x, y )</tt></dt>
+
+<dd>
+The <tt>x</tt> and <tt>y</tt> arguments receive the position of the item
+in schematic viewports. This and the <tt>SchematicPosition</tt> <a href="../commands/layout.html">command</a>
+can be used by plug-ins to rearrange the schematic views.</dd>
+
+<br><tt>visibility = <b>itemVis</b>( item )</tt>
+<dd>
+Returns a code describing how an item is drawn in the interface. For objects,
+this can be one of the following.&nbsp;</dd>
+
+<pre>LWOVIS_HIDDEN
+LWOVIS_BOUNDINGBOX
+LWOVIS_VERTICES
+LWOVIS_WIREFRAME
+LWOVIS_FFWIREFRAME
+LWOVIS_SHADED
+LWOVIS_TEXTURED</pre>
+Other item types are limited to <tt>LWIVIS_HIDDEN</tt> and <tt>LWIVIS_VISIBLE</tt>.&nbsp;
+<dt>
+<b><tt>displayFlags</tt></b></dt>
+
+<dd>
+Returns the state of certain display options as bit fields combined using
+bitwise-or. When set, a bit indicates that the corresponding option is
+turned on for the display.</dd>
+
+<pre>LWDISPF_MOTIONPATHS
+LWDISPF_HANDLES
+LWDISPF_IKCHAINS
+LWDISPF_CAGES
+LWDISPF_SAFEAREAS
+LWDISPF_FIELDCHART</pre>
+
+<dt>
+<b><tt>generalFlags</tt></b></dt>
+
+<dd>
+Returns the state of certain interface options as bit fields combined using
+bitwise-or. When set, a bit indicates that the corresponding option is
+turned on for the interface.&nbsp;</dd>
+
+<pre>LWGENF_HIDETOOLBAR
+LWGENF_RIGHTTOOLBAR
+LWGENF_PARENTINPLACE
+LWGENF_FRACTIONALFRAME
+LWGENF_KEYSINSLIDER
+LWGENF_PLAYEXACTRATE
+LWGENF_AUTOKEY</pre>
+
+<pre></pre>
+
+<dt>
+<b><tt>boxThreshold</tt></b></dt>
+
+<dd>
+The bounding box threshold. Objects with a number of points greater than
+this threshold are drawn initially as bounding boxes to speed up interaction.</dd>
+
+<br><tt>color_index = <b>itemColor</b>( item )</tt>
+<dd>
+Returns an index into the list of colors used to drawing an item's wireframe.</dd>
+
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 >
+<tr>
+<td COLSPAN="15">&nbsp;</td>
+</tr>
+
+<tr>
+<td ALIGN=CENTER WIDTH="23">0</td>
+
+<td ALIGN=CENTER WIDTH="23">1</td>
+
+<td ALIGN=CENTER WIDTH="23">2</td>
+
+<td ALIGN=CENTER WIDTH="23">3</td>
+
+<td ALIGN=CENTER WIDTH="23">4</td>
+
+<td ALIGN=CENTER WIDTH="23">5</td>
+
+<td ALIGN=CENTER WIDTH="23">6</td>
+
+<td ALIGN=CENTER WIDTH="23">7</td>
+
+<td ALIGN=CENTER WIDTH="23">8</td>
+
+<td ALIGN=CENTER WIDTH="23">9</td>
+
+<td ALIGN=CENTER WIDTH="23">10</td>
+
+<td ALIGN=CENTER WIDTH="23">11</td>
+
+<td ALIGN=CENTER WIDTH="23">12</td>
+
+<td ALIGN=CENTER WIDTH="23">13</td>
+
+<td ALIGN=CENTER WIDTH="23">14</td>
+</tr>
+
+<tr>
+<td ALIGN=CENTER COLSPAN="15" WIDTH="345"><img SRC="uicolors.gif" height=13 width=335></td>
+</tr>
+</table>
+
+<p><b><tt>alertLevel</tt></b>
+<dd>
+The alert level for information dialogs. This affects how the information
+is displayed. Possible values are</dd>
+
+<pre>LWALERT_BEGINNER
+LWALERT_INTERMEDIATE
+LWALERT_EXPERT</pre>
+<b>&nbsp;<tt>autoKeyCreate</tt></b>
+<dd>
+The auto key create mode state, defined as one of these values:</dd>
+
+<dd>
+<tt>LWAKC_OFF&nbsp;</tt></dd>
+
+<dd>
+<tt>LWAKC_MODIFIED</tt></dd>
+
+<dd>
+<tt>LWAKC_ALL.&nbsp;</tt></dd>
+</dl>
+<b>History</b>
+<p>In LightWave 7.5, the <tt>autoKeyCreate</tt> field was added, along
+with the <tt>LWGENF_AUTOKEY</tt> generalFlags definition.
+<p><b>Example</b>
+<p>This code fragment collects information about the currently selected
+items.
+<pre>&nbsp;&nbsp; #include &lt;lwserver.h>
+&nbsp;&nbsp; #include &lt;lwrender.h>
+
+&nbsp;&nbsp; LWInterfaceInfo *intinfo;
+&nbsp;&nbsp; LWItemInfo *iteminfo;
+&nbsp;&nbsp; LWTime t;
+&nbsp;&nbsp; LWItemID *id;
+&nbsp;&nbsp; int i, f, type;
+
+&nbsp;&nbsp; intinfo = global( LWINTERFACEINFO_GLOBAL, GFUSE_TRANSIENT );
+&nbsp;&nbsp; iteminfo = global( LWITEMINFO_GLOBAL, GFUSE_TRANSIENT );
+&nbsp;&nbsp; if ( !intinfo || !iteminfo ) return AFUNC_BADGLOBAL;
+
+&nbsp;&nbsp; t = intinfo->curTime;
+&nbsp;&nbsp; id = intinfo->selItems;
+&nbsp;&nbsp; for ( i = 0; id[ i ]; i++ ) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; f = intinfo->itemFlags( id[ i ] );
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; type = iteminfo->type( id[ i ] );
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch ( type ) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case LWI_OBJECT:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</pre>
+</td>
+</tr>
+</table>
+
+</body>
+</html>

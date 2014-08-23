@@ -1,0 +1,18 @@
+; This file is maintained by HCW. Do not modify this file directly.
+
+[OPTIONS]
+COMPRESS=60 Hall Zeck
+ERRORLOG=SDKAPWZ.LOG
+LCID=0x409 0x0 0x0 ; English (United States)
+REPORT=Yes
+TITLE=3ds max Plugin Wizard 4.0
+HLP=SDKAPWZ.HLP
+
+[FILES]
+hlp\SDKAPWZ.rtf
+
+[MAP]
+#include <hlp\SDKAPWZ.hm>
+
+[WINDOWS]
+Main="",,60672,,(r8454143),f3

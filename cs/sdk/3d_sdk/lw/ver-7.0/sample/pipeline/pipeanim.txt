@@ -1,0 +1,4 @@
+Pipeline AnimLoader File
+
+This is a fake animation file created so that the Pipeline_AnimLoad
+plug-in will have something to load.

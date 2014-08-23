@@ -1,0 +1,179 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PANEL DIALOG DISCARDABLE  0, 0, 108, 301
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CTEXT           "Test XRef Utility Sample",IDC_STATIC,7,7,94,12
+    PUSHBUTTON      "Add New XRef Scene",IDC_CMD_XS_ADD,10,34,87,13
+    PUSHBUTTON      "Convert Selected",IDC_CMD_XS_CNV,10,50,87,13
+    PUSHBUTTON      "Refresh All Scene XRefs",IDC_CMD_XS_RFS,10,66,87,13
+    PUSHBUTTON      "Merge All Scene XRefs",IDC_CMD_XS_MRG,10,82,87,13
+    GROUPBOX        "XRef Scene Functions",IDC_STATIC,7,22,94,80
+    GROUPBOX        "XRef Object Functions",IDC_STATIC,7,109,94,76
+    PUSHBUTTON      "Add New XRef Object",IDC_CMD_XO_ADD,10,128,87,13
+    PUSHBUTTON      "Convert Selected Object",IDC_CMD_XO_CNVSEL,10,145,87,13
+    PUSHBUTTON      """Export"" All XRef Objects",IDC_CMD_XO_EXP,10,162,87,
+                    13
+    GROUPBOX        "IObjXrefManager Functions",IDC_STATIC,7,190,94,76,
+                    BS_CENTER | WS_GROUP
+    PUSHBUTTON      "Add New XRef Object",IDC_CMD_IXOMGR_ADD,10,201,87,14
+    PUSHBUTTON      "Refresh XRef Object",IDC_CMD_IXOMGR_REFRESH,10,219,87,
+                    13
+    PUSHBUTTON      "Get All XRef Objs in file",IDC_CMD_IXOMGR_GETALL,10,235,
+                    87,13
+    PUSHBUTTON      "Close",IDC_CLOSE,29,269,44,15
+END
+
+IDD_PICKOBJ DIALOG DISCARDABLE  0, 0, 186, 127
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Pick Object to XRef"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,39,106,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,95,106,50,14
+    LISTBOX         IDC_LIST_NODES,7,7,172,56,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "Add as proxy",IDC_CHK_PROXY,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,69,172,11
+    CONTROL         "Ignore animation",IDC_CHK_NOANIM,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,85,172,11
+END
+
+IDD_DLGEXPORT DIALOG DISCARDABLE  0, 0, 279, 209
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION """Export"" Results"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,114,188,50,14
+    EDITTEXT        IDC_EDIT_EXPRES,7,19,265,155,ES_MULTILINE | WS_VSCROLL | 
+                    WS_HSCROLL
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_PANEL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 294
+    END
+
+    IDD_PICKOBJ, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 120
+    END
+
+    IDD_DLGEXPORT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 272
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 202
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LIBDESCRIPTION      "Sample XRef Utility"
+    IDS_CATEGORY            "DCG Samples"
+    IDS_CLASS_NAME          "XRef Sample Util"
+    IDS_ERR1                "Please select one (and only one) scene object to convert"
+    IDS_ERRTITLE            "XRef Utility : Error"
+    IDS_ERR2                "Invalid Node selected"
+    IDS_ERR3                "Please select node(s) to convert to XRef Scene"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

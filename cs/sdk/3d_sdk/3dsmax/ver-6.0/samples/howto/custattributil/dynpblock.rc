@@ -1,0 +1,210 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SIMPLE DIALOG DISCARDABLE  0, 0, 108, 63
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Custom1",IDC_EDIT,"CustEdit",WS_TABSTOP,21,39,50,11
+    CONTROL         "Custom1",IDC_EDITSPIN,"SpinnerControl",WS_TABSTOP,73,39,
+                    7,11
+    CONTROL         "Check Box",IDC_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,21,27,51,10
+    LTEXT           "Custom Attribute 1",IDC_STATIC,20,14,67,8
+END
+
+IDD_PANEL2 DIALOG DISCARDABLE  0, 0, 108, 135
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Add",IDC_ADD,21,71,62,14
+    PUSHBUTTON      "Remove",IDC_REMOVE,21,108,62,14
+    GROUPBOX        "Custom Attributes",IDC_STATIC,7,7,94,122
+    PUSHBUTTON      "Insert",IDC_INSERT,21,90,62,14
+    LISTBOX         IDC_CALIST,19,18,66,46,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+END
+
+IDD_CUSTATTRIB DIALOG DISCARDABLE  0, 0, 216, 73
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_SUBMAP,"CustButton",WS_TABSTOP,64,14,103,13
+    GROUPBOX        "Custom Attributes",IDC_STATIC,6,2,204,62
+    LTEXT           "SubMap",IDC_STATIC,19,17,28,8
+    LTEXT           "Color :",IDC_STATIC,19,39,21,8
+    CONTROL         "",IDC_COLOR,"ColorSwatch",0x0,64,36,33,14
+END
+
+IDD_SWATCH DIALOG DISCARDABLE  0, 0, 108, 63
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Custom Attribute 2",IDC_STATIC,24,15,59,8
+    CONTROL         "Custom1",IDC_COLORS,"ColorSwatch",WS_TABSTOP,31,34,45,
+                    16
+END
+
+IDD_NODE DIALOG DISCARDABLE  0, 0, 108, 63
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Custom Attribute 3",IDC_STATIC,24,15,59,8
+    CONTROL         "Custom1",IDC_NODEPICK,"CustButton",WS_TABSTOP,31,34,45,
+                    16
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_SIMPLE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 56
+    END
+
+    IDD_PANEL2, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 130
+    END
+
+    IDD_CUSTATTRIB, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 71
+    END
+
+    IDD_SWATCH, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 56
+    END
+
+    IDD_NODE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 56
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CLASS_NAME          "CA Sample"
+    IDS_PARAMS              "Custom Attribute Example"
+    IDS_SPIN                "Spin"
+    IDS_CHECK               "Checkbox"
+    IDS_SIMPLEPARAMS        "Simple Params"
+    IDS_MATCACLASSNAME      "Mat 1"
+    IDS_COLOR               "Sample Color"
+    IDS_CUSTOM_ATTRIBUTES   "Custom Attributes"
+    IDS_SIMPLE_CLASSNAME    "Ca 1"
+    IDS_SUBMAP              "Sub Map"
+    IDS_SIMPLECA            "Simple Custom Attribute"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SWATCHCA            "Simple Swatch Custom Attribute"
+    IDS_SWATCH_CLASSNAME    "Ca 2"
+    IDS_SWATCHPARAMS        "Swatch Params"
+    IDS_SWATCHCOLOR         "Swatch Color"
+    IDS_NODECA              "Node Custom Attribute"
+    IDS_NODE_CLASSNAME      "Ca 3"
+    IDS_NODEPARAMS          "Node Picker Params"
+    IDS_NODEPICK            "Node Pick"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

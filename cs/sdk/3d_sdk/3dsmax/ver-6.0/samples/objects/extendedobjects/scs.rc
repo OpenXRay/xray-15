@@ -1,0 +1,1477 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "scs.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_UEXTRUSIONS1 DIALOG DISCARDABLE  0, 0, 108, 16
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Corners",IDC_UEXTR_CORNER,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,10,3,43,10
+    CONTROL         "Center",IDC_UEXTR_CENTER,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,65,3,35,10
+END
+
+IDD_C_EXTRUSION3 DIALOG DISCARDABLE  0, 0, 108, 193
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_CEXT_TOPLEN,"CustEdit",WS_TABSTOP,55,9,36,10
+    CONTROL         "",IDC_CEXT_TOPLENSPIN,"SpinnerControl",0x0,92,9,7,10
+    CONTROL         "",IDC_CEXT_SIDELEN,"CustEdit",WS_TABSTOP,55,22,36,10
+    CONTROL         "",IDC_CEXT_SIDELENSPIN,"SpinnerControl",0x0,92,22,7,10
+    CONTROL         "",IDC_CEXT_BOTLEN,"CustEdit",WS_TABSTOP,55,35,36,10
+    CONTROL         "",IDC_CEXT_BOTLENSPIN,"SpinnerControl",0x0,92,35,7,10
+    CONTROL         "",IDC_CEXT_TOPWID,"CustEdit",WS_TABSTOP,55,52,36,10
+    CONTROL         "",IDC_CEXT_TOPWIDSPIN,"SpinnerControl",0x0,92,52,7,10
+    CONTROL         "",IDC_CEXT_SIDEWID,"CustEdit",WS_TABSTOP,55,65,36,10
+    CONTROL         "",IDC_CEXT_SIDEWIDSPIN,"SpinnerControl",0x0,92,65,7,10
+    CONTROL         "",IDC_CEXT_BOTWID,"CustEdit",WS_TABSTOP,55,79,36,10
+    CONTROL         "",IDC_CEXT_BOTWIDSPIN,"SpinnerControl",0x0,92,79,7,10
+    CONTROL         "",IDC_CEXT_HEIGHT,"CustEdit",WS_TABSTOP,55,95,36,10
+    CONTROL         "",IDC_CEXT_HEIGHTSPIN,"SpinnerControl",0x0,92,95,7,10
+    CONTROL         "",IDC_CEXT_TSEGS,"CustEdit",WS_TABSTOP,55,112,36,10
+    CONTROL         "",IDC_CEXT_TSEGSPIN,"SpinnerControl",0x0,92,112,7,10
+    CONTROL         "",IDC_CEXT_SSEGS,"CustEdit",WS_TABSTOP,55,125,36,10
+    CONTROL         "",IDC_CEXT_SSEGSPIN,"SpinnerControl",0x0,92,125,7,10
+    CONTROL         "",IDC_CEXT_BSEGS,"CustEdit",WS_TABSTOP,55,138,36,10
+    CONTROL         "",IDC_CEXT_BSEGSPIN,"SpinnerControl",0x0,92,138,7,10
+    CONTROL         "",IDC_CEXT_WSEGS,"CustEdit",WS_TABSTOP,55,151,36,10
+    CONTROL         "",IDC_CEXT_WSEGSSPIN,"SpinnerControl",0x0,92,151,7,10
+    CONTROL         "",IDC_CEXT_HSEGS,"CustEdit",WS_TABSTOP,55,164,36,10
+    CONTROL         "",IDC_CEXT_HSEGSSPIN,"SpinnerControl",0x0,92,164,7,10
+    CONTROL         "Generate Mapping Coords.",IDC_GENTEXTURE,"Button",
+                    BS_AUTOCHECKBOX,5,180,96,10
+    RTEXT           "Back  Segs:",IDC_STATIC,11,112,40,8
+    RTEXT           "Front Segs:",IDC_STATIC,14,138,37,8
+    RTEXT           "Side Segs:",IDC_STATIC,16,125,35,8
+    RTEXT           "Back Length:",IDC_STATIC,3,9,48,8
+    RTEXT           "Front Length:",IDC_STATIC,8,36,43,8
+    RTEXT           "Side Length:",IDC_STATIC,10,23,41,8
+    RTEXT           "Back Width:",IDC_STATIC,11,52,40,8
+    RTEXT           "Front Width:",IDC_STATIC,11,78,40,8
+    RTEXT           "Side Width:",IDC_STATIC,13,65,38,8
+    RTEXT           "Height:",IDC_STATIC,27,96,24,8
+    RTEXT           "Height Segs:",IDC_STATIC,9,166,42,8
+    RTEXT           "Width Segs:",IDC_STATIC,9,153,42,8
+END
+
+IDD_C_EXTRUSION2 DIALOG DISCARDABLE  0, 0, 108, 176
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_CEXT_POSX,"CustEdit",WS_TABSTOP,32,8,36,10
+    CONTROL         "",IDC_CEXT_POSXSPIN,"SpinnerControl",0x0,69,8,7,10
+    CONTROL         "",IDC_CEXT_POSY,"CustEdit",WS_TABSTOP,32,21,36,10
+    CONTROL         "",IDC_CEXT_POSYSPIN,"SpinnerControl",0x0,69,21,7,10
+    CONTROL         "",IDC_CEXT_POSZ,"CustEdit",WS_TABSTOP,32,34,36,10
+    CONTROL         "",IDC_CEXT_POSZSPIN,"SpinnerControl",0x0,69,34,7,10
+    CONTROL         "",IDC_CEXT_TOPLEN,"CustEdit",WS_TABSTOP,51,49,36,10
+    CONTROL         "",IDC_CEXT_TOPLENSPIN,"SpinnerControl",0x0,88,49,7,10
+    CONTROL         "",IDC_CEXT_SIDELEN,"CustEdit",WS_TABSTOP,51,62,36,10
+    CONTROL         "",IDC_CEXT_SIDELENSPIN,"SpinnerControl",0x0,88,62,7,10
+    CONTROL         "",IDC_CEXT_BOTLEN,"CustEdit",WS_TABSTOP,51,75,36,10
+    CONTROL         "",IDC_CEXT_BOTLENSPIN,"SpinnerControl",0x0,88,75,7,10
+    CONTROL         "",IDC_CEXT_TOPWID,"CustEdit",WS_TABSTOP,51,92,36,10
+    CONTROL         "",IDC_CEXT_TOPWIDSPIN,"SpinnerControl",0x0,88,92,7,10
+    CONTROL         "",IDC_CEXT_SIDEWID,"CustEdit",WS_TABSTOP,51,105,36,10
+    CONTROL         "",IDC_CEXT_SIDEWIDSPIN,"SpinnerControl",0x0,88,105,7,10
+    CONTROL         "",IDC_CEXT_BOTWID,"CustEdit",WS_TABSTOP,51,119,36,10
+    CONTROL         "",IDC_CEXT_BOTWIDSPIN,"SpinnerControl",0x0,88,119,7,10
+    CONTROL         "",IDC_CEXT_HEIGHT,"CustEdit",WS_TABSTOP,51,137,36,10
+    CONTROL         "",IDC_CEXT_HEIGHTSPIN,"SpinnerControl",0x0,88,137,7,10
+    CONTROL         "Create",IDC_CEXT_CREATE,"CustButton",WS_TABSTOP,31,156,
+                    44,12
+    RTEXT           "X:",IDC_STATIC,3,10,25,8
+    RTEXT           "Y:",IDC_STATIC,3,23,25,8
+    RTEXT           "Z:",IDC_STATIC,3,36,25,8
+    RTEXT           "Back Length:",IDC_STATIC,3,49,44,8
+    RTEXT           "Front Length:",IDC_STATIC,4,76,43,8
+    RTEXT           "Side Length:",IDC_STATIC,6,63,41,8
+    RTEXT           "Back Width:",IDC_STATIC,7,92,40,8
+    RTEXT           "Front Width:",IDC_STATIC,7,118,40,8
+    RTEXT           "Side Width:",IDC_STATIC,9,105,38,8
+    RTEXT           "Height:",IDC_STATIC,23,138,24,8
+END
+
+IDD_L_EXTRUSION2 DIALOG DISCARDABLE  0, 0, 108, 151
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_LEXT_POSX,"CustEdit",WS_TABSTOP,32,8,36,10
+    CONTROL         "",IDC_LEXT_POSXSPIN,"SpinnerControl",0x0,69,8,7,10
+    CONTROL         "",IDC_LEXT_POSY,"CustEdit",WS_TABSTOP,32,21,36,10
+    CONTROL         "",IDC_LEXT_POSYSPIN,"SpinnerControl",0x0,69,21,7,10
+    CONTROL         "",IDC_LEXT_POSZ,"CustEdit",WS_TABSTOP,32,34,36,10
+    CONTROL         "",IDC_LEXT_POSZSPIN,"SpinnerControl",0x0,69,34,7,10
+    CONTROL         "",IDC_LEXT_SIDELEN,"CustEdit",WS_TABSTOP,51,51,36,10
+    CONTROL         "",IDC_LEXT_SIDELENSPIN,"SpinnerControl",0x0,88,51,7,10
+    CONTROL         "",IDC_LEXT_BOTLEN,"CustEdit",WS_TABSTOP,51,64,36,10
+    CONTROL         "",IDC_LEXT_BOTLENSPIN,"SpinnerControl",0x0,88,64,7,10
+    CONTROL         "",IDC_LEXT_SIDEWID,"CustEdit",WS_TABSTOP,51,81,36,10
+    CONTROL         "",IDC_LEXT_SIDEWIDSPIN,"SpinnerControl",0x0,88,81,7,10
+    CONTROL         "",IDC_LEXT_BOTWID,"CustEdit",WS_TABSTOP,51,95,36,10
+    CONTROL         "",IDC_LEXT_BOTWIDSPIN,"SpinnerControl",0x0,88,95,7,10
+    CONTROL         "",IDC_LEXT_HEIGHT,"CustEdit",WS_TABSTOP,51,113,36,10
+    CONTROL         "",IDC_LEXT_HEIGHTSPIN,"SpinnerControl",0x0,88,113,7,10
+    CONTROL         "Create",IDC_LEXT_CREATE,"CustButton",WS_TABSTOP,31,132,
+                    44,12
+    RTEXT           "X:",-1,3,10,25,8
+    RTEXT           "Y:",-1,3,23,25,8
+    RTEXT           "Z:",-1,3,36,25,8
+    RTEXT           "Front Length:",-1,4,65,43,8
+    RTEXT           "Side Length:",-1,6,52,41,8
+    RTEXT           "Front Width:",-1,7,94,40,8
+    RTEXT           "Side Width:",-1,9,81,38,8
+    RTEXT           "Height:",-1,23,114,24,8
+END
+
+IDD_L_EXTRUSION3 DIALOG DISCARDABLE  0, 0, 108, 154
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_LEXT_SIDELEN,"CustEdit",WS_TABSTOP,55,7,36,10
+    CONTROL         "",IDC_LEXT_SIDELENSPIN,"SpinnerControl",0x0,92,7,7,10
+    CONTROL         "",IDC_LEXT_BOTLEN,"CustEdit",WS_TABSTOP,55,20,36,10
+    CONTROL         "",IDC_LEXT_BOTLENSPIN,"SpinnerControl",0x0,92,20,7,10
+    CONTROL         "",IDC_LEXT_SIDEWID,"CustEdit",WS_TABSTOP,55,39,36,10
+    CONTROL         "",IDC_LEXT_SIDEWIDSPIN,"SpinnerControl",0x0,92,39,7,10
+    CONTROL         "",IDC_LEXT_BOTWID,"CustEdit",WS_TABSTOP,55,52,36,10
+    CONTROL         "",IDC_LEXT_BOTWIDSPIN,"SpinnerControl",0x0,92,52,7,10
+    CONTROL         "",IDC_LEXT_HEIGHT,"CustEdit",WS_TABSTOP,55,68,36,10
+    CONTROL         "",IDC_LEXT_HEIGHTSPIN,"SpinnerControl",0x0,92,68,7,10
+    CONTROL         "",IDC_LEXT_SIDESEGS,"CustEdit",WS_TABSTOP,55,85,36,10
+    CONTROL         "",IDC_LEXT_SIDESEGSSPIN,"SpinnerControl",0x0,92,85,7,10
+    CONTROL         "",IDC_LEXT_BOTSEGS,"CustEdit",WS_TABSTOP,55,98,36,10
+    CONTROL         "",IDC_LEXT_BOTSEGSSPIN,"SpinnerControl",0x0,92,98,7,10
+    CONTROL         "",IDC_LEXT_WIDTHSEGS,"CustEdit",WS_TABSTOP,55,111,36,10
+    CONTROL         "",IDC_LEXT_WIDTHSEGSSPIN,"SpinnerControl",0x0,92,111,7,
+                    10
+    CONTROL         "",IDC_LEXT_HGTSEGS,"CustEdit",WS_TABSTOP,55,124,36,10
+    CONTROL         "",IDC_LEXT_HGTSEGSSPIN,"SpinnerControl",0x0,92,124,7,10
+    CONTROL         "Generate Mapping Coords.",IDC_GENTEXTURE,"Button",
+                    BS_AUTOCHECKBOX,5,140,96,10
+    RTEXT           "Front Segs:",IDC_STATIC,14,98,37,8
+    RTEXT           "Side Segs:",IDC_STATIC,16,85,35,8
+    RTEXT           "Front Length:",IDC_STATIC,8,21,43,8
+    RTEXT           "Side Length:",IDC_STATIC,10,7,41,8
+    RTEXT           "Front Width:",IDC_STATIC,11,52,40,8
+    RTEXT           "Side Width:",IDC_STATIC,13,39,38,8
+    RTEXT           "Height:",IDC_STATIC,27,70,24,8
+    RTEXT           "Height Segs:",IDC_STATIC,9,126,42,8
+    RTEXT           "Width Segs:",IDC_STATIC,9,113,42,8
+END
+
+IDD_CHAMFERCUBE1 DIALOG DISCARDABLE  0, 0, 108, 16
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Cube",IDC_CC_CREATECUBE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,9,3,43,10
+    CONTROL         "Box",IDC_CC_CREATEBOX,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,64,3,35,10
+END
+
+IDD_CHAMFERCUBE2 DIALOG DISCARDABLE  0, 0, 108, 123
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_CC_POSX,"CustEdit",WS_TABSTOP,43,8,36,10
+    CONTROL         "",IDC_CC_POSXSPIN,"SpinnerControl",0x0,81,8,7,10
+    CONTROL         "",IDC_CC_POSY,"CustEdit",WS_TABSTOP,43,21,36,10
+    CONTROL         "",IDC_CC_POSYSPIN,"SpinnerControl",0x0,81,21,7,10
+    CONTROL         "",IDC_CC_POSZ,"CustEdit",WS_TABSTOP,43,34,36,10
+    CONTROL         "",IDC_CC_POSZSPIN,"SpinnerControl",0x0,81,34,7,10
+    CONTROL         "",IDC_CC_LENGTH,"CustEdit",WS_TABSTOP,48,51,36,10
+    CONTROL         "",IDC_CC_LENGTHSPIN,"SpinnerControl",0x0,85,51,7,10
+    CONTROL         "",IDC_CC_WIDTH,"CustEdit",WS_TABSTOP,48,64,36,10
+    CONTROL         "",IDC_CC_WIDTHSPIN,"SpinnerControl",0x0,85,64,7,10
+    CONTROL         "",IDC_CC_HEIGHT,"CustEdit",WS_TABSTOP,48,77,36,10
+    CONTROL         "",IDC_CC_HEIGHTSPIN,"SpinnerControl",0x0,85,77,7,10
+    CONTROL         "",IDC_CC_RADIUS,"CustEdit",WS_TABSTOP,48,90,36,10
+    CONTROL         "",IDC_CC_RADIUSSPIN,"SpinnerControl",0x0,85,90,7,10
+    CONTROL         "Create",IDC_CC_CREATE,"CustButton",WS_TABSTOP,32,106,44,
+                    12
+    RTEXT           "X:",IDC_STATIC,20,10,14,8
+    RTEXT           "Y:",IDC_STATIC,20,23,14,8
+    RTEXT           "Z:",IDC_STATIC,22,36,12,8
+    RTEXT           "Length:",IDC_STATIC,14,53,25,8
+    RTEXT           "Height:",IDC_STATIC,17,80,22,8
+    RTEXT           "Width:",IDC_STATIC,17,67,22,8
+    RTEXT           "Fillet:",IDC_STATIC,14,92,25,8
+END
+
+IDD_CHAMFERCUBE3 DIALOG DISCARDABLE  0, 0, 108, 154
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_CC_LENGTH,"CustEdit",WS_TABSTOP,55,7,36,10
+    CONTROL         "",IDC_CC_LENGTHSPIN,"SpinnerControl",0x0,93,7,7,10
+    CONTROL         "",IDC_CC_WIDTH,"CustEdit",WS_TABSTOP,55,20,36,10
+    CONTROL         "",IDC_CC_WIDTHSPIN,"SpinnerControl",0x0,93,20,7,10
+    CONTROL         "",IDC_CC_HEIGHT,"CustEdit",WS_TABSTOP,55,33,36,10
+    CONTROL         "",IDC_CC_HEIGHTSPIN,"SpinnerControl",0x0,93,33,7,10
+    CONTROL         "",IDC_CC_RADIUS,"CustEdit",WS_TABSTOP,55,46,36,10
+    CONTROL         "",IDC_CC_RADIUSSPIN,"SpinnerControl",0x0,93,46,7,10
+    CONTROL         "",IDC_CC_LENSEGS,"CustEdit",WS_TABSTOP,55,68,36,10
+    CONTROL         "",IDC_CC_LENSEGSSPIN,"SpinnerControl",0x0,93,68,7,10
+    CONTROL         "",IDC_CC_WIDSEGS,"CustEdit",WS_TABSTOP,55,81,36,10
+    CONTROL         "",IDC_CC_WIDSEGSSPIN,"SpinnerControl",0x0,93,81,7,10
+    CONTROL         "",IDC_CC_HGTSEGS,"CustEdit",WS_TABSTOP,55,94,36,10
+    CONTROL         "",IDC_CC_HGTSEGSSPIN,"SpinnerControl",0x0,93,94,7,10
+    CONTROL         "",IDC_CC_RADSEGS,"CustEdit",WS_TABSTOP,55,107,36,10
+    CONTROL         "",IDC_CC_RADSEGSSPIN,"SpinnerControl",0x0,93,107,7,10
+    CONTROL         "Generate Mapping Coords.",IDC_GENTEXTURE,"Button",
+                    BS_AUTOCHECKBOX,4,138,99,10
+    RTEXT           "Length:",IDC_STATIC,21,8,29,8
+    RTEXT           "Height:",IDC_STATIC,24,35,26,8
+    RTEXT           "Width:",IDC_STATIC,24,22,26,8
+    RTEXT           "Length Segs:",IDC_STATIC,7,69,43,8
+    RTEXT           "Height Segs:",IDC_STATIC,8,94,42,8
+    RTEXT           "Width Segs:",IDC_STATIC,10,82,40,8
+    RTEXT           "Fillet Segs:",IDC_STATIC,15,107,35,8
+    RTEXT           "Fillet:",IDC_STATIC,25,47,25,8
+    CONTROL         "Smooth",IDC_OT_SMOOTH,"Button",BS_AUTOCHECKBOX,4,123,40,
+                    10
+END
+
+IDD_UREVS1 DIALOG DISCARDABLE  0, 0, 108, 16
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Edge",IDC_UCYLS_BYDIA,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,10,3,43,10
+    CONTROL         "Center",IDC_UCYLS_BYRAD,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,65,3,35,10
+END
+
+IDD_CHAMFERCYL2 DIALOG DISCARDABLE  0, 0, 108, 113
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_CCY_POSX,"CustEdit",WS_TABSTOP,43,8,36,10
+    CONTROL         "",IDC_CCY_POSXSPIN,"SpinnerControl",0x0,81,8,7,10
+    CONTROL         "",IDC_CCY_POSY,"CustEdit",WS_TABSTOP,43,21,36,10
+    CONTROL         "",IDC_CCY_POSYSPIN,"SpinnerControl",0x0,81,21,7,10
+    CONTROL         "",IDC_CCY_POSZ,"CustEdit",WS_TABSTOP,43,34,36,10
+    CONTROL         "",IDC_CCY_POSZSPIN,"SpinnerControl",0x0,81,34,7,10
+    CONTROL         "",IDC_CCY_RADIUS,"CustEdit",WS_TABSTOP,48,51,36,10
+    CONTROL         "",IDC_CCY_RADIUSSPIN,"SpinnerControl",0x0,85,51,7,10
+    CONTROL         "",IDC_CCY_HEIGHT,"CustEdit",WS_TABSTOP,48,64,36,10
+    CONTROL         "",IDC_CCY_HEIGHTSPIN,"SpinnerControl",0x0,85,64,7,10
+    CONTROL         "",IDC_CCY_FILLET,"CustEdit",WS_TABSTOP,48,77,36,10
+    CONTROL         "",IDC_CCY_FILLETSPIN,"SpinnerControl",0x0,85,77,7,10
+    CONTROL         "Create",IDC_CCY_CREATE,"CustButton",WS_TABSTOP,31,94,44,
+                    12
+    RTEXT           "X:",-1,20,10,14,8
+    RTEXT           "Y:",-1,20,23,14,8
+    RTEXT           "Z:",-1,22,36,12,8
+    RTEXT           "Radius:",-1,14,53,25,8
+    RTEXT           "Fillet:",-1,22,79,17,8
+    RTEXT           "Height:",-1,15,66,24,8
+END
+
+IDD_CHAMFERCYL3 DIALOG DISCARDABLE  0, 0, 108, 180
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_CCY_RADIUS,"CustEdit",WS_TABSTOP,47,7,36,10
+    CONTROL         "",IDC_CCY_RADIUSSPIN,"SpinnerControl",0x0,85,7,7,10
+    CONTROL         "",IDC_CCY_HEIGHT,"CustEdit",WS_TABSTOP,47,20,36,10
+    CONTROL         "",IDC_CCY_HEIGHTSPIN,"SpinnerControl",0x0,85,20,7,10
+    CONTROL         "",IDC_CCY_FILLET,"CustEdit",WS_TABSTOP,47,33,36,10
+    CONTROL         "",IDC_CCY_FILLETSPIN,"SpinnerControl",0x0,85,33,7,10
+    CONTROL         "",IDC_CCY_HGTSEGS,"CustEdit",WS_TABSTOP,55,54,36,10
+    CONTROL         "",IDC_CCY_HGTSEGSSPIN,"SpinnerControl",0x0,93,54,7,10
+    CONTROL         "",IDC_CCY_FILLETSEGS,"CustEdit",WS_TABSTOP,55,67,36,10
+    CONTROL         "",IDC_CCY_FILLETSEGSSPIN,"SpinnerControl",0x0,93,67,7,
+                    10
+    CONTROL         "",IDC_CCY_SIDES,"CustEdit",WS_TABSTOP,55,80,36,10
+    CONTROL         "",IDC_CCY_SIDESSPIN,"SpinnerControl",0x0,93,80,7,10
+    CONTROL         "",IDC_CCY_CAPSEGS,"CustEdit",WS_TABSTOP,55,93,36,10
+    CONTROL         "",IDC_CCY_CAPSEGSSPIN,"SpinnerControl",0x0,93,93,7,10
+    CONTROL         "Smooth",IDC_CCY_SMOOTHON,"Button",BS_AUTOCHECKBOX,50,
+                    109,47,10
+    CONTROL         "Slice On",IDC_CCY_SLICEON,"Button",BS_AUTOCHECKBOX,50,
+                    122,47,10
+    CONTROL         "",IDC_CCY_SLICE1,"CustEdit",WS_TABSTOP,51,135,36,10
+    CONTROL         "",IDC_CCY_SLICE1SPIN,"SpinnerControl",0x0,89,135,7,10
+    CONTROL         "",IDC_CCY_SLICE2,"CustEdit",WS_TABSTOP,51,148,36,10
+    CONTROL         "",IDC_CCY_SLICE2SPIN,"SpinnerControl",0x0,89,148,7,10
+    CONTROL         "Generate Mapping Coords.",IDC_GENTEXTURE,"Button",
+                    BS_AUTOCHECKBOX,4,164,99,10
+    RTEXT           "Radius:",IDC_STATIC,16,8,25,8
+    RTEXT           "Fillet:",IDC_STATIC,24,35,17,8
+    RTEXT           "Height:",IDC_STATIC,17,22,24,8
+    RTEXT           "Height Segs:",IDC_STATIC,7,56,42,8
+    RTEXT           "Sides:",IDC_STATIC,9,82,40,8
+    RTEXT           "Fillet Segs:",IDC_STATIC,14,69,35,8
+    RTEXT           "Cap Segs:",IDC_STATIC,15,94,34,8
+    RTEXT           "Slice From:",IDC_STATIC,10,135,37,8
+    RTEXT           "Slice To:",IDC_STATIC,10,148,37,8
+END
+
+IDD_PRISM2 DIALOG DISCARDABLE  0, 0, 108, 133
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_PR_POSX,"CustEdit",WS_TABSTOP,32,8,36,10
+    CONTROL         "",IDC_PR_POSXSPIN,"SpinnerControl",0x0,69,8,7,10
+    CONTROL         "",IDC_PR_POSY,"CustEdit",WS_TABSTOP,32,21,36,10
+    CONTROL         "",IDC_PR_POSYSPIN,"SpinnerControl",0x0,69,21,7,10
+    CONTROL         "",IDC_PR_POSZ,"CustEdit",WS_TABSTOP,32,34,36,10
+    CONTROL         "",IDC_PR_POSZSPIN,"SpinnerControl",0x0,69,34,7,10
+    CONTROL         "",IDC_PR_SIDE1LEN,"CustEdit",WS_TABSTOP,57,51,36,10
+    CONTROL         "",IDC_PR_SIDE1LENSPIN,"SpinnerControl",0x0,94,51,7,10
+    CONTROL         "",IDC_PR_SIDE2LEN,"CustEdit",WS_TABSTOP,57,66,36,10
+    CONTROL         "",IDC_PR_SIDE2LENSPIN,"SpinnerControl",0x0,94,66,7,10
+    CONTROL         "",IDC_PR_SIDE3LEN,"CustEdit",WS_TABSTOP,57,80,36,10
+    CONTROL         "",IDC_PR_SIDE3LENSPIN,"SpinnerControl",0x0,94,80,7,10
+    CONTROL         "",IDC_PR_HEIGHT,"CustEdit",WS_TABSTOP,57,94,36,10
+    CONTROL         "",IDC_PR_HEIGHTSPIN,"SpinnerControl",0x0,94,94,7,10
+    CONTROL         "Create",IDC_PR_CREATE,"CustButton",WS_TABSTOP,32,114,44,
+                    12
+    RTEXT           "X:",-1,3,10,25,8
+    RTEXT           "Y:",-1,3,23,25,8
+    RTEXT           "Z:",-1,3,36,25,8
+    RTEXT           "Side 1 Length:",-1,5,52,47,8
+    RTEXT           "Height:",-1,29,95,24,8
+    RTEXT           "Side 2 Length:",-1,5,67,47,8
+    RTEXT           "Side 3 Length:",-1,5,81,47,8
+END
+
+IDD_PRISM1 DIALOG DISCARDABLE  0, 0, 108, 16
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Isosceles",IDC_PR_CREATEBASE,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,4,3,45,10
+    CONTROL         "Base/Apex",IDC_PR_CREATEVERTICES,"Button",
+                    BS_AUTORADIOBUTTON | BS_CENTER | WS_TABSTOP,51,3,51,10
+END
+
+IDD_PRISM3 DIALOG DISCARDABLE  0, 0, 108, 141
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_PR_SIDE1LEN,"CustEdit",WS_TABSTOP,57,9,36,10
+    CONTROL         "",IDC_PR_SIDE1LENSPIN,"SpinnerControl",0x0,94,9,7,10
+    CONTROL         "",IDC_PR_SIDE2LEN,"CustEdit",WS_TABSTOP,57,23,36,10
+    CONTROL         "",IDC_PR_SIDE2LENSPIN,"SpinnerControl",0x0,94,23,7,10
+    CONTROL         "",IDC_PR_SIDE3LEN,"CustEdit",WS_TABSTOP,57,36,36,10
+    CONTROL         "",IDC_PR_SIDE3LENSPIN,"SpinnerControl",0x0,94,36,7,10
+    CONTROL         "",IDC_PR_HEIGHT,"CustEdit",WS_TABSTOP,57,50,36,10
+    CONTROL         "",IDC_PR_HEIGHTSPIN,"SpinnerControl",0x0,94,50,7,10
+    CONTROL         "",IDC_PR_SIDE1SEGS,"CustEdit",WS_TABSTOP,57,71,36,10
+    CONTROL         "",IDC_PR_SIDE1SEGSSPIN,"SpinnerControl",0x0,94,71,7,10
+    CONTROL         "",IDC_PR_SIDE2SEGS,"CustEdit",WS_TABSTOP,57,85,36,10
+    CONTROL         "",IDC_PR_SIDE2SEGSSPIN,"SpinnerControl",0x0,94,85,7,10
+    CONTROL         "",IDC_PR_SIDE3SEGS,"CustEdit",WS_TABSTOP,57,98,36,10
+    CONTROL         "",IDC_PR_SIDE3SEGSSPIN,"SpinnerControl",0x0,94,98,7,10
+    CONTROL         "",IDC_PR_HGTSEGS,"CustEdit",WS_TABSTOP,57,112,36,10
+    CONTROL         "",IDC_PR_HGTSPIN,"SpinnerControl",0x0,94,112,7,10
+    CONTROL         "Generate Mapping Coords.",IDC_GENTEXTURE,"Button",
+                    BS_AUTOCHECKBOX,4,127,99,10
+    RTEXT           "Side 1 Length:",-1,6,10,47,8
+    RTEXT           "Height:",-1,29,50,24,8
+    RTEXT           "Side 2 Length:",-1,6,23,47,8
+    RTEXT           "Side 3 Length:",-1,6,37,47,8
+    RTEXT           "Side 1 Segs:",-1,6,73,41,8
+    RTEXT           "Height Segs:",-1,5,112,42,8
+    RTEXT           "Side 2 Segs:",-1,6,86,41,8
+    RTEXT           "Side 3 Segs:",-1,6,99,41,8
+END
+
+IDD_PYRAMID1 DIALOG DISCARDABLE  0, 0, 108, 16
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Base/Apex",IDC_PYR_CREATEBASE,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,6,3,51,10
+    CONTROL         "Center",IDC_PYR_CREATECENTER,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,61,3,41,10
+END
+
+IDD_PYRAMID2 DIALOG DISCARDABLE  0, 0, 108, 117
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_PYR_POSX,"CustEdit",WS_TABSTOP,32,8,36,10
+    CONTROL         "",IDC_PYR_POSXSPIN,"SpinnerControl",0x0,69,8,7,10
+    CONTROL         "",IDC_PYR_POSY,"CustEdit",WS_TABSTOP,32,21,36,10
+    CONTROL         "",IDC_PYR_POSYSPIN,"SpinnerControl",0x0,69,21,7,10
+    CONTROL         "",IDC_PYR_POSZ,"CustEdit",WS_TABSTOP,32,34,36,10
+    CONTROL         "",IDC_PYR_POSZSPIN,"SpinnerControl",0x0,69,34,7,10
+    CONTROL         "",IDC_PYR_WIDTH,"CustEdit",WS_TABSTOP,49,51,36,10
+    CONTROL         "",IDC_PYR_WIDTHSPIN,"SpinnerControl",0x0,86,51,7,10
+    CONTROL         "",IDC_PYR_DEPTH,"CustEdit",WS_TABSTOP,49,66,36,10
+    CONTROL         "",IDC_PYR_DEPTHSPIN,"SpinnerControl",0x0,86,66,7,10
+    CONTROL         "",IDC_PYR_HEIGHT,"CustEdit",WS_TABSTOP,49,80,36,10
+    CONTROL         "",IDC_PYR_HEIGHTSPIN,"SpinnerControl",0x0,86,80,7,10
+    CONTROL         "Create",IDC_PR_CREATE,"CustButton",WS_TABSTOP,32,100,44,
+                    12
+    RTEXT           "X:",-1,3,10,25,8
+    RTEXT           "Y:",-1,3,23,25,8
+    RTEXT           "Z:",-1,3,36,25,8
+    RTEXT           "Width:",-1,20,53,22,8
+    RTEXT           "Height:",-1,14,82,28,8
+    RTEXT           "Depth:",-1,20,68,22,8
+END
+
+IDD_PYRAMID3 DIALOG DISCARDABLE  0, 0, 108, 113
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_PYR_WIDTH,"CustEdit",WS_TABSTOP,50,6,36,10
+    CONTROL         "",IDC_PYR_WIDTHSPIN,"SpinnerControl",0x0,86,6,7,10
+    CONTROL         "",IDC_PYR_DEPTH,"CustEdit",WS_TABSTOP,50,21,36,10
+    CONTROL         "",IDC_PYR_DEPTHSPIN,"SpinnerControl",0x0,86,21,7,10
+    CONTROL         "",IDC_PYR_HEIGHT,"CustEdit",WS_TABSTOP,50,35,36,10
+    CONTROL         "",IDC_PYR_HEIGHTSPIN,"SpinnerControl",0x0,86,35,7,10
+    CONTROL         "",IDC_PYR_WIDSEGS,"CustEdit",WS_TABSTOP,56,55,36,10
+    CONTROL         "",IDC_PYR_WIDSEGSSPIN,"SpinnerControl",0x0,94,55,7,10
+    CONTROL         "",IDC_PYR_DEPSEGS,"CustEdit",WS_TABSTOP,56,68,36,10
+    CONTROL         "",IDC_PYR_DEPSEGSSPIN,"SpinnerControl",0x0,94,68,7,10
+    CONTROL         "",IDC_PYR_HGTSEGS,"CustEdit",WS_TABSTOP,56,81,36,10
+    CONTROL         "",IDC_PYR_HGTSEGSSPIN,"SpinnerControl",0x0,94,81,7,10
+    CONTROL         "Generate Mapping Coords.",IDC_GENTEXTURE,"Button",
+                    BS_AUTOCHECKBOX,4,97,99,10
+    RTEXT           "Width:",IDC_STATIC,20,8,22,8
+    RTEXT           "Height:",IDC_STATIC,14,37,28,8
+    RTEXT           "Depth:",IDC_STATIC,20,23,22,8
+    RTEXT           "Width Segs:",IDC_STATIC,8,55,43,8
+    RTEXT           "Height Segs:",IDC_STATIC,9,80,42,8
+    RTEXT           "Depth Segs:",IDC_STATIC,11,68,40,8
+END
+
+IDD_GENGON2 DIALOG DISCARDABLE  0, 0, 108, 128
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_GG_POSX,"CustEdit",WS_TABSTOP,32,8,36,10
+    CONTROL         "",IDC_GG_POSXSPIN,"SpinnerControl",0x0,69,8,7,10
+    CONTROL         "",IDC_GG_POSY,"CustEdit",WS_TABSTOP,32,21,36,10
+    CONTROL         "",IDC_GG_POSYSPIN,"SpinnerControl",0x0,69,21,7,10
+    CONTROL         "",IDC_GG_POSZ,"CustEdit",WS_TABSTOP,32,34,36,10
+    CONTROL         "",IDC_GG_POSZSPIN,"SpinnerControl",0x0,69,34,7,10
+    CONTROL         "",IDC_GG_SIDES,"CustEdit",WS_TABSTOP,46,51,36,10
+    CONTROL         "",IDC_GG_SIDESSPIN,"SpinnerControl",0x0,83,51,7,10
+    CONTROL         "",IDC_GG_RADIUS,"CustEdit",WS_TABSTOP,46,66,36,10
+    CONTROL         "",IDC_GG_RADIUSSPIN,"SpinnerControl",0x0,83,66,7,10
+    CONTROL         "",IDC_GG_HEIGHT,"CustEdit",WS_TABSTOP,46,80,36,10
+    CONTROL         "",IDC_GG_HEIGHTSPIN,"SpinnerControl",0x0,83,80,7,10
+    CONTROL         "",IDC_GG_FILLET,"CustEdit",WS_TABSTOP,46,94,36,10
+    CONTROL         "",IDC_GG_FILLETSPIN,"SpinnerControl",0x0,83,94,7,10
+    CONTROL         "Create",IDC_GG_CREATE,"CustButton",WS_TABSTOP,31,110,44,
+                    12
+    RTEXT           "X:",-1,7,10,18,8
+    RTEXT           "Y:",-1,4,23,21,8
+    RTEXT           "Z:",-1,3,36,22,8
+    RTEXT           "Sides:",-1,22,52,20,8
+    RTEXT           "Height:",-1,18,81,24,8
+    RTEXT           "Radius:",-1,17,67,25,8
+    RTEXT           "Fillet:",-1,25,95,17,8
+END
+
+IDD_GENGON3 DIALOG DISCARDABLE  0, 0, 108, 134
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_GG_SIDES,"CustEdit",WS_TABSTOP,54,7,36,10
+    CONTROL         "",IDC_GG_SIDESSPIN,"SpinnerControl",0x0,91,7,7,10
+    CONTROL         "",IDC_GG_RADIUS,"CustEdit",WS_TABSTOP,54,20,36,10
+    CONTROL         "",IDC_GG_RADIUSSPIN,"SpinnerControl",0x0,91,20,7,10
+    CONTROL         "",IDC_GG_FILLET,"CustEdit",WS_TABSTOP,54,33,36,10
+    CONTROL         "",IDC_GG_FILLETSPIN,"SpinnerControl",0x0,91,33,7,10
+    CONTROL         "",IDC_GG_HEIGHT,"CustEdit",WS_TABSTOP,54,47,36,10
+    CONTROL         "",IDC_GG_HEIGHTSPIN,"SpinnerControl",0x0,91,47,7,10
+    CONTROL         "",IDC_GG_SIDESEGS,"CustEdit",WS_TABSTOP,54,67,36,10
+    CONTROL         "",IDC_GG_SIDESEGSSPIN,"SpinnerControl",0x0,91,67,7,10
+    CONTROL         "",IDC_GG_HGTSEGS,"CustEdit",WS_TABSTOP,54,80,36,10
+    CONTROL         "",IDC_GG_HGTSEGSSPIN,"SpinnerControl",0x0,91,80,7,10
+    CONTROL         "",IDC_GG_FILLETSEGS,"CustEdit",WS_TABSTOP,54,92,36,10
+    CONTROL         "",IDC_GG_FILLETSEGSSPIN,"SpinnerControl",0x0,91,92,7,10
+    CONTROL         "Generate Mapping Coords.",IDC_GENTEXTURE,"Button",
+                    BS_AUTOCHECKBOX,4,122,99,10
+    RTEXT           "Sides:",-1,30,8,20,8
+    RTEXT           "Height:",-1,26,47,24,8
+    RTEXT           "Radius:",-1,25,21,25,8
+    RTEXT           "Fillet:",-1,33,34,17,8
+    RTEXT           "Side Segs:",-1,15,67,35,8
+    RTEXT           "Height Segs:",-1,8,79,42,8
+    RTEXT           "Fillet Segs:",-1,15,92,35,8
+    CONTROL         "Smooth",IDC_OT_SMOOTH,"Button",BS_AUTOCHECKBOX,4,108,40,
+                    10
+END
+
+IDD_SCUBA2 DIALOG DISCARDABLE  0, 0, 108, 115
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_SC_POSX,"CustEdit",WS_TABSTOP,43,8,36,10
+    CONTROL         "",IDC_SC_POSXSPIN,"SpinnerControl",0x0,81,8,7,10
+    CONTROL         "",IDC_SC_POSY,"CustEdit",WS_TABSTOP,43,21,36,10
+    CONTROL         "",IDC_SC_POSYSPIN,"SpinnerControl",0x0,81,21,7,10
+    CONTROL         "",IDC_SC_POSZ,"CustEdit",WS_TABSTOP,43,34,36,10
+    CONTROL         "",IDC_SC_POSZSPIN,"SpinnerControl",0x0,81,34,7,10
+    CONTROL         "",IDC_SC_RADIUS,"CustEdit",WS_TABSTOP,56,51,36,10
+    CONTROL         "",IDC_SC_RADIUSSPIN,"SpinnerControl",0x0,93,51,7,10
+    CONTROL         "",IDC_SC_HEIGHT,"CustEdit",WS_TABSTOP,56,64,36,10
+    CONTROL         "",IDC_SC_HEIGHTSPIN,"SpinnerControl",0x0,93,64,7,10
+    CONTROL         "Overall",IDC_SC_LENOVERALL,"Button",BS_AUTORADIOBUTTON,
+                    7,82,38,10
+    CONTROL         "Centers",IDC_SC_LENCENTERS,"Button",BS_AUTORADIOBUTTON,
+                    53,82,40,10
+    CONTROL         "Create",IDC_SC_CREATE,"CustButton",WS_TABSTOP,32,98,44,
+                    12
+    RTEXT           "X:",-1,20,10,14,8
+    RTEXT           "Y:",-1,20,23,14,8
+    RTEXT           "Z:",-1,22,36,12,8
+    RTEXT           "Radius:",-1,22,52,25,8
+    RTEXT           "Height:",-1,23,65,24,8
+END
+
+IDD_SCUBA3 DIALOG DISCARDABLE  0, 0, 108, 154
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_SC_RADIUS,"CustEdit",WS_TABSTOP,56,7,36,10
+    CONTROL         "",IDC_SC_RADIUSSPIN,"SpinnerControl",0x0,93,7,7,10
+    CONTROL         "",IDC_SC_HEIGHT,"CustEdit",WS_TABSTOP,56,21,36,10
+    CONTROL         "",IDC_SC_HEIGHTSPIN,"SpinnerControl",0x0,93,21,7,10
+    CONTROL         "Overall",IDC_SC_LENOVERALL,"Button",BS_AUTORADIOBUTTON,
+                    7,40,38,10
+    CONTROL         "Centers",IDC_SC_LENCENTERS,"Button",BS_AUTORADIOBUTTON,
+                    53,40,40,10
+    CONTROL         "",IDC_SC_SIDES,"CustEdit",WS_TABSTOP,55,56,36,10
+    CONTROL         "",IDC_SC_SIDESSPIN,"SpinnerControl",0x0,93,56,7,10
+    CONTROL         "",IDC_SC_HEIGHTSEGS,"CustEdit",WS_TABSTOP,55,69,36,10
+    CONTROL         "",IDC_SC_HEIGHTSEGSSPIN,"SpinnerControl",0x0,93,69,7,10
+    CONTROL         "Smooth",IDC_SC_SMOOTH,"Button",BS_AUTOCHECKBOX,51,83,40,
+                    10
+    CONTROL         "Slice On",IDC_SC_SLICEON,"Button",BS_AUTOCHECKBOX,51,96,
+                    47,10
+    CONTROL         "",IDC_SC_SLICE1,"CustEdit",WS_TABSTOP,53,110,36,10
+    CONTROL         "",IDC_SC_SLICE1SPIN,"SpinnerControl",0x0,91,110,7,10
+    CONTROL         "",IDC_SC_SLICE2,"CustEdit",WS_TABSTOP,53,123,36,10
+    CONTROL         "",IDC_SC_SLICE2SPIN,"SpinnerControl",0x0,91,123,7,10
+    CONTROL         "Generate Mapping Coords.",IDC_GENTEXTURE,"Button",
+                    BS_AUTOCHECKBOX,3,139,99,10
+    RTEXT           "Height Segs:",-1,7,70,42,8
+    RTEXT           "Sides:",-1,9,59,40,8
+    RTEXT           "Slice From:",-1,13,110,37,8
+    RTEXT           "Slice To:",-1,13,123,37,8
+    RTEXT           "Radius:",-1,22,9,25,8
+    RTEXT           "Height:",-1,23,22,24,8
+END
+
+IDD_SPINDLE2 DIALOG DISCARDABLE  0, 0, 108, 144
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_SP_POSX,"CustEdit",WS_TABSTOP,43,8,36,10
+    CONTROL         "",IDC_SP_POSXSPIN,"SpinnerControl",0x0,81,8,7,10
+    CONTROL         "",IDC_SP_POSY,"CustEdit",WS_TABSTOP,43,21,36,10
+    CONTROL         "",IDC_SP_POSYSPIN,"SpinnerControl",0x0,81,21,7,10
+    CONTROL         "",IDC_SP_POSZ,"CustEdit",WS_TABSTOP,43,34,36,10
+    CONTROL         "",IDC_SP_POSZSPIN,"SpinnerControl",0x0,81,34,7,10
+    CONTROL         "",IDC_SP_RADIUS,"CustEdit",WS_TABSTOP,56,51,36,10
+    CONTROL         "",IDC_SP_RADIUSSPIN,"SpinnerControl",0x0,93,51,7,10
+    CONTROL         "",IDC_SP_HEIGHT,"CustEdit",WS_TABSTOP,56,64,36,10
+    CONTROL         "",IDC_SP_HEIGHTSPIN,"SpinnerControl",0x0,93,64,7,10
+    CONTROL         "",IDC_SP_CAPHGT,"CustEdit",WS_TABSTOP,56,77,36,10
+    CONTROL         "",IDC_SP_CAPHGTSPIN,"SpinnerControl",0x0,93,77,7,10
+    CONTROL         "Overall",IDC_SP_LENOVERALL,"Button",BS_AUTORADIOBUTTON,
+                    7,94,38,10
+    CONTROL         "Centers",IDC_SP_LENCENTERS,"Button",BS_AUTORADIOBUTTON,
+                    53,94,40,10
+    CONTROL         "",IDC_SP_BLEND,"CustEdit",WS_TABSTOP,55,107,36,10
+    CONTROL         "",IDC_SP_BLENDSPIN,"SpinnerControl",0x0,93,107,7,10
+    CONTROL         "Create",IDC_SP_CREATE,"CustButton",WS_TABSTOP,31,126,44,
+                    12
+    RTEXT           "X:",-1,20,10,14,8
+    RTEXT           "Y:",-1,20,23,14,8
+    RTEXT           "Z:",-1,22,36,12,8
+    RTEXT           "Radius:",-1,22,52,25,8
+    RTEXT           "Blend:",-1,25,108,21,8
+    RTEXT           "Height:",-1,23,65,24,8
+    RTEXT           "Cap Height:",-1,7,78,40,8
+END
+
+IDD_SPINDLE3 DIALOG DISCARDABLE  0, 0, 108, 184
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_SP_RADIUS,"CustEdit",WS_TABSTOP,56,7,36,10
+    CONTROL         "",IDC_SP_RADIUSSPIN,"SpinnerControl",0x0,93,7,7,10
+    CONTROL         "",IDC_SP_HEIGHT,"CustEdit",WS_TABSTOP,56,20,36,10
+    CONTROL         "",IDC_SP_HEIGHTSPIN,"SpinnerControl",0x0,93,20,7,10
+    CONTROL         "",IDC_SP_CAPHGT,"CustEdit",WS_TABSTOP,56,33,36,10
+    CONTROL         "",IDC_SP_CAPHGTSPIN,"SpinnerControl",0x0,93,33,7,10
+    CONTROL         "Overall",IDC_SP_LENOVERALL,"Button",BS_AUTORADIOBUTTON,
+                    7,51,38,10
+    CONTROL         "Centers",IDC_SP_LENCENTERS,"Button",BS_AUTORADIOBUTTON,
+                    53,51,40,10
+    CONTROL         "",IDC_SP_BLEND,"CustEdit",WS_TABSTOP,55,65,36,10
+    CONTROL         "",IDC_SP_BLENDSPIN,"SpinnerControl",0x0,93,65,7,10
+    CONTROL         "",IDC_SP_SIDES,"CustEdit",WS_TABSTOP,55,77,36,10
+    CONTROL         "",IDC_SP_SIDESSPIN,"SpinnerControl",0x0,93,77,7,10
+    CONTROL         "",IDC_SP_CAPSEGS,"CustEdit",WS_TABSTOP,55,89,36,10
+    CONTROL         "",IDC_SP_CAPSEGSSPIN,"SpinnerControl",0x0,93,89,7,10
+    CONTROL         "",IDC_SP_HEIGHTSEGS,"CustEdit",WS_TABSTOP,55,101,36,10
+    CONTROL         "",IDC_SP_HEIGHTSEGSSPIN,"SpinnerControl",0x0,93,101,7,
+                    10
+    CONTROL         "Smooth",IDC_SP_SMOOTH,"Button",BS_AUTOCHECKBOX,51,116,
+                    40,10
+    CONTROL         "Slice On",IDC_SP_SLICEON,"Button",BS_AUTOCHECKBOX,51,
+                    128,47,10
+    CONTROL         "",IDC_SP_SLICE1,"CustEdit",WS_TABSTOP,53,143,36,10
+    CONTROL         "",IDC_SP_SLICE1SPIN,"SpinnerControl",0x0,91,143,7,10
+    CONTROL         "",IDC_SP_SLICE2,"CustEdit",WS_TABSTOP,53,156,36,10
+    CONTROL         "",IDC_SP_SLICE2SPIN,"SpinnerControl",0x0,91,156,7,10
+    CONTROL         "Generate Mapping Coords.",IDC_GENTEXTURE,"Button",
+                    BS_AUTOCHECKBOX,3,171,99,10
+    RTEXT           "Height Segs:",-1,7,103,42,8
+    RTEXT           "Sides:",-1,9,79,40,8
+    RTEXT           "Slice From:",-1,13,143,37,8
+    RTEXT           "Slice To:",-1,13,156,37,8
+    RTEXT           "Radius:",-1,22,9,25,8
+    RTEXT           "Blend:",-1,25,67,21,8
+    RTEXT           "Height:",-1,23,21,24,8
+    RTEXT           "Cap Height:",-1,7,35,40,8
+    RTEXT           "Cap Segs:",-1,7,91,42,8
+END
+
+IDD_OILTANK3 DIALOG DISCARDABLE  0, 0, 108, 172
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_OT_RADIUS,"CustEdit",WS_TABSTOP,56,7,36,10
+    CONTROL         "",IDC_OT_RADIUSSPIN,"SpinnerControl",0x0,93,7,7,10
+    CONTROL         "",IDC_OT_HEIGHT,"CustEdit",WS_TABSTOP,56,20,36,10
+    CONTROL         "",IDC_OT_HEIGHTSPIN,"SpinnerControl",0x0,93,20,7,10
+    CONTROL         "",IDC_OT_CAPHGT,"CustEdit",WS_TABSTOP,56,33,36,10
+    CONTROL         "",IDC_OT_CAPHGTSPIN,"SpinnerControl",0x0,93,33,7,10
+    CONTROL         "Overall",IDC_OT_LENOVERALL,"Button",BS_AUTORADIOBUTTON,
+                    7,51,38,10
+    CONTROL         "Centers",IDC_OT_LENCENTERS,"Button",BS_AUTORADIOBUTTON,
+                    53,51,40,10
+    CONTROL         "",IDC_OT_BLEND,"CustEdit",WS_TABSTOP,55,66,36,10
+    CONTROL         "",IDC_OT_BLENDSPIN,"SpinnerControl",0x0,93,66,7,10
+    CONTROL         "",IDC_OT_SIDES,"CustEdit",WS_TABSTOP,55,78,36,10
+    CONTROL         "",IDC_OT_SIDESSPIN,"SpinnerControl",0x0,93,78,7,10
+    CONTROL         "",IDC_OT_HEIGHTSEGS,"CustEdit",WS_TABSTOP,55,90,36,10
+    CONTROL         "",IDC_OT_HEIGHTSEGSSPIN,"SpinnerControl",0x0,93,90,7,10
+    CONTROL         "Smooth",IDC_OT_SMOOTH,"Button",BS_AUTOCHECKBOX,51,105,
+                    40,10
+    CONTROL         "Slice On",IDC_OT_SLICEON,"Button",BS_AUTOCHECKBOX,51,
+                    118,47,10
+    CONTROL         "",IDC_OT_SLICE1,"CustEdit",WS_TABSTOP,53,132,36,10
+    CONTROL         "",IDC_OT_SLICE1SPIN,"SpinnerControl",0x0,91,132,7,10
+    CONTROL         "",IDC_OT_SLICE2,"CustEdit",WS_TABSTOP,53,145,36,10
+    CONTROL         "",IDC_OT_SLICE2SPIN,"SpinnerControl",0x0,91,145,7,10
+    CONTROL         "Generate Mapping Coords.",IDC_GENTEXTURE,"Button",
+                    BS_AUTOCHECKBOX,3,160,99,10
+    RTEXT           "Height Segs:",-1,7,92,42,8
+    RTEXT           "Sides:",-1,9,80,40,8
+    RTEXT           "Slice From:",-1,13,132,37,8
+    RTEXT           "Slice To:",-1,13,145,37,8
+    RTEXT           "Radius:",-1,22,9,25,8
+    RTEXT           "Blend:",-1,25,68,21,8
+    RTEXT           "Height:",-1,23,21,24,8
+    RTEXT           "Cap Height:",-1,7,34,40,8
+END
+
+IDD_OILTANK2 DIALOG DISCARDABLE  0, 0, 108, 138
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_OT_POSX,"CustEdit",WS_TABSTOP,43,8,36,10
+    CONTROL         "",IDC_OT_POSXSPIN,"SpinnerControl",0x0,81,8,7,10
+    CONTROL         "",IDC_OT_POSY,"CustEdit",WS_TABSTOP,43,21,36,10
+    CONTROL         "",IDC_OT_POSYSPIN,"SpinnerControl",0x0,81,21,7,10
+    CONTROL         "",IDC_OT_POSZ,"CustEdit",WS_TABSTOP,43,34,36,10
+    CONTROL         "",IDC_OT_POSZSPIN,"SpinnerControl",0x0,81,34,7,10
+    CONTROL         "",IDC_OT_RADIUS,"CustEdit",WS_TABSTOP,56,50,36,10
+    CONTROL         "",IDC_OT_RADIUSSPIN,"SpinnerControl",0x0,93,50,7,10
+    CONTROL         "",IDC_OT_HEIGHT,"CustEdit",WS_TABSTOP,56,63,36,10
+    CONTROL         "",IDC_OT_HEIGHTSPIN,"SpinnerControl",0x0,93,63,7,10
+    CONTROL         "",IDC_OT_CAPHGT,"CustEdit",WS_TABSTOP,56,75,36,10
+    CONTROL         "",IDC_OT_CAPHGTSPIN,"SpinnerControl",0x0,93,75,7,10
+    CONTROL         "Overall",IDC_OT_LENOVERALL,"Button",BS_AUTORADIOBUTTON,
+                    7,90,38,10
+    CONTROL         "Centers",IDC_OT_LENCENTERS,"Button",BS_AUTORADIOBUTTON,
+                    53,90,40,10
+    CONTROL         "",IDC_OT_BLEND,"CustEdit",WS_TABSTOP,55,103,36,10
+    CONTROL         "",IDC_OT_BLENDSPIN,"SpinnerControl",0x0,93,103,7,10
+    CONTROL         "Create",IDC_OT_CREATE,"CustButton",WS_TABSTOP,31,122,44,
+                    12
+    RTEXT           "X:",-1,20,10,14,8
+    RTEXT           "Y:",-1,20,23,14,8
+    RTEXT           "Z:",-1,22,36,12,8
+    RTEXT           "Radius:",-1,22,51,25,8
+    RTEXT           "Blend:",-1,25,104,21,8
+    RTEXT           "Height:",-1,23,64,24,8
+    RTEXT           "Cap Height:",-1,7,76,40,8
+END
+
+IDD_SPRING DIALOG DISCARDABLE  0, 0, 108, 745
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Free Spring",IDC_SPRING_DIMS,"Button",
+                    BS_AUTORADIOBUTTON,8,14,52,10
+    CONTROL         "Bound to Object Pivots",IDC_SPRING_REFS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,8,27,89,10
+    LTEXT           "Top:",IDC_SPRING_OBJ2NAMECAPTION,17,58,16,8,NOT 
+                    WS_GROUP
+    CONTROL         "Pick Top Object",IDC_SPRING_PICKOBJECT2,"CustButton",
+                    WS_GROUP | WS_TABSTOP,9,71,88,12
+    LTEXT           "Bottom:",IDC_SPRING_OBJ1NAMECAPTION,8,89,25,8,NOT 
+                    WS_GROUP
+    CONTROL         "Pick Bottom Object",IDC_SPRING_PICKOBJECT1,"CustButton",
+                    WS_GROUP | WS_TABSTOP,9,102,88,12
+    CONTROL         "",IDC_SPRING_LENGTH,"CustEdit",WS_TABSTOP,49,139,36,10
+    CONTROL         "",IDC_SPRING_OD,"CustEdit",WS_TABSTOP,49,175,36,10
+    CONTROL         "",IDC_SPRING_COILS,"CustEdit",WS_TABSTOP,49,189,36,10
+    CONTROL         "CCW",IDC_SPRING_CCWDIR,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,18,205,33,10
+    CONTROL         "CW",IDC_SPRING_CWDIR,"Button",BS_AUTORADIOBUTTON,60,205,
+                    28,10
+    CONTROL         "Automatic Segments",IDC_SPRING_AUTOSEGS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,8,222,81,10
+    CONTROL         "Manual Segments",IDC_SPRING_MANUALSEGS,"Button",
+                    BS_AUTORADIOBUTTON,8,249,73,10
+    CONTROL         "",IDC_SPRING_COILSEGSPERTURN,"CustEdit",WS_TABSTOP,49,
+                    235,36,10
+    CONTROL         "",IDC_SPRING_COILSEGS,"CustEdit",WS_TABSTOP,49,262,36,
+                    10
+    CONTROL         "All",IDC_SPRING_SMALL,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,11,285,23,10
+    CONTROL         "None",IDC_SPRING_SMNONE,"Button",BS_AUTORADIOBUTTON,11,
+                    297,33,10
+    CONTROL         "Sides",IDC_SPRING_SMSIDES,"Button",BS_AUTORADIOBUTTON,
+                    49,285,33,10
+    CONTROL         "Segments",IDC_SPRING_SMSEGS,"Button",BS_AUTORADIOBUTTON,
+                    49,297,47,10
+    CONTROL         "Renderable",IDC_SPRING_RENDERTHIS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,315,53,10
+    CONTROL         "Generate Mapping Coords",IDC_SPRING_MAPME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,328,99,10
+    CONTROL         "Round Wire",IDC_SPRING_ROUNDWIRE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,359,54,10
+    CONTROL         "Rectangular Wire",IDC_SPRING_RECTWIRE,"Button",
+                    BS_AUTORADIOBUTTON,7,405,71,10
+    CONTROL         "D-Section Wire",IDC_SPRING_DSECTIONWIRE,"Button",
+                    BS_AUTORADIOBUTTON,7,488,64,10
+    CONTROL         "",IDC_SPRING_RNDWIREDIA,"CustEdit",WS_TABSTOP,49,375,36,
+                    10
+    CONTROL         "",IDC_SPRING_RNDWIRESIDES,"CustEdit",WS_TABSTOP,49,389,
+                    36,10
+    CONTROL         "",IDC_SPRING_RECTWIREWID,"CustEdit",WS_TABSTOP,49,418,
+                    36,10
+    CONTROL         "",IDC_SPRING_RECWIREDEPTH,"CustEdit",WS_TABSTOP,49,432,
+                    36,10
+    CONTROL         "",IDC_SPRING_RECWIREFILLET,"CustEdit",WS_TABSTOP,49,446,
+                    36,10
+    CONTROL         "",IDC_SPRING_RECWIREFILLETSIDES,"CustEdit",WS_TABSTOP,
+                    49,460,36,10
+    CONTROL         "",IDC_SPRING_RECTROT,"CustEdit",WS_TABSTOP,49,474,36,10
+    CONTROL         "",IDC_SPRING_DWIREWID,"CustEdit",WS_TABSTOP,49,502,36,
+                    10
+    CONTROL         "",IDC_SPRING_DWIREDEPTH,"CustEdit",WS_TABSTOP,49,516,36,
+                    10
+    CONTROL         "",IDC_SPRING_DWIRERNDSIDES,"CustEdit",WS_TABSTOP,49,529,
+                    36,10
+    CONTROL         "",IDC_SPRING_DWIREFILLET,"CustEdit",WS_TABSTOP,49,543,
+                    36,10
+    CONTROL         "",IDC_SPRING_DWIREFILLETSIDES,"CustEdit",WS_TABSTOP,49,
+                    556,36,10
+    CONTROL         "",IDC_SPRING_DROT,"CustEdit",WS_TABSTOP,49,570,36,10
+    CONTROL         "",IDC_SPRING_L,"CustEdit",WS_TABSTOP,49,604,36,10
+    CONTROL         "",IDC_SPRING_K,"CustEdit",WS_TABSTOP,49,618,36,10
+    CONTROL         "Pounds per inch",IDC_SPRING_UNITS_LBIN,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,647,67,10
+    CONTROL         "Newtons per meter",IDC_SPRING_UNITS_NM,"Button",
+                    BS_AUTORADIOBUTTON,7,660,75,10
+    CONTROL         "Compression Only",IDC_SPRING_COMP,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,689,72,10
+    CONTROL         "Extension Only",IDC_SPRING_EXT,"Button",
+                    BS_AUTORADIOBUTTON,7,702,63,10
+    CONTROL         "Both",IDC_SPRING_BOTH,"Button",BS_AUTORADIOBUTTON,7,715,
+                    31,10
+    CONTROL         "Enable Nonlinearity",IDC_SPRING_NL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,730,77,10
+    GROUPBOX        "End Point Method",IDC_STATIC,2,2,104,41
+    CONTROL         "",IDC_SPRING_LENGTHSPIN,"SpinnerControl",0x0,87,139,7,
+                    10
+    CONTROL         "",IDC_SPRING_ODSPIN,"SpinnerControl",0x0,87,175,7,10
+    RTEXT           "Height:",IDC_SPRING_FREEHEIGHT_LABEL,22,140,24,8
+    RTEXT           "Diameter:",IDC_STATIC,15,176,31,8
+    GROUPBOX        "Binding Objects",IDC_STATIC,2,47,104,74
+    GROUPBOX        "Free Spring Parameters",IDC_STATIC,2,124,104,33
+    GROUPBOX        "Common Spring Parameters",IDC_STATIC,2,161,104,182
+    CONTROL         "",IDC_SPRING_COILSSPIN,"SpinnerControl",0x0,87,189,7,10
+    RTEXT           "Turns:",IDC_STATIC,25,190,21,8
+    CONTROL         "",IDC_SPRING_COILSEGSSPIN,"SpinnerControl",0x0,87,262,7,
+                    10
+    RTEXT           "Segments:",IDC_SPRING_MANSEGMENTS_LABEL,12,262,34,8
+    GROUPBOX        "Wire Shape",IDC_STATIC,2,346,104,240
+    CONTROL         "",IDC_SPRING_RNDWIREDIASPIN,"SpinnerControl",0x0,87,375,
+                    7,10
+    RTEXT           "Diameter:",IDC_SPRING_RNDDIA_LABEL,15,376,31,8
+    CONTROL         "",IDC_SPRING_RECTWIREWIDSPIN,"SpinnerControl",0x0,87,
+                    418,7,10
+    RTEXT           "Width:",IDC_SPRING_RECTWIDTH_LABEL,23,420,22,8
+    CONTROL         "",IDC_SPRING_RECWIREDEPTHSPIN,"SpinnerControl",0x0,87,
+                    432,7,10
+    RTEXT           "Depth:",IDC_SPRING_RECTDEPTH_LABEL,23,434,22,8
+    CONTROL         "",IDC_SPRING_RNDWIRESIDESSPIN,"SpinnerControl",0x0,87,
+                    389,7,10
+    RTEXT           "Sides:",IDC_SPRING_RNDSIDES_LABEL,25,390,20,8
+    CONTROL         "",IDC_SPRING_RECWIREFILLETSPIN,"SpinnerControl",0x0,87,
+                    446,7,10
+    RTEXT           "Fillet:",IDC_SPRING_RECTFILLET_LABEL,29,448,17,8
+    CONTROL         "",IDC_SPRING_RECWIREFILLETSIDESSPIN,"SpinnerControl",
+                    0x0,87,460,7,10
+    RTEXT           "Fillet Segs:",IDC_SPRING_RECTFILLETSEGS_LABEL,11,462,35,
+                    8
+    CONTROL         "",IDC_SPRING_DWIREDEPTHSPIN,"SpinnerControl",0x0,87,516,
+                    7,10
+    RTEXT           "Depth:",IDC_SPRING_DSECTDEPTH_LABEL,25,517,22,8
+    CONTROL         "",IDC_SPRING_DWIREWIDSPIN,"SpinnerControl",0x0,87,502,7,
+                    10
+    RTEXT           "Width:",IDC_SPRING_DSECTWIDTH_LABEL,25,504,22,8
+    CONTROL         "",IDC_SPRING_DWIREFILLETSPIN,"SpinnerControl",0x0,87,
+                    543,7,10
+    RTEXT           "Fillet:",IDC_SPRING_DSECTFILLET_LABEL,29,545,17,8
+    CONTROL         "",IDC_SPRING_DWIREFILLETSIDESSPIN,"SpinnerControl",0x0,
+                    87,556,7,10
+    RTEXT           "Fillet Segs:",IDC_SPRING_DSECTFILLETSEGS_LABEL,11,558,
+                    35,8
+    CONTROL         "",IDC_SPRING_DWIRERNDSIDESSPIN,"SpinnerControl",0x0,87,
+                    529,7,10
+    RTEXT           "Round Sides:",IDC_SPRING_DSECTRNDSIDES_LABEL,3,531,44,8
+    GROUPBOX        "Dynamics Parameters",IDC_STATIC,2,589,104,153
+    CONTROL         "",IDC_SPRING_KSPIN,"SpinnerControl",0x0,87,618,7,10
+    RTEXT           "Constant k:",IDC_SPRING_CONSTK_LABEL,9,620,37,8
+    CONTROL         "",IDC_SPRING_LSPIN,"SpinnerControl",0x0,87,604,7,10
+    RTEXT           "Relaxed Hgt:",IDC_SPRING_RELHEIGHT_LABEL,4,605,42,8
+    RTEXT           "Spring constant is in:",IDC_SPRING_CONSTIN_LABEL,5,634,
+                    67,8
+    RTEXT           "Spring works in:",IDC_SPRING_WORKSIN_LABEL,5,675,51,8
+    LTEXT           "<None>",IDC_SPRING_OBJ1NAME,39,89,60,8,NOT WS_GROUP
+    LTEXT           "<None>",IDC_SPRING_OBJ2NAME,39,58,60,8,NOT WS_GROUP
+    CONTROL         "",IDC_SPRING_COILSEGSPERTURNSPIN,"SpinnerControl",0x0,
+                    87,235,7,10
+    RTEXT           "Segs/Turn:",IDC_SPRING_SEGSTURN_LABEL,9,235,37,8
+    CONTROL         "",IDC_SPRING_DROTSPIN,"SpinnerControl",0x0,87,570,7,10
+    RTEXT           "Rotation:",IDC_SPRING_DSECTROTATION_LABEL,17,571,30,8
+    CONTROL         "",IDC_SPRING_RECTROTSPIN,"SpinnerControl",0x0,87,474,7,
+                    10
+    RTEXT           "Rotation:",IDC_SPRING_RECTROTATION_LABEL,17,475,30,8
+    GROUPBOX        "Smoothing",IDC_STATIC,8,275,91,36
+END
+
+IDD_DAMPER DIALOG DISCARDABLE  0, 0, 108, 883
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Free Damper/Actuator",IDC_SPRING_DIMS,"Button",
+                    BS_AUTORADIOBUTTON,8,16,87,10
+    CONTROL         "Bound to Object Pivots",IDC_SPRING_REFS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,8,28,89,10
+    CONTROL         "Pick Piston Object",IDC_SPRING_PICKOBJECT2,"CustButton",
+                    WS_GROUP | WS_TABSTOP,9,73,88,12
+    CONTROL         "Pick Base Object",IDC_SPRING_PICKOBJECT1,"CustButton",
+                    WS_GROUP | WS_TABSTOP,9,103,88,12
+    LTEXT           "Piston:",IDC_SPRING_OBJ2NAMECAPTION,6,60,22,8,NOT 
+                    WS_GROUP
+    LTEXT           "Base:",IDC_SPRING_OBJ1NAMECAPTION,9,90,19,8,NOT 
+                    WS_GROUP
+    CONTROL         "",IDC_DAMPER_LENGTH,"CustEdit",WS_TABSTOP,49,153,36,10
+    CONTROL         "Renderable",IDC_DAMPER_RENDERTHIS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,187,53,10
+    CONTROL         "Generate Mapping Coords",IDC_DAMPER_MAPME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,199,99,10
+    CONTROL         "",IDC_STUDDIA,"CustEdit",WS_TABSTOP,49,233,36,10
+    CONTROL         "",IDC_STUDLEN,"CustEdit",WS_TABSTOP,49,247,36,10
+    CONTROL         "",IDC_CYLDIA,"CustEdit",WS_TABSTOP,49,263,36,10
+    CONTROL         "",IDC_CYLLEN,"CustEdit",WS_TABSTOP,49,276,36,10
+    CONTROL         "",IDC_CYLSIDES,"CustEdit",WS_TABSTOP,49,289,36,10
+    CONTROL         "",IDC_CYLFILLET1,"CustEdit",WS_TABSTOP,49,303,36,10
+    CONTROL         "",IDC_FILLET1SEGS,"CustEdit",WS_TABSTOP,49,316,36,10
+    CONTROL         "",IDC_CYLFILLET2,"CustEdit",WS_TABSTOP,49,329,36,10
+    CONTROL         "",IDC_FILLET2SEGS,"CustEdit",WS_TABSTOP,49,343,36,10
+    CONTROL         "",IDC_CYLINSIDEDIA,"CustEdit",WS_TABSTOP,49,359,36,10
+    CONTROL         "Smooth Cylinder",IDC_SMOOTHCYL,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,377,67,10
+    CONTROL         "",IDC_RODDIA,"CustEdit",WS_TABSTOP,48,409,36,10
+    CONTROL         "",IDC_RODLEN,"CustEdit",WS_TABSTOP,48,422,36,10
+    CONTROL         "",IDC_RODSIDES,"CustEdit",WS_TABSTOP,48,435,36,10
+    CONTROL         "Smooth Piston",IDC_SMOOTHROD,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,451,61,10
+    CONTROL         "Enable",IDC_BOOTON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,482,38,10
+    CONTROL         "",IDC_BOOTDIA1,"CustEdit",WS_TABSTOP,49,496,36,10
+    CONTROL         "",IDC_BOOTDIA2,"CustEdit",WS_TABSTOP,49,509,36,10
+    CONTROL         "",IDC_FOLDSIDES,"CustEdit",WS_TABSTOP,49,522,36,10
+    CONTROL         "",IDC_FOLDS,"CustEdit",WS_TABSTOP,49,535,36,10
+    CONTROL         "",IDC_FOLDRES,"CustEdit",WS_TABSTOP,49,548,36,10
+    CONTROL         "",IDC_BOOTSTOPDIA,"CustEdit",WS_TABSTOP,49,565,36,10
+    CONTROL         "",IDC_STOPTHICK,"CustEdit",WS_TABSTOP,49,578,36,10
+    CONTROL         "",IDC_STOPSETBACK,"CustEdit",WS_TABSTOP,49,591,36,10
+    CONTROL         "",IDC_STOPFILLET,"CustEdit",WS_TABSTOP,49,604,36,10
+    CONTROL         "",IDC_STOPFILLETSEGS,"CustEdit",WS_TABSTOP,49,617,36,10
+    CONTROL         "Smooth Boot",IDC_SMOOTHBOOT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,633,57,10
+    CONTROL         "Object is Damper",IDC_DAMPERON,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,8,671,70,10
+    CONTROL         "Object is Actuator",IDC_ACTUATORON,"Button",
+                    BS_AUTORADIOBUTTON,8,807,72,10
+    CONTROL         "",IDC_DRAG,"CustEdit",WS_TABSTOP,49,685,36,10
+    CONTROL         "Pounds per in/sec",IDC_DRAGUNITS_LBINSEC,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,18,713,74,10
+    CONTROL         "Newtons per m/sec",IDC_DRAGUNITS_NEWTMS,"Button",
+                    BS_AUTORADIOBUTTON,18,726,78,10
+    CONTROL         "Compression Only",IDC_SPRING_COMP,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,18,753,72,10
+    CONTROL         "Extension Only",IDC_SPRING_EXT,"Button",
+                    BS_AUTORADIOBUTTON,18,766,63,10
+    CONTROL         "Both",IDC_SPRING_BOTH,"Button",BS_AUTORADIOBUTTON,18,
+                    779,31,10
+    CONTROL         "",IDC_FORCE,"CustEdit",WS_TABSTOP,49,820,36,10
+    CONTROL         "Pounds",IDC_FORCEUNITS_LBS,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,18,850,40,10
+    CONTROL         "Newtons",IDC_FORCEUNITS_NEWTS,"Button",
+                    BS_AUTORADIOBUTTON,18,863,44,10
+    GROUPBOX        "Boot Parameters",IDC_STATIC,2,469,104,178
+    CONTROL         "",IDC_DAMPER_LENGTHSPIN,"SpinnerControl",0x0,87,153,7,
+                    10
+    CONTROL         "",IDC_CYLDIASPIN,"SpinnerControl",0x0,87,263,7,10
+    RTEXT           "Pin-to-Pin Height:",IDC_DAMPER_PINPIN_LABEL,6,139,56,8
+    RTEXT           "Main Dia:",IDC_STATIC,15,264,31,8
+    GROUPBOX        "Binding Objects",IDC_STATIC,2,47,104,75
+    GROUPBOX        "Free Damper Parameters",IDC_STATIC,2,125,104,45
+    GROUPBOX        "End Point Method",IDC_STATIC,2,2,104,41
+    GROUPBOX        "Cylinder Parameters",IDC_STATIC,2,217,104,173
+    CONTROL         "",IDC_CYLINSIDEDIASPIN,"SpinnerControl",0x0,87,359,7,10
+    RTEXT           "Inside Dia:",IDC_STATIC,11,360,34,8
+    CONTROL         "",IDC_CYLSIDESSPIN,"SpinnerControl",0x0,87,289,7,10
+    RTEXT           "Sides:",IDC_STATIC,25,291,20,8
+    GROUPBOX        "Piston Parameters",IDC_STATIC,2,394,104,72
+    CONTROL         "",IDC_RODDIASPIN,"SpinnerControl",0x0,86,409,7,10
+    RTEXT           "Diameter:",IDC_STATIC,14,410,31,8
+    CONTROL         "",IDC_BOOTDIA1SPIN,"SpinnerControl",0x0,87,496,7,10
+    RTEXT           "Min Dia:",IDC_BOOT_MINDIA_LABEL,18,498,27,8
+    CONTROL         "",IDC_FOLDSSPIN,"SpinnerControl",0x0,87,535,7,10
+    RTEXT           "Folds:",IDC_BOOT_FOLDS_LABEL,25,537,20,8
+    CONTROL         "",IDC_RODSIDESSPIN,"SpinnerControl",0x0,86,435,7,10
+    RTEXT           "Sides:",IDC_STATIC,25,436,20,8
+    CONTROL         "",IDC_FOLDRESSPIN,"SpinnerControl",0x0,87,548,7,10
+    RTEXT           "Resolution:",IDC_BOOT_RESOLUTION_LABEL,9,550,36,8
+    CONTROL         "",IDC_BOOTSTOPDIASPIN,"SpinnerControl",0x0,87,565,7,10
+    RTEXT           "Stop Dia:",IDC_BOOT_STOPDIA_LABEL,15,566,30,8
+    CONTROL         "",IDC_STOPFILLETSPIN,"SpinnerControl",0x0,87,604,7,10
+    RTEXT           "Stop Fillet:",IDC_BOOT_STOPFILLET_LABEL,11,605,34,8
+    CONTROL         "",IDC_STOPTHICKSPIN,"SpinnerControl",0x0,87,578,7,10
+    RTEXT           "Stop Thick:",IDC_BOOT_STOPTHICK_LABEL,7,579,38,8
+    CONTROL         "",IDC_STOPFILLETSEGSSPIN,"SpinnerControl",0x0,87,617,7,
+                    10
+    RTEXT           "Fillet Segs:",IDC_BOOT_FILLETSEGS_LABEL,10,618,35,8
+    CONTROL         "",IDC_FOLDSIDESSPIN,"SpinnerControl",0x0,87,522,7,10
+    RTEXT           "Sides:",IDC_BOOT_SIDES_LABEL,25,524,20,8
+    GROUPBOX        "Dynamics Parameters",IDC_STATIC,2,650,104,232
+    CONTROL         "",IDC_FORCESPIN,"SpinnerControl",0x0,87,820,7,10
+    RTEXT           "Force:",IDC_ACTUATOR_FORCE_LABEL,25,822,21,8
+    CONTROL         "",IDC_DRAGSPIN,"SpinnerControl",0x0,87,685,7,10
+    RTEXT           "Drag:",IDC_DAMPER_DRAG_LABEL,28,686,18,8
+    RTEXT           "Drag is measured in:",IDC_DAMPER_DRAGMEASURE_LABEL,8,
+                    700,65,8
+    LTEXT           "<None>",IDC_SPRING_OBJ1NAME,35,90,60,8,NOT WS_GROUP
+    LTEXT           "<None>",IDC_SPRING_OBJ2NAME,35,60,60,8,NOT WS_GROUP
+    CONTROL         "",IDC_STUDDIASPIN,"SpinnerControl",0x0,87,233,7,10
+    RTEXT           "Base Dia:",IDC_STATIC,14,234,32,8
+    CONTROL         "",IDC_STUDLENSPIN,"SpinnerControl",0x0,87,247,7,10
+    RTEXT           "Height:",IDC_STATIC,22,248,24,8
+    CONTROL         "",IDC_CYLLENSPIN,"SpinnerControl",0x0,87,276,7,10
+    RTEXT           "Height:",IDC_STATIC,22,278,24,8
+    CONTROL         "",IDC_CYLFILLET1SPIN,"SpinnerControl",0x0,87,303,7,10
+    RTEXT           "Fillet 1:",IDC_STATIC,23,305,23,8
+    CONTROL         "",IDC_FILLET1SEGSSPIN,"SpinnerControl",0x0,87,316,7,10
+    RTEXT           "Fillet Segs:",IDC_STATIC,11,318,35,8
+    CONTROL         "",IDC_CYLFILLET2SPIN,"SpinnerControl",0x0,87,329,7,10
+    RTEXT           "Fillet 2:",IDC_STATIC,23,331,23,8
+    CONTROL         "",IDC_FILLET2SEGSSPIN,"SpinnerControl",0x0,87,343,7,10
+    RTEXT           "Fillet Segs:",IDC_STATIC,11,344,35,8
+    RTEXT           "Force is measured in:",IDC_ACTUATOR_FORCEMEASURE_LABEL,
+                    8,837,67,8
+    CONTROL         "",IDC_RODLENSPIN,"SpinnerControl",0x0,86,422,7,10
+    RTEXT           "Height:",IDC_STATIC,22,423,24,8
+    CONTROL         "",IDC_BOOTDIA2SPIN,"SpinnerControl",0x0,87,509,7,10
+    RTEXT           "Max Dia:",IDC_BOOT_MAXDIA_LABEL,16,511,29,8
+    CONTROL         "",IDC_STOPSETBACKSPIN,"SpinnerControl",0x0,87,591,7,10
+    RTEXT           "Setback:",IDC_BOOT_SETBACK_LABEL,15,592,30,8
+    GROUPBOX        "Common Damper Parameters",IDC_STATIC,2,173,104,41
+    RTEXT           "Damper works in:",IDC_DAMPER_DAMPERWORKS_LABEL,8,739,56,
+                    8
+    GROUPBOX        "Damper Parameters",IDC_STATIC,3,660,99,132
+    GROUPBOX        "Actuator Parameters",IDC_STATIC,3,795,99,85
+END
+
+IDD_HOSED DIALOG DISCARDABLE  0, 0, 108, 610
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Free Hose",IDC_SPRING_DIMS,"Button",BS_AUTORADIOBUTTON,
+                    8,14,49,10
+    CONTROL         "Bound to Object Pivots",IDC_SPRING_REFS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,8,27,89,10
+    LTEXT           "Top:",IDC_SPRING_OBJ2NAMECAPTION,17,60,16,8,NOT 
+                    WS_GROUP
+    CONTROL         "Pick Top Object",IDC_SPRING_PICKOBJECT2,"CustButton",
+                    WS_GROUP | WS_TABSTOP,9,73,88,12
+    CONTROL         "",IDC_HOSE_TENSION1,"CustEdit",WS_TABSTOP,45,91,36,10
+    LTEXT           "Bottom:",IDC_SPRING_OBJ1NAMECAPTION,8,109,25,8,NOT 
+                    WS_GROUP
+    CONTROL         "Pick Bottom Object",IDC_SPRING_PICKOBJECT1,"CustButton",
+                    WS_GROUP | WS_TABSTOP,9,122,88,12
+    CONTROL         "",IDC_HOSE_TENSION2,"CustEdit",WS_TABSTOP,45,140,36,10
+    CONTROL         "",IDC_SPRING_LENGTH,"CustEdit",WS_TABSTOP,45,175,36,10
+    CONTROL         "",IDC_SPRING_COILSEGS,"CustEdit",WS_TABSTOP,45,212,36,
+                    10
+    CONTROL         "Flex Section Enable",IDC_HOSE_FLEXON,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,228,79,10
+    CONTROL         "",IDC_HOSE_FLEX1,"CustEdit",WS_TABSTOP,45,242,36,10
+    CONTROL         "",IDC_HOSE_FLEX2,"CustEdit",WS_TABSTOP,45,255,36,10
+    CONTROL         "",IDC_HOSE_FLEXCYCLES,"CustEdit",WS_TABSTOP,45,268,36,
+                    10
+    CONTROL         "",IDC_HOSE_DIACHANGE,"CustEdit",WS_TABSTOP,45,281,36,10
+    CONTROL         "All",IDC_SPRING_SMALL,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,11,306,23,10
+    CONTROL         "None",IDC_SPRING_SMNONE,"Button",BS_AUTORADIOBUTTON,11,
+                    318,33,10
+    CONTROL         "Sides",IDC_SPRING_SMSIDES,"Button",BS_AUTORADIOBUTTON,
+                    49,306,33,10
+    CONTROL         "Segments",IDC_SPRING_SMSEGS,"Button",BS_AUTORADIOBUTTON,
+                    49,318,47,10
+    CONTROL         "Renderable",IDC_SPRING_RENDERTHIS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,336,53,10
+    CONTROL         "Generate Mapping Coords",IDC_SPRING_MAPME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,349,99,10
+    CONTROL         "Round Hose",IDC_SPRING_ROUNDWIRE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,383,56,10
+    CONTROL         "Rectangular Hose",IDC_SPRING_RECTWIRE,"Button",
+                    BS_AUTORADIOBUTTON,7,427,73,10
+    CONTROL         "D-Section Hose",IDC_SPRING_DSECTIONWIRE,"Button",
+                    BS_AUTORADIOBUTTON,7,510,66,10
+    CONTROL         "",IDC_SPRING_RNDWIREDIA,"CustEdit",WS_TABSTOP,49,397,36,
+                    10
+    CONTROL         "",IDC_SPRING_RNDWIRESIDES,"CustEdit",WS_TABSTOP,49,411,
+                    36,10
+    CONTROL         "",IDC_SPRING_RECTWIREWID,"CustEdit",WS_TABSTOP,49,440,
+                    36,10
+    CONTROL         "",IDC_SPRING_RECWIREDEPTH,"CustEdit",WS_TABSTOP,49,454,
+                    36,10
+    CONTROL         "",IDC_SPRING_RECWIREFILLET,"CustEdit",WS_TABSTOP,49,468,
+                    36,10
+    CONTROL         "",IDC_SPRING_RECWIREFILLETSIDES,"CustEdit",WS_TABSTOP,
+                    49,482,36,10
+    CONTROL         "",IDC_SPRING_RECTROT,"CustEdit",WS_TABSTOP,49,496,36,10
+    CONTROL         "",IDC_SPRING_DWIREWID,"CustEdit",WS_TABSTOP,49,524,36,
+                    10
+    CONTROL         "",IDC_SPRING_DWIREDEPTH,"CustEdit",WS_TABSTOP,49,538,36,
+                    10
+    CONTROL         "",IDC_SPRING_DWIRERNDSIDES,"CustEdit",WS_TABSTOP,49,551,
+                    36,10
+    CONTROL         "",IDC_SPRING_DWIREFILLET,"CustEdit",WS_TABSTOP,49,565,
+                    36,10
+    CONTROL         "",IDC_SPRING_DWIREFILLETSIDES,"CustEdit",WS_TABSTOP,49,
+                    578,36,10
+    CONTROL         "",IDC_SPRING_DROT,"CustEdit",WS_TABSTOP,49,592,36,10
+    GROUPBOX        "End Point Method",-1,2,2,104,41
+    CONTROL         "",IDC_SPRING_LENGTHSPIN,"SpinnerControl",0x0,83,175,7,
+                    10
+    RTEXT           "Height:",IDC_HOSE_HEIGHT_LABEL,18,176,24,8
+    GROUPBOX        "Binding Objects",-1,2,47,104,110
+    GROUPBOX        "Free Hose Parameters",-1,2,160,104,33
+    GROUPBOX        "Common Hose Parameters",-1,2,196,104,168
+    CONTROL         "",IDC_SPRING_COILSEGSSPIN,"SpinnerControl",0x0,83,212,7,
+                    10
+    RTEXT           "Segments:",-1,8,212,34,8
+    GROUPBOX        "Hose Shape",-1,2,368,104,240
+    CONTROL         "",IDC_SPRING_RNDWIREDIASPIN,"SpinnerControl",0x0,87,397,
+                    7,10
+    RTEXT           "Diameter:",IDC_HOSE_RNDDIA_LABEL,15,399,31,8
+    CONTROL         "",IDC_SPRING_RECTWIREWIDSPIN,"SpinnerControl",0x0,87,
+                    440,7,10
+    RTEXT           "Width:",IDC_HOSE_RECTWIDTH_LABEL,23,442,22,8
+    CONTROL         "",IDC_SPRING_RECWIREDEPTHSPIN,"SpinnerControl",0x0,87,
+                    454,7,10
+    RTEXT           "Depth:",IDC_HOSE_RECTDEPTH_LABEL,23,456,22,8
+    CONTROL         "",IDC_SPRING_RNDWIRESIDESSPIN,"SpinnerControl",0x0,87,
+                    411,7,10
+    RTEXT           "Sides:",IDC_HOSE_RNDSIDES_LABEL,25,412,20,8
+    CONTROL         "",IDC_SPRING_RECWIREFILLETSPIN,"SpinnerControl",0x0,87,
+                    468,7,10
+    RTEXT           "Fillet:",IDC_HOSE_RECTFILLET_LABEL,29,470,17,8
+    CONTROL         "",IDC_SPRING_RECWIREFILLETSIDESSPIN,"SpinnerControl",
+                    0x0,87,482,7,10
+    RTEXT           "Fillet Segs:",IDC_HOSE_RECTFILLETSEGS_LABEL,11,484,35,8
+    CONTROL         "",IDC_SPRING_DWIREDEPTHSPIN,"SpinnerControl",0x0,87,538,
+                    7,10
+    RTEXT           "Depth:",IDC_HOSE_DSECTDEPTH_LABEL,25,539,22,8
+    CONTROL         "",IDC_SPRING_DWIREWIDSPIN,"SpinnerControl",0x0,87,524,7,
+                    10
+    RTEXT           "Width:",IDC_HOSE_DSECTWIDTH_LABEL,25,526,22,8
+    CONTROL         "",IDC_SPRING_DWIREFILLETSPIN,"SpinnerControl",0x0,87,
+                    565,7,10
+    RTEXT           "Fillet:",IDC_HOSE_DSECTFILLET_LABEL,29,567,17,8
+    CONTROL         "",IDC_SPRING_DWIREFILLETSIDESSPIN,"SpinnerControl",0x0,
+                    87,578,7,10
+    RTEXT           "Fillet Segs:",IDC_HOSE_DSECTFILLETSEGS_LABEL,11,580,35,
+                    8
+    CONTROL         "",IDC_SPRING_DWIRERNDSIDESSPIN,"SpinnerControl",0x0,87,
+                    551,7,10
+    RTEXT           "Round Sides:",IDC_HOSE_DSECTRS_LABEL,3,553,44,8
+    LTEXT           "<None>",IDC_SPRING_OBJ1NAME,39,109,60,8,NOT WS_GROUP
+    LTEXT           "<None>",IDC_SPRING_OBJ2NAME,39,60,60,8,NOT WS_GROUP
+    CONTROL         "",IDC_SPRING_DROTSPIN,"SpinnerControl",0x0,87,592,7,10
+    RTEXT           "Rotation:",IDC_HOSE_DSECTROTATION_LABEL,17,593,30,8
+    CONTROL         "",IDC_SPRING_RECTROTSPIN,"SpinnerControl",0x0,87,496,7,
+                    10
+    RTEXT           "Rotation:",IDC_HOSE_RECTROTATION_LABEL,17,497,30,8
+    GROUPBOX        "Smoothing",-1,8,296,91,36
+    CONTROL         "",IDC_HOSE_FLEX1SPIN,"SpinnerControl",0x0,83,242,7,10
+    RTEXT           "Starts:",IDC_HOSE_FLEXSTARTS_LABEL,21,243,21,8
+    CONTROL         "",IDC_HOSE_FLEX2SPIN,"SpinnerControl",0x0,83,255,7,10
+    RTEXT           "Ends:",IDC_HOSE_FLEXENDS_LABEL,23,256,19,8
+    CONTROL         "",IDC_HOSE_FLEXCYCLESSPIN,"SpinnerControl",0x0,83,268,7,
+                    10
+    RTEXT           "Cycles:",IDC_HOSE_FLEXCYCLES_LABEL,18,269,24,8
+    CONTROL         "",IDC_HOSE_DIACHANGESPIN,"SpinnerControl",0x0,83,281,7,
+                    10
+    RTEXT           "Diameter:",IDC_HOSE_FLEXDIA_LABEL,11,281,31,8
+    RTEXT           "%",-1,93,243,8,8
+    RTEXT           "%",-1,93,256,8,8
+    RTEXT           "%",-1,93,282,8,8
+    CONTROL         "",IDC_HOSE_TENSION1SPIN,"SpinnerControl",0x0,83,91,7,10
+    RTEXT           "Tension:",IDC_HOSE_TENSION1_LABEL,14,92,28,8
+    CONTROL         "",IDC_HOSE_TENSION2SPIN,"SpinnerControl",0x0,83,140,7,
+                    10
+    RTEXT           "Tension:",IDC_HOSE_TENSION2_LABEL,14,141,28,8
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "scs.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_CROSS_HAIR          CURSOR  DISCARDABLE     "CROSSHR1.CUR"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_CREATE_DIALOG    "Creation Method"
+    IDS_RB_KEYBOARDENTRY    "Keyboard Entry"
+    IDS_AP_DAMPPARAMETERS   "Damper Parameters"
+    IDS_RB_LENGTH           "Length"
+    IDS_RB_WIDTH            "Width"
+    IDS_RB_HEIGHT           "Height"
+    IDS_RB_RADIUS           "Radius"
+    IDS_RB_WSEGS            "Width Segments"
+    IDS_RB_LSEGS            "Length Segments"
+    IDS_RB_HSEGS            "Height Segments"
+    IDS_RB_CSEGS            "Fillet Segments"
+    IDS_RB_BSEGS            "Bottom Segments"
+    IDS_RB_SSEGS            "Side Segments"
+    IDS_RB_TSEGS            "Top Segments"
+    IDS_RB_TOPLENGTH        "Top Length"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_SIDELENGTH       "Side Length"
+    IDS_RB_BOTLENGTH        "Bottom Length"
+    IDS_RB_TOPWIDTH         "Top Width"
+    IDS_RB_SIDEWIDTH        "Side Width"
+    IDS_RB_BOTWIDTH         "Bottom Width"
+    IDS_RB_FILLET           "Fillet"
+    IDS_RB_FSEGS            "Fillet Segments"
+    IDS_RB_SIDES            "Sides"
+    IDS_RB_CAPSEGS          "Cap Segments"
+    IDS_RB_SLICEFROM        "Slice From"
+    IDS_RB_SLICETO          "Slice To"
+    IDS_RB_SIDE1            "Side 1 Length"
+    IDS_RB_S2SEGS           "Side 2 Segments"
+    IDS_RB_S3SEGS           "Side 3 Segments"
+    IDS_AP_CREATE           "Create"
+    IDS_RB_SIDE2            "Side 2 Length"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_SIDE3            "Side 3 Length"
+    IDS_RB_DEPTH            "Depth"
+    IDS_RB_DSEGS            "Depth Segments"
+    IDS_RB_CAPHEIGHT        "Cap Height"
+    IDS_RB_BLEND            "Blend"
+    IDS_RB_CHBOX            "ChamferBox"
+    IDS_RB_EXTENDED         "Extended Primitives"
+    IDS_RB_CHNAME           "ChamferBox"
+    IDS_RB_CHCYLINDER       "ChamferCyl"
+    IDS_RB_OILTNK           "OilTank"
+    IDS_RB_SPINDLE          "Spindle"
+    IDS_RB_SCUBA            "Capsule"
+    IDS_RB_GENGON           "Gengon"
+    IDS_RB_PRISM            "Prism"
+    IDS_RB_S1SEGS           "Side 1 Segments"
+    IDS_RB_PYRAMID          "Pyramid"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_CEXT             "C-Ext"
+    IDS_RB_LEXT             "L-Ext"
+    IDS_RB_SLICEON          "Slice On"
+    IDS_RB_SMOOTHON         "Smooth On"
+    IDS_AP_PRIMITIVES       "Standard Primitives"
+    IDS_CT_SURF             "Surf"
+    IDS_SM_NURBS_SURFACE    "NURBS"
+    IDS_AP_FRONTWIDTH       "Front Width"
+    IDS_AP_FRONTSEGS        "Front Segments"
+    IDS_AP_FRONTLENGTH      "Front Length"
+    IDS_AP_BACKLENGTH       "Back Length"
+    IDS_AP_BACKWIDTH        "Back Width"
+    IDS_AP_BACKSEGS         "Back Segments"
+    IDS_AP_SCSLIB           "Extended primitive objects (Discreet)"
+    IDS_AP_OILTNK_CLASS     "OilTank"
+    IDS_AP_CEXT_CLASS       "C-Ext"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_AP_CHBOX_CLASS      "ChamferBox"
+    IDS_AP_CHCYLINDER_CLASS "ChamferCyl"
+    IDS_AP_GENGON_CLASS     "Gengon"
+    IDS_AP_LEXT_CLASS       "L-Ext"
+    IDS_AP_PRISM_CLASS      "Prism"
+    IDS_AP_PYRAMID_CLASS    "Pyramid"
+    IDS_AP_SCUBA_CLASS      "Capsule"
+    IDS_AP_SPINDLE_CLASS    "Spindle"
+    IDS_AP_ENDSMETHOD       "End Placement Method"
+    IDS_AP_NOREFLENGTH      "Free Spring Height"
+    IDS_AP_OD               "Diameter"
+    IDS_AP_COILS            "Number of Turns"
+    IDS_AP_SEGMENTS         "Segments Along Turn"
+    IDS_AP_SMOOTH           "Smooth Spring"
+    IDS_AP_WIRETYPE         "Wire "
+    IDS_AP_RNDDIA           "Round Wire Diameter"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_AP_RNDSIDES         "Round Wire Side Count"
+    IDS_AP_RECTWIDTH        "Rectangular Wire Width"
+    IDS_AP_RECTDEPTH        "Rectangular Wire Depth"
+    IDS_AP_RFILLET          "Rectangular Wire Fillet Size"
+    IDS_AP_RFILLETSIDES     "Rectangular Fillet Sides"
+    IDS_AP_DSECWIDTH        "D-Section Wire Width"
+    IDS_AP_DSECDEPTH        "D-Section Wire Depth"
+    IDS_AP_DSECRNDSIDES     "D-Section Round Sides"
+    IDS_AP_FREELENGTH       "Dynamics Spring Relaxed Height"
+    IDS_AP_KVALUE           "Dynamics K Constant Value"
+    IDS_AP_KVALUNITS        "Dynamics K Constant Units"
+    IDS_AP_SPRINGDIR        "Dynamics Spring Direction"
+    IDS_AP_SPRING           "Spring"
+    IDS_AP_COMPICK          "Pick Object 1"
+    IDS_AP_COMPICK2         "Pick Object 2"
+    IDS_AP_NONE             "<None>"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_AP_PARAMS           "Spring Parameters"
+    IDS_AP_DAMPER           "Damper"
+    IDS_EP_DYNPRIMS         "Dynamics Objects"
+    IDS_AP_NOREFDL          "Free Damper Height"
+    IDS_AP_MOUNTDIA         "Base Stud Diameter"
+    IDS_AP_MOUNTLEN         "Base Stud Height"
+    IDS_AP_CYLDIA           "Cylinder Diameter"
+    IDS_AP_CYLLEN           "Cylinder Height"
+    IDS_AP_CYLSIDES         "Cylinder Sides"
+    IDS_AP_CYLFILLET1       "Cylinder Fillet 1"
+    IDS_AP_CYLFILLET1SEGS   "Cylinder Fillet 1 Segments"
+    IDS_AP_CYLFILLET2       "Cylinder Fillet 2"
+    IDS_AP_CYLFILLET2SEGS   "Cylinder Fillet 2 Segments"
+    IDS_AP_INSIDEDIA        "Inside Diameter"
+    IDS_AP_SMOOTHCYL        "Smooth Cylinder"
+    IDS_AP_PISTONDIA        "Piston Diameter"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_AP_PISTONLEN        "Piston Height"
+    IDS_AP_PISTONSIDES      "Piston Sides"
+    IDS_AP_SMOOTHPISTON     "Smooth Piston"
+    IDS_AP_ENABLEBOOT       "Enable Boot"
+    IDS_AP_BOOTDIA1         "Boot Small Diameter"
+    IDS_AP_BOOTDIA2         "Boot Large Diameter"
+    IDS_AP_BOOTSIDES        "Boot Sides"
+    IDS_AP_BOOTFOLDS        "Boot Folds"
+    IDS_AP_BOOTRESOLUTION   "Boot Fold Resolution"
+    IDS_AP_BOOTSTOPDIA      "Boot Stop Diameter"
+    IDS_AP_BOOTSTOPLEN      "Boot Stop Height"
+    IDS_AP_BOOTSETBACK      "Boot Stop Setback"
+    IDS_AP_BOOTSTOPFILLET   "Boot Stop Fillet"
+    IDS_AP_BOOTSTOPFILLETSEGS "Boot Stop Fillet Segements"
+    IDS_AP_SMOOTHBOOT       "Smooth Boot"
+    IDS_AP_DYNTYPE          "Dynamics Object Type"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_AP_DYNDRAG          "Drag"
+    IDS_AP_DFILLET          "D-Section Wire Fillet Size"
+    IDS_AP_DYNFORCE         "Force"
+    IDS_AP_DYNFORCEUNITS    "Force Units"
+    IDS_AP_DYNDRAGUNITS     "Drag Units"
+    IDS_AP_COILDIR          "Turn Direction"
+    IDS_AP_SEGMENTMETHOD    "Segmentation Method"
+    IDS_AP_SEGSPERTURN      "Segments Per Turn"
+    IDS_AP_RENDER           "Renderable Spring"
+    IDS_AP_RECTROT          "Rectangular Wire Rotation Angle"
+    IDS_AP_DSECROT          "D-Section Wire Rotation Angle"
+    IDS_AP_DAMPERDIR        "Damper Direction"
+    IDS_AP_MAPME            "Generate Mapping Coordinates"
+    IDS_AP_NL               "Enable Nonlinearity"
+    IDS_AP_DFILLETSIDES     "D-Section Wire Fillet Sides"
+    IDS_AP_PARAMETERS       "Parameters"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_AP_CREATEMODE       "Click and drag to begin creation process"
+    IDS_AP_PICKMODE         "Click to select object"
+    IDS_AP_HOSE             "Hose"
+    IDS_EP_BONUSPRIMS       "Bonus Objects"
+    IDS_EP_HOSEHEIGHT       "Hose Height"
+    IDS_EP_SEGMENTS         "Segments Along Hose"
+    IDS_EP_RENDERHOSE       "Renderable Hose"
+    IDS_AP_HOSETYPE         "Hose Cross-Section Type"
+    IDS_AP_HOSEDIA          "Round Hose Diameter"
+    IDS_AP_HOSESIDES        "Round Hose Sides"
+    IDS_AP_HOSERECTWIDTH    "Rectangular Hose Width"
+    IDS_AP_HOSERECTDEPTH    "Rectangular Hose Depth"
+    IDS_AP_HOSERFILLET      "Rectangular Hose Fillet Size"
+    IDS_AP_HOSERFILLETSIDES "Rectangular Hose Fillet Segs"
+    IDS_AP_HOSERECTROT      "Rectangular Hose Section Rotation"
+    IDS_AP_HOSEDSECWIDTH    "D-Section Hose Width"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_AP_HOSEDSECDEPTH    "D-Section Hose Depth"
+    IDS_AP_HOSEDFILLET      "D-Section Hose Fillet Size"
+    IDS_AP_HOSEDFILLETSIDES "D-Section Hose Fillet Segs"
+    IDS_AP_HOSEDSECRNDSIDES "D-Section Hose Round Segs"
+    IDS_AP_HOSEDSECROT      "D-Section Hose Section Rotation"
+    IDS_AP_HOSEMAPME        "Generate Mapping Coordinates"
+    IDS_AP_HOSEPARAMS       "Hose Parameters"
+    IDS_RB_EXTENDED2        "Extended Primitives 2"
+    IDS_AP_FLEXON           "Flex Section Enabled"
+    IDS_AP_FLEXSTART        "Flex Section Start"
+    IDS_AP_FLEXSTOP         "Flex Section Stop"
+    IDS_AP_FLEXCYCLES       "Flex Cycle Count"
+    IDS_AP_FLEXDIAMETER     "Flex Section Diameter"
+    IDS_AP_TENSION1         "Top Tension"
+    IDS_AP_TENSION2         "Bottom Tension"
+    IDS_AP_DAMPER_OBJECT    "Damper"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_AP_SPRING_OBJECT    "Spring"
+    IDS_AP_HOSE_OBJECT      "Hose"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MXS_SMOOTH          "Smooth"
+    IDS_MXS_GENUVS          "mapCoords"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

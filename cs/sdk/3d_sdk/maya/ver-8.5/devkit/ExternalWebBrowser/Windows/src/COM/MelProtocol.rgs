@@ -1,0 +1,16 @@
+HKCR
+{
+	mel = s 'URL:MEL Protocol'
+	{
+		val 'URL Protocol' = s ''
+		DefaultIcon = s '%MODULE%'
+		shell = s ''
+		{
+			open = s ''
+			{
+				command = s 'rundll32.exe "%MODULE%",OpenURL %%1'
+			}
+		}
+		
+	}
+}

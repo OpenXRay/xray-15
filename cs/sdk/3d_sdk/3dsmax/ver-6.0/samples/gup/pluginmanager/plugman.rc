@@ -1,0 +1,211 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAIN DIALOGEX 0, 0, 450, 174
+STYLE DS_CENTER | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | 
+    WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Plug-in Manager"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "List1",IDC_LIST1,"SysListView32",LVS_REPORT | 
+                    LVS_ALIGNLEFT | WS_TABSTOP,0,1,450,99,WS_EX_CLIENTEDGE
+    CONTROL         "List2",IDC_PLUGDIR,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_NOSORTHEADER | WS_TABSTOP,0,103,220,
+                    71,WS_EX_CLIENTEDGE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_PMLOGO              BITMAP  DISCARDABLE     "pm2.bmp"
+IDB_RED                 BITMAP  DISCARDABLE     "bitmap1.bmp"
+IDB_MASK                BITMAP  DISCARDABLE     "bitmap2.bmp"
+IDB_TURQ                BITMAP  DISCARDABLE     "bmp00001.bmp"
+IDB_GREEN               BITMAP  DISCARDABLE     "bitmap3.bmp"
+IDB_RARROW              BITMAP  DISCARDABLE     "bmp00002.bmp"
+IDB_RA_MASK             BITMAP  DISCARDABLE     "rarrow1.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_DLLMENU MENU DISCARDABLE 
+BEGIN
+    POPUP "dllmenu"
+    BEGIN
+        POPUP "Selected Plug-ins"
+        BEGIN
+            MENUITEM "Load",                        ID_DLLMENU_LOADSEL
+        END
+        MENUITEM "Clear Selection",             ID_CLEAR
+        MENUITEM SEPARATOR
+        POPUP "Tagged Plug-ins"
+        BEGIN
+            MENUITEM "Load",                        ID_TAG_LOAD
+        END
+        MENUITEM "Tag Selected",                ID_TAG_FROMSEL
+        MENUITEM "Clear Tags",                  ID_TAG_CLEAR
+        MENUITEM SEPARATOR
+        MENUITEM "Load New Plug-in...",         ID_DLLMENU_LOAD
+        MENUITEM SEPARATOR
+        MENUITEM "Refresh View",                ID_REFRESH
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_MAIN, DIALOG
+    BEGIN
+        TOPMARGIN, 1
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.K.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PMSPLASH DIALOGEX 0, 0, 141, 162
+STYLE DS_NOIDLEMSG | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_THICKFRAME
+EXSTYLE WS_EX_TOOLWINDOW
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         104,IDC_STATIC,"Static",SS_BITMAP,0,0,141,142
+    CTEXT           "Version 1.0 -- www.discreet.com",IDC_STATIC,5,146,131,
+                    11,SS_CENTERIMAGE | SS_SUNKEN
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LIBDESC             "Plug-in Manager (Discreet)"
+    IDS_CLASSNAME           "Plug-in Manager"
+    IDS_UNLOAD_FAILED       "Could not unload all classes cleanly! System may be unstable."
+    IDS_CANNOT_UNLOAD       "Classes in this DLL are in use in the scene - cannot unload"
+    IDS_ALREADY_UNLOADED    "This DLL is not in use - It has already been unloaded"
+    IDS_DLLDESC_NOT_FOUND   "Cannot unload - DLL descriptor could not be found"
+    IDS_ALREADY_LOADED      "This plug-in is already loaded."
+    IDS_LOAD_ERROR          "Load Error"
+    IDS_UNLOAD_ERROR        "Unload Error"
+    IDS_UNLOADED            "unloaded"
+    IDS_LOADED              "loaded"
+    IDS_DEFERRED            "deferred"
+    IDS_TAG                 "Tag"
+    IDS_NAME                "Name"
+    IDS_DESCRIPTION         "Description"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_STATUS              "Status"
+    IDS_SIZE                "Size"
+    IDS_FULLPATH            "Full Path"
+    IDS_MAX_PLUGINS         "3ds max Plug-ins"
+    IDS_ALL_FILES           "All Files (*.*)"
+    IDS_CHOOSE_PLUGIN       "Choose Plug-in File.."
+    IDS_LOAD_PATH           "Load Path"
+    IDS_MAX_PLUGINS_VIZ     "Autodesk VIZ Plug-ins"
+    IDS_PM_REG_PLUGINS      "Plug-ins"
+    IDS_PM_KB_FMT           "%i KB"
+END
+
+#endif    // English (U.K.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

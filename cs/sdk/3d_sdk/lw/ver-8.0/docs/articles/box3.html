@@ -1,0 +1,453 @@
+<html>
+
+<head>
+<title>Tutorial: Box3</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="box2.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="Part 2"></a></td>
+    <td width="96" align="left"><a href="box4.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Part 4"></a></td>
+    <td width="96" align="left"><a href="../articles.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Articles"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>A Mesh Edit Box</h3>
+    <p><small><strong>Author</strong>&nbsp; Ernie Wright<br>
+    <strong>Date</strong>&nbsp; 11 June 2001</small></p>
+    <p>In the <a href="box2.html">previous</a> installment of this tutorial, we created a user
+    interface and a function that calls Modeler's <tt>MAKEBOX</tt> command. In this
+    installment, we'll leave the <tt>MAKEBOX</tt> command behind and instead create our box
+    from its constituent points and polygons. In LightWave&reg; nomenclature, creating, deleting
+    and modifying points and polygons is called <em>mesh editing</em>, and we'll be using the
+    functions in a MeshEditOp structure provided by Modeler.</p>
+    <p>We'll also cover the use of the <a href="../globals/surface.html">Surface Functions</a>
+    global to build a menu of surface names on our panel, and I'll introduce command line
+    processing, which allows our box plug-in to be called with arguments by other plug-ins.</p>
+    <p>We're taking a significant step up in complexity, so I've divided the source into three
+    separate files. You can find it in <tt>sample/boxes/box3/<a
+    href="../../sample/Modeler/CommandSequence/boxes/box3/box.c">box.c</a></tt>, <tt><a
+    href="../../sample/Modeler/CommandSequence/boxes/box3/ui.c">ui.c</a></tt> and <tt><a
+    href="../../sample/Modeler/CommandSequence/boxes/box3/cmdline.c">cmdline.c</a></tt>.</p>
+    <p><strong>Some Data</strong></p>
+    <p>With the <tt>MAKEBOX</tt> command, we didn't need explicit definitions of point
+    positions and polygon vertices, but we do need these in some form now.</p>
+    <pre>   double vert[ 8 ][ 3 ] = {   /* a unit cube */
+      -0.5, -0.5, -0.5,
+       0.5, -0.5, -0.5,
+       0.5, -0.5,  0.5,
+      -0.5, -0.5,  0.5,
+      -0.5,  0.5, -0.5,
+       0.5,  0.5, -0.5,
+       0.5,  0.5,  0.5,
+      -0.5,  0.5,  0.5
+   };
+
+   int face[ 6 ][ 4 ] = {     /* vertex indexes */
+      0, 1, 2, 3,
+      0, 4, 5, 1,
+      1, 5, 6, 2,
+      3, 2, 6, 7,
+      0, 3, 7, 4,
+      4, 7, 6, 5
+   };</pre>
+    <p>The <tt>vert</tt> array contains the (<em>x</em>, <em>y</em>, <em>z</em>) coordinates
+    of the eight corner points of a unit cube, which we'll scale to create the points of the
+    box. The <tt>face</tt> array lists the vertices defining each of the six rectangular faces
+    of our box. The numbers correspond to indexes into the <tt>vert</tt> array.</p>
+    <p>We're also going to define a UV map for the box. (UV mapping is a texture projection
+    method. It associates specific points in 3D space with specific points on a 2D texture,
+    typically an image.)</p>
+    <pre>   float cuv[ 8 ][ 2 ] = {    /* continuous UVs (spherical mapping) */
+      .125f, .304f,
+      .375f, .304f,
+      .625f, .304f,
+      .875f, .304f,
+      .125f, .696f,
+      .375f, .696f,
+      .625f, .696f,
+      .875f, .696f
+   };
+
+   float duv[ 2 ][ 2 ] = {    /* discontinuous UVs */
+      -0.125f, 0.304f,
+      -0.125f, 0.696f
+   };</pre>
+    <p>This is the UV mapping Modeler generates when it uses spherical mapping to initialize a
+    new vertex map.</p>
+    <blockquote>
+      <p><strong>Vertex Map</strong>: Associates a set of vectors with a set of points. UV vmaps
+      contain two floats for each point, the <em>u</em> and <em>v</em> coordinates. Color vmaps
+      are made up of RGB or RGBA vectors. Weight maps have a single value per point. Point
+      selection sets are implemented as vmaps with no value at all. Type codes for the most
+      common vmap types are defined in <em>lwmeshes.h</em>, but you can also define your own
+      custom vmaps.</p>
+    </blockquote>
+    <p><strong>Mesh Editing</strong></p>
+    <p>The mesh edit version of our <tt>makebox</tt> function uses the <tt>vert</tt>, <tt>face</tt>,
+    <tt>cuv</tt> and <tt>duv</tt> arrays to create the points and polygons that comprise our
+    box.</p>
+    <pre>   void makebox( MeshEditOp *edit, double *size, double *center,
+      char *surfname, char *vmapname )
+   {
+      LWDVector pos;
+      LWPntID pt[ 8 ], vt[ 4 ];
+      LWPolID pol[ 6 ];
+      int i, j;
+
+      for ( i = 0; i &lt; 8; i++ ) {
+         for ( j = 0; j &lt; 3; j++ )
+            pos[ j ] = size[ j ] * vert[ i ][ j ] + center[ j ];
+         pt[ i ] = edit-&gt;addPoint( edit-&gt;state, pos );
+         edit-&gt;pntVMap( edit-&gt;state, pt[ i ],
+            LWVMAP_TXUV, vmapname, 2, cuv[ i ] );
+      }
+
+      for ( i = 0; i &lt; 6; i++ ) {
+         for ( j = 0; j &lt; 4; j++ )
+            vt[ j ] = pt[ face[ i ][ j ]];
+         pol[ i ] = edit-&gt;addFace( edit-&gt;state, surfname, 4, vt );
+      }
+
+      edit-&gt;pntVPMap( edit-&gt;state, pt[ 3 ], pol[ 4 ],
+         LWVMAP_TXUV, vmapname, 2, duv[ 0 ] );
+      edit-&gt;pntVPMap( edit-&gt;state, pt[ 7 ], pol[ 4 ],
+         LWVMAP_TXUV, vmapname, 2, duv[ 1 ] );
+   }</pre>
+    <p>Let's go through it one step at a time.</p>
+    <pre>   void makebox( MeshEditOp *edit, double *size, double *center,
+      char *surfname, char *vmapname )
+   {</pre>
+    <p>Instead of the LWModCommand structure we passed to the previous version of <tt>makebox</tt>,
+    the first argument to this one is a MeshEditOp, which contains all of the mesh editing
+    functions. We'll be getting this from our activation function. The other arguments control
+    the size and center of the box, the surface for the box faces, and the name of the vertex
+    map that will hold our UVs. To simplify this a bit, there's no argument for the number of
+    segments, nor will we support more than one.</p>
+    <pre>      LWDVector pos;
+      LWPntID pt[ 8 ], vt[ 4 ];
+      LWPolID pol[ 6 ];
+      int i, j;</pre>
+    <p>The LWPntID and LWPolID types are used to identify points and polygons. They're
+    returned from functions that create these elements, and they're later passed as arguments
+    when you need to refer to them. The LWDVector type is just an array of three doubles.</p>
+    <pre>      for ( i = 0; i &lt; 8; i++ ) {
+         for ( j = 0; j &lt; 3; j++ )
+            pos[ j ] = size[ j ] * vert[ i ][ j ] + center[ j ];</pre>
+    <p>The position of each point is the size multiplied by the coordinates for a unit cube,
+    offset by the center position.</p>
+    <pre>         pt[ i ] = edit-&gt;addPoint( edit-&gt;state, pos );</pre>
+    <p>The <tt>addPoint</tt> function creates a point at the specified position. We'll need to
+    refer to the points we create when we connect them together to form the faces, so we store
+    the point IDs.</p>
+    <pre>         edit-&gt;pntVMap( edit-&gt;state, pt[ i ],
+            LWVMAP_TXUV, vmapname, 2, cuv[ i ] );
+      }</pre>
+    <p>While we're in the points loop, we also initialize the UV values for each point. <tt>pntVMap</tt>
+    takes a point ID, a vertex map, and a vector of two floats containing the UV coordinates.</p>
+    <p>Vmaps are defined by a name, a type code and a vector dimension. The name is what the
+    user sees in the interface when vmaps are listed. Type codes for common vmap types like
+    texture UV maps are defined in <a href="../../include/lwmeshes.h">lwmeshes.h</a>, but it's
+    also possible to create custom vmap types. The vector is an array of floats associated
+    with a point, and the dimension is just the number of elements in the vector. UV vmaps
+    contain two floats for each point, the <em>u</em> and <em>v</em> coordinates.</p>
+    <p>If the vmap doesn't exist at the time of the call, <tt>pntVMap</tt> creates it.</p>
+    <pre>      for ( i = 0; i &lt; 6; i++ ) {
+         for ( j = 0; j &lt; 4; j++ )
+            vt[ j ] = pt[ face[ i ][ j ]];</pre>
+    <p>The <tt>vt</tt> array contains four point IDs, one for each vertex of a box face. The
+    direction of the polygon normal depends on the order in which the points are listed. The
+    point indexes in the <tt>face</tt> array are listed in clockwise order as seen from the
+    polygon's visible side.</p>
+    <pre>         pol[ i ] = edit-&gt;addFace( edit-&gt;state, surfname, 4, vt );
+      }</pre>
+    <p>The <tt>addFace</tt> function creates a polygon with the given surface name and vertex
+    list. If the surface doesn't exist, <tt>addFace</tt> creates it.</p>
+    <pre>      edit-&gt;pntVPMap( edit-&gt;state, pt[ 3 ], pol[ 4 ],
+         LWVMAP_TXUV, vmapname, 2, duv[ 0 ] );
+      edit-&gt;pntVPMap( edit-&gt;state, pt[ 7 ], pol[ 4 ],
+         LWVMAP_TXUV, vmapname, 2, duv[ 1 ] );
+   }</pre>
+    <p>Finally, we add two discontinuous UV values to the vmap. Most points have a single UV
+    value. The (<em>u</em>, <em>v</em>) is the same at a given point for all faces that use
+    the point as a vertex. Discontinuous UVs override this value, but only for one of the
+    polygons that shares the point. This fixes the seam problem, where two points are on
+    opposite sides of a discontinuity, or seam, in the texture.</p>
+    <p>In our case, we're fixing up the -X face of the box, where the left and right sides of
+    an image map would meet if it used our vmap. Without this fix, the interpolation of <em>u</em>
+    across this face would be &quot;backwards,&quot; the reverse of that across the -Z, +X and
+    +Z faces.</p>
+    <p><strong>Surface Name List</strong></p>
+    <p>In our interface, we need to give the user a way to specify the surface and vmap names.
+    For vmap names, we'll provide a simple text edit field. But to show what else we can do,
+    we'll build a popup menu for the surface names.</p>
+    <table border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td align="center" width="600"><img src="boximage/surflist.gif" width="330" height="65"></td>
+      </tr>
+    </table>
+    <p>The declaration of our Surface popup control and its data description in our <tt>get_user</tt>
+    function looks like this.</p>
+    <pre>   LWXPanelControl ctl[] = {
+      ...
+      { ID_SURFLIST, &quot;Surface&quot;, &quot;iPopChoice&quot; }, ...
+
+   LWXPanelDataDesc cdata[] = {
+      ...
+      { ID_SURFLIST, &quot;Surface&quot;, &quot;integer&quot; }, ...</pre>
+    <p>The value of a popup control is a 0-based integer index into the list of menu items. We
+    need a way to give XPanels our list of surface names. Although there are other ways to do
+    it, we'll populate the menu using an <tt>XpSTRLIST</tt> hint.</p>
+    <pre>   LWXPanelHint hint[] = {
+      ...
+      XpSTRLIST( ID_SURFLIST, surflist ), ...</pre>
+    <p>The second argument to the <tt>XpSTRLIST</tt> macro is an array of strings. The last
+    element of the array is NULL to mark the end of the list.</p>
+    <p>If we knew the item list in advance, we could simply declare it like this:</p>
+    <pre>   char *menulist[] = { &quot;Apples&quot;, &quot;Oranges&quot;, &quot;Bananas&quot;, NULL };</pre>
+    <p>But we don't know in advance what surfaces exist in Modeler, so we have to allocate and
+    initialize one of these string arrays dynamically, when our plug-in is executed.</p>
+    <p>To build the surface name list, we'll use the <tt>first</tt>, <tt>next</tt> and <tt>name</tt>
+    routines provided by the <a href="../globals/surface.html">Surface Functions</a> global. <tt>first</tt>
+    and <tt>next</tt> walk you through the linked list of surface descriptions in Modeler, and
+    <tt>name</tt> returns the name of a surface, given its LWSurfaceID. The function in our
+    plug-in that allocates and initializes the surface name list is called <tt>init_surflist</tt>.</p>
+    <pre>   int init_surflist( LWSurfaceFuncs *surff )
+   {
+      LWSurfaceID surfid;
+      const char *name;
+      int i, count = 0;</pre>
+    <p>The first thing it does is count the surfaces.</p>
+    <pre>      surfid = surff-&gt;first();
+      while ( surfid ) {
+         ++count;
+         surfid = surff-&gt;next( surfid );
+      }</pre>
+    <p>It's possible for the count to be 0. In that case, we create a list with a single
+    entry, &quot;Default&quot;, and return a count of 1.</p>
+    <pre>      if ( !count ) {
+         surflist = calloc( 2, sizeof( char * ));
+         surflist[ 0 ] = malloc( 8 );
+         strcpy( surflist[ 0 ], &quot;Default&quot; );
+         return 1;
+      }</pre>
+    <p>Otherwise, we allocate an array of <tt>count</tt> + 1 strings. The extra one is the
+    NULL string that marks the end of the list.</p>
+    <pre>      surflist = calloc( count + 1, sizeof( char * ));
+      if ( !surflist ) return 0;</pre>
+    <p>Now we loop through the surface list again using first and next, this time copying the
+    surface name into our string array. If anything goes wrong while we're doing this, we call
+    our <tt>free_surflist</tt> function, which frees each string and the string array, and
+    then return a count of 0.</p>
+    <pre>      surfid = surff-&gt;first();
+      for ( i = 0; i &lt; count; i++ ) {
+         name = surff-&gt;name( surfid );
+         if ( !name ) {
+            free_surflist();
+            return 0;
+         }
+         surflist[ i ] = malloc( strlen( name ) + 1 );
+         if ( !surflist[ i ] ) {
+            free_surflist();
+            return 0;
+         }
+         strcpy( surflist[ i ], name );
+         surfid = surff-&gt;next( surfid );
+      }</pre>
+    <p>We're done.</p>
+    <pre>      return count;
+   }</pre>
+    <p>This function is fairly typical of the way you'll get and use information from
+    LightWave&reg;. The Surface Functions global doesn't provide a canned <tt>getSurfaceNameArray</tt>
+    function, and XPanels doesn't have an &quot;iPopSurfaceName&quot; control type. This
+    arguably places a greater burden on plug-in authors, but it also offers greater
+    flexibility. Suppose you only want to list green surfaces, or surface names starting with
+    the letter B?</p>
+    <p><strong>Doing It Differently</strong></p>
+    <p>Before we leave the surface list, I want to call attention to things we can and can't
+    do differently with it. We can't call <tt>init_surflist</tt> from within <tt>get_user</tt>.
+    At that point, it's already too late. The (not yet initialized) <tt>surflist</tt> has
+    already been written into the hint array. For the same reason, we can't declare the hint
+    array <tt>static</tt>.</p>
+    <p>It's also not easy to write the correct value for <tt>surflist</tt> into the hint array
+    after it's been declared, because it's hard to know what its array index will be after the
+    various <tt>Xp</tt> macros have been expanded. For example, our hint array after expansion
+    looks like the following.</p>
+    <pre>   LWXPanelHint hint[] = {
+      (( void * )( 0x3D000B03 )),             /* XPTAG_LABEL   */
+      (( void * )( 0 )),
+      (( void * )( &quot;Box Tutorial Part 3&quot; )),
+      (( void * )( 0 )),                      /* XPTAG_NULL    */
+      (( void * )( 0x3D021481 )),             /* XPTAG_DIVADD  */
+      (( void * )( 0x00008001 )),             /* ID_SIZE       */
+      (( void * )( 0 )),                      /* XPTAG_NULL    */
+      (( void * )( 0x3D021481 )),             /* XPTAG_DIVADD  */
+      (( void * )( 0x00008002 )),             /* ID_CENTER     */
+      (( void * )( 0 )),                      /* XPTAG_NULL    */
+      (( void * )( 0x3D014503 )),             /* XPTAG_STRLIST */
+      (( void * )( 0x00008003 )),             /* ID_SURFLIST   */
+      (( void * )( surflist )),
+      (( void * )( 0 )),                      /* XPTAG_NULL    */
+      (( void * )( 0 )),                      /* XPTAG_END     */
+   };</pre>
+    <p>Without expanding it by hand like this, it's not at all obvious that <tt>surflist</tt>
+    ends up in <tt>hint[12]</tt>. </p>
+    <p>There's another way to give XPanels the items in a popup, however. Instead of the <tt>XpSTRLIST</tt>
+    macro, you can use <tt>XpPOPFUNCS</tt> to pass a pair of callbacks that XPanels will call
+    when it needs to know the item count and the name of each item. Since it doesn't paint you
+    into a corner the way <tt>XpSTRLIST</tt> can, this is the preferred method for item lists
+    that must be built at runtime. I chose not to use it here because I decided, somewhat
+    arbitrarily, that an array would be easier to understand than the callbacks would be. But
+    we will use <tt>XpPOPFUNCS</tt> in Part 4.</p>
+    <p><strong>Command Line Processing</strong></p>
+    <p>Command sequence plug-ins can call other command sequence plug-ins using Modeler's <tt>CMDSEQ</tt>
+    command. <tt>CMDSEQ</tt> allows you to pass arguments to the called plug-in.</p>
+    <p>Our box plug-in, in other words, can be called by other Modeler plug-ins. When used
+    this way, it becomes just another command! For this to be really useful, we need to
+    process the command line so that we can accept arguments. Modeler passes the command line
+    to us in the <tt>argument</tt> field of the LWModCommand structure.</p>
+    <p>Our parameters are the box size and center, the surface name, and the vmap name. The
+    obvious command line for us would be</p>
+    <pre>   &lt;size&gt; &lt;center&gt; surfname vmapname</pre>
+    <p>where the size and center arguments are vectors enclosed in angle brackets, and the
+    other two arguments are strings, possibly enclosed in double quotes. For example,</p>
+    <pre>   &lt;1.5 2.5 3.5&gt; &lt;0&gt; &quot;Bram Stoker&quot; Dracula</pre>
+    <p>Modeler passes this to us as a single string. It's up to us to divide it into an array
+    of tokens similar to the <tt>argv</tt> array passed to a C console program's <tt>main</tt>
+    function. It's a little tricky. We can't just call the C runtime function <tt>strtok</tt>,
+    since spaces are only delimiters if they're not inside double quotes or angle brackets,
+    and angle brackets are only delimiters if they're not inside double quotes.</p>
+    <p>We'd also like to support some of the same conventions Modeler itself does for command
+    arguments: Vector components after the first are optional, and if omitted, are assigned
+    the value of the last component present. Strings that don't contain spaces don't have to
+    be enclosed in double quotes.</p>
+    <p>It might seem like we're making work for ourselves by supporting a more complicated
+    command line. But keep in mind that users can also write a command line for our plug-in
+    when they assign it to a key or a menu, so conforming to Modeler command conventions is
+    usually a good idea. We'll also get some help from LightWave&reg; for converting the vectors.</p>
+    <p>Our <tt>get_argv</tt> function breaks the command line into an array of token strings.
+    It just looks at each character in the command string and decides whether to add it to the
+    existing token or start a new one. Tokenizing a string is covered in numerous general
+    programming texts, so I won't go into detail about how <tt>get_argv</tt> is implemented.</p>
+    <p>The function that calls <tt>get_argv</tt> is <tt>parse_cmdline</tt>.</p>
+    <pre>   int parse_cmdline( DynaConvertFunc *convert, const char *cmdline,
+      double *size, double *center, char *surfname, char *vmapname )
+   {
+      DynaValue from = { DY_STRING }, to = { DY_VDIST };
+      int argc;
+      char **argv;</pre>
+    <p>The first argument is the function returned by the <a href="../globals/dynaconv.html">Dynamic
+    Conversion</a> global. This function takes a DynaValue of one type (in our case, a string)
+    and returns one of a different type (a 3-vector of distance values). We'll use this to
+    convert the size and center vector strings into arrays of three doubles. This gives us
+    automatic support for the default values of missing vector components.</p>
+    <pre>      argv = get_argv( cmdline, 4, &amp;argc );
+
+      if ( argc == 4 ) {
+         from.str.buf = argv[ 0 ];
+         to.fvec.defVal = 1.0;
+         convert( &amp;from, &amp;to, NULL );
+      
+         size[ 0 ] = to.fvec.val[ 0 ];
+         size[ 1 ] = to.fvec.val[ 1 ];
+         size[ 2 ] = to.fvec.val[ 2 ];
+      
+         from.str.buf = argv[ 1 ];
+         to.fvec.defVal = 0.0;
+         convert( &amp;from, &amp;to, NULL );
+      
+         center[ 0 ] = to.fvec.val[ 0 ];
+         center[ 1 ] = to.fvec.val[ 1 ];
+         center[ 2 ] = to.fvec.val[ 2 ];
+
+         strcpy( surfname, argv[ 2 ] );
+         strcpy( vmapname, argv[ 3 ] );
+      }
+
+      free_argv( argc, argv );
+      return ( argc == 4 );
+   }</pre>
+    <p>If <tt>get_argv</tt> finds four tokens in the command string, the first two are assumed
+    to be vectors and are assigned to the size and center arrays after conversion. The last
+    two are assumed to be surface and vmap names. The function returns TRUE if the argument
+    count is 4.</p>
+    <p><strong>Activation</strong></p>
+    <p>The activation function is where we pull all of this together. </p>
+    <pre>   XCALL_( int )
+   Activate( long version, GlobalFunc *global, LWModCommand *local,
+      void *serverData )
+   {
+      DynaConvertFunc *dynaf;
+      LWXPanelFuncs *xpanf;
+      LWSurfaceFuncs *surff;
+      MeshEditOp *edit;</pre>
+    <p>We'll get these four things by calling functions in Modeler.</p>
+    <pre>      double size[ 3 ]   = { 1.0, 1.0, 1.0 };
+      double center[ 3 ] = { 0.0, 0.0, 0.0 };
+      char surfname[ 128 ];
+      char vmapname[ 128 ] = &quot;MyUVs&quot;;
+      int ok = 0;</pre>
+    <p>This is where our parameters are kept.</p>
+    <pre>      if ( version != LWMODCOMMAND_VERSION )
+         return AFUNC_BADVERSION;</pre>
+    <p>Like always, the first thing we do is make sure Modeler is calling us with the right
+    version of LWModCommand.</p>
+    <pre>      if ( local-&gt;argument[ 0 ] ) {</pre>
+    <p>The <tt>argument</tt> string is always valid. To decide whether we've received a
+    command line, we need to see whether the string is empty.</p>
+    <pre>         dynaf = global( LWDYNACONVERTFUNC_GLOBAL, GFUSE_TRANSIENT );
+         if ( !dynaf ) return AFUNC_BADGLOBAL;
+         ok = parse_cmdline( dynaf, local-&gt;argument,
+            size, center, surfname, vmapname );
+         if ( !ok ) return AFUNC_BADLOCAL;
+      }</pre>
+    <p>If it isn't empty, we get our parameters from the command line instead of displaying
+    our interface.</p>
+    <pre>      else {
+         xpanf = global( LWXPANELFUNCS_GLOBAL, GFUSE_TRANSIENT );
+         surff = global( LWSURFACEFUNCS_GLOBAL, GFUSE_TRANSIENT );
+         if ( !xpanf || !surff ) return AFUNC_BADGLOBAL;
+         if ( !init_surflist( surff )) return AFUNC_BADGLOBAL;
+         ok = get_user( xpanf, size, center, surfname, vmapname );
+         free_surflist();
+      }</pre>
+    <p>If we don't have a command line, we display our interface as before.</p>
+    <pre>      if ( ok ) {
+         edit = local-&gt;editBegin( 0, 0, OPSEL_GLOBAL );
+         if ( edit ) {
+            makebox( edit, size, center, surfname, vmapname );
+            edit-&gt;done( edit-&gt;state, EDERR_NONE, 0 );
+         }
+      }</pre>
+    <p>If we got parameters from <em>somewhere</em>, either the command line or our interface,
+    we perform the mesh edit that creates our box. Between the calls to <tt>local-&gt;editBegin</tt>
+    and <tt>edit-&gt;done</tt>, we can't call any commands. These calls are the boundaries of
+    a single undo atom. Mesh edits aren't actually applied until you call <tt>done</tt>, so
+    from the point of view of commands, the geometry database is in an indeterminate state.</p>
+    <p>We should probably track errors that might occur in <tt>makebox</tt> and pass something
+    other than <tt>EDERR_NONE</tt> to <tt>done</tt> if something goes wrong, but I left that
+    out because we had a lot of ground to cover. Don't be lazy like me. Stuff <em>can</em> go
+    wrong.</p>
+    <pre>      return AFUNC_OK;
+   }</pre>
+    <p>But life is good.</p>
+    <p><strong>What's Next</strong></p>
+    <p>Up to now, we've been writing imperative code. It marches from beginning to end,
+    pausing only once to allow the user to type some numbers. In the <a href="box4.html">final</a>
+    installment, we'll see how to turn our plug-in into an event-driven tool that allows the
+    user to size and center the box interactively.</td>
+  </tr>
+</table>
+</body>
+</html>

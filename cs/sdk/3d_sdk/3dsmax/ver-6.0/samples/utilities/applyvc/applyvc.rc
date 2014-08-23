@@ -1,0 +1,185 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_VCUTIL_PANEL DIALOGEX 0, 0, 108, 295
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    PUSHBUTTON      "Assign to Selected",IDC_VCUTIL_APPLY,16,249,76,14
+    CONTROL         "&Diffuse",IDC_VCUTIL_DIFFUSE,"Button",
+                    BS_AUTORADIOBUTTON,15,121,52,10
+    CONTROL         "&Shaded",IDC_VCUTIL_SHADED,"Button",BS_AUTORADIOBUTTON,
+                    15,109,61,10
+    GROUPBOX        "Light Model",IDC_STATIC,4,84,100,54
+    CONTROL         "&Calculate Shadows",IDC_CASTSHADOWS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,16,191,82,10
+    CONTROL         "Use Maps",IDC_USEMAPS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,16,203,67,10
+    CONTROL         "&Lighting",IDC_VCUTIL_LIGHTING,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,15,97,61,10
+    CONTROL         "Use Radiosity",IDC_USERADIOSITY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,16,215,67,10
+    CONTROL         "Radiosity Only",IDC_RADIOSITYONLY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,24,228,67,10
+    CONTROL         "Color by Face",IDC_VCUTIL_COLORBYFACE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,15,156,69,10
+    CONTROL         "Color by Vertex",IDC_VCUTIL_COLORBYVERT,"Button",
+                    BS_AUTORADIOBUTTON,15,169,69,9
+    GROUPBOX        "Color assignment",IDC_STATIC,4,143,99,42
+    CONTROL         "Edit...",IDC_VCUTIL_EDITCOLORS,"CustButton",WS_TABSTOP,
+                    16,268,76,14
+    GROUPBOX        "Channel",IDC_STATIC,4,3,100,76
+    CONTROL         "Vertex Color",IDC_VCUTIL_CHAN_COLOR,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,15,16,61,10
+    CONTROL         "Vertex Illum",IDC_VCUTIL_CHAN_ILLUM,"Button",
+                    BS_AUTORADIOBUTTON,15,28,61,10
+    CONTROL         "Vertex Alpha",IDC_VCUTIL_CHAN_ALPHA,"Button",
+                    BS_AUTORADIOBUTTON,15,40,52,10
+    CONTROL         "Map Channel",IDC_VCUTIL_CHAN_MAP,"Button",
+                    BS_AUTORADIOBUTTON,15,52,56,10
+    CONTROL         "",IDC_VCUTIL_CHAN_MAP_EDIT,"CustEdit",WS_TABSTOP,74,52,
+                    14,10
+    CONTROL         "",IDC_VCUTIL_CHAN_MAP_SPIN,"SpinnerControl",WS_TABSTOP,
+                    88,52,6,10
+    LTEXT           "-none-",IDC_VCUTIL_CHAN_NAME,50,65,51,8,SS_ENDELLIPSIS
+    LTEXT           "Name:",IDC_STATIC,27,65,21,8
+END
+
+IDD_VCMOD_PANEL DIALOG  0, 0, 108, 44
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CTEXT           "This modifier is managed by the ""Assign Vertex Colors"" Utility plug-in.",
+                    IDC_STATIC,7,7,94,30
+END
+
+IDD_PROGRESSDLG DIALOGEX 0, 0, 220, 61
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "Progress"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    PUSHBUTTON      "Cancel",IDCANCEL,84,40,50,14
+    LTEXT           "",IDC_PROGRESSDLG_STATUS,8,8,204,8
+    CONTROL         "Progress1",IDC_PROGRESSDLG_PROGRESS,"msctls_progress32",
+                    0x1,4,20,212,12
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_VCUTIL_PANEL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 288
+    END
+
+    IDD_VCMOD_PANEL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 37
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_AVCU_CNAME          "Assign Vertex Colors"
+    IDS_AVCU_PANELTITLE     "Assign Vertex Colors"
+    IDS_AVCM_CNAME          "Vertex Colors"
+    IDS_AVCM_ONAME          "Vertex Colors"
+    IDS_AVCM_PANELTITLE     "Information"
+    IDS_AVCU_PROGRESS       "Rendering vertices..."
+    IDS_LIBDESCRIPTION      "Vertex color utility and modifier (Discreet)"
+    IDS_HOLDMSG_APPLYVTXCOLOR "Assign Vertex Color"
+    IDS_PROGRESSMSG_RENDERING "Rendering"
+    IDS_MAPNAME_NONE        "-none-"
+    IDS_HOLDMSG_ADDMODIFIER "Add Modifier"
+    IDS_HOLDMSG_DELETEMODIFIER "Delete Modifier"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

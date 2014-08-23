@@ -1,0 +1,110 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_CL_PANEL_VIZR, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 104
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 168
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CL_PANEL_VIZR DIALOG DISCARDABLE  0, 0, 108, 174
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_PATH,4,15,100,12,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "Browse",IDC_BROWSE,58,29,46,12
+    CONTROL         "Collect Bitmaps",IDC_PACKMAPS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,16,61,64,10
+    CONTROL         "Update Materials",IDC_UPMAP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,20,132,69,10
+    CONTROL         "Include drf File",IDC_PACKMAX,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,16,71,69,9
+    CONTROL         "Compress Files",IDC_PACKUP,"Button",BS_AUTOCHECKBOX | 
+                    WS_DISABLED | WS_TABSTOP,16,87,78,11
+    PUSHBUTTON      "Begin",IDC_GO,20,150,67,18
+    LTEXT           "Output Path :",IDC_STATIC,4,5,43,8
+    LTEXT           "( Uses WINZIP )",IDC_STATICPACK,28,98,53,8,WS_DISABLED
+    GROUPBOX        "Resource Options",IDC_STATIC,4,49,100,64
+    CONTROL         "Copy",IDC_TYPE,"Button",BS_AUTORADIOBUTTON,19,117,32,10
+    CONTROL         "Move",IDC_TYPE2,"Button",BS_AUTORADIOBUTTON,56,117,34,
+                    10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_NO_VALID_FILE_PATH_VIZR "No valid file path"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+

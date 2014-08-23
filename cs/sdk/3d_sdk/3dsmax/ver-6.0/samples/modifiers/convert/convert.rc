@@ -1,0 +1,216 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_TO_POLY DIALOG DISCARDABLE  0, 0, 108, 192
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Keep Polygons Convex",IDC_KEEP_CONVEX,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,7,92,10
+    CONTROL         "Limit Polygon Size",IDC_LIMIT_SIZE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,20,87,10
+    RTEXT           "Max Size:",IDC_THRESH_LABEL,13,34,35,8
+    CONTROL         "",IDC_MAX_SIZE,"CustEdit",WS_TABSTOP,51,34,38,10
+    CONTROL         "",IDC_MAX_SIZESPIN,"SpinnerControl",0x0,90,34,7,10
+    CONTROL         "Require Planar Polygons",IDC_PLANAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,49,93,10
+    RTEXT           "Threshold:",IDC_THRESH_LABEL,13,62,35,8
+    CONTROL         "",IDC_THRESH,"CustEdit",WS_TABSTOP,51,62,38,10
+    CONTROL         "",IDC_THRESHSPIN,"SpinnerControl",0x0,90,62,7,10
+    GROUPBOX        "Subobject Selections",IDC_SEL_LABEL,4,93,98,45
+    CONTROL         "Preserve",IDC_SEL_PRESERVE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,11,103,44,10
+    CONTROL         "Clear",IDC_SEL_CLEAR,"Button",BS_AUTORADIOBUTTON,11,114,
+                    32,10
+    CONTROL         "Invert",IDC_SEL_INVERT,"Button",BS_AUTORADIOBUTTON,47,
+                    114,34,10
+    CONTROL         "Include Soft Selection",IDC_USE_SOFTSEL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,125,85,10
+    GROUPBOX        "Selection Level",IDC_THRESH_LABEL,4,139,98,47
+    CONTROL         "From Pipeline",IDC_SEL_PIPELINE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,11,148,79,10
+    CONTROL         "Object",IDC_SEL_OBJ,"Button",BS_AUTORADIOBUTTON,11,160,
+                    37,10
+    CONTROL         "Vertex",IDC_SEL_VERT,"Button",BS_AUTORADIOBUTTON,11,172,
+                    36,10
+    CONTROL         "Edge",IDC_SEL_EDGE,"Button",BS_AUTORADIOBUTTON,57,160,
+                    33,10
+    CONTROL         "Face",IDC_SEL_FACE,"Button",BS_AUTORADIOBUTTON,57,172,
+                    32,10
+    CONTROL         "Remove Mid-Edge Vertices",IDC_ELIMINATE_COLLINEAR,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,78,102,10
+END
+
+IDD_TO_MESH DIALOG DISCARDABLE  0, 0, 108, 114
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Use Invisible Edges",IDC_USE_INVIS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,7,92,10
+    GROUPBOX        "Subobject Selections",IDC_SEL_LABEL,4,19,98,45
+    CONTROL         "Preserve",IDC_SEL_PRESERVE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,11,28,44,10
+    CONTROL         "Clear",IDC_SEL_CLEAR,"Button",BS_AUTORADIOBUTTON,11,39,
+                    32,10
+    CONTROL         "Invert",IDC_SEL_INVERT,"Button",BS_AUTORADIOBUTTON,47,
+                    39,34,10
+    CONTROL         "Include Soft Selection",IDC_USE_SOFTSEL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,50,85,10
+    GROUPBOX        "Selection Level",IDC_MAX_SIZE_LABEL,4,64,98,47
+    CONTROL         "From Pipeline",IDC_SEL_PIPELINE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,11,73,79,10
+    CONTROL         "Object",IDC_SEL_OBJ,"Button",BS_AUTORADIOBUTTON,11,85,
+                    37,10
+    CONTROL         "Vertex",IDC_SEL_VERT,"Button",BS_AUTORADIOBUTTON,11,97,
+                    36,10
+    CONTROL         "Edge",IDC_SEL_EDGE,"Button",BS_AUTORADIOBUTTON,57,85,33,
+                    10
+    CONTROL         "Face",IDC_SEL_FACE,"Button",BS_AUTORADIOBUTTON,57,97,32,
+                    10
+END
+
+IDD_TO_PATCH DIALOG DISCARDABLE  0, 0, 108, 114
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Quads to Quad Patches",IDC_QUADS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,7,92,10
+    GROUPBOX        "Subobject Selections",IDC_SEL_LABEL,4,18,98,45
+    CONTROL         "Preserve",IDC_SEL_PRESERVE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,11,28,44,10
+    CONTROL         "Clear",IDC_SEL_CLEAR,"Button",BS_AUTORADIOBUTTON,11,39,
+                    32,10
+    CONTROL         "Invert",IDC_SEL_INVERT,"Button",BS_AUTORADIOBUTTON,47,
+                    39,34,10
+    CONTROL         "Include Soft Selection",IDC_USE_SOFTSEL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,50,85,10
+    GROUPBOX        "Selection Level",IDC_MAX_SIZE_LABEL,4,64,98,47
+    CONTROL         "From Pipeline",IDC_SEL_PIPELINE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,11,73,79,10
+    CONTROL         "Object",IDC_SEL_OBJ,"Button",BS_AUTORADIOBUTTON,11,85,
+                    37,10
+    CONTROL         "Vertex",IDC_SEL_VERT,"Button",BS_AUTORADIOBUTTON,11,97,
+                    36,10
+    CONTROL         "Edge",IDC_SEL_EDGE,"Button",BS_AUTORADIOBUTTON,57,85,33,
+                    10
+    CONTROL         "Patch",IDC_SEL_PATCH,"Button",BS_AUTORADIOBUTTON,57,97,
+                    35,10
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LIBDESCRIPTION      "Convert Modifiers (Discreet)"
+    IDS_PARAMETERS          "Parameters"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CONVERT_TO_POLY     "Turn to Poly"
+    IDS_KEEP_CONVEX         "Keep Convex"
+    IDS_LIMIT_SIZE          "Limit Polygon Size"
+    IDS_MAX_SIZE            "Max Polygon Size"
+    IDS_PLANAR              "Require Planar Polygons"
+    IDS_THRESH              "Planar Threshold"
+    IDS_IGNORE_VIS          "Ignore Visible Edges"
+    IDS_SEL_TYPE            "Selection Conversion"
+    IDS_SEL_LEVEL           "Selection Level"
+    IDS_MOD_CATEGORY        "MAX STANDARD"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CONVERT_TO_PATCH    "Turn to Patch"
+    IDS_PATCH_QUADS         "Quads to Quad Patches"
+    IDS_CONVERT_TO_MESH     "Turn to Mesh"
+    IDS_USE_INVIS           "Use Invisible Edges"
+    IDS_USE_SOFTSEL         "Use Soft Selection"
+    IDS_REMOVE_MID_EDGE_VERTICES "Remove Mid-Edge Vertices"
+    IDS_VERTEX              "Vertex"
+    IDS_EDGE                "Edge"
+    IDS_FACE                "Face"
+    IDS_PATCH               "Patch"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

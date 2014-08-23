@@ -1,0 +1,243 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_AUDIOFLOATPARAMS DIALOG DISCARDABLE  0, 0, 241, 186
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Audio Controller"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Choose Sound",IDC_BTN_BROWSE,8,24,56,14
+    CONTROL         "",IDC_AUDAMP_NUMSAMPLES,"CustEdit",WS_TABSTOP,191,75,30,
+                    10
+    CONTROL         "Absolute Value:",IDC_AUDAMP_ABSOLUTE,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFTTEXT | WS_TABSTOP,147,26,68,10
+    CONTROL         "",IDC_AUDAMP_MIN,"CustEdit",WS_TABSTOP,33,133,30,10
+    CONTROL         "",IDC_AUDAMP_MAX,"CustEdit",WS_TABSTOP,125,133,30,10
+    CONTROL         "Left",IDC_AUDAMP_LEFT,"Button",BS_AUTORADIOBUTTON,188,
+                    120,41,10
+    CONTROL         "Right",IDC_AUDAMP_RIGHT,"Button",BS_AUTORADIOBUTTON,188,
+                    134,32,10
+    CONTROL         "Mix",IDC_AUDAMP_MIX,"Button",BS_AUTORADIOBUTTON,188,148,
+                    42,10
+    CONTROL         "",IDC_AUDAMP_NUMSAMPLESSPIN,"SpinnerControl",0x0,221,75,
+                    7,10
+    RTEXT           "Oversampling:",IDC_STATIC,139,75,49,8
+    CONTROL         "",IDC_AUDAMP_MINSPIN,"SpinnerControl",0x0,64,133,7,10
+    RTEXT           "Min:",IDC_STATIC,10,133,22,8
+    CONTROL         "",IDC_AUDAMP_MAXSPIN,"SpinnerControl",0x0,156,133,7,10
+    RTEXT           "Max:",IDC_STATIC,86,133,38,8
+    GROUPBOX        "Channel",IDC_STATIC,184,105,52,57
+    LTEXT           "<none>",IDC_AUDAMP_FILENAME,8,11,222,9
+    GROUPBOX        "Audio File",IDC_STATIC,4,0,232,44
+    GROUPBOX        "Controller Range",IDC_STATIC,3,105,176,57
+    CONTROL         "",IDC_AUDAMP_THRESHOLD,"CustEdit",WS_TABSTOP,191,60,30,
+                    10
+    CONTROL         "",IDC_AUDAMP_THRESHOLDSPIN,"SpinnerControl",0x0,221,60,
+                    7,10
+    RTEXT           "Threshold:",IDC_STATIC,151,60,38,8
+    GROUPBOX        "Real Time Control",IDC_STATIC,4,46,125,57
+    CONTROL         "Enable Real-Time Device",IDC_AUDAMP_RECENABLE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,62,110,10
+    COMBOBOX        IDC_AUDAMP_RECDEVICE,10,75,112,56,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Sample",IDC_STATIC,132,46,104,57
+    PUSHBUTTON      "Remove Sound",IDC_BTN_REMOVESOUND,68,24,64,14
+    CONTROL         "Fast TrackView:",IDC_QUICKDRAW,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFTTEXT | WS_TABSTOP,136,88,64,10
+    PUSHBUTTON      "Close",IDC_CLOSE,184,167,52,14
+END
+
+IDD_AUDIOPOINT3PARAMS DIALOG DISCARDABLE  0, 0, 241, 196
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Audio Controller"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Choose Sound",IDC_BTN_BROWSE,8,24,56,14
+    CONTROL         "",IDC_AUDAMP_NUMSAMPLES,"CustEdit",WS_TABSTOP,191,73,30,
+                    10
+    CONTROL         "Absolute Value:",IDC_AUDAMP_ABSOLUTE,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFTTEXT | WS_TABSTOP,147,26,68,10
+    CONTROL         "",IDC_AUDAMP_BASEX,"CustEdit",WS_TABSTOP,23,117,30,10
+    CONTROL         "",IDC_AUDAMP_BASEY,"CustEdit",WS_TABSTOP,79,117,30,10
+    CONTROL         "",IDC_AUDAMP_BASEZ,"CustEdit",WS_TABSTOP,135,117,30,10
+    CONTROL         "",IDC_AUDAMP_TARGETX,"CustEdit",WS_TABSTOP,23,153,30,10
+    CONTROL         "",IDC_AUDAMP_TARGETY,"CustEdit",WS_TABSTOP,79,153,30,10
+    CONTROL         "",IDC_AUDAMP_TARGETZ,"CustEdit",WS_TABSTOP,135,153,30,
+                    10
+    CONTROL         "Left",IDC_AUDAMP_LEFT,"Button",BS_AUTORADIOBUTTON,188,
+                    118,41,10
+    CONTROL         "Right",IDC_AUDAMP_RIGHT,"Button",BS_AUTORADIOBUTTON,188,
+                    135,32,10
+    CONTROL         "Mix",IDC_AUDAMP_MIX,"Button",BS_AUTORADIOBUTTON,188,151,
+                    42,10
+    CONTROL         "",IDC_AUDAMP_BASEXSPIN,"SpinnerControl",0x0,54,117,7,10
+    RTEXT           "X:",IDC_STATIC,8,117,14,8
+    GROUPBOX        "Channel",IDC_STATIC,184,102,52,69
+    LTEXT           "<none>",IDC_AUDAMP_FILENAME,8,11,222,9
+    GROUPBOX        "Audio File",IDC_STATIC,4,0,232,44
+    GROUPBOX        "Base Point",IDC_BASEFRAME,4,102,176,33
+    CONTROL         "",IDC_AUDAMP_BASEYSPIN,"SpinnerControl",0x0,110,117,7,
+                    10
+    RTEXT           "Y:",IDC_STATIC,64,117,14,8
+    CONTROL         "",IDC_AUDAMP_BASEZSPIN,"SpinnerControl",0x0,166,117,7,
+                    10
+    RTEXT           "Z:",IDC_STATIC,120,117,14,8
+    CONTROL         "",IDC_AUDAMP_TARGETXSPIN,"SpinnerControl",0x0,54,153,7,
+                    10
+    RTEXT           "X:",IDC_STATIC,8,153,14,8
+    GROUPBOX        "Target Point",IDC_TARGETFRAME,4,138,176,33
+    CONTROL         "",IDC_AUDAMP_TARGETYSPIN,"SpinnerControl",0x0,110,153,7,
+                    10
+    RTEXT           "Y:",IDC_STATIC,64,153,14,8
+    CONTROL         "",IDC_AUDAMP_TARGETZSPIN,"SpinnerControl",0x0,166,153,7,
+                    10
+    RTEXT           "Z:",IDC_STATIC,120,153,14,8
+    CONTROL         "",IDC_AUDAMP_NUMSAMPLESSPIN,"SpinnerControl",0x0,221,73,
+                    7,10
+    RTEXT           "Oversampling:",IDC_STATIC,139,73,50,8
+    CONTROL         "",IDC_AUDAMP_THRESHOLD,"CustEdit",WS_TABSTOP,191,58,30,
+                    10
+    CONTROL         "",IDC_AUDAMP_THRESHOLDSPIN,"SpinnerControl",0x0,221,58,
+                    7,10
+    RTEXT           "Threshold:",IDC_STATIC,151,58,38,8
+    GROUPBOX        "Real Time Control",IDC_STATIC,4,46,125,53
+    CONTROL         "Enable Real-Time Device",IDC_AUDAMP_RECENABLE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,62,110,10
+    COMBOBOX        IDC_AUDAMP_RECDEVICE,10,75,112,56,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Remove Sound",IDC_BTN_REMOVESOUND,68,24,64,14
+    GROUPBOX        "Sample",IDC_STATIC,132,46,104,53
+    CONTROL         "Fast TrackView:",IDC_QUICKDRAW,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFTTEXT | WS_TABSTOP,135,86,67,10
+    PUSHBUTTON      "Close",IDC_CLOSE,184,176,52,14
+END
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 187, 68
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About AudioController"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,68,48,50,14
+    GROUPBOX        "",IDC_STATIC,5,0,176,42
+    LTEXT           "AudioController",IDC_STATIC,10,8,167,8
+    LTEXT           "Code && design by Christer Janson",IDC_STATIC,10,18,167,
+                    8
+    LTEXT           "Discreet",IDC_STATIC,10,28,167,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 10
+        RIGHTMARGIN, 177
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 61
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CJ_NOFILE           "<none>"
+    IDS_CJ_NODEVICE         "<No device found>"
+    IDS_CJ_DEVICE_BUSY      "Unable to open recording device.\nDevice busy."
+    IDS_CJ_PROGNAME         "AudioController"
+    IDS_CJ_BASESCALE        "Base Scale"
+    IDS_CJ_TARGETSCALE      "Target Scale"
+    IDS_CJ_BASEANGLE        "Base Angle"
+    IDS_CJ_TARGETANGLE      "Target Angle"
+    IDS_CJ_FLOATCONTROL     "AudioFloat"
+    IDS_CJ_POINT3CONTROL    "AudioPoint3"
+    IDS_CJ_POSITIONCONTROL  "AudioPosition"
+    IDS_CJ_ROTATIONCONTROL  "AudioRotation"
+    IDS_CJ_SCALECONTROL     "AudioScale"
+    IDS_CJ_LIBDESC          "Audio amplitude controller (Discreet)"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

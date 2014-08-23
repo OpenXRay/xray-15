@@ -1,0 +1,181 @@
+<html>
+
+<head>
+<title>Classes: CommandSequence</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="colorpik.html"><img width="96" height="20"
+    border="0" src="../images/navlt.gif" alt="ColorPicker"></a></td>
+    <td width="96" align="left"><a href="custobj.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="CustomObjHandler"></a></td>
+    <td width="96" align="left"><a href="../classes.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Classes"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>CommandSequence</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwcmdseq.h">lwcmdseq.h</a></small></p>
+    <p>Command sequence plug-ins issue commands to create and manipulate geometry in Modeler.
+    They also have access to the same mesh editing functions as the <a href="me.html">MeshDataEdit</a>
+    class.</p>
+    <p><strong>Activation Function</strong></p>
+    <pre>   XCALL_( int ) MyCmdSeq( long version, GlobalFunc *global,
+      LWModCommand *local, void *serverData );</pre>
+    <p>The <tt>local</tt> argument to a command sequence's activation function is an
+    LWModCommand.</p>
+    <pre>   typedef struct st_LWModCommand {
+      void          *<strong>data</strong>;
+      const char    *<strong>argument</strong>;
+      LWCommandCode (*<strong>lookup</strong>)   (void *, const char *cmdName);
+      int           (*<strong>execute</strong>)  (void *, LWCommandCode cmd, int argc,
+                                   const DynaValue *argv,
+                                   EltOpSelect, DynaValue *result);
+      MeshEditBegin *<strong>editBegin</strong>;
+      int           (*<strong>evaluate</strong>) (void *, const char *command);
+   } LWModCommand;</pre>
+    <dl>
+      <tt>
+      <dt><strong>data</strong></dt>
+      </tt>
+      <dd>An opaque pointer to data used internally by Modeler. Pass this as the first argument to
+        the <tt>lookup</tt>, <tt>execute</tt> and <tt>evaluate</tt> functions.</dd>
+      <tt>
+      <dt><br>
+        <strong>argument</strong></dt>
+      </tt>
+      <dd>Users and other plug-ins can invoke your plug-in with arguments, which are stored here
+        as a string.</dd>
+      <tt>
+      <dt><br>
+        cmdcode = <strong>lookup</strong>( data, cmdname )</dt>
+      </tt>
+      <dd>Returns an integer code corresponding to the command name. The command is issued by
+        passing the command code to the <tt>execute</tt> function. Command codes are constant for
+        a given Modeler session, so this only needs to be called once per command, after which the
+        codes can be cached and then used in any number of calls to <tt>execute</tt>.</dd>
+      <tt>
+      <dt><br>
+        result = <strong>execute</strong>( data, cmdcode, argc, argv, selection, cmdresult )</dt>
+      </tt>
+      <dd>Issue the command given by the command code argument. <tt>argv</tt> is an array of <a
+        href="../dynaval.html">DynaValue</a> arguments. <tt>argc</tt> is the number of arguments
+        in the <tt>argv</tt> array. The selection determines which geometry will be affected by
+        the command and can be any one of the <a href="me.html#eltopselect">EltOpSelect</a> codes
+        except <tt>OPSEL_MODIFY</tt>. The result of the command is written in <tt>cmdresult</tt>.
+        The function returns <tt>CSERR_NONE</tt> (0) if it succeeds or one of the following
+        non-zero error codes. <dl>
+          <tt>
+          <dt><br>
+            CSERR_MEMORY</dt>
+          <dt>CSERR_IO</dt>
+          <dt>CSERR_USERABORT</dt>
+          <dt>CSERR_ARGCOUNT</dt>
+          <dt>CSERR_ARGTYPE</dt>
+          <dt>CSERR_ARGVALUE</dt>
+          <dt>CSERR_OPFAILURE</dt>
+          <dt>CSERR_BADSEL</dt>
+          </tt>
+        </dl>
+      </dd>
+      <tt>
+      <dt><br>
+        edit = <strong>editBegin</strong>( pnt_bufsize, pol_bufsize, opsel )</dt>
+      </tt>
+      <dd>Begin a mesh edit. The buffer sizes are used to create temporary buffers associated with
+        each point and polygon. Modeler allocates and frees this memory for you, and you can use
+        it for any per-point or per-polygon data you might need during the edit. Points and
+        polygons are flagged as selected according to the code you pass in <tt>opsel</tt>.<p>The <tt>editBegin</tt>
+        function is identical to the function passed as the local data to <a href="me.html">mesh
+        edit</a> plug-ins. See that page for complete documentation of the MeshEditOp structure it
+        returns. Command sequence plug-ins can perform multiple mesh edits. Each edit begins by
+        calling this function to get a MeshEditOp and ends when the MeshEditOp's <tt>done</tt>
+        function is called. No commands can be issued during a mesh edit.</p>
+      </dd>
+      <tt>
+      <dt>result = <strong>evaluate</strong>( data, cmdstring )</dt>
+      </tt>
+      <dd>Issue the command with the name and arguments in the command string. This is an
+        alternative to using <tt>lookup</tt> and <tt>execute</tt>. The command and its arguments
+        are written to a single string and delimited by spaces.</dd>
+    </dl>
+    <p>See the <a href="../commands.html">Commands</a> pages for a complete list of the
+    commands that can be issued in Modeler, as well as a detailed explanation of the
+    formatting of command arguments for both the <tt>execute</tt> and <tt>evaluate</tt>
+    methods.</p>
+    <p><strong>Example</strong></p>
+    <p>The <a href="../../sample/Modeler/CommandSequence/dna/">DNA</a> sample is a CommandSequence plug-in that builds
+    classic Watson-Crick DNA molecules. It uses the <a href="../../sample/Modeler/Utility/modlib/">ModLib</a>
+    static-link library, which greatly simplifies command execution by translating commands
+    into function calls. The library currently contains about 170 functions that cover Modeler
+    commands, mesh edit functions, and globals.</p>
+    <p>This ModLib function executes the <tt>MAKEBALL</tt> command, building the DynaValue
+    argument list and calling the <tt>lookup</tt> and <tt>execute</tt> functions. (ModData is
+    a ModLib structure that caches the LWModCommand pointer and the data returned from a
+    number of globals.)</p>
+    <pre>   int csMakeBall( double *radius, int nsides, int nsegments,
+      double *center )
+   {
+      static LWCommandCode ccode;
+      ModData *md = getModData();
+      DynaValue argv[ 4 ];
+
+      assert( md-&gt;edit == NULL );
+
+      argv[ 0 ].type = DY_VFLOAT;
+      argv[ 0 ].fvec.val[ 0 ] = radius[ 0 ];
+      argv[ 0 ].fvec.val[ 1 ] = radius[ 1 ];
+      argv[ 0 ].fvec.val[ 2 ] = radius[ 2 ];
+
+      argv[ 1 ].type = DY_INTEGER;
+      argv[ 1 ].intv.value = nsides;
+
+      argv[ 2 ].type = DY_INTEGER;
+      argv[ 2 ].intv.value = nsegments;
+
+      if ( center ) {
+         argv[ 3 ].type = DY_VFLOAT;
+         argv[ 3 ].fvec.val[ 0 ] = center[ 0 ];
+         argv[ 3 ].fvec.val[ 1 ] = center[ 1 ];
+         argv[ 3 ].fvec.val[ 2 ] = center[ 2 ];
+      }
+      else argv[ 3 ].type = DY_NULL;
+
+      if ( !ccode )
+         ccode = md-&gt;local-&gt;lookup( md-&gt;local-&gt;data, &quot;MAKEBALL&quot; );
+
+      md-&gt;cmderror = md-&gt;local-&gt;execute( md-&gt;local-&gt;data, ccode,
+         4, argv, md-&gt;opsel, &amp;md-&gt;result );
+
+      return md-&gt;cmderror == CSERR_NONE;
+   }</pre>
+    <p>Using ModLib makes DNA's command processing almost as simple as scripting. Below is a
+    code fragment from the function in the DNA plug-in that creates the cylinders representing
+    atomic bonds.</p>
+    <pre>   csSetLayer( layer2 );
+   csSetDefaultSurface( surface_name( snum ));
+   csMakeDisc( r, h, 0, &quot;Y&quot;, bond_nsides, bond_nsegments, c );
+   csRotate( xrot, &quot;X&quot;, NULL );
+   csRotate( yrot, &quot;Y&quot;, NULL );
+   csMove( pt );
+   rot = 36 * j;
+   csRotate( rot, &quot;Y&quot;, NULL );
+   csCut();
+   csSetLayer( layer1 );
+   csPaste();</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

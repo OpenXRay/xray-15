@@ -1,0 +1,244 @@
+<html>
+
+<head>
+<title>Globals: Preview Functions</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="particle.html"><img width="96" height="20"
+    border="0" src="../images/navlt.gif" alt="Particle Services"></a></td>
+    <td width="96" align="left"><a href="prodinfo.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Product Info"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Preview Functions</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwpreview.h">lwpreview.h</a></small></p>
+    <p>The Preview Functions global is the plug-in API for LightWave&reg;'s VIPER (Versatile
+    Interactive Preview Render) window. VIPER allows users to preview the effects of <a
+    href="../classes/shader.html">shader</a>, <a href="../classes/environ.html">environment</a>,
+    <a href="../classes/volume.html">volumetric</a>, <a href="../classes/pxlfilt.html">pixel
+    filter</a> and <a href="../classes/imgfilt.html">image filter</a> plug-ins. It uses image
+    buffers from the most recent test render to generate a reduced-size rendering of the
+    scene, and it can composite this with your plug-in's output while the user changes your
+    parameters.</p>
+    <p>The previewer is an extension of your plug-in's interface. The API supplies functions
+    that let you subscribe (install), set the context (tell VIPER that your interface is the
+    active one), open the VIPER window, give VIPER your rendering callbacks, and get the
+    prerendered image and information about the camera.</p>
+    <p>This is a <em>low-level</em> API, and you may never need to use it. Beginning with
+    LightWave&reg; 7.0, VIPER can preview your plug-in automatically, without your intervention. It
+    switches contexts transparently and calls your regular <a href="../handler.html">handler</a>
+    callbacks to render the preview. The rendering of the preview occurs whenever you call the
+    <a href="instupdt.html">Instance Update</a> global.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWPreviewFuncs *pvf;
+   pvf = global( LWPREVIEWFUNCS_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWPreviewFuncs.</p>
+    <pre>   typedef struct st_LWPreviewFuncs {
+      PvContextID (*<strong>subscribe</strong>)  (char *title, void *userData,
+                                   closeFunc *);
+      void        (*<strong>unsubscribe</strong>)(PvContextID);
+      void        (*<strong>open</strong>)       (PvContextID);
+      void        (*<strong>close</strong>)      (void);
+      int         (*<strong>isOpen</strong>)     (void);
+      void        (*<strong>setContext</strong>) (PvContextID);
+      void        (*<strong>setClick</strong>)   (PvContextID, ClickFunc *);
+      void        (*<strong>setRender</strong>)  (PvContextID, void *renderData,
+                                   InitFunc *, CleanupFunc *,
+                                   EvaluateFunc *);    
+      void        (*<strong>setOptions</strong>) (PvContextID, char **list,
+                                   OptionsFunc *, int selection);    
+      void        (*<strong>startRender</strong>)(PvContextID);
+      void        (*<strong>stopRender</strong>) (PvContextID);
+      void        (*<strong>getPixel</strong>)   (PvSample *pixel);
+      LWImageID   (*<strong>getBitmap</strong>)  (int *width, int *height);
+      LWItemID    (*<strong>getCamera</strong>)  (double pos[3], double rot[3],
+                                   double *zoomFactor);
+      void        (*<strong>getView</strong>)    (int *width, int *height,
+                                   double *pixelAspect);
+      void        (*<strong>setPreset</strong>)  (PvContextID, presetFunc *);
+   } LWPreviewFuncs;</pre>
+    <dl>
+      <tt>
+      <dt>preview = <strong>subscribe</strong>( title, userdata, close_func )</dt>
+      </tt>
+      <dd>Obtain a PvContextID that identifies your plug-in instance to the preview system.
+        Generally you'll call this from your interface activation function. The title is the
+        string that should appear in the preview window's title bar when the previewer is set to
+        your context. The user data is passed to your click, options and close callbacks.</dd>
+      <tt>
+      <dt><br>
+        <strong>unsubscribe</strong>( context )</dt>
+      </tt>
+      <dd>Invalidate your context ID and free resources allocated by <tt>subscribe</tt>.</dd>
+      <tt>
+      <dt><br>
+        <strong>open</strong>( context )</dt>
+      </tt>
+      <dd>Open the preview window.</dd>
+      <tt>
+      <dt><br>
+        <strong>close</strong>()</dt>
+      </tt>
+      <dd>Close the preview window.</dd>
+      <tt>
+      <dt><br>
+        isopen = <strong>isOpen</strong>()</dt>
+      </tt>
+      <dd>Returns TRUE if the preview window is open.</dd>
+      <tt>
+      <dt><br>
+        <strong>setContext</strong>( context )</dt>
+      </tt>
+      <dd>Set the preview window's context. After this, the interface and rendering callbacks
+        associated with the context ID will be the ones the previewer calls when responding to the
+        user and generating an image.</dd>
+      <tt>
+      <dt><br>
+        <strong>setClick</strong>( context, click_func )</dt>
+      </tt>
+      <dd>Set the callback that will be called when the user clicks on the preview image.</dd>
+      <tt>
+      <dt><br>
+        <strong>setRender</strong>( context, render_data, init_func, cleanup_func, eval_func )</dt>
+      </tt>
+      <dd>Set the callbacks that will be called when the previewer renders its display. The render
+        data will be passed to each of the callbacks. Typically, it's your instance data, and the
+        callbacks call your standard <a href="../handler.html">handler</a> functions.</dd>
+      <tt>
+      <dt><br>
+        <strong>setOptions</strong>( context, list, options_func, selection )</dt>
+      </tt>
+      <dd>Set the options that will appear in the Options popup when your context is the active
+        one. This includes a NULL-terminated array of strings, a callback that's called when an
+        option is selected by the user, and the index of the option that should initially appear
+        selected.</dd>
+      <tt>
+      <dt><br>
+        <strong>startRender</strong>( context )</dt>
+      </tt>
+      <dd>Force the previewer to render an image.</dd>
+      <tt>
+      <dt><strong><br>
+        stopRender</strong>( context )</dt>
+      </tt>
+      <dd>Interrupt any rendering being done by the previewer.</dd>
+      <tt>
+      <dt><br>
+        <strong>getPixel</strong>( pixel )</dt>
+      </tt>
+      <dd>Get information about a pixel in the previewer's prerendered buffers. Fill in the <tt>x</tt>
+        and <tt>y</tt> fields of the PvSample structure for the position of the pixel in the
+        preview image. The previewer will return information about the pixel in the other fields.</dd>
+      <tt>
+      <dt><br>
+        image = <strong>getBitmap</strong>( width, height )</dt>
+      </tt>
+      <dd>Returns an image ID for the previewer's RGBA buffers. You can use this with the <a
+        href="imglist.html">Image List</a> global to query the image. The previewer writes the
+        image dimensions in the <tt>width</tt> and <tt>height</tt> arguments.</dd>
+      <tt>
+      <dt><br>
+        camera = <strong>getCamera</strong>( pos, rot, zoom )</dt>
+      </tt>
+      <dd>Get information about the state of the camera at the time the previewer's buffers were
+        generated. You can get more detailed information from the <a href="iteminfo.html">Item
+        Info</a> and <a href="caminfo.html">Camera Info</a> globals, but it may not match the
+        image in the previewer, since the user may have moved the camera or changed its settings
+        after the previewer image was created.</dd>
+      <tt>
+      <dt><br>
+        <strong>getView</strong>( width, height, pixel_aspect )</dt>
+      </tt>
+      <dd>Get information about the size and pixel aspect of the previewer image.</dd>
+      <tt>
+      <dt><br>
+        <strong>setPreset</strong>( context, preset_func )</dt>
+      </tt>
+      <dd>Set the callback that will be called when the user wants to create a shelf preset for
+        your plug-in's settings.</dd>
+    </dl>
+    <p><strong>Pixel Sample</strong></p>
+    <p>The <tt>getPixel</tt> function and the click and evaluate callbacks store information
+    about a pixel in a PvSample.</p>
+    <pre>   typedef struct st_PvSample {
+      int         x, y;
+      float       rgbaz[5];
+      LWMicropol  mp;
+   } PvSample;</pre>
+    <dl>
+      <tt>
+      <dt><strong>x, y</strong></dt>
+      </tt>
+      <dd>The pixel coordinates.</dd>
+      <tt>
+      <dt><br>
+        <strong>rgbaz</strong></dt>
+      </tt>
+      <dd>The red, green, blue, alpha and depth value at the pixel.</dd>
+      <tt>
+      <dt><br>
+        <strong>mp</strong></dt>
+      </tt>
+      <dd>An LWMicropol structure describing the geometry visible in the pixel. See the
+        explanation of this structure on the <a href="txtrfunc.html">Texture Functions</a> page.<p>The
+        previewer can only fill in the fields for which it knows the values. These include <tt>gNorm</tt>,
+        <tt>wNorm</tt> (the same as <tt>gNorm</tt> in this case), <tt>oPos</tt>, <tt>wPos</tt>, <tt>oAxis</tt>,
+        <tt>wAxis</tt> and the <tt>verts</tt> and <tt>weights</tt> arrays. If the display and
+        render subdivision levels differ, the point IDs in the <tt>verts</tt> array may not be
+        valid (the previewer has the render mesh, but the plug-in may have the display mesh).</p>
+      </dd>
+    </dl>
+    <p><strong>Callbacks</strong></p>
+    <p>The previewer uses callbacks both for rendering and to allow your plug-in to respond to
+    user actions.</p>
+    <p><em><strong>Interface</strong></em></p>
+    <pre>   typedef int  clickFunc(int count, void *userData, PvSample *pixel); 
+   typedef void optionsFunc(int option, void *userData);
+   typedef void presetFunc(void *userData, LWImageID image);
+   typedef void closeFunc(void *userData);</pre>
+    <p>The click callback tells you that the user has clicked on the preview image and gives
+    you information about the pixel. The options callback is called when the user has selected
+    an option from the custom Options pop-up on the preview window. The first argument is an
+    index into the array of strings you passed to <tt>setOptions</tt>. The close callback is
+    called when the user closes the preview window.</p>
+    <p>The preset callback tells you that the user wants to add a preset to the shelf for your
+    plug-in's settings. The image is the same one returned by <tt>getBitmap</tt>. Use the <a
+    href="shelf.html">Shelf Functions</a> global to add the preset.</p>
+    <p>The user data for all of these is the pointer you passed to <tt>subscribe</tt>.</p>
+    <p><em><strong>Rendering</strong></em></p>
+    <pre>   typedef int  initFunc(void *renderData, int manual);
+   typedef void cleanupFunc(void *renderData);
+   typedef int  evaluateFunc(void *renderData, int w, int h,
+                   PvSample *pixel);</pre>
+    <p>Your preview init function should perform the same kinds of operations that your
+    handler <tt>init</tt> and <tt>newTime</tt> callbacks perform, and your preview cleanup is
+    analogous to your handler <tt>cleanup</tt>. The second argument to the init callback is
+    TRUE if the user explicitly requested the render (by clicking on a button in the
+    previewer's window).</p>
+    <p>The evaluate callback receives the width and height of the preview image and a PvSample
+    for the pixel to be evaluated. Your evaluate writes new values in the <tt>rgbaz</tt> field
+    of the PvSample. The PvSample's LWMicropol is read-only (writing to it has no effect).</p>
+    <p><strong>History</strong></p>
+    <p>The <tt>setPreset</tt> function was added in LightWave&reg; 7.0, but <tt>LWPREVIEWFUNCS_GLOBAL</tt>
+    was <em>not</em> incremented. Before calling <tt>setPreset</tt>, you can use the <a
+    href="prodinfo.html">Product Info</a> global to determine whether you're running in a
+    version of LightWave&reg; prior to 7.0.</td>
+  </tr>
+</table>
+</body>
+</html>

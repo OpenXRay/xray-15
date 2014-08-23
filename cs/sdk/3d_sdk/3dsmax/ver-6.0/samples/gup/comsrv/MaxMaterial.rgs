@@ -1,0 +1,25 @@
+HKCR
+{
+	Comsrv.MaxMaterial.1 = s 'MaxMaterial Class'
+	{
+		CLSID = s '{CA37DBC7-EE5F-41CD-A864-D2CF6DD37523}'
+	}
+	Comsrv.MaxMaterial = s 'MaxMaterial Class'
+	{
+		CLSID = s '{CA37DBC7-EE5F-41CD-A864-D2CF6DD37523}'
+		CurVer = s 'Comsrv.MaxMaterial.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {CA37DBC7-EE5F-41CD-A864-D2CF6DD37523} = s 'MaxMaterial Class'
+		{
+			ProgID = s 'Comsrv.MaxMaterial.1'
+			VersionIndependentProgID = s 'Comsrv.MaxMaterial'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '3dsmax.exe'
+			InprocHandler32 = s 'ole32.dll'
+			val AppID = s '{4AD72E62-5A4B-11D2-91CB-0060081C257E}'
+			'TypeLib' = s '{4AD72E62-5A4B-11D2-91CB-0060081C257E}'
+		}
+	}
+}

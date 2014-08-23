@@ -1,0 +1,127 @@
+//_____________________________________________________________________________
+//
+//	File:		OmniLight.nvv
+//	
+//_____________________________________________________________________________
+
+
+//_____________________________________________________________________________
+//
+//	Include files	
+//
+//_____________________________________________________________________________
+
+#include "ShaderConst.h"
+
+//_____________________________________________________________________________
+//
+//	Defines	
+//
+//_____________________________________________________________________________
+
+#define S_WORLD 			r0
+#define T_WORLD 			r1
+#define SxT_WORLD 			r2
+#define LIGHT_LOCAL 		r3
+#define LIGHT_LOCAL_BASIS	r4
+#define POSITION_WORLD		r5
+#define LIGHT_ATTEN			r6
+#define WORLD_TEMP	 		r7
+
+vs.1.0
+
+//_____________________________________
+//
+//	Transform 
+//
+//_____________________________________
+
+dp4 oPos.x, V_POSITION, c[CV_WORLDVIEWPROJ_0]
+dp4 oPos.y, V_POSITION, c[CV_WORLDVIEWPROJ_1]
+dp4 oPos.z, V_POSITION, c[CV_WORLDVIEWPROJ_2]
+dp4 oPos.w, V_POSITION, c[CV_WORLDVIEWPROJ_3]
+
+//_____________________________________
+//
+//	Transform 
+//
+//_____________________________________
+
+dp4 POSITION_WORLD.x, V_POSITION, c[CV_WORLD_0]
+dp4 POSITION_WORLD.y, V_POSITION, c[CV_WORLD_1]
+dp4 POSITION_WORLD.z, V_POSITION, c[CV_WORLD_2]
+
+//_____________________________________
+//
+//	Vector 
+//
+//_____________________________________
+
+add LIGHT_LOCAL, c[CV_LIGHT_POSITION], -POSITION_WORLD.xyz 
+
+//_____________________________________
+//
+//	Atten
+//
+//_____________________________________
+
+mul LIGHT_ATTEN, LIGHT_LOCAL, c[CV_LIGHT_OUTER_RANGE].x
+add LIGHT_ATTEN, LIGHT_ATTEN, c[CV_HALF].x
+
+//_____________________________________
+//
+//	Transform 
+//
+//_____________________________________
+
+m3x3 S_WORLD,    V_S,			c[CV_WORLD_0]
+m3x3 SxT_WORLD,  V_NORMAL,		c[CV_WORLD_0]
+mul  WORLD_TEMP, S_WORLD.zxyw,	SxT_WORLD.yzxw   
+mad  T_WORLD,    S_WORLD.yzxw,	SxT_WORLD.zxyw, -WORLD_TEMP
+
+//_____________________________________
+//
+//	Scale 
+//
+//_____________________________________
+
+mul S_WORLD.xyz, S_WORLD.xyz, c[CV_SCALE].w
+mul T_WORLD.xyz, T_WORLD.xyz, c[CV_SCALE].w
+
+//_____________________________________
+//
+//	Transform 
+//
+//_____________________________________
+
+dp3 oT1.x, S_WORLD.xyz,   LIGHT_LOCAL
+dp3 oT1.y, T_WORLD.xyz,   LIGHT_LOCAL
+dp3 oT1.z, SxT_WORLD.xyz, LIGHT_LOCAL
+mov oT1.w, c[CV_ONE].w
+
+//_____________________________________
+//
+//	Output atten  
+//
+//_____________________________________
+
+mov oT2.xy, LIGHT_ATTEN.xy
+mov oT3.x,  LIGHT_ATTEN.z
+mov oT3.y,  c[CV_HALF].x
+
+//_____________________________________
+//
+//	Output texture  
+//
+//_____________________________________
+
+mov oT0, V_TEXTURE_3	// Normal
+
+
+
+
+
+
+
+
+

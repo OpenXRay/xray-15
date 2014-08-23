@@ -1,0 +1,171 @@
+<html>
+
+<head>
+<title>Plug-in Classes</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="compat.html"><img width="96" height="20" border="0"
+    src="images/navlt.gif" alt="Compatibility"></a></td>
+    <td width="96" align="left"><a href="globals.html"><img width="64" height="20" border="0"
+    src="images/navrt.gif" alt="Globals"></a></td>
+    <td width="384" align="right"><a href="index.html"><img width="230" height="20" border="0"
+    src="images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Plug-in Classes</h3>
+    <p>LightWave&reg; plug-ins are divided into categories called <em>classes</em>. For those
+    familiar with the formal classes supported by object-oriented programming languages, this
+    term may have unintended implications. The class of a plug-in simply defines what kind of
+    plug-in it is, what it does, and how it interacts with LightWave&reg;.</p>
+    <div align="center"><center><table border="0" cellpadding="4" cellspacing="0">
+      <tr>
+        <td colspan="3" align="center"><strong>Class Index</strong></td>
+      </tr>
+      <tr>
+        <td width="450" valign="top" colspan="3">
+          <hr>
+        </td>
+      </tr>
+      <tr>
+        <td width="150" valign="top"><a href="classes/animload.html">AnimLoaderHandler</a><br>
+        <a href="classes/animsave.html">AnimSaverHandler</a>
+          <a href="classes/animuv.html">AnimUV</a><br>
+        <a href="classes/channel.html">ChannelHandler</a><br>
+        <a href="classes/colorpik.html">ColorPicker</a><br>
+        <a href="classes/cs.html">CommandSequence</a><br>
+        <a href="classes/custobj.html">CustomObjHandler</a><br>
+        <a href="classes/displace.html">DisplacementHandler</a><br>
+        <a href="classes/environ.html">EnvironmentHandler</a><br>
+        <a href="classes/freq.html">FileRequester</a><br>
+        </td>
+        <td width="150" valign="top"><a href="classes/framebuf.html">FrameBufferHandler</a><br>
+        <a href="classes/globserv.html">Global</a><br>
+        <a href="classes/imgfilt.html">ImageFilterHandler</a><br>
+        <a href="classes/imgload.html">ImageLoader</a><br>
+        <a href="classes/imgsave.html">ImageSaver</a><br>
+        <a href="classes/itemmot.html">ItemMotionHandler</a><br>
+        <a href="classes/generic.html">LayoutGeneric</a><br>
+        <a href="classes/laytool.html">LayoutTool</a><br>
+        <a href="classes/master.html">MasterHandler</a><br>
+        </td>
+        <td width="150" valign="top"><a href="classes/me.html">MeshDataEdit</a><br>
+        <a href="classes/metool.html">MeshEditTool</a><br>
+        <a href="classes/objload.html">ObjectLoader</a><br>
+        <a href="classes/objrep.html">ObjReplacementHandler</a><br>
+        <a href="classes/pxlfilt.html">PixelFilterHandler</a><br>
+          <a href="classes/polytype.html">PolygonType</a><br>
+        <a href="classes/texture.html">ProceduralTextureHandler</a><br>
+        <a href="classes/scenecvt.html">SceneConverter</a><br>
+        <a href="classes/shader.html">ShaderHandler</a><br>
+        <a href="classes/volume.html">VolumetricHandler</a><br>
+        </td>
+      </tr>
+    </table>
+    </center></div><p>&nbsp;<p><strong>Thumbnail Descriptions</strong><dl>
+      <dt><a href="classes/animload.html">AnimLoaderHandler</a><br>
+        <a href="classes/animsave.html">AnimSaverHandler</a></dt>
+      <dd>Load and save files containing animation streams, e.g. MPEG, QuickTime and AVI files.</dd>
+      <dt>&nbsp;</dt>
+      <dt><a href="classes/animuv.html">AnimUV</a></dt>
+      <dd>Provides the ability to animate UV texture coordinates.</dd>
+      <dt><br>
+        <a href="classes/channel.html">ChannelHandler</a></dt>
+      <dd>Channel handlers can be applied to any animation parameter that can vary over time. They
+        modify or replace the value of the parameter.</dd>
+      <dt><br>
+        <a href="classes/colorpik.html">ColorPicker</a></dt>
+      <dd>Provide a user interface for selecting colors.</dd>
+      <dt><br>
+        <a href="classes/cs.html">CommandSequence</a></dt>
+      <dd>Modeler plug-ins that can do almost anything the user can do through the interface.</dd>
+      <dt><br>
+        <a href="classes/custobj.html">CustomObjHandler</a></dt>
+      <dd>Layout plug-ins that add custom drawing to an object in Layout's interface. These are
+        often used to add visual feedback for the parameters controlled by null objects, but they
+        can be used with any object.</dd>
+      <dt><br>
+        <a href="classes/displace.html">DisplacementHandler</a></dt>
+      <dd>Deform an object during animation by moving its points.</dd>
+      <dt><br>
+        <a href="classes/environ.html">EnvironmentHandler</a></dt>
+      <dd>Replace the render backdrop, for procedural sky and ground rendering, for example.</dd>
+      <dt><br>
+        <a href="classes/freq.html">FileRequester</a></dt>
+      <dd>Provide a user interface for selecting files (an alternative to the host system's
+        default file dialog).</dd>
+      <dt><br>
+        <a href="classes/framebuf.html">FrameBufferHandler</a></dt>
+      <dd>Provide a display or a device interface for rendered frames.</dd>
+      <dt><br>
+        <a href="classes/globserv.html">Global</a></dt>
+      <dd>Provide services to other plug-ins. See the <a href="globals.html">globals</a> section
+        for information about LightWave&reg;'s built-in globals.</dd>
+      <dt><br>
+        <a href="classes/imgfilt.html">ImageFilterHandler</a></dt>
+      <dd>Image post-processing of rendered frames.</dd>
+      <dt><br>
+        <a href="classes/imgload.html">ImageLoader</a><br>
+        <a href="classes/imgsave.html">ImageSaver</a></dt>
+      <dd>Load and save files containing still images. Support for a number of image file formats
+        is provided through plug-ins of these classes.</dd>
+      <dt><br>
+        <a href="classes/itemmot.html">ItemMotionHandler</a></dt>
+      <dd>Animate the position, size and scale of an item.</dd>
+      <dt><br>
+        <a href="classes/generic.html">LayoutGeneric</a></dt>
+      <dd>Miscellaneous utilities, Layout commands.</dd>
+      <dt><br>
+        <a href="classes/laytool.html">LayoutTool</a></dt>
+      <dd>Interactive custom tools in Layout.</dd>
+      <dt><br>
+        <a href="classes/master.html">MasterHandler</a></dt>
+      <dd>These receive event notifications from Layout and can control the behavior of other
+        plug-ins based on those events.</dd>
+      <dt><br>
+        <a href="classes/me.html">MeshDataEdit</a></dt>
+      <dd>Modeler plug-ins that create and modify geometry at the point and polygon level.</dd>
+      <dt><br>
+        <a href="classes/metool.html">MeshEditTool</a></dt>
+      <dd>Mesh editing with full user interactivity.</dd>
+      <dt><br>
+        <a href="classes/objload.html">ObjectLoader</a></dt>
+      <dd>Load the 3D geometry data in non-LightWave&reg; object files.</dd>
+      <dt><br>
+        <a href="classes/objrep.html">ObjReplacementHandler</a></dt>
+      <dd>Replace the geometry of an object during animation.</dd>
+      <dt><br>
+        <a href="classes/pxlfilt.html">PixelFilterHandler</a></dt>
+      <dd>Modify or replace the value of each pixel sample during rendering.</dd>
+      <dt><br>
+        <a href="classes/polytype.html">PolygonType</a></dt>
+      <dd>Allows plug-ins to generate custom polygonal mesh data in real time.</dd>
+      <dt>&nbsp;</dt>
+      <dt>
+        <a href="classes/texture.html">ProceduralTextureHandler</a></dt>
+      <dd>Procedural textures are just functions, like fractal noise, useful for adding detail to
+        the appearance of an object or for modulating an item's motion.</dd>
+      <dt><br>
+        <a href="classes/scenecvt.html">SceneConverter</a></dt>
+      <dd>Loads the animation data in non-LightWave&reg; scene files.</dd>
+      <dt><br>
+        <a href="classes/shader.html">ShaderHandler</a></dt>
+      <dd>Modifies the appearance of an object's surface.</dd>
+      <dt><br>
+        <a href="classes/volume.html">VolumetricHandler</a></dt>
+      <dd>Creates volumetric rendering effects, including transmission and scattering through
+        transparent media, and hypertexturing.</dd>
+    </dl>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

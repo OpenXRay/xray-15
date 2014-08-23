@@ -1,0 +1,280 @@
+This is an overview of the classes included in the Morpher - taken from the MorpherAPI example included in
+the HOWTO section of the SDK.
+
+
+/*===========================================================================*\
+ |	Class ID information
+\*===========================================================================*/
+
+classID for Morpher Modifier: Class_ID(0x17bb6854, 0xa5cba2a3)
+classID for Morpher Material: Class_ID(0x4b9937e0, 0x3a1c3da4)
+
+
+/*===========================================================================*\
+ |	Parameter Block information (main)
+\*===========================================================================*/
+
+Primary Paramblock location:
+class MorphR3 -> 'pblock'
+
+Paramblock Index:
+PB_OV_USELIMITS		0			-- whether or not the global 'Use Limits' checkbox is on
+PB_OV_SPINMIN		1			-- the low clamp value for global limits
+PB_OV_SPINMAX		2			-- the high clamp value for global limits
+PB_OV_USESEL		3			-- whether or not global vertex selection button is on
+PB_AD_VALUEINC		4			-- the spinner increment value (0,1,2)
+PB_CL_AUTOLOAD		5			-- whether or not 'Autoload Targets' is active on channel list
+
+
+/*===========================================================================*\
+ |	Main Class descriptions
+\*===========================================================================*/
+
+morphChannel
+
+Each channel in the morpher is made up of a morphChannel class. It holds all the information
+about a morph target that the morpher needs to be able to create the morph result.
+It also holds functions that will initialize the class from nodes in the scene, rebuild the
+internal data, delete the channel, etc. Think of this class being the morphic data management system.
+
+
+morphCache
+
+Most developers will not need to use this class, as it is internally managed to keep a 
+persistent cache of the input morphable object.
+Contains some functions to destroy and rebuild the cache.
+
+
+MorphR3 : ( Modifier, TimeChangeCallback )
+
+The main modifier class. 
+This contains the bank of morphChannel records (in an array called chanBank), as well as the 
+primary parameter block, various global variables and some functions for handling all the updating
+or changing of the UI panels. Think of this class being the UI management system.
+
+
+M3MatDlg : ( ParamDlg )
+M3Mat : ( Mtl )
+
+The two classes that manage the Morpher Material. Only small, but they allow the developer to
+refresh the link to the morpher modifier, and access the various submaterials and settings thereof.
+
+
+
+/*===========================================================================*\
+ |	Detailed Description:   Class morphChannel
+\*===========================================================================*/
+
+MorphR3		*mp;
+
+	This is a pointer to the MorphR3 interface.
+
+int			nPts;
+int			nmPts;
+
+	Two integer values describing the number of points in this record. The nPts 
+	value is the total number of points in the object. The nmPts value is the
+	number of 'morphable' points in the object. A morphable point is one that is
+	significantly different from the original.
+
+	One of the Morpher's optimization methods is to only work with those verticies
+	that are different in position or weight than that of the original object. When
+	a target is assigned and the optimizations are processed, this nmPts value will
+	be filled with the number of 'different points'
+
+int*		mOptdata;
+
+	A list of the vertex indicies that are different - see above. The size of this array
+	will be 'nmPts' long. This allows the morpher to know very quickly which verticies
+	in the object are morphable.
+
+Point3*		mPoints;
+Point3*		mDeltas;
+double*		mWeights;
+
+	mPoints and mWeights contain the complete representation of the geometry of the object
+	in point and weight (in terms of NURBS) form. These are used in advanced modifier tasks
+	such as extracting objects from the morpher or creating morph targets from existing morph
+	results. mDeltas are the difference values from the original values to the new target object.
+	The morpher does the job of keeping all of these values up to date.
+
+BitArray	mSel;
+
+	A byte array of selected points, extracted from the target when processed.
+
+INode*		mConnection;
+
+	If this channel has an active connection to an object in the scene (ie, the original target
+	node hasn't been deleted by the user), then this will contain the INode pointer to that
+	target object.
+
+TSTR		mName;
+
+	The public name of the morphchannel - this is what is displayed in the channel list UI.
+
+BOOL		mActive, mModded, mUseLimit, mUseSel;
+float		mSpinmin,mSpinmax;
+
+	Various, non-animatable stuff
+	mActive is TRUE if the channel has data in it in some form
+	mModded is TRUE if the channel has been changed in SOME form.
+		ie, had its name changed or similar
+	mUseLimit is TRUE if the channel limits are turned on
+	mSpinmin and mSpinmax are the two clamp values for channel limits
+	mUseSel is TRUE if the channel respects vertex/point selection
+
+BOOL		mInvalid;
+	
+	Set to TRUE if the channel cannot be used in the morph result - ie, its point count is wrong, etc.
+	It will appear as GREY STATUS in the channel list UI if set to TRUE.
+
+BOOL		mActiveOverride;
+
+	If FALSE, the channel is not used in the morph result. If TRUE, it is.
+	It will appear as GREY STATUS in the channel list UI if set to FALSE.
+
+IParamBlock* cblock;
+
+	A parameter block per channel holds it's animatable channel value. It has only 
+	one entry, index 0, which holds the floating point value.
+
+void	ResetMe();
+
+	Delete and reset the channel. NOTE: you still have to wire in a new paramblock into 
+	the morph channel. Check the MorpherView utility for example code.
+
+float	getMemSize();
+
+	Get a rough approximation of the number of bytes this channel takes up in memory.
+
+void	rebuildChannel();
+
+	Rebuild the channel using the internal values, recalculate the optimization data, etc.
+
+void	buildFromNode( INode *node );
+
+	Take in a node from the scene, and initialize the channel with it. This is an important
+	function that is used a lot by the Morpher UI to assign the channels with actual object data.
+	Most channels will start out by using this function.
+
+
+
+/*===========================================================================*\
+ |	Detailed Description:   Class morphCache
+\*===========================================================================*/
+
+void	NukeCache();
+BOOL	AreWeCached();
+
+	The only two functions that you may find useful here are the above. The NukeCache()
+	call will remove all cached data and it will be rebuilt the next time the modifier
+	is refreshed (ModifyObject gets called)
+
+	AreWeCached will return TRUE if the cache is built. FALSE if it has been nuked and
+	not rebuilt yet.
+
+
+
+/*===========================================================================*\
+ |	Detailed Description:   Class MorphR3
+\*===========================================================================*/
+
+morphChannel		*chanBank;
+
+	The 100 lenth array of morphChannel classes. You can get access to any of the
+	morph channels by accessing this array, ie:
+
+	chanBank[0].mName = _T(GetString(IDS_NEWCHAN_NAME));
+
+int		chanSel;
+int		chanNum;
+
+	These two values work together to save the position in the UI that the user
+	is looking at. chanSel is the 0-9 clamped number of the button on the UI, and
+	chanNum is the 0-90 clamped value that shifts the list up and down.
+
+	For instance, if the user is looking at channel 20, using the first button:
+
+	chanSel = 0
+	chanNum = 19
+
+	Adding the values together gets the final channel being modified:
+
+	chanBank[chanSel+chanNum].mActive = TRUE;
+
+	A developer shouldn't directly change chanNum - use the VScroll function to do 
+	this instead
+
+ISpinnerControl		*chanSpins[10];
+ISpinnerControl		*glSpinmin,*glSpinmax;
+
+	Spinner controls - chanSpins are the 10 spinners controlling the channel values
+	for the 10 viewable channels
+
+HWND	hwGlobalParams, hwChannelList,	hwChannelParams, hwAdvanced, hwLegend;
+
+	The window handles for the 5 UI panels.
+
+morphCache MC_Local;
+
+	The local cache, and only instance of the morphCache class. See above class
+	description
+
+Tab<int>			markerIndex;
+NameTab				markerName;
+int					markerSel;
+
+	Marker Management - used to add or delete items from the marker dropdown list.
+	The markerIndex and markerName must syncronise properly - the Index tab contains
+	the 0-90 value for the marker itself, and Name contains the name to display in the
+	dropdown list. markerSel is the Id of the marker selected in the dropdown list. If
+	this value is -1, no marker is selected. To add a new marker, try:
+
+
+		mp->markerName.AddName("Ishani's Marker");
+
+		int tmp;
+		tmp = 35;
+		mp->markerIndex.Append(1,&tmp,0);
+
+		mp->markerSel = mp->markerName.Count()-1;
+		mp->Update_channelMarkers();
+
+
+	(Where mp is a valid MorphR3 pointer)
+
+void	VScroll(int code, short int cpos );
+
+	Used to handle scrolling, but can be used to drive the UI scroller. To move to a specific location,
+	use:
+
+	mp->VScroll(SB_THUMBPOSITION,35);
+
+	But where 35 is the chanNum offset you require.
+
+void	ChannelOp(int src, int targ, int flags);
+
+	function for moving or swapping morphChannels. the flags parameter can be one of the following:
+
+	OP_MOVE
+	OP_SWAP
+
+	and src and targ being the 0-based channel index numbers you want to use.
+
+
+OTHER NOTES:
+
+	There are also many Update_<.....> functions, which will reload and display various
+	chunks of the UI. Call them to update changes as you make them to the Morpher.
+
+
+/*===========================================================================*\
+ |	Detailed Description:   Class M3MatDlg / M3Mat
+\*===========================================================================*/
+
+void	 UpdateMorphInfo(int upFlag);
+
+	Called to update the information from Morpher Modifier -> Morpher Material. upFlag can be:
+
+	UD_NORM		-- just redisplay the info
+	UD_LINK		-- reconnect to the modifier, reload all information

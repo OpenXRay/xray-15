@@ -1,0 +1,892 @@
+<html>
+
+<head>
+<title>Globals: XPanels</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="vparam.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="Variant Parameters"></a></td>
+    <td width="96" align="left"><a href="anenvel.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Animation Envelopes"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>XPanels</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwxpanel.h">lwxpanel.h</a></small></p>
+    <p>This global is a new addition to LightWave&reg;'s system of platform-independent user
+    interface components. To understand its place in that system and how it differs from <a
+    href="panel.html">Panels</a>, it may help to know something about the history of user
+    interfaces in LightWave&reg;.</p>
+    <p>XPanels is the third generation of LightWave&reg; interface APIs. The first was the <a
+    href="modreq.html">requester</a> API, which in its original Modeler incarnation predates
+    the plug-in architecture itself. Modeler requesters were always modal. You gave Modeler a
+    list of controls and their initial values, Modeler formatted and displayed the dialog, and
+    after the user closed the dialog, you read out the control values. The original requester
+    API is now just another way of creating an xpanel, and you can use it in Layout as well as
+    Modeler.</p>
+    <p>Panels is the second generation, and it's pretty bohemian, like Algol was to Fortran.
+    It introduced callbacks so that you can respond to the user interactively, and it comes
+    with a list of 50 or so predefined control types and some drawing functions. You can set
+    the size of a panel and the positions of its controls, and you can decorate your panels
+    and tell them to send you a steady stream of mouse and keyboard events. As with
+    requesters, controls are defined using a sequence of function calls.<br>
+    <br>
+    XPanels is a return to the Modeler requester philosophy of automation. You give up some
+    control over the appearance and behavior of your controls, but in exchange, things that
+    can require a lot of code with panels, like adding an E (envelope) button to a numeric
+    edit field, along with all of the functionality that implies, are very easy to do with
+    xpanels. And xpanels can be embedded in LightWave&reg;'s own windows. Unlike the previous
+    interface models, the controls on an xpanel are defined primarily through arrays of static
+    data.<br>
+    <br>
+    Panels continues to support some control types, such as the OpenGL control, that have no
+    xpanel equivalents, so it's still your best option in some cases. But you aren't forced to
+    choose, since Panels also allows you to create xpanel controls--xpanels embedded within
+    your panel.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWXPanelFuncs *xpanf;
+   xpanf = global( LWXPANELFUNCS_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWXPanelFuncs.</p>
+    <pre>   typedef struct st_LWXPanelFuncs {
+      int             <strong>version</strong>;
+      LWXPDrawFuncs  *<strong>drawf</strong>;
+      LWXPanelID     (*<strong>create</strong>)     (int type, LWXPanelControl *);
+      void           (*<strong>destroy</strong>)    (LWXPanelID);
+      void           (*<strong>describe</strong>)   (LWXPanelID, LWXPanelDataDesc *,
+                                      LWXPanelGetFunc *,
+                                      LWXPanelSetFunc *);
+      void           (*<strong>hint</strong>)       (LWXPanelID, unsigned long,
+                                      LWXPanelHint *);
+      void *         (*<strong>getData</strong>)    (LWXPanelID, unsigned long);
+      void           (*<strong>setData</strong>)    (LWXPanelID, unsigned long, void *);
+      void *         (*<strong>formGet</strong>)    (LWXPanelID, unsigned long);
+      void           (*<strong>formSet</strong>)    (LWXPanelID, unsigned long, void *);
+      void           (*<strong>viewInst</strong>)   (LWXPanelID, void *);
+      void           (*<strong>viewRefresh</strong>)(LWXPanelID);
+      int            (*<strong>post</strong>)       (LWXPanelID);
+      int            (*<strong>open</strong>)       (LWXPanelID);
+   } LWXPanelFuncs;</pre>
+    <p>A <em>panel</em> is a window or a dialog box containing buttons, edit fields, dropdown
+    lists, image rectangles, and other user interface elements collectively called <em>controls</em>.
+    You create panels to allow users to enter and change settings that affect the operation of
+    your plug-in.</p>
+    <p>The XPanels system distinguishes between two kinds of panels, called <em>forms</em> and
+    <em>views</em>. They differ primarily in the method used to move data values into and out
+    of controls.</p>
+    <p>A view panel presents a &quot;view&quot; of a <em>data instance</em>, which is a
+    pointer to some data owned by your plug-in, typically a handler's instance data. You pass
+    this pointer to XPanels in the <tt>viewInst</tt> function. The callbacks you pass to the <tt>describe</tt>
+    function will be called by XPanels to update this data.</p>
+    <p>A form panel isn't passed a data instance pointer, so you have greater freedom in
+    choosing how to represent your data within your plug-in. XPanels interacts with your data
+    through the <tt>formGet</tt> and <tt>formSet</tt> functions and your change notification
+    callback.</p>
+    <p>Because they don't store a data instance pointer, forms have no way to distinguish
+    between multiple instances of the same dataset, making it more difficult to use the same
+    panel with different data. The significance of this may grow as XPanels evolves. In the
+    future, for example, users may be able to multiselect every instance of your plug-in and
+    edit the parameters for all of them simultaneously.<dl>
+      <dt><strong><tt>version</tt></strong></dt>
+      <dd>The version number of the interface. Certain control types or hints may not be available
+        in older interfaces.</dd>
+      <dt><tt><br>
+        <strong>drawf</strong></tt></dt>
+      <dd>Drawing functions, which are explained in detail below. Custom drawing on xpanels is
+        limited to contexts in which an LWXPDrArea region is defined.</dd>
+      <dt><tt><br>
+        panel = <strong>create</strong>( type, controls )</tt></dt>
+      <dd>Create a new panel. The type can be <tt>LWXP_VIEW</tt> or <tt>LWXP_FORM</tt>. The <tt>controls</tt>
+        argument is an array of LWXPanelControl structures describing the controls on the panel.
+        It must have at least panel lifetime, meaning that the <tt>controls</tt> variable must be
+        valid as long as the panel exists. The easiest way to ensure this is to declare the array
+        static. See below for more about the controls list.</dd>
+      <dt><tt><br>
+        <strong>destroy</strong>( panel )</tt></dt>
+      <dd>Free the panel and related resources allocated by <tt>create</tt>.</dd>
+      <dt><tt><br>
+        <strong>describe</strong>( panel, datadesc, getfunc, setfunc )</tt></dt>
+      <dd>Define the data values for a panel. The <tt>datadesc</tt> argument is a list of value
+        IDs and their types. Like the <tt>controls</tt> list passed to <tt>create</tt>, <tt>datadesc</tt>
+        must have at least panel lifetime. For view panels, the values are updated interactively
+        using your <tt>getfunc</tt> and <tt>setfunc</tt> callbacks. If the panel is a form, the <tt>getfunc</tt>
+        and <tt>setfunc</tt> arguments are ignored and should be NULL.</dd>
+      <dt><tt><br>
+        <strong>hint</strong>( panel, id, hints )</tt></dt>
+      <dd>Apply a hint array to the panel or one of its controls. This may be called multiple
+        times, but only while the panel is closed. The hint array is applied to the panel if the
+        ID is 0. Otherwise it's applied to the control with the corresponding ID.</dd>
+      <dt><tt><br>
+        data = <strong>getData</strong>( panel, id )</tt></dt>
+      <dd>Returns the user data for the panel (<tt>id == 0</tt>) or for one of its controls, set
+        by a previous call to <tt>setData</tt>.</dd>
+      <dt><tt><br>
+        <strong>setData</strong>( panel, id, data )</tt></dt>
+      <dd>Set the user data for a panel (<tt>id == 0</tt>) or one of its controls. The <tt>data</tt>
+        pointer is passed to several of the callbacks. It's also what <tt>getData</tt> returns.</dd>
+      <dt><tt><br>
+        value = <strong>formGet</strong>( panel, vid )</tt></dt>
+      <dd>Read the value of a control on a form panel. Returns NULL if the value is undefined.</dd>
+      <dt><tt><br>
+        <strong>formSet</strong>( panel, vid, value )</tt></dt>
+      <dd>Write a value to a control on a form panel.</dd>
+      <dt><tt><br>
+        <strong>viewInst</strong>( panel, instance )</tt></dt>
+      <dd>Set the instance data pointer for a view panel. This is what is passed to the get and
+        set callbacks you designate when you call the <tt>describe</tt> function.</dd>
+      <dt><tt><br>
+        <strong>viewRefresh</strong>( panel )</tt></dt>
+      <dd>Refreshes a view panel by reloading control values from the instance data. Use this when
+        the instance data has been modified by something other than the user's interaction with
+        your interface. When called from a form, <tt>viewRefresh</tt> redraws the controls.</dd>
+      <dt><tt><br>
+        result = <strong>post</strong>( panel )</tt></dt>
+      <dd>Display the panel for modal interaction. <em>Modal</em> means that the user must close
+        the panel before continuing to work in LightWave&reg;. This function won't return until the
+        panel has been closed. It returns 1 if the user dismisses the panel with the
+        &quot;OK&quot; button and 0 if the user presses &quot;Cancel&quot; (or if the panel
+        couldn't be displayed). See the description of the <tt>XpDLOGTYPE</tt> macro for more
+        information about the buttons, like &quot;OK&quot; and &quot;Cancel,&quot; that are
+        automatically added to modal panels.</dd>
+      <dt><tt><br>
+        result = <strong>open</strong>( panel )</tt></dt>
+      <dd>Display the panel for non-modal interaction. This function returns immediately and the
+        panel stays open until the user closes it. Returns 1 if the panel was opened successfully,
+        otherwise it returns 0. <a href="../handler.html">Handlers</a> generally won't need to
+        call <tt>open</tt> (or <tt>post</tt>), since LightWave&reg; takes care of opening the panel you
+        return in the <tt>panel</tt> field of the LWInterface structure.</dd>
+    </dl>
+    <p><strong>Describing Controls and Data</strong></p>
+    <p>Each of the controls on a panel is described by an LWXPanelControl structure. An array
+    of these is passed as the second argument to the <tt>create</tt> function when the panel
+    is created.</p>
+    <pre>   typedef struct st_LWXPanelControl {
+      unsigned long   cid;
+      const char     *label;
+      const char     *ctrlclass;
+   } LWXPanelControl;</pre>
+    <p>The second argument to the <tt>describe</tt> function is an array of LWXPanelDataDesc.</p>
+    <pre>   typedef struct st_LWXPanelDataDesc {
+      unsigned long   vid;
+      const char     *name;
+      const char     *datatype;
+   } LWXPanelDataDesc;</pre>
+    <p>The first member of both structures is an identifier. It can be any positive integer
+    greater than or equal to 0x8000. Values less than 0x8000 are reserved for use by XPanels.
+    The second member is a human-readable description. For controls, this string is used as a
+    label that appears next to the control on the panel. The third member identifies the class
+    of the control or the data type of the value.</p>
+    <p>In most cases, your control array and data description array will be parallel, and the
+    value IDs in the data description will match the control IDs in the control array. But
+    some control types don't have an associated value, and you might declare some values to
+    XPanels that aren't directly associated with any control.</p>
+    <p><strong>Control Types</strong></p>
+    <p>The following definitions list the control class (the string that goes in the <tt>ctrlclass</tt>
+    field of the LWXPanelControl), the data type of the control's value (the string that goes
+    in the <tt>datatype</tt> field of the LWXPanelDataDesc), and the C equivalent (the kind of
+    variable your plug-in stores the value in). The definitions will often refer to hints and
+    callbacks, both of which are described in later sections.<dl>
+      <tt>
+      <dt>&quot;<strong>string</strong>&quot; : &quot;string&quot; : char[]</dt>
+      </tt>
+      <dd>A text edit field.</dd>
+      <tt>
+      <dt><br>
+        &quot;<strong>integer</strong>&quot; : &quot;integer&quot; : int</dt>
+      </tt>
+      <dd>An integer edit field.</dd>
+      <tt>
+      <dt><br>
+        &quot;<strong>float</strong>&quot; : &quot;float&quot; : double</dt>
+      </tt>
+      <dd>An edit field for floating-point numbers. Variations on the floating-point control type
+        are summarized in the following table. Controls that include envelope (E) and texture (T)
+        buttons use <a href="vparam.html">variant parameters</a> as their underlying data type. <table
+        border="0" width="450" cellpadding="0" cellspacing="0">
+          <tr>
+            <td><tt><br>
+            &quot;<strong>float</strong>&quot;</tt></td>
+            <td><tt><br>
+            &quot;float&quot;</tt></td>
+            <td><tt><br>
+            double</tt> </td>
+          </tr>
+          <tr>
+            <td><tt>&quot;<strong>float3</strong>&quot;</tt></td>
+            <td><tt>&quot;float3&quot;</tt></td>
+            <td><tt>double[3]</tt> </td>
+          </tr>
+          <tr>
+            <td><tt>&quot;<strong>float-env</strong>&quot;</tt></td>
+            <td><tt>&quot;float-env&quot;</tt></td>
+            <td><tt>double[]</tt> (<a href="vparam.html">vparm</a>)</td>
+          </tr>
+          <tr>
+            <td><tt>&quot;<strong>float3-env</strong>&quot;</tt></td>
+            <td><tt>&quot;float3-env&quot;</tt></td>
+            <td><tt>double[][3]</tt> (<a href="vparam.html">vparm</a>)</td>
+          </tr>
+          <tr>
+            <td><tt>&quot;<strong>distance</strong>&quot;</tt></td>
+            <td><tt>&quot;distance&quot;</tt></td>
+            <td><tt>double</tt> </td>
+          </tr>
+          <tr>
+            <td><tt>&quot;<strong>distance3</strong>&quot;</tt></td>
+            <td><tt>&quot;distance3&quot;</tt></td>
+            <td><tt>double[3]</tt> </td>
+          </tr>
+          <tr>
+            <td><tt>&quot;<strong>distance-env</strong>&quot;</tt></td>
+            <td><tt>&quot;distance-env&quot;</tt></td>
+            <td><tt>double[]</tt> (<a href="vparam.html">vparm</a>)</td>
+          </tr>
+          <tr>
+            <td><tt>&quot;<strong>distance3-env</strong>&quot;</tt></td>
+            <td><tt>&quot;distance3-env&quot;</tt></td>
+            <td><tt>double[][3]</tt> (<a href="vparam.html">vparm</a>)</td>
+          </tr>
+          <tr>
+            <td><tt>&quot;<strong>percent</strong>&quot;</tt></td>
+            <td><tt>&quot;percent&quot;</tt></td>
+            <td><tt>double</tt> </td>
+          </tr>
+          <tr>
+            <td><tt>&quot;<strong>percent3</strong>&quot;</tt></td>
+            <td><tt>&quot;percent3&quot;</tt></td>
+            <td><tt>double[3]</tt> </td>
+          </tr>
+          <tr>
+            <td><tt>&quot;<strong>percent-env</strong>&quot;</tt></td>
+            <td><tt>&quot;percent-env&quot;</tt></td>
+            <td><tt>double[]</tt> (<a href="vparam.html">vparm</a>)</td>
+          </tr>
+          <tr>
+            <td><tt>&quot;<strong>percent3-env</strong>&quot;</tt></td>
+            <td><tt>&quot;percent3-env&quot;</tt></td>
+            <td><tt>double[][3]</tt> (<a href="vparam.html">vparm</a>)</td>
+          </tr>
+          <tr>
+            <td><tt>&quot;<strong>angle</strong>&quot;</tt></td>
+            <td><tt>&quot;angle&quot;</tt></td>
+            <td><tt>double</tt> </td>
+          </tr>
+          <tr>
+            <td><tt>&quot;<strong>angle3</strong>&quot;</tt></td>
+            <td><tt>&quot;angle3&quot;</tt></td>
+            <td><tt>double[3]</tt> </td>
+          </tr>
+          <tr>
+            <td><tt>&quot;<strong>angle-env</strong>&quot;</tt></td>
+            <td><tt>&quot;angle-env&quot;</tt></td>
+            <td><tt>double[]</tt> (<a href="vparam.html">vparm</a>)</td>
+          </tr>
+          <tr>
+            <td><tt>&quot;<strong>angle3-env</strong>&quot;</tt></td>
+            <td><tt>&quot;angle3-env&quot;</tt></td>
+            <td><tt>double[][3]</tt> (<a href="vparam.html">vparm</a>)</td>
+          </tr>
+          <tr>
+            <td><tt>&quot;<strong>color</strong>&quot;</tt></td>
+            <td><tt>&quot;color&quot;</tt></td>
+            <td><tt>double[3]</tt> </td>
+          </tr>
+          <tr>
+            <td><tt>&quot;<strong>color-env</strong>&quot;</tt></td>
+            <td><tt>&quot;color-env&quot;</tt></td>
+            <td><tt>double[][3]</tt> (<a href="vparam.html">vparm</a>)</td>
+          </tr>
+          <tr>
+            <td><tt>&quot;<strong>time</strong>&quot;</tt></td>
+            <td><tt>&quot;time&quot;</tt></td>
+            <td><tt>double</tt> </td>
+          </tr>
+        </table>
+        <p>Distance controls display units; their internal values are in meters. Percent controls
+        display percentages; their internal values are the percent values divided by 100 (100% is
+        1.0). Angle controls display angles in degrees and store them in radians. Times are stored
+        as elapsed seconds, but are displayed in the units selected by the user elsewhere in
+        LightWave&reg;'s interface.</p>
+      </dd>
+      <tt>
+      <dt>&quot;<strong>vButton</strong>&quot;</dt>
+      </tt>
+      <dd>A button. XPanels calls the control's button click callback whenever the user presses
+        the button.</dd>
+      <tt>
+      <dt><br>
+        &quot;<strong>iBoolean</strong>&quot; : &quot;integer&quot; : int</dt>
+      </tt>
+      <dd>A checkbox.</dd>
+      <tt>
+      <dt><br>
+        &quot;<strong>iSlider</strong>&quot; : &quot;integer&quot; : int<br>
+        &quot;<strong>iSliderText</strong>&quot; : &quot;integer&quot; : int</dt>
+      </tt>
+      <dd>A slider (a thumb button that can be dragged within a horizontal track). Use the <tt>XpMIN</tt>
+        and <tt>XpMAX</tt> hints to define the range of the slider. The <tt>Text</tt> version
+        includes an integer edit field.</dd>
+      <tt>
+      <dt><br>
+        &quot;<strong>iChoice</strong>&quot; : &quot;integer&quot; : int</dt>
+      </tt>
+      <dd>An array of radio buttons (mutually exclusive boolean buttons). The value is a 0-based
+        index into the list of choices. To initialize the choices, use the <tt>XpSTRLIST</tt>
+        hint.</dd>
+      <tt>
+      <dt><br>
+        &quot;<strong>axis</strong>&quot; : &quot;axis&quot; : 0, 1, 2</dt>
+      </tt>
+      <dd>Radio buttons for selecting X, Y or Z.</dd>
+      <tt>
+      <dt><br>
+        &quot;<strong>iPopChoice</strong>&quot; : &quot;integer&quot; : int</dt>
+      </tt>
+      <dd>A scrolling popup menu. The value is a 0-based index. You can initialize a popup with
+        the <tt>XpSTRLIST</tt> hint and a static array of strings, or the <tt>XpPOPFUNCS</tt> hint
+        and popup item count and name callbacks.</dd>
+      <tt>
+      <dt><br>
+        &quot;<strong>vPopCmd</strong>&quot;</dt>
+      </tt>
+      <dd>A popup menu that works like a multiple-choice button. Your popup command callback
+        receives a 0-based index.</dd>
+      <tt>
+      <dt><br>
+        &quot;<strong>sPresetText</strong>&quot; : &quot;string&quot; : char[]</dt>
+      </tt>
+      <dd>Combines a string edit field and a popup menu. The user can type into the edit field or
+        fill the field with the value associated with one of the presets named in the menu.</dd>
+      <tt>
+      <dt><br>
+        &quot;<strong>sFileName</strong>&quot; : &quot;string&quot; : char[]</dt>
+      </tt>
+      <dd>Combines a string edit field and a button that opens the file dialog. Use the <tt>XpXREQCFG</tt>
+        macro to set the mode (load or save), the title string and the file type filter.</dd>
+      <tt>
+      <dt><br>
+        &quot;<strong>iChoTransform</strong>&quot; : &quot;integer&quot; : int<br>
+        &quot;<strong>iPopTransform</strong>&quot; : &quot;integer&quot; : int</dt>
+      </tt>
+      <dd>Like iChoice and iPopChoice controls, but the value isn't the menu index. It is instead
+        the value of an array element referenced by the index. The array contains values that are
+        more useful to your plug-in than the 0, 1, 2... indexes into the menu. For the <tt>i</tt>-th
+        menu item, the value is <tt>map[i]</tt>, where <tt>map[]</tt> is an integer array
+        associated with the control using the <tt>XpCHOXFORM</tt> or <tt>XpPOPXFORM</tt> hints.</dd>
+      <tt>
+      <dt><br>
+        &quot;<strong>dThumbnail</strong>&quot;</dt>
+      </tt>
+      <dd>A rectangular area that you can draw on using the drawing functions. Thumbnails generate
+        mouse events. The user can click, double-click, or drag out a rectangular selection.</dd>
+      <tt>
+      <dt><br>
+        &quot;<strong>sInfo</strong>&quot; : &quot;string&quot; : char[]</dt>
+      </tt>
+      <dd>A read-only text field.</dd>
+    </dl>
+    <p><strong>Hints</strong></p>
+    <p>The <tt>hint</tt> function accepts as one of its arguments an array of panel-building
+    commands, called <em>hints</em>. These are packaged as macros defined in the <tt>lwxpanel.h</tt>
+    header file. The macros are used as initializers for the hint array passed to <tt>hint</tt>.
+    For example,</p>
+    <pre>   static LWXPanelHint hints[] = {
+      XpLABEL( 0, &quot;My Panel Title&quot; ),
+      XpSTRLIST( MY_POP, choices_array ),
+      ...</pre>
+    <p>There are currently over 50 hint macros.<dl>
+      <tt>
+      <dt><strong>XpH</strong>( x )</dt>
+      </tt>
+      <dd>Cast the value to an LWXPanelHint. This is just a way to get values of different types
+        into a single array.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpEND</strong></dt>
+      </tt>
+      <dd>Terminate the hint array. Some macros are also followed by a sublist of hints which is
+        terminated by <tt>XpEND</tt>.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpCALL</strong>( hint_array )</dt>
+      </tt>
+      <dd>Insert another hint array into this one.</dd>
+      <tt>
+      <dt><strong><br>
+        XpLABEL</strong>( id, label )</dt>
+      </tt>
+      <dd>Set the label string for a control or group. An ID of 0 sets the label for the panel.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpVECLABEL</strong>( ctlID, labels )</dt>
+      </tt>
+      <dd>Set the labels for each of the three elements of a vector control (integer3, float3,
+        etc.). <tt>labels</tt> is an array of three strings.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpSTRLIST</strong>( ctlID, strlist )</dt>
+      </tt>
+      <dd>Set the string array for a popup control.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpCLASS</strong>( id, class )</dt>
+      </tt>
+      <dd>Change the class of a control. Hints previously applied to this control may be lost if
+        they're incompatible with the new class.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpADD</strong>( ctlID, class, valID )</dt>
+      </tt>
+      <dd>Create a control. You can also create controls using the LWXPanelControl array passed to
+        the <tt>create</tt> function and the LWXPanelDataDesc array passed to <tt>describe</tt>.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpDELETE</strong>( id )</dt>
+      </tt>
+      <dd>Remove a control from the panel. This doesn't remove the control's value from the data
+        description.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpCTRLCFG</strong>( ctlID, options )</dt>
+      </tt>
+      <dd>Set class-specific option flags for a control. Currently this is only used by dThumbnail
+        controls, which can be configured using the following bit flags combined using bitwise-or.<pre>THUM_SML    THUM_SQ      THUM_LAND    THUM_EURO
+THUM_MED    THUM_NTSC    THUM_FULL
+THUM_LRG    THUM_35MM    THUM_WIDE
+THUM_XLG    THUM_PORT    THUM_ANAW</pre>
+      </dd>
+      <tt>
+      <dt><strong>XpXREQCFG</strong>( ctlID, mode, title, filter )</dt>
+      </tt>
+      <dd>Set options for the file dialog opened by an sFileName control. The <tt>mode</tt> is one
+        of the following.<pre>LWXPREQ_LOAD
+LWXPREQ_SAVE
+LWXPREQ_DIR</pre>
+        <p>The <tt>title</tt> is the string that will appear in the title bar of the dialog. The <tt>filter</tt>
+        is a string that identifies the file type. It's the same string you'd pass to the <a
+        href="filetype.html">File Type</a> global.</p>
+      </dd>
+      <tt>
+      <dt><strong>XpFOCUS</strong>( id )</dt>
+      </tt>
+      <dd>Identify the control that should receive focus when the panel is first displayed. An ID
+        of 0 indicates the panel should use a default setting, usually the first editable text
+        field.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpVALUE</strong>( ctlID, valID )</dt>
+      </tt>
+      <dd>Associate a control ID with a value ID. Ordinarily, a control and its value are
+        implicitly bound together by having the same ID in the LWXPanelControl and
+        LWXPanelDataDesc arrays passed to <tt>create</tt> and <tt>describe</tt>, but a control and
+        value pair aren't required to share the same ID.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpRESTORE</strong>( id )<br>
+        <strong>XpRESTORE_</strong>()<br>
+        <strong>XpRESTORE_ON</strong><br>
+        <strong>XpRESTORE_OFF</strong></dt>
+      </tt>
+      <dd>Define what happens to control values when the user presses the Cancel button in a modal
+        <tt>LWXP_VIEW</tt> panel. By default, values are reset to what they were when the panel
+        was opened. The <tt>ON</tt> and <tt>OFF</tt> macros set this behavior for all values, and
+        the other two toggle the behavior for a single value or for a list of values.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpLINK_</strong>( valID )<br>
+        <strong>XpLINK</strong>( valID, link )</dt>
+      </tt>
+      <dd>Link a value to another value, or to a list of values. Links create a dependency
+        relationship. If the <tt>link</tt> value changes, then the dependent <tt>valID</tt> value
+        is also updated.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpENABLE_</strong>( valID )<br>
+        <strong>XpENABLE_MAP_</strong>( valID, map )<br>
+        <strong>XpENABLEMSG_</strong>( valID, msg )<br>
+        <strong>XpENABLEMSG_MAP_</strong>( valID, map, msg )</dt>
+      </tt>
+      <dd>Link the enable state of the controls in the trailing ID list to the <tt>valID</tt>
+        value. The trailing ID list actually contains value IDs, and the control IDs are inferred
+        from this. If the <tt>valID</tt> value is true (non-zero), the dependent controls are
+        enabled, otherwise they're disabled. If you supply a map (an integer array containing
+        boolean values), the enable state will be based on <tt>map[value]</tt> rather than on the
+        value directly. If you supply a message string, it will be displayed whenever the user
+        tries to manipulate a disabled control. The message typically explains why the control is
+        disabled: &quot;Sprinkles is only valid when the flavor is vanilla.&quot;</dd>
+      <tt>
+      <dt><br>
+        <strong>XpINTXFORM</strong>( ctlID, count, ilist )<br>
+        <strong>XpPOPXFORM</strong>( ctlID, count, ilist )<br>
+        <strong>XpCHOXFORM</strong>( ctlID, count, ilist )</dt>
+      </tt>
+      <dd>Set the transform map for the control. Transform control classes such as iPopTrans and
+        iChoTrans provide a mechanism for mapping the control's underlying integer value into a
+        more useful value for the client. <tt>ilist</tt> is an array of 32-bit values that XPanels
+        will substitute for the base value of the control. When the base value is 0, XPanels uses <tt>ilist[0]</tt>,
+        and so on.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpMIN</strong>( ctlID, min )</dt>
+      </tt>
+      <dd>Set the minimum of a control's range. <tt>min</tt> is always an integer, as are the
+        other range parameters in the following hints.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpMAX</strong>( ctlID, max )</dt>
+      </tt>
+      <dd>Set the maximum of a control's range.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpSTEP</strong>( ctlID, step )</dt>
+      </tt>
+      <dd>Set the increment of a range adjustment.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpRANGE</strong>( ctlID, min, max, step )</dt>
+      </tt>
+      <dd>Set all three range parameters.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpHARDMINMAX</strong>( ctlID, bmin, bmax )</dt>
+      </tt>
+      <dd>Enforce the range limits in the edit field component of a slider control. <tt>bmin</tt>
+        and <tt>bmax</tt> are booleans that set or clear this for each end of the range. If the
+        control is enveloped, the envelope values may still fall outside the limits.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpCLRMINMAX</strong>( ctlID, bmin, bmax )</dt>
+      </tt>
+      <dd>Remove a minimum or maximum set by <tt>XpMIN</tt>, <tt>XpMAX</tt> or <tt>XpRANGE</tt>.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpSENS</strong>( ctlID, delta )</dt>
+      </tt>
+      <dd>Set the sensitivity of a minislider. The delta scales the pixel to minislider
+        translation. Larger deltas cause the minislider value to change more slowly.</dd>
+      <tt>
+      <dt><strong><br>
+        XpTRACK</strong>( ctlID, track )</dt>
+      </tt>
+      <dd>Indicate whether the control should generate intermediate (tracking) events. If the
+        boolean track flag is true (non-zero), events will be generated for the control as long as
+        the user manipulates it on the interface. In particular, components such as sliders and
+        text fields will generate a constant stream of events to inform the client of user
+        actions. If this is false, events are only generated after the user has set a new value.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpIMMUPD_</strong>( ctlID )<br>
+        <strong>XpIMMUPD</strong>( ctlID, dep )</dt>
+      </tt>
+      <dd>Create an &quot;immediate update&quot; dependency relationship for a control, such as a
+        slider, that can generate <tt>LWXPEVENT_TRACK</tt> events. Whenever the control is being
+        modified by the user (and is generating tracking events), the dependent controls will be
+        updated. </dd>
+      <tt>
+      <dt><br>
+        <strong>XpDESTROYNOTIFY</strong>( func )</dt>
+      </tt>
+      <dd>Set the callback that XPanels will call after the panel has been destroyed. The argument
+        points to an LWXPanelDestroyNotifyFunc.</dd>
+      <tt>
+      <dt><strong><br>
+        XpCHGNOTIFY</strong>( func )</dt>
+      </tt>
+      <dd>Set the callback that XPanels will call whenever a value is modified. The argument
+        points to an LWXPanelChangeNotifyFunc.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpBUTNOTIFY</strong>( ctlID, func )</dt>
+      </tt>
+      <dd>Set the callback that XPanels will call when the button control is pressed. The argument
+        points to an LWXPanelBtnClickFunc.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpPOPCMDFUNC</strong>( ctlID, func )</dt>
+      </tt>
+      <dd>Set the callback that XPanels will call when an item is selected in a popup control. The
+        argument points to an LWXPanelPopCmdFunc.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpPOPFUNCS</strong>( ctlID, countfunc, namefunc )</dt>
+      </tt>
+      <dd>Set the callbacks that XPanels will call when the popup choice control is opened. The
+        arguments point to an LWXPanelPopCntFunc and an LWXPanelPopNameFunc. The callbacks are an
+        alternative to providing a static array of strings for the popup.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpDRAWCBFUNC</strong>( ctlID, func )</dt>
+      </tt>
+      <dd>Set the callback that XPanels will call when a drawable control needs to be drawn. The
+        argument points to an LWXPanelControlDrawFunc. Currently this is restricted to use with
+        dThumbnail controls.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpZOOMCBFUNC</strong>( ctlID, func, rect )</dt>
+      </tt>
+      <dd>Set the callback that XPanels will call when the user clicks and drags the mouse within
+        the control. The function argument points to an LWXPanelControlZoomFunc. <tt>rect</tt> is
+        a boolean that determines whether mouse dragging is reported. Currently this is only for
+        dThumbnail controls.</dd>
+      <tt>
+      <dt><strong><br>
+        XpALIAS_</strong>( aliasID )</dt>
+      </tt>
+      <dd>Create a new alias group, or add controls, values or other aliases to an existing alias
+        group. An alias group is just an ID with its own list of IDs. The groups created using the
+        <tt>ALIAS</tt> tag define a logical grouping of IDs but otherwise do not have any default
+        behaviour. Instead, alias group IDs are generally used as arguments to other panel hints.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpUNALIAS_</strong>( aliasID )</dt>
+      </tt>
+      <dd>Remove the IDs in the trailing list from the alias group. If the ID list is empty (this
+        hint is followed immediately by <tt>XpEND</tt>), all the elements of the group are removed
+        and the group is disbanded.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpGROUP_</strong>( groupID )</dt>
+      </tt>
+      <dd>Create a new group, or add the trailing list of IDs to an existing group. The trailing
+        list may contain the IDs of controls, aliases, other groups, stacks or tabs.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpORDER_</strong>( groupID )</dt>
+      </tt>
+      <dd>Reorder the IDs in a group. If the group ID is 0, this reorders IDs for the panel.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpSTACK_</strong>( groupID, valID )<br>
+        <strong>XpSTACK_MAP_</strong>( groupID, valID, map )</dt>
+      </tt>
+      <dd>Define a control stack. Only one control at a time is visible in a stack (the rest are
+        &quot;hidden underneath&quot;). Which control is visible is determined by the <tt>valID</tt>
+        value. The value must be of integer type. A value of 0 selects the first control in the
+        group. If you supply a map (an integer array), the visible control depends on <tt>map[value]</tt>
+        rather than the value directly. A value of -1 means that no control from this group should
+        be visible.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpTABS_</strong>( groupID )</dt>
+      </tt>
+      <dd>Create a tab window. Additional tab windows will be created for the IDs in the trailing
+        list. The text displayed on the tab is taken from the label assigned to the ID using the <tt>XpLABEL</tt>
+        hint.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpCTRLFRONT</strong>( ctlID )</dt>
+      </tt>
+      <dd>Identify the tab that should be displayed on top of other tabs. By default, the first
+        tab is on top.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpORIENT</strong>( ctlID, orientation )</dt>
+      </tt>
+      <dd>Set the control's orientation, where 0 is horizontal and 1 is vertical. The default is
+        horizontal. Not all controls can be oriented.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpLEFT</strong>( groupID )<br>
+        <strong>XpLEFT_</strong>()</dt>
+      </tt>
+      <dd>Attempt to left align the first control in a group or the trailing list. If possible,
+        subsequent controls are moved up beside the left-aligned control. This hint is ignored for
+        some control classes (but see the <tt>XpNARROW</tt> hint), and space constraints can also
+        affect whether it can be applied.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpNARROW</strong>( groupID )<br>
+        <strong>XpNARROW_</strong>()</dt>
+      </tt>
+      <dd>The client may override the default &quot;move up&quot; rules by indicating that the
+        controls in the group or the trailing list are narrow.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpDIVADD</strong>( id )<br>
+        <strong>XpDIVADD_</strong>( id )</dt>
+      </tt>
+      <dd>This suggests the panel should draw a divider after the control or group specified by
+        the ID list. The hint has one fixed argument so that the client can specify one of the
+        special divider locations, intended mostly for inline panels: 0 for the top of the panel,
+        -1 for the bottom.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpDIVREM</strong>( id )<br>
+        <strong>XpDIVREM_</strong>( id )</dt>
+      </tt>
+      <dd>This indicates that the panel should not place a divider after the control or group. The
+        panel performs some built-in guesswork on divider placement. Typically, they're put at
+        &quot;transition points,&quot; examples of which include points between a standalone
+        control and a group, between separate groups, and between a group and a tab group. It
+        won't always be easy to determine the abstract location of a divider solely from its
+        appearance. For example, a divider may appear to follow a control but actually follow the
+        group to which the control belongs.</dd>
+      <tt>
+      <dt><br>
+        <strong>XpBORDER</strong>( type )</dt>
+      </tt>
+      <dd>Suggests the kind of border the panel should be drawn with. Possible values are <pre>LWXPBDR_NONE
+LWXPBDR_UP
+LWXPBDR_DOWN</pre>
+      </dd>
+      <tt>
+      <dt><strong>XpDLOGTYPE</strong>( type )</dt>
+      </tt>
+      <dd>Modal panels include buttons that allow the user to accept or cancel their input. This
+        macro specifies which buttons will be added. The numbers in the following list are the
+        values returned by the <tt>post</tt> function when the user dismisses the panel by
+        pressing the corresponding button. <p><tt>LWXPDLG_OKCANCEL </tt>- OK 1, Cancel 0 (the
+        default)<br>
+        <tt>LWXPDLG_DONE </tt>- Done 1<br>
+        <tt>LWXPDLG_OKONLY </tt>- OK 1<br>
+        <tt>LWXPDLG_YESNO </tt>- Yes 1, No 0<br>
+        <tt>LWXPDLG_YESNOALL </tt>- Yes 1, No 0, Yes To All 2, Cancel 3<br>
+        <tt>LWXPDLG_YESNOCAN </tt>- Yes 1, No 0, Cancel 3</p>
+      </dd>
+    </dl>
+    <p><strong>Callbacks</strong></p>
+    <p>Xpanels and its controls rely on callbacks to communicate with your plug-in. Except for
+    the data get and set callbacks, you tell XPanels about them using hints.</p>
+    <p><em><strong>Data get/set</strong></em></p>
+    <pre>   typedef void *LWXPanelGetFunc (void *inst, unsigned long vid);
+   typedef int   LWXPanelSetFunc (void *inst, unsigned long vid,
+      void *value);</pre>
+    <p>Your get and set functions are passed as the third and fourth arguments to the <tt>describe</tt>
+    function when you're creating an <tt>LWXP_VIEW</tt> panel. XPanels calls the get function
+    to get a value from you. The function returns a pointer to the value. XPanels calls the
+    set function to give you a value when it has changed. The set callback returns a refresh
+    code indicating what, if any, redrawing should take place on the panel. The code can be
+    one of the following.</p>
+    <blockquote>
+      <pre>LWXPRC_NONE
+LWXPRC_DFLT
+LWXPRC_DRAW
+LWXPRC_FULL</pre>
+    </blockquote>
+    <p><em><strong>Destroy event</strong></em></p>
+    <pre>   typedef void LWXPanelDestroyNotifyFunc (void *);</pre>
+    <p>This is called after the panel has been destroyed. Provide one of these if you need to
+    do any panel-specific cleanup. Use the <tt>XpDESTROYNOTIFY</tt> hint to set the callback.</p>
+    <p><em><strong>Value change event</strong></em></p>
+    <pre>   typedef void LWXPanelChangeNotifyFunc (LWXPanelID pan,
+      unsigned long cid, unsigned long vid, int event_type);</pre>
+    <p>This is called when user interaction is changing the value of a control, and when your
+    panel is receiving or losing the input focus. Use the <tt>XpCHGNOTIFY</tt> hint to set the
+    callback. The event type is one of the following.</p>
+    <blockquote>
+      <pre>LWXPEVENT_TRACK
+LWXPEVENT_VALUE
+LWXPEVENT_HIT
+LWXPEVENT_FOCUS
+LWXPEVENT_LOSEFOCUS</pre>
+    </blockquote>
+    <p>Typically, <tt>LWXP_FORM</tt> panels use the <tt>TRACK</tt> and <tt>VALUE</tt> events
+    to dynamically follow changes in the values of their controls, while <tt>LWXP_VIEW</tt>
+    panels rely instead on their data set callback.</p>
+    <p><em><strong>Button click event</strong></em></p>
+    <pre>   typedef void LWXPanelBtnClickFunc (LWXPanelID pan, int cid);</pre>
+    <p>Called when the user clicks a button control. Use the <tt>XpBUTNOTIFY</tt> hint to set
+    the callback.</p>
+    <p><em><strong>Popup command</strong></em></p>
+    <pre>   typedef void LWXPanelPopCmdFunc (LWXPanelID pan, int cid, int cmd);</pre>
+    <p>Called when the user selects an item from a popup menu. Use the <tt>XpPOPCMDFUNC</tt>
+    hint to set the callback.</p>
+    <p><em><strong>Popup choice</strong></em></p>
+    <pre>   typedef int         LWXPanelPopCntFunc  (void *userdata);
+   typedef const char *LWXPanelPopNameFunc (void *userdata, int idx);</pre>
+    <p>Called when a popup is displayed. The count callback returns the number of items in the
+    menu. The name callback is then called for each item and returns the string to be
+    displayed for the item. Use the <tt>XpPOPFUNCS</tt> hint to set these callbacks.</p>
+    <p><em><strong>Draw event</strong></em></p>
+    <pre>   typedef void LWXPanelControlDrawFunc (LWXPanelID pan,
+      unsigned long cid, LWXPDrAreaID *reg, int w, int h);</pre>
+    <p>Called when a drawable control (a dThumbnail) needs to be redrawn. Use the <tt>XpDRAWCBFUNC</tt>
+    hint to set the callback.</p>
+    <p><em><strong>Zoom event</strong></em></p>
+    <pre>   typedef void LWXPanelControlZoomFunc (LWXPanelID pan,
+      unsigned long cid, int x, int y, int *region, int clickcount );</pre>
+    <p>Called when the user clicks and drags the mouse within the control (a dThumbnail). Use
+    the <tt>XpZOOMCBFUNC</tt> hint to set the callback.</p>
+    <p><strong>Drawing Functions</strong></p>
+    <p>Drawing is limited to contexts in which a valid LWXPDrAreaID is available, currently
+    the draw callback of a thumbnail control.</p>
+    <pre>   typedef struct st_LWXPDrawFuncs {
+      void (*<strong>drawPixel</strong>)    (LWXPDrAreaID, int c, int x, int y );
+      void (*<strong>drawRGBPixel</strong>) (LWXPDrAreaID, int r, int g, int b, int x,
+                              int y );
+      void (*<strong>drawLine</strong>)     (LWXPDrAreaID, int c, int x, int y, int x2,
+                              int y2 );
+      void (*<strong>drawBox</strong>)      (LWXPDrAreaID, int c, int x, int y, int w,
+                              int h );
+      void (*<strong>drawRGBBox</strong>)   (LWXPDrAreaID, int r, int g, int b, int x,
+                              int y, int w, int h );
+      void (*<strong>drawBorder</strong>)   (LWXPDrAreaID, int indent, int x, int y,
+                              int w, int h );
+      int  (*<strong>textWidth</strong>)    (LWXPDrAreaID, char *s );
+      int  (*<strong>textHeight</strong>)   (LWXPDrAreaID, char *s );
+      void (*<strong>drawText</strong>)     (LWXPDrAreaID, char *s, int c, int x, int y );
+   } LWXPDrawFuncs;</pre>
+    <dl>
+      <tt>
+      <dt><strong>drawPixel</strong>( drawid, color, x, y )<br>
+        <strong>drawRGBPixel</strong>( drawid, r, g, b, x, y )</dt>
+      </tt>
+      <dd>Draw a pixel. The coordinates are relative to the upper-left corner of the drawing area.
+        The color is specified as one of the palette colors defined in lwpanel.h or as levels of
+        red, green and blue between 0 and 255.</dd>
+      <tt>
+      <dt><br>
+        <strong>drawLine</strong>( drawid, color, x1, y1, x2, y2 )</dt>
+      </tt>
+      <dd>Draw a line connecting the endpoints.</dd>
+      <tt>
+      <dt><br>
+        <strong>drawBox</strong>( drawid, color, x, y, w, h )<br>
+        <strong>drawRGBBox</strong>( drawid, r, g, b, x, y, w, h )</dt>
+      </tt>
+      <dd>Draw a solid rectangle.</dd>
+      <tt>
+      <dt><br>
+        <strong>drawBorder</strong>( drawid, indent, x, y, w, h )</dt>
+      </tt>
+      <dd>Draw a rectangular border similar to the ones use to mark the borders of controls. The <tt>indent</tt>
+        is the thickness of the border. If <tt>h</tt> is 0, <tt>drawBorder</tt> creates a
+        horizontal divider.</dd>
+      <tt>
+      <dt><br>
+        tw = <strong>textWidth</strong>( drawid, string )<br>
+        th = <strong>textHeight</strong>( drawid, string )</dt>
+      </tt>
+      <dd>The pixel width and height of the text in the font used by panels.</dd>
+      <tt>
+      <dt><br>
+        <strong>drawText</strong>( drawid, string, color, x, y )</dt>
+      </tt>
+      <dd>Render a line of text.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>Many of the SDK samples (including <a href="../../sample/Layout/Shader/blotch/">blotch</a>,
+     <a href="../../sample/Layout/ImageFilter/hotvideo/">hotvideo</a>, <a href="../../sample/Layout/ItemMotion/kepler/">kepler</a>,
+     <a href="../../sample/Layout/PixelFilter/mandfilt/">mandfilt</a>, <a href="../../sample/Layout/ChannelFilter/noisychan/">NoisyChan</a>,
+     <a href="../../sample/Layout/Shader/specular/">specular</a>,
+    and <a href="../../sample/Layout/ChannelFilter/txchan/">txchan</a>) use XPanels for their interfaces. <a
+    href="../../sample/Layout/ChannelFilter/xpanchan/">xpanchan</a>, <a href="../../sample/Layout/Generic/xpanlgen/">xpanlgen</a>
+    and <a href="../../sample/Layout/Generic/xpanxtreme/">xpanxtreme</a> were written specifically to
+    demonstrate XPanels features.</td>
+  </tr>
+</table>
+</body>
+</html>

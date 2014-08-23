@@ -1,0 +1,25 @@
+HKCR
+{
+	Comsrv.TestMarshalSpeed.1 = s 'TestMarshalSpeed Class'
+	{
+		CLSID = s '{93B00F73-A90D-4A4B-9F4D-B7328892D624}'
+	}
+	Comsrv.TestMarshalSpeed = s 'TestMarshalSpeed Class'
+	{
+		CLSID = s '{93B00F73-A90D-4A4B-9F4D-B7328892D624}'
+		CurVer = s 'Comsrv.TestMarshalSpeed.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {93B00F73-A90D-4A4B-9F4D-B7328892D624} = s 'TestMarshalSpeed Class'
+		{
+			ProgID = s 'Comsrv.TestMarshalSpeed.1'
+			VersionIndependentProgID = s 'Comsrv.TestMarshalSpeed'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '3dsmax.exe'
+			InprocHandler32 = s 'ole32.dll'
+			val AppID = s '{4AD72E62-5A4B-11D2-91CB-0060081C257E}'
+			'TypeLib' = s '{4AD72E61-5A4B-11D2-91CB-0060081C257E}'
+		}
+	}
+}

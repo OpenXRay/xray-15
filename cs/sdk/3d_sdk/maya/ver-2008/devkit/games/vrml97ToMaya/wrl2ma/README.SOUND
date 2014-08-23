@@ -1,0 +1,70 @@
+From: Kumaran Santhanam <rhapsody@stanford.edu>
+To: cmorley@vermontel.com <cmorley@vermontel.com>
+Subject: AudioClip implemented!
+Date: Thursday, November 12, 1998 8:02 PM
+
+Hello Chris -
+
+I am finished with a first implementation of the sound driver
+and VrmlNodeAudioClip.  The implementation is capable of:
+
+o Playing WAV file clips, both 8-bit and 16-bit PCM
+
+o Managing multiple clip device contention
+  - If one clip is playing and another wants to play, it will
+    be silent until the first stops playing
+
+o Managing clip time indexing
+  - The clip timings are managed so that if a clip is unable to
+    play, it will still keep track of its time index so that
+    when it can play, it will play at the right time.
+
+o All OS-dependent sound functions are in one file:  sound.c
+  - This implementation uses the standard Open Sound System found
+    on Linux and many other UNIX platforms.  This file should be
+    very easy to port to other sound APIs.
+
+
+
+What it still cannot do:
+
+o Sound waveform amplitude scaling
+  - There is a parameter called 'intensity' in the sound.c API.
+    This is unused for the moment, though only the multiplication
+    code need be written in the outputSoundChunk function.
+
+o Sound spatial localization
+  - This code belongs, if I understand correctly, in
+    VrmlNodeSound::render(...), since it's position-dependent and
+    only needs to be called when the scene is re-rendered.
+  - The intensity stub is available in the sound API to provide
+    this functionality.
+
+o Sound prioritization
+  - A simple static array list needs to be implemented so that
+    the Sound nodes can be sort as per the VRML specification.
+
+
+
+You can view some neat VRML movies at:
+    http://www.protozoa.com/vrml_scenes/family/
+
+Please note that the Fred, Part I (189K) has some parse error.
+However, the 'better sound' version works.  Fred, Part II is
+also good.
+
+I have attached all of the changed files as a .tgz file.
+
+Thanks again for this excellent VRML implementation.  I look
+forward to your reply on this matter.
+
+Regards,
+Kumaran
+--
+Kumaran Santhanam                                rhapsody@leland.stanford.edu
+
+Shanahan's Law:
+  The length of a meeting rises with the square of the number of people
+  present.
+
+          --->  http://www-bsac.eecs.berkeley.edu/~ksanthan  <---

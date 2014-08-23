@@ -1,0 +1,608 @@
+<html>
+
+<head>
+<title>Classes: MeshDataEdit</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="master.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="MasterHandler"></a></td>
+    <td width="96" align="left"><a href="metool.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="MeshEditTool"></a></td>
+    <td width="96" align="left"><a href="../classes.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Classes"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>MeshDataEdit</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwmeshedt.h">lwmeshedt.h</a></small></p>
+    <p>Mesh edit plug-ins create and modify geometry at the point and polygon level. This
+    class is a subset of the <a href="cs.html">CommandSequence</a> class, which provides
+    access to both mesh editing and <a href="../commands.html">commands</a>, and of the <a
+    href="metool.html">MeshEditTool</a> class, an interactive version of MeshDataEdit.</p>
+    <p><strong>Activation Function</strong></p>
+    <pre>   XCALL_( int ) MyMeshEdit( long version, GlobalFunc *global,
+      MeshEditBegin *local, void *serverData );</pre>
+    <p>The <tt>local</tt> argument to a mesh edit plug-in's activation function is a
+    MeshEditBegin.</p>
+    <pre>   typedef MeshEditOp *
+      MeshEditBegin (int pntBuf, int polBuf, EltOpSelect);</pre>
+    <p>This function returns a MeshEditOp structure containing the mesh editing functions. It
+    can be called only once for each activation.</p>
+    <p>The MeshEditBegin function can allocate a user data buffer for each point and polygon.
+    This is memory you can use to store per-point and per-polygon information during the edit.
+    Modeler automatically frees these buffers when the edit is completed. The <tt>pntBuf</tt>
+    and <tt>polBuf</tt> arguments set the sizes of the buffers.</p>
+    <p><a name="eltopselect"><strong>EltOpSelect</strong></a></p>
+    <p>When the edit begins, Modeler sets a selection flag for each point and polygon. The
+    EltOpSelect code determines which geometry is flagged as selected, and it can be one of
+    the following.<dl>
+      <tt>
+      <dt>OPSEL_GLOBAL</dt>
+      </tt>
+      <dd>All elements, whether or not they're selected by the user.</dd>
+      <tt>
+      <dt><br>
+        OPSEL_USER</dt>
+      </tt>
+      <dd>Only those elements selected by the user. This includes the implicit selection of all
+        elements when nothing is explicitly selected, and selections by volume.</dd>
+      <tt>
+      <dt><br>
+        OPSEL_DIRECT</dt>
+      </tt>
+      <dd>Elements selected directly with the point or polygon selection tools. This applies to
+        both points and polygons regardless of which is currently active in the interface.</dd>
+      <tt>
+      <dt><br>
+        OPSEL_MODIFY</dt>
+      </tt>
+      <dd>This activates a special mesh edit mode that can change the selection state of specific
+        points and polygons. The mesh editing functions for adding and changing geometry aren't
+        available in this mode, but the query functions can be used. The selection state of a
+        point or polygon is modified by calling the MeshEditOp <tt>pntSelect</tt> or <tt>polSelect</tt>
+        functions, typically within a <tt>pointScan</tt> or <tt>polyScan</tt> callback. <tt>OPSEL_MODIFY</tt>
+        must be combined with one of the other selection modes in the MeshEditBegin call.</dd>
+    </dl>
+    <p><strong><a name="eltoplayer">EltOpLayer</a></strong></p>
+    <p>Many of the MeshEditOp functions operate on a specific set of layers, and these are
+    identified by an EltOpLayer code.<dl>
+      <dt><tt>OPLYR_PRIMARY</tt></dt>
+      <dd>The primary layer. This is the single active layer affected by mesh edits, normally the
+        lowest numbered foreground layer.</dd>
+      <dt><tt>OPLYR_FG</tt></dt>
+      <dd>Foreground layers, which are active and displayed.</dd>
+      <dt><tt>OPLYR_BG</tt></dt>
+      <dd>Background layers, which are inactive but still displayed.</dd>
+      <dt><tt>OPLYR_SELECT</tt></dt>
+      <dd>Both foreground and background layers.</dd>
+      <dt><tt>OPLYR_ALL</tt></dt>
+      <dd>All layers in the Modeler system whether they contain data or not.</dd>
+      <dt><tt>OPLYR_EMPTY</tt></dt>
+      <dd>Empty layers are those that contain no geometry.</dd>
+      <dt><tt>OPLYR_NONEMPTY</tt></dt>
+      <dd>Non-empty layers are any layers which contain some data (the complement of <tt>OPLYR_EMPTY</tt>).</dd>
+      <dt>Individual Layers</dt>
+      <dd>In addition to the defined values, codes starting at 101 (for layer 1) can be used to
+        select the individual layers by number.</dd>
+    </dl>
+    <p><strong>Error Codes</strong></p>
+    <p>Most of the mesh edit functions return an error state defined by one of the following
+    codes. One of these is also passed to the MeshEditOp <tt>done</tt> function.<dl>
+      <tt>
+      <dt>EDERR_NONE</dt>
+      </tt>
+      <dd>Success.</dd>
+      <tt>
+      <dt>EDERR_NOMEMORY</dt>
+      </tt>
+      <dd>A memory allocation failed.</dd>
+      <tt>
+      <dt>EDERR_BADLAYER</dt>
+      </tt>
+      <dd>An operation was attempted in an invalid layer.</dd>
+      <tt>
+      <dt>EDERR_BADSURF</dt>
+      </tt>
+      <dd>The edit created an invalid surface name.</dd>
+      <tt>
+      <dt>EDERR_USERABORT</dt>
+      </tt>
+      <dd>The user (or the plug-in) ended the edit before it was completed.</dd>
+      <dt><tt>EDERR_BADVMAP</tt></dt>
+      <dd>The operation involved an invalid vertex map.</dd>
+      <tt>
+      <dt>EDERR_BADARGS</dt>
+      </tt>
+      <dd>The function failed for a reason not covered by the other error codes.</dd>
+    </dl>
+    <p><strong>MeshEditOp</strong></p>
+    <p>The MeshEditBegin function returns a MeshEditOp containing data and functions for
+    performing mesh edits.</p>
+    <pre>   typedef struct st_MeshEditOp {
+      EDStateRef    <strong>   state</strong>;
+      int           <strong>   layerNum</strong>;
+      void            (*<strong>done</strong>)      (EDStateRef, EDError, int selm);
+      int             (*<strong>pointCount</strong>)(EDStateRef, EltOpLayer, int mode);
+      int             (*<strong>polyCount</strong>) (EDStateRef, EltOpLayer, int mode);
+      EDError         (*<strong>pointScan</strong>) (EDStateRef, EDPointScanFunc *,
+                                      void *, EltOpLayer);
+      EDError         (*<strong>polyScan</strong>)  (EDStateRef, EDPolyScanFunc *,
+                                      void *, EltOpLayer);
+      EDPointInfo *   (*<strong>pointInfo</strong>) (EDStateRef, LWPntID);
+      EDPolygonInfo * (*<strong>polyInfo</strong>)  (EDStateRef, LWPolID);
+      int             (*<strong>polyNormal</strong>)(EDStateRef, LWPolID, double[3]);
+      LWPntID         (*<strong>addPoint</strong>)  (EDStateRef, double *xyz);
+      LWPolID         (*<strong>addFace</strong>)   (EDStateRef, const char *surf,
+                                      int numPnt, const LWPntID *);
+      LWPolID         (*<strong>addCurve</strong>)  (EDStateRef, const char *surf,
+                                      int numPnt, const LWPntID *,
+                                      int flags);
+      EDError         (*<strong>addQuad</strong>)   (EDStateRef, LWPntID, LWPntID,
+                                      LWPntID, LWPntID);
+      EDError         (*<strong>addTri</strong>)    (EDStateRef, LWPntID, LWPntID,
+                                      LWPntID);
+      EDError         (*<strong>addPatch</strong>)  (EDStateRef, int nr, int nc, int lr,
+                                      int lc, EDBoundCv *r0,
+                                      EDBoundCv *r1, EDBoundCv *c0,
+                                      EDBoundCv *c1);
+      EDError         (*<strong>remPoint</strong>)  (EDStateRef, LWPntID);
+      EDError         (*<strong>remPoly</strong>)   (EDStateRef, LWPolID);
+      EDError         (*<strong>pntMove</strong>)   (EDStateRef, LWPntID, const double *);
+      EDError         (*<strong>polSurf</strong>)   (EDStateRef, LWPolID, const char *);
+      EDError         (*<strong>polPnts</strong>)   (EDStateRef, LWPolID, int,
+                                      const LWPntID *);
+      EDError         (*<strong>polFlag</strong>)   (EDStateRef, LWPolID, int mask,
+                                      int value);
+      EDError         (*<strong>polTag</strong>)    (EDStateRef, LWPolID, LWID,
+                                      const char *);
+      EDError         (*<strong>pntVMap</strong>)   (EDStateRef, LWPntID, LWID,
+                                      const char *, int, float *);
+      LWPolID         (*<strong>addPoly</strong>)   (EDStateRef, LWID type, LWPolID,
+                                      const char *surf, int numPnt,
+                                      const LWPntID *);
+      LWPntID         (*<strong>addIPnt</strong>)   (EDStateRef, double *xyz, int numPnt,
+                                      const LWPntID *, const double *wt);
+      EDError         (*<strong>initUV</strong>)    (EDStateRef, float *uv);
+      void *          (*<strong>pointVSet</strong>) (EDStateRef, void *, LWID,
+                                      const char *);
+      int             (*<strong>pointVGet</strong>) (EDStateRef, LWPntID, float *);
+      const char *    (*<strong>polyTag</strong>)   (EDStateRef, LWPolID, LWID);
+      EDError         (*<strong>pntSelect</strong>) (EDStateRef, LWPntID, int);
+      EDError         (*<strong>polSelect</strong>) (EDStateRef, LWPolID, int);
+      int             (*<strong>pointVPGet</strong>)(EDStateRef, LWPntID, LWPolID,
+                                      float *);
+      int             (*<strong>pointVEval</strong>)(EDStateRef, LWPntID, LWPolID,
+                                      float *);
+      EDError         (*<strong>pntVPMap</strong>)  (EDStateRef, LWPntID, LWPolID,
+                                      LWID, const char *, int, float *);
+   } MeshEditOp;</pre>
+    <dl>
+      <tt>
+      <dt><strong>state</strong></dt>
+      </tt>
+      <dd>An opaque pointer to data used internally by Modeler during the mesh edit. Pass this as
+        the first argument to all of the edit functions.</dd>
+      <tt>
+      <dt><br>
+        <strong>layerNum</strong></dt>
+      </tt>
+      <dd>Points and polygons may only be created or modified in the primary active layer, which
+        is given by this layer number. The primary layer is the lowest numbered foreground layer.</dd>
+      <tt>
+      <dt><br>
+        <strong>done</strong>( state, error, selset )</dt>
+      </tt>
+      <dd>Call this when the edit is complete. As changes are made during an edit, they are
+        buffered through Modeler's undo mechanism, so they are not reflected in the data until
+        done is called, and not at all if <tt>done</tt> sets the error argument. <p>In general, if
+        one of the edit functions returns an error, you'll pass that error to <tt>done</tt>. If
+        you just want the edit to stop or be discarded, possibly because the user pressed the
+        Cancel button in a progress <a href="../globals/modmon.html">monitor</a>, you'll pass <tt>EDERR_USERABORT</tt>.
+        If an error occurs in your plug-in, you'll pass <tt>EDERR_NOMEMORY</tt> (for memory
+        allocation errors) or <tt>EDERR_BADARGS</tt> (for everything else). And if the edit was
+        successful, you'll use <tt>EDERR_NONE</tt>.</p>
+        <p>The <tt>selset</tt> argument tells Modeler how you want the selection to appear to the
+        user after the edit has been applied. It contains flags combined using bitwise-or, and can
+        include the following. <dl>
+          <tt>
+          <dt><br>
+            EDSELM_CLEARCURRENT</dt>
+          </tt>
+          <dd>Deselect elements that were selected when the edit began.</dd>
+          <tt>
+          <dt>EDSELM_SELECTNEW</dt>
+          </tt>
+          <dd>Select elements created by the edit.</dd>
+          <tt>
+          <dt>EDSELM_FORCEVRTS</dt>
+          </tt>
+          <dd>Force selection of newly created vertices.</dd>
+          <tt>
+          <dt>EDSELM_FORCEPOLS</dt>
+          </tt>
+          <dd>Force selection of newly created polygons.</dd>
+        </dl>
+        <p>A value of 0 leaves all directly selected elements selected after the edit. The <tt>CLEARCURRENT</tt>
+        and <tt>SELECTNEW</tt> flags are polite hints; they won't override selection settings made
+        by the user. The force flags will always force direct selection of the points or polygons
+        created by the edit.</p>
+      </dd>
+      <tt>
+      <dt>npoints = <strong>pointCount</strong>( state, oplayer, selmode )<br>
+        npolygons = <strong>polyCount</strong>( state, oplayer, selmode )</dt>
+      </tt>
+      <dd>Returns the number of points or polygons that meet the layer and selection criteria. The
+        selection mode can be one of the following. <dl>
+          <tt>
+          <dt><br>
+            EDCOUNT_ALL</dt>
+          </tt>
+          <dd>Both selected and unselected points or polygons.</dd>
+          <tt>
+          <dt>EDCOUNT_SELECT</dt>
+          </tt>
+          <dd>Only selected points or polygons.</dd>
+          <tt>
+          <dt>EDCOUNT_DELETE</dt>
+          </tt>
+          <dd>Only points or polygons flagged for deletion by this mesh edit.</dd>
+        </dl>
+      </dd>
+      <tt>
+      <dt><br>
+        err = <strong>pointScan</strong>( state, scanfunc, userdata, oplayer )<br>
+        err = <strong>polyScan</strong>( state, scanfunc, userdata, oplayer )</dt>
+      </tt>
+      <dd>Enumerate the points or polygons in the specified layers. For each element, Modeler
+        calls the callback function you supply. The callbacks are defined this way. <pre>typedef EDError EDPointScanFunc (void *, const EDPointInfo *);
+typedef EDError EDPolyScanFunc (void *, const EDPolygonInfo *);</pre>
+        <p>The <tt>userdata</tt> pointer is passed as the first argument to your callbacks, and it
+        can be whatever is useful to you. The point and polygon info structures passed as the
+        second argument are described later. If your callback returns an error, the scan is
+        stopped and the callback's error is returned.</p>
+        <p>Point and polygon scans will enumerate all of the geometry in the layers you request,
+        regardless of what geometry is selected, even if you begin the edit with <tt>OPSEL_USER</tt>
+        or <tt>OPSEL_DIRECT</tt>. To find out whether a given element is selected (as defined by
+        your choice of EltOpSelect), you need to test the EDPointInfo or EDPolygonInfo <tt>flags</tt>
+        field for the <tt>EDDF_SELECT</tt> bit. Similarly, if you've deleted geometry during the
+        mesh edit, it will still be enumerated, but the flags field of the info structure will
+        contain <tt>EDDF_DELETE</tt>.</p>
+      </dd>
+      <tt>
+      <dt>info = <strong>pointInfo</strong>( state, point )<br>
+        info = <strong>polyInfo</strong>( state, polygon )</dt>
+      </tt>
+      <dd>Returns information about a point or polygon. These return the same EDPointInfo and
+        EDPolygonInfo structures that are passed to the scan callbacks.</dd>
+      <tt>
+      <dt><br>
+        ok = <strong>polyNormal</strong>( state, polygon, norm )</dt>
+      </tt>
+      <dd>Get a polygon's normal. The normal is a unit vector perpendicular to the plane defined
+        by the first, second and last vertex of the polygon. If the polygon has fewer than three
+        vertices, or is somehow degenerate, <tt>norm</tt> isn't changed and the function returns
+        0. Otherwise it returns 1 and <tt>norm</tt> receives the normal.</dd>
+      <tt>
+      <dt><br>
+        point = <strong>addPoint</strong>( state, pos )</dt>
+      </tt>
+      <dd>Create a point.</dd>
+      <tt>
+      <dt><br>
+        polygon = <strong>addFace</strong>( state, surfname, npoints, point_array )</dt>
+      </tt>
+      <dd>Create a polygon. If the surface name is NULL, the polygon will be assigned the current
+        default surface. The vertices are defined by an array of point IDs listed in clockwise
+        order. The polygon normal will be inferred from the first, second and last points.</dd>
+      <tt>
+      <dt><br>
+        polygon = <strong>addCurve</strong>( state, surfname, npoints, point_array, flags )</dt>
+      </tt>
+      <dd>Create a curve (a polygon of type <tt>LWPOLTYPE_CURV</tt>). The <tt>EDPF_CCSTART</tt>
+        and <tt>EDPF_CCEND</tt> flags specify that the first and last points in the point array
+        should serve as control points and not be included in the curve itself. To create a closed
+        curve, both of these flags must be set, and the first and last point must overlap.</dd>
+      <tt>
+      <dt><br>
+        err = <strong>addQuad</strong>( state, v1, v2, v3, v4 )<br>
+        err = <strong>addTri</strong>( state, v1, v2, v3 )</dt>
+      </tt>
+      <dd>Create a quadrangle or a triangle with the current default surface. These two functions
+        respect the user's settings for new geometry. Two collocated polygons with opposite
+        normals will be created if the user has set the double-sided option, and quads will be
+        split into two triangles if the user has set the triangles-only option.</dd>
+      <tt>
+      <dt><br>
+        err = <strong>addPatch</strong>( state, nr, nc, lr, lc, r0, r1, c0, c1 )</dt>
+      </tt>
+      <dd>Create a polygonal patch defined by three or four bounding curves. The first two
+        arguments (after the EditStateRef) give the number of patch divisions in the R (row) and C
+        (column) directions. The second two arguments are booleans; if 0, the divisions are
+        equally spaced along the curve, and if 1, the spacing is determined by the positions of
+        the curve knots. The last four arguments are the bounding curves, each defined by an
+        EDBoundCV structure. <pre>typedef struct st_EDBoundCv {
+   LWPolID curve;
+   int     start, end;
+} EDBoundCv;</pre>
+        <p>The <tt>start</tt> and <tt>end</tt> indexes are the points on the curve that should be
+        used as endpoints for patching. The first and second curves define the R boundaries. The
+        third and optional fourth curve define the C boundaries.</p>
+      </dd>
+      <tt>
+      <dt>err = <strong>remPoint</strong>( state, point )</dt>
+      </tt>
+      <dd>Delete the point. Modeler will flag the point as deleted, but will actually remove it
+        from the database only after <tt>done</tt> is called.</dd>
+      <tt>
+      <dt><br>
+        err = <strong>remPoly</strong>( state, polygon )</dt>
+      </tt>
+      <dd>Delete the polygon.</dd>
+      <tt>
+      <dt><br>
+        err = <strong>pntMove</strong>( state, point, pos )</dt>
+      </tt>
+      <dd>Put a point in a new position.</dd>
+      <tt>
+      <dt><br>
+        err = <strong>polSurf</strong>( state, polygon, surfname )</dt>
+      </tt>
+      <dd>Change the surface assigned to a polygon.</dd>
+      <tt>
+      <dt><br>
+        err = <strong>polPnts</strong>( state, polygon, npoints, point_array )</dt>
+      </tt>
+      <dd>Replace the point list of a polygon.</dd>
+      <tt>
+      <dt><br>
+        err = <strong>polFlag</strong>( state, polygon, mask, value )</dt>
+      </tt>
+      <dd>Set polygon flags. The mask contains 1 bits for each flag you want to change, and the
+        value contains the new flag settings (0 or 1 for each 1 bit in the mask). Currently, the
+        flags that can be changed are the <tt>EDPF_START</tt> and <tt>EDPF_END</tt> flags for
+        curves.</dd>
+      <tt>
+      <dt><br>
+        err = <strong>polTag</strong>( state, polygon, tagtype, tag )</dt>
+      </tt>
+      <dd>Add a polygon tag to a polygon, or change an existing tag. If the tag type is <tt>LWPTAG_SURF</tt>,
+        the tag is the surface name. If the tag type is <tt>LWPTAG_PART</tt>, the tag is the part
+        (or group) name. For anything other than surface tags, passing a NULL <tt>tag</tt> will
+        remove an existing tag of the specified type.</dd>
+      <tt>
+      <dt><br>
+        err = <strong>pntVMap</strong>( state, point, type, name, nvalues, val_array )</dt>
+      </tt>
+      <dd>Add a vmap vector to a point. The vmap type can be one of the following, or something
+        else.<p><tt>LWVMAP_PICK</tt> - selection set<br>
+        <tt>LWVMAP_WGHT</tt> - weight map<br>
+        <tt>LWVMAP_MNVW</tt> - subpatch weight map<br>
+        <tt>LWVMAP_TXUV</tt> - texture UV coordinates<br>
+        <tt>LWVMAP_MORF</tt> - relative vertex displacement (morph)<br>
+        <tt>LWVMAP_SPOT</tt> - absolute vertex displacement (morph)<br>
+        <tt>LWVMAP_RGB</tt>, <tt>LWVMAP_RGBA</tt> - vertex color</p>
+        <p>Pass a NULL <tt>val_array</tt> to <em>remove</em> a vmap vector from the point.</p>
+      </dd>
+      <tt>
+      <dt>polygon = <strong>addPoly</strong>( state, type, template, surf, npoints, point_array )</dt>
+      </tt>
+      <dd>Create a polygon. If a template polygon is supplied, Modeler copies the polygon tags for
+        the new polygon from the template. If the surface name is NULL, the surface will be that
+        of the template, or the current default surface if the template is NULL. The vertices of
+        the new polygon are listed in clockwise order, and the normal will be inferred from the
+        first, second and last vertex.</dd>
+      <tt>
+      <dt><br>
+        point = <strong>addIPnt</strong>( state, pos, npoints, point_array, weight_array )</dt>
+      </tt>
+      <dd>Create an &quot;interpolated&quot; point. The new point's vmap values are calculated as
+        a weighted average of the vmaps of the points in the points array. If <tt>pos</tt> is
+        NULL, the position is also computed as a weighted average. If the weight array is NULL,
+        the averaging over the point list is uniform. The weights are renormalized to sum to 1.0.</dd>
+      <tt>
+      <dt><br>
+        err = <strong>initUV</strong>( state, uv )</dt>
+      </tt>
+      <dd>Set the texture UV for a point or polygon you're about to create. If a texture map is
+        selected in Modeler's interface, the UVs will be assigned to that map as points or
+        polygons are created. You'll typically want to give the user the option of whether or not
+        to create UVs for new points and polygons. <p>When creating points, pass <tt>initUV</tt>
+        an array of two floats and then call any of the functions that create a point. The two
+        floats will be used as the U and V for the point, after which the <tt>initUV</tt> state
+        will be cleared so that subsequent points have no UV unless the function is called again.</p>
+        <p>To initialize per-polygon, or discontinuous, UVs, call <tt>initUV</tt> with a pointer
+        to 2<em>n</em> floats before creating a polygon with <em>n</em> vertices. For each vertex,
+        if the point's continuous UV value is different from the UV in the array, then a
+        polygon-specific UV is set for the vertex. If the point has no continuous UV, then the
+        continuous value for the point is set to the polygon UV. </p>
+        <p>Any combination of these two methods can be used to assign UVs to new data. If only
+        polygon UVs are specified, continuous UVs will still be created where polygons share UV
+        values. Alternately, plug-ins can assign UVs to points and only specify polygon UVs along
+        seam polygons.</p>
+      </dd>
+      <tt>
+      <dt>vmapID = <strong>pointVSet</strong>( state, vmapID, vmaptype, vmapname )</dt>
+      </tt>
+      <dd>Select a vmap for reading vectors. Returns an opaque pointer that can be used to select
+        the same vmap in later calls to this function. The first time this is called for a given
+        vmap, the pointer can be NULL, and Modeler will locate and select the vmap using the type
+        and name arguments.</dd>
+      <tt>
+      <dt><br>
+        ismapped = <strong>pointVGet</strong>( state, point, val )</dt>
+      </tt>
+      <dd>Read the vmap vector for a point. The vector is read from the vmap selected by a
+        previous call to <tt>pointVSet</tt>. If the point is mapped (has a vmap value in the
+        selected vmap), the <tt>val</tt> array is filled with the vmap vector for the point, and <tt>pointVGet</tt>
+        returns true. If you don't already know the dimension of the vmap (the number of values
+        per point, and therefore the required size of the <tt>val</tt> array), you can use the <a
+        href="../globals/sceneobj.html">scene objects</a> global to find out. <p>See also <tt>pointVPGet</tt>
+        and <tt>pointVEval</tt>. <tt>pointVGet</tt> is equivalent to reading values from a <a
+        href="../filefmts/lwo2.html#c_VMAP">VMAP chunk</a> in an object file. It returns the
+        continuous, or per-point, vector. For the raw discontinuous, or per-polygon-vertex value,
+        use <tt>pointVPGet</tt>, and for the combined value accounting for both sources, use <tt>pointVEval</tt>.</p>
+      </dd>
+      <tt>
+      <dt>tag = <strong>polyTag</strong>( state, polygon, tagtype )</dt>
+      </tt>
+      <dd>Returns a tag string associated with the polygon. For the <tt>LWPTAG_SURF</tt> tag type,
+        the surface name is returned.</dd>
+      <tt>
+      <dt><br>
+        err = <strong>pntSelect</strong>( state, point, setsel )<br>
+        err = <strong>polSelect</strong>( state, polygon, setsel )</dt>
+      </tt>
+      <dd>Set the selection state of a point or polygon. These can only be called during <tt>OPSEL_MODIFY</tt>
+        mesh edits. The element is selected if <tt>setsel</tt> is true and deselected if it's
+        false.</dd>
+      <tt>
+      <dt><br>
+        ismapped = <strong>pointVPGet</strong>( state, point, polygon, val )</dt>
+      </tt>
+      <dd>Read the vmap vector for a polygon vertex. This is like <tt>pointVGet</tt>, but it
+        returns the discontinuous vmap value, equivalent to reading entries in a <a
+        href="../filefmts/lwo2.html#c_VMAD">VMAD chunk</a>.</dd>
+      <tt>
+      <dt><br>
+        ismapped = <strong>pointVEval</strong>( state, point, polygon, val )</dt>
+      </tt>
+      <dd>Read the vmap vector for a point, accounting for both continuous and discontinuous
+        values. Generally, if a discontinuous value exists for the point, that value will be
+        returned.&nbsp; Otherwise the continuous value is used.</dd>
+      <tt>
+      <dt><br>
+        err = <strong>pntVPMap</strong>( state, point, polygon, type, name, dim, val )</dt>
+      </tt>
+      <dd>Add a discontinuous vmap vector to a polygon vertex. This is the vector returned by <tt>pointVPGet</tt>.
+        See <tt>pntVMap</tt> for a partial list of vmap types.</dd>
+    </dl>
+    <p><strong>Point and Polygon Info</strong></p>
+    <p>The info and scan functions use EDPointInfo and EDPolygonInfo structures to provide
+    information about points and polygons. Modeler maintains only one of each of these. It
+    overwrites the structure each time data for a different point or polygon is required, so
+    if you need to keep data for multiple points or polygons, you must copy it from the
+    structure and store it locally. </p>
+    <pre>   typedef struct st_EDPointInfo {
+      LWPntID  <strong>pnt</strong>;
+      void    *<strong>userData</strong>;
+      int      <strong>layer</strong>;
+      int      <strong>flags</strong>;
+      double   <strong>position</strong>[3];
+      float   *<strong>vmapVec</strong>;
+   } EDPointInfo;</pre>
+    <dl>
+      <tt>
+      <dt><strong>pnt</strong></dt>
+      </tt>
+      <dd>The ID of the point.</dd>
+      <tt>
+      <dt><strong><br>
+        userData</strong></dt>
+      </tt>
+      <dd>Your per-point data buffer, allocated by the MeshEditBegin call.</dd>
+      <tt>
+      <dt><strong><br>
+        layer</strong></dt>
+      </tt>
+      <dd>The layer in which the point resides.</dd>
+      <tt>
+      <dt><strong><br>
+        flags</strong></dt>
+      </tt>
+      <dd>Flags for the point. The <tt>EDDF_SELECT</tt> bit is set if the selection state of the
+        point matches the EltOpSelect passed to the MeshEditBegin function. The <tt>EDDF_DELETE</tt>
+        bit is set if the point has been deleted during this mesh edit.</dd>
+      <tt>
+      <dt><strong><br>
+        position</strong></dt>
+      </tt>
+      <dd>The point's position.</dd>
+      <tt>
+      <dt><strong><br>
+        vmapVec</strong></dt>
+      </tt>
+      <dd>The vmap values associated with the point.</dd>
+    </dl>
+    <pre>   typedef struct st_EDPolygonInfo {
+      LWPolID        <strong>pol</strong>;
+      void          *<strong>userData</strong>;
+      int            <strong>layer</strong>;
+      int            <strong>flags</strong>;
+      int            <strong>numPnts</strong>;
+      const LWPntID *<strong>points</strong>;
+      const char    *<strong>surface</strong>;
+      unsigned long <strong> type</strong>;
+   } EDPolygonInfo;</pre>
+    <dl>
+      <tt>
+      <dt><strong>pol</strong></dt>
+      </tt>
+      <dd>The polygon ID.</dd>
+      <tt>
+      <dt><strong><br>
+        userData</strong></dt>
+      </tt>
+      <dd>Your per-polygon data buffer, allocated by the MeshEditBegin call.</dd>
+      <tt>
+      <dt><strong><br>
+        layer</strong></dt>
+      </tt>
+      <dd>The layer in which the polygon resides.</dd>
+      <tt>
+      <dt><strong><br>
+        flags</strong></dt>
+      </tt>
+      <dd>Flags for the polygon. These include the <tt>EDPF_CCSTART</tt> and <tt>EDDF_CCEND</tt>
+        bits for curves.</dd>
+      <tt>
+      <dt><strong><br>
+        numPnts</strong></dt>
+      </tt>
+      <dd>The number of vertices in the polygon.</dd>
+      <tt>
+      <dt><strong><br>
+        points</strong></dt>
+      </tt>
+      <dd>An array of point IDs for the vertices of the polygon.</dd>
+      <tt>
+      <dt><strong><br>
+        surface</strong></dt>
+      </tt>
+      <dd>The polygon's surface.</dd>
+      <tt>
+      <dt><strong><br>
+        type</strong></dt>
+      </tt>
+      <dd>The polygon type, which will usually be one of the following. <p><tt>LWPOLTYPE_FACE</tt>
+        - face<br>
+        <tt>LWPOLTYPE_CURV</tt> - higher order curve<br>
+        <tt>LWPOLTYPE_PTCH</tt> - subdivision control cage polygon<br>
+        <tt>LWPOLTYPE_MBAL</tt> - metaball<br>
+        <tt>LWPOLTYPE_BONE</tt> - bone</p>
+      </dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>The <a href="../../sample/Modeler/CommandSequence/zfacing/">zfacing</a> sample demonstrates <tt>OPSEL_MODIFY</tt>
+    edits. This method of altering the selection is especially useful in <a href="cs.html">CommandSequence</a>
+    plug-ins, so <tt>zfacing.c</tt> contains both edit and command versions of the activation
+    function. The <a href="../../sample/Modeler/Input-Output/vidscape/">vidscape</a> sample uses mesh editing to
+    enumerate the geometry of an object before exporting it to a VideoScape format file. Many
+    former mesh edit sample plug-ins, notably <a href="../../sample/Modeler/MeshEdit/superq/">superq</a> and <a
+    href="../../sample/Modeler/MeshEdit/spikeytool/">spikey</a>, have been converted to interactive mesh edit <a
+    href="metool.html">tools</a>. </td>
+  </tr>
+</table>
+</body>
+</html>

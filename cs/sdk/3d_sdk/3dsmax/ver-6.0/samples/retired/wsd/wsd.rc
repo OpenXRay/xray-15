@@ -1,0 +1,151 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "wsdrc.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include <windows.h>
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "wsdrc.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include <windows.h>\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_WSD_ABOUT DIALOG DISCARDABLE  0, 0, 166, 57
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "About Accom WSD"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,109,37,50,14
+    RTEXT           "Accom WSD Driver",IDC_STATIC,36,8,118,11
+    RTEXT           "Version 1.0",IDC_STATIC,36,19,118,11
+    GROUPBOX        "",IDC_STATIC,9,2,150,30
+END
+
+IDD_WSD_CONTROL DIALOG DISCARDABLE  0, 0, 145, 148
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION " Accom WSD "
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,54,125,38,16
+    PUSHBUTTON      "Cancel",IDCANCEL,101,125,38,16
+    GROUPBOX        "",IDC_STATIC,8,83,129,35
+    PUSHBUTTON      "&Rew",IDC_REW,17,95,32,16
+    PUSHBUTTON      "&Play",IDC_PLAY,56,95,32,16
+    PUSHBUTTON      "&Current",IDC_CURRENT,95,24,32,16
+    GROUPBOX        " Starting Frame ",IDC_STATIC,8,11,129,38
+    EDITTEXT        IDC_STARTFRAME,17,26,70,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Set&up...",IDC_SETUP,7,125,38,16
+    PUSHBUTTON      "&Stop",IDC_STOP,95,95,32,16
+    GROUPBOX        " Chroma Filtering ",IDC_STATIC,8,51,130,31
+    CONTROL         "&Enabled",IDC_CHROMA,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,17,64,42,10
+END
+
+IDD_WSD_SETUP DIALOG DISCARDABLE  0, 0, 155, 110
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION " Accom WSD Setup"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,86,91,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,19,91,50,14
+    EDITTEXT        IDC_HOSTNAME,13,24,127,12,ES_AUTOHSCROLL
+    CONTROL         "NTSC",IDC_NTSC,"Button",BS_AUTORADIOBUTTON,8,58,34,10
+    CONTROL         "PAL",IDC_PAL,"Button",BS_AUTORADIOBUTTON,8,69,34,10
+    GROUPBOX        " Network Name ",IDC_STATIC,4,8,146,37
+    GROUPBOX        " System ",IDC_STATIC,4,46,65,40
+    GROUPBOX        " Max Frames ",IDC_STATIC,73,46,77,40
+    CONTROL         "",IDC_MAX_FRAMES_ED,"CustEdit",WS_TABSTOP,82,63,46,10
+    CONTROL         "",IDC_MAX_FRAMES_SP,"SpinnerControl",0x0,130,63,10,10
+END
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TITLE_LOG           "Accom WSD Error"
+    IDS_LOG_NOHOST          "WSD - Cannot connect to host %s"
+    IDS_WSD                 "WSD"
+    IDS_BITMAP_IO           "Bitmap I/O"
+    IDS_WSD_FILE            "Accom WSD Digital Recorder"
+    IDS_ACCOM               "Accom WSD"
+    IDS_LOG_NOCFG           "WSD - Configuration not found. Using defaults."
+    IDS_LOG_CONNECTED       "WSD - Connected to host %s"
+    IDS_ERR_TCPERROR        "Error Creating TCP/IP Library Instance."
+    IDS_ERR_TCPINITERROR    "Error Initializing TCP/IP."
+    IDS_LOG_NOCONNECT       "WSD - Could not connect to %s."
+    IDS_LOG_INVALIDFRAMEERROR "WSD - %d is an invalid frame number."
+    IDS_LIBDSCRIPTION       "WSD image I/O (Discreet)"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

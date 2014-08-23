@@ -1,0 +1,293 @@
+{\rtf1\ansi\ansicpg1252\uc1 \deff11\deflang1033\deflangfe1033{\fonttbl{\f0\froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman;}{\f1\fswiss\fcharset0\fprq2{\*\panose 020b0604020202020204}Arial;}
+{\f11\fswiss\fcharset0\fprq2{\*\panose 00000000000000000000}MS Sans Serif;}{\f16\froman\fcharset238\fprq2 Times New Roman CE;}{\f17\froman\fcharset204\fprq2 Times New Roman Cyr;}{\f19\froman\fcharset161\fprq2 Times New Roman Greek;}
+{\f20\froman\fcharset162\fprq2 Times New Roman Tur;}{\f21\froman\fcharset186\fprq2 Times New Roman Baltic;}{\f22\fswiss\fcharset238\fprq2 Arial CE;}{\f23\fswiss\fcharset204\fprq2 Arial Cyr;}{\f25\fswiss\fcharset161\fprq2 Arial Greek;}
+{\f26\fswiss\fcharset162\fprq2 Arial Tur;}{\f27\fswiss\fcharset186\fprq2 Arial Baltic;}}{\colortbl;\red0\green0\blue0;\red0\green0\blue255;\red0\green255\blue255;\red0\green255\blue0;\red255\green0\blue255;\red255\green0\blue0;\red255\green255\blue0;
+\red255\green255\blue255;\red0\green0\blue128;\red0\green128\blue128;\red0\green128\blue0;\red128\green0\blue128;\red128\green0\blue0;\red128\green128\blue0;\red128\green128\blue128;\red192\green192\blue192;}{\stylesheet{\widctlpar\adjustright 
+\f11\fs20\cgrid \snext0 Normal;}{\s2\sb240\sa60\keepn\widctlpar\adjustright \b\i\f1\cgrid \sbasedon0 \snext0 heading 2;}{\*\cs10 \additive Default Paragraph Font;}}{\info{\title Physique Version 2}{\author yatesj}{\operator Autodesk, Inc.}
+{\creatim\yr1999\mo4\dy5\hr20\min30}{\revtim\yr1999\mo6\dy29\hr12\min43}{\version7}{\edmins14}{\nofpages6}{\nofwords1680}{\nofchars9580}{\*\company Autodesk, Inc.}{\nofcharsws0}{\vern89}}
+\widowctrl\ftnbj\aendnotes\aftnstart0\hyphhotz0\aftnnar\lytprtmet\hyphcaps0\viewkind3\viewscale125\pgbrdrhead\pgbrdrfoot \fet0\sectd \linex0\endnhere\sectdefaultcl {\*\pnseclvl1\pnucrm\pnstart1\pnindent720\pnhang{\pntxta .}}{\*\pnseclvl2
+\pnucltr\pnstart1\pnindent720\pnhang{\pntxta .}}{\*\pnseclvl3\pndec\pnstart1\pnindent720\pnhang{\pntxta .}}{\*\pnseclvl4\pnlcltr\pnstart1\pnindent720\pnhang{\pntxta )}}{\*\pnseclvl5\pndec\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl6
+\pnlcltr\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl7\pnlcrm\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl8\pnlcltr\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl9\pnlcrm\pnstart1\pnindent720\pnhang
+{\pntxtb (}{\pntxta )}}\pard\plain \widctlpar\adjustright \f11\fs20\cgrid {\b\f0\fs28\cf1 Physique Version 2.2 Export Interface}{\f0 
+\par 
+\par Character Studio Version 2.2 for 3D Studio MAX Version 2.X 
+includes direct export functionality for game developers who which to import Physique Vertex Assignments into their Game Engines.  The SDK for Physique Export is provided by the single file: PhyExp.h
+\par 
+\par 
+\par }{\b\f0\fs24\cf1 To access the Physique Export you must:}{\f0 
+\par 
+\par Compile your exporter to include PhyExp.h  
+\par Note that this header file has changed since version 1.15 and you MUST recompile with the PhyExp.h found on the CS 2.0 CD.
+\par 
+\par Find the Physique modifier within the MAX Scene (example code is provided in this doc as well as commented at the bottom of PhyExp.h)
+\par 
+\par Call the Physique Modifier\rquote s GetInterface Method to create a Physique Export Interface
+\par 
+\par From the Physique Export Interface you can create a ModContext Export Interface for a particular Object\rquote s Node of the given Physique E
+xport Interface.  Remember several Objects may share a given PhysiqueModifier (or Modifier in General)  The ModContext Export Interface is specific to this given Object
+\par 
+\par From The ModContext Export Interface you can create a Vertex Export Interface for each vertex of the given ModContext Interface Object.
+\par 
+\par The Vertex Export Interface method: GetVertexType specifies which type of vertex interface you have created (RIGID_TYPE, DEFORMABLE_TYPE, BLENDED_TYPE).  This type determines which derived class from the b
+ase Vertex Export Interface you have.  You may then coerce the base vertex interface pointer to the appropriate derived class for accessing Physique data from the Interface.  
+\par 
+\par NOTE: Version 2.2 of CS supports the following Vertex Interfaces:
+\par 
+\par }{\b\f0\cf1 RIGID_NON_BLENDED_TYPE\tab (RIGID_TYPE)
+\par RIGID_BLENDED_TYPE (RIGID_TYPE | BLENDED_TYPE)}{\f0 
+\par 
+\par NOTE: If the modifier contains Blending, but a given vertex is only assigned to a single Link, then this vertex will return type }{\f0\cf1 RIGID_NON_BLENDED_TYPE.  Therefore i}{\f0 mporting blending between links for vertices must support }{\f0\cf1 
+RIGID_BLENDED_TYPE for all vertices assigned to more than 1 Link, and }{\f0 also support }{\f0\cf1 RIGID_NON_BLENDED_TYPE for all }{\f0 vertices assigned to only 1 Link.
+\par }{\b\f0 
+\par 
+\par }{\b\f0\cf1 RIGID_NON_BLENDED_TYPE : class IPhyRigidVertex}{\f0 
+\par 
+\par Method:\tab INode *GetNode()
+\par \tab From the Rigid Vertex Interface you can call GetNode() to return a pointer to the INode 
+\par \tab to which the given vertex is assigned (controlled).
+\par 
+\par Method:\tab Point3 GetOffsetVector()
+\par \tab From the Rigid Vertex Interface you can call GetOffsetVector () to return a Point3 
+\par }\pard \fi720\widctlpar\adjustright {\f0 offset vector in the local coordinate space of  the associated INode (returned by GetNode()).         
+\par }\pard \widctlpar\adjustright {\f0 
+\par 
+\par }{\b\f0\cf1 RIGID_BLENDED_TYPE : class }{\b\f0 IPhyBlendedRigidVertex             
+\par 
+\par }{\f0\cf1 Method: int GetNumberNodes()
+\par \tab From the Blended Rigid Vertex Interface you can call GetNumberNodes() to return an int value
+\par \tab which specifies how many Nodes (Physique Links) this vertex is assigned to.  
+\par \tab The deformation of this vertex will be a blended (weighted average) of GetNumberNodes().
+\par 
+\par }{\f0 Method:\tab INode *GetNode(int i)
+\par \tab From the Blended Rigid Vertex Interface you can call GetNode(i) to return a pointer to the \tab 'i'th INode to which the given vertex is assigned (controlled).
+\par 
+\par Method:\tab Point3 GetOffsetVector(int i)
+\par \tab From the Blended Rigid Vertex Interface you can call GetOffsetVector (i) to return a Point3 \tab offset vector in the local coordinate space of  the 'i'th INode (returned by GetNode(i)).    
+\par 
+\par Method:\tab float GetWeight(int i)
+\par \tab From the Blended Rigid Vertex Interface you can call GetWeight (i) to return a float
+\par  \tab weight for  the 'i'th INode (returned by GetNode(i)).              }{\b\f0 
+\par }{\f0 
+\par 
+\par 
+\par }{\b\f0\fs24\cf1 1. Physique Export SDK}{\f0 
+\par 
+\par The header file PhyExp.h contains the following base classes and exported virtual methods:
+\par 
+\par class IPhysiqueExport : 
+\par \tab Returned by Modifier->GetInterface(I_PHYINTERFACE) 
+\par \tab This is the Physique Export Interface for a given Physique Modifier.
+\par 
+\par Methods:                
+\par         IPhyContextExport *GetContextInterface(INode* nodePtr) 
+\par         \tab Returns a ModContext Export Interface for the ModContext associated with the given INode.
+\par 
+\par         void ReleaseContextInterface(IPhyContextExport *contextExport)
+\par         \tab You must call ReleaseContextInterface to free the ModContext Interface from memory.
+\par 
+\par         int GetInitNodeTM(INode *node, Matrix3 &initNodeTM) 
+\par                Returns the node transformation matrix in the initial position for for the node pointer 
+\par }{               Passed. Passing a node pointer for the deformable object itself will return the  
+\par                object offset matrix at the }{\f0 Initial position, instead of the node transformation matrix.
+\par 
+\par                Return values: 
+\par }{                MATRIX_RETURNED\tab \tab 0
+\par                 }{\f0 NODE_NOT_FOUND\tab \tab 1
+\par                 NO_MATRIX_SAVED\tab \tab 2
+\par                 INVALID_MOD_POINTER\tab 3
+\par 
+\par                 The matrix is returned in initNodeTM.
+\par 
+\par        int Version(void) 
+\par               Returns the export SDK version. For Physique 2.2 the return value is 22.
+\par 
+\par }{void SetInitialPose(bool set )
+\par }{\f0              Puts the model in/out the initial position. Set = true puts the model in the initial pose, set = 
+\par              false allows the model to deform normally.
+\par 
+\par ________
+\par 
+\par class IPhyContextExport:
+\par \tab Returned by IPhysiqueExport->GetContextInterface(nodePtr)
+\par \tab This is the ModContext Interface associated with the Object of the given nodePtr for the Physique \tab Modifier of the given Physique Export Interface.
+\par 
+\par Methods:
+\par         int GetNumberVertices()
+\par         \tab Returns the number of vertices for the given Physique Object.
+\par 
+\par         void ConvertToRigid(BOOL = TRUE)
+\par         \tab When ConvertToRigid is set to TRUE, all vertices will be converted to Rigid Vertices for         \tab GetVertexInterface.  If ConvertToRigid is set to FALSE, then any Deformable vertices will \tab return NULL for GetVertexInterface.
+\par 
+\par         IPhyVertexExport *GetVertexInterface(int i) 
+\par         \tab This will return a Vertex Export Interface for the ith vertex of the Mod Context Interface.
+\par         \tab NOTE: rigid non-blended vertices (assigned rigid to a single Node) will return a \tab \tab RigidVertexExport: subclass IPhyRigidVertex.
+\par \tab Rigid Blended vertices (assigned rigid to more than 1 Node) will return a
+\par \tab \tab BlendedRigidVertexExport; subclass IPhyBlendedRigidVertex.
+\par \tab  All other vertices will return NULL, unless ConvertToRigid has been set to TRUE, in which \tab case all vertices return either IPhyRigidVertex or IPhyBlendedRigidVertex.
+\par 
+\par         void ReleaseVertexInterface(IPhyVertexExport *vertexExport) 
+\par }\pard \widctlpar\brdrb\brdrs\brdrw30\brsp20 \adjustright {\f0         \tab You must call ReleaseVertexInterface to free the Vertex Interface from memory.
+\par }\pard \widctlpar\adjustright {\f0 
+\par class IPhyVertexExport:
+\par \tab Returned by IPhyContextExport->GetVertexInterface(i)
+\par \tab This is the base class for all Vertex Export Interface class for Physique.
+\par 
+\par Methods:
+\par 
+\par         int GetVertexType()
+\par         \tab Returns the defined vertex type for the given derived Vertex Interface subclass.
+\par         \tab NOTE: currently supported types: 
+\par \tab \tab }{\b\f0\cf1 RIGID_NON_BLENDED_TYPE (RIGID_TYPE)
+\par \tab \tab RIGID_BLENDED_TYPE\tab (RIGID_TYPE | BLENDED_TYPE)}{\f0 
+\par ________
+\par \tab        
+\par class IPhyRigidVertex : public IPhyVertexExport  (}{\f0\cf1 RIGID_NON_BLENDED_TYPE)}{\f0 
+\par \tab Returned for Rigid Vertices by IPhyContextExport->GetVertexInterface(i)
+\par \tab This is the derived Vertex Interface class for all Non-BlendedRigid Vertex Assignments.
+\par 
+\par Methods:
+\par 
+\par        INode *GetNode()
+\par         \tab Returns an INode pointer for the INode (bone/link) to which the vertex is assigned.
+\par 
+\par         Point3 GetOffsetVector()
+\par         \tab Returns the coordinates of the vertex in the local coordinates of the associated INode pointer 
+\par \tab from GetNode() 
+\par ________
+\par 
+\par class IPhyBlendedRigidVertex:public IPhyVertexExport (RIGID_BLENDED_TYPE)
+\par \tab Returned for Rigid Blended Vertices by IPhyContextExport->GetVertexInterface(i)
+\par \tab This is the derived Vertex Interface class for all BlendedRgid Vertex Assignments.
+\par 
+\par Methods:
+\par 
+\par         int GetNumberNodes()
+\par \tab Returns the int number of INodes to which this vertices is assigned with blending.
+\par 
+\par         INode *GetNode(int i )
+\par         \tab Returns an INode pointer for the 'i'th INode (bone/link) to which the vertex is assigned with \tab blending.
+\par 
+\par         Point3 GetOffsetVector(int i )
+\par         \tab Returns the coordinates of the vertex in the local coordinates of the associated INode pointer 
+\par \tab from GetNode(i) 
+\par 
+\par         float GetWeight(int i)
+\par \tab Returns the float weight of the vertex assigned to the INode pointer fron getNode(i)
+\par \tab 
+\par ________
+\par 
+\par }{\b\f0\fs24\cf1 2. Finding a Physique Modifier}{\f0 
+\par 
+\par Below is a code example, also found commented in PhyExp.h for finding a Physique Modifier if it exists for a given INode:
+\par 
+\par Modifier* FindPhysiqueModifier (INode* nodePtr)
+\par \{
+\par \tab // Get object from node. Abort if no object.
+\par \tab Object* ObjectPtr = nodePtr->GetObjectRef();
+\par \tab \tab \tab 
+\par 
+\par \tab if (!ObjectPtr) return NULL;
+\par 
+\par \tab // Is derived object ?
+\par \tab while (ObjectPtr->SuperClassID() == GEN_DERIVOB_CLASS_ID && ObjectPtr)
+\par \tab \{
+\par \tab \tab // Yes -> Cast.
+\par \tab \tab IDerivedObject *DerivedObjectPtr = (IDerivedObject *)(ObjectPtr);
+\par \tab \tab \tab \tab \tab \tab 
+\par \tab \tab // Iterate over all entries of the modifier stack.
+\par \tab \tab int ModStackIndex = 0;
+\par \tab \tab while (ModStackIndex < DerivedObjectPtr->NumModifiers())
+\par \tab \tab \{
+\par \tab \tab \tab // Get current modifier.
+\par \tab \tab \tab Modifier* ModifierPtr = DerivedObjectPtr->GetModifier(ModStackIndex);
+\par 
+\par \tab \tab \tab // Is this Physique ?
+\par \tab \tab \tab if (ModifierPtr->ClassID() == Class_ID(PHYSIQUE_CLASS_ID_A, PHYSIQUE_CLASS_ID_B))
+\par \tab \tab \tab \{
+\par \tab \tab \tab \tab // Yes -> Exit.
+\par \tab \tab \tab \tab return ModifierPtr;
+\par \tab \tab \tab \}
+\par 
+\par \tab \tab \tab // Next modifier stack entry.
+\par \tab \tab \tab ModStackIndex++;
+\par \tab \tab \}
+\par \tab \tab ObjectPtr = DerivedObjectPtr->GetObjRef();
+\par \tab \}
+\par 
+\par \tab // Not found.
+\par \tab return NULL;
+\par \}
+\par 
+\par }{\b\f0\fs24\cf1 3. Using the Physique Export Interface  
+\par     }{\f0 
+\par Below is a code example using the Physique Export Interface:      
+\par 
+\par void ExportPhysiqueData(TimeValue t, ModContext &mc, ObjectState *os, INode *node)
+\par \{
+\par         Modifier *phyMod = FindPhysiqueModifier(node);
+\par         if (!phyMod) return;    // Physique Modifier does not exist for given Node
+\par 
+\par         // create a Physique Export Interface for the given Physique Modifier
+\par         
+\par         IPhysiqueExport *phyExport = (IPhysiqueExport *)phyMod>GetInterface(I_PHYINTERFACE);
+\par 
+\par         if (phyExport)
+\par         \{
+\par                 // create a ModContext Export Interface for the specific node of the Physique Modifier
+\par                 IPhyContextExport *mcExport 
+\par \tab \tab = (IPhyContextExport *)phyExport->GetContextInterface(node);
+\par 
+\par                 if (mcExport)
+\par                 \{
+\par                         // we convert all vertices to Rigid in this example
+\par                         mcExport->ConvertToRigid(TRUE);
+\par 
+\par                         // compute the transformed Point3 at time t
+\par                         for (int i = 0; i < os->obj->NumPoints();  i++)
+\par                         \{
+\par                                 IPhyVertexExport *vtxExport = mcExport->GetVertexInterface(i);
+\par 
+\par                                 if (vtxExport)
+\par                                 \{
+\par \tab \tab         //need to check if vertex has blending
+\par \tab \tab         if (vtxExport->GetVertexType() & BLENDED_TYPE)
+\par \tab \tab         \{
+\par \tab \tab \tab IPhyBlendedRigidVertex *vtxBlend = (IPhyBlendedRigidVertex *)vtxExport;
+\par 
+\par \tab \tab \tab Point3 BlendP(0.0f, 0.0f, 0.0f);
+\par \tab \tab \tab for (int n = 0; n < vtxBlend->GetNumberNodes(); n++)
+\par \tab \tab \tab \{
+\par \tab \tab \tab         INode *Bone = vtxBlend->GetNode(n);
+\par                                         \tab         Point3 Offset = vtxBlend->GetOffsetVector(n);
+\par \tab \tab \tab         float Weight = vtxBlend->GetWeight(n);
+\par         \tab \tab \tab         BlendP += (Bone->GetNodeTM(t) * Offset) * Weight;
+\par \tab \tab \tab \}
+\par \tab 
+\par \tab \tab \tab // set the Point of the object (to test the export is correct)
+\par                                                 os->obj->SetPoint(i, BlendP);
+\par 
+\par \tab \tab \tab mcExport->ReleaseVertexInterface(vtxExport);
+\par                                         \tab vtxExport = NULL;\tab 
+\par \tab \tab         \}
+\par \tab \tab         else 
+\par \tab \tab         \{
+\par \tab \tab \tab IPhyRigidVertex *vtxNoBlend = (IPhyRigidVertex *)vtxExport;
+\par                                         \tab INode *Bone = vtxNoBlend->GetNode();
+\par                                         \tab Point3 Offset = vtxNoBlend->GetOffsetVector();
+\par                                         
+\par \tab \tab \tab // set the Point of the object (to test the export is correct)
+\par                                                 os->obj->SetPoint(i, Bone->GetNodeTM(t) * Offset);
+\par 
+\par                                         \tab mcExport->ReleaseVertexInterface(vtxExport);
+\par                                         \tab vtxExport = NULL;
+\par \tab \tab         \}
+\par                                 \}
+\par                         \}
+\par                         phyExport->ReleaseContextInterface(mcExport);
+\par                 \}
+\par                 phyMod->ReleaseInterface(I_PHYINTERFACE, phyExport);
+\par         \}
+\par \}
+\par 
+\par 
+\par }}

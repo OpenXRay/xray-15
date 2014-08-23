@@ -1,0 +1,15 @@
+#!/bin/sh
+# automatically generated Thu Jul 29 12:13:35 MST 2004
+rm -f shader.h geoshader.h mi_version.h
+cp shader.34.h shader.h
+cp geoshader.34.h geoshader.h
+cp mi_version.34.h mi_version.h
+cp raylib.34.rc raylib.rc
+gcc -ansi -fPIC -c -O3 -fexpensive-optimizations -finline-functions -funroll-loops -fomit-frame-pointer -frerun-cse-after-loop -fstrength-reduce -fforce-mem -fforce-addr   -DLINUX -DLINUX_X86 -DX86 -DBIT64 -DEVIL_ENDIAN -D_GNU_SOURCE -D_THREAD_SAVE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DSSE_INTRINSICS -I. -I../../modules/include dgsutil.cpp
+gcc -ansi -fPIC -c -O3 -fexpensive-optimizations -finline-functions -funroll-loops -fomit-frame-pointer -frerun-cse-after-loop -fstrength-reduce -fforce-mem -fforce-addr   -DLINUX -DLINUX_X86 -DX86 -DBIT64 -DEVIL_ENDIAN -D_GNU_SOURCE -D_THREAD_SAVE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DSSE_INTRINSICS -I. -I../../modules/include dgsshade.cpp
+gcc -ansi -fPIC -c -O3 -fexpensive-optimizations -finline-functions -funroll-loops -fomit-frame-pointer -frerun-cse-after-loop -fstrength-reduce -fforce-mem -fforce-addr   -DLINUX -DLINUX_X86 -DX86 -DBIT64 -DEVIL_ENDIAN -D_GNU_SOURCE -D_THREAD_SAVE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DSSE_INTRINSICS -I. -I../../modules/include dielecshade.cpp
+gcc -ansi -fPIC -c -O3 -fexpensive-optimizations -finline-functions -funroll-loops -fomit-frame-pointer -frerun-cse-after-loop -fstrength-reduce -fforce-mem -fforce-addr   -DLINUX -DLINUX_X86 -DX86 -DBIT64 -DEVIL_ENDIAN -D_GNU_SOURCE -D_THREAD_SAVE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DSSE_INTRINSICS -I. -I../../modules/include partishade.cpp
+gcc -ansi -fPIC -c -O3 -fexpensive-optimizations -finline-functions -funroll-loops -fomit-frame-pointer -frerun-cse-after-loop -fstrength-reduce -fforce-mem -fforce-addr   -DLINUX -DLINUX_X86 -DX86 -DBIT64 -DEVIL_ENDIAN -D_GNU_SOURCE -D_THREAD_SAVE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DSSE_INTRINSICS -I. -I../../modules/include pathshade.cpp
+gcc -ansi -fPIC -c -O3 -fexpensive-optimizations -finline-functions -funroll-loops -fomit-frame-pointer -frerun-cse-after-loop -fstrength-reduce -fforce-mem -fforce-addr   -DLINUX -DLINUX_X86 -DX86 -DBIT64 -DEVIL_ENDIAN -D_GNU_SOURCE -D_THREAD_SAVE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DSSE_INTRINSICS -I. -I../../modules/include physlight.cpp
+gcc -ansi -fPIC -c -O3 -fexpensive-optimizations -finline-functions -funroll-loops -fomit-frame-pointer -frerun-cse-after-loop -fstrength-reduce -fforce-mem -fforce-addr   -DLINUX -DLINUX_X86 -DX86 -DBIT64 -DEVIL_ENDIAN -D_GNU_SOURCE -D_THREAD_SAVE -D_REENTRANT -DSYSV -DSVR4 -Dinline=__inline__ -DSSE_INTRINSICS -I. -I../../modules/include physlens.cpp
+gcc -shared -export-dynamic --whole-archive -Bsymbolic -o physics.so dgsutil.o dgsshade.o dielecshade.o partishade.o pathshade.o physlight.o physlens.o  

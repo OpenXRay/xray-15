@@ -1,0 +1,1588 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 10">
+<meta name=Originator content="Microsoft Word 10">
+<link rel=File-List href="photonShaders_files/filelist.xml">
+<link rel=Edit-Time-Data href="photonShaders_files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>Photon Shader</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>joohil</o:Author>
+  <o:LastAuthor>Anybody</o:LastAuthor>
+  <o:Revision>56</o:Revision>
+  <o:TotalTime>38</o:TotalTime>
+  <o:Created>2004-02-05T16:07:00Z</o:Created>
+  <o:LastSaved>2004-02-20T20:57:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>2704</o:Words>
+  <o:Characters>15418</o:Characters>
+  <o:Company>Alias</o:Company>
+  <o:Lines>128</o:Lines>
+  <o:Paragraphs>36</o:Paragraphs>
+  <o:CharactersWithSpaces>18086</o:CharactersWithSpaces>
+  <o:Version>10.2625</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+h1
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:16.0pt;
+	font-family:Arial;
+	mso-font-kerning:16.0pt;
+	font-weight:bold;}
+h2
+	{mso-style-next:Normal;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:14.0pt;
+	mso-bidi-font-size:16.0pt;
+	font-family:Arial;
+	color:#777A7D;
+	mso-font-kerning:16.0pt;
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:#C80000;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:#C80000;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:38095891;
+	mso-list-template-ids:-1712262598;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l1
+	{mso-list-id:446657790;
+	mso-list-template-ids:444213854;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2
+	{mso-list-id:483934484;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-944354674 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l2:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l2:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l2:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l2:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3
+	{mso-list-id:590243373;
+	mso-list-type:hybrid;
+	mso-list-template-ids:558918076 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l3:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l4
+	{mso-list-id:600336182;
+	mso-list-template-ids:-1951915312;}
+@list l4:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5
+	{mso-list-id:619722444;
+	mso-list-template-ids:-288869150;}
+@list l5:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l6
+	{mso-list-id:783766707;
+	mso-list-template-ids:393780338;}
+@list l6:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l7
+	{mso-list-id:902714877;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1120583914 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l7:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l7:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l7:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l7:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l8
+	{mso-list-id:984314153;
+	mso-list-template-ids:-522391174;}
+@list l8:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l9
+	{mso-list-id:1021474648;
+	mso-list-template-ids:1579711818;}
+@list l9:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l9:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l10
+	{mso-list-id:1039208856;
+	mso-list-type:hybrid;
+	mso-list-template-ids:997090538 67698693 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l10:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l10:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l10:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l10:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l10:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l10:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l10:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l10:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l10:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l11
+	{mso-list-id:1173960102;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1116282636 67698693 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l11:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l11:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l11:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l11:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l11:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l11:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l11:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l11:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l11:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l12
+	{mso-list-id:1291326000;
+	mso-list-type:hybrid;
+	mso-list-template-ids:35803496 67698691 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l12:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l12:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l12:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l12:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l12:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l12:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l12:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l12:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l12:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l13
+	{mso-list-id:1369915382;
+	mso-list-template-ids:-35586910;}
+@list l13:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l14
+	{mso-list-id:1525249140;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1874819764 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l14:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l14:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l14:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l14:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l14:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l14:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l14:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l14:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l14:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l15
+	{mso-list-id:1610576379;
+	mso-list-type:hybrid;
+	mso-list-template-ids:275383370 67698693 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l15:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l15:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l15:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l15:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l15:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l15:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l15:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l15:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l15:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l16
+	{mso-list-id:1615599890;
+	mso-list-template-ids:-270532196;}
+@list l16:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l17
+	{mso-list-id:1840270817;
+	mso-list-template-ids:-858497720;}
+@list l17:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l17:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l17:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l18
+	{mso-list-id:1887326649;
+	mso-list-template-ids:-395412476;}
+@list l18:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l19
+	{mso-list-id:1893032844;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1552290642 67698693 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l19:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l19:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l19:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l19:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l19:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l19:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l19:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l19:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l19:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body bgcolor=white lang=EN-US link="#C80000" vlink="#C80000" style='tab-interval:
+.5in' alink="#c80000" leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+
+<div class=Section1>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width="100%"
+ style='width:100.0%;mso-cellspacing:0in;mso-padding-alt:0in 0in 0in 0in'>
+ <tr style='mso-yfti-irow:0'>
+  <td style='background:black;padding:0in 0in 0in 0in'>
+  <p class=MsoNormal><a href="http://www.alias.com"><span style='text-decoration:
+  none;text-underline:none'><img border=0 width=120 height=60 id="_x0000_i1025"
+  src=logo.gif alt=AliasLogo></span></a></p>
+  </td>
+  <td style='background:black;padding:0in 0in 0in 0in'>
+  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1'>
+  <td colspan=2 style='background:#CCCCCC;padding:0in 0in 0in 0in'>
+  <p class=MsoNormal><img border=0 width=66 height=2 id="_x0000_i1026"
+  src=spacer.gif></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2'>
+  <td colspan=2 style='background:black;padding:0in 0in 0in 0in'>
+  <p class=MsoNormal><img border=0 width=66 height=1 id="_x0000_i1027"
+  src=spacer.gif></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3;mso-yfti-lastrow:yes'>
+  <td colspan=2 style='background:white;padding:0in 0in 0in 0in'>
+  <table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:
+   1.5pt;mso-padding-alt:30.0pt 30.0pt 30.0pt 30.0pt'>
+   <tr style='mso-yfti-irow:0;mso-yfti-lastrow:yes'>
+    <td style='padding:30.0pt 30.0pt 30.0pt 30.0pt'>
+    <h1><span style='color:#777A7D'>Photon Shaders<o:p></o:p></span></h1>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+    font-family:Arial'><br>
+    </span><span style='font-size:10.0pt;font-family:Arial;color:black'>This section
+    shows the basic workflow for mental ray photon shaders in Maya.<o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'><span style='mso-spacerun:yes'> </span>Photon shader takes
+    care of how the material interacts with photons - how the surface reflects,
+    transmits and absorbs photons. If the surface has a diffuse component, the
+    photon shader will store photons. <br>
+    This section shows how to use photon shaders with global illumination and
+    caustics. We will take the plain Cornell box scene with material shaders
+    and a light shader, and add global illumination, caustics and finally
+    volume caustics.<br style='mso-special-character:line-break'>
+    <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+    <![endif]><o:p></o:p></span></p>
+    <h1><span style='color:#777A7D'>References: </span><span style='font-size:
+    10.0pt;color:#777A7D'><o:p></o:p></span></h1>
+    <p class=MsoNormal><span class=GramE><span style='font-size:10.0pt;
+    font-family:Arial;color:black'>mental</span></span><span style='font-size:
+    10.0pt;font-family:Arial;color:black'> ray User Manual. Chapter 3.15<o:p></o:p></span></p>
+    <p class=MsoNormal><span class=GramE><span style='font-size:10.0pt;
+    font-family:Arial;color:black'>mental</span></span><span style='font-size:
+    10.0pt;font-family:Arial;color:black'> ray Shaders Guide. Chapter 2.4<o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'>Rendering with mental ray. Chapter 7, Appendix D.<o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><b><span style='font-size:16.0pt;font-family:Arial;
+    color:#777A7D;mso-font-kerning:16.0pt'>Where to find photon shaders</span></b><span
+    style='font-size:10.0pt;font-family:Arial;color:black'><br>
+    Material shaders appear in the <b>Hypershade &gt; Create mental ray Nodes &gt;
+    Photonic Materials</b>. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'>The following photon shaders are shipped with Maya:<o:p></o:p></span></p>
+    <ul style='margin-top:0in' type=disc>
+     <li class=MsoNormal style='color:black;mso-list:l3 level1 lfo3;tab-stops:
+         list .5in'><span style='font-size:10.0pt;font-family:Arial'>dgs_material_photon
+         <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l3 level1 lfo3;tab-stops:
+         list .5in'><span style='font-size:10.0pt;font-family:Arial'>dielectric_material_photon
+         <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l3 level1 lfo3;tab-stops:
+         list .5in'><span style='font-size:10.0pt;font-family:Arial'>mib_photon_basic
+         <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l3 level1 lfo3;tab-stops:
+         list .5in'><span style='font-size:10.0pt;font-family:Arial'>parti_volume_photon
+         <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l3 level1 lfo3;tab-stops:
+         list .5in'><span style='font-size:10.0pt;font-family:Arial'>transmat_photon<br
+         style='mso-special-character:line-break'>
+         <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+         <![endif]><o:p></o:p></span></li>
+    </ul>
+    <h1><span style='color:#777A7D'>Default behavior</span><span
+    style='font-size:10.0pt;color:#777A7D'><o:p></o:p></span></h1>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'>The proper connection for a photon shader is from
+    photonShader.message to shadingEngine.miPhotonShader.<o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'>Ctrl+drag from a photon shader to a shading engine will make
+    the above connection.<o:p></o:p></span></p>
+    <h2><span style='font-size:10.0pt;mso-bidi-font-size:16.0pt'><o:p>&nbsp;</o:p></span></h2>
+    <h2><span style='mso-bidi-font-size:10.0pt'><o:p>&nbsp;</o:p></span></h2>
+    <h2><span class=GramE><span style='mso-bidi-font-size:10.0pt'>Step 1.</span></span><span
+    style='mso-bidi-font-size:10.0pt'> Getting Ready <o:p></o:p></span></h2>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>Make sure the mental ray for Maya plug-in is
+    loaded.<o:p></o:p></span></p>
+    <ul style='margin-top:0in' type=disc>
+     <li class=MsoNormal style='color:black;mso-list:l14 level1 lfo6;
+         tab-stops:list .5in'><b><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Windows &gt; Settings/Preferences &gt;
+         Plug-in Manager...</span></b><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'> <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l14 level1 lfo6;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Find <b>Mayatomr</b> and check <b>loaded</b> <o:p></o:p></span></li>
+    </ul>
+    <p class=MsoNormal><b><span style='font-size:10.0pt;mso-bidi-font-size:
+    7.5pt;font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></b></p>
+    <p class=MsoNormal><b><span style='font-size:10.0pt;mso-bidi-font-size:
+    7.5pt;font-family:Arial;color:black'>Open cornellBox_photon_start.ma</span></b><span
+    style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'>. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:
+     1.5pt;mso-padding-alt:0in 0in 0in 0in'>
+     <tr style='mso-yfti-irow:0'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+      font-family:Arial'><img border=0 width=300 height=300 id="_x0000_i1028"
+      src="images/cornellBox_photon_start.jpg"><o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>cornellBox_photon_start.ma<o:p></o:p></span></p>
+      </td>
+     </tr>
+    </table>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><br style='mso-special-character:line-break'>
+    <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+    <![endif]><o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>The Cornell box scene was used in <a
+    href="materialShaders.html">material shaders</a>, <a
+    href="lightShaders.html">light shaders</a>, <a href="volumeShaders.html">volume
+    shaders</a>. <br>
+    Note that a physical_light is attached to the lightShape node to provide
+    physically accurate lighting with inverse-square distance falloff. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>It is important to use physically correct
+    light and material shader, photon shader to prevent the scene from flooding
+    with energy. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>This scene uses material shaders from
+    physics.so package for this reason. <br>
+    Another small change to notice is that the transmatSG now has a shadow
+    shader transmat2, which will pass through any shadow and light rays. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>This connection was made to prevent the
+    light cover from casting a shadow to the whole scene. <o:p></o:p></span></p>
+    <h2><o:p>&nbsp;</o:p></h2>
+    <h2><span class=GramE>Step 2.</span> Create photon shaders<span
+    style='color:black'> <o:p></o:p></span></h2>
+    <ul style='margin-top:0in' type=disc>
+     <li class=MsoNormal style='color:black;mso-list:l2 level1 lfo9;tab-stops:
+         list .5in'><span class=GramE><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>transmatSG :</span></span><span
+         style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial'>
+         light cover, front wall, back wall. <br>
+         We want the light cover, front wall and the back wall be invisible,
+         and not participate in photon tracing, transmat_photon is just perfect
+         for this case. The purpose of the invisible transmatSG is to create <span
+         class=GramE>a volume caustics</span> later. <o:p></o:p></span></li>
+     <ul style='margin-top:0in' type=circle>
+      <li class=MsoNormal style='color:black;mso-list:l2 level2 lfo9;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'><a href="mel://showEditor%20transmatSG;/">Open
+          the Attribute Editor of <span class=GramE>transmatSG </span></a>. <o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l2 level2 lfo9;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>From the &quot;mental ray&quot; section,
+          open the tab named &quot;Custom Shaders&quot;. It shows that
+          transmat1 is connected as its material shader and transmat2 as shadow
+          shader. <o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l2 level2 lfo9;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>Click the map button next to &quot;Photon
+          Shader&quot;, and <a
+          href="mel://createNode%20-name%20transmat_phot%20transmat_photon;%0D%0A%09%09connectAttr%20transmat_phot.message%20transmatSG.miPhotonShader;/">pick
+          transmat_<span class=GramE>photon </span></a>. <o:p></o:p></span></li>
+     </ul>
+     <li class=MsoNormal style='color:black;mso-list:l2 level1 lfo9;tab-stops:
+         list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+         font-family:Arial'><a
+         href="mel://createNode%20-name%20red_phot%20dgs_material_photon;/">Create
+         a dgs_material_photon shader for the red wall</a> <o:p></o:p></span></li>
+     <ul style='margin-top:0in' type=circle>
+      <li class=MsoNormal style='color:black;mso-list:l2 level2 lfo9;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>From <b>Hypershade &gt; Create mental ray
+          Nodes &gt; Photonic Materials</b> <o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l2 level2 lfo9;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>Select <b>dgs_material_photon</b>. <o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l2 level2 lfo9;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>Rename it red_phot. This photon shader will
+          be used for the red wall. <o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l2 level2 lfo9;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>Most of the time, you want the photon shader
+          and the material shader have the same parameter values. <br>
+          Because the red wall uses dgs_material as its material shader, we use
+          dgs_material_photon as its photon shader. <o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l2 level2 lfo9;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'><a
+          href="mel://connectAttr%20red_phot.message%20redSG.miPhotonShader;/">Connect
+          red_phot to <span class=GramE>redSG </span></a>. <o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l2 level2 lfo9;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>CTRL+MMB red_phot to redSG. <o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l2 level2 lfo9;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>Set the photon shader parameter values same
+          as the material shader. <o:p></o:p></span></li>
+      <ul style='margin-top:0in' type=square>
+       <li class=MsoNormal style='color:black;mso-list:l2 level3 lfo9;
+           tab-stops:list 1.5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+           7.5pt;font-family:Arial'><a
+           href="mel://setAttr%20red_phot.diffuse%200.8%200%200%20;">Set
+           diffuse to 0.8 0 0 </a><o:p></o:p></span></li>
+       <li class=MsoNormal style='color:black;mso-list:l2 level3 lfo9;
+           tab-stops:list 1.5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+           7.5pt;font-family:Arial'><a
+           href="mel://setAttr%20red_phot.glossy%200%200%200%20;">Set glossy to
+           0 0 0 </a><o:p></o:p></span></li>
+       <li class=MsoNormal style='color:black;mso-list:l2 level3 lfo9;
+           tab-stops:list 1.5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+           7.5pt;font-family:Arial'><a
+           href="mel://setAttr%20red_phot.specular%200%200%200%20;">Set
+           specular to 0 0 0 </a><o:p></o:p></span></li>
+       <li class=MsoNormal style='color:black;mso-list:l2 level3 lfo9;
+           tab-stops:list 1.5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+           7.5pt;font-family:Arial'><a
+           href="mel://setAttr%20red_phot.shiny%200%20;">Set shiny to 0 </a><o:p></o:p></span></li>
+      </ul>
+     </ul>
+     <li class=MsoNormal style='color:black;mso-list:l2 level1 lfo9;tab-stops:
+         list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+         font-family:Arial'>Do the same for whiteSG which is shared by the
+         floor and the ceiling. <o:p></o:p></span></li>
+     <ul style='margin-top:0in' type=circle>
+      <li class=MsoNormal style='color:black;mso-list:l2 level2 lfo9;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'><a
+          href="mel://createNode%20-name%20white_phot%20dgs_material_photon;%0D%0A%09%09connectAttr%20white_phot.message%20whiteSG.miPhotonShader;/">Assign
+          dgs_material_phogon to whiteSG, and rename it to white_<span
+          class=GramE>phot </span></a>. <o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l2 level2 lfo9;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>Match the values of white_pot to
+          white_dgs_mat <o:p></o:p></span></li>
+      <ul style='margin-top:0in' type=square>
+       <li class=MsoNormal style='color:black;mso-list:l2 level3 lfo9;
+           tab-stops:list 1.5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+           7.5pt;font-family:Arial'><a
+           href="mel://setAttr%20white_phot.diffuse%200.8%200.8%200.8%20;">Set
+           diffuse to 0.8 0.8 0.8 </a><o:p></o:p></span></li>
+       <li class=MsoNormal style='color:black;mso-list:l2 level3 lfo9;
+           tab-stops:list 1.5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+           7.5pt;font-family:Arial'><a
+           href="mel://setAttr%20white_phot.glossy%200%200%200%20;">Set glossy
+           to 0 0 0 </a><o:p></o:p></span></li>
+       <li class=MsoNormal style='color:black;mso-list:l2 level3 lfo9;
+           tab-stops:list 1.5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+           7.5pt;font-family:Arial'><a
+           href="mel://setAttr%20white_phot.specular%200%200%200%20;">Set
+           specular to 0 0 0 </a><o:p></o:p></span></li>
+       <li class=MsoNormal style='color:black;mso-list:l2 level3 lfo9;
+           tab-stops:list 1.5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+           7.5pt;font-family:Arial'><a
+           href="mel://setAttr%20white_phot.shiny%200%20;">Set shiny to 0 </a><o:p></o:p></span></li>
+      </ul>
+     </ul>
+    </ul>
+    <p><b><span style='font-size:14.0pt;mso-bidi-font-size:16.0pt;font-family:
+    Arial;color:#777A7D;mso-font-kerning:16.0pt'>Step 3. Using Map Visualizer</span></b><span
+    style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'><br>
+    <span class=GramE>Let's</span> render and see what we have. <br>
+    Before rendering, make sure that the global illumination is on. <o:p></o:p></span></p>
+    <ul style='margin-top:0in' type=disc>
+     <li class=MsoNormal style='color:black;mso-list:l7 level1 lfo12;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'><a
+         href="mel://setAttr%20miDefaultOptions.globalIllum%201;/">Turn on
+         global illumination. </a><o:p></o:p></span></li>
+     <ul style='margin-top:0in' type=circle>
+      <li class=MsoNormal style='color:black;mso-list:l7 level2 lfo12;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>Go to the mental ray render globals, mental
+          ray tab. Open &quot;Caustics and Global Illumination&quot; section.
+          Check &quot;Global Illumination&quot;. <o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l7 level2 lfo12;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>The two parameters below the check box is
+          used to fine tune the scene, decrease the noise, etc. We can use the
+          default values for this example. <o:p></o:p></span></li>
+     </ul>
+     <li class=MsoNormal style='color:black;mso-list:l7 level1 lfo12;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'><a
+         href="mel://setAttr%20lightShape.emitPhotons%201;">Make the light emit
+         photons </a><o:p></o:p></span></li>
+     <ul style='margin-top:0in' type=circle>
+      <li class=MsoNormal style='color:black;mso-list:l7 level2 lfo12;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>From the attribute editor of the light
+          shape, open &quot;mental ray&quot; section. <o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l7 level2 lfo12;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>Check &quot;Emit Photons&quot; under
+          &quot;Caustics and Global Illumination&quot;. <o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l7 level2 lfo12;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>Make sure that &quot;exponent&quot; is set to
+          2, so that the energy of each photon decreases correctly as it
+          travels around the room. <o:p></o:p></span></li>
+     </ul>
+    </ul>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>Now we are ready to render, but let's do one
+    more extra step:<o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <ul style='margin-top:0in' type=disc>
+     <li class=MsoNormal style='color:black;mso-list:l7 level1 lfo12;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Go back to the mental ray render globals,
+         mental ray tab, Caustics and Global Illumination. <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l7 level1 lfo12;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>At the bottom of this section, turn on
+         &quot;Photon Map Rebuild&quot; so that mental ray creates new photon
+         map. <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l7 level1 lfo12;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Provide a file name to &quot;Photon Map
+         File&quot; edit box to be written out to a disk. <o:p></o:p></span></li>
+    </ul>
+    <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+    mso-bidi-font-size:7.5pt;font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>Finally, <a
+    href="mel://setCurrentRenderer%20mentalRay%20;%20renderWindowRender%20redoPreviousRender%20renderView;">render</a>.
+    <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>The rendering takes longer with global
+    illumination. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>It's usually a good idea to turn up the
+    verbosity, so that the output window shows the progress. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>The verbosity is controlled from mental ray Render
+    Globals &gt; mental ray tab &gt; Translation. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>It is set to Progress Messages in this
+    example, so that you can check photon emission progress. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>You should notice red tint on the ceiling
+    and faint pink on the floor, caused by photons reflected by the red wall. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>The ceiling rendered black without global
+    illumination before, because the light did not hit the ceiling directly. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>The color showing up on the ceiling is
+    solely from the photons. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><br>
+    Surfaces without photon shader did not participate in this process at all.
+    For example, the blue wall did not affect the color of the ceiling at all. <br>
+    To see the global illumination effect more clearly, <a
+    href="mel://setAttr%20physical_light1.color%20-type%20double3%200%200%200%20;">set
+    the color of physical_light1 <span class=GramE>black </span></a>. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>This disables the direct illumination. <br
+    style='mso-special-character:line-break'>
+    <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+    <![endif]><o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><a
+    href="mel://setCurrentRenderer%20mentalRay%20;%20renderWindowRender%20redoPreviousRender%20renderView;"><span
+    class=GramE>Render</span></a><span class=GramE>,</span> and you will see
+    the effect of global illumination more clearly. <br style='mso-special-character:
+    line-break'>
+    <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+    <![endif]><o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><a
+    href="mel://setAttr%20physical_light1.color%20-type%20double3%201000%201000%201000%20;">Set
+    the physical_light1.color back </a><o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>There is another way of checking the photon
+    map process. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>Because we specified the photon map file name,
+    the file is now stored in the disk. A Map Visualizer provides a convenient
+    way of diagnosing the photon map. <br>
+    The Map Visualizer is accessible from Menu &gt; Window &gt; Rendering
+    Editors &gt; mental ray &gt; Map Visualizer. <br>
+    For the Map File Name, select the photon map file just created. It should
+    be in the photonMap directory. <br>
+    The photon map is displayed in the model view if the shading mode is
+    Wireframe or Smooth Shade All. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>As you may see, photons are only stored on
+    the ceiling, floor and the red wall - only on the surfaces with a photon
+    shader. <br>
+    Delete the Map Visualizer by the button in the middle and quit. <o:p></o:p></span></p>
+    <p><b><span style='font-size:14.0pt;mso-bidi-font-size:16.0pt;font-family:
+    Arial;color:#777A7D;mso-font-kerning:16.0pt'>Step 4. Finishing up <br>
+    </span></b><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>Assign photon shaders for the rest of the
+    materials. <o:p></o:p></span></p>
+    <ul style='margin-top:0in' type=square>
+     <li class=MsoNormal style='color:black;mso-list:l10 level1 lfo16;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'><a
+         href="mel://createNode%20-name%20blue_phot%20dgs_material_photon;%0d%0a%09%09%0D%0AconnectAttr%20blue_phot.message%20blueSG.miPhotonShader;%0d%0a%09%09%0D%0AsetAttr%20blue_phot.diffuse%200%200%200.8;%0d%0a%09%09%0D%0AsetAttr%20blue_phot.glossy%200%200%200;%0d%0a%09%09%0D%0AsetAttr%20blue_phot.specular%200%200%200;%0d%0a%09%09%0D%0AsetAttr%20blue_phot.shiny%200;">Blue
+         wall </a><br>
+         Assign a new dgs_material_photon, rename it to blue_phot, and set the
+         same values as its material shader. <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l10 level1 lfo16;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'><a
+         href="mel://createNode%20-name%20mirror_phot%20dgs_material_photon;%0d%0a%09%09%0D%0AconnectAttr%20mirror_phot.message%20mirrorSG.miPhotonShader;%0d%0a%09%09%0D%0AsetAttr%20mirror_phot.diffuse%200%200%200;%0d%0a%09%09%0D%0AsetAttr%20mirror_phot.glossy%200%200%200;%0d%0a%09%09%0D%0AsetAttr%20mirror_phot.specular%201%201%201;%0d%0a%09%09%0D%0AsetAttr%20mirror_phot.shiny%20">Mirror
+         ball </a><br>
+         Assign a new dgs_material_photon, rename it to mirror_phot, and set
+         the same values as its material shader. <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l10 level1 lfo16;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'><a
+         href="mel://createNode%20-name%20glass_phot%20dielectric_material_photon;%0D%0AconnectAttr%20glass_phot.message%20glassSG.miPhotonShader;%0D%0AsetAttr%20glass_phot.col%200.990%200.990%200.995;%0D%0AsetAttr%20glass_phot.ior%201.75;%0D%0AsetAttr%20glass_phot.phong_coef%200.5;">Glass
+         ball </a><br>
+         Assign a new dielectric_material_photon, rename it to glass_phot, and
+         set the same values as its material shader. <o:p></o:p></span></li>
+    </ul>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><a
+    href="mel://setCurrentRenderer%20mentalRay%20;%20renderWindowRender%20redoPreviousRender%20renderView;">Render
+    </a>again, and this time, both the red wall and the blue wall affected the
+    image. <br style='mso-special-character:line-break'>
+    <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+    <![endif]><o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>Following settings can be adjusted to fine-tune
+    the image and performance. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <ul style='margin-top:0in' type=square>
+     <li class=MsoNormal style='color:black;mso-list:l15 level1 lfo19;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Number of photons emitted (from a light) <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l15 level1 lfo19;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Global Illum Accuracy (render global / shape
+         node) <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l15 level1 lfo19;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Global Illum Radius (render global / shape
+         node) <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l15 level1 lfo19;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Globalillum flag (transform node. Mostly for
+         performance) <br style='mso-special-character:line-break'>
+         <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+         <![endif]><o:p></o:p></span></li>
+    </ul>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>Photons are stored only if a surface has a
+    photon shader, and a diffuse component. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>For example, if the surface is specular like
+    those balls in the scene, photons reflect and transmit on the surface if
+    they have a photon shader, but won't be stored. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>You can double check this from the Map
+    Visualizer. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:
+     1.5pt;mso-padding-alt:0in 0in 0in 0in'>
+     <tr style='mso-yfti-irow:0'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+      font-family:Arial'><img border=0 width=300 height=300 id="_x0000_i1029"
+      src="images/cornellBox_photon_globillum.jpg"><o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>Global
+      illumination<br>
+      cornellBox_photon_globillum.ma<o:p></o:p></span></p>
+      </td>
+     </tr>
+    </table>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>The scene is saved as </span><span
+    style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>cornellBox_photon_globillum.ma<o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><br style='mso-special-character:line-break'>
+    <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+    <![endif]><o:p></o:p></span></p>
+    <p><b><span style='font-size:14.0pt;mso-bidi-font-size:16.0pt;font-family:
+    Arial;color:#777A7D;mso-font-kerning:16.0pt'>Step 5. Caustics</span></b><b><span
+    style='font-size:14.0pt;mso-bidi-font-size:16.0pt;font-family:Arial;
+    color:black;mso-font-kerning:16.0pt'> <br>
+    </span></b><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>Caustics and global illumination are handled
+    separately in mental ray, even though caustics are a subset of global
+    illumination. <br>
+    Global illumination is mostly for diffuse light interaction, and caustics
+    is dedicated to localized effect from specular light interactions. <br
+    style='mso-special-character:line-break'>
+    <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+    <![endif]><o:p></o:p></span></p>
+    <p><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'>Caustics are created by specular reflection or transmission of
+    photons onto diffuse surface or volumes. <br>
+    In the Cornell box scene, we can expect caustics from the glass ball -
+    photons from the light transmitted through the glass ball, and focused on
+    the diffuse floor. <br>
+    The mirror ball also creates caustics by reflecting the photons, but it is
+    hard to see because the reflection is not focused on a localized area. <br
+    style='mso-special-character:line-break'>
+    <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+    <![endif]><o:p></o:p></span></p>
+    <p><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'>The scene is almost set up for caustics. Specular objects (two
+    spheres) as well as diffuse walls have proper photon shaders. <br>
+    The light emits photons, and the number of caustics photons is reasonable. <br>
+    The only thing left is to <a
+    href="mel://setAttr%20miDefaultOptions.caustics%201;/">turn on Caustics </a>from
+    the mental ray render globals &gt; mental ray tab &gt; Caustics and Global
+    Illumination. <br style='mso-special-character:line-break'>
+    <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+    <![endif]><o:p></o:p></span></p>
+    <p><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'><a
+    href="mel://setCurrentRenderer%20mentalRay%20;%20renderWindowRender%20redoPreviousRender%20renderView;">Render
+    </a>again, and this time, we see the caustics on the floor. <br
+    style='mso-special-character:line-break'>
+    <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+    <![endif]><o:p></o:p></span></p>
+    <p><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'>Check the photon map from the Map Visualizer. You can select
+    to see global illumination photons only, caustics photons only, or both.
+    Volume photons will be used later. <br style='mso-special-character:line-break'>
+    <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+    <![endif]><o:p></o:p></span></p>
+    <p><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'>To adjust the quality of the caustics, use:<o:p></o:p></span></p>
+    <ul style='margin-top:0in' type=square>
+     <li class=MsoNormal style='color:black;mso-list:l19 level1 lfo22;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Number of caustics photons emitted (from a
+         light) <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l19 level1 lfo22;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Caustics Accuracy (render global / shape
+         node) <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l19 level1 lfo22;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Caustics Radius (render global / shape node) <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l19 level1 lfo22;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Caustics Filter Type (render global) <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l19 level1 lfo22;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Caustics Filter Kernel (render global) <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l19 level1 lfo22;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Caustics flag (transform node) <o:p></o:p></span></li>
+    </ul>
+    <p><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'>The scene is saved as <b>cornellBox_photon_finish.ma</b><o:p></o:p></span></p>
+    <table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:
+     1.5pt;mso-padding-alt:0in 0in 0in 0in'>
+     <tr style='mso-yfti-irow:0'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+      font-family:Arial'><img border=0 width=300 height=300 id="_x0000_i1030"
+      src="images/cornellBox_photon_finish.jpg"><o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>Global
+      illumination and Caustics. <br>
+      cornellBox_photon_finish.ma<o:p></o:p></span></p>
+      </td>
+     </tr>
+    </table>
+    <p><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'><o:p>&nbsp;</o:p></span></p>
+    <p><b><span style='font-size:14.0pt;mso-bidi-font-size:16.0pt;font-family:
+    Arial;color:#777A7D;mso-font-kerning:16.0pt'>Step 5. Volume Caustics</span></b><b><span
+    style='font-size:14.0pt;mso-bidi-font-size:16.0pt;font-family:Arial;
+    color:black;mso-font-kerning:16.0pt'> <o:p></o:p></span></b></p>
+    <p><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'>Now we are going to add some atmospheric to the scene, and
+    create a volume caustics effect. <o:p></o:p></span></p>
+    <p><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'>Caustics photons transmitting through the floating glass ball
+    will create a prum on its way out. <br>
+    If you are not familiar with volume shader, check out <a
+    href="volumeShaders.html">volumeShaders</a> first, to get familiar with how
+    volume effect is created. <br>
+    Volume caustics as well as other participating media effect can be
+    simulated using photon volume shader. A photon volume shader is similar to
+    a volume shader, except that it is applied to the volume, and stores
+    photons in the volume. <br style='mso-special-character:line-break'>
+    <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+    <![endif]><o:p></o:p></span></p>
+    <p><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'>We will use a photon volume shader parti_volume_photon which
+    is a counterpart to parti_volume volume shader. <br>
+    Let's define the bounding box for the volume first. <br>
+    You might have guessed, the transparent surfaces - front wall, back wall
+    and the light cover plays important role. <br>
+    The front wall and the back wall define the bounding planes for the volume
+    effect. <o:p></o:p></span></p>
+    <ul style='margin-top:0in' type=square>
+     <li class=MsoNormal style='color:black;mso-list:l11 level1 lfo25;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'><a
+         href="mel://createNode%20-name%20transmat_volume%20parti_volume;%20%0D%0AconnectAttr%20transmat_volume.message%20transmatSG.miVolumeShader;">Assign
+         a volume shader to <span class=GramE>transmatSG </span></a>. <o:p></o:p></span></li>
+     <ul style='margin-top:0in' type=circle>
+      <li class=MsoNormal style='color:black;mso-list:l11 level2 lfo25;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>Create a parti_volume shader from Hypershade
+          &gt; Create mental ray Nodes &gt; Volumetric Materials. <o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l11 level2 lfo25;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>Rename it transmat_volume. <o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l11 level2 lfo25;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>Connect transmat_volume to transmatSG.
+          transmat_volume.message to transmatSG.miVolumeShader <o:p></o:p></span></li>
+     </ul>
+     <li class=MsoNormal style='color:black;mso-list:l11 level1 lfo25;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Adjust volume shader settings. <br>
+         Let's use the following settings. (<span class=GramE>mental</span> ray
+         Shaders Guide, Chapter 2.5 Participating Media, explains each
+         parameter.) <o:p></o:p></span></li>
+     <ul style='margin-top:0in' type=circle>
+      <li class=MsoNormal style='color:black;mso-list:l11 level2 lfo25;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'><a
+          href="mel://setAttr%20transmat_volume.scatter%200.05%200.05%200.05;">scatter
+          0.05 0.05 0.05 </a><o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l11 level2 lfo25;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'><a
+          href="mel://setAttr%20transmat_volume.extinction%200.05;">extinction
+          0.05 </a><o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l11 level2 lfo25;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'><a
+          href="mel://setAttr%20transmat_volume.min_step_len%200.13;">min_step_len
+          0.13 </a><o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l11 level2 lfo25;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'><a
+          href="mel://setAttr%20transmat_volume.max_step_len%201.0;">max_step_len
+          1 </a><o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l11 level2 lfo25;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'><a
+          href="mel://setAttr%20transmat_volume.light_dist%202;">light_dist 2 </a><o:p></o:p></span></li>
+     </ul>
+    </ul>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <ul style='margin-top:0in' type=square>
+     <li class=MsoNormal style='color:black;mso-list:l11 level1 lfo25;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'><a
+         href="mel://setCurrentRenderer%20mentalRay%20;%20renderWindowRender%20redoPreviousRender%20renderView;">Render
+         </a>and you can see the volume effect, especially around the light. <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l11 level1 lfo25;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>The scene is saved as
+         cornellBox_photon_volume.ma<o:p></o:p></span></li>
+    </ul>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:
+     1.5pt;mso-padding-alt:0in 0in 0in 0in'>
+     <tr style='mso-yfti-irow:0'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+      font-family:Arial'><img border=0 width=300 height=300 id="_x0000_i1031"
+      src="images/cornellBox_photon_volume.jpg"><o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>Global
+      Illumination in Volumes.<o:p></o:p></span></p>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>cornellBox_photon_volume.ma<o:p></o:p></span></p>
+      </td>
+     </tr>
+    </table>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <ul style='margin-top:0in' type=circle>
+     <li class=MsoNormal style='color:black;mso-list:l12 level1 lfo29;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Add photon volume shader. <br>
+         Let's add a photon volume shader to transmatSG. <br>
+         The light cover has been waiting for this moment. <br>
+         The photon volume shader is why the light cover exists. <br>
+         We could have assigned a photon volume shader to the whole scene, but
+         it would have caused the loss of many photons. <br>
+         By adding a photon volume shader to a light cover - a small object
+         that covers a light, we give a hint to mental ray where we want
+         photons be emitted. <br>
+         Volume photons are stored in the light frustum that the light cover
+         defines. <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l12 level1 lfo29;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'><a
+         href="mel://createNode%20-name%20transmat_volume_phot%20parti_volume_photon;%0D%0AconnectAttr%20transmat_volume_phot.message%20transmatSG.miPhotonVolumeShader;">Assign
+         a parti_volume_photon to the light <span class=GramE>cover </span></a>.
+         <o:p></o:p></span></li>
+     <ul style='margin-top:0in' type=circle>
+      <li class=MsoNormal style='color:black;mso-list:l12 level2 lfo29;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>Create a parti_volume_photon from Hypershade
+          &gt; Create mental ray Nodes &gt; Photonic Materials. <o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l12 level2 lfo29;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>Rename it as transmat_volume_phot <o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l12 level2 lfo29;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>Connect transmat_volume_phot to transmatSG.
+          From transmat_volume_phot.message to transmatSG.miPhotonVolumeShader.
+          <o:p></o:p></span></li>
+     </ul>
+     <li class=MsoNormal style='color:black;mso-list:l12 level1 lfo29;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Adjust the settings <br>
+         <span class=GramE>As</span> we use the same settings for material
+         shader and photon shader, same rule applies to volume shader and
+         photon volume shader. <o:p></o:p></span></li>
+     <ul style='margin-top:0in' type=circle>
+      <li class=MsoNormal style='color:black;mso-list:l12 level2 lfo29;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'><a
+          href="mel://setAttr%20transmat_volume_phot.scatter%200.05%200.05%200.05;">scatter
+          0.05 0.05 0.05 </a><o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l12 level2 lfo29;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'><a
+          href="mel://setAttr%20transmat_volume_phot.extinction%200.05;">extinction
+          0.05 </a><o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l12 level2 lfo29;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'><a
+          href="mel://setAttr%20transmat_volume_phot.min_step_len%200.13;">min_step_len
+          0.13 </a><o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l12 level2 lfo29;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'><a
+          href="mel://setAttr%20transmat_volume_phot.max_step_len%201.0;">max_step_len
+          1 </a><o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l12 level2 lfo29;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'><a
+          href="mel://setAttr%20transmat_volume_phot.light_dist%202;">light_dist
+          2 </a><o:p></o:p></span></li>
+     </ul>
+    </ul>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><a
+    href="mel://setCurrentRenderer%20mentalRay%20;%20renderWindowRender%20redoPreviousRender%20renderView;"><span
+    class=GramE>Render </span></a>. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>Volume caustics effect shows up below the
+    glass ball.<o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>The final scene is
+    cornellBox_photon_volume_caustics.ma<o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:
+     1.5pt;mso-padding-alt:0in 0in 0in 0in'>
+     <tr style='mso-yfti-irow:0'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+      font-family:Arial'><img border=0 width=300 height=300 id="_x0000_i1032"
+      src="images/cornellBox_photon_volume_caustics.jpg"><o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>Volume
+      Caustics.<o:p></o:p></span></p>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>cornellBox_photon_volume_caustics.ma<o:p></o:p></span></p>
+      </td>
+     </tr>
+    </table>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p></o:p></span></p>
+    </td>
+   </tr>
+  </table>
+  <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:Arial'><o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+font-family:Arial'><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

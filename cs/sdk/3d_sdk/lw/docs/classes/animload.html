@@ -1,0 +1,157 @@
+<html>
+
+<head>
+<title>Classes: AnimLoaderHandler</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="volume.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="VolumetricHandler"></a></td>
+    <td width="96" align="left"><a href="animsave.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="AnimSaverHandler"></a></td>
+    <td width="96" align="left"><a href="../classes.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Classes"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>AnimLoaderHandler<br>
+    AnimLoaderInterface</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwanimlod.h">lwanimlod.h</a></small></p>
+    <p>An animation loader loads frames from an animation file. An animation file is a file
+    that contains a time sequence of still images, or data that can be interpreted that way.
+    Animation loaders must be prepared to provide random access to the frames in an animation
+    file. They must also be able to distinguish between files they can load and those they
+    can't. LightWave relies on this to choose the proper loader for an animation file.</p>
+    <p><strong>Handler Activation Function</strong></p>
+    <pre>   XCALL_( int ) MyAnimLoader( long version, GlobalFunc *global,
+      LWAnimLoaderHandler *local, void *serverData );</pre>
+    <p>The <tt>local</tt> argument to an anim loader's activation function is an
+    LWAnimLoaderHandler.</p>
+    <pre>   typedef struct st_LWAnimLoaderHandler {
+      LWInstanceFuncs *<strong>inst</strong>;
+      int             (*<strong>frameCount</strong>) (LWInstance);
+      double          (*<strong>frameRate</strong>)  (LWInstance);
+      double          (*<strong>aspect</strong>)     (LWInstance, int *w, int *h,
+                                       double *pixAspect);
+      void            (*<strong>evaluate</strong>)   (LWInstance, double,
+                                       LWAnimFrameAccess *);
+   } LWAnimLoaderHandler;</pre>
+    <p>The first member of this structure points to the standard instance <a
+    href="../handler.html">handler functions</a>. An anim loader also provides functions that
+    return image pixels and other information from the file.</p>
+    <p>The <tt>context</tt> argument to the <tt>create</tt> function is the filename. The <tt>create</tt>
+    function should open the file and determine whether it's in a format the loader can load.
+    If the format isn't recognized, <tt>create</tt> should return NULL, without setting the
+    error string. LightWave will understand this to mean that the file should be handled by a
+    different anim loader.<dl>
+      <dt><tt>count = <strong>frameCount</strong>( instance )</tt></dt>
+      <dd>Returns the number of frames in the file.</dd>
+      <dt><tt><br>
+        fps = <strong>frameRate</strong>( instance )</tt></dt>
+      <dd>Returns the animation's playback speed, in frames per second.</dd>
+      <tt>
+      <dt><br>
+        frame_aspect = <strong>aspect</strong>( instance, w, h, pixel_aspect ) </dt>
+      </tt>
+      <dd>Fills in the width and height of the frames and the pixel aspect ratio and returns the
+        frame aspect ratio. The <em>aspect ratio</em> of a rectangle describes its shape--whether
+        it's short and broad, tall and thin, or square--and is expressed as width / height. The
+        aspect ratios of each pixel and of the image as a whole are related in the following way. <blockquote>
+          <tt><p>frame_aspect = w * pixel_aspect / h<br>
+          pixel_aspect = h * frame_aspect / w</tt></p>
+        </blockquote>
+        <p>The <tt>aspect</tt> function therefore asks for redundant information, so to ensure
+        that what you're returning is self-consistent, you should calculate one of the aspects in
+        terms of the other.</p>
+      </dd>
+      <dt><tt><strong>evaluate</strong>( instance, time, access )</tt></dt>
+      <dd>Load an image at the specified running time from the file. At the loader's discretion,
+        the image can be the frame nearest to the time or an interpolation of two or more frames.
+        The access structure, described below, provides the functions the loader uses to pass
+        image data to Layout.</dd>
+    </dl>
+    <p><strong>Interface Activation Function</strong></p>
+    <pre>   XCALL_( int ) MyInterface( long version, GlobalFunc *global,
+      LWInterface *local, void *serverData );</pre>
+    <p>This is the standard <a href="../handler.html#ui">interface activation</a> for
+    handlers. LightWave currently doesn't give the user an interface for animation loaders,
+    although it may in a future version.</p>
+    <p><strong>Anim Frame Access</strong></p>
+    <p>The access structure passed to the loader's evaluation function uses the <a
+    href="../imageio.html">image I/O</a> mechanism to pass image data to Layout. </p>
+    <pre>   typedef struct st_LWAnimFrameAccess {
+      void              *<strong>priv_data</strong>;
+      LWImageProtocolID (*<strong>begin</strong>) (void *, int type);
+      void              (*<strong>done</strong>)  (void *, LWImageProtocolID);
+   } LWAnimFrameAccess;</pre>
+    <dl>
+      <dt><strong><tt>priv_data</tt></strong></dt>
+      <dd>An opaque pointer to data used by Layout. Pass this to <tt>begin</tt> and <tt>done</tt>.</dd>
+      <dt><br>
+        <tt>protocol = <strong>begin</strong>( priv_data, type )</tt></dt>
+      <dd>Call this to tell Layout that you're about to send it image data for a frame. The type
+        argument describes the kind of pixel data you'll send and can be any of the image I/O <a
+        href="../imageio.html#pixdata">pixel types</a>. Layout returns an LWImageProtocolID
+        containing the functions used to pass the data.</dd>
+      <dt><tt><br>
+        <strong>done</strong>( priv_data, protocol )</tt></dt>
+      <dd>Call this to tell Layout that you've finished sending the image.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>The <a href="../../sample/ancounter/">ancounter</a> sample is a simple animation loader
+    that draws its frames on the fly based on a small amount of information in a text file.
+    The text file is the &quot;animation file&quot; the user selects in order to invoke this
+    loader.</p>
+    <p>Every animation file passes through every anim loader's <tt>create</tt> function until
+    one of the loaders claims the file as its own. AnCounter reads the first line of each file
+    and compares it to a phrase that identifies the file as an AnCounter text file. If the
+    phrase isn't present at the start of the file, the <tt>create</tt> function quietly fails
+    by returning NULL.</p>
+    <pre>   fp = fopen( filename, &quot;r&quot; );
+   if ( !fp ) {
+      *emsg = &quot;Couldn't open anim file.&quot;;
+      return NULL;
+   }
+
+   fgets( buf, sizeof( buf ), fp );
+
+   if ( strncmp( buf, &quot;Counter AnimLoader File&quot;, 23 )) {
+      fclose( fp );
+      return NULL;
+   }</pre>
+    <p>If the phrase is there, <tt>create</tt> allocates an instance structure and initializes
+    it using the information in the file. The evaluation function later uses this information
+    to make a &quot;counter&quot; image. A string of the form &quot;hh:mm:ss:ff&quot; (hours,
+    minutes, seconds, frames) is made from the time argument, and this is rasterized, using
+    the font information in the text file, and passed to LightWave as the current frame.</p>
+    <pre>   if ( !getTextImage( counter, text )) return;
+
+   ip = access-&gt;begin( access-&gt;priv_data, LWIMTYP_GREY8 );
+   if ( !ip ) return;
+
+   LWIP_SETSIZE( ip, counter-&gt;w, counter-&gt;h );
+   LWIP_SETPARAM( ip, LWIMPAR_ASPECT, 0, 1.0f );
+
+   for ( i = 0; i &lt; counter-&gt;h; i++ ) {
+      result = LWIP_SENDLINE( ip, i, counter-&gt;buf + i * counter-&gt;w );
+      if ( result != IPSTAT_OK ) break;
+   }
+
+   LWIP_DONE( ip, result );
+   access-&gt;done( access-&gt;priv_data, ip );</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

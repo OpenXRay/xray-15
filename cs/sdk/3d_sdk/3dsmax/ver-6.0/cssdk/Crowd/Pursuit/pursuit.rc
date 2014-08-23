@@ -1,0 +1,125 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PURSUIT DIALOG DISCARDABLE  0, 0, 108, 91
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Display Target",IDC_TARGETDSPLY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,37,45,61,10
+    CONTROL         "",IDC_TARGETCLR,"ColorSwatch",WS_TABSTOP,5,42,29,14
+    RTEXT           "Target Scale:",IDC_STATIC,9,61,44,8
+    CONTROL         "",IDC_TARGSCALE,"CustEdit",WS_TABSTOP,53,59,29,10
+    CONTROL         "",IDC_TARGSCALESPIN,"SpinnerControl",0x0,83,59,7,10
+    CONTROL         "",IDC_PICKNODE,"CustButton",WS_TABSTOP,13,14,80,14
+    GROUPBOX        "Pursuit Target",IDC_STATIC,1,1,104,34
+    CONTROL         "",IDC_FORCECLR,"ColorSwatch",WS_TABSTOP,5,73,29,14
+    CONTROL         "Display Force",IDC_FORCEDSPLY,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,37,76,59,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SFGOODPICK          "Good Pick"
+    IDS_PURSUIT_CLASSNAME   "Pursuit Behavior"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_OBJECTS             "Objects"
+    IDS_EMPTY               " "
+    IDS_PICKPROMPT          "Select objects to follow"
+    IDS_TARGETCLR           "Target Color"
+    IDS_DISPLAYTARGET       "Display Target"
+    IDS_TARGETSCL           "Target Scale"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_NAME                "Name"
+    IDS_FORCECLR            "Force Color"
+    IDS_DSPLYFRC            "Display Force"
+    IDS_PARAMETERS          "Parameters"
+    IDS_LIBDESC             "Crowd Pursuit Behavior Plugin for MAX R4.0 :: By Unreal Pictures, Inc."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_UN_WHOM             "UnPick"
+    IDS_SELECT              "Select"
+    IDS_PURSUITTARGET       "Pursuit Target"
+    IDS_PURSUIT             "Pursuit"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

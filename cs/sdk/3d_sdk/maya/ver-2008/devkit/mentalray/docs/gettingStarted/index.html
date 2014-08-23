@@ -1,0 +1,397 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<link rel=File-List href="./index_files/filelist.xml">
+<link rel=Edit-Time-Data href="./index_files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>Getting Started - Using mental ray shaders</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>joohil</o:Author>
+  <o:LastAuthor>joohil</o:LastAuthor>
+  <o:Revision>44</o:Revision>
+  <o:TotalTime>55</o:TotalTime>
+  <o:Created>2004-02-04T21:48:00Z</o:Created>
+  <o:LastSaved>2004-02-23T19:45:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>508</o:Words>
+  <o:Characters>2899</o:Characters>
+  <o:Company>Alias</o:Company>
+  <o:Lines>24</o:Lines>
+  <o:Paragraphs>5</o:Paragraphs>
+  <o:CharactersWithSpaces>3560</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+ </w:WordDocument>
+</xml><![endif]--><![if !supportAnnotations]>
+<style id="dynCom" type="text/css"><!-- --></style>
+<script language="JavaScript"><!--
+function msoCommentShow(anchor_id, com_id)
+{
+	if(msoBrowserCheck()) 
+		{
+		c = document.all(com_id);
+		if (null != c)
+			{
+			a = document.all(anchor_id);
+			var cw = c.offsetWidth;
+			var ch = c.offsetHeight;
+			var aw = a.offsetWidth;
+			var ah = a.offsetHeight;
+			var x  = a.offsetLeft;
+			var y  = a.offsetTop;
+			var el = a;
+			while (el.tagName != "BODY") 
+				{
+				el = el.offsetParent;
+				x = x + el.offsetLeft;
+				y = y + el.offsetTop;
+				}
+			var bw = document.body.clientWidth;
+			var bh = document.body.clientHeight;
+			var bsl = document.body.scrollLeft;
+			var bst = document.body.scrollTop;
+			if (x + cw + ah / 2 > bw + bsl && x + aw - ah / 2 - cw >= bsl ) 
+				{ c.style.left = x + aw - ah / 2 - cw; }
+			else 
+				{ c.style.left = x + ah / 2; }
+			if (y + ch + ah / 2 > bh + bst && y + ah / 2 - ch >= bst ) 
+				{ c.style.top = y + ah / 2 - ch; }
+			else 
+				{ c.style.top = y + ah / 2; }
+			c.style.visibility = "visible";
+}	}	}
+function msoCommentHide(com_id) 
+{
+	if(msoBrowserCheck())
+		{
+		c = document.all(com_id);
+		if (null != c)
+		{
+		c.style.visibility = "hidden";
+		c.style.left = -1000;
+		c.style.top = -1000;
+		} } 
+}
+function msoBrowserCheck()
+{
+	ms = navigator.appVersion.indexOf("MSIE");
+	vers = navigator.appVersion.substring(ms + 5, ms + 6);
+	ie4 = (ms > 0) && (parseInt(vers) >= 4);
+	return ie4;
+}
+if (msoBrowserCheck())
+{
+	document.styleSheets.dynCom.addRule(".msocomanchor","background: infobackground");
+	document.styleSheets.dynCom.addRule(".msocomoff","display: none");
+	document.styleSheets.dynCom.addRule(".msocomtxt","visibility: hidden");
+	document.styleSheets.dynCom.addRule(".msocomtxt","position: absolute");
+	document.styleSheets.dynCom.addRule(".msocomtxt","top: -1000");
+	document.styleSheets.dynCom.addRule(".msocomtxt","left: -1000");
+	document.styleSheets.dynCom.addRule(".msocomtxt","width: 33%");
+	document.styleSheets.dynCom.addRule(".msocomtxt","background: infobackground");
+	document.styleSheets.dynCom.addRule(".msocomtxt","color: infotext");
+	document.styleSheets.dynCom.addRule(".msocomtxt","border-top: 1pt solid threedlightshadow");
+	document.styleSheets.dynCom.addRule(".msocomtxt","border-right: 2pt solid threedshadow");
+	document.styleSheets.dynCom.addRule(".msocomtxt","border-bottom: 2pt solid threedshadow");
+	document.styleSheets.dynCom.addRule(".msocomtxt","border-left: 1pt solid threedlightshadow");
+	document.styleSheets.dynCom.addRule(".msocomtxt","padding: 3pt 3pt 3pt 3pt");
+}
+// --></script>
+<![endif]>
+<style>
+<!--
+p.MSOCOMMENTTEXT
+	{mso-style-noshow:yes;}
+li.MSOCOMMENTTEXT
+	{mso-style-noshow:yes;}
+div.MSOCOMMENTTEXT
+	{mso-style-noshow:yes;}
+span.MSOCOMMENTREFERENCE
+	{mso-style-noshow:yes;}
+p.MSOCOMMENTSUBJECT
+	{mso-style-noshow:yes;}
+li.MSOCOMMENTSUBJECT
+	{mso-style-noshow:yes;}
+div.MSOCOMMENTSUBJECT
+	{mso-style-noshow:yes;}
+span.GRAME
+	{mso-gram-e:yes;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoCommentText, li.MsoCommentText, div.MsoCommentText
+	{margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+span.MsoCommentReference
+	{mso-ansi-font-size:8.0pt;
+	mso-bidi-font-size:8.0pt;}
+a:link, span.MsoHyperlink
+	{color:#C80000;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:#C80000;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.msocommentsubject, li.msocommentsubject, div.msocommentsubject
+	{mso-style-name:msocommentsubject;
+	mso-style-parent:"Comment Text";
+	mso-style-next:"Comment Text";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	font-weight:bold;}
+span.msoIns
+	{mso-style-type:export-only;
+	mso-style-name:"";
+	text-decoration:underline;
+	text-underline:single;
+	color:teal;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+@list l0
+	{mso-list-id:1412433187;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1525057562 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1027"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body bgcolor=white lang=EN-US link="#c80000" vlink="#c80000" style='tab-interval:
+.5in' alink="#c80000" leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+
+<div class=Section1>
+
+<table border=0 cellspacing=0 cellpadding=0 width="100%" style='width:100.0%;
+ mso-cellspacing:0in;mso-padding-alt:0in 0in 0in 0in'>
+ <tr style='mso-yfti-irow:0'>
+  <td style='background:black;padding:0in 0in 0in 0in'>
+  <p class=MsoNormal><a href="http://www.alias.com"><span style='text-decoration:
+  none;text-underline:none'><img border=0 width=120 height=60 id="_x0000_i1025"
+  src=logo.gif alt=AliasLogo></span></a></p>
+  </td>
+  <td style='background:black;padding:0in 0in 0in 0in'>
+  <p class=MsoNormal>&nbsp;</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1'>
+  <td colspan=2 style='background:#CCCCCC;padding:0in 0in 0in 0in'>
+  <p class=MsoNormal><img border=0 width=66 height=2 id="_x0000_i1026"
+  src=spacer.gif></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2'>
+  <td colspan=2 style='background:black;padding:0in 0in 0in 0in'>
+  <p class=MsoNormal><img border=0 width=66 height=1 id="_x0000_i1027"
+  src=spacer.gif></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3;mso-yfti-lastrow:yes'>
+  <td colspan=2 style='background:white;padding:0in 0in 0in 0in'>
+  <table border=0 cellpadding=0 width=972 style='width:729.0pt;mso-cellspacing:
+   1.5pt;mso-padding-alt:30.0pt 30.0pt 30.0pt 30.0pt'>
+   <tr style='mso-yfti-irow:0;mso-yfti-lastrow:yes'>
+    <td width=968 style='width:726.0pt;padding:30.0pt 30.0pt 30.0pt 30.0pt'>
+    <p class=MsoNormal><span style='font-size:14.0pt;mso-bidi-font-size:12.0pt;
+    font-family:Arial;color:#777A7D'>Getting Started - Using mental ray for
+    Maya shaders</span><span style='font-size:14.0pt;mso-bidi-font-size:12.0pt'><br
+    style='mso-special-character:line-break'>
+    <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+    <![endif]><o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'>This document shows you step-by-step examples of how to use
+    some of the most common mental ray shaders in Maya. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'>The main goal is to provide some basic shader workflows from
+    which you can then develop your own. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'>&nbsp;<o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'>Each section begins with a simple scene, then adds shaders to
+    demonstrate the workflow and purpose of the shader. Although you can view
+    this document in any browser, by viewing it in the Maya web browser, you
+    can clink links to see live demonstrations, in the Maya UI, of the
+    discussed concepts and procedures; each link you click performs a MEL
+    command to the scene opened. (The MEL command links will work only if each
+    step is followed exactly as described in each section.)<o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'>&nbsp;<o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'>For details about mental ray shaders, please refer to <b>mental
+    ray User Manual</b> and <b>mental ray Shaders Guide</b><span
+    style='mso-bidi-font-weight:bold'>, which you can find in the online help</span>.<o:p></o:p></span></p>
+    <p><span style='mso-bidi-font-size:10.0pt;font-family:Arial;color:black'><a
+    href="materialShaders.html">Material Shaders</a><br>
+    </span><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:
+    Arial;mso-bidi-font-family:"Times New Roman"'>Shows the </span><span
+    style='font-size:10.0pt;font-family:Arial;color:black'>basic workflow for
+    material shaders, with automatic light linking and manual light connection,
+    using a Cornell box scene.<br>
+    Shaders used in this section: mib_illum_lambert, dgs_material,
+    dielectric_material tramsat <o:p></o:p></span></p>
+    <p><span style='mso-bidi-font-size:10.0pt;font-family:Arial;color:black'><a
+    href="sampleCompositing.html">Sample Compositing Shaders<br>
+    </a></span><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+    font-family:Arial;mso-bidi-font-family:"Times New Roman"'>Shows the </span><span
+    style='font-size:10.0pt;font-family:Arial;color:black'>basic workflow for
+    sample compositing shaders.<br>
+    Shaders used in this section: mib_opacity, mib_reflect, mib_refract,
+    mib_refraction_index, mib_transparency, mib_two_sided. <o:p></o:p></span></p>
+    <p><span style='mso-bidi-font-size:10.0pt;font-family:Arial;color:black'>Texture
+    Shaders <o:p></o:p></span></p>
+    <p style='margin-left:.5in;text-indent:-.25in;mso-list:l0 level1 lfo2;
+    tab-stops:list .5in'><![if !supportLists]><span style='font-size:10.0pt;
+    font-family:Symbol;mso-bidi-font-family:Arial;color:black'>·<span
+    style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span></span><![endif]><span style='font-size:10.0pt;font-family:Arial;
+    color:black'><a href="proceduralTextureShaders.html">Procedural texture </a><br>
+    Shaders used in this section: mib_texture_checkerboard, </span><span
+    style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'>mib_texture_vector, mib_texture_remap</span><span
+    style='font-size:10.0pt;font-family:Arial;color:black'><o:p></o:p></span></p>
+    <p style='margin-left:.5in;text-indent:-.25in;mso-list:l0 level1 lfo2;
+    tab-stops:list .5in'><![if !supportLists]><span style='font-size:10.0pt;
+    font-family:Symbol;mso-bidi-font-family:Arial;color:black'>·<span
+    style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span></span><![endif]><span style='font-size:10.0pt;font-family:Arial;
+    color:black'><a href="textureShaders_bump.html">B<span class=msoIns><ins
+    cite="mailto:Anybody" datetime="2004-02-20T12:39">u</ins></span>mp map </a><br>
+    An advanced workflow to create bump effects.<br>
+    Shaders used in this section: dgs_material, mib_passthrough_bump_map,
+    mib_texture_vector, mib_texture_remap, mib_color_mix<span
+    style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></span></p>
+    <p><span style='mso-bidi-font-size:10.0pt;font-family:Arial;color:black'><a
+    href="environmentShaders.html">Environment Shaders<span style='font-size:
+    14.0pt;mso-bidi-font-size:10.0pt'> </span></a></span><span
+    style='font-size:10.0pt;font-family:Arial;color:black'><br>
+    </span><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:
+    Arial;mso-bidi-font-family:"Times New Roman"'>Shows the </span><span
+    style='font-size:10.0pt;font-family:Arial;color:black'>basic workflow for
+    environment shaders, with local environment mapping and global environment
+    mapping.<br>
+    Shaders used in this section: mib_lookup_spherical. <o:p></o:p></span></p>
+    <p><span style='mso-bidi-font-size:10.0pt;font-family:Arial;color:black'><a
+    href="volumeShaders.html">Volume Shaders</a></span><span style='font-size:
+    10.0pt;font-family:Arial;color:black'><br>
+    Shows the basic workflow for volume effects. <br>
+    Shaders used in this section: parti_volume, transmat<o:p></o:p></span></p>
+    <p><span style='mso-bidi-font-size:10.0pt;font-family:Arial;color:black'><a
+    href="photonShaders.html">Photon Shader</a></span><span style='font-size:
+    10.0pt;font-family:Arial;color:black'><br>
+    </span><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:
+    Arial;mso-bidi-font-family:"Times New Roman"'>Shows the </span><span
+    style='font-size:10.0pt;font-family:Arial;color:black'>basic workflow for
+    global illumination and caustics using photon shaders, including
+    participating media effects with photons using photon volume shaders.<br>
+    Uses a Cornell box scene to adds global illumination, caustics, volume
+    scattering, volume caustics.<br>
+    Shaders used in this section: dgs_material, dielectric_material tramsat,
+    dgs_material_photon, dielectric_material_photon tramsat_photon,
+    parti_volume, parti_volume_photon.<o:p></o:p></span></p>
+    <p><span style='mso-bidi-font-size:10.0pt;font-family:Arial;color:black'><a
+    href="lightShaders.html">Light Shaders</a></span><span style='font-size:
+    10.0pt;font-family:Arial;color:black'><br>
+    </span><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:
+    Arial;mso-bidi-font-family:"Times New Roman"'>Shows the </span><span
+    style='font-size:10.0pt;font-family:Arial;color:black'>basic workflow for
+    light shaders; that is, how to use a light profile.<br>
+    Shaders used in this section: physical_light, mib_light_photometric.<o:p></o:p></span></p>
+    <p><span style='mso-bidi-font-size:10.0pt;font-family:Arial;color:black'><a
+    href="phenomenon.html">Phenomenon</a></span><span style='font-size:10.0pt;
+    font-family:Arial;color:black'><br>
+    </span><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:
+    Arial;mso-bidi-font-family:"Times New Roman"'>Shows the </span><span
+    style='font-size:10.0pt;font-family:Arial;color:black'>basic workflow of
+    how to create, export, load and render the phenomenon.<br>
+    Shaders used in this section: </span><span style='font-size:10.0pt;
+    mso-bidi-font-size:7.5pt;font-family:Arial;color:black'>mentalrayPhenomenon</span><span
+    style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>,</span>
+    <span style='font-size:10.0pt;font-family:Arial;color:black'>mib_illum_ward,
+    mib_texture_rotate, mib_texture_vector, mib_texture_turbulence.</span></p>
+    </td>
+   </tr>
+  </table>
+  <p class=MsoNormal><o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal>&nbsp;</p>
+
+</div>
+
+<div style='mso-element:comment-list'><![if !supportAnnotations]>
+
+<hr class=msocomoff align=left size=1 width="33%">
+
+<![endif]></div>
+
+</body>
+
+</html>

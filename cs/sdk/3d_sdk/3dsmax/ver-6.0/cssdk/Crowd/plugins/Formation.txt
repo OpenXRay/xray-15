@@ -1,0 +1,55 @@
+
+
+Formation Behavior.
+Behavior Description.
+
+The Formation behavior lets you specify a formation for a selection of delegates, and will then try to keep the delegates in that formation while the delegates move. 
+
+Procedure.
+
+To Use the Formation Behavior.
+
+First of all, since the Formation behavior is an example demonstrating the use of Crowd SDK, it originally won't be present as an useable behavior.  In order to use the Formation behavior from within crowd, the formation.dlo file needs to be in your 'plugin' directory path.  
+
+Then,
+
+1. Add a Formation behavior to the Crowd object.
+2. In the Formation behavior rollout, use the -None- button in the Leader group to specify an object that shall be the leader.  Other delegates will follow and orient themselves with respect to this object. 
+3  In the Group group, use the -None- button or the selection button next to it, to designate a delegate or group of delegates that will make up the formation.
+3  Then once you have the delegates set up in the formation you want, click on the Set Formation button.  This will set the formation that you want the delegates to be in with respect to the leader.
+3. Change the other default settings as desired.
+4. Use BehaviorAssignments to assign the behavior to a delegate or team. Note that even though a delegate might be in the group making up the formation, it will still need to have the Formation behavior assigned for it if you want the behavior to be active.
+
+Interface.
+
+Leader Group.
+
+None(label). Specifies a single object that will be the leader for the formation.  The formation, when created using the Set Formation button (see below), will be in space relative to this leader object. Click this button, and then click the object in the viewport.  The leader's name then appears on the button.
+
+Group group.
+
+None(label).  Specifies a single delegate which will be in formation with respect to the leader. Click this button and then select a delegate in the viewport.  The delegate's name then appears on the button.
+
+If you've selected multiple delegates using the Multiple Selection(see next item), the word Multiple appears on the button.  To see which delegates are then in the formation click the Multiple Selection button.
+
+Multiple Selection.  Opens a Select dialog to allow you to select multiple delegates to be in the formation.
+
+Formation Group.
+
+Set Formation.  Clicking this button will set the formation.  The formation will be set at the time that the button is clicked, and is then saved, so you can set up the formation, set it, and then move the delegates to where you wish.
+
+
+Display Formation.  If set, the location of the formation will be displayed continuously in the viewports.  The formation will be represented as a collection of spherical icons, each icon representing the place where a delegate is located in the formation.  The icon will be drawn at the location.  The radius of the drawn sphere is equal to the Display Scale (see next item) value.  The color of the sphere will be white.
+
+Display Scale. Specifies the overall size of the formation target icon.  Default = 5.0.
+
+Color Swatch (1st).  Shows the color used to draw the target icon.  Click the button to select a different color. Default = Blue.
+
+Display Target.  Enables display of the target icon, the location where the delegate is seeking, while the simulation is running.
+
+Target Scale.  Specifies the overall size of the target icon.  Default = 5.0.
+
+Color Swatch (2nd).  Shows the color used to draw the Formation force vector during the solution.  Click the button to select a different color.  Default = Light Green.
+ 
+
+

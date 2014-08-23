@@ -1,0 +1,1004 @@
+<html>
+
+<head>
+<title>Globals: Panels</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="objinfo.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="Object Info"></a></td>
+    <td width="96" align="left"><a href="particle.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Particle Services"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Panels</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwpanel.h">lwpanel.h</a></small></p>
+    <table border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="280" align="left" valign="top">The Panels global supplies a set of routines for
+        creating user interface windows from within plug-ins. Also see the related <a
+        href="raster.html">raster</a> and <a href="conmenu.html">context menu</a> globals.<p>LWPanels
+        (or the newer <a href="xpanel.html">XPanels</a> system) gives you a way to create
+        interfaces for your plug-ins that have the LightWave&reg; look and feel, using a single code
+        base for all of the platforms LightWave&reg; supports.</p>
+        <p>Creating a non-trivial user interface is a complex task that demands an understanding
+        of both real-time, event-driven programming and of human factors (the ergonomics of the
+        mind). Good design marries function and aesthetics, while a good implementation seeks a
+        balance between responsiveness and power.</p>
+        <p>This page can't hope to teach any of that, of course, but it's worth mentioning that
+        there's more to this process than the mere building blocks presented here.</td>
+        <td width="320" align="left" valign="top"><ul>
+          <li><a href="#global">Global Call</a> </li>
+          <li><a href="#pcallback">Panel Callbacks</a> </li>
+          <li><a href="#drawfunc">Drawing Functions</a> </li>
+          <li><a href="#controls">Controls</a> </li>
+          <li><a href="#ccallback">Control Callbacks</a> </li>
+          <li><a href="#macros">Macros</a> <ul>
+              <li><a href="#plife">Panel Life Cycle</a> </li>
+              <li><a href="#pattrib">Panel Attributes</a> </li>
+              <li><a href="#ccreate">Creating Controls</a> <ul>
+                  <li><a href="#medit">Edit fields</a> </li>
+                  <li><a href="#mbutton">Buttons</a> </li>
+                  <li><a href="#mslider">Sliders and mouse feedback</a> </li>
+                  <li><a href="#mchoice">Multiple choice</a> </li>
+                  <li><a href="#mcolor">Color</a> </li>
+                  <li><a href="#mfile">Files and directories</a> </li>
+                  <li><a href="#mdraw">Drawing</a> </li>
+                  <li><a href="#mxpanel">XPanels</a> </li>
+                </ul>
+              </li>
+              <li><a href="#cvalues">Control Values</a> </li>
+              <li><a href="#cattrib">Control Attributes</a> </li>
+            </ul>
+          </li>
+          <li><a href="#history">History</a></li>
+          <li><a href="#example">Example</a> </li>
+        </ul>
+        </td>
+      </tr>
+    </table>
+    <p>If you've programmed interfaces for Microsoft Windows or Apple MacOS, you're familiar
+    with a design method that uses resource files to define dialogs &quot;ahead of time,&quot;
+    or statically. When your code runs, you make an operating system call to load your dialog
+    template and use it to create a dialog. Events are either sent to a single, central
+    callback or are pulled by your code from an event queue.</p>
+    <p>LWPanels doesn't use dialog templates. Dialogs, or <em>panels</em>, are built &quot;on
+    the fly&quot; by calling functions that add and position a panel's controls.. Panels are
+    defined by a sequence of function calls rather than a list of directives in a resource
+    file. And events may be sent to many different callbacks. You tell LWPanels where to send
+    them.</p>
+    <p>If you're accustomed to designing dialogs in a visual environment, the LWPanels
+    approach may take some getting used to.</p>
+    <p>Other aspects of a panel's life cycle are very similar to those for Windows or MacOS
+    dialogs. You initialize the values of controls before the panel is displayed, and you can
+    read back those values at any time, but in particular after the panel is closed.
+    Interactive controls like sliders generate events while the user is modifying them, and
+    you can respond to those events by changing the values or the appearance of other
+    controls. You can draw on a panel, and blit bitmaps onto it.</p>
+    <p>If you <em>haven't</em> written an interface in another environment, your first reading
+    of this page is likely to be overwhelming. (In fact, that may be true regardless of your
+    previous experience.) Try looking at some of the SDK samples, particularly the ones
+    mentioned by name at the <a href="#example">end</a> of this page, to get an initial idea
+    of what's going on, and then refer back to the documentation for an explanation of
+    anything you don't immediately understand.</p>
+    <p><a href="../handler.html">Handlers</a> whose interfaces use LWPanels will almost always
+    create and display their panels from within the callback you put in the <tt>options</tt>
+    field of the LWInterface structure. (Don't use the <tt>panel</tt> field of that structure;
+    that's for <a href="xpanel.html">xpanels</a>.)</p>
+    <p><strong><a name="global">Global Call</a></strong></p>
+    <pre>   LWPanelFuncs *panf;
+   panf = global( LWPANELFUNCS_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWPanelFuncs.</p>
+    <pre>   typedef struct st_LWPanelFuncs {
+      LWPanelID   (*<strong>create</strong>)      (char *, void *);
+      void        (*<strong>destroy</strong>)     (LWPanelID);
+      int         (*<strong>open</strong>)        (LWPanelID, int flags);
+      int         (*<strong>handle</strong>)      (LWPanelID, int);
+      void        (*<strong>draw</strong>)        (LWPanelID, DrMode);
+      void        (*<strong>close</strong>)       (LWPanelID);
+      void        (*<strong>get</strong>)         (LWPanelID, pTag, void *);
+      void        (*<strong>set</strong>)         (LWPanelID, pTag, void *);
+      LWControl * (*<strong>addControl</strong>)  (LWPanelID, char *type,
+                                    LWPanControlDesc *, char *label);
+      LWControl * (*<strong>nextControl</strong>) (LWPanelID, LWControlID);
+      DrawFuncs   *<strong>drawFuncs</strong>;
+      void        *<strong>user_data</strong>;
+      GlobalFunc  *<strong>globalFun</strong>;
+   } LWPanelFuncs;</pre>
+    <dl>
+      <dt><tt>panel = <strong>create</strong>( title, panf )</tt></dt>
+      <dd>Create a panel. This allocates resources for the panel but doesn't display it.</dd>
+      <dt><tt><br>
+        <strong>destroy</strong>( panel )</tt></dt>
+      <dd>Free the resources allocated by <tt>create</tt> and <tt>addControl</tt>. The panel ID is
+        no longer valid after this is called. Panels should not be destroyed while open.</dd>
+      <dt><tt><br>
+        result = <strong>open</strong>( panel, flags )</tt></dt>
+      <dd>Display the panel. The panel and its controls must already be created, positioned,
+        sized, initialized and ready to go. The flags are a combination of the following. <dl>
+          <dt><tt><br>
+            PANF_BLOCKING</tt></dt>
+          <dd>When this is set, the panel is modal, meaning that it will be the only LightWave&reg; window
+            that can receive user input. The <tt>open</tt> function will not return until the panel
+            has been closed. Without this flag, the panel is non-modal and the <tt>open</tt> function
+            returns immediately.</dd>
+          <dt><tt>PANF_CANCEL</tt></dt>
+          <dd>Add a Cancel button at the bottom of the panel.</dd>
+          <dt><tt>PANF_FRAME</tt></dt>
+          <dd>Add operating system-specific decoration to the panel window. This flag currently has no
+            effect.</dd>
+          <dt><tt>PANF_MOUSETRAP</tt></dt>
+          <dd>The panel wants mouse input, which will be passed to panel callbacks.</dd>
+          <dt><tt>PANF_PASSALLKEYS</tt></dt>
+          <dd>The Enter and Escape keys normally close a panel. This flag allows the panel's keyboard
+            callback to handle them instead.</dd>
+          <dt><tt>PANF_ABORT</tt></dt>
+          <dd>Changes the label of the Cancel button to &quot;Abort&quot;. This should be used with
+            the <tt>PANF_CANCEL</tt> flag.</dd>
+          <dt><tt>PANF_NOBUTT</tt></dt>
+          <dd>Display no buttons (no Continue or Continue/Cancel) at the bottom of the panel.</dd>
+          <dt><tt>PANF_RESIZE</tt></dt>
+          <dd>Allow resizing of the panel window. When this is set, the panel will accept calls to the
+            <tt>set</tt> function with <tt>PAN_W</tt> and <tt>PAN_H</tt> tags.</dd>
+        </dl>
+      </dd>
+      <dt><tt><br>
+        result = <strong>handle</strong>( panel, flag )</tt></dt>
+      <dd>Process user input for non-modal panels. When the panel is non-modal (opened without the
+        <tt>PANF_BLOCKING</tt> flag), <tt>open</tt> returns immediately. In order to allow user
+        input processing to occur, the plug-in yields control by calling <tt>handle</tt>. If <tt>flag</tt>
+        is 0, <tt>handle</tt> returns as soon as the event queue is empty. It returns 0 if the
+        panel is still open, or -1 if the user has closed it. If <tt>flag</tt> is <tt>EVNT_BLOCKING</tt>,
+        <tt>handle</tt> won't return until the user closes the panel.</dd>
+      <dt><tt><br>
+        <strong>draw</strong>( panel, drmode )</tt></dt>
+      <dd>Redraw the panel. LWPanels performs its own drawing and then calls your panel draw
+        callback, if you've set one. Any of the drawing modes described <a href="#drmode">later</a>
+        for controls are also valid here, but in most cases you'll use <tt>DR_REFRESH</tt>.</dd>
+      <dt><tt><br>
+        <strong>close</strong>( panel )</tt></dt>
+      <dd>Close a non-modal panel. Typically users will close your panels, so you won't need to
+        call this. A closed panel can be reopened later.</dd>
+      <dt><tt><br>
+        <strong>get</strong>( panel, ptag, value )<br>
+        <strong>set</strong>( panel, ptag, value )</tt></dt>
+      <dd>Set and retrieve various panel attributes. The <tt>value</tt> is the panel attribute
+        cast as a void *. Many of the attributes are pointers to callback functions, which are
+        described <a href="#pcallback">below</a>. The <tt>ptag</tt> identifies the attribute and
+        can be one of the following. <dl>
+          <tt>
+          <dt><br>
+            PAN_X, PAN_Y, PAN_W, PAN_H</dt>
+          </tt>
+          <dd>Panel position and size in pixels.</dd>
+          <tt>
+          <dt>PAN_TITLE</dt>
+          </tt>
+          <dd>The panel title passed to <tt>create</tt>.</dd>
+          <tt>
+          <dt>PAN_PANFUN</tt> (get)</dt>
+          <dd>The LWPanelFuncs pointer passed to <tt>create</tt>.</dd>
+          <tt>
+          <dt>PAN_FLAGS</tt> (get)</dt>
+          <dd>The flags passed to the <tt>open</tt> function.</dd>
+          <tt>
+          <dt>PAN_USERDATA</dt>
+          </tt>
+          <dd>Your data pointer. This is passed as the second argument to all of the panel callbacks.</dd>
+          <tt>
+          <dt>PAN_MOUSEX, PAN_MOUSEY</dt>
+          </tt>
+          <dd>The position of the mouse at the time of the most recent event, relative to the upper
+            left corner of the panel.</dd>
+          <tt>
+          <dt>PAN_QUALIFIERS</tt> (get)</dt>
+          <dd>An integer containing bit flags that provide additional information about the most
+            recent mouse event. These are the same qualifier bits that are passed to mouse callbacks.</dd>
+          <tt>
+          <dt>PAN_MOUSEBUTTON, PAN_MOUSEMOVE</dt>
+          </tt>
+          <dd>Your mouse event callbacks.</dd>
+          <tt>
+          <dt>PAN_USERKEYS, PAN_USERKEYUPS</dt>
+          </tt>
+          <dd>Your keyboard input callbacks.</dd>
+          <tt>
+          <dt>PAN_USERDRAW</dt>
+          </tt>
+          <dd>Your panel draw callback.</dd>
+          <tt>
+          <dt>PAN_USERACTIVATE, PAN_USEROPEN, PAN_USERCLOSE</dt>
+          </tt>
+          <dd>Callbacks that LWPanels calls when the panel is activated (receives input focus from the
+            operating system), opened and closed, respectively.</dd>
+          <tt>
+          <dt>PAN_VERSION</tt> (get)</dt>
+          <dd>The LWPanels API version. Compare this to <tt>LWPANELS_API_VERSION</tt>, which is
+            defined in lwpanel.h.</dd>
+          <tt>
+          <dt>PAN_RESULT</tt> (set )</dt>
+          <dd>Set this to pass results when closing panels manually.</dd>
+          <tt>
+          <dt>PAN_HOSTDISPLAY</tt> (get)</dt>
+          <dd>A pointer to a <a href="display.html">HostDisplayInfo</a> for the panel.</dd>
+          <tt>
+          <dt>PAN_TO_FRONT</tt> (set)</dt>
+          <dd>Move the panel to the top of the window z-order.</dd>
+        </dl>
+      </dd>
+      <dt><tt><br>
+        control = <strong>addControl</strong>( panel, type, ctrldesc, label )</tt></dt>
+      <dd>Add a control to a panel. Call this after the panel has been created but before it's
+        opened. In practice, you'll seldom call this function explicitly. For each control type,
+        lwpanel.h supplies a macro that calls <tt>addControl</tt> with the proper arguments for
+        that control. Returns a pointer to an LWControl structure, described <a href="#controls">below</a>.
+        By default, each control is positioned beneath the previous one, and the panel autosizes
+        to fit all of the controls. Controls can be moved after they're created, but internally
+        they remain in the order in which they're created, which for example affects the drawing
+        order.</dd>
+      <dt><tt><br>
+        control = <strong>nextControl</strong>( panel, control )</tt></dt>
+      <dd>Enumerate the controls that have been added to a panel. Get the first control in the
+        list by passing NULL as the second argument.</dd>
+      <dt><tt><br>
+        <strong>drawFuncs</strong></tt></dt>
+      <dd>A pointer to a DrawFuncs structure, described <a href="#drawfunc">below</a>.</dd>
+      <dt><tt><br>
+        <strong>user_data</strong></tt></dt>
+      <dd>A place to store whatever you like.</dd>
+      <dt><tt><br>
+        <strong>globalFun</strong></tt></dt>
+      <dd>Set this to the GlobalFunc passed to your activation function.</dd>
+    </dl>
+    <p><strong><a name="pcallback">Panel Callbacks</a></strong></p>
+    <p>The LWPanelFuncs <tt>set</tt> function allows you to install a number of panel
+    callbacks that LWPanels will call when certain events occur. You aren't required to
+    install any, so only use them if you need them. All panel callbacks receive as their
+    second argument the value you set for <tt>PAN_USERDATA</tt>.<dl>
+      <tt>
+      <dt>panhook( panel, userdata )</dt>
+      </tt>
+      <dd>This is the form of the callback for <tt>PAN_USERACTIVATE</tt>, <tt>PAN_USEROPEN</tt>
+        and <tt>PAN_USERCLOSE</tt>.</dd>
+      <tt>
+      <dt><br>
+        pankey( panel, userdata, key )</dt>
+      </tt>
+      <dd>The form for <tt>PAN_USERKEYS</tt> and <tt>PAN_USERKEYUPS</tt>. For alphanumeric keys,
+        the key code is just the ASCII code. lwpanel.h defines special codes for other keys.</dd>
+      <tt>
+      <dt><br>
+        panmouse( panel, userdata, qualifiers, x, y )</dt>
+      </tt>
+      <dd>For <tt>PAN_MOUSEBUTTON</tt> and <tt>PAN_MOUSEMOVE</tt>. The <tt>x</tt> and <tt>y</tt>
+        mouse positions are relative to the upper left corner of the panel. The <tt>qualifiers</tt>
+        are bit flags. <pre>IQ_CTRL
+IQ_SHIFT
+IQ_ALT
+IQ_CONSTRAIN
+IQ_ADJUST
+MOUSE_LEFT
+MOUSE_MID
+MOUSE_RIGHT
+MOUSE_DOWN</pre>
+      </dd>
+      <tt>
+      <dt>pandraw( panel, userdata, drawmode )</dt>
+      </tt>
+      <dd>This is for <tt>PAN_USERDRAW</tt>. The <tt>drawmode</tt> is the same as those used for
+        controls and is described <a href="#drmode">later</a>.</dd>
+    </dl>
+    <p><strong><a name="drawfunc">Drawing Functions</a></strong></p>
+    <p>The <tt>drawFuncs</tt> member of LWPanelFuncs is a structure containing functions that
+    allow you to draw on your panel. See also the <a href="raster.html">Raster Functions</a>
+    global for creating and efficiently displaying bitmaps. You can call these at any time,
+    but in most cases you'll want to be synchronized with the redrawing done by LWPanels, and
+    for that you should limit drawing to panel and control draw callbacks.</p>
+    <pre>   typedef struct st_DrawFuncs {
+      void (*<strong>drawPixel</strong>)   (LWPanelID, int color, int x, int y);
+      void (*<strong>drawRGBPixel</strong>)(LWPanelID, int r, int g, int b, int x, int y);
+      void (*<strong>drawLine</strong>)    (LWPanelID, int color, int x1, int y1, int x2,
+                             int y2);
+      void (*<strong>drawBox</strong>)     (LWPanelID, int color, int x, int y, int w,
+                             int h);
+      void (*<strong>drawRGBBox</strong>)  (LWPanelID, int r, int g, int b, int x, int y,
+                             int w, int h);
+      void (*<strong>drawBorder</strong>)  (LWPanelID, int indent, int x, int y, int w,
+                             int h);
+      int  (*<strong>textWidth</strong>)   (LWPanelID, char *text);
+      void (*<strong>drawText</strong>)    (LWPanelID, char *text, int color, int x,
+                             int y);
+      const LWDisplayMetrics *(*<strong>dispMetrics</strong>)();
+   } DrawFuncs;</pre>
+    <dl>
+      <tt>
+      <dt><strong>drawPixel</strong>( panel, color, x, y )<br>
+        <strong>drawRGBPixel</strong>( panel, r, g, b, x, y )</dt>
+      </tt>
+      <dd>Draw a pixel. The coordinates are relative to the upper-left corner of the panel. The
+        color is specified as one of the palette colors defined in lwpanel.h or as levels of red,
+        green and blue between 0 and 255.</dd>
+      <tt>
+      <dt><br>
+        <strong>drawLine</strong>( panel, color, x1, y1, x2, y2 )</dt>
+      </tt>
+      <dd>Draw a line connecting the endpoints.</dd>
+      <tt>
+      <dt><br>
+        <strong>drawBox</strong>( panel, color, x, y, w, h )<br>
+        <strong>drawRGBBox</strong>( panel, r, g, b, x, y, w, h )</dt>
+      </tt>
+      <dd>Draw a solid rectangle.</dd>
+      <tt>
+      <dt><br>
+        <strong>drawBorder</strong>( panel, indent, x, y, w, h )</dt>
+      </tt>
+      <dd>Draw a rectangular border similar to the ones use to mark the borders of controls. The <tt>indent</tt>
+        is the thickness of the border. If <tt>h</tt> is 0, <tt>drawBorder</tt> creates a
+        horizontal divider.</dd>
+      <tt>
+      <dt><br>
+        w = <strong>textWidth</strong>( panel, str )</dt>
+      </tt>
+      <dd>Returns the pixel width of the character string. Use this and the font height
+        information in the LWDisplayMetrics structure to find the rectangular extent of a line of
+        text.</dd>
+      <tt>
+      <dt><br>
+        <strong>drawText</strong>( panel, str, color, x, y )</dt>
+      </tt>
+      <dd>Render a line of text.</dd>
+      <tt>
+      <dt><br>
+        dmet = <strong>dispMetrics</strong>()</dt>
+      </tt>
+      <dd>Returns an LWDisplayMetrics structure. Except for the screen size and text height, most
+        of this structure is obsolete.<pre>typedef struct st_display_Metrics {
+   int  <strong>width</strong>, <strong>height</strong>;
+   int  <strong>pixX</strong>, <strong>pixY</strong>;
+   int  <strong>maxColors</strong>, <strong>depth</strong>;
+   int  <strong>textHeight</strong>;
+   int  <strong>textAscen</strong>t;
+} display_Metrics;
+#define LWDisplayMetrics display_Metrics</pre>
+        <dl>
+          <tt>
+          <dt><strong>width</strong>, <strong>height</strong></dt>
+          </tt>
+          <dd>The size of the screen, in pixels.</dd>
+          <tt>
+          <dt><strong>pixX</strong>, <strong>pixY</strong></dt>
+          </tt>
+          <dd>The pixel aspect ratio. In most cases, <tt>pixX == pixY</tt>, indicating square pixels.</dd>
+          <tt>
+          <dt><strong>maxColors</strong>, <strong>depth</strong></dt>
+          </tt>
+          <dd>Palette size and bit depth for indexed color displays. <tt>depth</tt> is 0 for true
+            color displays.</dd>
+          <tt>
+          <dt><strong>textHeight</strong></dt>
+          </tt>
+          <dd>The height of the LWPanels font in pixels.</dd>
+          <tt>
+          <dt><strong>textAscent</strong></dt>
+          </tt>
+          <dd>Ignore this.</dd>
+          <dl>
+          </dl>
+        </dl>
+      </dd>
+    </dl>
+    <p><strong><a name="controls">Controls</a></strong></p>
+    <p>For each control you add to a panel, the LWPanelFuncs <tt>addControl</tt> function
+    returns a pointer to an LWControl.</p>
+    <pre>   typedef struct st_LWControl {
+      void  (*<strong>draw</strong>)(LWControlID, DrMode);
+      void  (*<strong>get</strong>) (LWControlID, cTag, LWValue *);
+      void  (*<strong>set</strong>) (LWControlID, cTag, LWValue *);
+      void  *<strong>priv_data</strong>;     
+   } LWControl;</pre>
+    <dl>
+      <tt>
+      <dt><strong>draw</strong>( control, drawmode )</dt>
+      </tt>
+      <dd>Draw or redraw the control. LWPanels performs its own drawing and calls your control
+        draw callback, if you've set one for this control. The <a name="drmode">draw mode</a> is
+        one of the following. <dl>
+          <tt>
+          <dt><br>
+            DR_RENDER</dt>
+          </tt>
+          <dd>Draw the control normally.</dd>
+          <tt>
+          <dt>DR_GHOST</dt>
+          </tt>
+          <dd>Draw the control with a disabled or ghosted appearance.</dd>
+          <tt>
+          <dt>DR_ERASE</dt>
+          </tt>
+          <dd>Erase the control.</dd>
+          <tt>
+          <dt>DR_REFRESH</dt>
+          </tt>
+          <dd>Redraw the control in its current state (normal, ghosted or erased).</dd>
+        </dl>
+      </dd>
+      <tt>
+      <dt><br>
+        <strong>get</strong>( control, ctag, param )<br>
+        <strong>set</strong>( control, ctag, param )</dt>
+      </tt>
+      <dd>Get and set control attributes, including the value of the control. The <tt>param</tt>
+        is a pointer to an <a href="../dynaval.html">LWValue</a>. The <tt>ctag</tt> identifies the
+        attribute and is one of the following. <dl>
+          <tt>
+          <dt><br>
+            CTL_VALUE</dt>
+          </tt>
+          <dd>The value of the control.</dd>
+          <tt>
+          <dt>CTL_LABEL</dt>
+          </tt>
+          <dd>The control label passed to <tt>addControl</tt>.</dd>
+          <tt>
+          <dt>CTL_X, CTL_Y, CTL_W, CTL_H</dt>
+          </tt>
+          <dd>The rectangular extent of the control, in pixels. This may include some padding used for
+            control spacing and alignment. <tt>X</tt> and <tt>Y</tt> are relative to the upper left
+            corner of the panel.</dd>
+          <tt>
+          <dt>CTL_HOTX, CTL_HOTY, CTL_HOTW, CTL_HOTH</dt>
+          </tt>
+          <dd>The extent of the control's &quot;hot&quot; area. Generally this excludes the label and
+            any padding but may include the border decoration.</dd>
+          <tt>
+          <dt>CTL_LABELWIDTH</dt>
+          </tt>
+          <dd>The width of the label in pixels. Because of padding, this may differ from <tt>W - HOTW</tt>.</dd>
+          <tt>
+          <dt>CTL_MOUSEX, CTL_MOUSEY</dt>
+          </tt>
+          <dd>The position of the mouse at the time of the most recent control event, relative to the
+            upper left corner of the panel..</dd>
+          <tt>
+          <dt>CTL_FLAGS</dt>
+          </tt>
+          <dd>Flags marking the current state of the control. <tt>CTLF_DISABLE</tt> indicates the
+            control is disabled, or read-only, but still visible. Disabled controls can still trigger
+            callback events, so that, for example, you can display a message explaining why the
+            control's functionality is unavailable. <tt>CTLF_INVISIBLE</tt> indicates that the control
+            has been erased. <tt>CTLF_GHOST</tt> is a synonym for <tt>CTLF_DISABLED</tt>. These flags
+            will affect the draw mode passed to your control draw callbacks.</dd>
+          <tt>
+          <dt>CTL_USERDATA</dt>
+          </tt>
+          <dd>Your data pointer for this control. This is passed as the second argument to the control
+            callbacks.<strong> Note:</strong> For some control types, calling <tt>set</tt> with this
+            tag (or calling the <tt>CON_SETEVENT</tt> macro) has important side effects. Even if your
+            userdata is NULL for those controls, you'll want to explicitly set it before opening the
+            panel. </dd>
+          <tt>
+          <dt>CTL_USERDRAW</dt>
+          </tt>
+          <dd>Your control draw callback.</dd>
+          <tt>
+          <dt>CTL_USEREVENT</dt>
+          </tt>
+          <dd>Your control event callback.</dd>
+          <tt>
+          <dt>CTL_PANEL, CTL_PANFUN</tt> (get)</dt>
+          <dd>The panel and LWPanelFuncs.</dd>
+          <tt>
+          <dt>CTL_RANGEMIN, CTL_RANGEMAX</dt>
+          </tt>
+          <dd>Slider limits.</dd>
+          <tt>
+          <dt>CTL_ACTIVATE</tt> (set)</dt>
+          <dd>Set the input focus to this control. Only valid for edit fields.</dd>
+        </dl>
+      </dd>
+      <tt>
+      <dt><br>
+        <strong>priv_data</strong></dt>
+      </tt>
+      <dd>An opaque pointer to data used internally by LWPanels.</dd>
+    </dl>
+    <p><strong><a name="ccallback">Control Callbacks</a></strong></p>
+    <p>The LWControl <tt>set</tt> function allows you to install callbacks for custom drawing
+    related to the control and for responding to control events. These callbacks receive as
+    their second argument the value you set for <tt>CTL_USERDATA</tt>.<dl>
+      <tt>
+      <dt>ctlevent( control, userdata )</dt>
+      </tt>
+      <dd>This is the form of the callback for <tt>CTL_USEREVENT</tt>. The context of a control
+        event will vary depending on the type of control. Sliders generate events as the user
+        moves them, and button controls generate an event when they're pressed.</dd>
+      <tt>
+      <dt><br>
+        ctldraw( control, userdata, drawmode )</dt>
+      </tt>
+      <dd>This is for <tt>CTL_USERDRAW</tt>. The <tt>drawmode</tt> is one of the modes listed for
+        the <tt>draw</tt> function. You can draw anywhere on the panel from within this callback.</dd>
+    </dl>
+    <p>In addition to these, several control types have type-specific callbacks. These are
+    described in the following sections.</p>
+    <p><strong><a name="macros">Macros</a></strong></p>
+    <p>The lwpanel.h header file defines a set of macros that hide some of the complexity of
+    using the LWPanels system. These macros are an integral part of the LWPanels API.</p>
+    <p>The macros require that your source declare and initialize a few variables.</p>
+    <pre>   static LWPanControlDesc desc;
+   static LWValue
+      ival    = { LWT_INTEGER },
+      ivecval = { LWT_VINT },
+      fval    = { LWT_FLOAT },
+      fvecval = { LWT_VFLOAT },
+      sval    = { LWT_STRING };</pre>
+    <p>These are used as temporary variables while setting up arguments to the panel
+    functions.</p>
+    <p><strong><a name="plife">Panel Life Cycle</a></strong></p>
+    <p>Three macros are provided for creating, displaying and destroying a panel.<dl>
+      <tt>
+      <dt><strong>PAN_CREATE</strong>( pf, title )</dt>
+      </tt>
+      <dd>Calls the LWPanelFuncs <tt>create</tt> function.</dd>
+      <tt>
+      <dt><br>
+        <strong>PAN_POST</strong>( pf, pan )</dt>
+      </tt>
+      <dd>Calls the LWPanelFuncs <tt>open</tt> function with the flags set to <tt>PANF_BLOCKING |
+        PANF_CANCEL | PANF_FRAME</tt>.</dd>
+      <tt>
+      <dt><br>
+        <strong>PAN_KILL</strong>( pf, pan )</dt>
+      </tt>
+      <dd>Calls the LWPanelFuncs <tt>destroy</tt> function.</dd>
+    </dl>
+    <p><strong><a name="pattrib">Panel Attributes</a></strong></p>
+    <p>These macros call the LWPanelFuncs <tt>get</tt> and <tt>set</tt> functions for specific
+    attributes. An advantage of using them is that you can use constants in your source code.
+    The macro takes care of stuffing the value into an appropriate variable and passing a
+    pointer to that variable. The first two arguments to all of these functions are the
+    LWPanelFuncs pointer and the panel.<dl>
+      <tt>
+      <dt>x = <strong>PAN_GETX</strong>( pf, pan )<br>
+        y = <strong>PAN_GETY</strong>( pf, pan )<br>
+        w = <strong>PAN_GETW</strong>( pf, pan )<br>
+        h = <strong>PAN_GETH</strong>( pf, pan )</dt>
+      </tt>
+      <dd>Get the position and size of the panel in pixels. <tt>X</tt> and <tt>Y</tt> are relative
+        to the upper left corner of the screen.</dd>
+      <tt>
+      <dt><br>
+        <strong>PAN_SETW</strong>( pf, pan, w )<br>
+        <strong>PAN_SETH</strong>( pf, pan, h )<br>
+        <strong>MOVE_PAN</strong>( pf, pan, x, y )</dt>
+      </tt>
+      <dd>Set the position and size of the panel. Note that the panel automatically adjusts its
+        size as controls are added to it.</dd>
+      <tt>
+      <dt><br>
+        <strong>PAN_SETDATA</strong>( pf, pan, userdata )<br>
+        <strong>PAN_SETDRAW</strong>( pf, pan, drawFn )<br>
+        <strong>PAN_SETKEYS</strong>( pf, pan, keyFn )</dt>
+      </tt>
+      <dd>Set the <tt>PAN_USERDATA</tt> and the panel draw and key event callbacks.</dd>
+      <tt>
+      <dt><br>
+        version = <strong>PAN_GETVERSION</strong>( pf, pan )</dt>
+      </tt>
+      <dd>Returns the version of LWPanels.</dd>
+    </dl>
+    <p><strong><a name="ccreate">Creating Controls</a></strong></p>
+    <p>After creating a panel and before displaying it, your code calls these macros to
+    populate the panel with the elements of your interface. The first three arguments to all
+    of these macros are<ul>
+      <li>the LWPanelFuncs returned by the global call</li>
+      <li>the LWPanelID returned by the <tt>create</tt> call (or the <tt>PAN_CREATE</tt> macro)</li>
+      <li>a string that will be used to label the control</li>
+    </ul>
+    <p>All of these macros ultimately call the LWPanelFuncs <tt>addControl</tt> function and
+    return a pointer to LWControl for the newly created control.</p>
+    <p><strong><em><a name="medit">Edit fields</a></em></strong><dl>
+      <tt>
+      <dt>c = <strong>INT_CTL</strong>( pf, pan, label )<br>
+        c = <strong>INTRO_CTL</strong>( pf, pan, label )<br>
+        c = <strong>IVEC_CTL</strong>( pf, pan, label )<br>
+        c = <strong>IVECRO_CTL</strong>( pf, pan, label )</dt>
+      </tt>
+      <dd>Integer edit fields. <tt>RO</tt> is read-only, and <tt>VEC</tt> is a group of three
+        fields.</dd>
+      <tt>
+      <dt><br>
+        c = <strong>FLOAT_CTL</strong>( pf, pan, label )<br>
+        c = <strong>FLOATRO_CTL</strong>( pf, pan, label )<br>
+        c = <strong>FVEC_CTL</strong>( pf, pan, label )<br>
+        c = <strong>FVECRO_CTL</strong>( pf, pan, label )<br>
+        c = <strong>DIST_CTL</strong>( pf, pan, label )<br>
+        c = <strong>DVEC_CTL</strong>( pf, pan, label )</dt>
+      </tt>
+      <dd>Floating point edit fields. The distance controls handle unit inputs and conversions.</dd>
+      <tt>
+      <dt><br>
+        c = <strong>STR_CTL</strong>( pf, pan, label, cw )<br>
+        c = <strong>STRRO_CTL</strong>( pf, pan, label, cw )</dt>
+      </tt>
+      <dd>String edit fields. The <tt>cw</tt> argument is the number of characters that should be
+        visible, or the width of the control in characters. The string itself can be longer or
+        shorter than this. If the fixed width of the integer and floating point controls isn't
+        suitable, you can of course use the string controls and do the numeric conversion
+        yourself.</dd>
+    </dl>
+    <p><strong><em><a name="mbutton">Buttons</a></em></strong><dl>
+      <tt>
+      <dt>c = <strong>BUTTON_CTL</strong>( pf, pan, label )<br>
+        c = <strong>WBUTTON_CTL</strong>( pf, pan, label, w )</dt>
+      </tt>
+      <dd>Simple buttons. In order for these to do anything, you'll need to set an event callback
+        that responds when the button is pressed. The <tt>WBUTTON</tt> version accepts a width in
+        pixels.</dd>
+      <tt>
+      <dt><br>
+        c = <strong>BOOL_CTL</strong>( pf, pan, label )<br>
+        c = <strong>BOOLBUTTON_CTL</strong>( pf, pan, label )<br>
+        c = <strong>WBOOLBUTTON_CTL</strong>( pf, pan, label, w )</dt>
+      </tt>
+      <dd>The first of these displays a checkmark, while the other two are buttons that are
+        displayed in selected or unselected states. The underlying value is an integer set to 0 or
+        1.</dd>
+    </dl>
+    <p><strong><em><a name="mslider">Sliders and mouse feedback</a></em></strong><dl>
+      <tt>
+      <dt>c = <strong>SLIDER_CTL</strong>( pf, pan, label, w, min, max )<br>
+        c = <strong>UNSLIDER_CTL</strong>( pf, pan, label, w, min, max )</dt>
+      </tt>
+      <dd>This kind of slider is a thumb button that moves in or along a horizontal track. It has
+        an associated integer edit field. The <tt>UN</tt> version is &quot;unbounded,&quot;
+        meaning that values outside the <tt>min</tt>, <tt>max</tt> range can be entered in the
+        edit field. The width is in pixels.</dd>
+      <tt>
+      <dt><br>
+        c = <strong>HSLIDER_CTL</strong>( pf, pan, label, w, min, max )<br>
+        c = <strong>VSLIDER_CTL</strong>( pf, pan, label, h, min, max )</dt>
+      </tt>
+      <dd>Horizontal and vertical sliders, without an associated edit field. The width or height
+        is in pixels.</dd>
+      <tt>
+      <dt><br>
+        c = <strong>MINISLIDER_CTL</strong>( pf, pan, label, w, min, max )<br>
+        c = <strong>PERCENT_CTL</strong>( pf, pan, label )<br>
+        c = <strong>ANGLE_CTL</strong>( pf, pan, label )</dt>
+      </tt>
+      <dd>A minislider is a small button that captures mouse drag but doesn't move. It has an
+        associated integer edit field. The <tt>w</tt> argument is the visible width of the edit
+        field in pixels. The <tt>PERCENT</tt> control is a minislider with a floating point edit
+        field that displays the percent (%) character after the number. <tt>ANGLE</tt> also has a
+        floating point edit field. The value is displayed to the user in degrees, but plug-ins get
+        and set it in radians.</dd>
+      <tt>
+      <dt><br>
+        c = <strong>DRAGBUT_CTL</strong>( pf, pan, label, w, h )<br>
+        c = <strong>VDRAGBUT_CTL</strong>( pf, pan, label )<br>
+        c = <strong>HDRAGBUT_CTL</strong>( pf, pan, label )</dt>
+      </tt>
+      <dd>Drag buttons are minisliders with no associated edit field.</dd>
+      <tt>
+      <dt><br>
+        c = <strong>AREA_CTL</strong>( pf, pan, label, w, h )<br>
+        c = <strong>DRAGAREA_CTL</strong>( pf, pan, label, w, h )</dt>
+      </tt>
+      <dd>These create a rectangle with a border. <tt>AREA</tt> controls generate mouse click
+        events, and <tt>DRAGAREA</tt> controls generate both click and drag events. For <tt>AREA</tt>,
+        the <tt>CTL_MOUSEX</tt> and <tt>CTL_MOUSEY</tt> values contain click coordinates relative
+        to the upper left corner of the control. For <tt>DRAGAREA</tt>, <tt>MOUSEX</tt> and <tt>MOUSEY</tt>
+        are relative to the upper left corner of the panel. Use the <tt>GETV_IVEC</tt> macro in
+        the <tt>DRAGAREA</tt> event callback to get an array of three integers containing
+        control-relative mouse coordinates.</dd>
+    </dl>
+    <p><strong><em><a name="mchoice">Multiple choice</a></em></strong><dl>
+      <tt>
+      <dt>c = <strong>HCHOICE_CTL</strong>( pf, pan, label, choices )<br>
+        c = <strong>VCHOICE_CTL</strong>( pf, pan, label, choices )</dt>
+      </tt>
+      <dd>An array of mutually exclusive boolean buttons.</dd>
+      <tt>
+      <dt><br>
+        c = <strong>TABCHOICE_CTL</strong>( pf, pan, label, choices )</dt>
+      </tt>
+      <dd>Similar to <tt>HCHOICE</tt> and <tt>VCHOICE</tt>, but drawn to look like file folder
+        tabs. These are generally used to switch between several sets of controls occupying the
+        same space, like flipping to different tabbed notebook pages. You're responsible for
+        erasing and drawing the appropriate sets of controls affected by tabbing.</dd>
+      <tt>
+      <dt><br>
+        c = <strong>POPUP_CTL</strong>( pf, pan, label, choices )<br>
+        c = <strong>WPOPUP_CTL</strong>( pf, pan, label, choices, w )<br>
+        c = <strong>POPDOWN_CTL</strong>( pf, pan, label, choices )</dt>
+      </tt>
+      <dd>These create scrolling popup menus. The <tt>choices</tt> argument is a NULL-terminated
+        string array, and the value of the control is a 0-based index into this array. The <tt>W</tt>
+        version lets you set the width in pixels. <tt>POPUP</tt>s display the label to the left of
+        the button and the current selection on the button face, and when opened, the position of
+        the menu window is shifted so that the current selection is under the mouse cursor. <tt>POPDOWN</tt>s
+        display the label on the button face and always open with the first menu item under the
+        cursor.</dd>
+      <tt>
+      <dt><br>
+        c = <strong>CUSTPOPUP_CTL</strong>( pf, pan, label, w, nameFn, countFn )</dt>
+      </tt>
+      <dd>Like <tt>WPOPUP</tt>, but uses callbacks to fill in the menu rather than a static string
+        array. The menu can therefore be different each time the user opens it. The value of the
+        control is a 0-based index into the current list of menu items. The callbacks are <pre>int count( void *userdata )
+char *name( void *userdata, int index )</pre>
+        <p>The <tt>userdata</tt> is the <tt>CTL_USERDATA</tt> for the control. If you have more
+        than one custom popup that uses the same callbacks, you can use this to distinguish
+        between them. <tt>count</tt> returns the number of menu items, and <tt>name</tt> returns
+        an item, given a 0-based index. </p>
+      </dd>
+      <tt>
+      <dt>c = <strong>ITEM_CTL</strong>( pf, pan, label, globalFn, itemtype )<br>
+        c = <strong>WITEM_CTL</strong>( pf, pan, label, globalFn, itemtype, w )<br>
+        c = <strong>PIKITEM_CTL</strong>( pf, pan, label, globalFn, itemtype, w )</dt>
+      </tt>
+      <dd>These are <tt>POPUP</tt>s that display a list of scene items. The <tt>globalFn</tt> is
+        the GlobalFunc passed to your activation function. If you set the LWPanelFuncs <tt>globalFun</tt>
+        field, you can get it from there. The control value is an LWItemID cast as an int. In
+        addition to the item types listed on the <a href="iteminfo.html">Item Info</a> page,
+        lwpanel.h defines <tt>LWI_IMAGE</tt>, for a list of images, and <tt>LWI_ANY</tt>, for a
+        list of items of all types. Remember to include <a href="../../include/lwrender.h">lwrender.h</a>.
+        <tt>PIKITEM</tt> behaves like <tt>POPDOWN</tt>.</dd>
+      <tt>
+      <dt><br>
+        c = <strong>CHANNEL_CTL</strong>( pf, pan, label, w, h );</dt>
+      </tt>
+      <dd>Displays a tree containing the channels currently in the scene. The control value is an
+        LWChannelID cast as an int. You'll need <a href="../../include/lwenvel.h">lwenvel.h</a>
+        and the <a href="chaninfo.html">Channel Info</a> global to set and make use of this value.</dd>
+      <tt>
+      <dt><br>
+        c = <strong>LISTBOX_CTL</strong>( pf, pan, label, w, ch, nameFn, countFn )</dt>
+      </tt>
+      <dd>A listbox is a static rectangle containing a menu with a scrollbar. <tt>ch</tt> is the
+        height of the menu area of the listbox in text lines (the number of visible menu items).
+        The callbacks are of the same form as those for <tt>CUSTPOPUP</tt>. The value of the
+        control is a 0-based index into the current list. After the control has been created, you
+        must call the <tt>CON_SETEVENT</tt> macro, or the control <tt>set</tt> function with the <tt>CTL_USERDATA</tt>
+        tag, even if your userdata is NULL. <tt>LISTBOX</tt> controls rely on this to perform some
+        internal initialization.</dd>
+      <tt>
+      <dt><br>
+        c = <strong>MULTILISTBOX_CTL</strong>( pf, pan, label, w, ch, nameFn, countFn, columnFn )</dt>
+      </tt>
+      <dd>Like a listbox, but divides the text of each item into multiple columns. The <tt>countFn</tt>
+        callback is the same as those for <tt>LISTBOX</tt> and <tt>CUSTPOPUP</tt>. The other two
+        are of the following form. <pre>char *mname( void *userdata, int index, int column )
+int colwidth( void *userdata, int index )</pre>
+        <p>The name callback returns a string, given 0-based indexes for the list position and
+        column. The column callback returns the width of each column in pixels. You can have up to
+        ten columns. Return 0 when the column index is greater than or equal to the number of
+        columns you want. </p>
+        <p>After the control has been created, you must call the <tt>CON_SETEVENT</tt> macro, or
+        the control <tt>set</tt> function with the <tt>CTL_USERDATA</tt> tag, even if your
+        userdata is NULL. <tt>MULTILISTBOX</tt> controls rely on this to perform some internal
+        initialization.</p>
+      </dd>
+      <tt>
+      <dt>c = <strong>TREE_CTL</strong>( pf, pan, label, w, h, infoFn, countFn, childFn )</tt></dt>
+      <dd>A tree control is like a listbox, but with the menu items organized hierarchically.
+        Child nodes of the tree can be revealed, hidden and sometimes moved by the user. The value
+        of a tree control is a pointer to a node in your tree data, cast as an int. Trees don't
+        prescribe the internal form of your tree data, but you have to be able to answer the
+        questions about that data asked by the callbacks, which look like this. <dl>
+          <tt>
+          <dt><br>
+            void *child( void *userdata, void *node, int i )</dt>
+          </tt>
+          <dd>Returns a pointer to the i-th child of the node. <tt>node</tt> is a pointer returned by
+            a previous call to this callback, or NULL for the root.</dd>
+          <dt><tt><br>
+            int count( void *userdata, void *node )</tt></dt>
+          <dd>Returns the number of child nodes for a given node.</dd>
+          <tt>
+          <dt><br>
+            char *info( void *userdata, void *node, int *flags )</dt>
+          </tt>
+          <dd>Returns the name of the node. This is what is displayed in the tree control. If <tt>flags</tt>
+            is non-zero, store the <tt>flags</tt> value in your node data, and if it's 0, retrieve it
+            from your data and put it into <tt>flags</tt>.</dd>
+          <tt>
+          <dt><br>
+            void move( void *userdata, void *node, void *parent, int i )</dt>
+          </tt>
+          <dd>Called when the user moves a node. The node becomes the <tt>i</tt>-th child of the <tt>parent</tt>
+            node. This isn't in the <tt>TREE_CTL</tt> macro's argument list. <tt>TREE_CTL</tt> sets
+            this to NULL, which prevents the user from moving your nodes. If you want to allow the
+            user to move your nodes, use the code in the body of the <tt>TREE_CTL</tt> macro to create
+            the control, putting your move callback in <tt>desc.tree.moveFn</tt>.</dd>
+        </dl>
+      </dd>
+    </dl>
+    <p><strong><em><a name="mcolor">Color</a></em></strong><dl>
+      <tt>
+      <dt>c = <strong>RGB_CTL</strong>( pf, pan, label )<br>
+        c = <strong>MINIRGB_CTL</strong>( pf, pan, label )<br>
+        c = <strong>MINIHSV_CTL</strong>( pf, pan, label )<br>
+        c = <strong>RGBVEC_CTL</strong>( pf, pan, label )</dt>
+      </tt>
+      <dd>RGB (and HSV) levels for all of these controls are integers in the range 0 to 255. You
+        can offer your users more sophisticated color selection by creating a button that calls
+        the current <a href="colorpik.html">colorpicker</a>.</dd>
+    </dl>
+    <p><strong><em><a name="mfile">Files and directories</a></em></strong><dl>
+      <tt>
+      <dt>c = <strong>FILE_CTL</strong>( pf, pan, label, cw )<br>
+        c = <strong>LOAD_CTL</strong>( pf, pan, label, cw )<br>
+        c = <strong>SAVE_CTL</strong>( pf, pan, label, cw )<br>
+        c = <strong>DIR_CTL</strong>( pf, pan, label, cw )</dt>
+      </tt>
+      <dd>These combine a string edit field with a button that opens the file dialog. <tt>cw</tt>
+        is the width of the edit field in characters. <tt>FILE</tt> is an older control type
+        preserved for backward compatibility.</dd>
+      <tt>
+      <dt><br>
+        c = <strong>FILEBUTTON_CTL</strong>( pf, pan, label, w )<br>
+        c = <strong>LOADBUTTON_CTL</strong>( pf, pan, label, w )<br>
+        c = <strong>SAVEBUTTON_CTL</strong>( pf, pan, label, w )<br>
+        c = <strong>DIRBUTTON_CTL</strong>( pf, pan, label, w )</dt>
+      </tt>
+      <dd>Just the button for opening the file dialog. The label appears inside the button.</dd>
+    </dl>
+    <p><strong><em><a name="mdraw">Drawing</a></em></strong> <dl>
+      <tt>
+      <dt>c = <strong>TEXT_CTL</strong>( pf, pan, label, strings )</dt>
+      </tt>
+      <dd>Use this to put static lines of text on the panel.</dd>
+      <tt>
+      <dt><br>
+        c = <strong>BORDER_CTL</strong>( pf, pan, label, w, h )</dt>
+      </tt>
+      <dd>For drawing borders. If <tt>h</tt> is 0, the border is a horizontal divider.</dd>
+      <tt>
+      <dt><br>
+        c = <strong>CANVAS_CTL</strong>( pf, pan, label, w, h )</dt>
+      </tt>
+      <dd>A bordered rectangle for convenient drawing. The width and height don't include the
+        border, so the rectangle <tt>(0, 0, w-1, h-1)</tt> (relative to the control's <tt>HOTX</tt>
+        and <tt>HOTY</tt>) lies inside the border.</dd>
+      <tt>
+      <dt><br>
+        c = <strong>OPENGL_CTL</strong>( pf, pan, label, width, height )</dt>
+      </tt>
+      <dd>This creates and initializes an OpenGL window. LWPanels takes care of the platform
+        specific setup for the window. You can draw in this window using standard OpenGL function
+        calls during your event and draw callbacks for the control.</dd>
+    </dl>
+    <p><strong><em><a name="mxpanel">XPanels</a></em></strong> <dl>
+      <tt>
+      <dt>c = <strong>XPANEL_CTL</strong>( pf, pan, label, xpanel )</dt>
+      </tt>
+      <dd>This creates an <a href="xpanel.html">xpanel</a> window on your panel. Anything you can
+        put into an xpanel can be put into an xpanel control.</dd>
+    </dl>
+    <p><strong><a name="cvalues">Control Values</a></strong></p>
+    <p>These macros call the LWControl <tt>get</tt> and <tt>set</tt> functions with the <tt>CTL_VALUE</tt>
+    attribute, which is how you initialize and read back the values of your controls.</p>
+    <pre>   <strong>SET_STR</strong>( ctl, buf, buflen )        <strong>GET_STR</strong>( ctl, buf, buflen )
+   <strong>SET_INT</strong>( ctl, n )                  <strong>GET_INT</strong>( ctl, n )
+   <strong>SET_FLOAT</strong>( ctl, f )                <strong>GET_FLOAT</strong>( ctl, f )
+   <strong>SET_IVEC</strong>( ctl, x, y, z )           <strong>GET_IVEC</strong>( ctl, x, y, z )
+   <strong>SETV_IVEC</strong>( ctl, nv )               <strong>GETV_IVEC</strong>( ctl, nv )
+   <strong>SET_FVEC</strong>( ctl, x, y, z )           <strong>GET_FVEC</strong>( ctl, x, y, z )
+   <strong>SETV_FVEC</strong>( ctl, fv )               <strong>GETV_FVEC</strong>( ctl, fv )</pre>
+    <p><strong><a name="cattrib">Control Attributes</a></strong></p>
+    <p>These macros get and set other control attributes.<dl>
+      <tt>
+      <dt><strong>CON_X</strong>( ctl )<br>
+        <strong>CON_Y</strong>( ctl )<br>
+        <strong>CON_W</strong>( ctl )<br>
+        <strong>CON_H</strong>( ctl )</dt>
+      </tt>
+      <dd>Returns the position and size of the control.</dd>
+      <tt>
+      <dt><br>
+        <strong>CON_HOTX</strong>( ctl )<br>
+        <strong>CON_HOTY</strong>( ctl )<br>
+        <strong>CON_HOTW</strong>( ctl )<br>
+        <strong>CON_HOTH</strong>( ctl )</dt>
+      </tt>
+      <dd>Returns the position and size of the control's &quot;hot&quot; rectangle.</dd>
+      <tt>
+      <dt><br>
+        <strong>CON_LW</strong>( ctl )</dt>
+      </tt>
+      <dd>Returns the label width.</dd>
+      <tt>
+      <dt><br>
+        <strong>CON_PAN</strong>( ctl )<br>
+        <strong>CON_PANFUN</strong>( ctl )</dt>
+      </tt>
+      <dd>Returns the panel the control belongs to and the LWPanelFuncs pointer.</dd>
+      <tt>
+      <dt><br>
+        <strong>CON_MOUSEX</strong>( ctl )<br>
+        <strong>CON_MOUSEY</strong>( ctl )</dt>
+      </tt>
+      <dd>Returns mouse coordinates for the most recent mouse event.</dd>
+      <tt>
+      <dt><br>
+        <strong>MOVE_CON</strong>( ctl, x, y )</tt></dt>
+      <dd>Set the positon of the control relative to the upper left corner of the panel.</dd>
+      <tt>
+      <dt><br>
+        <strong>CON_SETEVENT</strong>( ctl, eventFn, userdata )</dt>
+      </tt>
+      <dd>Set the control's event function and <tt>CTL_USERDATA</tt>.<strong> Note:</strong> For
+        some control types, calling this macro (or the control's <tt>set</tt> function with the <tt>CTL_USERDATA</tt>
+        tag) has important side effects. Even if your userdata is NULL for those controls, you'll
+        want to explicitly set it before opening the panel.</dd>
+      <tt>
+      <dt><br>
+        <strong>ERASE_CON</strong>( ctl )<br>
+        <strong>REDRAW_CON</strong>( ctl )<br>
+        <strong>GHOST_CON</strong>( ctl )<br>
+        <strong>RENDER_CON</strong>( ctl )<br>
+        <strong>UNGHOST_CON</strong>( ctl )</dt>
+      </tt>
+      <dd>Draw or redraw the control.</dd>
+      <tt>
+      <dt><br>
+        <strong>ACTIVATE_CON</strong>( ctl )</dt>
+      </tt>
+      <dd>Activate the control (give the control the input focus). This is only valid for edit
+        field controls.</dd>
+    </dl>
+    <p><strong><a name="history">History</a></strong></p>
+    <p>In LightWave&reg; 7.0, <tt>LWPANELS_API_VERSION</tt> was incremented to 19 and the <tt>PANF_NOBUTT</tt>
+    and <tt>PANF_RESIZE</tt> flags were added.</p>
+    <p><strong><a name="example">Example</a></strong></p>
+    <p>At least ten of the SDK samples use the LWPanels system. The <a
+    href="../../sample/Layout/Generic/panctl/">panctl</a> sample exercises LWPanels by creating an instance
+    of every supported control type. It also demonstrates event handling for some of the
+    interactive controls. The <a href="../../sample/Layout/Generic/hello/">hello</a> sample is the simplest
+    example. It creates a panel with a single string control. The complete life cycle of this
+    panel is repeated in the following code fragment.</p>
+    <pre>   #include &lt;lwserver.h&gt;
+   #include &lt;lwpanel.h&gt;
+
+   LWPanelFuncs *panf;
+   LWPanelID panel;
+   LWControl *ctl;
+   LWPanControlDesc desc;
+   LWValue sval = { LWT_STRING };
+   char edit[ 80 ] = &quot;This is an edit field.&quot;;
+
+   panf = global( LWPANELFUNCS_GLOBAL, GFUSE_TRANSIENT );
+   if ( !panf ) return AFUNC_BADGLOBAL;
+
+   panel = PAN_CREATE( panf, &quot;Hello World!&quot; );
+   if ( !panel ) return AFUNC_BADGLOBAL;
+   ctl = STR_CTL( panf, panel, &quot;Edit Me&quot;, 40 );
+   SET_STR( ctl, edit, sizeof( edit ));
+
+   if ( panf-&gt;open( panel, PANF_BLOCKING | PANF_CANCEL ))
+      GET_STR( ctl, edit, sizeof( edit ));
+
+   PAN_KILL( panf, panel );
+</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

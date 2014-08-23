@@ -1,0 +1,15 @@
+                          ===============
+                           About lwo2prt
+                          ===============
+
+lwo2prt isn't a plug-in.  It's a command line utility that prints out
+the contents of LWO2 (LightWave 6 object format) files.  It takes one
+command line argument, the name of the file, and prints its output to
+the screen.  You can redirect the output to a text file in the usual
+way.
+
+lwo2prt was contributed by the author, Yoshiaki Tazaki of DSTORM, Inc.
+
+
+Ernie Wright
+18 March 2000

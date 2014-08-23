@@ -1,0 +1,160 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "aires.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SHAPEIMPORTOPTIONS DIALOG DISCARDABLE  0, 0, 133, 87
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Shape Import"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "&Single Object",IDC_SINGLEOBJECT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,34,18,55,10
+    CONTROL         "&Multiple Objects",IDC_MULTIPLEOBJECTS,"Button",
+                    BS_AUTORADIOBUTTON,34,31,64,10
+    DEFPUSHBUTTON   "OK",IDOK,76,52,50,14,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,76,69,50,14
+    GROUPBOX        "Import Shapes As:",IDC_STATIC,3,4,126,42
+END
+
+IDD_MERGEORREPL DIALOG DISCARDABLE  0, 0, 173, 102
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "AI Import"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,95,65,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,95,84,50,14
+    CONTROL         "&Merge objects with current scene.",IDC_AI_MERGE,"Button",
+                    BS_AUTORADIOBUTTON,24,22,125,10
+    CONTROL         "Completely &replace current scene.",IDC_AI_REPLACE,
+                    "Button",BS_AUTORADIOBUTTON,24,39,125,10
+    GROUPBOX        "Do you want to:",IDC_STATIC,8,8,153,48
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "aires.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_MERGEORREPL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 166
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 95
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_AIIMP               "Adobe Illustrator File Import"
+    IDS_TH_SHAPE_NUM        "Shape%d"
+    IDS_TH_AIIMP            "AIIMP"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TH_ADOBE_ILLUSTRATOR "Adobe Illustrator"
+    IDS_TH_SCENEIMPORT      "Scene Import"
+    IDS_TH_AISHAPE          "Adobe Illustrator Shape"
+    IDS_TH_AIIMPORTDLL      "AI file importer (Discreet)"
+    IDS_TH_AISHAPEFILE      "Adobe Illustrator Shape File"
+    IDS_TH_TOM_HUDSON       "Tom Hudson"
+    IDS_TH_COPYRIGHT_YOST_GROUP "Copyright 1996 Yost Group"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TH_ERR_OPENING_FILE "Error opening file"
+    IDS_TH_READERROR        "Read error on file"
+    IDS_TH_INVALIDFILE      "Invalid file"
+    IDS_TH_NO_RAM           "Not enough memory for import"
+    IDS_TH_LINE_TOO_LONG    "Line in file exceeds 255 characters"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

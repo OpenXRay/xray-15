@@ -1,0 +1,698 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MANAGER_PARAMS DIALOGEX 0, 0, 108, 375
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "Start",IDC_MM_START,"CustButton",WS_TABSTOP,10,16,26,12
+    CONTROL         "",IDC_MM_PREROLL,"CustEdit",WS_TABSTOP,51,255,30,10
+    CONTROL         "",IDC_MM_PREROLLSPIN,"SpinnerControl",0x0,83,255,7,10
+    RTEXT           "Preroll:",IDC_STATIC,19,255,28,8
+    GROUPBOX        "Record Controls:",IDC_STATIC,3,3,100,56
+    CONTROL         "Test",IDC_MM_LIVE,"CustButton",WS_TABSTOP,70,16,26,12
+    CONTROL         "Stop",IDC_MM_STOP,"CustButton",WS_TABSTOP,40,16,26,12
+    GROUPBOX        "Record Range:",IDC_STATIC,3,241,100,71
+    CONTROL         "",IDC_MM_IN,"CustEdit",WS_TABSTOP,51,268,30,10
+    CONTROL         "",IDC_MM_INSPIN,"SpinnerControl",0x0,83,268,7,10
+    RTEXT           "In:",IDS_STATIC,19,268,28,8
+    CONTROL         "",IDC_MM_OUT,"CustEdit",WS_TABSTOP,51,281,30,10
+    CONTROL         "",IDC_MM_OUTSPIN,"SpinnerControl",0x0,83,281,7,10
+    RTEXT           "Out:",IDC_STATIC,19,281,28,8
+    GROUPBOX        "Tracks:",IDC_STATIC,3,60,100,179
+    LISTBOX         IDC_MM_TRACKS,9,89,88,129,LBS_OWNERDRAWVARIABLE | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
+                    WS_TABSTOP
+    GROUPBOX        "Samples:",IDC_STATIC,4,313,99,57
+    CONTROL         "1",IDC_SAMPLES1,"Button",BS_AUTORADIOBUTTON | WS_GROUP | 
+                    WS_TABSTOP,52,326,20,10
+    CONTROL         "2",IDC_SAMPLES2,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,74,326,20,10
+    RTEXT           "Per Frame:",IDC_STATIC,12,326,35,8
+    CONTROL         "Reduce Keys",IDC_REDUCE_KEYS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,14,341,59,10
+    CONTROL         "",IDC_REDUCE_THRESH,"CustEdit",WS_TABSTOP,49,353,30,10
+    CONTROL         "",IDC_REDUCE_THRESHSPIN,"SpinnerControl",0x0,81,353,7,
+                    10
+    RTEXT           "Threshold:",IDC_STATIC,10,354,37,8
+    CONTROL         "All",IDC_MM_ALL,"CustButton",WS_TABSTOP,9,221,28,12
+    CONTROL         "Invert",IDC_MM_INVERT,"CustButton",WS_TABSTOP,39,221,28,
+                    12
+    CONTROL         "None",IDC_MM_NONE,"CustButton",WS_TABSTOP,69,221,28,12
+    CONTROL         "Live During Preroll",IDC_MM_LIVEPREROLL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,296,73,10
+    COMBOBOX        IDC_MM_SETS,10,72,72,146,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "Start",IDC_MM_DELSET,"CustButton",WS_TABSTOP,83,72,14,
+                    12
+    PUSHBUTTON      "Start/Stop...",IDC_MM_AUTOSTART,10,42,49,12
+    CONTROL         "Enable",IDC_MM_STARTSTOPENABLE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,62,45,36,10
+    CONTROL         "Play During Test",IDC_MM_PLAYTEST,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,27,30,68,10,WS_EX_RIGHT
+END
+
+IDD_SELBINDING DIALOG DISCARDABLE  0, 0, 186, 95
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Choose Device"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,129,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,129,24,50,14
+    LISTBOX         IDC_DEVICE_LIST,7,7,106,83,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+END
+
+IDD_MC_PARAMS DIALOGEX 0, 0, 188, 201
+STYLE DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | 
+    WS_THICKFRAME
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Motion Capture"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_MAIN_ROLLUP,"RollupWindow",0x0,7,7,174,187
+END
+
+IDD_MC_POSITION DIALOG DISCARDABLE  0, 0, 164, 98
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Device Bindings:",IDC_STATIC,4,1,155,93
+    RTEXT           "X Position:",IDC_STATIC,10,17,38,8
+    RTEXT           "Y Position:",IDC_STATIC,10,31,38,8
+    RTEXT           "Z Position:",IDC_STATIC,10,45,38,8
+    PUSHBUTTON      "None",IDC_XBINDING,51,16,98,11
+    PUSHBUTTON      "None",IDC_YBINDING,51,30,98,11
+    PUSHBUTTON      "None",IDC_ZBINDING,51,44,98,11
+    RTEXT           "Edit Binding:",IDC_STATIC,26,63,40,8
+    CONTROL         "X",IDC_EDIT_XBINDING,"CustButton",WS_TABSTOP,72,61,15,
+                    12
+    CONTROL         "Y",IDC_EDIT_YBINDING,"CustButton",WS_TABSTOP,92,61,15,
+                    12
+    CONTROL         "Z",IDC_EDIT_ZBINDING,"CustButton",WS_TABSTOP,112,61,15,
+                    12
+    CONTROL         "",IDC_TRACKNAME,"CustEdit",WS_TABSTOP,51,79,98,10
+    RTEXT           "Track Name:",IDC_STATIC,7,79,42,8
+END
+
+IDD_MC_MOUSE DIALOG DISCARDABLE  0, 0, 164, 50
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Mouse Axis:",IDC_STATIC,4,1,155,45
+    CONTROL         "Horizontal",IDC_MOUSE_X,"Button",BS_AUTORADIOBUTTON,25,
+                    14,47,10
+    CONTROL         "Vertical",IDC_MOUSE_Y,"Button",BS_AUTORADIOBUTTON,104,
+                    14,39,10
+    CONTROL         "",IDC_MOUSE_SCALE,"CustEdit",WS_TABSTOP,61,29,30,10
+    CONTROL         "",IDC_MOUSE_SCALESPIN,"SpinnerControl",0x0,93,29,7,10
+    RTEXT           "Scale:",IDC_STATIC,31,29,28,8
+    CONTROL         "Flip",IDC_MOUSE_FLIP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,105,30,27,10
+END
+
+IDD_MC_FLOAT DIALOG DISCARDABLE  0, 0, 164, 52
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Device Bindings:",IDC_STATIC,4,1,155,47
+    RTEXT           "Value:",IDC_STATIC,10,17,38,8
+    PUSHBUTTON      "None",IDC_XBINDING,51,16,98,11
+    CONTROL         "",IDC_TRACKNAME,"CustEdit",WS_TABSTOP,51,32,98,10
+    RTEXT           "Track Name:",IDC_STATIC,7,32,42,8
+END
+
+IDD_MC_SCALE DIALOG DISCARDABLE  0, 0, 164, 100
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Device Bindings:",IDC_STATIC,4,1,155,94
+    RTEXT           "X Scale:",IDC_STATIC,10,17,38,8
+    RTEXT           "Y Scale:",IDC_STATIC,10,31,38,8
+    RTEXT           "Z Scale:",IDC_STATIC,10,45,38,8
+    PUSHBUTTON      "None",IDC_XBINDING,51,16,98,11
+    PUSHBUTTON      "None",IDC_YBINDING,51,30,98,11
+    PUSHBUTTON      "None",IDC_ZBINDING,51,44,98,11
+    RTEXT           "Edit Binding:",IDC_STATIC,26,63,40,8
+    CONTROL         "X",IDC_EDIT_XBINDING,"CustButton",WS_TABSTOP,72,61,15,
+                    12
+    CONTROL         "Y",IDC_EDIT_YBINDING,"CustButton",WS_TABSTOP,92,61,15,
+                    12
+    CONTROL         "Z",IDC_EDIT_ZBINDING,"CustButton",WS_TABSTOP,112,61,15,
+                    12
+    CONTROL         "",IDC_TRACKNAME,"CustEdit",WS_TABSTOP,51,79,98,10
+    RTEXT           "Track Name:",IDC_STATIC,7,79,42,8
+END
+
+IDD_MC_ROTATION DIALOG DISCARDABLE  0, 0, 164, 99
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Device Bindings:",IDC_STATIC,4,1,155,94
+    RTEXT           "X Rotation:",IDC_STATIC,12,17,36,8
+    RTEXT           "Y Rotation:",IDC_STATIC,12,31,36,8
+    RTEXT           "Z Rotation:",IDC_STATIC,12,45,36,8
+    PUSHBUTTON      "None",IDC_XBINDING,51,16,98,11
+    PUSHBUTTON      "None",IDC_YBINDING,51,30,98,11
+    PUSHBUTTON      "None",IDC_ZBINDING,51,44,98,11
+    RTEXT           "Edit Binding:",IDC_STATIC,26,63,40,8
+    CONTROL         "X",IDC_EDIT_XBINDING,"CustButton",WS_TABSTOP,72,61,15,
+                    12
+    CONTROL         "Y",IDC_EDIT_YBINDING,"CustButton",WS_TABSTOP,92,61,15,
+                    12
+    CONTROL         "Z",IDC_EDIT_ZBINDING,"CustButton",WS_TABSTOP,112,61,15,
+                    12
+    CONTROL         "",IDC_TRACKNAME,"CustEdit",WS_TABSTOP,51,79,98,10
+    RTEXT           "Track Name:",IDC_STATIC,7,79,42,8
+END
+
+IDD_MC_MIDI DIALOG DISCARDABLE  0, 0, 164, 250
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "1",IDC_MIDI_CHAN1,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE | WS_GROUP,11,14,15,10
+    CONTROL         "2",IDC_MIDI_CHAN2,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,29,14,15,10
+    CONTROL         "3",IDC_MIDI_CHAN3,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,47,14,15,10
+    CONTROL         "4",IDC_MIDI_CHAN4,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,65,14,15,10
+    CONTROL         "5",IDC_MIDI_CHAN5,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,83,14,15,10
+    CONTROL         "6",IDC_MIDI_CHAN6,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,101,14,15,10
+    CONTROL         "7",IDC_MIDI_CHAN7,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,119,14,15,10
+    CONTROL         "8",IDC_MIDI_CHAN8,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,137,14,15,10
+    CONTROL         "9",IDC_MIDI_CHAN9,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,11,27,15,10
+    CONTROL         "10",IDC_MIDI_CHAN10,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,29,27,15,10
+    CONTROL         "11",IDC_MIDI_CHAN11,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,47,27,15,10
+    CONTROL         "12",IDC_MIDI_CHAN12,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,65,27,15,10
+    CONTROL         "13",IDC_MIDI_CHAN13,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,83,27,15,10
+    CONTROL         "14",IDC_MIDI_CHAN14,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,101,27,15,10
+    CONTROL         "15",IDC_MIDI_CHAN15,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,119,27,15,10
+    CONTROL         "16",IDC_MIDI_CHAN16,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,137,27,15,10
+    CONTROL         "Note",IDC_MIDI_NOTE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,23,59,31,10
+    CONTROL         "Velocity",IDC_MIDI_VEL,"Button",BS_AUTORADIOBUTTON,23,
+                    76,41,10
+    CONTROL         "Pitch Bend",IDC_MIDI_BEND,"Button",BS_AUTORADIOBUTTON,
+                    23,94,48,10
+    CONTROL         "MIDI Controller",IDC_MIDI_USER,"Button",
+                    BS_AUTORADIOBUTTON,23,111,63,10
+    CONTROL         "",IDC_MIDI_SPEED,"CustEdit",WS_TABSTOP,104,59,30,10
+    CONTROL         "",IDC_MIDI_SUSTAIN,"CustEdit",WS_TABSTOP,104,76,30,10
+    CONTROL         "Variable",IDC_SUSTAIN_VARIABLE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,104,88,41,10
+    CONTROL         "",IDC_MIDI_USERNUM,"CustEdit",WS_TABSTOP,104,111,30,10
+    COMBOBOX        IDC_MIDI_LOWNOTE,68,149,32,74,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MIDI_LOWOCTAVE,103,149,32,74,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MIDI_HIGHNOTE,68,179,32,74,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MIDI_HIGHOCTAVE,103,179,32,74,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "",IDC_MIDI_PARAMMIN,"CustEdit",WS_TABSTOP,34,215,30,10
+    CONTROL         "",IDC_MIDI_PARAMMAX,"CustEdit",WS_TABSTOP,105,215,30,10
+    GROUPBOX        "MIDI Channel:",IDC_STATIC,4,1,155,41
+    GROUPBOX        "Parameter Scaling:",IDC_STATIC,4,203,155,29
+    CONTROL         "",IDC_MIDI_PARAMMINSPIN,"SpinnerControl",0x0,66,215,7,
+                    10
+    RTEXT           "Min:",IDC_STATIC,18,216,14,8
+    CONTROL         "",IDC_MIDI_PARAMMAXSPIN,"SpinnerControl",0x0,137,215,7,
+                    10
+    RTEXT           "Max:",IDC_STATIC,88,216,16,8
+    GROUPBOX        "MIDI Trigger:",IDC_STATIC,4,44,155,83
+    RTEXT           "Low Note:",IDC_NOTERANGE_LABEL2,26,151,36,8
+    LTEXT           "Note:",IDC_NOTERANGE_LABEL4,68,140,20,8
+    LTEXT           "Octave:",IDC_NOTERANGE_LABEL5,103,140,29,8
+    GROUPBOX        "Note Range:",IDC_NOTERANGE_LABEL1,4,129,155,72
+    RTEXT           "High Note:",IDC_NOTERANGE_LABEL3,26,181,36,8
+    LTEXT           "Note:",IDC_NOTERANGE_LABEL6,68,170,20,8
+    LTEXT           "Octave:",IDC_NOTERANGE_LABEL7,103,170,29,8
+    CONTROL         "",IDC_MIDI_SPEEDSPIN,"SpinnerControl",0x0,136,59,7,10
+    RTEXT           "Speed:",IDC_MIDI_SPEED_LABEL,70,60,31,8
+    CONTROL         "",IDC_MIDI_SUSTAINSPIN,"SpinnerControl",0x0,136,76,7,10
+    RTEXT           "Sustain:",IDC_MIDI_SUSTAINLABEL,70,77,31,8
+    PUSHBUTTON      "MIDI Channel Viewer...",IDC_MIDI_VIEWER,4,235,80,11
+    CONTROL         "",IDC_MIDI_USERNUMSPIN,"SpinnerControl",0x0,136,111,7,
+                    10
+    RTEXT           "#:",IDC_MIDI_USERNUM_LABEL,89,112,12,8
+END
+
+IDD_MC_JOY DIALOG DISCARDABLE  0, 0, 164, 187
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "X",IDC_JOY_X,"Button",BS_AUTORADIOBUTTON,17,16,26,10
+    CONTROL         "Y",IDC_JOY_Y,"Button",BS_AUTORADIOBUTTON,46,16,26,10
+    CONTROL         "Z",IDC_JOY_Z,"Button",BS_AUTORADIOBUTTON,75,16,26,10
+    CONTROL         "Throttle",IDC_JOY_THROTTLE,"Button",BS_AUTORADIOBUTTON,
+                    104,16,41,10
+    CONTROL         "",IDC_JOY_SCALE,"CustEdit",WS_TABSTOP,35,30,30,10
+    CONTROL         "Flip",IDC_JOY_FLIP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,75,31,25,10
+    CONTROL         "Accumulate",IDC_JOY_ACCUM,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,104,31,53,10
+    CONTROL         "Point of View Hat (Left-Right)",IDC_JOY_POVH,"Button",
+                    BS_AUTORADIOBUTTON,26,61,107,10
+    CONTROL         "Point of View Hat (Up-Down)",IDC_JOY_POVV,"Button",
+                    BS_AUTORADIOBUTTON,26,74,107,10
+    CONTROL         "1",IDC_JOY_BUT1,"Button",BS_AUTORADIOBUTTON,26,87,20,10
+    CONTROL         "2",IDC_JOY_BUT2,"Button",BS_AUTORADIOBUTTON,52,87,20,10
+    CONTROL         "3",IDC_JOY_BUT3,"Button",BS_AUTORADIOBUTTON,80,87,20,10
+    CONTROL         "4",IDC_JOY_BUT4,"Button",BS_AUTORADIOBUTTON,107,87,20,
+                    10
+    CONTROL         "Inc./Dec.",IDC_JOY_TYPEINCDEC,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,26,99,45,10
+    CONTROL         "Inc.",IDC_JOY_TYPEINC,"Button",BS_AUTORADIOBUTTON,75,99,
+                    28,10
+    CONTROL         "Absolute",IDC_JOY_TYPEABSOLUTE,"Button",
+                    BS_AUTORADIOBUTTON,107,99,45,10
+    CONTROL         "",IDC_JOY_SPEED,"CustEdit",WS_TABSTOP,60,113,30,10
+    PUSHBUTTON      "None",IDC_INC_BINDING,48,143,81,11
+    CONTROL         "X",IDC_JOY_DIRX,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
+                    50,157,21,10
+    CONTROL         "Y",IDC_JOY_DIRY,"Button",BS_AUTORADIOBUTTON,76,157,21,
+                    10
+    CONTROL         "Z",IDC_JOY_DIRZ,"Button",BS_AUTORADIOBUTTON,102,157,21,
+                    10
+    CONTROL         "X",IDC_JOY_COMPX,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
+                    50,168,21,10
+    CONTROL         "Y",IDC_JOY_COMPY,"Button",BS_AUTORADIOBUTTON,76,168,21,
+                    10
+    CONTROL         "Z",IDC_JOY_COMPZ,"Button",BS_AUTORADIOBUTTON,102,168,21,
+                    10
+    RTEXT           "Direction:",IDC_JOY_DIRLABEL,15,157,31,8
+    GROUPBOX        "Joystick Axis:",IDC_STATIC,4,1,155,46
+    CONTROL         "",IDC_JOY_SCALESPIN,"SpinnerControl",0x0,66,30,7,10
+    RTEXT           "Scale:",IDC_STATIC,12,30,22,8
+    GROUPBOX        "Joystick Buttons:",IDC_STATIC,4,48,155,81
+    CONTROL         "",IDC_JOY_SPEEDSPIN,"SpinnerControl",0x0,92,113,7,10
+    RTEXT           "Speed:",IDC_STATIC,30,113,28,8
+    GROUPBOX        "Increment Based On Direction:",IDC_BASED_ON_DIR_LABEL,4,
+                    130,155,53
+    RTEXT           "Controller:",IDC_JOY_CONTLABEL,14,144,32,8
+    RTEXT           "Component:",IDC_JOY_COMPLABEL,7,168,39,8
+    PUSHBUTTON      "Clear",IDC_CLEAR_INC_BINDING,130,143,23,11
+END
+
+IDD_MIDI_VIEWER DIALOG DISCARDABLE  0, 0, 258, 276
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "MIDI Viewer"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "1",IDC_MV_CHANBUT1,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE | WS_GROUP,18,21,19,10
+    CONTROL         "2",IDC_MV_CHANBUT2,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,18,34,19,10
+    CONTROL         "3",IDC_MV_CHANBUT3,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,18,47,19,10
+    CONTROL         "4",IDC_MV_CHANBUT4,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,18,60,19,10
+    CONTROL         "5",IDC_MV_CHANBUT5,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,18,73,19,10
+    CONTROL         "6",IDC_MV_CHANBUT6,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,18,86,19,10
+    CONTROL         "7",IDC_MV_CHANBUT7,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,18,99,19,10
+    CONTROL         "8",IDC_MV_CHANBUT8,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,18,112,19,10
+    CONTROL         "9",IDC_MV_CHANBUT9,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,18,125,19,10
+    CONTROL         "10",IDC_MV_CHANBUT10,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,18,138,19,10
+    CONTROL         "11",IDC_MV_CHANBUT11,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,18,151,19,10
+    CONTROL         "12",IDC_MV_CHANBUT12,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,18,164,19,10
+    CONTROL         "13",IDC_MV_CHANBUT13,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,18,177,19,10
+    CONTROL         "14",IDC_MV_CHANBUT14,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,18,190,19,10
+    CONTROL         "15",IDC_MV_CHANBUT15,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,18,203,19,10
+    CONTROL         "16",IDC_MV_CHANBUT16,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,18,216,19,10
+    CONTROL         "-2",IDC_MV_OCTAVEBUT1,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE | WS_GROUP,125,38,19,10
+    CONTROL         "-1",IDC_MV_OCTAVEBUT2,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,125,53,19,10
+    CONTROL         "0",IDC_MV_OCTAVEBUT3,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,125,68,19,10
+    CONTROL         "1",IDC_MV_OCTAVEBUT4,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,125,83,19,10
+    CONTROL         "2",IDC_MV_OCTAVEBUT5,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,125,98,19,10
+    CONTROL         "3",IDC_MV_OCTAVEBUT6,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,125,113,19,10
+    CONTROL         "4",IDC_MV_OCTAVEBUT7,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,125,128,19,10
+    CONTROL         "5",IDC_MV_OCTAVEBUT8,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,125,143,19,10
+    CONTROL         "6",IDC_MV_OCTAVEBUT9,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,125,158,19,10
+    CONTROL         "7",IDC_MV_OCTAVEBUT10,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,125,173,19,10
+    CONTROL         "8",IDC_MV_OCTAVEBUT11,"Button",BS_AUTORADIOBUTTON | 
+                    BS_PUSHLIKE,125,188,19,10
+    CONTROL         "",IDC_MIDI_USERNUM,"CustEdit",WS_TABSTOP,126,213,30,10
+    DEFPUSHBUTTON   "OK",IDOK,103,255,50,14
+    CONTROL         "Progress2",IDC_MV_CHANPROG1,"msctls_progress32",
+                    WS_BORDER,40,21,46,10
+    GROUPBOX        "MIDI Channel:",IDC_STATIC,7,7,91,228
+    CONTROL         "Progress2",IDC_MV_CHANPROG2,"msctls_progress32",
+                    WS_BORDER,40,34,46,10
+    CONTROL         "Progress2",IDC_MV_CHANPROG3,"msctls_progress32",
+                    WS_BORDER,40,47,46,10
+    CONTROL         "Progress2",IDC_MV_CHANPROG4,"msctls_progress32",
+                    WS_BORDER,40,60,46,10
+    CONTROL         "Progress2",IDC_MV_CHANPROG5,"msctls_progress32",
+                    WS_BORDER,40,73,46,10
+    CONTROL         "Progress2",IDC_MV_CHANPROG6,"msctls_progress32",
+                    WS_BORDER,40,86,46,10
+    CONTROL         "Progress2",IDC_MV_CHANPROG7,"msctls_progress32",
+                    WS_BORDER,40,99,46,10
+    CONTROL         "Progress2",IDC_MV_CHANPROG8,"msctls_progress32",
+                    WS_BORDER,40,112,46,10
+    CONTROL         "Progress2",IDC_MV_CHANPROG9,"msctls_progress32",
+                    WS_BORDER,40,125,46,10
+    CONTROL         "Progress2",IDC_MV_CHANPROG10,"msctls_progress32",
+                    WS_BORDER,40,138,46,10
+    CONTROL         "Progress2",IDC_MV_CHANPROG11,"msctls_progress32",
+                    WS_BORDER,40,151,46,10
+    CONTROL         "Progress2",IDC_MV_CHANPROG12,"msctls_progress32",
+                    WS_BORDER,40,164,46,10
+    CONTROL         "Progress2",IDC_MV_CHANPROG13,"msctls_progress32",
+                    WS_BORDER,40,177,46,10
+    CONTROL         "Progress2",IDC_MV_CHANPROG14,"msctls_progress32",
+                    WS_BORDER,40,190,46,10
+    CONTROL         "Progress2",IDC_MV_CHANPROG15,"msctls_progress32",
+                    WS_BORDER,40,203,46,10
+    CONTROL         "Progress2",IDC_MV_CHANPROG16,"msctls_progress32",
+                    WS_BORDER,40,216,46,10
+    GROUPBOX        "MIDI Note:",IDC_STATIC,106,7,145,228
+    CONTROL         "Progress2",IDC_MV_NOTEPROG1,"msctls_progress32",
+                    WS_BORDER,183,40,46,10
+    RTEXT           "C",IDC_STATIC,164,43,15,8
+    CONTROL         "Progress2",IDC_MV_NOTEPROG2,"msctls_progress32",
+                    WS_BORDER,183,54,46,10
+    RTEXT           "C#",IDC_STATIC,164,55,15,8
+    CONTROL         "Progress2",IDC_MV_NOTEPROG3,"msctls_progress32",
+                    WS_BORDER,183,68,46,10
+    RTEXT           "D",IDC_STATIC,164,69,15,8
+    CONTROL         "Progress2",IDC_MV_NOTEPROG4,"msctls_progress32",
+                    WS_BORDER,183,80,46,10
+    RTEXT           "D#",IDC_STATIC,164,82,15,8
+    CONTROL         "Progress2",IDC_MV_NOTEPROG5,"msctls_progress32",
+                    WS_BORDER,183,93,46,10
+    RTEXT           "E",IDC_STATIC,164,94,15,8
+    CONTROL         "Progress2",IDC_MV_NOTEPROG6,"msctls_progress32",
+                    WS_BORDER,183,106,46,10
+    RTEXT           "F",IDC_STATIC,164,107,15,8
+    CONTROL         "Progress2",IDC_MV_NOTEPROG7,"msctls_progress32",
+                    WS_BORDER,183,119,46,10
+    RTEXT           "F#",IDC_STATIC,164,121,15,8
+    CONTROL         "Progress2",IDC_MV_NOTEPROG8,"msctls_progress32",
+                    WS_BORDER,183,132,46,10
+    RTEXT           "G",IDC_STATIC,164,134,15,8
+    CONTROL         "Progress2",IDC_MV_NOTEPROG9,"msctls_progress32",
+                    WS_BORDER,183,145,46,10
+    RTEXT           "G#",IDC_STATIC,164,147,15,8
+    CONTROL         "Progress2",IDC_MV_NOTEPROG10,"msctls_progress32",
+                    WS_BORDER,183,159,46,10
+    RTEXT           "A",IDC_STATIC,164,160,15,8
+    CONTROL         "Progress2",IDC_MV_NOTEPROG11,"msctls_progress32",
+                    WS_BORDER,183,172,46,10
+    RTEXT           "A#",IDC_STATIC,164,173,15,8
+    CONTROL         "Progress2",IDC_MV_NOTEPROG12,"msctls_progress32",
+                    WS_BORDER,183,185,46,10
+    RTEXT           "B",IDC_STATIC,164,187,15,8
+    CTEXT           "Octave:",IDC_STATIC,119,22,31,8
+    CTEXT           "Note:",IDC_STATIC,189,22,25,8
+    CONTROL         "",IDC_MIDI_USERNUMSPIN,"SpinnerControl",0x0,158,213,7,
+                    10
+    RTEXT           "#:",IDC_MIDI_SPEED_LABEL2,111,214,12,8
+    CONTROL         "Progress2",IDC_MV_NOTEUSER,"msctls_progress32",
+                    WS_BORDER,183,213,46,10
+    LTEXT           "MIDI Controller:",IDC_STATIC,125,203,50,8
+    RTEXT           "Channel:",IDC_STATIC,7,239,29,8
+    LTEXT           "",IDC_MV_CHAN,38,239,15,9,SS_SUNKEN
+    RTEXT           "Event:",IDC_STATIC,70,239,22,8
+    LTEXT           "",IDC_MV_EVENT,94,239,15,9,SS_SUNKEN
+    RTEXT           "Velocity:",IDC_STATIC,127,239,28,8
+    LTEXT           "",IDC_MV_VEL,157,239,15,9,SS_SUNKEN
+    RTEXT           "Note Number:",IDC_STATIC,188,239,45,8
+    LTEXT           "",IDC_MV_NOTE,235,239,15,9,SS_SUNKEN
+END
+
+IDD_MANAGER_STARTSTOP DIALOG DISCARDABLE  0, 0, 218, 95
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Start/Stop Trigger Setup"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,161,5,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,161,25,50,14
+    COMBOBOX        IDC_MIDI_PRESETS,40,4,100,48,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "",IDC_MIDI_CHANNEL,"CustEdit",WS_TABSTOP,100,25,30,10
+    CONTROL         "",IDC_MIDI_STOP,"CustEdit",WS_TABSTOP,100,50,30,10
+    CONTROL         "",IDC_MIDI_PLAY,"CustEdit",WS_TABSTOP,100,64,30,10
+    CONTROL         "",IDC_MIDI_RECORD,"CustEdit",WS_TABSTOP,100,78,30,10
+    CONTROL         "",IDC_MIDI_CHANNELSPIN,"SpinnerControl",0x0,131,25,7,10
+    RTEXT           "Channel:",IDC_STATIC,68,26,30,8
+    CONTROL         "",IDC_MIDI_PLAYSPIN,"SpinnerControl",0x0,131,64,7,10
+    RTEXT           "Play",IDC_STATIC,71,65,18,8
+    CONTROL         "",IDC_MIDI_STOPSPIN,"SpinnerControl",0x0,131,50,7,10
+    RTEXT           "Stop",IDC_STATIC,71,50,18,8
+    CONTROL         "",IDC_MIDI_RECORDSPIN,"SpinnerControl",0x0,131,78,7,10
+    RTEXT           "Record",IDC_STATIC,58,79,31,8
+    RTEXT           "Presets:",IDC_STATIC,5,7,32,8
+    LTEXT           "Note Number:",IDC_STATIC,97,40,45,8
+END
+
+IDD_MC_POINT3 DIALOG DISCARDABLE  0, 0, 164, 98
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Device Bindings:",IDC_STATIC,4,1,155,93
+    RTEXT           "X Position:",IDC_STATIC,10,17,38,8
+    RTEXT           "Y Position:",IDC_STATIC,10,31,38,8
+    RTEXT           "Z Position:",IDC_STATIC,10,45,38,8
+    PUSHBUTTON      "None",IDC_XBINDING,51,16,98,11
+    PUSHBUTTON      "None",IDC_YBINDING,51,30,98,11
+    PUSHBUTTON      "None",IDC_ZBINDING,51,44,98,11
+    RTEXT           "Edit Binding:",IDC_STATIC,26,63,40,8
+    CONTROL         "X",IDC_EDIT_XBINDING,"CustButton",WS_TABSTOP,72,61,15,
+                    12
+    CONTROL         "Y",IDC_EDIT_YBINDING,"CustButton",WS_TABSTOP,92,61,15,
+                    12
+    CONTROL         "Z",IDC_EDIT_ZBINDING,"CustButton",WS_TABSTOP,112,61,15,
+                    12
+    CONTROL         "",IDC_TRACKNAME,"CustEdit",WS_TABSTOP,51,79,98,10
+    RTEXT           "Track Name:",IDC_STATIC,7,79,42,8
+END
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_MM_ICONS            BITMAP  DISCARDABLE     "mm_icons.bmp"
+IDB_MM_ICONSMASK        BITMAP  DISCARDABLE     "bmp00001.bmp"
+IDB_BUTTONS             BITMAP  DISCARDABLE     "buttons.bmp"
+IDB_BUTTONS_MASK        BITMAP  DISCARDABLE     "buttons1.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_SELBINDING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+    END
+
+    IDD_MC_PARAMS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 181
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 194
+    END
+
+    IDD_MC_JOY, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 176
+    END
+
+    IDD_MIDI_VIEWER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 251
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 269
+    END
+
+    IDD_MANAGER_STARTSTOP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 211
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 86
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_DATA             "Data"
+    IDS_RB_POSMC            "Position Motion Capture"
+    IDS_RB_MOTIONMAN        "Motion Capture"
+    IDS_RB_ROTMC            "Rotation Motion Capture"
+    IDS_RB_SCALEMC          "Scale Motion Capture"
+    IDS_RB_FLOATMC          "Float Motion Capture"
+    IDS_RB_POINT3MC         "Point3 Motion Capture"
+    IDS_RB_MOUSEDEVICE      "Mouse Input Device"
+    IDS_RB_MOUSEX           "Horizontal Mouse"
+    IDS_RB_MOUSEY           "Vertical Mouse"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_NONE             "None"
+    IDS_RB_MOTIONCAPTURE    "Motion Capture"
+    IDS_RB_NOTRACKSON       "No tracks have been selected to record."
+    IDS_RB_NOTIME           "Invalid recording interval."
+    IDS_RB_PICKBINDING      "Assign Device"
+    IDS_RB_MIDI             "MIDI Device"
+    IDS_RB_NODEVICE         "ERROR: Could not open MIDI device."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RB_MIDIDEVICE_ERROR "MIDI Device Error."
+    IDS_RB_JOYDEVICE        "Joystick Input Device"
+    IDS_RB_JOYX             "Joystick X Axis"
+    IDS_RB_JOYY             "Joystick Y Axis"
+    IDS_RB_NOMIDIDEVICES    "No MIDI devices are present."
+    IDS_RB_MIDIVIEWER       "MIDI Viewer"
+    IDS_RB_MEDIACONTROLSTATION "Media Control Station ²"
+    IDS_RB_CUSTOM           "Custom"
+    IDS_LIB_DESCRIPTION     "Motion capture controller (Discreet)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_JOY_X               "Joystick X"
+    IDC_JOY_Y               "Joystick Y"
+    IDC_JOY_Z               "Joystick Z"
+    IDC_JOY_THROTTLE        "Joystick Throttle"
+    IDC_JOY_POVH            "Joystick POV Hat (Left-Right)"
+    IDC_JOY_POVV            "Joystick POV Hat (Up-Down)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_JOY_BUT1            "Joystick Button 1"
+    IDC_JOY_BUT2            "Joystick Button 2"
+    IDC_JOY_BUT3            "Joystick Button 3"
+    IDC_JOY_BUT4            "Joystick Button 4"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

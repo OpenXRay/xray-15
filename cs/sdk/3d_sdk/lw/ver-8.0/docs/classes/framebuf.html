@@ -1,0 +1,93 @@
+<html>
+
+<head>
+<title>Classes: FrameBufferHandler</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="freq.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="FileRequester"></a></td>
+    <td width="96" align="left"><a href="globserv.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Global"></a></td>
+    <td width="96" align="left"><a href="../classes.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Classes"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>FrameBufferHandler<br>
+    FrameBufferInterface</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwframbuf.h">lwframbuf.h</a></small></p>
+    <p>Frame buffer plug-ins display the current rendered frame, either on the screen or to
+    another output device.</p>
+    <p><strong>Handler Activation Function</strong></p>
+    <pre>   XCALL_( int ) MyFrameBuffer( long version, GlobalFunc *global,
+      LWFrameBufferHandler *local, void *serverData );</pre>
+    <p>The <tt>local</tt> argument to a frame buffer's activation function is an
+    LWFrameBufferHandler.</p>
+    <pre>   typedef struct st_LWFrameBufferHandler {
+      LWInstanceFuncs *<strong>inst</strong>;
+      LWItemFuncs     *<strong>item</strong>;
+      int              <strong>type</strong>;
+      LWError         (*<strong>open</strong>)  (LWInstance, int w, int h);
+      void            (*<strong>close</strong>) (LWInstance);
+      LWError         (*<strong>begin</strong>) (LWInstance);
+      LWError         (*<strong>write</strong>) (LWInstance, const void *R, const void *G,
+                                  const void *B, const void *alpha);
+      void            (*<strong>pause</strong>) (LWInstance);
+   } LWFrameBufferHandler;</pre>
+    <p>The first two member of this structure point to the standard <a href="../handler.html">handler
+    functions</a>. In addition to these, a frame buffer also provides functions for the start
+    and end of a rendering session, for receiving a frame's scanlines, and for displaying the
+    frame, and it specifies what type of data it wants to receive.<dl>
+      <dt><strong><tt>type</tt></strong></dt>
+      <dd>The type of pixel data Layout should send to the <tt>write</tt> function. This can be
+        either <tt>LWFBT_UBYTE</tt> or <tt>LWFBT_FLOAT</tt>.</dd>
+      <dt><tt><br>
+        error = <strong>open</strong>( instance, width, height )</tt></dt>
+      <dd>Initialize the frame buffer. Called when a rendering session begins. Returns an error
+        message string if an error occurs, otherwise it returns NULL.</dd>
+      <dt><tt><br>
+        <strong>close</strong>( instance )</tt></dt>
+      <dd>Close the frame buffer. Called when the rendering session is complete.</dd>
+      <dt><tt><br>
+        error = <strong>begin</strong>( instance )</tt></dt>
+      <dd>Prepare to receive the next frame. Returns an error message string if an error occurs,
+        otherwise it returns NULL.</dd>
+      <dt><tt><br>
+        error = <strong>write</strong>( instance, R, G, B, alpha )</tt></dt>
+      <dd>Receive the next scanline of the current frame. The scanlines for each frame are sent in
+        order from top to bottom. The buffer arguments point to arrays of color channel values.
+        There are exactly <tt>width</tt> values for each channel, one for each pixel in a
+        scanline, and the values are either unsigned bytes or floats, depending on the <tt>type</tt>
+        code. Returns an error message string or NULL.</dd>
+      <dt><tt><br>
+        <strong>pause</strong>( instance )</tt></dt>
+      <dd>Pause awaiting user input. This is called for F9 and manually advanced frames, but not
+        during automatic rendering. Typically the frame buffer displays the image here and then
+        waits for the user to dismiss the display before returning from this function.</dd>
+    </dl>
+    <p><strong>Interface Activation Function</strong></p>
+    <pre>   XCALL_( int ) MyInterface( long version, GlobalFunc *global,
+      LWInterface *local, void *serverData );</pre>
+    <p>This is the standard <a href="../handler.html#ui">interface activation</a> for
+    handlers. A frame buffer's interface is invoked when the plug-in is selected as the render
+    display on the Render Options panel.</p>
+    <p><strong>Example</strong></p>
+    <p>The <a href="../../sample/Layout/FrameBuffer/framebuf/">framebuf</a> sample is a simple example of a frame
+    buffer. It uses the <a href="../globals/raster.html">Raster Functions</a> and <a
+    href="../globals/panel.html">Panels</a> globals to store and display the rendered image.</td>
+  </tr>
+</table>
+</body>
+</html>

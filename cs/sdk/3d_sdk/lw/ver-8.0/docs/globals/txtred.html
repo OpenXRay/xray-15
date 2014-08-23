@@ -1,0 +1,165 @@
+<html>
+
+<head>
+<title>Globals: Texture Editor</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="sysid.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="System ID"></a></td>
+    <td width="96" align="left"><a href="txtrfunc.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Texture Functions"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Texture Editor</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwtxtred.h">lwtxtred.h</a></small></p>
+    <p>This global provides access to a user interface for editing textures. If you use <a
+    href="xpanel.html">XPanels</a> with <a href="vparm.html">vparms</a> that can be textured,
+    the interaction with the texture editor is handled for you, and you don't need this
+    global. But if your interface is built with classic <a href="panel.html">Panels</a> or
+    OS-specific elements, you can use this global to provide your users with the standard
+    texture interface.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWTxtrEdFuncs *txedf;
+   txedf = global( LWTXTREDFUNCS_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWTxtrEdFuncs.</p>
+    <pre>   typedef struct st_LWTxtrEdFuncs {
+      LWTECltID   (*<strong>subscribe</strong>)   (char *title, int flags, void *userData,
+                                   LW_TxtrRemoveFunc *,
+                                   LW_TxtrAutoSizeFunc *,
+                                   LW_TxtrEventFunc *);
+      void        (*<strong>unsubscribe</strong>) (LWTECltID);
+      void        (*<strong>open</strong>)        (LWTECltID, LWTextureID, char *title);
+      void        (*<strong>setTexture</strong>)  (LWTECltID, LWTextureID, char *title);
+      void        (*<strong>setPosition</strong>) (LWTECltID, int, int);
+      void        (*<strong>close</strong>)       (LWTECltID);
+      int         (*<strong>isOpen</strong>)      (LWTECltID);
+      int         (*<strong>refresh</strong>)     (LWTECltID);
+      LWTLayerID  (*<strong>currentLayer</strong>)(LWTECltID);
+      int         (*<strong>selectAdd</strong>)   (LWTECltID, LWTextureID);
+      int         (*<strong>selectRem</strong>)   (LWTECltID, LWTextureID);
+      int         (*<strong>selectClr</strong>)   (LWTECltID);
+      LWTextureID (*<strong>selectFirst</strong>) (LWTECltID);
+      LWTextureID (*<strong>selectNext</strong>)  (LWTECltID, LWTextureID);
+      void        (*<strong>setGradientAutoSize</strong>)(LWTECltID,
+                                   LW_GradAutoSizeFunc *);
+   } LWTxtrEdFuncs;</pre>
+    <dl>
+      <dt><tt>client = <strong>subscribe</strong>( title, flags, data, txremove, txautosz, txevent
+        )</tt></dt>
+      <dd>Returns an identifier that plug-ins use in later calls to the texture editor functions.
+        The callbacks are optional and are called when the user removes or autosizes a texture, or
+        does anything with it in the editor. The <tt>data</tt> argument is passed to these
+        callbacks; its contents are up to you, and it can be NULL. The flags determine what the
+        user can do in the editor and can be one or more of the following.<dl>
+          <dt><tt><br>
+            TEF_USEBTN</tt></dt>
+          <dd>Add use/remove buttons at the bottom of the pane.</dd>
+          <dt><tt>TEF_OPACITY</tt></dt>
+          <dd>Add layer opacity settings.</dd>
+          <dt><tt>TEF_BLEND</tt></dt>
+          <dd>Add blend options to the layer global settings.</dd>
+          <dt><tt>TEF_TYPE</tt></dt>
+          <dd>Add layer type control on the top of the pane.</dd>
+          <dt><tt>TEF_LAYERS</tt></dt>
+          <dd>Add layer list pane on the left side of the pane.</dd>
+          <dt><tt>TEF_ALL</tt></dt>
+          <dd>All of the above flags. This is the standard configuration for the texture editor.</dd>
+        </dl>
+      </dd>
+    </dl>
+    <dl>
+      <dt><tt><strong>unsubscribe</strong>( client )</tt></dt>
+      <dd>Free resources allocated by <tt>subscribe</tt>. This call invalidates the client ID.
+        You'll need to call <tt>subscribe</tt> again before calling the texture editor functions.</dd>
+      <dt><tt><br>
+        <strong>open</strong>( client, texture, title )</tt></dt>
+      <dd>Open the texture editor window.</dd>
+      <dt><tt><br>
+        <strong>setTexture</strong>( client, texture, title )</tt></dt>
+      <dd>Initialize the texture editor with the texture to be edited.</dd>
+      <dt><tt><br>
+        <strong>setPosition</strong>( client, x, y )</tt></dt>
+      <dd>Move the editor window. The coordinates are for the upper left corner of the window.</dd>
+      <dt><tt><br>
+        <strong>close</strong>( client )</tt></dt>
+      <dd>Close the texture editor window.</dd>
+      <dt><tt><br>
+        isopen = <strong>isOpen</strong>( client )</tt></dt>
+      <dd>True if the editor window is currently open.</dd>
+      <dt><tt><br>
+        result = <strong>refresh</strong>( client )</tt></dt>
+      <dd>Redraw the editor window.</dd>
+      <dt><tt><br>
+        tlayer = <strong>currentLayer</strong>( client )</tt></dt>
+      <dd>Returns the texture layer currently being edited.</dd>
+      <dt><tt><br>
+        ok = <strong>selectAdd</strong>( client, texture )<br>
+        ok = <strong>selectRem</strong>( client, texture )<br>
+        ok = <strong>selectClr</strong>( client )</tt></dt>
+      <dd>Add a texture to a multiselection, remove a texture from a multiselection, or clear the
+        selection list.</dd>
+      <dt><tt><br>
+        texture = <strong>selectFirst</strong>( client )<br>
+        next = <strong>selectNext</strong>( client, texture )</tt></dt>
+      <dd>Enumerate the selected textures.</dd>
+      <dt><tt><br>
+        <strong>setGradientAutoSize</strong>( client, gsizecb )</tt></dt>
+      <dd>Set a callback for autosize requests from gradient texture layers.</dd>
+    </dl>
+    <p><strong>Callbacks</strong></p>
+    <p>The callbacks passed to <tt>subscribe</tt> and <tt>setGradientAutoSize</tt> allow you
+    to react to user actions in the editor.</p>
+    <pre>   typedef void LW_TxtrRemoveFunc (LWTextureID, void *userData);
+   typedef int  LW_TxtrAutoSizeFunc (LWTextureID, void *userData,
+      double bbox[3][2]);
+   typedef int  LW_GradAutoSizeFunc (LWTxtrParamDesc *param,
+      int paramNb, void *userData);
+   typedef int  LW_TxtrEventFunc (LWTextureID, void *userData,
+      int eventCode);</pre>
+    <p>The remove callback is called when a texture is removed. The texture autosize callback
+    is called when the user has requested that the texture size be set automatically. The
+    bounding box array should be set to the default size of the texture. The gradient autosize
+    callback is called for automatic sizing of gradient layers. The size should be set in the
+    parameter description. See the Texture Functions global for a description of the
+    LWTxtrParamDesc structure.</p>
+    <p>The event callback is called when the texture settings are modified by the user. This
+    gives you a chance to update thumbnails or other aspects of your interface that depend on
+    the texture settings. The event code can be one of the following.</p>
+    <blockquote>
+      <dl>
+        <tt>
+        <dt>TXEV_ALTER</dt>
+        </tt>
+        <dd>A texture setting has changed.</dd>
+        <tt>
+        <dt>TXEV_TRACK</dt>
+        </tt>
+        <dd>A texture setting is being changed (a slider is being manipulated, for example).</dd>
+        <tt>
+        <dt>TXEV_DELETE</dt>
+        </tt>
+        <dd>A texture layer has been deleted.</dd>
+      </dl>
+    </blockquote>
+    <p><strong>Example</strong></p>
+    <p>The <a href="../../sample/Layout/ChannelFilter/txchan/">txchan</a> and <a href="../../sample/Layout/Volumetric/atmosphere/">atmosphere</a>
+    samples use Texture Editor functions.</td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<html>
+
+<head>
+<title>Classes: ImageSaver</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="imgload.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="ImageLoader"></a></td>
+    <td width="96" align="left"><a href="itemmot.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="ItemMotionHandler"></a></td>
+    <td width="96" align="left"><a href="../classes.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Classes"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>ImageSaver</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwimageio.h">lwimageio.h</a></small></p>
+    <p>Image savers write image files. Each of them typically supports a single format.</p>
+    <p>When a saver's activation function is called, it should try to open the output file
+    named in the <tt>local</tt> structure. If the open fails, the saver can set <tt>local-&gt;result</tt>
+    to <tt>IPSTAT_BADFILE</tt> and return immediately. Otherwise, the saver creates and
+    initializes an image protocol and calls <tt>sendData</tt> to tell LightWave it's ready to
+    receive image data. LightWave then calls the saver's callbacks to transfer the data. <tt>sendData</tt>
+    doesn't return until LightWave calls the saver's <tt>done</tt> callback.</p>
+    <p><strong>Activation Function</strong></p>
+    <pre>   XCALL_( int ) MyImageSaver( long version, GlobalFunc *global,
+      LWImageSaverLocal *local, void *serverData );</pre>
+    <p>The <tt>local</tt> argument to an image saver's activation function is an
+    LWImageSaverLocal.</p>
+    <pre>   typedef struct st_LWImageSaverLocal {
+      void        *<strong>priv_data</strong>;
+      int          <strong>result</strong>;
+      LWImageType  <strong>type</strong>;
+      const char  *<strong>filename</strong>;
+      LWMonitor   *<strong>monitor</strong>;
+      int         (*<strong>sendData</strong>) (void *, LWImageProtocolID, int flags);
+   } LWImageSaverLocal;</pre>
+    <dl>
+      <dt><strong><tt>priv_data</tt></strong></dt>
+      <dd>Pass this to the <tt>sendData</tt> function. It's an opaque pointer to data used
+        internally by LightWave.</dd>
+      <dt><br>
+        <strong><tt>result</tt></strong></dt>
+      <dd>Set this to indicate whether the image was saved successfully. The result codes are <dl>
+          <dt><br>
+            <tt>IPSTAT_OK</tt></dt>
+          <dd>The image was saved successfully.</dd>
+          <dt><tt>IPSTAT_BADFILE</tt></dt>
+          <dd>The saver couldn't open the file.</dd>
+          <dt><tt>IPSTAT_ABORT</tt></dt>
+          <dd>Use this to indicate that the user cancelled the save operation. This can happen if you
+            use the monitor to indicate the progress of a lengthy image saving operation.</dd>
+          <dt><tt>IPSTAT_FAILED</tt></dt>
+          <dd>An error occurred during saving.</dd>
+        </dl>
+      </dd>
+      <dt><br>
+        <strong><tt>type</tt></strong></dt>
+      <dd>The kind of pixel data to be saved. Pixel types are listed on the <a
+        href="../imageio.html#pixdata">Image I/O</a> page. The most common types will be <tt>LWIMTYP_RGBAFP</tt>
+        for color images and <tt>LWIMTYP_GREYFP</tt> for grayscale images. Use this to decide what
+        kind of pixel data you want to receive. If your file format supports 24-bit color and
+        8-bit grayscale, for example, you would set your image protocol type to <tt>LWIMTYP_RGB24</tt>
+        when the local <tt>type</tt> field contains any of the RGB types, and <tt>LWIMTYP_GREY8</tt>
+        when it contained either <tt>LWIMTYP_GREYFP</tt> or <tt>LWIMTYP_GREY8</tt>.</dd>
+      <dt><br>
+        <strong><tt>filename</tt></strong></dt>
+      <dd>The name of the image file to write.</dd>
+      <dt><br>
+        <strong><tt>monitor</tt></strong></dt>
+      <dd>A monitor for displaying the progress of the save to the user. You don't have to use
+        this, but you're encouraged to if your image saving takes an unusual amount of time. This
+        is the same structure returned by the <a href="globals/modmon.html">monitor</a> global.</dd>
+      <dt><br>
+        <tt>result = <strong>sendData</strong>( priv_data, protocol, flags )</tt></dt>
+      <dd>Call this when you're ready to begin receiving image data from LightWave. This will be
+        after you've filled in the fields of an appropriate LWImageProtocol structure, which is
+        described on the <a href="../imageio.html#pixdata">Image I/O</a> page. The only flag
+        currently defined is <tt>IMGF_REVERSE</tt>, which instructs LightWave to send scanlines in
+        bottom-to-top order. When you call <tt>sendData</tt>, LightWave calls the functions you
+        provided in your image protocol structure to actually save the image. <tt>sendData</tt>
+        won't return until the image is saved.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>The <a href="../../sample/iff/">iff</a> sample is a complete IFF ILBM loader and saver.</td>
+  </tr>
+</table>
+</body>
+</html>

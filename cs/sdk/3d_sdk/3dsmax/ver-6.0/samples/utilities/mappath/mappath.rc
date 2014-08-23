@@ -1,0 +1,265 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PANEL DIALOG  0, 0, 108, 75
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Close",IDC_CLOSEBUTTON,28,54,50,14
+    PUSHBUTTON      "Edit Resources...",IDC_CHECKDEP,7,7,94,14
+    CONTROL         "Include Material Library",IDC_USE_MATLIB,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,38,94,10
+    CONTROL         "Include Material Editor",IDC_INCLUDE_MEDIT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,25,94,10
+END
+
+IDD_MAINDIALOG DIALOG  0, 0, 324, 170
+STYLE DS_SETFONT | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | 
+    WS_THICKFRAME
+CAPTION "Bitmap / Photometric Path Editor"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LISTBOX         IDC_DEPLIST,5,14,231,134,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_PATHEDIT,44,152,175,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "Set &Path",IDC_SETPATH,243,152,74,14
+    PUSHBUTTON      "&Strip Selected Paths",IDC_STRIP_SELECTED,243,116,74,14
+    LTEXT           "",IDC_MAPNAME,5,4,312,8
+    PUSHBUTTON      "Close",IDCANCEL,243,15,74,14
+    LTEXT           "New Path:",IDC_PATHTITLE,5,155,35,8
+    PUSHBUTTON      "...",IDC_BROWSE,220,152,17,14
+    PUSHBUTTON      "&Copy Files...",IDC_COPYMAPS,243,57,74,14
+    PUSHBUTTON      "Info...",IDC_INFO,243,32,74,14
+    PUSHBUTTON      "&Find Files",IDC_ACTUALPATH,243,99,74,14
+    PUSHBUTTON      "Select &Missing Files",IDC_MISSING,243,82,74,14
+    PUSHBUTTON      "Strip &All Paths",IDC_STRIP_ALL,243,134,74,14
+END
+
+IDD_CHOOSE_DIR DIALOG  0, 0, 308, 175
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "Helv"
+BEGIN
+    LTEXT           "File &name:",1090,6,8,76,9,NOT WS_VISIBLE
+    EDITTEXT        1152,14,20,140,12,ES_AUTOHSCROLL | ES_OEMCONVERT | NOT 
+                    WS_VISIBLE
+    LISTBOX         1120,20,38,140,108,LBS_SORT | LBS_OWNERDRAWFIXED | 
+                    LBS_HASSTRINGS | LBS_DISABLENOSCROLL | NOT WS_VISIBLE | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Folders:",-1,6,8,96,9
+    LISTBOX         1121,6,36,235,108,LBS_SORT | LBS_OWNERDRAWFIXED | 
+                    LBS_HASSTRINGS | LBS_DISABLENOSCROLL | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "List files of &type:",1089,6,146,90,9,NOT WS_VISIBLE
+    COMBOBOX        1136,36,162,140,162,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | 
+                    CBS_SORT | NOT WS_VISIBLE | WS_BORDER | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "Dri&ves:",1091,6,146,92,9
+    COMBOBOX        1137,6,156,236,162,CBS_DROPDOWNLIST | CBS_OWNERDRAWFIXED | 
+                    CBS_AUTOHSCROLL | CBS_SORT | CBS_HASSTRINGS | WS_BORDER | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "OK",IDOK,251,61,50,14,NOT WS_VISIBLE | WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,251,36,50,14,WS_GROUP
+    PUSHBUTTON      "&Help",1038,164,156,32,7,WS_GROUP
+    CHECKBOX        "&Read only",1040,161,153,50,12,WS_GROUP
+    PUSHBUTTON      "Network...",1037,252,134,50,14,WS_GROUP
+    EDITTEXT        IDC_DESC_EDIT,49,162,162,14,ES_AUTOHSCROLL | NOT 
+                    WS_VISIBLE
+    DEFPUSHBUTTON   "OK",IDC_MY_OK,251,17,50,14
+    EDITTEXT        1088,6,19,235,12,ES_AUTOHSCROLL
+END
+
+IDD_INFODLG DIALOG  0, 0, 163, 127
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Resource Information"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Close",IDCANCEL,106,16,50,14
+    LISTBOX         IDC_NODELIST,7,16,93,104,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Referenced by Nodes:",IDC_STATIC,7,7,72,8
+    PUSHBUTTON      "&View Bitmap",IDC_VIEW,106,38,50,14
+END
+
+IDD_COPYDLG DIALOG  0, 0, 243, 130
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "Copy Progress"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Cancel",IDCANCEL,186,110,50,14
+    LISTBOX         IDC_COPYLOG,7,33,170,91,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Progress1",IDC_COPYPROGRESS,"msctls_progress32",
+                    WS_BORDER,7,17,170,14
+    LTEXT           "Preparing to copy...",IDC_CURRENTFILE,7,7,170,8
+END
+
+IDD_COPYWARNING DIALOG  0, 0, 262, 69
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Warning."
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "&No",IDCANCEL,139,48,50,14
+    PUSHBUTTON      "&Yes",IDC_YES,7,48,50,14
+    PUSHBUTTON      "Yes to &All",IDC_YESTOALL,73,48,50,14
+    PUSHBUTTON      "N&o to All",IDC_NOTOALL,205,48,50,14
+    CTEXT           "The file you are about to copy already exists on the target location.\nDo you want to overwrite the file?",
+                    IDC_STATIC,7,6,248,20
+    EDITTEXT        IDC_FILENAME,7,29,248,14,ES_AUTOHSCROLL | ES_READONLY
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_PANEL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 68
+    END
+
+    IDD_MAINDIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 317
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 163
+    END
+
+    IDD_INFODLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 156
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 120
+    END
+
+    IDD_COPYDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 236
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 123
+    END
+
+    IDD_COPYWARNING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 255
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 62
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_STRIPWARNING        "You are about to strip the path of the selected bitmaps/photometric files. Are you sure you want to continue?"
+    IDS_STRIPTITLE          "Warning"
+    IDS_COPYTITLE           "File Copy"
+    IDS_COPYERROR           "An error occurred while copying the file."
+    IDS_COPYCOUNT           "%d files were successfully copied."
+    IDS_CLOSE               "Close"
+    IDS_COPYFAIL            "Failed: "
+    IDS_COPYOK              "Copied: "
+    IDS_COPYABORTED         "Aborted. %d files were successfully copied."
+    IDS_FOUNDLOG            "Located %d maps. %d missing maps."
+    IDS_MESSAGE             "Message"
+    IDS_PANELTITLE          "Path Editor"
+    IDS_OVERWRITEPROMPT     "Overwrite?"
+    IDS_ERROR               "Error"
+    IDS_NODIR               "Directory does not exist."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_COPYSKIP            "Skipped: "
+    IDS_MAPPATH_EDITOR      "Bitmap/Photometric Paths"
+    IDS_STRIP_ALL_WARNING   "You are about to strip the path of all the bitmaps/photometric files. Are you sure you want to continue?"
+    IDS_NEWPATH_TITLE       "Select New Path"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

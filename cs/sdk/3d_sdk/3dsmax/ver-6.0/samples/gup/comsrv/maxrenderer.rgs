@@ -1,0 +1,25 @@
+HKCR
+{
+	Comsrv.MaxRenderer.1 = s 'MaxRenderer Class'
+	{
+		CLSID = s '{4AD72E6E-5A4B-11D2-91CB-0060081C257E}'
+	}
+	Comsrv.MaxRenderer = s 'MaxRenderer Class'
+	{
+		CLSID = s '{4AD72E6E-5A4B-11D2-91CB-0060081C257E}'
+		CurVer = s 'Comsrv.MaxRenderer.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {4AD72E6E-5A4B-11D2-91CB-0060081C257E} = s 'MaxRenderer Class'
+		{
+			ProgID = s 'Comsrv.MaxRenderer.1'
+			VersionIndependentProgID = s 'Comsrv.MaxRenderer'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '3dsmax.exe'
+			InprocHandler32 = s 'ole32.dll'
+			val AppID = s '{4AD72E62-5A4B-11D2-91CB-0060081C257E}'
+			'TypeLib' = s '{4AD72E61-5A4B-11D2-91CB-0060081C257E}'
+		}
+	}
+}

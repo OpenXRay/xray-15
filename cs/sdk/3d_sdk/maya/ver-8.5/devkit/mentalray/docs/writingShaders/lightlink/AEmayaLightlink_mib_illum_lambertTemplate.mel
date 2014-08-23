@@ -1,0 +1,83 @@
+// Copyright (C) 1997-2004 Alias Systems Corp.
+// 
+// The information in this file is provided for the exclusive use of the
+// licensees of Alias.  Such users have the right to use, modify,
+// and incorporate this code into other products for purposes authorized
+// by the Alias license agreement, without fee.
+// 
+// ALIAS DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE,
+// INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO
+// EVENT SHALL ALIAS BE LIABLE FOR ANY SPECIAL, INDIRECT OR
+// CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE,
+// DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+// TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+// PERFORMANCE OF THIS SOFTWARE.
+//
+// AE Template file for
+// mayaLightLink_mib_illum_lambert
+//
+
+// This procedure is called when miLightLink value is changed
+//
+global proc AEmentalrayShaderExUpdateLightLink( string $nodeName )
+{
+	string $miLightLink = ($nodeName + ".miLightLink");
+	
+	// miLightLink is on.
+	// automatic light linking is enabled.
+	// set light mode to 1
+	// disable light link
+	if( `getAttr $miLightLink` == 1 )
+	{
+		setAttr ($nodeName + ".mode") 1;
+		editorTemplate -dimControl $nodeName "lightLink" true;
+		
+		// if lightLink has a connection, 
+		// disconnect it
+		string $lightLinker[] = `listConnections -p 1 ($nodeName + ".lightLink")`;
+		if( size($lightLinker)>0 )
+			disconnectAttr $lightLinker ($nodeName + ".lightLink");
+	}
+	else
+	{
+		// disable automatic light linking
+		// and use maya light linking relatioship in the shader
+		// mode should be set to 2
+		// 
+		setAttr ($nodeName + ".mode") 2;
+		editorTemplate -dimControl $nodeName "lightLink" false;
+	}
+}
+global proc AEmayaLightlink_mib_illum_lambertTemplate ( string $nodeName ) 
+{ 
+
+	editorTemplate -beginScrollLayout; 
+
+	// mib_light_point attributes
+	editorTemplate -beginLayout "mib_illum_lambert Attributes" -collapse 0 ;
+		editorTemplate -addControl "ambience";
+		editorTemplate -addControl "ambient";
+		editorTemplate -addControl "diffuse";
+	editorTemplate -endLayout;
+	
+	// maya light attributes
+	editorTemplate -beginLayout "Maya Light Link Attributes" -collapse 0 ;
+		editorTemplate -beginNoOptimize;
+		editorTemplate -label "Use Automatic Light Link" -addControl "miLightLink" AEmentalrayShaderExUpdateLightLink;
+		editorTemplate -label "Light Linker" -addControl "lightLink";
+		editorTemplate -endNoOptimize;
+	editorTemplate -endLayout;
+	
+	editorTemplate -endScrollLayout;
+	
+	// mode and lights are suppressed
+	// so that users do not explicitly connect lights list
+	//
+	editorTemplate -suppress "mode";
+	editorTemplate -suppress "lights";
+	
+	editorTemplate -suppress "caching"; 
+	editorTemplate -suppress "nodeState"; 
+}  
+
+

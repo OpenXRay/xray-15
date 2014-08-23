@@ -1,0 +1,17 @@
+#!/bin/sh
+# automatically generated Thu Jul 29 12:13:48 MST 2004
+rm -f shader.h geoshader.h mi_version.h
+cp shader.34.h shader.h
+cp geoshader.34.h geoshader.h
+cp mi_version.34.h mi_version.h
+cp raylib.34.rc raylib.rc
+cl -c -DDEBUG /Z7  /MDd /nologo /W3 -DWIN_NT -DEVIL_ENDIAN -D_WIN32_WINNT=0x0400 -DNV_CG -DHYPERTHREAD -DSSE_INTRINSICS -DX86 /FI"../../modules/include/mi_ntlib.h" -I. -I../../modules/include -I../../modules/include/ntfakeunix dgsutil.cpp
+cl -c -DDEBUG /Z7  /MDd /nologo /W3 -DWIN_NT -DEVIL_ENDIAN -D_WIN32_WINNT=0x0400 -DNV_CG -DHYPERTHREAD -DSSE_INTRINSICS -DX86 /FI"../../modules/include/mi_ntlib.h" -I. -I../../modules/include -I../../modules/include/ntfakeunix dgsshade.cpp
+cl -c -DDEBUG /Z7  /MDd /nologo /W3 -DWIN_NT -DEVIL_ENDIAN -D_WIN32_WINNT=0x0400 -DNV_CG -DHYPERTHREAD -DSSE_INTRINSICS -DX86 /FI"../../modules/include/mi_ntlib.h" -I. -I../../modules/include -I../../modules/include/ntfakeunix dielecshade.cpp
+cl -c -DDEBUG /Z7  /MDd /nologo /W3 -DWIN_NT -DEVIL_ENDIAN -D_WIN32_WINNT=0x0400 -DNV_CG -DHYPERTHREAD -DSSE_INTRINSICS -DX86 /FI"../../modules/include/mi_ntlib.h" -I. -I../../modules/include -I../../modules/include/ntfakeunix partishade.cpp
+cl -c -DDEBUG /Z7  /MDd /nologo /W3 -DWIN_NT -DEVIL_ENDIAN -D_WIN32_WINNT=0x0400 -DNV_CG -DHYPERTHREAD -DSSE_INTRINSICS -DX86 /FI"../../modules/include/mi_ntlib.h" -I. -I../../modules/include -I../../modules/include/ntfakeunix pathshade.cpp
+cl -c -DDEBUG /Z7  /MDd /nologo /W3 -DWIN_NT -DEVIL_ENDIAN -D_WIN32_WINNT=0x0400 -DNV_CG -DHYPERTHREAD -DSSE_INTRINSICS -DX86 /FI"../../modules/include/mi_ntlib.h" -I. -I../../modules/include -I../../modules/include/ntfakeunix physlight.cpp
+cl -c -DDEBUG /Z7  /MDd /nologo /W3 -DWIN_NT -DEVIL_ENDIAN -D_WIN32_WINNT=0x0400 -DNV_CG -DHYPERTHREAD -DSSE_INTRINSICS -DX86 /FI"../../modules/include/mi_ntlib.h" -I. -I../../modules/include -I../../modules/include/ntfakeunix physlens.cpp
+rc -I../../modules/include -DMI_VERSION=`grep MI_VERSION ../../modules/include/mi_version.h | sed -e 's/^.* "//' -e 's/\./,/g' -e 's/".*$//'` \
+	-DNAME='"physics.dll"' /Foraylib.res ../../modules/include/raylib.rc
+link /delayload:opengl32.dll /nologo /nodefaultlib:LIBC.LIB /MAP:mapfile /OPT:NOREF /INCREMENTAL:NO /MACHINE:X86 /LIBPATH:/h/proj/ray/34/nt-x86-vc7/g/lib /STACK:0x200000,0x1000 /DEBUG /pdb:none /FIXED:NO  ws2_32.lib user32.lib mpr.lib largeint.lib opengl32.lib gdi32.lib delayimp.lib /DLL /OUT:physics.dll dgsutil.obj dgsshade.obj dielecshade.obj partishade.obj pathshade.obj physlight.obj physlens.obj shader.lib raylib.res

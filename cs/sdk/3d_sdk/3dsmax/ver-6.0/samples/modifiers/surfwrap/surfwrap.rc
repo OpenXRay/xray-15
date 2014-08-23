@@ -1,0 +1,165 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_AP_SURFWRAP DIALOG DISCARDABLE  0, 0, 108, 160
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_AP_KIDEFAULT,"CustEdit",WS_TABSTOP,31,71,36,10
+    CONTROL         "",IDC_AP_KIDEFAULTSPIN,"SpinnerControl",0x0,69,71,7,10
+    CONTROL         "",IDC_AP_STANDOFF,"CustEdit",WS_TABSTOP,31,100,36,10
+    CONTROL         "",IDC_AP_STANDOFFSPIN,"SpinnerControl",0x0,69,100,7,10
+    CONTROL         "",IDC_AP_ICONSIZE,"CustEdit",WS_TABSTOP,57,143,32,10
+    CONTROL         "",IDC_AP_ICONSIZESPIN,"SpinnerControl",0x0,91,143,6,10
+    CONTROL         "Pick Object",IDC_AP_WRAPBUTTON,"CustButton",WS_GROUP | 
+                    WS_TABSTOP,8,15,90,12
+    LTEXT           "Object:<None>",IDC_AP_WRAPPICKOBJ,8,30,91,8
+    GROUPBOX        "Move Vertices:",IDC_STATIC,0,43,107,89
+    RTEXT           "Default Projection Distance:",IDC_STATIC,9,58,89,8
+    CONTROL         "Use Selected Vertices",IDC_AP_USESELVERTS,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,10,116,86,10
+    GROUPBOX        "Wrap To Object:",IDC_STATIC,0,0,107,42
+    RTEXT           "Icon Size:",IDC_STATIC,19,143,36,8
+    GROUPBOX        "Display",IDC_STATIC,0,132,107,26
+    RTEXT           "Standoff Distance:",IDC_STATIC,23,87,60,8
+END
+
+IDD_SW_DESC DIALOG DISCARDABLE  0, 0, 108, 24
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "- Any Deformable Object",-1,15,8,78,8
+END
+
+IDD_AP_SURFWRAPM DIALOG DISCARDABLE  0, 0, 108, 134
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_AP_KIDEFAULT,"CustEdit",WS_TABSTOP,31,71,36,10
+    CONTROL         "",IDC_AP_KIDEFAULTSPIN,"SpinnerControl",0x0,69,71,7,10
+    CONTROL         "",IDC_AP_STANDOFF,"CustEdit",WS_TABSTOP,31,100,36,10
+    CONTROL         "",IDC_AP_STANDOFFSPIN,"SpinnerControl",0x0,69,100,7,10
+    CONTROL         "Pick Object",IDC_AP_WRAPBUTTON,"CustButton",WS_GROUP | 
+                    WS_TABSTOP,8,15,90,12
+    LTEXT           "Object:<None>",IDC_AP_WRAPPICKOBJ,8,30,91,8
+    GROUPBOX        "Move Vertices:",-1,0,43,107,89
+    RTEXT           "Default Projection Distance:",-1,9,58,89,8
+    CONTROL         "Use Selected Vertices",IDC_AP_USESELVERTS,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,10,116,86,10
+    GROUPBOX        "Wrap To Object:",-1,0,0,107,42
+    RTEXT           "Standoff Distance:",-1,23,87,60,8
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_CROSS_HAIR          CURSOR  DISCARDABLE     "CROSSHR1.CUR"
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_AP_PARAMETERS       "Conform Parameters"
+    IDS_AP_SWRAPOBJ         "Conform Object"
+    IDS_AP_SWRAP            "Conform"
+    IDS_AP_SWRAPMOD         "Conform Mod"
+    IDS_AP_SWRAPBINDING     "Conform Binding"
+    IDS_AP_CREATE           "Create"
+    IDS_AP_OBJECTSTR        "Object:"
+    IDS_AP_NONE             "<None>"
+    IDS_AP_TOP              "Supports Objects of Type"
+    IDS_AP_KIDEFAULT        "Projection Distance"
+    IDS_AP_SELVERTS         "Selected Verts"
+    IDS_AP_ICONSIZE         "Icon Size"
+    IDS_AP_DEF2             "Default2"
+    IDS_AP_STANDOFF         "Standoff Distance"
+    IDS_AP_MSWRAPMOD        "SWrapMod"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_AP_DEFDEFORMATIONS  "MAX STANDARD"
+    IDS_AP_GIZMO            "Gizmo"
+    IDS_AP_SURFWRAPLIB      "Surface wrapping modifier (Discreet)"
+    IDS_AP_PICKMODE         "Click to select object"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

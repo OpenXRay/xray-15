@@ -1,0 +1,195 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "epsres.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_OUTPUT_DIALOG DIALOG DISCARDABLE  0, 0, 204, 196
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "EPS File Output Options"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,136,8,60,14
+    PUSHBUTTON      "Cancel",IDCANCEL,136,25,60,14
+    GROUPBOX        "Units",IDC_UNITS,8,4,80,36
+    CONTROL         "Inches",IDC_INCHES,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,14,14,70,10
+    CONTROL         "Millimeters",IDC_MILLIMETERS,"Button",
+                    BS_AUTORADIOBUTTON,14,26,70,10
+    GROUPBOX        "Image orientation",IDC_ORIENTATION,8,44,80,36
+    CONTROL         "Portrait",IDC_PORTRAIT,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,14,54,70,10
+    CONTROL         "Landscape",IDC_LANDSCAPE,"Button",BS_AUTORADIOBUTTON,14,
+                    66,70,10
+    GROUPBOX        "Data format",IDC_DATA_FORMAT,8,84,80,36
+    CONTROL         "Binary",IDC_BINARY,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,14,94,70,10
+    CONTROL         "ASCII",IDC_ASCII,"Button",BS_AUTORADIOBUTTON,14,106,70,
+                    10
+    GROUPBOX        "File type",IDC_FILE_TYPE,8,124,80,36
+    CONTROL         "Color",IDC_COLOR,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
+                    14,134,70,10
+    CONTROL         "Gray",IDC_GRAY,"Button",BS_AUTORADIOBUTTON,14,146,70,10
+    GROUPBOX        "Page size",IDC_PAGE_SIZE,96,96,100,44
+    GROUPBOX        "Resolution",IDC_RESOLUTION,96,144,100,44
+    GROUPBOX        "Preview",IDC_PREVIEW,8,164,80,24
+    RTEXT           "Width:",IDC_WIDTH,102,108,36,8
+    RTEXT           "Height:",IDC_HEIGHT,102,124,36,8
+    RTEXT           "Width:",IDC_RES_WIDTH,102,156,36,8
+    RTEXT           "Height:",IDC_RES_HEIGHT,102,172,36,8
+    CONTROL         "User1",IDC_WIDTH_SPINNER,"SpinnerControl",0x0,180,108,7,
+                    10
+    CONTROL         "User2",IDC_HEIGHT_SPINNER,"SpinnerControl",0x0,180,124,
+                    7,10
+    CONTROL         "User3",IDC_RES_WIDTH_SPINNER,"SpinnerControl",0x0,180,
+                    156,7,10
+    CONTROL         "User4",IDC_RES_HEIGHT_SPINNER,"SpinnerControl",0x0,180,
+                    172,7,10
+    CONTROL         "User5",IDC_WIDTH_EDIT,"CustEdit",WS_TABSTOP,140,108,37,
+                    10
+    CONTROL         "",IDC_HEIGHT_EDIT,"CustEdit",WS_TABSTOP,140,124,37,10
+    CONTROL         "User7",IDC_RES_WIDTH_EDIT,"CustEdit",WS_TABSTOP,140,156,
+                    37,10
+    CONTROL         "User8",IDC_RES_HEIGHT_EDIT,"CustEdit",WS_TABSTOP,140,
+                    172,37,10
+    CONTROL         "Include Preview",IDC_INCLUDE_PREVIEW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,174,70,10
+END
+
+IDD_ABOUT_DIALOG DIALOG DISCARDABLE  0, 0, 125, 70
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "About EPS Plugin"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,37,51,50,14
+    CTEXT           "EPS Image Plugin Copyright 1995, Autodesk Inc.",
+                    IDC_ABOUT_TEXT,5,6,116,28
+END
+
+IDD_INFO_DIALOG DIALOG DISCARDABLE  0, 0, 274, 101
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION " Image Information "
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,106,82,60,14
+    GROUPBOX        " Image ",IDC_STATIC,8,4,258,72
+    RTEXT           "Image:",IDC_STATIC,14,14,60,10
+    LTEXT           "Filename",IDC_FILENAME,80,14,160,10
+    RTEXT           "Creator:",IDC_STATIC,14,26,60,10
+    LTEXT           "Unknown",IDC_CREATOR,80,26,160,10
+    LTEXT           "Unknown",IDC_CREATION_DATE,80,38,160,10
+    RTEXT           "Creation Date:",IDC_STATIC,14,38,60,10
+    RTEXT           "Title:",IDC_STATIC,14,50,60,10
+    LTEXT           "Unknown",IDC_EPS_TITLE,80,50,160,8
+    RTEXT           "Includes preview:",IDC_STATIC,14,62,60,8
+    LTEXT           "No",IDC_PREVIEW,80,62,160,8
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "epsres.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP_LANDSCAPE    BITMAP  DISCARDABLE     "landscap.BMP"
+IDB_BITMAP_PORTRAIT     BITMAP  DISCARDABLE     "portrait.BMP"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON_LANDSCAPE      ICON    DISCARDABLE     "landscap.ICO"
+IDI_ICON_PORTRAIT       ICON    DISCARDABLE     "PORTRAIT.ICO"
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_AUTHOR_NAME         "Keith Trummel, Autodesk, Inc."
+    IDS_COPYRIGHT           "Copyright 1995, 1996 Autodesk, Inc."
+    IDS_SHORT_DESC          "EPS"
+    IDS_LONG_DESC           "Encapsulated PostScript File"
+    IDS_LIB_DESCRIPTION     "EPS file I/O (Discreet)"
+    IDS_YES                 "Yes"
+    IDS_NO                  "No"
+    IDS_CLASS_NAME          "EPS Image"
+    IDS_UNKNOWN             "Unknown"
+    IDS_CATEGORY            "Bitmap I/O"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

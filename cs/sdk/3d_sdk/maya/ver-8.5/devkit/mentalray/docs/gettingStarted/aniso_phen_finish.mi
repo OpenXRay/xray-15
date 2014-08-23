@@ -1,0 +1,71 @@
+declare phenomenon
+	color 
+
+	"anisotropic_mtl" (
+		color "diffuse",
+		color "ambient",
+		scalar "shiny_u",
+		scalar "shiny_v",
+		scalar "spacing",
+		scalar "strength",
+		scalar "power",
+		integer "iteration",
+		array light "lights"
+		)
+
+	shader "uderiv"
+		"mib_texture_vector" (
+			"select" -5,
+			"selspace" 0,
+			"vertex" 0,
+			"project" 0
+			)
+
+	shader "coord"
+		"mib_texture_vector" (
+			"select" -1,
+			"selspace" 2,
+			"vertex" 0,
+			"project" 0
+			)
+
+	shader "tex"
+		"mib_texture_turbulence" (
+			"coord" = "coord",
+			"spacing" = interface "spacing",
+			"strength" = interface "strength",
+			"power" = interface "power",
+			"iteration" = interface "iteration",
+			"polar_dim" 1
+			)
+
+	shader "rotate"
+		"mib_texture_rotate" (
+			"input" = "uderiv",
+			"angle" = "tex",
+			"min" 0.,
+			"max" 1.
+			)
+
+	shader "mtl"
+		"mib_illum_ward" (
+			"ambience" 0.5 0.5 0.5 1.,
+			"ambient" = interface "ambient",
+			"diffuse" = interface "diffuse",
+			"glossy" 1. 1. 1. 1.,
+			"shiny_u" = interface "shiny_u",
+			"shiny_v" = interface "shiny_v",
+			"u" = "rotate.u",
+			"v" = "rotate.v",
+			"mode" 0,
+			"lights" = interface "lights"
+			)
+
+	root
+		= "mtl"
+	version 1
+	apply material
+	derivative 1
+	#: nodeid 9876
+end declare
+

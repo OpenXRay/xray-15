@@ -1,0 +1,93 @@
+<html>
+
+<head>
+<title>Globals: Fog Info</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="filetype.html"><img width="96" height="20"
+    border="0" src="../images/navlt.gif" alt="File Type Pattern"></a></td>
+    <td width="96" align="left"><a href="fontlist.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Font List"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Fog Info</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwrender.h">lwrender.h</a></small></p>
+    <p>The fog info global returns information about the fog settings for the scene. The
+    parameters are read-only, but you can set them using <a
+    href="../commands/layout.html#effects">commands</a>.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWFogInfo *foginfo;
+   foginfo = global( LWFOGINFO_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWFogInfo.</p>
+    <pre>   typedef struct st_LWFogInfo {
+      int     <strong>type</strong>;
+      int     <strong>flags</strong>;
+      double (*<strong>minDist</strong>) (LWTime);
+      double (*<strong>maxDist</strong>) (LWTime);
+      double (*<strong>minAmt</strong>)  (LWTime);
+      double (*<strong>maxAmt</strong>)  (LWTime);
+      void   (*<strong>color</strong>)   (LWTime, double col[3]);
+   } LWFogInfo;</pre>
+    <dl>
+      <dt><strong><tt>type</tt></strong></dt>
+      <dd>The fog type. Generally this identifies the falloff function used to interpolate the fog
+        level at distances between <tt>minDist</tt> and <tt>maxDist</tt>. Possible types are <pre>LWFOG_NONE
+LWFOG_LINEAR
+LWFOG_NONLINEAR1
+LWFOG_NONLINEAR2</pre>
+      </dd>
+      <dt><strong><tt>flags</tt></strong> </dt>
+      <dd>Fog-related flags. Currently the only flag defined for this field is <tt>LWFOGF_BACKGROUND</tt>,
+        which indicates that fog will affect the backdrop. </dd>
+      <dt><tt><br>
+        amount = <strong>minDist</strong>( time )</tt> </dt>
+      <dd>Returns the distance from the viewer (typically the camera) at which the fog effect is
+        at a minimum. </dd>
+      <dt><tt><br>
+        amount = <strong>maxDist</strong>( time )</tt> </dt>
+      <dd>Returns the distance at which the fog effect reaches its maximum. </dd>
+      <dt><tt><br>
+        amount = <strong>minAmt</strong>( time )</tt> </dt>
+      <dd>Returns the minimum amount of fog (the amount at the minimum distance). Fog amounts
+        range from 0.0 to 1.0. </dd>
+      <dt><tt><br>
+        amount = <strong>maxAmt</strong>( time )</tt> </dt>
+      <dd>Returns the maximum amount of fog. </dd>
+      <dt><tt><br>
+        <strong>color</strong>( time, rgb )</tt> </dt>
+      <dd>The color of the fog.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>This code fragment uses Fog Info to determine whether a point at distance <tt>d</tt> is
+    in fog at time <tt>t</tt>.</p>
+    <pre>   #include &lt;lwserver.h&gt;
+   #include &lt;lwrender.h&gt;
+
+   LWFogInfo *foginfo;
+
+   foginfo = global( LWFOGINFO_GLOBAL, GFUSE_TRANSIENT );
+   if ( foginfo ) {
+      if ( foginfo-&gt;type != LWFOG_NONE ) {
+         if ( d &gt;= foginfo-&gt;minDist( t )) {
+            ...d is in fog
+</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

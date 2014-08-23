@@ -1,0 +1,120 @@
+<html>
+
+<head>
+<title>Classes: FileRequester</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="environ.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="EnvironmentHandler"></a></td>
+    <td width="96" align="left"><a href="framebuf.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="FrameBufferHandler"></a></td>
+    <td width="96" align="left"><a href="../classes.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Classes"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>FileRequester</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwdialog.h">lwdialog.h</a></small></p>
+    <p>File request plug-ins prompt the user for a file selection. At a minimum, they should
+    provide the same functionality as the operating system's default file dialog, allowing
+    users to browse their file systems to select or enter a file name.</p>
+    <p>See the <a href="../globals/filereq2.html">File Request 2</a> global for a discussion
+    of file requests from the host's point of view.</p>
+    <p><strong>Handler Activation Function</strong></p>
+    <pre>   XCALL_( int ) MyFileReq( long version, GlobalFunc *global,
+      LWFileReqLocal *local, void *serverData );</pre>
+    <p>The <tt>local</tt> argument to a file request plug-in's activation function is an
+    LWFileReqLocal.</p>
+    <pre>   typedef struct st_LWFileReqLocal {
+      int         <strong>reqType</strong>;
+      int         <strong>result</strong>;
+      const char *<strong>title</strong>;
+      const char *<strong>fileType</strong>;
+      char       *<strong>path</strong>;
+      char       *<strong>baseName</strong>;
+      char       *<strong>fullName</strong>;
+      int         <strong>bufLen</strong>;
+      int        (*<strong>pickName</strong>) (void);
+   } LWFileReqLocal;</pre>
+    <dl>
+      <dt><strong><tt>reqType</tt></strong></dt>
+      <dd>Indicates the type of file request. Possible values are <dl>
+          <tt>
+          <dt><br>
+            FREQ_LOAD</dt>
+          <dt>FREQ_SAVE</dt>
+          <dt>FREQ_DIRECTORY</dt>
+          </tt>
+          <dd>A request for a path.</dd>
+          <tt>
+          <dt>FREQ_MULTILOAD</dt>
+          </tt>
+          <dd>A request for one or more files to load.</dd>
+        </dl>
+      </dd>
+      <dt><strong><tt><br>
+        result</tt></strong></dt>
+      <dd>The result of the request. Set this to 1 if the user selects a file, 0 if the user
+        cancels the request, and a negative number to indicate an error.</dd>
+      <dt><tt><br>
+        <strong>title</strong></tt></dt>
+      <dd>The title string. This is generally displayed near the top of the file dialog and tells
+        the user what kind of file is being requested.</dd>
+      <dt><tt><br>
+        <strong>fileType</strong></tt></dt>
+      <dd>A string identifying a file type filter. This should be used to filter the names
+        displayed in the dialog. The string will generally contain one of the file type names used
+        in LightWave&reg;'s configuration files, rather than a literal, platform-specific list of type
+        IDs or wildcards. See the <a href="../globals/filetype.html">File Type Pattern</a> global
+        for more information about what the file type string might contain. You can use the global
+        to translate this into a literal filter string.</dd>
+      <dt><tt><br>
+        <strong>path</strong></tt></dt>
+      <dd>The initial path on entry. This is where browsing of the file system should begin. The
+        initial path can be either absolute (fully qualified) or relative to the operating
+        system's current default path, also sometimes called the current working directory. If the
+        user completes the file request, the plug-in should write the fully qualified path of the
+        selected file in this field. <p>If the operation of the file request plug-in changes the
+        current working directory, this should be restored before the file request is completed.</p>
+      </dd>
+      <dt><strong><tt>baseName</tt></strong></dt>
+      <dd>The initial file name, not including the path. This may be empty, or it may contain a
+        default name. If the user selects a file, the initial name should be replaced with the
+        name (not including the path) of the selected file.</dd>
+      <dt><tt><br>
+        <strong>fullName</strong></tt></dt>
+      <dd>The file request returns the selected file name, including the path, in this string. The
+        initial contents are ignored.</dd>
+      <dt><tt><br>
+        <strong>bufLen</strong></tt></dt>
+      <dd>The size in bytes of the <tt>baseName</tt>, <tt>path</tt> and <tt>fullName</tt> strings.
+        When writing to these strings, the file request plug-in should not write more than <tt>bufLen</tt>
+        characters, including the NULL terminating byte.</dd>
+      <dt><tt><br>
+        error = <strong>pickName</strong>()</tt></dt>
+      <dd>A callback function provided by the host for <tt>FREQ_MULTILOAD</tt> requests. This
+        function should be called for each selected file when the request type is <tt>FREQ_MULTILOAD</tt>,
+        even if only one file is selected. For each call, the <tt>baseName</tt>, <tt>path</tt> and
+        <tt>fullName</tt> fields should be filled with the data for the next selected file in the
+        list. The function returns 0 to continue and any non-zero value to stop processing the
+        files in a multiple file selection.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>The <a href="../../sample/Utility/wfilereq/">wfilereq</a> sample is a FileRequester that uses
+    the Windows common file dialog.</td>
+  </tr>
+</table>
+</body>
+</html>

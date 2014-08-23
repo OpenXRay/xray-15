@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="7.10"
+	Name="OpenEXR"
+	ProjectGUID="{2F72A8B3-E1FD-4834-AD56-0B16F850C2FB}">
+	<Platforms>
+		<Platform
+			Name="Win32"/>
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="Debug"
+			IntermediateDirectory="Debug"
+			ConfigurationType="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/Gm /GX /ZI /I &quot;.&quot; /D &quot;WIN32&quot; /D &quot;_DEBUG&quot; /YX /GZ /c"
+				Optimization="0"
+				AdditionalIncludeDirectories="c:\dev\mainlinebuild\Debug\runTime\include;&quot;C:\Documents and Settings\gbradley\Desktop\OpenEXR-1.2.2-win32\Include\IlmImf&quot;;&quot;C:\Documents and Settings\gbradley\Desktop\OpenEXR-1.2.2-win32\Include\Imath&quot;;&quot;C:\Documents and Settings\gbradley\Desktop\OpenEXR-1.2.2-win32\Include\Iex&quot;;&quot;C:\Documents and Settings\gbradley\Desktop\OpenEXR-1.2.2-win32\Include&quot;"
+				PreprocessorDefinitions="WIN32,_DEBUG,_WINDOWS,_AFXDLL,_MBCS,NT_PLUGIN,REQUIRE_IOSTREAM,D3D9_SUPPORTED,D3D_DEBUG_INFO"
+				RuntimeLibrary="3"
+				PrecompiledHeaderFile="Debug/OpenEXR.pch"
+				WarningLevel="3"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/subsystem:windows /dll /incremental:yes /debug /machine:I386 /export:initializePlugin /export:uninitializePlugin"
+				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaUI.lib OpenMayaFX.lib OpenMayaRender.lib Image.lib OpenMayaRender.lib IlmImf.lib Iex.lib Imath.lib zlib.lib"
+				OutputFile="Debug\OpenEXR.mll"
+				AdditionalLibraryDirectories="c:\dev\mainlinebuild\Debug\runTime\lib;&quot;C:\Documents and Settings\gbradley\Desktop\OpenEXR-1.2.2-win32\lib&quot;"
+				ProgramDatabaseFile="Debug/OpenEXR.pdb"
+				ImportLibrary="Debug/OpenEXR.lib"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="Release"
+			IntermediateDirectory="Release"
+			ConfigurationType="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/GX /I &quot;.&quot; /YX /c"
+				Optimization="2"
+				AdditionalIncludeDirectories="c:\dev\mainlinebuild\Debug\runTime\include;&quot;C:\Documents and Settings\gbradley\Desktop\OpenEXR-1.2.2-win32\Include\IlmImf&quot;;&quot;C:\Documents and Settings\gbradley\Desktop\OpenEXR-1.2.2-win32\Include\Imath&quot;;&quot;C:\Documents and Settings\gbradley\Desktop\OpenEXR-1.2.2-win32\Include\Iex&quot;;&quot;C:\Documents and Settings\gbradley\Desktop\OpenEXR-1.2.2-win32\Include&quot;"
+				PreprocessorDefinitions="WIN32,NDEBUG,_WINDOWS,_AFXDLL,_MBCS,NT_PLUGIN,REQUIRE_IOSTREAM"
+				RuntimeLibrary="2"
+				PrecompiledHeaderFile="Release/OpenEXR.pch"
+				WarningLevel="3"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/subsystem:windows /incremental:no /machine:I386 /export:initializePlugin /export:uninitializePlugin"
+				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaUI.lib OpenMayaFX.lib OpenMayaRender.lib Image.lib OpenMayaRender.lib IlmImf.lib Iex.lib Imath.lib zlib.lib"
+				OutputFile="Release\OpenEXR.mll"
+				AdditionalLibraryDirectories="c:\dev\mainlinebuild\Debug\runTime\lib;&quot;C:\Documents and Settings\gbradley\Desktop\OpenEXR-1.2.2-win32\lib&quot;"
+				ProgramDatabaseFile="Release/OpenEXR.pdb"
+				ImportLibrary="Release/OpenEXR.lib"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Source Files"
+			Filter="cpp">
+			<File
+				RelativePath=".\OpenEXR.cpp">
+			</File>
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

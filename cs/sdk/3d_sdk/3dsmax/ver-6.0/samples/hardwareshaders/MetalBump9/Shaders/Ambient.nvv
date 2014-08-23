@@ -1,0 +1,61 @@
+//_____________________________________________________________________________
+//
+//	File:	Ambient.nvv
+//	
+//_____________________________________________________________________________
+
+
+//_____________________________________________________________________________
+//
+//	Include files	
+//
+//_____________________________________________________________________________
+
+#include "ShaderConst.h"
+
+//_____________________________________________________________________________
+//
+//	Defines	
+//
+//_____________________________________________________________________________
+
+vs_1_1
+
+dcl_position	v0
+dcl_texcoord1	v3
+dcl_texcoord2	v4
+dcl_texcoord3	v5
+
+#define AMBIENT	 r0
+
+//_____________________________________
+//
+//	Transform 
+//
+//_____________________________________
+
+dp4 oPos.x, V_POSITION, c[CV_WORLDVIEWPROJ_0]
+dp4 oPos.y, V_POSITION, c[CV_WORLDVIEWPROJ_1]
+dp4 oPos.z, V_POSITION, c[CV_WORLDVIEWPROJ_2]
+dp4 oPos.w, V_POSITION, c[CV_WORLDVIEWPROJ_3]
+
+//_____________________________________
+//
+//	Output ambient amount 
+//
+//_____________________________________
+
+mov	AMBIENT, c[CV_MAT_AMBIENT]
+add oD0,	 c[CV_GLOBAL_AMBIENT], AMBIENT
+
+//_____________________________________
+//
+//	Output texture 
+//
+//_____________________________________
+
+mov oT0.xy,  V_TEXTURE_0	// Diffuse 1
+mov oT1.xy,  V_TEXTURE_1	// Diffuse 2	
+mov oT2.xy,  V_TEXTURE_2	// Mask	 
+
+

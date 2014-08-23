@@ -1,0 +1,218 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\MaxClient.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "#include ""..\\..\\..\\..\\include\\buildver.h""\r\n"
+    "#if defined(DESIGN_VER)\r\n"
+    "#include ""vizclient.rc""\r\n"
+    "#endif\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\MaxClient.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAXCLIENT_DIALOG DIALOGEX 0, 0, 484, 252
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION " 3D Studio MAX COM Server - Client Demo "
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Create Instance",IDC_CREATE,13,17,59,23
+    PUSHBUTTON      "Load MAX File",IDC_LOAD,13,60,59,14
+    PUSHBUTTON      "List Cameras",IDC_LISTCAMERAS,13,80,59,14
+    PUSHBUTTON      "Render Frame",IDC_RENDER,13,108,59,14
+    PUSHBUTTON      "Cancel Render",IDC_CANCEL_RENDER,141,108,59,14
+    PUSHBUTTON      "Run Script",IDC_SCRIPT,13,145,59,14
+    CONTROL         "Local",IDC_LOCAL,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
+                    83,16,33,10
+    CONTROL         "Remote",IDC_REMOTE,"Button",BS_AUTORADIOBUTTON,83,30,41,
+                    10
+    EDITTEXT        IDC_SERVERNAME,127,27,112,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MAXFILENAME,81,60,158,14,ES_AUTOHSCROLL
+    COMBOBOX        IDC_CAMERAS,81,80,158,64,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_FRAMENUMBER,81,108,50,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_SCRIPTEDIT,81,145,158,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "Close",IDOK,216,231,50,14
+    GROUPBOX        " Instance Control ",IDC_STATIC,7,7,237,40
+    GROUPBOX        "Status ",IDC_STATIC,7,174,469,53
+    LTEXT           "Static",IDC_RENDER_MESSAGES,15,190,454,14,
+                    SS_CENTERIMAGE | SS_SUNKEN
+    CONTROL         "Progress1",IDC_RENDER_PROGRESS,"msctls_progress32",
+                    WS_BORDER,15,208,454,14
+    LTEXT           "Frame No.",IDC_STATIC,81,98,34,8
+    GROUPBOX        " Render Control ",IDC_STATIC,7,50,237,76
+    GROUPBOX        " Script ",IDC_STATIC,7,128,237,44
+    GROUPBOX        " Preview ",IDC_STATIC,249,7,228,166
+    CONTROL         129,IDC_PREVIEW_WINDOW,"Static",SS_BITMAP | 
+                    SS_CENTERIMAGE | SS_SUNKEN,256,17,215,149
+    LTEXT           "Server Name:",IDC_STATIC,127,16,44,8
+END
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 257, 60
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About MaxClient"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "MaxClient Version 1.0",IDC_STATIC,40,10,119,8,
+                    SS_NOPREFIX
+    LTEXT           "3D Studio MAX COM/DCOM Server - Client Sample",
+                    IDC_STATIC,40,20,190,8
+    DEFPUSHBUTTON   "OK",IDOK,200,39,50,14,WS_GROUP
+    LTEXT           "Gus J Grubba",IDC_STATIC,41,31,44,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_MAXCLIENT_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 477
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 245
+    END
+
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 250
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 53
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_PREVIEW             BITMAP  DISCARDABLE     "res\\preview.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// TYPELIB
+//
+
+IDR_TYPELIBRARY         TYPELIB DISCARDABLE     "res\\comsrv.tlb"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About MaxClient..."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\MaxClient.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+#include "..\..\..\..\include\buildver.h"
+#if defined(DESIGN_VER)
+#include "vizclient.rc"
+#endif
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

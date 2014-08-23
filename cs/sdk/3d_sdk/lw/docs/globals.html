@@ -1,0 +1,144 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Win98; U) [Netscape]">
+   <title>Globals</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#000080" vlink="#800000" alink="#0000FF">
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 BGCOLOR="#D0D0D0" >
+<tr>
+<td ALIGN=LEFT WIDTH="120"><a href="classes.html"><img SRC="navlt.gif" ALT="Classes" BORDER=0 height=20 width=96></a></td>
+
+<td ALIGN=LEFT WIDTH="96"><a href="handler.html"><img SRC="navrt.gif" ALT="Handlers" BORDER=0 height=20 width=64></a></td>
+
+<td ALIGN=RIGHT WIDTH="384"><a href="index.html"><img SRC="proglw.gif" ALT="Table of Contents" BORDER=0 height=20 width=230></a></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 >
+<tr>
+<td WIDTH="600">
+<h3>
+Globals</h3>
+Globals are services that any plug-in can request by calling the <i>global
+function</i>. This is passed as the second argument to every plug-in's
+activation function. Global services allow you to construct platform-independent
+user interfaces for your plug-ins and to query and modify LightWave's internal
+state.&nbsp;
+<center><table BORDER=0 CELLSPACING=0 CELLPADDING=4 >
+<tr>
+<td ALIGN=CENTER COLSPAN="3"><b>Index</b></td>
+</tr>
+
+<tr>
+<td><b><i>Layout</i></b></td>
+
+<td COLSPAN="2"><b><i>Common</i></b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="150"><a href="globals/bkdpinfo.html">Backdrop Info</a>
+<br><a href="globals/boneinfo.html">Bone Info</a>
+<br><a href="globals/caminfo.html">Camera Info</a>
+<br><a href="globals/compinfo.html">Comp Info</a>
+<br><a href="globals/foginfo.html">Fog Info</a>
+<br><a href="globals/gmempool.html">Global Memory</a>
+<br><a href="globals/intinfo.html">Interface Info</a>
+<br><a href="globals/iteminfo.html">Item Info</a>
+<br><a href="globals/laymon.html">Layout Monitor</a>
+<br><a href="globals/objinfo.html">Object Info</a>
+<br><a href="globals/particle.html">Particle Services</a>
+<br><a href="globals/sceneinf.html">Scene Info</a>
+<br><a href="globals/timeinfo.html">Time Info</a>
+<br><a href="globals/viewinfo.html">Viewport Info</a>
+<br><b><i>Modeler</i></b>
+<p><a href="globals/modmon.html">Dynamic Monitor</a>
+<br><a href="globals/fontlist.html">Font List</a>
+<br><a href="globals/modstate.html">State Query</a></td>
+
+<td VALIGN=TOP WIDTH="150"><a href="globals/anenvel.html">Animation Envelopes</a>
+<br><a href="globals/chaninfo.html">Channel Info</a>
+<br><a href="globals/colorpik.html">Color Picker</a>
+<br><a href="globals/conmenu.html">Context Menu Services</a>
+<br><a href="globals/dirinfo.html">Directory Info</a>
+<br><a href="globals/dynaconv.html">Dynamic Conversion</a>
+<br><a href="globals/modreq.html">Dynamic Request</a>
+<br><a href="globals/fileio.html">File I/O</a>
+<br><a href="globals/filereq.html">File Request</a>
+<br><a href="globals/filereq2.html">File Request 2</a>
+<br><a href="globals/filetype.html">File Type Pattern</a>
+<br><a href="globals/display.html">Host Display Info</a>
+<br><a href="globals/imglist.html">Image List</a>
+<br><a href="globals/imgutil.html">Image Utility</a>
+<br><a href="globals/message.html">Info Messages</a>
+<br><a href="globals/instupdt.html">Instance Update</a></td>
+
+<td VALIGN=TOP WIDTH="150"><a href="globals/lightinf.html">Light Info</a>
+<br><a href="globals/locale.html">Locale Info</a>
+<br><a href="globals/mtutil.html">Multithreading Utilities</a>
+<br><a href="globals/panel.html">Panels</a>
+<br><a href="globals/preview.html">Preview Functions</a>
+<br><a href="globals/prodinfo.html">Product Info</a>
+<br><a href="globals/raster.html">Raster Services</a>
+<br><a href="globals/sceneobj.html">Scene Objects</a>
+<br><a href="globals/shelf.html">Shelf Functions</a>
+<br><a href="globals/surfed.html">Surface Editor</a>
+<br><a href="globals/surface.html">Surface Functions</a>
+<br><a href="globals/sysid.html">System ID</a>
+<br><a href="globals/txtred.html">Texture Editor</a>
+<br><a href="globals/txtrfunc.html">Texture Functions</a>
+<br><a href="globals/vparam.html">Variant Parameters</a>
+<br><a href="globals/xpanel.html">XPanels</a></td>
+</tr>
+</table></center>
+<b>The Global Function</b>
+<p>The second argument to every activation function is a GlobalFunc.
+<pre>&nbsp;&nbsp; typedef void * GlobalFunc (const char *serviceName, int useMode);</pre>
+The service name is a string that tells the global function which global
+service is being requested. It can be any of the globals supplied with
+LightWave and listed in the table above, or a custom global provided by
+a <a href="../classes/globsrv.html">Global class</a> plug-in.
+<p>The SDK header files define symbolic names for the service name strings
+of globals supplied with LightWave. The string for the current version
+of the Scene Info global, for example, is "LW Scene Info 2", but rather
+than use this string literal in your source code, you can use the symbolic
+name <tt>LWSCENEINFO_GLOBAL</tt>, defined in <tt>lwrender.h</tt>.
+<pre>&nbsp;&nbsp; LWSceneInfo *sceneinfo;
+&nbsp;&nbsp; sceneinfo = global( LWSCENEINFO_GLOBAL, GFUSE_TRANSIENT );</pre>
+Using the symbolic name helps to ensure that your code is always synchronized
+with the headers you're currently compiling with. They're also a little
+easier to remember, since in most cases the symbolic name is the same as
+the type of the data object returned by the global function.
+<p>The use mode tells LightWave whether to <i>lock</i> the code module
+that supplies the global service. It can be <tt>GFUSE_ACQUIRE</tt> or <tt>GFUSE_TRANSIENT</tt>.
+<p>During routine housekeeping, LightWave may free memory by unloading
+plug-ins that haven't been called recently, and this can include Global
+class plug-ins. If you've requested a service provided by a Global class
+plug-in, the data and function pointers returned by the global function
+would become invalid if the Global plug-in were allowed to disappear from
+memory. The <tt>GFUSE_ACQUIRE</tt> mode locks the module, ensuring that
+it won't be unloaded from memory before you use it.
+<p>Globals obtained with <tt>GFUSE_ACQUIRE</tt> should be unlocked when
+they're no longer needed. You unlock them by calling the global function
+with a use mode of <tt>GFUSE_RELEASE</tt>.
+<pre>&nbsp;&nbsp; global( LWSCENEINFO_GLOBAL, GFUSE_RELEASE );</pre>
+Failing to unlock a global usually isn't fatal, but it prevents LightWave
+from optimizing its use of memory. And locking a module doesn't prevent
+other plug-ins from using it.
+<p>Use the <tt>GFUSE_TRANSIENT</tt> mode when the global doesn't have to
+be locked. <tt>GFUSE_TRANSIENT</tt> is safe to use for the global services
+built into LightWave and when the services provided by Global class plug-ins
+are used immediately.
+<p>If the call to the global function succeeds, the return value is data,
+typically a pointer to a structure, that's specific to the requested global
+service. The documentation of the globals supplied with LightWave describes
+what each global returns. If the global call fails, a possibility that
+callers should always be prepared for, the return value is NULL.</td>
+</tr>
+</table>
+
+</body>
+</html>

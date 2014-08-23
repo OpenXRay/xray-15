@@ -1,0 +1,144 @@
+<html>
+
+<head>
+<title>Globals: Scene Objects</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="sceneinf.html"><img width="96" height="20"
+    border="0" src="../images/navlt.gif" alt="LW Scene Info 2"></a></td>
+    <td width="96" align="left"><a href="shelf.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Shelf Functions"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Scene Objects</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwmeshes.h">lwmeshes.h</a></small></p>
+    <p>The scene objects global gives plug-ins access to the internal representation of each
+    object file loaded into the current scene in Layout or the object database in Modeler.
+    Functions are provided for reading object geometry and the vertex map list.</p>
+    <p>Although vertex maps are stored in object files, LightWave&reg;'s internal vmap list isn't
+    object-specific, and this has several consequences. If a vmap of the same name and type is
+    stored in two different object files, LightWave&reg; creates a single entry in the vmap list
+    when both files are loaded. The vmap is shared by the two objects. If both objects are
+    then removed, the vmap is <em>not</em> removed from the list. And the only way to
+    determine whether a vmap affects a given object is to test all of its vertices, using the <a
+    href="../meshinfo.html">Mesh Info</a> <tt>pntVGet</tt> function, to see whether any of
+    them is mapped.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWObjectFuncs *objfunc;
+   objfunc = global( LWOBJECTFUNCS_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWObjectFuncs.</p>
+    <pre>   typedef struct st_LWObjectFuncs {
+      int          (*<strong>numObjects</strong>)  (void);
+      const char * (*<strong>filename</strong>)    (int obj);
+      int          (*<strong>maxLayers</strong>)   (int obj);
+      int          (*<strong>layerExists</strong>) (int obj, int lnum);
+      void         (*<strong>pivotPoint</strong>)  (int obj, int lnum, LWFVector pos);
+      LWMeshInfo * (*<strong>layerMesh</strong>)   (int obj, int lnum);
+      int          (*<strong>numVMaps</strong>)    (LWID);
+      const char * (*<strong>vmapName</strong>)    (LWID, int index);
+      int          (*<strong>vmapDim</strong>)     (LWID, int index);
+      LWID         (*<strong>vmapType</strong>)    (int index);
+      const char * (*<strong>layerName</strong>)   (int obj, int lnum);
+      int          (*<strong>layerVis</strong>)    (int obj, int lnum);
+      const char * (*<strong>userName</strong>)    (int obj);
+      const char * (*<strong>refName</strong>)     (int obj);
+   } LWObjectFuncs;</pre>
+    <dl>
+      <dt><tt>count = <strong>numObjects</strong>()</tt> </dt>
+      <dd>Returns a count of the number of objects in the object database. This is the number of
+        unique object files that have been loaded, which in general will be different from the
+        number of animateable object items (clones and null objects, for example, aren't counted).
+      </dd>
+      <dt><tt><br>
+        name = <strong>filename</strong>( object_index )</tt> </dt>
+      <dd>Returns the filename for the object. Objects in the database are indexed by integers
+        ranging from 0 to <tt>count</tt> - 1. Except during rendering, the index associated with a
+        given object can change at any time as objects are added to or removed from the object
+        database by the user.</dd>
+      <dt><tt><br>
+        maxlayer = <strong>maxLayers</strong>( object_index )</tt> </dt>
+      <dd>Returns a value one greater than the highest indexed, existing layer for the object.
+        This is just the layer count if all layers with indexes between 0 and <tt>maxlayer</tt> -
+        1 exist.</dd>
+      <dt><tt><br>
+        exists = <strong>layerExists</strong>( object_index, layer_index )</tt> </dt>
+      <dd>True if the layer exists.</dd>
+      <dt><tt><br>
+        <strong>pivotPoint</strong>( object_index, layer_index, pos )</tt> </dt>
+      <dd>Get the pivot point for the object layer.</dd>
+      <dt><tt><br>
+        mesh = <strong>layerMesh</strong>( object_index, layer_index )</tt></dt>
+      <dd>Returns a mesh info structure for the object layer. These are described on the <a
+        href="../meshinfo.html">Mesh Info</a> page. For object layers with subpatches, the mesh
+        returned by this function does <em>not</em> include geometry that would be created by
+        subdivision unless the subpatches have been frozen.</dd>
+      <dt><tt><br>
+        vmap_count = <strong>numVMaps</strong>( vmtype );</tt></dt>
+      <dd>Returns a count of the number of vertex maps of a given type, or the total of all types
+        in the scene if <tt>vmtype</tt> is 0. Vmap type codes are an extensible set of
+        four-character identifiers. The <tt>lwmeshes.h</tt> header defines some of the common vmap
+        IDs. <p><tt>LWVMAP_PICK</tt> - selection set<br>
+        <tt>LWVMAP_WGHT</tt> - weight map<br>
+        <tt>LWVMAP_MNVW</tt> - SubPatch weight map<br>
+        <tt>LWVMAP_TXUV</tt> - texture UV coordinates<br>
+        <tt>LWVMAP_MORF</tt> - relative vertex displacement<br>
+        <tt>LWVMAP_SPOT</tt> - absolute vertex displacement</p>
+      </dd>
+      <dt><tt>vmap_name = <strong>vmapName</strong>( vmtype, vmindex );</tt></dt>
+      <dd>Returns the name of a vmap. The index ranges from 0 to <tt>vmap_count</tt> - 1.</dd>
+      <dt><tt><br>
+        dimensions = <strong>vmapDim</strong>( vmtype, vmindex );</tt></dt>
+      <dd>Returns the number of dimensions, or values per vertex, of a vmap. Vmaps are typically
+        2D or 3D (two or three coordinate values per vertex), but they can have any number of
+        dimensions, including 0.</dd>
+      <tt>
+      <dt><br>
+        vmtype = <strong>vmapType</strong>( vmindex )</dt>
+      </tt>
+      <dd>Returns the LWID for the vmap. Call <tt>numVMaps</tt> with a <tt>vmtype</tt> of 0 to
+        find the upper bound on <tt>vmindex</tt>.</dd>
+      <tt>
+      <dt><br>
+        lname = <strong>layerName</strong>( objnum, lnum )</dt>
+      </tt>
+      <dd>Returns the name assigned to the layer, or NULL if the layer is unnamed.</dd>
+      <tt>
+      <dt><br>
+        isvis = <strong>layerVis</strong>( objnum, lnum )</dt>
+      </tt>
+      <dd>Returns a boolean indicating whether the layer is marked as visible.</dd>
+      <dt>&nbsp;</dt>
+      <dt><tt>name = <strong>userName</strong>( object_index )</tt> </dt>
+      <dd>Returns the name of the object as seen by the user. This is typically the base filename
+        without the path or extension, or &quot;Unnamed N&quot; for unsaved objects. These are not
+        guaranteed to be unique.</dd>
+      <dt>&nbsp;</dt>
+      <dt><tt>name = <strong>refName</strong>( object_index )</tt> </dt>
+      <dd>Returns an internal reference name for this object. The reference name is guaranteed to
+        be unique and unchanging for the lifetime of the object. This is useful in Modeler as an
+        argument to commands requiring a filename, since some objects in Modeler may not have been
+        saved yet and therefore have no filename.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>The <a href="../../sample/Layout/DisplacementMap/inertia/">inertia</a> sample uses this global to display a
+    list of vertex maps to the user. The vmap values are used in the displacement evaluation
+    to scale the lag.</td>
+  </tr>
+</table>
+</body>
+</html>

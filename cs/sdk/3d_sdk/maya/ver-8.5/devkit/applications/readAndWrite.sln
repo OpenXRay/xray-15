@@ -1,0 +1,22 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "readAndWrite", "readAndWrite.vcproj", "{B860B6BA-0B55-4AFE-88EC-3A9E9FA09A8A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+		ReleaseDebug|Win32 = ReleaseDebug|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B860B6BA-0B55-4AFE-88EC-3A9E9FA09A8A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B860B6BA-0B55-4AFE-88EC-3A9E9FA09A8A}.Debug|Win32.Build.0 = Debug|Win32
+		{B860B6BA-0B55-4AFE-88EC-3A9E9FA09A8A}.Release|Win32.ActiveCfg = Release|Win32
+		{B860B6BA-0B55-4AFE-88EC-3A9E9FA09A8A}.Release|Win32.Build.0 = Release|Win32
+		{B860B6BA-0B55-4AFE-88EC-3A9E9FA09A8A}.ReleaseDebug|Win32.ActiveCfg = ReleaseDebug|Win32
+		{B860B6BA-0B55-4AFE-88EC-3A9E9FA09A8A}.ReleaseDebug|Win32.Build.0 = ReleaseDebug|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,286 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "rlarc.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+#include <dlgs.h>
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "rlarc.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "#include <dlgs.h>\r\n"
+    "\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_RLA_ABOUT DIALOG  0, 0, 175, 58
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "About RLA Image File I/O"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,115,38,50,14
+    RTEXT           "RLA File I/O Module",IDC_STATIC,37,9,118,9
+    RTEXT           "Version 1.0",IDC_STATIC,37,19,118,9
+    GROUPBOX        "",IDC_STATIC,10,2,156,30
+END
+
+IDD_RLA_CONTROL DIALOG  0, 0, 379, 169
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "RLA Image File Format"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        " Standard Channels ",IDC_STATIC,3,5,147,93
+    LTEXT           "Bits per channel:",IDC_STATIC,13,22,54,8
+    CONTROL         "8",IDC_RGB8,"Button",BS_AUTORADIOBUTTON | WS_GROUP,51,
+                    35,22,10
+    CONTROL         "16 ",IDC_RGB16,"Button",BS_AUTORADIOBUTTON,51,45,37,10
+    CONTROL         "32, Floating Point",IDC_RGB32,"Button",
+                    BS_AUTORADIOBUTTON,51,56,88,10
+    CONTROL         "Store Alpha Channel",IDC_ALPHA,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,16,71,103,10
+    GROUPBOX        " Optional Channels (3ds max Channels) ",
+                    IDC_STATIC_OPTCHAN,163,5,209,93
+    CONTROL         "Z ",IDC_Z,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,182,18,
+                    23,10
+    CONTROL         "Material Effects",IDC_MATERIAL,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,182,29,68,10
+    CONTROL         "Object",IDC_NODE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    182,40,86,10
+    CONTROL         "UV Coordinates",IDC_UV,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,182,51,86,10
+    CONTROL         "Normal ",IDC_NORMAL,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,182,62,86,10
+    CONTROL         "Non-Clamped Color",IDC_CLAMPRGB,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,182,73,73,10
+    CONTROL         "Coverage",IDC_COVERAGE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,182,84,68,10
+    CONTROL         "Node Render ID",IDC_RENDERID,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,270,18,86,10
+    CONTROL         "Color",IDC_COLOR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    270,29,86,10
+    CONTROL         "Transparency",IDC_TRANSP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,270,40,86,10
+    CONTROL         "Velocity",IDC_VELOC,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,270,51,86,10
+    CONTROL         "Sub-Pixel Weight",IDC_WEIGHT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,270,62,86,10
+    CONTROL         "Sub-Pixel Mask",IDC_MASK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,270,73,86,10
+    GROUPBOX        "Descriptive Information",IDC_STATIC,5,98,367,48
+    LTEXT           "Description:",IDC_STATIC,21,111,40,8
+    EDITTEXT        IDC_RLA_DESCRIPTION,62,109,299,14,ES_AUTOHSCROLL
+    LTEXT           "Author:",IDC_STATIC,28,129,29,8
+    EDITTEXT        IDC_RLA_USER,62,128,147,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,117,151,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,190,151,50,14
+    CONTROL         "Premultiply Alpha",IDC_PRE_MULT_ALPHA,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,25,82,103,10
+END
+
+IDD_RLA_INFO DIALOG  0, 0, 359, 186
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "RLA Info "
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,155,168,50,14
+    GROUPBOX        " Image ",IDC_STATIC,12,11,336,152
+    RTEXT           "Image:",IDC_STATIC,24,23,42,10
+    CONTROL         "Filename",IDC_INFO_FILENAME,"Static",SS_LEFTNOWORDWRAP | 
+                    WS_GROUP,74,23,262,10
+    RTEXT           "Resolution:",IDC_STATIC,24,34,42,10
+    LTEXT           "640x480",IDC_INFO_RESOLUTION,74,34,53,10
+    LTEXT           "",IDC_INFO_CDATE,74,101,78,10
+    RTEXT           "Creation Date:",IDC_STATIC,14,101,51,10
+    RTEXT           "Aspect Ratio:",IDC_STATIC,264,33,49,8
+    LTEXT           "1.88",IDC_BMM_INFO_AR,316,33,20,8
+    RTEXT           "Gamma:",IDC_STATIC,283,43,30,8
+    LTEXT           "1.88",IDC_BMM_INFO_GAMMA,316,43,26,8
+    RTEXT           "User:",IDC_STATIC,23,113,42,10
+    CONTROL         "username",IDC_INFO_USER,"Static",SS_LEFTNOWORDWRAP | 
+                    WS_GROUP,74,113,182,10
+    RTEXT           "Program:",IDC_STATIC,23,124,42,10
+    CONTROL         "progname",IDC_INFO_PROGRAM,"Static",SS_LEFTNOWORDWRAP | 
+                    WS_GROUP,74,124,262,10
+    RTEXT           "Frames:",IDC_STATIC,282,149,30,8
+    LTEXT           "9999",IDC_INFO_FRAMES,315,149,20,8
+    RTEXT           "File date:",IDC_STATIC,20,149,42,8
+    LTEXT           "0000/00/00 00:00:00",IDC_INFO_DATE,68,149,81,8
+    RTEXT           "Size:",IDC_STATIC,177,149,19,8
+    LTEXT           "1000000",IDC_INFO_SIZE,199,149,34,8
+    RTEXT           "Description:",IDC_STATIC,23,135,42,10
+    CONTROL         "description",IDC_INFO_DESC,"Static",SS_LEFTNOWORDWRAP | 
+                    WS_GROUP,74,135,268,10
+    LTEXT           "Field Rendered:",IDC_STATIC,264,54,51,8
+    LTEXT           "Yes",IDC_INFO_FIELD,317,54,13,8
+    LTEXT           "Color  Bits:",IDC_STATIC,119,46,42,8
+    LTEXT           "Matte Bits:",IDC_STATIC,118,57,42,8
+    LTEXT           "16",IDC_COLOR_BITS,164,47,9,8
+    LTEXT           "16",IDC_MATTE_BITS,164,57,9,8
+    LTEXT           "Color Channels:",IDC_STATIC,17,46,57,8
+    LTEXT           "3",IDC_COLOR_NCHAN,76,47,9,8
+    LTEXT           "Matte Channels:",IDC_STATIC,16,57,57,8
+    LTEXT           "1",IDC_MATTE_NCHAN,76,57,9,8
+    LTEXT           "Aux Bits:",IDC_STATIC,123,67,37,8
+    LTEXT           "16",IDC_AUX_BITS,164,67,9,8
+    LTEXT           "Aux Channels:",IDC_STATIC,22,67,50,8
+    LTEXT           "2",IDC_AUX_NCHAN,76,67,9,8
+    LTEXT           "MAX Channels:",IDC_STATIC_MAXCHAN,19,79,50,8
+    CONTROL         "",IDC_INFO_MAXCHAN,"Static",SS_LEFTNOWORDWRAP | 
+                    WS_GROUP,72,79,262,9
+    LTEXT           "",IDC_INFO_CTIME,222,100,78,10
+    CONTROL         "",IDC_INFO_MAXCHAN2,"Static",SS_LEFTNOWORDWRAP | 
+                    WS_GROUP,73,90,262,9
+END
+
+IDD_RPF_ABOUT DIALOG  0, 0, 175, 58
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "About RPF Image File I/O"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,115,38,50,14
+    RTEXT           "RPF File I/O Module",IDC_STATIC,37,9,118,9
+    RTEXT           "Version 1.0",IDC_STATIC,37,19,118,9
+    GROUPBOX        "",IDC_STATIC,10,2,156,30
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_RLA_CONTROL, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 165
+    END
+
+    IDD_RLA_INFO, DIALOG
+    BEGIN
+        RIGHTMARGIN, 358
+        BOTTOMMARGIN, 167
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_RLA                 "RLA"
+    IDS_RLA_FILE            "RLA Image File"
+    IDS_BITMAP_IO           "Bitmap I/O"
+    IDS_YES                 "Yes"
+    IDS_NO                  "No"
+    IDS_RLA_DESC            "RLA file I/O (Discreet)"
+    IDS_RPF                 "RPF"
+    IDS_RPF_DESC            "RPF file I/O (Discreet)"
+    IDS_RLACONTROL_TITLE    "RLA Image File Format"
+    IDS_RPFCONTROL_TITLE    "RPF Image File Format"
+    IDS_RLA_INFO            "RLA Info"
+    IDS_RPF_INFO            "RPF Info"
+    IDS_RLA_FILE2           "RPFImage File"
+    IDS_RPF_FILE            "RPF Image File"
+    IDS_RLAIO_INTERFACE     "RLA I/O Interface"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RLAIO_COLORDEPTH    "Bits per channel"
+    IDS_RLAIO_STOREALPHA    "Store Alpha"
+    IDS_RLAIO_PREMULTALPHA  "Premultiply Alpha"
+    IDS_RLAIO_DESCRIPTION   "Description"
+    IDS_OPTCHAN_VIZ         " Optional Channels (Autodesk VIZ Channels) "
+    IDS_MAXCHAN_VIZ         "VIZ Channels"
+    IDS_RLAIO_AUTHOR        "Author"
+    IDS_RLAIO_ZCHANNEL      "Z Channel"
+    IDS_RLAIO_MTLIDCHANNEL  "Material Effects Channel"
+    IDS_RLAIO_NODEIDCHANNEL "Object Channel"
+    IDS_RLAIO_UVCHANNEL     "UV Coordinates Channel"
+    IDS_RLAIO_NORMALCHANNEL "Normal Channel"
+    IDS_RLAIO_REALPIXCHANNEL "Non-Clamped Color Channel"
+    IDS_RLAIO_COVERAGECHANNEL "Coverage Channel"
+    IDS_RLAIO_NODERENDERIDCHANNEL "Node Render ID Channel"
+    IDS_RLAIO_COLORCHANNEL  "Color Channel"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RLAIO_TRANSPCHANNEL "Transparency Channel"
+    IDS_RLAIO_VELOCCHANNEL  "Velocity Channel"
+    IDS_RLAIO_WEIGHTCHANNEL "Sub-pixel Weight Channel"
+    IDS_RLAIO_MASKCHANNEL   "Sub-pixel Mask Channel"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

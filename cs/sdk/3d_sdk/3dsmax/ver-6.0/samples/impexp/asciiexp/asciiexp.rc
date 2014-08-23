@@ -1,0 +1,186 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 165
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 69
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 172, 76
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About ASCII Export"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,60,55,50,14
+    RTEXT           "ASCII File Exporter\nVersion 1.0\nChrister Janson\nCopyright 2000 Autodesk, Inc.",
+                    IDC_STATIC,10,13,151,36
+    GROUPBOX        "",IDC_STATIC,7,7,158,44
+END
+
+IDD_ASCIIEXPORT_DLG DIALOG DISCARDABLE  0, 0, 342, 177
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "ASCII Export"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Geometric",IDC_OBJ_GEOM,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,154,20,50,10
+    CONTROL         "Shapes",IDC_OBJ_SHAPE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,154,35,40,10
+    CONTROL         "Cameras",IDC_OBJ_CAMERA,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,154,50,43,10
+    CONTROL         "Lights",IDC_OBJ_LIGHT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,154,65,35,10
+    CONTROL         "Helpers",IDC_OBJ_HELPER,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,154,81,40,10
+    CONTROL         "Mesh Definition",IDC_MESHDATA,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,20,73,10
+    CONTROL         "Materials",IDC_MATERIAL,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,35,95,10
+    CONTROL         "Transform Animation Keys",IDC_ANIMKEYS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,50,99,10
+    CONTROL         "Animated Mesh",IDC_MESHANIM,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,65,95,10
+    CONTROL         "Animated Camera/Light Settings",IDC_CAMLIGHTANIM,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,80,120,10
+    CONTROL         "Inverse Kinematics Joints",IDC_IKJOINTS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,95,110,10
+    CONTROL         "Mesh Normals",IDC_NORMALS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,124,95,10
+    CONTROL         "Mapping Coordinates",IDC_TEXCOORDS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,139,95,10
+    CONTROL         "Vertex Colors",IDC_VERTEXCOLORS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,154,57,10
+    DEFPUSHBUTTON   "OK",IDOK,283,10,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,283,28,50,14
+    CONTROL         "Use Keys",IDC_RADIO_USEKEYS,"Button",BS_AUTORADIOBUTTON,
+                    152,135,56,10
+    CONTROL         "Force Sample",IDC_RADIO_SAMPLE,"Button",
+                    BS_AUTORADIOBUTTON,152,149,64,10
+    CONTROL         "",IDC_CONT_STEP,"CustEdit",WS_TABSTOP,289,135,25,10
+    CONTROL         "",IDC_MESH_STEP,"CustEdit",WS_TABSTOP,289,150,25,10
+    CONTROL         "",IDC_STATIC_FRAME,"CustEdit",WS_TABSTOP,289,61,25,10
+    GROUPBOX        "Output Options",IDC_STATIC,5,7,134,102
+    GROUPBOX        "Mesh Options",IDC_STATIC,5,110,134,60
+    GROUPBOX        "Object Types",IDC_STATIC,145,7,92,102
+    CONTROL         "",IDC_CONT_STEP_SPIN,"SpinnerControl",0x0,315,135,7,10
+    RTEXT           "Controllers:",IDC_STATIC,233,137,50,8
+    GROUPBOX        "Controller Output",IDC_STATIC,145,110,188,60
+    CONTROL         "",IDC_MESH_STEP_SPIN,"SpinnerControl",0x0,315,150,7,10
+    RTEXT           "Animated Objects:",IDC_STATIC,223,150,60,8
+    RTEXT           "Frames per Sample:",IDC_STATIC,253,121,70,8
+    CONTROL         "",IDC_STATIC_FRAME_SPIN,"SpinnerControl",0x0,315,61,7,
+                    10
+    RTEXT           "Frame #:",IDC_STATIC,253,62,31,8
+    GROUPBOX        "Static Output",IDC_STATIC,243,46,90,30
+    CONTROL         "",IDC_PREC,"CustEdit",WS_TABSTOP,289,91,25,10
+    CONTROL         "",IDC_PREC_SPIN,"SpinnerControl",0x0,315,91,7,10
+    RTEXT           "Decimals:",IDC_STATIC,253,92,31,8
+    GROUPBOX        "Precision",IDC_STATIC,243,79,90,30
+END
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ASCIIEXP            "AsciiExp"
+    IDS_CATEGORY            "Standard"
+    IDS_EXTENSION1          "ASE"
+    IDS_LONGDESC            "3ds max ASCII Scene Exporter"
+    IDS_SHORTDESC           "ASCII Scene Export"
+    IDS_COPYRIGHT           "Copyright 2000 Autodesk, Inc."
+    IDS_PROGRESS_MSG        "Exporting file..."
+    IDS_VERSIONSTRING       "AsciiExport Version"
+    IDS_LIBDESCRIPTION      "ASCII file exporter (Discreet)"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

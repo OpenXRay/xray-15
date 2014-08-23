@@ -1,0 +1,83 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Win98; U) [Netscape]">
+   <title>Globals: File Type Pattern</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#000080" vlink="#800000" alink="#0000FF">
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 BGCOLOR="#D0D0D0" >
+<tr>
+<td ALIGN=LEFT WIDTH="120"><a href="filereq2.html"><img SRC="navlt.gif" ALT="File Request 2" BORDER=0 height=20 width=96></a></td>
+
+<td ALIGN=LEFT WIDTH="96"><a href="foginfo.html"><img SRC="navrt.gif" ALT="Fog Info" BORDER=0 height=20 width=64></a></td>
+
+<td ALIGN=LEFT WIDTH="96"><a href="../globals.html"><img SRC="navup.gif" ALT="Globals" BORDER=0 height=20 width=56></a></td>
+
+<td ALIGN=RIGHT WIDTH="288"><a href="../index.html"><img SRC="proglw.gif" ALT="Table of Contents" BORDER=0 height=20 width=230></a></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 >
+<tr>
+<td WIDTH="600">
+<h3>
+File Type Pattern</h3>
+<font size=-1><b>Availability</b>&nbsp; LightWave&reg; 6.0</font>
+<br><font size=-1><b>Component</b>&nbsp; Layout, Modeler</font>
+<br><font size=-1><b>Header</b>&nbsp; <a href="../../include/lwhost.h">lwhost.h</a></font>
+<p>This global returns a function that allows plug-ins to retrieve file
+name pattern strings. These can be used to translate the string in the
+<tt>fileType</tt> passed to <a href="filereq2.html">file request</a> plug-ins
+into a literal filter string.
+<p><b>Global Call</b>
+<pre>&nbsp;&nbsp; LWFileTypeFunc *filetypes;
+&nbsp;&nbsp; filetypes = global( LWFILETYPEFUNC_GLOBAL, GFUSE_TRANSIENT );</pre>
+The global function returns a pointer to an LWFileTypeFunc.
+<pre>&nbsp;&nbsp; typedef const char * LWFileTypeFunc (const char *type);</pre>
+The <tt>type</tt> argument identifies the kind of file you want a pattern
+string for. It can be any of the following.&nbsp;
+<center><table BORDER=0 CELLSPACING=0 CELLPADDING=4 >
+<tr>
+<td VALIGN=TOP WIDTH="160"><tt>LWFTYPE_ANIMATION</tt>
+<br><tt>LWFTYPE_IMAGE</tt>
+<br><tt>LWFTYPE_ENVELOPE</tt>
+<br><tt>LWFTYPE_MOTION</tt></td>
+
+<td VALIGN=TOP WIDTH="160"><tt>LWFTYPE_OBJECT</tt>
+<br><tt>LWFTYPE_PLUGIN</tt>
+<br><tt>LWFTYPE_PREVIEW</tt>
+<br><tt>LWFTYPE_PSFONT</tt></td>
+
+<td VALIGN=TOP WIDTH="160"><tt>LWFTYPE_SCENE</tt>
+<br><tt>LWFTYPE_SETTING</tt>
+<br><tt>LWFTYPE_SURFACE</tt>
+<br><tt>LWFTYPE_CONTENT</tt></td>
+</tr>
+</table></center>
+The association between a type string and a literal filter is usually stored
+in the configuration file. Pattern strings are platform-specific. Under
+Windows, the string is a list of wildcard extensions separated by semicolons,
+e.g. <tt>*.iff;*.tga</tt> for images. On the Mac, the string is a list
+of 4-character file types, also separated by semicolons. The Unix string
+uses a regular expression.
+<p><b>Example</b>
+<p>This code fragment obtains the pattern string for image files.
+<pre>&nbsp;&nbsp; #include &lt;lwserver.h>
+&nbsp;&nbsp; #include &lt;lwhost.h>
+
+&nbsp;&nbsp; char *imgpat;
+&nbsp;&nbsp; LWFileTypeFunc *filetypes;
+
+&nbsp;&nbsp; filetypes = global( LWFILETYPEFUNC_GLOBAL, GFUSE_TRANSIENT );
+&nbsp;&nbsp; if ( filetypes )
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; imgpat = filetypes( LWFTYPE_IMAGE );
+&nbsp;&nbsp; ...</pre>
+</td>
+</tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,181 @@
+<html>
+
+<head>
+<title>Globals: Image List</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="display.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="Host Display Info"></a></td>
+    <td width="96" align="left"><a href="imgutil.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Image Utility"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Image List</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwrender.h">lwimage.h</a></small></p>
+    <p>This global provides access to LightWave&reg;'s internal image list. Also see the <a
+    href="imgutil.html">Image Utility</a> global.</p>
+    <p>A single image ID can refer to image sequences and animations as well as stills, and
+    &quot;image&quot; is used here to refer to all of these. Most of the functions that return
+    pixel information do so for the current state of the image, which generally depends on the
+    current frame during rendering and on the most recently rendered frame at other times.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWImageList *imglist;
+   imglist = global( LWIMAGELIST_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWImageList.</p>
+    <pre>   typedef struct st_LWImageList {
+      LWImageID     (*<strong>first</strong>)    (void);
+      LWImageID     (*<strong>next</strong>)     (LWImageID);
+      LWImageID     (*<strong>load</strong>)     (const char *);
+      const char *  (*<strong>name</strong>)     (LWImageID);
+      const char *  (*<strong>filename</strong>) (LWImageID, LWFrame);
+      int           (*<strong>isColor</strong>)  (LWImageID);
+      void          (*<strong>needAA</strong>)   (LWImageID);
+      void          (*<strong>size</strong>)     (LWImageID, int *w, int *h);
+      LWBufferValue (*<strong>luma</strong>)     (LWImageID, int x, int y);
+      void          (*<strong>RGB</strong>)      (LWImageID, int x, int y,
+                                   LWBufferValue[3]);
+      double        (*<strong>lumaSpot</strong>) (LWImageID, double x, double y,
+                                   double spotSize, int blend);
+      void          (*<strong>RGBSpot</strong>)  (LWImageID, double x, double y,
+                                   double spotSize, int blend, double[3]);
+      void          (*<strong>clear</strong>)    (LWImageID);
+      LWImageID     (*<strong>sceneLoad</strong>)(const LWLoadState *);
+      void          (*<strong>sceneSave</strong>)(const LWSaveState *, LWImageID);
+      int           (*<strong>hasAlpha</strong>) (LWImageID);
+      LWBufferValue (*<strong>alpha</strong>)    (LWImageID, int x, int y);
+      double        (*<strong>alphaSpot</strong>)(LWImageID, double x, double y,
+                                   double spotSize, int blend);
+      LWPixmapID    (*<strong>evaluate</strong>) (LWImageID, LWTime t);
+      void          (*<strong>changeEvent</strong>) (LWImageEventFunc *,int);
+      int           (*<strong>replace</strong>) (LWImageID, const char *);
+   } LWImageList;</pre>
+    <dl>
+      <dt><tt>image = <strong>first</strong>()</tt></dt>
+      <dd>Returns the first image in the list.</dd>
+      <dt><tt><br>
+        image = <strong>next</strong>( prev_image )</tt></dt>
+      <dd>Returns the image after <tt>prev_image</tt> in the list, or NULL if <tt>prev_image</tt>
+        is the last image in the list.</dd>
+      <dt><tt><br>
+        image = <strong>load</strong>( filename )</tt></dt>
+      <dd>Add the image to the list and return its ID. Animation files can be loaded with this
+        function, but image sequences cannot.</dd>
+      <dt><tt><br>
+        iname = <strong>name</strong>( image )</tt></dt>
+      <dd>Returns the name of the image as it appears to the user.</dd>
+      <dt><tt><br>
+        fname = <strong>filename</strong>( image, frame )</tt></dt>
+      <dd>Returns the filename of the image. This is the value that should be stored for later
+        retrieval of the image using <tt>load</tt>.</dd>
+      <dt><tt><br>
+        iscol = <strong>isColor</strong>( image )</tt></dt>
+      <dd>True for images with color data and false for grayscale images.</dd>
+      <dt><tt><br>
+        <strong>needAA</strong>( image )</tt></dt>
+      <dd>Called by <a href="../classes/shader.html">shaders</a> that want to use the image list <tt>lumaSpot</tt>
+        and <tt>RGBSpot</tt> functions during rendering. This tells Layout to prefilter the image
+        for later spot evaluation. Currently this function can only be called from a shader's <tt>init</tt>
+        function.</dd>
+      <dt><tt><br>
+        <strong>size</strong>( image, width, height )</tt></dt>
+      <dd>Returns the width and height of the image in pixels.</dd>
+      <dt><tt><br>
+        gray = <strong>luma</strong>( image, x, y )</tt></dt>
+      <dd>Returns the grayscale value of a pixel. If this is a color image (<tt>isColor</tt> is
+        true), the value returned is the NTSC/PAL luminance, which combines the RGB levels using
+        the weights 0.2989 red, 0.5866 green, 0.1144 blue.</dd>
+      <dt><tt><br>
+        <strong>RGB</strong>( image, x, y, color )</tt></dt>
+      <dd>Returns the red, green and blue values of a pixel.</dd>
+      <dt><tt><br>
+        gray = <strong>lumaSpot</strong>( image, x, y, spotsize, blend )</tt></dt>
+      <dd>Returns the grayscale value of a spot on the image. <tt>x</tt> and <tt>y</tt> are the
+        center of the spot in pixels, and the spot size is the diameter of the spot in pixel
+        units. The value is the weighted average of the pixels within the spot. If <tt>blend</tt>
+        is true and the spot size is small, however, the value will be interpolated from
+        neighboring pixels that may be outside the spot. Currently this function can only be
+        called during the spot evaluation function of a shader, and <tt>needAA</tt> must have been
+        called previously from the shader's <tt>init</tt> function.</dd>
+      <dt><tt><br>
+        <strong>RGBSpot</strong>( image, x, y, spotsize, blend, color )</tt></dt>
+      <dd>Returns the color values of a spot on the image. Like <tt>lumaSpot</tt>, this function
+        can only be called during the spot evaluation function of a shader.</dd>
+      <dt><tt><br>
+        <strong>clear</strong>( image )</tt></dt>
+      <dd>Remove the image from the image list. This has the effect of removing all references to
+        the image in the scene.</dd>
+      <dt><tt><br>
+        image = <strong>sceneLoad</strong>( loadstate )</tt></dt>
+      <dd>Read an image reference from a file and add the image to the image list. This is meant
+        to be called by a <a href="../handler.html">handler</a>'s load callback to retrieve an
+        image that's part of its instance data. The reference will have been written by <tt>sceneSave</tt>.</dd>
+      <dt><tt><br>
+        <strong>sceneSave</strong>( savestate, image )</tt></dt>
+      <dd>Write an image reference to a file. This is meant to be called by a handler's save
+        callback to store a reference to the image as part of the handler's instance data.</dd>
+      <dt><tt><br>
+        hasa = <strong>hasAlpha</strong>( image )</tt></dt>
+      <dd>True if the image includes an alpha channel.</dd>
+      <dt><tt><br>
+        a = <strong>alpha</strong>( image, x, y )</tt></dt>
+      <dd>Returns the alpha value of a pixel.</dd>
+      <dt><tt><br>
+        a = <strong>alphaSpot</strong>( image, x, y, spotsize, blend )</tt></dt>
+      <dd>Returns the alpha value of a spot (see <tt>lumaSpot</tt> and <tt>RGBSpot</tt>).</dd>
+      <dt><tt><br>
+        pixmap = <strong>evaluate</strong>( image, time )</tt></dt>
+      <dd>Returns a pixmap of the image that can be used with the <a href="imgutil.html">Image
+        Utility</a> global. This function creates a copy of the image, similar to calling the
+        Image Utility <tt>create</tt> function and then copying the pixels using Image List <tt>RGB</tt>
+        and Image Utility <tt>setPixel</tt>. But the image is <em>evaluated</em>, meaning that the
+        frame matching the <tt>time</tt> argument is retrieved for sequences and animations, and
+        any adjustments and filters are applied.</dd>
+      <dt><tt><br>
+        <strong>changeEvent</strong>( func, code )</tt></dt>
+      <dd>A plug-in can register for notification whenever the state of an image changes.
+        The <tt>func</tt> paramter is a pointer to a function (whose prototype matches the
+        <tt>LWImageEventFunc</tt> typedef) that will be called by the application when the
+        state of a LWImage change.  An event code and the LWImageID that is effected are
+        provide as arguments to the registered callback function.</dd><br>
+        <dd>The <tt>code</tt> argument
+        is one of <tt>LWERC_REGISTER</tt>, to register the provided <tt>func</tt> as an
+        active callback, or <tt>LWERC_UNREGISTER</tt>, to remove the specified <tt>func</tt>
+        from the callback database.</dd><br>
+      <dd>It is <strong>extremely important</strong> that the plug-in unregister its callback
+        function from the internal database before it is removed from memory.  Otherwise, a
+        dangling pointer condition can lead to a crash the next time an event occurs on any
+        LWImage.</dd>
+      <dt><tt><br>
+        result = <strong>replace</strong>( image, filename )</tt></dt>
+      <dd>This function will perform an in-place substitution of the specified LWImageID with
+        the image found in the provided filename.  If the replacement succeeds, a non-zero
+        value is returned.</dd>
+    </dl>
+    <p><strong>History</strong></p>
+      <p>The <code><b>changeEvent()</b></code> function was added in LightWave&reg;
+      8.0.</p>
+    <p><strong>Example</strong></p>
+    <p>The <a href="../../sample/Layout/PixelFilter/zcomp">zcomp</a> sample includes a <a
+    href="../classes/pxlfilt.html">pixel filter</a> that composites the rendered image with a
+    previously generated image based on the z-depth. It uses the Image List global to manage
+    both the image to be composited and its z-buffer, which is treated as a floating-point
+    grayscale image and read using the <tt>luma</tt> function.</td>
+  </tr>
+</table>
+</body>
+</html>

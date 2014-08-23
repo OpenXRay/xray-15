@@ -1,0 +1,405 @@
+<HTML>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Begin
+function openWindow(url)
+{
+    popupWin = window.open(url,'remote','scrollbars=yes,resizable=yes,width=800,height=600')
+    popupWin.focus()
+}
+
+function openWebSite(url)
+{
+    popupWin = window.open(url)
+    popupWin.focus()
+}
+
+//-->
+</SCRIPT>
+
+<HEAD>
+<TITLE>LScript 2.7 Release Notes</TITLE>
+
+</HEAD>
+
+<BODY bgcolor="#ffffff"
+      text="#ffffff"
+      link="#ffffff"
+      vlink="#ffffff">
+</body>
+
+<CENTER>
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="600" align="center"><img width="230" height="20" border="0"
+    src="../images/proglw.gif"></td>
+  </tr>
+</table>
+
+<br><br><br>
+
+<A NAME="TOP">
+<table border="1"
+       cellpadding="3"
+       cellspacing="0"
+       bordercolor="#000000"
+       bordercolorlight="#000000"
+       width="600"
+       bordercolordark="#FFFFFF">
+  <tr>
+    <td bgcolor="#c0c0c0">
+<center><font size="+3" color="#000000">&nbsp;LScript v2.7 Release Notes&nbsp;</font></center>
+    </td>
+  </tr>
+  <tr>
+    <table border="1"
+           cellpadding="3"
+           cellspacing="0"
+           bordercolor="#000000"
+           bordercolorlight="#000000"
+           width="600"
+           bordercolordark="#FFFFFF">
+      <tr>
+        <td width=75 bgcolor="#001f00" align=center>
+            <A HREF="#LSCRIPTFEATURES">Features</A>
+        </td>
+        <td width=75 bgcolor="#001f00" align=center>
+            <A HREF="#LSCRIPTBUGS">Bug Fixes</A>
+        </td>
+      </tr>
+    </table>
+  </tr>
+</table>
+
+<br><br>
+
+<A NAME="LSCRIPTFEATURES">
+<table border="1"
+       cellpadding="3"
+       cellspacing="0"
+       bordercolor="#000000"
+       bordercolorlight="#000000"
+       width="600"
+       bordercolordark="#FFFFFF">
+  <tr>
+    <td bgcolor="#c0c0c0">
+      <table border="0"
+             cellpadding="3"
+             cellspacing="0"
+             bordercolor="#000000"
+             bordercolorlight="#000000"
+             width="600"
+             bordercolordark="#FFFFFF">
+        <tr>
+          <td width=75 bgcolor="#c0c0c0" align=center>
+<font size="+2" color="#000000">&nbsp;New Features&nbsp;</font>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<table border="2"
+       cellpadding="0"
+       cellspacing="0"
+       bordercolor="#000000"
+       bordercolorlight="#000000"
+       width="600"
+       bordercolordark="#FFFFFF">
+  <tr>
+    <td width=50>
+    </td>
+    <td bgcolor="#c0c0c0">
+<pre>
+<font color="#000000">
+                                                                                                        
+  Scripts can now use the <b>StatusMsg()</b> CS command (added to LightWave 8).  This command allows
+  a script to display a message in Layout's "tooltip" area on the main interface without requiring
+  any user interaction (e.g., pressing a button to dismiss a dialog box).
+
+  In addition, the text message you provide can be prefaced by a meta-character sequence consisting
+  of a floating point value between 0.0 and 1.0, enclosed within curly braces.  If this value is
+  present, it will cause the message displayed to have a background progress bar drawn as well.
+  For example:
+
+<font color="#0000A0">            "{.25}Loading object..."</font>
+
+  This message would be displayed with 25% of the text background in a different color.  By
+  repeatedly calling <b>StatusMsg()</b> with an increasing value in this area, your script can
+  animate a progress status bar along with the message.
+
+<font color="#0000A0">              generic
+              {
+                  for(x = 1;x <= 100;x++)
+                  {
+                      StatusMsg("{" + x/100.0 + "}This is a test");
+                      sleep(100);
+                  }
+
+                  StatusMsg("Done!");
+              }</font>
+
+</font>
+</pre>
+    </td>
+  </tr>
+  <tr>
+    <td width=50>
+    </td>
+    <td bgcolor="#505050">
+<pre>
+<font color="#FFFFFF">
+                                                                                                    
+  Starting with this version of LScript, scripts are full-fledged members of the <b>Communication Ring</b>
+  system.  The <b>Communication Ring</b> is a mechanism that has been added to LightWave 8, and it allows
+  plug-ins to effeciently intercommunicate events, and even exchange data along with those events.
+  LScripts can also partake in that mechanism.  (Please refer to the LightWave plug-in SDK
+  documentation for a more robust explanation of the <b>Communciation Ring</b> system.)
+
+  To support this system, several new commands have been added:
+
+      <b>comringattach(&lt;topic&gt;,&lt;callback&gt;)</b>
+
+          Opens a channel to the specified Communication Ring.  Each ComRing is identified by a
+          unique topic, which is a character string.  The first subscriber to a ring creates it,
+          and the last to detach causes its destruction.
+          
+          In addition, you must define a callback UDF to be invoked whenever events are generated
+          on that particular ComRing by other subscribers.  This callback will accept two values,
+          the event code (integer) and a data pointer (internal type) for the generated event.
+          The internal data pointer is processed using the <b>comringencode()</b> and <b>comringdecode()</b>
+          functions (explained later).
+
+      <b>comringdetach(&lt;topic&gt;)</b>
+
+          When a script is completed with its subscription to a ComRing (such as when it terminates),
+          it should detach from each ComRing to which it is attached.
+
+      <b>comringmsg(&lt;topic&gt;,&lt;code[,&lt;data&gt;])</b>
+
+          Generates an event on the specified ComRing.  All other subscribers on the ring will
+          receive notification of the event, and process the event at that time.  It is important
+          to point out that events are not cached -- events are processed when they arrive.  So,
+          processing of a ring event should be completed as quickly as possible.
+
+          The event <b>code</b> is simply an integer value that has some meaning as an identifier
+          for the event.  This value is completely user-defined.
+
+          The <b>data</b> value is optional.  However, if you do wish to transmit data to another
+          plug-in, the value you provide here can only have come from the <b>comringencode()</b>
+          function.  Any other kind of data will generate a run-time error.
+
+      <b>comringencode(&lt;datalist&gt;,...)</b>
+
+          This function will take a variable list of data and encode it into an in-memory form that
+          can be accessed by other plug-ins.  The arrangement of the data will allow it to be
+          accessed by a structure type-cast in a C plug-in.  If you are sending the data to
+          any other active LScript on the ring, that LScript should use the <b>comringdecode()</b>
+          function to extract the data.
+
+          The <b>datalist</b> is an array of character strings that identify the target data
+          types.  Data types can be "s" for string, "i" for integer, "f" for float, and "d" for
+          double.  In the case of string values, you must specify a size for the character buffer.
+          This size value is specified by appending a colon and an integer size value to the data
+          type metacharacter.  For example, a string value to be stored in a character buffer of
+          200 bytes would be specified as "s:200".
+
+          In addition, you can specify a count for the data types to be processed.  A count
+          value is specified using a pound sign.  So, for example, if the data you need to
+          process consists of an array of three strings, each contained in a 200-byte buffer,
+          an integer value, and five floating-point values, your <b>datalist</b> would look like
+          the following:
+
+<font color="#ffff00">              "s:200#3","i","f#5"</font>
+
+          The above <b>datalist</b> sequence would encode to an internal memory value that could
+          be accessed with the following C structure:
+
+<font color="#ffff00">              struct
+              {
+                  char    buf[3][200];
+                  int     ival;
+                  float   fval[5];
+              };</font>
+
+          When you specify a count for a particular data data type, you must provide an array or
+          initblock in that position of the provided data list to be processed.  A run-time error
+          will occur if an array or initblock is not found where a count value is specified.
+
+          The data value returned by <b>comringencode()</b> can only be used in the call to
+          <b>comringmsg()</b> as the <b>data</b> value.
+
+      <b>comringdecode(&lt;datalist,&lt;data&gt;)</b>
+
+          This function is used to extract data from a <b>data</b> value included with a ComRing
+          event.  The <b>datalist</b> provided should define the type and order of the data found
+          in the <b>data</b> value.
+
+          Values decoded are returned as a stream of elements, so you can store them all into a
+          single array variable, or you can use associative assignment to extract elements into
+          individual variables.
+
+  The "ComRing" SDK sample project shows this mechanism in action.  A Master LScript controls the
+  appearance of a C-code Custom Object plug-in in real-time, and illustrates two-way data exchange.
+
+</font>
+</pre>
+    </td>
+  </tr>
+  <tr>
+    <td width=50>
+    </td>
+    <td bgcolor="#c0c0c0">
+<pre>
+<font color="#000000">
+                                                                                                        
+  LScript v2.7 provides hooks in its functionality for a rather interesting new feature: URL file
+  referencing.  Currently, this functionality will be employed by LScript in cases where external
+  script components are referenced (Object Agents, include files, etc.).
+  
+  In order to activate this functionality, you must first acquire the shared-library build for
+  your platform of the W3C code distribution called <a href="http://www.w3.org/Library/">libwww</a>.
+
+  Once you have these files (numbering approximately 26 *.dll files for the Windows distribution),
+  they must be placed in the "w3c" subdirectory of the LScripts/ installation directory.  For
+  example, if you have installed LightWave in "C:\LightWave", then the <b>libwww</b> files must be
+  placed in "C:\LightWave\LScripts\W3C" in order to activate this dormant LScript functionality.
+
+  Once the W3C files are correctly located and loaded into LScript, your script can specify URL
+  references for script components instead of local filenames.  For instance, a script could then
+  reference an Object Agent include file published on an HTTP server as:
+
+<font color="#0000A0">            ...
+            @include "http://www.myobjectagents.com/cooloa.inc"
+            ...</font>
+
+  Further, inside the referenced include file, the Object Agent declaration line would then utilize
+  a URL instead of a file path to bring down the actual Object Agent binary file from the HTTP
+  server:
+
+<font color="#0000A0">            ...
+            use "http://www.myobjectagents.com/cooloa.oal" as class CoolOA;
+            ...</font>
+
+  As with Web pages in your favorite brower, files retrieved from an HTTP server in this fashion are
+  cached locally on your machine (in the same folder as the W3C directory).  Each time the files are
+  referenced by URL, the local file dates are checked with the HTTP server, and files with newer dates
+  are refreshed locally.  In this way, the component publisher has only to update the files on their
+  HTTP server, and all people using them will receive the updates automatically the next time any
+  script referencing them is executed.
+      <center>
+        <table border=1>
+          <tr>
+            <td bgcolor="#FFFFFF">
+            <img src="pointer.png" align=absmiddle>
+            </td>
+            <td bgcolor="#505050">
+              <font color="#FFFFFF">
+              <pre>
+                                                                              
+  URL file referencing is really more of an experimental feature
+  because cross-platform usage is not necessarily guaranteed (it
+  has only been successfully tested under the Windows operation system).
+              </pre>
+              </font>
+            </td>
+          </tr>
+        </table>
+      </center>
+</font>
+</pre>
+    </td>
+  </tr>
+  <tr>
+    <td width=50>
+    </td>
+    <td bgcolor="#505050">
+<pre>
+<font color="#FFFFFF">
+                                                                                                    
+  Requester Control Object Agents now have a <b>size(&lt;w&gt;,&lt;h&gt;)</b> method that will allow you to
+  change the width and height attributes of a control.  For best results, you should first hide
+  the control before you change these attributes, and then make it visible once again.
+</font>
+</pre>
+    </td>
+  </tr>
+</table>
+
+<br><br><br>
+
+<A NAME="LSCRIPTBUGS">
+<table border="1"
+       cellpadding="3"
+       cellspacing="0"
+       bordercolor="#000000"
+       bordercolorlight="#000000"
+       width="600"
+       bordercolordark="#FFFFFF">
+  <tr>
+    <td bgcolor="#c0c0c0">
+      <table border="0"
+             cellpadding="3"
+             cellspacing="0"
+             bordercolor="#000000"
+             bordercolorlight="#000000"
+             width="600"
+             bordercolordark="#FFFFFF">
+        <tr>
+          <td width=75 bgcolor="#c0c0c0" align=left>
+          </td>
+          <td width=75 bgcolor="#c0c0c0" align=center>
+<font size="+2" color="#000000">&nbsp;Bug Fixes&nbsp;</font>
+          </td>
+          <td width=75 bgcolor="#c0c0c0" align=right>
+            <A HREF="#TOP">(top)</A>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<table border="2"
+       cellpadding="0"
+       cellspacing="0"
+       bordercolor="#000000"
+       bordercolorlight="#000000"
+       width="600"
+       bordercolordark="#FFFFFF">
+  <tr>
+    <td width=50>
+    </td>
+    <td bgcolor="#c0c0c0">
+<pre>
+<font color="#000000">
+                                                                                        
+  The matchdirs() command was miscounting found subdirectories on the Mac, resulting
+  in a nil return value.
+
+</font>
+</pre>
+    </td>
+  </tr>
+  <tr>
+    <td width=50>
+    </td>
+    <td bgcolor="#505050">
+<pre>
+<font color="#FFFFFF">
+                                                                                        
+  Requesters that used Icon Objects were not properly clearing those icons from
+  the system when the Requester was dismissed.  This left the system progressively
+  unstable as the same script was run over and over, leading a display of garbage
+  instead of icons, or a crash of the application.
+</font>
+</pre>
+    </td>
+  </tr>
+</table>
+
+</CENTER>
+
+</BODY>

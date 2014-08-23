@@ -1,0 +1,1007 @@
+//-
+// ==========================================================================
+// Copyright (C) 1995 - 2005 Alias Systems Corp. and/or its licensors.  All 
+// rights reserved. 
+// 
+// The coded instructions, statements, computer programs, and/or related 
+// material (collectively the "Data") in these files are provided by Alias 
+// Systems Corp. ("Alias") and/or its licensors for the exclusive use of the 
+// Customer (as defined in the Alias Software License Agreement that 
+// accompanies this Alias software). Such Customer has the right to use, 
+// modify, and incorporate the Data into other products and to distribute such 
+// products for use by end-users.
+//  
+// THE DATA IS PROVIDED "AS IS".  ALIAS HEREBY DISCLAIMS ALL WARRANTIES 
+// RELATING TO THE DATA, INCLUDING, WITHOUT LIMITATION, ANY AND ALL EXPRESS OR 
+// IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY AND/OR FITNESS FOR A 
+// PARTICULAR PURPOSE. IN NO EVENT SHALL ALIAS BE LIABLE FOR ANY DAMAGES 
+// WHATSOEVER, WHETHER DIRECT, INDIRECT, SPECIAL, OR PUNITIVE, WHETHER IN AN 
+// ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, OR IN EQUITY, 
+// ARISING OUT OF ACCESS TO, USE OF, OR RELIANCE UPON THE DATA.
+// ==========================================================================
+//+
+
+global proc
+rtgBrowseForScript()
+{
+    string $file = `fileDialog`;
+    textField -e -text $file rtgScript;
+}
+
+global proc int rtgTranslatorOpts ( string $parent,
+									string $action,
+									string $initialSettings,
+									string $resultCallback )
+//
+//	Description:
+//		This script posts the RTG file translator options.
+//		The optionsString is of the form:
+//			varName1=value1;varName2=value2;...
+//
+//	Parameters:
+//		$parent	- the elf parent layout for this options layout. It is
+//					always a scrollLayout.
+//		$action	- the action that is to be performed with this invokation
+//					of this proc. Valid options are:
+//						"query" - construct the options string and pass it
+//									to the resultCallback.
+//						"post"	- post all the elf controls.
+//		$initialSettings - the current options string in effect at the
+//						   time this script is invoked.
+//		$resultCallback	-
+//				This is the proc to be called with the result string. 
+//				resultCallback ( string $optionsString )
+//
+//	Returns:
+//		1 if successfull.
+//		0 otherwise.
+//
+{
+	int		$intVal;
+	float	$floatVal;
+	int		$bResult;
+	string	$currentOptions;
+	string	$optionList[];
+	string	$optionBreakDown[];
+	int		$index;
+
+	if ($action == "post") {
+		setParent $parent;
+
+		// We would like to hide some of the generation of the UI here.
+		// So we are going to hide the current optionsBoxForm
+		// Will make it visible after all of this is done.
+		// The scroll bars update while doing this.
+
+		// Magic name of "optionsBoxForm"
+
+        setUITemplate -pushTemplate DefaultTemplate;
+
+		formLayout -e -vis false optionsBoxForm;
+		
+	    columnLayout -adj true;
+
+            frameLayout
+                    -cll true
+                    -cl false
+                    -bv true
+                    -bs "etchedIn"
+                    -l "Animation Options"
+                    rtgAnimateFrame;
+
+                columnLayout -adj true rtgAnimateOptions;
+
+            		checkBoxGrp  
+						-l "Range control:"
+						-ncb 2 
+						-va2 false true
+						-la2 "TimeSlider" "Enabled" rtgLoopFlags;
+
+            		intSliderGrp -l "Start:" -f true 
+									-min 0 -max 1000 rtgAnimStart;
+
+        		    intSliderGrp -l "End:" -f true 
+									-min 0 -max 1000 rtgAnimEnd;
+
+		            intSliderGrp -l "Step:" -f true 
+									-min 1 -max 100 rtgAnimStep;
+
+                setParent ..; // columnLayout
+            setParent ..; // frameLayout
+
+
+            frameLayout
+                    -cll true
+                    -cl false
+                    -bv true
+                    -bs "etchedIn"
+                    -l "Export Options"
+                    rtgExportFrame;
+                    
+                columnLayout -adj true rtgExportOptions;
+
+            		radioButtonGrp
+                	    -l "Hierarchy:"
+                	    -nrb 3
+                	    -la3 "World" "Flat" "Full" rtgHrcType;
+                    radioButtonGrp -e -sl 2 rtgHrcType;
+
+                    checkBoxGrp
+                        -l " "
+                        -ncb 1
+                        -v1 false
+                        -l1 "Joints" rtgJoints;
+
+            		radioButtonGrp
+                	    -l "Export:"
+                	    -nrb 3
+                	    -la3 "All" "Picked" "Active" rtgExportSel;
+                    radioButtonGrp -e -sl 1 rtgExportSel;
+                    
+            		radioButtonGrp
+                	    -l "Tesselation:"
+                	    -nrb 2
+                	    -la2 "Tri" "Quad" rtgTesselation;
+                    radioButtonGrp -e -sl 1 rtgTesselation;
+
+            		checkBoxGrp
+                	    -l "Include:"
+                	    -ncb 2
+                	    -va2 true true
+                	    -la2 "Cameras" "Lights" rtgCameraLights;
+
+            		checkBoxGrp
+                	    -l "Debug Info:"
+                	    -ncb 3
+                	    -va3 false false false 
+                	    -la3 "Geo/Mat" "Cameras" "Lights" rtgDebugLevel;
+
+                setParent ..; // columnLayout
+            setParent ..; // frameLayout
+
+            frameLayout
+                    -cll true
+                    -cl false
+                    -bv true
+                    -bs "etchedIn"
+                    -l "Texture Options"
+                    rtgTextureFrame;
+
+                columnLayout -adj true rtgTextureOptions;
+
+
+            		checkBoxGrp
+						-l "Texture control:"
+                	    -ncb 3
+                	    -va3 true false false
+                	    -la3 "Evaluate" "Sample" "Original" rtgTextureFlags;
+
+            		intSliderGrp -l "X Tex Res" -field true 
+									-max 10000 -fmx 4096 rtgXtexres;
+            		intSliderGrp -l "Y Tex Res" -field true 
+									-max 10000 -fmx 4096 rtgYtexres;
+
+            		intSliderGrp -l "Max X Tex Res" -field true 
+									-max 10000 -fmx 4096 rtgMaxXtexres;
+            		intSliderGrp -l "Max Y Tex Res" -field true 
+									-max 10000 -fmx 4096 rtgMaxYtexres;
+            		intSliderGrp -e -v 256 rtgXtexres;
+            		intSliderGrp -e -v 256 rtgYtexres;
+            		intSliderGrp -e -v 4096 rtgMaxXtexres;
+            		intSliderGrp -e -v 4096 rtgMaxYtexres;
+
+
+            		text -l "Texture Search path:" -al "left";
+            		textField rtgTexSearchPath;
+
+                setParent ..; // columnLayout               
+            setParent ..; // frameLayout
+            
+            frameLayout
+                    -cll true
+                    -cl false
+                    -bv true
+                    -bs "etchedIn"
+                    -l "rtg Options"
+                    rtgOtherFrame;
+                    
+                columnLayout -adj true rtgOtherOptions;
+
+
+            		checkBoxGrp
+                	    -l "base options:"
+                	    -ncb 2 
+                	    -va2 false false 
+                	    -la2 "Verbose" "Reversed" rtgExportFlags;
+
+
+            		optionMenu -l "Image Format:" rtgImageFormat;
+                        menuItem -label "SGI RGB";
+                        menuItem -label "Alias PIX";
+            		optionMenu -e -sl 1 rtgImageFormat;
+
+            		radioButtonGrp
+                		-l "format"
+                		-nrb 2
+                		-la2 "Unix" "DOS" rtgFileFormat;
+
+            		checkBoxGrp 
+                	    -l " "
+                	    -ncb 1
+                	    -v1 false 
+                	    -l1 "V1.8 Compatible" rtgExportFlags9;
+
+            		checkBoxGrp 
+						-l " "
+						-ncb 2
+						-va2 false false
+						-la2 "V Normals" "P Normals" rtgExportFlags2;
+
+					checkBoxGrp
+						-l " "
+						-ncb 2
+						-va2 false false
+						-la2 "V Colors" "UV Coords" rtgExportFlags3;
+
+            		checkBoxGrp
+            	        -l " "
+            	        -ncb 2
+            	        -va2 false false
+            	        -la2 "indexCnt" "Degrees" rtgExportFlags4;
+	
+    		        checkBoxGrp
+        	            -l " "
+        	            -ncb 2
+        	            -va2 false false
+        	            -la2 "Materials" "MultiTexture" rtgExportFlags5;
+
+        		    checkBoxGrp
+            	        -l " "
+            	        -ncb 2
+            	        -va2 false false
+            	        -la2 "MDecomp" "Pivots" rtgExportFlags6;
+
+            		checkBoxGrp
+            	        -l " "
+            	        -ncb 2
+            	        -va2 false false
+            	        -la2 "Transforms" "Local Xform" rtgExportFlags7;
+
+            		checkBoxGrp
+            	        -l " "
+            	        -ncb 2
+            	        -va2 false false
+            	        -la2 "Animation" "AllNodes" rtgExportFlags8;
+
+            		text -l "Texture path:" -al "left";
+            		textField rtgTextPath;
+
+
+                    text -l "Run script when done:" -al "left";
+                    
+                    rowLayout -nc 2 -cw2 360 60; //-cl2 "both" "both";
+                        textField rtgScript;
+                        button -l " Browse " -rs true -al "center"
+                             -c rtgBrowseForScript rtgScriptBrowser;
+                    setParent ..; // rowLayout
+                    
+                    text -l "(Use forward slash (\"/\") for path delimiter)" -al "left";            
+                    checkBoxGrp
+                            -l " "
+                            -ncb 1
+                            -v1 true
+                            -l1 "Append file name to script"
+                            rtgScriptAppend;
+                            
+                setParent ..; // columnLayout
+            setParent ..; // frameLayout
+            
+        setParent ..; // columnLayout
+
+		// ---------------------------------------------------
+		//
+		// End of the UI generation portion
+		//
+		// ---------------------------------------------------
+
+		
+		// Now set to current settings.
+
+		$currentOptions = $initialSettings;
+		if (size($currentOptions) > 0) {
+			tokenize($currentOptions, ";", $optionList);
+			for ($index = 0; $index < size($optionList); $index++) {
+				tokenize($optionList[$index], "=", $optionBreakDown);
+
+                // Frame settings
+
+                if ( $optionBreakDown[0] == "animFrame") {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 1 ) {
+                        frameLayout -e -cl true rtgAnimateFrame;
+                    } else {
+                        frameLayout -e -cl false rtgAnimateFrame;
+                    }
+                }
+                else if ( $optionBreakDown[0] == "exportFrame") {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 1 ) {
+                        frameLayout -e -cl true rtgExportFrame;
+                    } else {
+                        frameLayout -e -cl false rtgExportFrame;
+                    }
+                }
+                else if ( $optionBreakDown[0] == "textureFrame") {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 1 ) {
+                        frameLayout -e -cl true rtgTextureFrame;
+                    } else {
+                        frameLayout -e -cl false rtgTextureFrame;
+                    }
+                }
+                else if ( $optionBreakDown[0] == "otherFrame") {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 1 ) {
+                        frameLayout -e -cl true rtgOtherFrame;
+                    } else {
+                        frameLayout -e -cl false rtgOtherFrame;
+                    }
+                }
+
+				// Hierarchy setting
+				
+                if ($optionBreakDown[0] == "hrcType") {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 1 ) {
+                        radioButtonGrp -e -sl 1 rtgHrcType;
+                    } else if ( $intVal == 2 ) {
+                        radioButtonGrp -e -sl 2 rtgHrcType;
+                    } else {
+                        radioButtonGrp -e -sl 3 rtgHrcType;
+                    }
+
+				}
+
+                else if ( $optionBreakDown[0] == "joints" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v1 false rtgJoints;
+                    } else {
+                        checkBoxGrp -e -v1 true rtgJoints;
+                    }
+                }
+
+                else if ($optionBreakDown[0] == "exportSel") {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 1 ) {
+                        radioButtonGrp -e -sl 1 rtgExportSel;
+                    } else if ( $intVal == 2 ) {
+                        radioButtonGrp -e -sl 2 rtgExportSel;
+                    } else {
+                        radioButtonGrp -e -sl 3 rtgExportSel;
+                    }   
+
+                }   
+
+                else if ($optionBreakDown[0] == "tesselation") {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 1 ) {
+                        radioButtonGrp -e -sl 1 rtgTesselation;
+                    } else {
+                        radioButtonGrp -e -sl 2 rtgTesselation;
+                    }   
+				}
+
+                else if ( $optionBreakDown[0] == "cameras" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v1 false rtgCameraLights;
+                    } else {
+                        checkBoxGrp -e -v1 true rtgCameraLights;
+                    }   
+                }   
+                
+                else if ( $optionBreakDown[0] == "lights" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v2 false rtgCameraLights;
+                    } else {
+                        checkBoxGrp -e -v2 true rtgCameraLights;
+                    }   
+                }   
+
+                else if ( $optionBreakDown[0] == "debug" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v1 false rtgDebugLevel;
+                    } else {
+                        checkBoxGrp -e -v1 true rtgDebugLevel;
+                    }   
+                }   
+                else if ( $optionBreakDown[0] == "debugC" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v2 false rtgDebugLevel;
+                    } else {
+                        checkBoxGrp -e -v2 true rtgDebugLevel;
+                    }   
+                }   
+                else if ( $optionBreakDown[0] == "debugL" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v3 false rtgDebugLevel;
+                    } else {
+                        checkBoxGrp -e -v3 true rtgDebugLevel;
+                    }   
+                }   
+
+
+// Set Animation loop
+//
+                else
+                 if ( $optionBreakDown[0] == "timeslider" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {  
+                        checkBoxGrp -e -v1 false rtgLoopFlags;
+                    } else { 
+                        checkBoxGrp -e -v1 true rtgLoopFlags;
+                    }
+                 }
+
+// Set the overall Global Animation Enable flag
+
+                else
+                 if ( $optionBreakDown[0] == "animEnabled" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v2 false rtgLoopFlags;
+                    } else {
+                        checkBoxGrp -e -v2 true rtgLoopFlags;
+                    }   
+                 } 
+
+// Set Animation sliders
+//
+				else
+				 if ( $optionBreakDown[0] == "animStart" ) {
+					$intVal = $optionBreakDown[1];
+					intSliderGrp -e -v $intVal rtgAnimStart;
+				 }
+				else
+				 if ( $optionBreakDown[0] == "animEnd" ) {
+					$intVal = $optionBreakDown[1];
+					intSliderGrp -e -v $intVal rtgAnimEnd;
+				 }
+				else
+				 if ( $optionBreakDown[0] == "animStep" ) {
+					$intVal = $optionBreakDown[1];
+					intSliderGrp -e -v $intVal rtgAnimStep;
+				 }
+
+// Post texture options
+//
+                else
+                 if ( $optionBreakDown[0] == "texsample" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+						checkBoxGrp -e -v2 false rtgTextureFlags; 
+					} else { 
+						checkBoxGrp -e -v2 true rtgTextureFlags; 
+					}
+                 }  
+
+                else
+                 if ( $optionBreakDown[0] == "texevaluate" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v1 false rtgTextureFlags;          
+                    } else { 
+                        checkBoxGrp -e -v1 true rtgTextureFlags;          
+                    }
+                 }  
+
+                else
+                 if ( $optionBreakDown[0] == "texoriginal" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v3 false rtgTextureFlags;
+                    } else {
+                        checkBoxGrp -e -v3 true rtgTextureFlags;
+                    }
+                 }
+
+                else
+                 if ( $optionBreakDown[0] == "Xtexres" ) {
+                    $intVal = $optionBreakDown[1];
+                    intSliderGrp -e -v $intVal rtgXtexres;
+                 }
+                else
+                 if ( $optionBreakDown[0] == "Ytexres" ) {
+                    $intVal = $optionBreakDown[1];
+                    intSliderGrp -e -v $intVal rtgYtexres;
+                 }
+                else
+                 if ( $optionBreakDown[0] == "MaxXtexres" ) {
+                    $intVal = $optionBreakDown[1];
+                    intSliderGrp -e -v $intVal rtgMaxXtexres;
+                 }
+                else
+                 if ( $optionBreakDown[0] == "MaxYtexres" ) {
+                    $intVal = $optionBreakDown[1];
+                    intSliderGrp -e -v $intVal rtgMaxYtexres;
+                 }
+
+                else
+                 if ( $optionBreakDown[0] == "searchPath" ) {
+                    if ( $optionBreakDown[1] != "" ) {
+                        textField -e -text $optionBreakDown[1] rtgTexSearchPath;
+                    }
+                 }
+
+
+// Post RTG options
+
+                else
+                 if ( $optionBreakDown[0] == "imageformat" ) {
+                    $intVal = $optionBreakDown[1];
+                    switch ( $intVal )
+                    {   
+                        case 1: optionMenu -e -sl 1 rtgImageFormat;break;
+                        case 2: optionMenu -e -sl 2 rtgImageFormat;break;
+                    }
+                }
+
+// Post Export flags
+//
+				else 
+				 if ($optionBreakDown[0] == "fileformat") {
+				    $intVal = $optionBreakDown[1];
+                    if ($intVal == 1) {
+                        radioButtonGrp -e -sl 1 rtgFileFormat;
+                    } else {
+                        radioButtonGrp -e -sl 2 rtgFileFormat;
+                    }
+				 }
+
+				else
+				 if ( $optionBreakDown[0] == "verbose" ) {
+					$intVal = $optionBreakDown[1];
+					if ( $intVal == 0 ) { 
+						checkBoxGrp -e -v1 false rtgExportFlags; 
+					} else { 
+						checkBoxGrp -e -v1 true rtgExportFlags; 
+					}
+				 }
+                else
+                 if ( $optionBreakDown[0] == "reversed" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v2 false rtgExportFlags;
+                    } else {
+                        checkBoxGrp -e -v2 true rtgExportFlags;
+                    }
+                 }
+				else
+				 if ( $optionBreakDown[0] == "vnormals" ) {
+					$intVal = $optionBreakDown[1];
+					if ( $intVal == 0 ) { 
+						checkBoxGrp -e -v1 false rtgExportFlags2; 
+					} else { 
+						checkBoxGrp -e -v1 true rtgExportFlags2; 
+					}
+				 }
+				else
+				 if ( $optionBreakDown[0] == "pnormals" ) {
+					$intVal = $optionBreakDown[1];
+					if ( $intVal == 0 ) { 
+						checkBoxGrp -e -v2 false rtgExportFlags2; 
+					} else { 
+						checkBoxGrp -e -v2 true rtgExportFlags2; 
+					}
+				 }
+				else
+				 if ( $optionBreakDown[0] == "vcolors" ) {
+					$intVal = $optionBreakDown[1];
+					if ( $intVal == 0 ) { 
+						checkBoxGrp -e -v1 false rtgExportFlags3; 
+					} else { 
+						checkBoxGrp -e -v1 true rtgExportFlags3; 
+					}
+				 }
+                else
+                 if ( $optionBreakDown[0] == "tcoords" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v2 false rtgExportFlags3;
+                    } else {
+                        checkBoxGrp -e -v2 true rtgExportFlags3;
+                    }
+                 }
+                else
+                 if ( $optionBreakDown[0] == "idxcnt" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v1 false rtgExportFlags4;
+                    } else {
+                        checkBoxGrp -e -v1 true rtgExportFlags4;
+                    }   
+                 }  
+				else
+                 if ( $optionBreakDown[0] == "anglesdeg" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v2 false rtgExportFlags4;
+                    } else {
+                        checkBoxGrp -e -v2 true rtgExportFlags4;
+                    }
+                 }
+                else
+                 if ( $optionBreakDown[0] == "materials" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v1 false rtgExportFlags5;
+                    } else {
+                        checkBoxGrp -e -v1 true rtgExportFlags5;
+                    }   
+                 }  
+                else
+                 if ( $optionBreakDown[0] == "multitexture" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v2 false rtgExportFlags5;
+                    } else {
+                        checkBoxGrp -e -v2 true rtgExportFlags5;
+                    }
+                 }  
+                else
+                 if ( $optionBreakDown[0] == "mdecomp" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v1 false rtgExportFlags6;
+                    } else {
+                        checkBoxGrp -e -v1 true rtgExportFlags6;
+                    }   
+                 }  
+                else
+                 if ( $optionBreakDown[0] == "pivoth" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v2 false rtgExportFlags6;
+                    } else {
+                        checkBoxGrp -e -v2 true rtgExportFlags6;
+                    }   
+                 }  
+                else
+                 if ( $optionBreakDown[0] == "transforms" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v1 false rtgExportFlags7;
+                    } else {
+                        checkBoxGrp -e -v1 true rtgExportFlags7;
+                    }   
+                 }  
+                else
+                 if ( $optionBreakDown[0] == "ltransforms" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v2 false rtgExportFlags7;
+                    } else {
+                        checkBoxGrp -e -v2 true rtgExportFlags7;
+                    }   
+                 }  
+                else
+                 if ( $optionBreakDown[0] == "animation" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v1 false rtgExportFlags8;
+                    } else {
+                        checkBoxGrp -e -v1 true rtgExportFlags8;
+                    }   
+                 }  
+                else
+                 if ( $optionBreakDown[0] == "allnodes" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v2 false rtgExportFlags8;
+                    } else {
+                        checkBoxGrp -e -v2 true rtgExportFlags8;
+                    }   
+				 }
+                else
+                 if ( $optionBreakDown[0] == "v18compatible" ) {
+                    $intVal = $optionBreakDown[1];
+                    if ( $intVal == 0 ) {
+                        checkBoxGrp -e -v1 false rtgExportFlags9;
+                    } else {
+                        checkBoxGrp -e -v1 true rtgExportFlags9;
+                    }
+
+				 }
+
+                else
+                 if ( $optionBreakDown[0] == "script" )
+                 {
+                     textField -e -tx $optionBreakDown[1] rtgScript;
+                 }   
+                else 
+                 if ( $optionBreakDown[1] == "scriptAppend" )
+                 {
+                    $intVal = $optionBreakDown[1];
+                    checkBoxGrp -e -v $intVal rtgScriptAppend;
+                 }  
+
+			}
+		}
+		$result = 1;
+	
+
+		formLayout -e -vis true optionsBoxForm;
+
+        setUITemplate -popTemplate;
+
+
+	} else if ($action == "query") {
+
+// Frame layouts
+//
+        $intVal = `frameLayout -q -cl rtgAnimateFrame`;
+        $currentOptions = $currentOptions + "animFrame=" + $intVal + ";";
+        
+        $intVal = `frameLayout -q -cl rtgExportFrame`;
+        $currentOptions = $currentOptions + "exportFrame=" + $intVal + ";";
+        
+        $intVal = `frameLayout -q -cl rtgTextureFrame`;
+        $currentOptions = $currentOptions + "textureFrame=" + $intVal + ";";
+        
+        $intVal = `frameLayout -q -cl rtgOtherFrame`;
+        $currentOptions = $currentOptions + "otherFrame=" + $intVal + ";";
+        
+
+// 1st thing is to see if v1.8 compatible is set
+//
+        if (`checkBoxGrp -q -v1 rtgExportFlags9` == 1) {
+            $currentOptions = $currentOptions + "v18compatible=1;";
+        } else {
+            $currentOptions = $currentOptions + "v18compatible=0;";
+        }
+
+        $intVal = `optionMenu -q -sl rtgImageFormat`;
+        switch ( $intVal )
+        {
+         case 1:    $currentOptions = $currentOptions + "imageformat=1;";break;
+         case 2:    $currentOptions = $currentOptions + "imageformat=2;";break;
+        }
+
+// see about the file format  unix/dos style
+
+        if (`radioButtonGrp -q -sl rtgFileFormat` == 1) {
+            $currentOptions = $currentOptions + "fileformat=1;";
+        } else {
+            $currentOptions = $currentOptions + "fileformat=2;";
+        }   
+
+// Query animation range/step
+//
+		$intVal = `intSliderGrp -q -v rtgAnimStart`;
+		$currentOptions = $currentOptions + "animStart=" + $intVal + ";";
+
+		$intVal = `intSliderGrp -q -v rtgAnimEnd`;
+		$currentOptions = $currentOptions + "animEnd=" + $intVal + ";";
+
+		$intVal = `intSliderGrp -q -v rtgAnimStep`;
+		$currentOptions = $currentOptions + "animStep=" + $intVal + ";";
+
+// Query hierarchy type
+//
+        $intVal = `radioButtonGrp -q -sl rtgHrcType`;
+		switch ( $intVal )
+		{
+		 case 1:	$currentOptions = $currentOptions + "hrcType=1;";break;
+		 case 2:	$currentOptions = $currentOptions + "hrcType=2;";break;
+		 case 3:	$currentOptions = $currentOptions + "hrcType=3;";break;
+		}
+
+        if (`checkBoxGrp -q -v1 rtgJoints` == 1) {
+            $currentOptions = $currentOptions + "joints=1;";
+        } else {
+            $currentOptions = $currentOptions + "joints=0;";
+        }
+
+// Query export selection
+//
+        $intVal = `radioButtonGrp -q -sl rtgExportSel`;
+		switch ( $intVal )
+		{
+		 case 1:	$currentOptions = $currentOptions + "exportSel=1;";break;
+		 case 2:	$currentOptions = $currentOptions + "exportSel=2;";break;
+		 case 3:	$currentOptions = $currentOptions + "exportSel=3;";break;
+		}
+
+
+        if (`checkBoxGrp -q -v1 rtgLoopFlags` == 1) {
+            $currentOptions = $currentOptions + "timeslider=1;";
+        } else {
+            $currentOptions = $currentOptions + "timeslider=0;";
+        }
+
+        if (`checkBoxGrp -q -v2 rtgLoopFlags` == 1) {
+            $currentOptions = $currentOptions + "animEnabled=1;";
+        } else {
+            $currentOptions = $currentOptions + "animEnabled=0;";
+        }
+
+
+// Query Texture options
+//
+        if (`checkBoxGrp -q -v2 rtgTextureFlags` == 1) {
+            $currentOptions = $currentOptions + "texsample=1;";
+        } else {
+            $currentOptions = $currentOptions + "texsample=0;";
+        }   
+
+        if (`checkBoxGrp -q -v1 rtgTextureFlags` == 1) {
+            $currentOptions = $currentOptions + "texevaluate=1;";
+        } else {
+            $currentOptions = $currentOptions + "texevaluate=0;";
+        }   
+
+        if (`checkBoxGrp -q -v3 rtgTextureFlags` == 1) {
+            $currentOptions = $currentOptions + "texoriginal=1;";
+        } else {
+            $currentOptions = $currentOptions + "texoriginal=0;";
+        }
+
+        $intVal = `intSliderGrp -q -v rtgXtexres`;
+        $currentOptions = $currentOptions + "Xtexres=" + $intVal + ";";
+
+        $intVal = `intSliderGrp -q -v rtgYtexres`;
+        $currentOptions = $currentOptions + "Ytexres=" + $intVal + ";";
+
+        $intVal = `intSliderGrp -q -v rtgMaxXtexres`;
+        $currentOptions = $currentOptions + "MaxXtexres=" + $intVal + ";";
+        
+        $intVal = `intSliderGrp -q -v rtgMaxYtexres`;
+        $currentOptions = $currentOptions + "MaxYtexres=" + $intVal + ";";
+
+        $strVal = `textField -q -text rtgTexSearchPath`;
+        $currentOptions = $currentOptions + "searchPath=" + $strVal + ";";
+
+
+// Query tesselation type
+//
+        if (`radioButtonGrp -q -sl rtgTesselation` == 1) {
+            $currentOptions = $currentOptions + "tesselation=1;";
+        } else {
+            $currentOptions = $currentOptions + "tesselation=2;";
+        }
+
+        // check for debug info levels
+        
+        if (`checkBoxGrp -q -v1 rtgDebugLevel` == 1) {
+            $currentOptions = $currentOptions + "debug=1;";
+        } else {
+            $currentOptions = $currentOptions + "debug=0;";
+        }   
+        if (`checkBoxGrp -q -v2 rtgDebugLevel` == 1) {
+            $currentOptions = $currentOptions + "debugC=1;";
+        } else {
+            $currentOptions = $currentOptions + "debugC=0;";
+        }   
+        if (`checkBoxGrp -q -v3 rtgDebugLevel` == 1) {
+            $currentOptions = $currentOptions + "debugL=1;";
+        } else {
+            $currentOptions = $currentOptions + "debugL=0;";
+        }   
+
+
+// Query export flags
+//
+		if (`checkBoxGrp -q -v1 rtgExportFlags` == 1) {
+			$currentOptions = $currentOptions + "verbose=1;";
+		} else {
+			$currentOptions = $currentOptions + "verbose=0;";
+		}
+
+        if (`checkBoxGrp -q -v2 rtgExportFlags` == 1) {
+            $currentOptions = $currentOptions + "reversed=1;";
+        } else {
+            $currentOptions = $currentOptions + "reversed=0;";
+        }
+
+
+		if (`checkBoxGrp -q -v1 rtgExportFlags2` == 1) {
+			$currentOptions = $currentOptions + "vnormals=1;";
+		} else {
+			$currentOptions = $currentOptions + "vnormals=0;";
+		}
+
+        if (`checkBoxGrp -q -v2 rtgExportFlags2` == 1) {
+            $currentOptions = $currentOptions + "pnormals=1;";
+        } else {
+            $currentOptions = $currentOptions + "pnormals=0;";
+        }
+
+        if (`checkBoxGrp -q -v1 rtgExportFlags3` == 1) {
+            $currentOptions = $currentOptions + "vcolors=1;";
+        } else {
+            $currentOptions = $currentOptions + "vcolors=0;";
+        }   
+
+        if (`checkBoxGrp -q -v2 rtgExportFlags3` == 1) {
+            $currentOptions = $currentOptions + "tcoords=1;";
+        } else {
+            $currentOptions = $currentOptions + "tcoords=0;";
+        }   
+
+        if (`checkBoxGrp -q -v1 rtgExportFlags4` == 1) {
+            $currentOptions = $currentOptions + "idxcnt=1;";
+        } else {
+            $currentOptions = $currentOptions + "idxcnt=0;";
+        }
+
+        if (`checkBoxGrp -q -v2 rtgExportFlags4` == 1) {
+            $currentOptions = $currentOptions + "anglesdeg=1;";
+        } else {
+            $currentOptions = $currentOptions + "anglesdeg=0;";
+        }
+
+        if (`checkBoxGrp -q -v1 rtgExportFlags5` == 1) {
+            $currentOptions = $currentOptions + "materials=1;";
+        } else {
+            $currentOptions = $currentOptions + "materials=0;";
+        } 
+
+        if (`checkBoxGrp -q -v2 rtgExportFlags5` == 1) {
+            $currentOptions = $currentOptions + "multitexture=1;";
+        } else {
+            $currentOptions = $currentOptions + "multitexture=0;";
+        }
+            
+        if (`checkBoxGrp -q -v1 rtgExportFlags6` == 1) {
+            $currentOptions = $currentOptions + "mdecomp=1;";
+        } else {
+            $currentOptions = $currentOptions + "mdecomp=0;";
+        } 
+            
+        if (`checkBoxGrp -q -v2 rtgExportFlags6` == 1) {
+            $currentOptions = $currentOptions + "pivoth=1;";
+        } else {
+            $currentOptions = $currentOptions + "pivoth=0;";
+        } 
+        if (`checkBoxGrp -q -v1 rtgExportFlags7` == 1) {
+            $currentOptions = $currentOptions + "transforms=1;";
+        } else {
+            $currentOptions = $currentOptions + "transforms=0;";
+        } 
+            
+        if (`checkBoxGrp -q -v2 rtgExportFlags7` == 1) {
+            $currentOptions = $currentOptions + "ltransforms=1;";
+        } else {
+            $currentOptions = $currentOptions + "ltransforms=0;";
+        } 
+        if (`checkBoxGrp -q -v1 rtgExportFlags8` == 1) {
+            $currentOptions = $currentOptions + "animation=1;";
+        } else {
+            $currentOptions = $currentOptions + "animation=0;";
+        } 
+            
+        if (`checkBoxGrp -q -v2 rtgExportFlags8` == 1) {
+            $currentOptions = $currentOptions + "allnodes=1;";
+        } else {
+            $currentOptions = $currentOptions + "allnodes=0;";
+        } 
+
+        $currentOptions = $currentOptions + "script="
+                            + `textField -q -text rtgScript` + ";";
+
+        $currentOptions = $currentOptions + "scriptAppend="
+                            + `checkBoxGrp -q -v1 rtgScriptAppend` + ";";
+
+		eval($resultCallback+" \""+$currentOptions+"\"");
+		$result = 1;
+	} else {
+		$bResult = 0;
+	}
+	
+	return $bResult;
+}

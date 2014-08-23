@@ -1,0 +1,40 @@
+#!/bin/sh
+# automatically generated Thu Jul 29 11:45:32 MST 2004
+rm -f shader.h geoshader.h mi_version.h
+cp shader.34.h shader.h
+cp geoshader.34.h geoshader.h
+cp mi_version.34.h mi_version.h
+cp raylib.34.rc raylib.rc
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include baseblinn.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basecheck.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basecolor.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basecooktorr.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basedielec.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include baseenviron.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basegeo.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basehair.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include baseior.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include baselambert.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include baselens.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include baselight.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include baselightmap.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basemux.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basephong.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basephotbas.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basepolka.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include baseraymarch.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basereflect.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include baserefract.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include baseshadow.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basetexgen.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basetexgeo.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basetexlook.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basetrans.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include baseturb.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basetwoside.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basevolume.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include baseward.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basewardderi.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include basewave.cpp
+cc -c -O3   -fPIC -dynamic -fno-common -DMACOSX -D_REENTRANT  -I. -I../../modules/include baseocc.cpp
+libtool  -flat_namespace -undefined suppress -dynamic /usr/local/mi/lib/macosx-fpsave.o -o base.so baseblinn.o basecheck.o basecolor.o basecooktorr.o basedielec.o baseenviron.o basegeo.o basehair.o baseior.o baselambert.o baselens.o baselight.o baselightmap.o basemux.o basephong.o basephotbas.o basepolka.o baseraymarch.o basereflect.o baserefract.o baseshadow.o basetexgen.o basetexgeo.o basetexlook.o basetrans.o baseturb.o basetwoside.o basevolume.o baseward.o basewardderi.o basewave.o baseocc.o  

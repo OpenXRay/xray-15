@@ -1,0 +1,136 @@
+<html>
+
+<head>
+<title>Classes: SceneConverter</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="texture.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="ProceduralTextureHandler"></a></td>
+    <td width="96" align="left"><a href="shader.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="ShaderHandler"></a></td>
+    <td width="96" align="left"><a href="../classes.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Classes"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>SceneConverter</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwscenecv.h">lwscenecv.h</a></small></p>
+    <p>Scene converters load scene files written in formats other than LightWave's native
+    format.</p>
+    <p>When the user selects a scene file to load, Layout first tries to load it directly as a
+    LightWave format file. If it can't, it passes the filename to each installed scene
+    converter until one of them claims to recognize the file. The scene converter reads the
+    file and rewrites it as a LightWave <a href="../filefmts/lwsc.html">scene file</a>,
+    passing the name of this temporary file back to Layout. After loading this file, Layout
+    calls the scene converter's <tt>deleteTmp</tt> function to remove it.</p>
+    <p><strong>Activation Function</strong></p>
+    <pre>   XCALL_( int ) MySceneConvert( long version, GlobalFunc *global,
+      LWSceneConverter *local, void *serverData );</pre>
+    <p>The <tt>local</tt> argument to a scene converter's activation function is an
+    LWSceneConverter.</p>
+    <pre>   typedef struct st_LWSceneConverter {
+      const char *<strong>filename</strong>;
+      LWError     <strong>readFailure</strong>;
+      const char *<strong>tmpScene</strong>;
+      void       (*<strong>deleteTmp</strong>) (const char *tmpScene);
+   } LWSceneConverter;</pre>
+    <dl>
+      <tt>
+      <dt><strong>filename</strong></dt>
+      </tt>
+      <dd>The name of the non-native scene file. This is the file to be converted.</dd>
+      <tt>
+      <dt><strong><br>
+        readFailure</strong></dt>
+      </tt>
+      <dd>A one-line error message. Set this if you recognize the file format but can't read the
+        file for some reason. If you <em>don't</em> recognize the format, leave this and the <tt>tmpScene</tt>
+        and <tt>deleteTmp</tt> fields NULL. This tells Layout to submit the file to the next
+        installed converter.</dd>
+      <tt>
+      <dt><strong><br>
+        tmpScene</strong></dt>
+      </tt>
+      <dd>The filename of the temporary LightWave-format scene file created by the scene
+        converter. If you successfully create this temporary file, you should also provide a valid
+        <tt>deleteTmp</tt> callback. If an error occurs during the conversion, you should remove
+        the partially written temporary file, set <tt>tmpScene</tt> to NULL, and set the <tt>readFailure</tt>
+        field to an error message. Since this tells Layout to stop trying to load the file, you
+        should be careful to distinguish between files you don't recognize and those you do but
+        which contain errors. If you're not sure, leave the <tt>readFailure</tt> field NULL so
+        that other converters have a chance to try to load the file.</dd>
+      <tt>
+      <dt><strong><br>
+        deleteTmp</strong>( filename )</dt>
+      </tt>
+      <dd>A function you provide for removing the <tt>tmpScene</tt> file you create. Layout calls
+        this after reading the <tt>tmpScene</tt> file.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>Most scene converters will follow the pattern shown in this pseudocode. Note that
+    rather than write our own <tt>deleteTmp</tt> function for removing the temporary LightWave
+    scene file, we just pass back the C runtime <tt>remove</tt> function.</p>
+    <pre>   #include &lt;lwserver.h&gt;
+   #include &lt;lwscenecv.h&gt;
+   #include &lt;stdio.h&gt;
+   #include &lt;stdlib.h&gt;
+
+   XCALL_( int )
+   MySceneConvert( long version, GlobalFunc *global,
+      LWSceneConverter *local, void *serverData )
+   {
+      static char tempfile[ 260 ];
+      FILE *ifp, *ofp;
+   
+      ifp = fopen( local-&gt;filename, &quot;rb&quot; );
+      if ( !ifp ) return AFUNC_BADLOCAL;
+   
+      ... <em>read some of the file</em> ...
+   
+      if ( <em>not our format</em> )
+         return AFUNC_OK;
+   
+      ofp = fopen( tempfile, &quot;w&quot; );
+      if ( !ofp ) {
+         fclose( ifp );
+         local-&gt;readFailure = &quot;Couldn't create temp scene file.&quot;;
+         return AFUNC_OK;
+      }
+   
+      ... <em>convert the scene</em> ...
+   
+      if ( <em>error while converting</em> ) {
+         fclose( ifp );
+         fclose( ofp );
+         local-&gt;readFailure = &quot;Error while converting.&quot;;
+         return AFUNC_OK;
+      }
+   
+      /* successful */
+   
+      local-&gt;tmpScene = tempfile;
+      local-&gt;deleteTemp = remove;
+      return AFUNC_OK;
+   }
+
+   ServerRecord ServerDesc[] = {
+      { LWSCENECONVERTER_CLASS, &quot;MySceneConverter&quot;, MySceneConvert },
+      { NULL }
+   };</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

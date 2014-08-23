@@ -1,0 +1,257 @@
+<html>
+
+<head>
+<title>7.0 Changes</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="65b.html"><img width="96" height="20" border="0"
+    src="images/navlt.gif" alt="6.5B Changes"></a></td>
+    <td width="480" align="right"><a href="index.html"><img width="230" height="20" border="0"
+    src="images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>7.0 Changes</h3>
+    <p><small>September 24, 2001</small> </p>
+    <p>This is a list of the changes in the LightWave 7.0 release that affect the SDK. The
+    changes include a new Layout tool class and two new globals, as well as extensive
+    enhancement of many of the info globals defined in <tt><a href="../include/lwrender.h">lwrender.h</a></tt>.
+    Layout supports 51 new commands of its own plus another 46 that it now propagates to the
+    various editors.</p>
+    <p>One change and one bug fix were made to the SDK for the LightWave 7.0B patch. These
+    have been marked here with &quot;[ <strong>B</strong> ]&quot;.</p>
+    <p>Structures associated with the <a href="classes/shader.html">ShaderHandler</a> class
+    and the <a href="globals/preview.html">Preview Functions</a> and <a
+    href="globals/iteminfo.html">Item Info</a> globals were changed, but the shader version
+    number and the global name strings weren't incremented. In all cases, the changes involve
+    members added to the ends of structures, so they have no effect on existing plug-ins. New
+    plug-ins can use the <a href="globals/prodinfo.html">Product Info</a> global to verify
+    that they're running in at least LightWave 7.0 before they use the new structure members.</p>
+    <p><tt><a href="../include/lwcustobj.h">lwcustobj.h</a></tt><ul>
+      <li><tt>LWCUSTOMOBJ_VERSION</tt> (<a href="classes/custobj.html">CustomObjHandler</a>) has
+        been incremented.</li>
+      <li>A <tt>quad</tt> function for drawing solid quad polygons has been added to
+        LWCustomObjAccess.</li>
+      <li>Quads can be image-mapped using new <tt>setTexture</tt> and <tt>setUVs</tt> functions. <tt>setTexture</tt>
+        accepts a square image in <tt>GL_RGBA</tt> format, and <tt>setUVs</tt> sets the UV
+        coordinates at the corners of a quad.</li>
+      <li>The <tt>text</tt> function accepts a new justification argument, 0 for left, 1 for
+        center, 2 for right.</li>
+      <li>The color argument to <tt>setColor</tt> now takes a fourth array element for the color's
+        alpha level.</li>
+      <li>Since custom objects can draw semi-transparent primitives, <tt>viewPos</tt> and <tt>viewDir</tt>
+        vectors have been added so that plug-ins can depth-sort their primitives.</li>
+    </ul>
+    <p><tt><a href="../include/lwdisplay.h">lwdisplay.h</a></tt><ul>
+      <li>The header now defines <tt>_WIN32_WINNT</tt>.</li>
+    </ul>
+    <p><tt><a href="../include/lwdisplce.h">lwdisplce.h</a></tt><ul>
+      <li><tt>LWDISPLACEMENT_VERSION</tt> (<a href="classes/displace.html">DisplacementHandler</a>)
+        has been incremented because of changes to LWMeshInfo.</li>
+    </ul>
+    <p><tt><a href="../include/lwenvel.h">lwenvel.h</a></tt><ul>
+      <li><tt>LWCHANNELINFO_GLOBAL</tt> (<a href="globals/chaninfo.html">Channel Info</a>) has
+        been incremented to &quot;Channel Info 2&quot;. </li>
+      <li><tt>serverApply</tt> and <tt>serverRemove</tt> functions have been added to
+        LWChannelInfo. Also added were <tt>serverFlags</tt> and <tt>serverInstance</tt> functions
+        that return the flags and instance data of a channel handler.</li>
+      <li>A new event code, <tt>LWCEVNT_VALUE</tt>, has been added to signal changes to channels.</li>
+    </ul>
+    <p><tt><a href="../include/lwlaytool.h">lwlaytool.h</a></tt><ul>
+      <li>This is a new header file containing the definition of a new plug-in class, <a
+        href="classes/laytool.h">LayoutTool</a>.</li>
+    </ul>
+    <p><tt><a href="../include/lwmaster.h">lwmaster.h</a></tt><ul>
+      <li>An <tt>LWEVNT_SELECT</tt> event code has been added (<a href="classes/master.html">MasterHandler</a>).</li>
+    </ul>
+    <p><tt><a href="../include/lwmeshes.h">lwmeshes.h</a></tt><ul>
+      <li>A <tt>polFlags</tt> function has been added to LWMeshInfo.</li>
+      <li><tt>pntVIDGet</tt> and <tt>pntVPIDGet</tt> functions have been added to LWMeshInfo.
+        These are like <tt>pntVGet</tt> and <tt>pntVPGet</tt>, but they don't require a preceeding
+        call to <tt>pntVSelect</tt>, making them more reliable when called from threaded code.</li>
+      <li>Because of LWMeshInfo changes, <tt>LWOBJECTFUNCS_GLOBAL</tt> (<a
+        href="globals/sceneobj.html">Scene Objects</a>) has been incremented to &quot;Scene
+        Objects 4&quot;.</li>
+    </ul>
+    <p><tt><a href="../include/lwmonitor.h">lwmonitor.h</a></tt><ul>
+      <li>A new global (<a href="globals/laymon.html">Layout Monitor</a>) has been created to
+        provide a standard monitor for Layout. The server name is <tt>LWLMONFUNCS_GLOBAL</tt>.</li>
+    </ul>
+    <p><tt><a href="../include/lwpanel.h">lwpanel.h</a></tt><ul>
+      <li>A new global (<a href="globals/conmenu.html">Context Menu</a>) has been created to
+        provide context menus in Panels. The server name is <tt>LWCONTEXTMENU_GLOBAL</tt>.</li>
+      <li><tt>LWPANELS_API_VERSION</tt> (<a href="globals/panel.html">Panels</a>) has been
+        incremented. Panels using the new <tt>PANF_NOBUTT</tt> flag will not have Continue or
+        Cancel buttons. <tt>PANF_RESIZE</tt> panels can be resized.</li>
+    </ul>
+    <p><tt><a href="../include/lwpreview.h">lwpreview.h</a></tt><ul>
+      <li>A <tt>setPreset</tt> function has been added to LWPreviewFuncs (<a
+        href="globals/preview.html">Preview Functions</a>).</li>
+    </ul>
+    <p><tt><a href="../include/lwrender.h">lwrender.h</a></tt><ul>
+      <li>Due to an error, <tt>LWSCENEINFO_GLOBAL</tt> (<a href="globals/sceneinf.html">Scene Info</a>)
+        was defined as &quot;LW Scene Info 2&quot; in the public version of <tt>lwrender.h</tt>
+        released with LightWave 6.5B. It should have been &quot;LW Scene Info 3&quot;. The correct
+        definition has been restored in the LightWave 7.0 headers.</li>
+      <li>Four functions (<tt>flags</tt>, <tt>lookAhead</tt>, <tt>goalStrength</tt> and <tt>stiffness</tt>)
+        have been added to LWItemInfo (<a href="globals/iteminfo.html">Item Info</a>).</li>
+      <li><tt>LWOBJECTINFO_GLOBAL</tt> (<a href="globals/objinfo.html">Object Info</a>) has been
+        incremented to &quot;LW Object Info 4&quot;.</li>
+      <li>Eight new functions (<tt>boneSource</tt>, <tt>morphTarget</tt>, <tt>morphAmount</tt>, <tt>edgeOpts</tt>,
+        <tt>edgeColor</tt>, <tt>subdivOrder</tt>, <tt>polygonSize</tt> and <tt>excluded</tt>) have
+        been added to LWObjectInfo. The <tt>excluded</tt> function returns TRUE if the object has
+        been excluded from the given light.</li>
+      <li>The LWObjectInfo <tt>flags</tt> function returns new flags <tt>LWOBJF_UNAFFECT_BY_FOG</tt>,
+        <tt>LWOBJF_MORPH_MTSE</tt> and <tt>LWOBJF_MORPH_SURFACES</tt>.</li>
+      <li><tt>LWBONEINFO_GLOBAL</tt> (<a href="globals/boneinfo.html">Bone Info</a>) has been
+        incremented to &quot;LW Bone Info 3&quot;.</li>
+      <li>Four new functions (<tt>strength</tt>, <tt>falloff</tt>, <tt>jointComp</tt> and <tt>muscleFlex</tt>)
+        have been added to LWBoneInfo.</li>
+      <li>The LWBoneInfo <tt>flags</tt> function returns new flags <tt>LWBONEF_JOINT_COMP</tt>, <tt>LWBONEF_JOINT_COMP_PAR</tt>,
+        <tt>LWBONEF_MUSCLE_FLEX</tt> and <tt>LWBONEF_MUSCLE_FLEX_PAR</tt>.</li>
+      <li><tt>LWLIGHTINFO_GLOBAL</tt> (<a href="globals/lightinf.html">Light Info</a>) has been
+        incremented to &quot;LW Light Info 3&quot;.</li>
+      <li>Eight new functions (<tt>falloff</tt>, <tt>projImage</tt>, <tt>shadMapSize</tt>, <tt>shadMapAngle</tt>,
+        <tt>shadMapFuzz</tt>, <tt>quality</tt>, <tt>rawColor</tt>, <tt>intensity</tt>) have been
+        added to LWLightInfo.</li>
+      <li>The <tt>coneAngles</tt> function now includes a time argument (since the angles can be
+        enveloped) and returns values in radians rather than degrees.</li>
+      <li>A time argument has been added to the LWLightInfo <tt>range</tt> function.</li>
+      <li>The LWLightInfo <tt>flags</tt> function returns new flags <tt>LWLFL_FIT_CONE</tt> and <tt>LWLFL_CACHE_SHAD_MAP</tt>.</li>
+      <li><tt>LWINTERFACEINFO_GLOBAL</tt> (<a href="globals/intinfo.html">Interface Info</a>) has
+        been incremented to &quot;LW Interface Info 3&quot;.</li>
+      <li>The LWInterfaceInfo <tt>itemColor</tt> function returns the color used to draw the item
+        in the interface. The new <tt>boxThreshold</tt> field contains the bounding box threshold,
+        and <tt>alertLevel</tt> contains <tt>LWALERT_BEGINNER</tt>, <tt>LWALERT_INTERMEDIATE</tt>
+        or <tt>LWALERT_EXPERT</tt>.</li>
+    </ul>
+    <p><tt><a href="../include/lwshader.h">lwshader.h</a></tt><ul>
+      <li><tt>replacement_percentage</tt> and <tt>replacement_color</tt> fields have been added to
+        LWShaderAccess (<a href="classes/shader.html">ShaderHandler</a>). Use these to set the
+        surface color when your shader calculates lighting and you therefore don't want LightWave
+        to overwrite your color.</li>
+      <li>[ <strong>B</strong> ] <tt>reflectionBlur</tt> and <tt>refractionBlur</tt>. fields have
+        been added to the shader access structure.</li>
+    </ul>
+    <p><tt><a href="../include/lwsurf.h">lwsurf.h</a></tt><ul>
+      <li>Two new channel definitions for reflection and refraction blurring have been added (<a
+        href="globals/surface.html">Surface Functions</a>).</li>
+    </ul>
+    <p><tt><a href="../include/lwtool.h">lwtool.h</a></tt><ul>
+      <li>A <tt>text</tt> function and <tt>pxScale</tt> (pixel scale) field have been added to
+        LWWireDrawAccess.</li>
+    </ul>
+    <p><tt><a href="../include/lwtxtr.h">lwtxtr.h</a></tt><ul>
+      <li><tt>LWTEXTUREFUNCS_GLOBAL</tt> (<a href="globals/txtrfunc.html">Texture Functions</a>)
+        has been incremented to &quot;Texture Functions 2&quot;, and four new functions have been
+        added to LWTextureFuncs. <tt>texture</tt> returns a texture ID, given the ID of a texture
+        layer. <tt>name</tt>, <tt>type</tt> and <tt>context</tt> return information about a
+        texture.</li>
+    </ul>
+    <p><tt><a href="../include/lwvparm.h">lwvparm.h</a></tt><ul>
+      <li>Due to an error, the public version of <tt>lwvparm.h</tt> (<a href="globals/vparam.html">Variant
+        Parameters</a>) released with LightWave 6.5 and 6.5B contained an incorrect definition of
+        the LWVParmFuncs <tt>getEnv</tt> function. This definition showed <tt>getEnv</tt> taking a
+        single argument and returning a single envelope ID. The correct definition shows <tt>getEnv</tt>
+        returning void. It writes up to three envelope IDs in an array passed as the second
+        argument. This definition has been restored in the current header.</li>
+    </ul>
+    <p><a href="commands/layout.html">Commands: Layout</a> <ul>
+      <li>The file written by <tt>SaveCommandList</tt> now includes Graph Editor, Image Editor and
+        Surface Editor commands, and Layout now dispatches those commands to their respective
+        components.</li>
+      <li>The <tt>Refresh</tt> command now defers its work until the system is idle, for improved
+        interactivity. A <tt>RefreshNow</tt> command has been added for cases in which synchronous
+        updates are desired. The new <tt>Redraw</tt> and <tt>RedrawNow</tt> commands are similar
+        except that they don't cause motions and geometry to be recomputed.</li>
+      <li>The <tt>PluginOptions</tt> command has been replaced by <tt>MasterPlugins</tt>, to
+        reflect the fact that the name of the panel it invokes has changed in the interface.</li>
+      <li>Other new commands:<pre>RecentScenes           ItemActive             PolygonSize
+ReplaceObjectLayer     ItemLock               UnaffectedByFog
+SquashTool             ItemVisibility         BoneStrengthMultiply
+ShowTargetLines        ItemColor              BoneMinRange
+BoundingBoxThreshold   RadiosityType          BoneMaxRange
+VIPER                  RecentContentDirs      BoneJointComp
+Presets                AlertLevel             BoneJointCompParent
+EnableDeformations     AddButton              BoneJointCompAmounts
+MatchGoalOrientation   Generics               BoneMuscleFlex
+KeepGoalWithinReach    ClearAudio             BoneMuscleFlexParent
+LimitH                 LoadAudio              BoneMuscleFlexAmounts
+LimitP                 PlayAudio              LightQuality
+LimitB                 RayTraceTransparency   ShadowMapFuzziness
+HStiffness             LoadObjectLayer        ShadowMapFitCone
+PStiffness             MorphMTSE              ShadowMapAngle
+BStiffness             MorphSurfaces</pre>
+      </li>
+    </ul>
+    <p><a href="commands/modeler.html">Commands: Modeler</a><ul>
+      <li>The new <tt>setcontent</tt> command sets the content directory.</li>
+    </ul>
+    <p><a href="commands/common.html">Commands: Common</a><ul>
+      <li>New (or newly available) Graph Editor commands include: <pre>GE_OpenWindow         GE_DeleteSelKeys        GE_MoveKeys
+GE_SetWindowPos       GE_ReduceKeys           GE_CreateExpression
+GE_SetWindowSize      GE_LockKeys             GE_AttachExpression
+GE_ApplyServer        GE_CopySelKeys          GE_AttachExpressionID
+GE_RemoveServer       GE_PasteKeys            GE_SetGroup
+GE_GetLayoutSel       GE_LeaveFootprints      GE_SetEnv
+GE_SelectAllCurves    GE_PickupFootprints     GE_SetEnvID
+GE_FilterSelection    GE_BacktrackFootprints  GE_LoadExpressions
+GE_BakeCurves         GE_CopyTimeslice        GE_SaveExpressions
+GE_SnapKeysToFrames   GE_PasteTimeslice       GE_ClearBin
+GE_SelectAllKeys      GE_MatchFootprintAtFrame</pre>
+      </li>
+      <li>The newly available Image Editor commands are: <pre>IE_OpenWindow
+IE_SetClipTable
+IE_SetWindowPos</pre>
+      </li>
+      <li>The surface system supports a new <tt>Surf_SetBakerImage</tt> command.</li>
+    </ul>
+    <p>Miscellaneous<ul>
+      <li>When the user changes the item order, plug-ins are now notified of the new IDs only
+        after the item data have actually been rearranged. Globals that take item IDs as arguments
+        should now behave correctly when called from within a handler's <tt>changeID</tt>
+        callback.</li>
+      <li>In LWSN, master plug-ins now receive a <tt>LoadScene</tt> command event at the end of
+        scene loading. Since the issuing of commands is not supported in LWSN, the LWMasterAccess
+        structure contains dummy functions in this situation.</li>
+      <li>Attempts by plug-ins to trace rays during Wireframe or Quickshade renders were causing
+        crashes. This has been fixed (the ray tracing functions now always return -1 in those
+        modes).</li>
+      <li>The <a href="globals/dirinfo.html">Directory Info</a> global now returns the correct
+        result for &quot;Content&quot; in Modeler.</li>
+      <li>Low and high angles are now returned by the <a href="globals/iteminfo.html">Item Info</a>
+        <tt>limits</tt> function even if the corresponding limits are turned off.</li>
+      <li>A condition that could cause <a href="meshinfo.html">mesh info</a> queries to fail after
+        an object is cleared from the scene has been fixed.</li>
+      <li>All enabled <a href="classes/environ.html">environment</a> plug-ins are now evaluated
+        (although this can be a waste of time since each one will overwrite the results of the
+        previous one).</li>
+      <li>The <tt>PreviousItem</tt> and <tt>NextItem</tt> commands now skip over locked items.</li>
+      <li>When Adaptive Sampling is on and Antialiasing is off, the <tt>minSamplesPerPixel</tt>
+        from the <a href="globals/sceneinf.html">Scene Info</a> global is now zero, since some
+        pixels may be totally skipped.</li>
+      <li>The <a href="globals/iteminfo.html">Item Info</a> <tt>controller</tt> function now
+        returns correct values.</li>
+      <li>Button names specified by generic plug-ins are now used if present.</li>
+      <li>The envelope commands are now safe to use when there is no current item.</li>
+      <li>Object serial numbers are now computed during rather than after cloning so that plug-ins
+        can get the final object names as they are created.</li>
+      <li>Since they may draw semi-transparent primitives, custom objects are now processed after
+        all other 3D elements (including the grid).</li>
+      <li>[ <strong>B</strong> ] During scene file loading, newline characters after plug-in
+        server names were not being read before the plug-ins loaded their data. This has been
+        fixed.</li>
+    </ul>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

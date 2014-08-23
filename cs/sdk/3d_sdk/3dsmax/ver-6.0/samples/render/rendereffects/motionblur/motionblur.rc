@@ -1,0 +1,136 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MOT_BLUR_EFFECT DIALOGEX 0, 0, 214, 49
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_DUR_EDIT,"CustEdit",WS_TABSTOP,89,26,34,11
+    CONTROL         "0,255,0",IDC_DUR_SPIN,"SpinnerControl",0x0,125,26,10,11
+    LTEXT           "Duration:",IDC_STATIC,56,28,30,8,0,WS_EX_RIGHT
+    CONTROL         "Work with transparency",IDC_TRANSP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,51,10,119,10
+END
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_MOT_BLUR_EFFECT, DIALOG
+    BEGIN
+        RIGHTMARGIN, 211
+        VERTGUIDE, 32
+        VERTGUIDE, 159
+        BOTTOMMARGIN, 44
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MOT_BLUR            "Motion Blur"
+    IDS_MOT_BLUR_PARAMS     "Motion Blur Parameters"
+    IDS_DUR                 "Duration"
+    IDS_TRANSP              "Transparency"
+    IDS_LIBDESCRIPTION      "Motion blur rendering effect (Discreet)"
+    IDS_DS_APPLYVBLUR       "Image Motion Blur: Pass 1"
+    IDS_DS_APPLYVBLUR2      "Image Motion Blur: Pass 2"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DS_NOMEMFOR_VELOCBUF 
+                            "Insufficient Memory for Image Motion Blur Buffer"
+    IDS_RB_RENDERERROR      "Render Error"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+#include "veroverrides.h"
+#include "maxversion.r"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

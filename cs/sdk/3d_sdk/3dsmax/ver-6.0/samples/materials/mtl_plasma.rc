@@ -1,0 +1,215 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "mtlres.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "mtlres.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DMTL_SHADER4_PLASMA DIALOG DISCARDABLE  0, 0, 216, 15
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Wire",IDC_WIRE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,
+                    2,27,10
+    CONTROL         "2-Sided",IDC_2SIDE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,56,2,36,10
+    CONTROL         "Face Map",IDC_FACE_MAP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,105,2,44,10
+    CONTROL         "Faceted",IDC_FACETED,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,162,2,44,10
+END
+
+IDD_DMTL_EXTRA6_PLASMA DIALOGEX 0, 0, 216, 56
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "Advanced Transparency",IDC_OPAC_BOX,4,1,211,25
+    LTEXT           "Falloff:",IDC_OPAC_TEXT1,40,12,22,8
+    CONTROL         "In",IDC_TF_IN,"Button",BS_AUTORADIOBUTTON | WS_GROUP | 
+                    WS_TABSTOP,68,12,20,8
+    CONTROL         "Out",IDC_TF_OUT,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,95,12,24,8
+    GROUPBOX        "Wire",IDC_WIRE_BOX,3,29,211,22
+    LTEXT           "Size:",IDC_WIRE_TEXT,38,39,16,9,0,WS_EX_RIGHT
+    CONTROL         "",IDC_WIRE_EDIT,"CustEdit",WS_TABSTOP,56,38,22,10
+    CONTROL         "0,255,0",IDC_WIRE_SPIN,"SpinnerControl",0x0,78,38,11,10
+    LTEXT           "In:",IDC_UNITS_TEXT,97,38,8,8
+    CONTROL         "Pixels",IDC_PIXELS,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,110,38,32,8
+    CONTROL         "Units",IDC_UNITS,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,149,38,28,8
+    LTEXT           "Amt:",IDC_OPAC_TEXT2,128,12,16,8
+    CONTROL         "",IDC_TF_EDIT,"CustEdit",WS_TABSTOP,144,12,20,10
+    CONTROL         "0,255,0",IDC_TF_SPIN,"SpinnerControl",0x0,164,12,11,10
+END
+
+IDD_DMTL_TEXMAP4_PLASMA DIALOG DISCARDABLE  0, 0, 216, 162
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Amount",IDC_STATIC,76,4,24,8
+    LTEXT           "Map Type",IDC_STATIC,152,4,16,8
+    CONTROL         "",IDC_USEMAP_0,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,3,
+                    16,68,10
+    CONTROL         "",IDC_AMTEDIT_0,"CustEdit",WS_TABSTOP,72,16,20,10
+    CONTROL         "0,255,0",IDC_AMTSPIN_0,"SpinnerControl",0x0,92,16,11,10
+    CONTROL         "",IDC_MAP_0,"CustButton",WS_TABSTOP,104,16,100,10
+    CONTROL         "User1",IDC_LOCK_TEX01,"CustButton",0x0,206,22,10,10
+    CONTROL         "",IDC_USEMAP_1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,3,
+                    28,68,10
+    CONTROL         "",IDC_AMTEDIT_1,"CustEdit",WS_TABSTOP,72,28,20,10
+    CONTROL         "0,255,0",IDC_AMTSPIN_1,"SpinnerControl",0x0,92,28,11,10
+    CONTROL         "",IDC_MAP_1,"CustButton",WS_TABSTOP,104,28,100,10
+    CONTROL         "",IDC_USEMAP_2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,3,
+                    40,68,10
+    CONTROL         "",IDC_AMTEDIT_2,"CustEdit",WS_TABSTOP,72,40,20,10
+    CONTROL         "0,255,0",IDC_AMTSPIN_2,"SpinnerControl",0x0,92,40,11,10
+    CONTROL         "",IDC_MAP_2,"CustButton",WS_TABSTOP,104,40,100,10
+    CONTROL         "",IDC_USEMAP_3,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,3,
+                    52,68,10
+    CONTROL         "",IDC_AMTEDIT_3,"CustEdit",WS_TABSTOP,72,52,20,10
+    CONTROL         "0,255,0",IDC_AMTSPIN_3,"SpinnerControl",0x0,92,52,11,10
+    CONTROL         "",IDC_MAP_3,"CustButton",WS_TABSTOP,104,52,100,10
+    CONTROL         "",IDC_USEMAP_4,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,3,
+                    64,68,10
+    CONTROL         "",IDC_AMTEDIT_4,"CustEdit",WS_TABSTOP,72,64,20,10
+    CONTROL         "0,255,0",IDC_AMTSPIN_4,"SpinnerControl",0x0,92,64,11,10
+    CONTROL         "",IDC_MAP_4,"CustButton",WS_TABSTOP,104,64,100,10
+    CONTROL         "",IDC_USEMAP_5,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,3,
+                    76,68,10
+    CONTROL         "",IDC_AMTEDIT_5,"CustEdit",WS_TABSTOP,72,76,20,10
+    CONTROL         "0,255,0",IDC_AMTSPIN_5,"SpinnerControl",0x0,92,76,11,10
+    CONTROL         "",IDC_MAP_5,"CustButton",WS_TABSTOP,104,76,100,10
+    CONTROL         "",IDC_USEMAP_6,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,3,
+                    88,68,10
+    CONTROL         "",IDC_AMTEDIT_6,"CustEdit",WS_TABSTOP,72,88,20,10
+    CONTROL         "0,255,0",IDC_AMTSPIN_6,"SpinnerControl",0x0,92,88,11,10
+    CONTROL         "",IDC_MAP_6,"CustButton",WS_TABSTOP,104,88,100,10
+    CONTROL         "",IDC_USEMAP_7,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,3,
+                    100,68,10
+    CONTROL         "",IDC_AMTEDIT_7,"CustEdit",WS_TABSTOP,72,100,20,10
+    CONTROL         "0,255,0",IDC_AMTSPIN_7,"SpinnerControl",0x0,92,100,11,
+                    10
+    CONTROL         "",IDC_MAP_7,"CustButton",WS_TABSTOP,104,100,100,10
+    CONTROL         "",IDC_USEMAP_8,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,3,
+                    112,68,10
+    CONTROL         "",IDC_AMTEDIT_8,"CustEdit",WS_TABSTOP,72,112,20,10
+    CONTROL         "0,255,0",IDC_AMTSPIN_8,"SpinnerControl",0x0,92,112,11,
+                    10
+    CONTROL         "",IDC_MAP_8,"CustButton",WS_TABSTOP,104,112,100,10
+    CONTROL         "",IDC_USEMAP_9,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,3,
+                    124,68,10
+    CONTROL         "",IDC_AMTEDIT_9,"CustEdit",WS_TABSTOP,72,124,20,10
+    CONTROL         "",IDC_USEMAP_10,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,3,
+                    136,68,10
+    CONTROL         "0,255,0",IDC_AMTSPIN_9,"SpinnerControl",0x0,92,124,11,
+                    10
+    CONTROL         "",IDC_MAP_9,"CustButton",WS_TABSTOP,104,124,100,10
+    CONTROL         "",IDC_AMTEDIT_10,"CustEdit",WS_TABSTOP,72,136,20,10
+    CONTROL         "",IDC_MAP_10,"CustButton",WS_TABSTOP,104,136,100,10
+    CONTROL         "0,255,0",IDC_AMTSPIN_10,"SpinnerControl",0x0,92,136,11,
+                    10
+    CONTROL         "",IDC_USEMAP_11,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,3,
+                    148,68,10
+    CONTROL         "",IDC_MAP_11,"CustButton",WS_TABSTOP,104,148,100,10
+    CONTROL         "0,255,0",IDC_AMTSPIN_11,"SpinnerControl",0x0,92,148,11,
+                    10
+    CONTROL         "",IDC_AMTEDIT_11,"CustEdit",WS_TABSTOP,72,148,20,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_DMTL_EXTRA6_PLASMA, DIALOG
+    BEGIN
+        TOPMARGIN, 1
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_KE_SHADER_PLASMA    "Options"
+    IDS_KE_BASIC_BLINN_PLASMA "Basic Parameters"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

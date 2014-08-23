@@ -1,0 +1,764 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 10">
+<meta name=Originator content="Microsoft Word 10">
+<link rel=File-List href="lightShaders_files/filelist.xml">
+<link rel=Edit-Time-Data href="lightShaders_files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>Light Shader</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>joohil</o:Author>
+  <o:LastAuthor>Anybody</o:LastAuthor>
+  <o:Revision>27</o:Revision>
+  <o:TotalTime>24</o:TotalTime>
+  <o:Created>2004-02-05T15:26:00Z</o:Created>
+  <o:LastSaved>2004-02-20T18:47:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>1179</o:Words>
+  <o:Characters>6726</o:Characters>
+  <o:Company>Alias</o:Company>
+  <o:Lines>56</o:Lines>
+  <o:Paragraphs>15</o:Paragraphs>
+  <o:CharactersWithSpaces>7890</o:CharactersWithSpaces>
+  <o:Version>10.2625</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]-->
+<style>
+<!--
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+h1
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:16.0pt;
+	font-family:Arial;
+	mso-font-kerning:16.0pt;
+	font-weight:bold;}
+h2
+	{mso-style-next:Normal;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:16.0pt;
+	font-family:Arial;
+	color:#777A7D;
+	mso-font-kerning:16.0pt;
+	font-weight:bold;}
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText
+	{margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	mso-bidi-font-size:7.5pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	color:black;}
+a:link, span.MsoHyperlink
+	{color:#C80000;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:#C80000;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:313068446;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-509207650 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1
+	{mso-list-id:1037046538;
+	mso-list-template-ids:371120758;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l1:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l2
+	{mso-list-id:1246455376;
+	mso-list-template-ids:-1955935366;}
+@list l2:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l3
+	{mso-list-id:1263491818;
+	mso-list-template-ids:1056991166;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l4
+	{mso-list-id:1660697711;
+	mso-list-template-ids:1311000780;}
+@list l4:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l5
+	{mso-list-id:1711415501;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1135229446 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l5:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l5:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l6
+	{mso-list-id:1883126302;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-2018061788 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l6:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l6:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l6:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l6:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l6:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l6:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l6:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l6:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l6:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7
+	{mso-list-id:2116973020;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1575713816 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l7:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l7:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body bgcolor=white lang=EN-US link="#C80000" vlink="#C80000" style='tab-interval:
+.5in' alink="#c80000" leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+
+<div class=Section1>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width="100%"
+ style='width:100.0%;mso-cellspacing:0in;mso-padding-alt:0in 0in 0in 0in'>
+ <tr style='mso-yfti-irow:0'>
+  <td style='background:black;padding:0in 0in 0in 0in'>
+  <p class=MsoNormal><a href="http://www.alias.com"><span style='text-decoration:
+  none;text-underline:none'><img border=0 width=120 height=60 id="_x0000_i1025"
+  src=logo.gif alt=AliasLogo></span></a></p>
+  </td>
+  <td style='background:black;padding:0in 0in 0in 0in'>
+  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1'>
+  <td colspan=2 style='background:#CCCCCC;padding:0in 0in 0in 0in'>
+  <p class=MsoNormal><img border=0 width=66 height=2 id="_x0000_i1026"
+  src=spacer.gif></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2'>
+  <td colspan=2 style='background:black;padding:0in 0in 0in 0in'>
+  <p class=MsoNormal><img border=0 width=66 height=1 id="_x0000_i1027"
+  src=spacer.gif></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3;mso-yfti-lastrow:yes'>
+  <td colspan=2 style='background:white;padding:0in 0in 0in 0in'>
+  <table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:
+   1.5pt;mso-padding-alt:30.0pt 30.0pt 30.0pt 30.0pt'>
+   <tr style='mso-yfti-irow:0;mso-yfti-lastrow:yes'>
+    <td style='padding:30.0pt 30.0pt 30.0pt 30.0pt'>
+    <h2>Light Shaders</h2>
+    <p class=MsoNormal><br>
+    <span style='font-size:10.0pt;font-family:Arial;color:black'>This section
+    shows the basic workflow for mental ray light shaders in Maya.<o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'><span style='mso-spacerun:yes'> </span><o:p></o:p></span></p>
+    <h1><span style='color:#777A7D'>References: <o:p></o:p></span></h1>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'>mental ray User Manual, Chapter 1.8, 3.13.<o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'>mental ray Shaders Guide, Chapter 1.10, 2.2.<o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>Rendering with mental ray, Chapter 7.8,
+    Appendix D.</span><span style='font-size:10.0pt;font-family:Arial;
+    color:black'><o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:14.0pt;mso-bidi-font-size:12.0pt;
+    font-family:Arial;color:#777A7D'>Where to find light shaders</span><span
+    style='font-size:10.0pt;font-family:Arial;color:black'><br>
+    Material shaders appear in the <b>Hypershade &gt; Create mental ray Nodes &gt;
+    Lights</b>. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'>The following material shaders are shipped with Maya:<o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Symbol;
+    mso-ascii-font-family:Arial;mso-bidi-font-family:Arial;color:black'>·</span><span
+    style='font-size:10.0pt;font-family:Arial;color:black'> mib_light_infinite <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Symbol;
+    mso-ascii-font-family:Arial;mso-bidi-font-family:Arial;color:black'>·</span><span
+    style='font-size:10.0pt;font-family:Arial;color:black'>
+    mib_light_photometric <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Symbol;
+    mso-ascii-font-family:Arial;mso-bidi-font-family:Arial;color:black'>·</span><span
+    style='font-size:10.0pt;font-family:Arial;color:black'> mib_light_point <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Symbol;
+    mso-ascii-font-family:Arial;mso-bidi-font-family:Arial;color:black'>·</span><span
+    style='font-size:10.0pt;font-family:Arial;color:black'> mib_light_spot <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Symbol;
+    mso-ascii-font-family:Arial;mso-bidi-font-family:Arial;color:black'>·</span><span
+    style='font-size:10.0pt;font-family:Arial;color:black'> physical_light<br
+    style='mso-special-character:line-break'>
+    <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+    <![endif]><o:p></o:p></span></p>
+    <h1><span style='color:#777A7D'>Default behavior<o:p></o:p></span></h1>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'>The proper connection for a light shader is from lightShader.message
+    to lightShape.miLightShader.<o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'>Ctrl+drag from a material shader to a shading engine to make
+    the above connection.<o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+    font-family:Arial'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+    font-family:Arial'>Light shaders compute the contribution of a light to a
+    point. Light color, direction, distance, cone angle (for a spot light),
+    decay rate are the common example of parameters that affect the light
+    contribution. <br>
+    In mental ray for Maya, light shader is attached to a light shape node
+    (under mental ray tab). <br>
+    <span style='mso-spacerun:yes'> </span><br>
+    This section show to use the new light shader mib_light_photometric with a
+    light profile file, and the popular light shader physical_light. <br>
+    </span><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:
+    Arial'><span style='mso-spacerun:yes'> </span><o:p></o:p></span></p>
+    <h2><o:p>&nbsp;</o:p></h2>
+    <h2>Step 1. Getting Ready </h2>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>Make sure the mental ray for Maya plug-in is
+    loaded.<o:p></o:p></span></p>
+    <ul style='margin-top:0in' type=disc>
+     <li class=MsoNormal style='color:black;mso-list:l7 level1 lfo3;tab-stops:
+         list .5in'><b><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+         font-family:Arial'>Windows &gt; Settings/Preferences &gt; Plug-in
+         Manager...</span></b><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'> <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l7 level1 lfo3;tab-stops:
+         list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+         font-family:Arial'>Find <b>Mayatomr</b> and check <b>loaded</b> <o:p></o:p></span></li>
+    </ul>
+    <p><b><span style='font-size:16.0pt;font-family:Arial;color:#777A7D;
+    mso-font-kerning:16.0pt'>Step 2. physical_light </span></b><span
+    style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'><br>
+    Open cornellBox_light_start.ma. <o:p></o:p></span></p>
+    <table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:
+     1.5pt;mso-padding-alt:0in 0in 0in 0in'>
+     <tr style='mso-yfti-irow:0'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+      font-family:Arial'><img border=0 width=300 height=300 id="_x0000_i1028"
+      src="images/cornellBox_materials.jpg"><o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>cornellBox_light_start.ma<o:p></o:p></span></p>
+      </td>
+     </tr>
+    </table>
+    <p><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'><br>
+    This scene uses dgs_material, dieletric_material and transmat to make the
+    traditional Cornell box scene. See <a href="materialShaders.html">material
+    shaders</a> for to see how to use material shaders.<o:p></o:p></span></p>
+    <p><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'>The challenge with this scene is that the light intensity does
+    not change along the distance from the light source. As a result, two
+    points in the same direction from the light receive the same amount of
+    light regardless of the distance to the light. <br>
+    physical_light implements the physically correct light source; that is, the
+    inverse-square falloff of the intensity. It is especially important to use
+    a physically correct light when the material shaders are physically correct
+    as well. dgs_material and dielectric_material are examples of physically
+    correct material shaders that do not amplify the incoming light energy. <br>
+    For more details about physically correctness of shaders, see Rendering
+    with mental ray, Chapter 7.8. <o:p></o:p></span></p>
+    <p><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'>Let's assign physical_shader to the light shape, so that the light
+    intensity decreases properly. <o:p></o:p></span></p>
+    <ul style='margin-top:0in' type=disc>
+     <li class=MsoNormal style='color:black;mso-list:l5 level1 lfo6;tab-stops:
+         list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+         font-family:Arial'>Open the attribute editor of the light shape <a
+         href="mel://select%20lightShape;%20showEditor%20lightShape;">lightShape.</a>
+         <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l5 level1 lfo6;tab-stops:
+         list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+         font-family:Arial'>Open <b>mental ray</b> section. <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l5 level1 lfo6;tab-stops:
+         list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+         font-family:Arial'>From the <b>Custom Shaders</b> sub section, click
+         the map button next to <b>Light Shader</b>. <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l5 level1 lfo6;tab-stops:
+         list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+         font-family:Arial'>The Create Render Node window appears. <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l5 level1 lfo6;tab-stops:
+         list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+         font-family:Arial'>Go to <b>Lights</b> section of the <b>mental ray</b>
+         tab. <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l5 level1 lfo6;tab-stops:
+         list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+         font-family:Arial'>Click <a
+         href="mel://createNode%20physical_light;%20connectAttr%20physical_light1.message%20lightShape.miLightShader;">physical_light</a>
+         <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l5 level1 lfo6;tab-stops:
+         list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+         font-family:Arial'>A new shader physical_light1 is created, and its
+         message attribute is connected to lightShape.miLightShader. <br
+         style='mso-special-character:line-break'>
+         <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+         <![endif]><o:p></o:p></span></li>
+    </ul>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>Now <a
+    href="mel://setCurrentRenderer%20mentalRay%20;%20renderWindowRender%20redoPreviousRender%20renderView;">render
+    </a>with mental ray. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>Unfortunately, the image is black. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoBodyText>The first problem is that the light cover casts shadow
+    to the whole scene. You can assign a transmat shader as the shadow shader
+    of the light cover, but let's disable the shadow for now.<br
+    style='mso-special-character:line-break'>
+    <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+    <![endif]></p>
+    <ul style='margin-top:0in' type=disc>
+     <li class=MsoNormal style='color:black;mso-list:l6 level1 lfo9;tab-stops:
+         list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+         font-family:Arial'>From the <a href="mel://unifiedRenderGlobalsWindow;">mental
+         ray render globals</a>, go to the <b>mental ray</b> tab, <b>Shadows</b>
+         section. <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l6 level1 lfo9;tab-stops:
+         list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+         font-family:Arial'><a
+         href="mel://setAttr%20miDefaultOptions.shadowMethod%200;">Set <b>Shadow
+         Method</b> to <b>Off</b>. </a><br style='mso-special-character:line-break'>
+         <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+         <![endif]><o:p></o:p></span></li>
+    </ul>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>Now <a
+    href="mel://setCurrentRenderer%20mentalRay%20;%20renderWindowRender%20redoPreviousRender%20renderView;">render
+    </a>with mental ray again. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:
+     1.5pt;mso-padding-alt:0in 0in 0in 0in'>
+     <tr style='mso-yfti-irow:0'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+      font-family:Arial'><img border=0 width=300 height=300 id="_x0000_i1029"
+      src="images/cornellBox_light_finish.jpg"><o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>cornellBox_light_finish.ma<o:p></o:p></span></p>
+      </td>
+     </tr>
+    </table>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>Compared to the previous image, the light
+    falloff is obvious on the wall and the floor. <br>
+    The color of physical_light is very high (1000, 1000, 1000). This is
+    necessary because the light intensity falls off inverse-square to the
+    distance, the light energy reaching to the point in the scene is much
+    smaller than before. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>The scene is saved as
+    cornellBox_light_finish.ma.<o:p></o:p></span></p>
+    <p><b><span style='font-size:16.0pt;font-family:Arial;color:#777A7D;
+    mso-font-kerning:16.0pt'>Step 3. mib_light_photometric </span></b><span
+    style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'><br>
+    mib_light_photometric is a new shader introduced in mental ray 3.3. This
+    shader reads the light distribution from IES or Eulumdat light profiles
+    provided by physical lamp vendors. It can lead to more realistic images
+    with real light patterns, compared to the uniform distribution the existing
+    light shaders provide. <br>
+    Light profiles are available on the web. <br style='mso-special-character:
+    line-break'>
+    <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+    <![endif]><o:p></o:p></span></p>
+    <p><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'>The workflow is similar to physical_light example above: <o:p></o:p></span></p>
+    <ul style='margin-top:0in' type=disc>
+     <li class=MsoNormal style='color:black;mso-list:l0 level1 lfo12;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Open lightprofile.ma. <br>
+         This simple scene has a poly plane with lambert shader, and a point
+         light. Lambert is chosen so that the light pattern shows up clearly on
+         the plane, less affected by other factors like viewing angle. <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l0 level1 lfo12;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Assign mib_light_photonmetric to pointLightShape1.
+         <o:p></o:p></span></li>
+     <ul style='margin-top:0in' type=circle>
+      <li class=MsoNormal style='color:black;mso-list:l0 level2 lfo12;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'><a
+          href="mel://createNode%20mib_light_photometric;">Create
+          mib_light_photometric shader</a> from the Hypershade &gt; Create
+          mental ray Nodes &gt; Lights. <o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l0 level2 lfo12;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'><a
+          href="mel://connectAttr%20mib_light_photometric1.message%20pointLightShape1.miLightShader;">Ctrl
+          MMB+drag mib_light_photometric1 to pointLightShape1.</a> <o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l0 level2 lfo12;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>A connection is made from
+          mib_light_photometric1.message to pointLightShape1.miLightShader. <o:p></o:p></span></li>
+     </ul>
+     <li class=MsoNormal style='color:black;mso-list:l0 level1 lfo12;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Setting the parameters<o:p></o:p></span></li>
+     <ul style='margin-top:0in' type=circle>
+      <li class=MsoNormal style='color:black;mso-list:l0 level2 lfo12;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>Open the Attribute Editor of <a
+          href="mel://showEditor%20mib_light_photometric1;">mib_light_photometric1</a>.
+          <o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l0 level2 lfo12;
+          tab-stops:list 1.0in'><b><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>color</span></b><span style='font-size:10.0pt;
+          mso-bidi-font-size:7.5pt;font-family:Arial'> should be set very high,
+          because mib_light_photometric applies the inverse-square distance
+          fall off to the light intensity. Set it to <a
+          href="mel://setAttr%20mib_light_photometric1.color%203000%203000%203000;">3000
+          3000 3000</a> for example, to see the light profile more clearly. <o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l0 level2 lfo12;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>The rest of the parameters except <b>profile</b>
+          are same as mib_light_point. See mental ray Shaders Guide - 1.10
+          Light, for more details. <o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l0 level2 lfo12;
+          tab-stops:list 1.0in'><b><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>profile</span></b><span style='font-size:
+          10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial'> is the light
+          profile to use. <a
+          href="mel://createNode%20mentalrayLightProfile;%20connectAttr%20mentalrayLightProfile1.message%20mib_light_photometric1.profile;">Click
+          the button</a> next to it. A new node mentalrayLightProfile will be
+          created. <o:p></o:p></span></li>
+     </ul>
+     <li class=MsoNormal style='color:black;mso-list:l0 level1 lfo12;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>See the Attribute Editor of <a
+         href="mel://showEditor%20mentalrayLightProfile1;">mentalrayLightProfile1</a>.
+         <o:p></o:p></span></li>
+     <ul style='margin-top:0in' type=circle>
+      <li class=MsoNormal style='color:black;mso-list:l0 level2 lfo12;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>Choose a light profile file for <b>File Name</b>.
+          If you do not have one, download it from the web. <o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;mso-list:l0 level2 lfo12;
+          tab-stops:list 1.0in'><span style='font-size:10.0pt;mso-bidi-font-size:
+          7.5pt;font-family:Arial'>Select the appropriate <b>format</b>. Either
+          IES or Eulumdat. <o:p></o:p></span></li>
+      <li class=MsoNormal style='color:black;margin-bottom:12.0pt;mso-list:
+          l0 level2 lfo12;tab-stops:list 1.0in'><b><span style='font-size:10.0pt;
+          mso-bidi-font-size:7.5pt;font-family:Arial'>resolution</span></b><span
+          style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial'>
+          is the resolution to sample the profile. Higher the value, closer the
+          pattern sampled to the profile. <br style='mso-special-character:
+          line-break'>
+          <![if !supportLineBreakNewLine]><br style='mso-special-character:
+          line-break'>
+          <![endif]><o:p></o:p></span></li>
+     </ul>
+    </ul>
+    <p class=MsoNormal style='margin-bottom:12.0pt'><span style='font-size:
+    10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;color:black'><a
+    href="mel://setCurrentRenderer%20mentalRay%20;%20renderWindowRender%20redoPreviousRender%20renderView;">render
+    </a>with mental ray. <o:p></o:p></span></p>
+    <table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:
+     1.5pt;mso-padding-alt:0in 0in 0in 0in'>
+     <tr style='mso-yfti-irow:0'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+      font-family:Arial'><img border=0 width=640 height=480 id="_x0000_i1030"
+      src="images/lightprofile.jpg"><o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>mib_light_photometric
+      with pale blue light color<o:p></o:p></span></p>
+      </td>
+     </tr>
+    </table>
+    <p class=MsoNormal><span style='font-size:7.5pt;font-family:Arial;
+    color:black'><o:p></o:p></span></p>
+    </td>
+   </tr>
+  </table>
+  <p class=MsoNormal><o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+</div>
+
+</body>
+
+</html>

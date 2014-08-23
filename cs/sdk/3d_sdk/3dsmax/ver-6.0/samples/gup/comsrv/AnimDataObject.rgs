@@ -1,0 +1,21 @@
+HKCR
+{
+	Comsrv.AnimDataObject.1 = s 'AnimDataObject Class'
+	{
+		CLSID = s '{764ACE97-B666-4A43-879C-052F7FBE11D6}'
+	}
+	Comsrv.AnimDataObject = s 'AnimDataObject Class'
+	{
+		CLSID = s '{764ACE97-B666-4A43-879C-052F7FBE11D6}'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {764ACE97-B666-4A43-879C-052F7FBE11D6} = s 'AnimDataObject Class'
+		{
+			ProgID = s 'Comsrv.AnimDataObject.1'
+			VersionIndependentProgID = s 'Comsrv.AnimDataObject'
+			val AppID = s '{4AD72E62-5A4B-11D2-91CB-0060081C257E}'
+			LocalServer32 = s '%Module%'
+		}
+	}
+}

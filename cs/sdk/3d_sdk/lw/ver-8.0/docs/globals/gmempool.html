@@ -1,0 +1,101 @@
+<html>
+
+<head>
+<title>Globals: Global Memory</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="fontlist.html"><img width="96" height="20"
+    border="0" src="../images/navlt.gif" alt="Font List"></a></td>
+    <td width="96" align="left"><a href="display.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Host Display Info"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Global Memory<br>
+    Global Render Memory</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwrender.h">lwrender.h</a></small></p>
+    <p>These globals allow plug-ins to allocate and share named chunks of memory. The memory
+    comes from a pool managed by Layout. &quot;Global Render Memory&quot; is used during
+    rendering and is freed automatically when rendering ends. &quot;Global Memory&quot;
+    persists until the scene is cleared.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   LWGlobalPool *memfunc;
+   memfunc = global( LWGLOBALPOOL_RENDER_GLOBAL, GFUSE_TRANSIENT );
+   memfunc = global( LWGLOBALPOOL_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to an LWGlobalPool.</p>
+    <pre>   typedef struct st_LWGlobalPool {
+      LWMemChunk   (*<strong>first</strong>)  (void);
+      LWMemChunk   (*<strong>next</strong>)   (LWMemChunk);
+      const char * (*<strong>ID</strong>)     (LWMemChunk);
+      int          (*<strong>size</strong>)   (LWMemChunk);
+      LWMemChunk   (*<strong>find</strong>)   (const char *ID);
+      LWMemChunk   (*<strong>create</strong>) (const char *ID, int size);
+   } LWGlobalPool;</pre>
+    <dl>
+      <dt><tt>mem = <strong>first</strong>()</tt> </dt>
+      <dd>Returns the first memory chunk in the pool. This and the <tt>next</tt> function allow
+        you to traverse the entire list of memory chunks in the pool. Use them if you need to
+        search for memory chunks using criteria more complex than just the chunk ID string. </dd>
+      <dt><tt><br>
+        mem = <strong>next</strong>( mem )</tt> </dt>
+      <dd>Returns the next memory block in the list. </dd>
+      <dt><tt><br>
+        name = <strong>ID</strong>( mem )</tt> </dt>
+      <dd>Returns the chunk identifier. This is the name string that was passed to <tt>create</tt>.
+      </dd>
+      <dt><tt><br>
+        bytes = <strong>size</strong>( mem )</tt> </dt>
+      <dd>Returns the size in bytes of a memory chunk. </dd>
+      <dt><tt><br>
+        mem = <strong>find</strong>( name )</tt> </dt>
+      <dd>Returns the memory chunk with the given ID. Multiple chunks may be created with the same
+        ID, so this returns the first one. </dd>
+      <dt><tt><br>
+        mem = <strong>create</strong>( name, size )</tt> </dt>
+      <dd>Creates a memory chunk with the given size and ID and returns a pointer to the memory.
+        If you want the name string to uniquely identify the chunk, you should try to <tt>find</tt>
+        a chunk with your ID before using the ID in <tt>create</tt>.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>This code fragment allocates a render memory chunk named &quot;my memory&quot;.</p>
+    <pre>   #include &lt;lwserver.h&gt;
+   #include &lt;lwhost.h&gt;
+   #define COUNT 100
+
+   static char name[] = &quot;my widget memory&quot;;
+   LWGlobalPool *memfunc;
+   LWMemChunk mem;
+   int *p, i;
+
+   memfunc = global( LWGLOBALPOOL_RENDER_GLOBAL, GFUSE_TRANSIENT );
+   if ( !memfunc ) goto NoMemFunc;  /* global calls can fail */
+
+   mem = memfunc-&gt;find( name );
+   if ( !mem )
+      mem = memfunc-&gt;create( name, COUNT * sizeof( int ));
+   if ( !mem )
+      goto ErrorNoMem;
+
+   p = ( int * ) mem;
+   for ( i = 0; i &lt; COUNT; i++ ) {
+      p[ i ] = ...
+</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

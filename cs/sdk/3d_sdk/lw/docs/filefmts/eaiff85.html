@@ -1,0 +1,1257 @@
+<html>
+
+<head>
+<title>EA IFF 85</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="fpbm.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="Flexible Precision Images"></a></td>
+    <td width="96" align="left"><a href="lwsc.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Scene Files"></a></td>
+    <td width="96" align="left"><a href="../filefmts.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="File Formats"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <font face="Helvetica, Arial, Geneva"><h3 align="center">&quot;EA IFF 85&quot; Standard
+    for Interchange Format Files</font> </h3>
+    <table>
+      <tr>
+        <th align="left">Document Date:<br>
+        From:<br>
+        Status of Standard:<br>
+        &nbsp; </th>
+        <td>&nbsp; January 14, 1985<br>
+        &nbsp; Jerry Morrison, Electronic Arts<br>
+        &nbsp; Released and in use<br>
+        &nbsp; </td>
+      </tr>
+    </table>
+    <h3>1. Introduction</h3>
+    <p align="center"><strong>Standards are Good for Software Developers</strong></p>
+    <p>As home computer hardware evolves to better and better media machines, the demand
+    increases for higher quality, more detailed data. Data development gets more expensive,
+    requires more expertise and better tools, and has to be shared across projects. Think
+    about several ports of a product on one CD-ROM with 500M Bytes of common data! </p>
+    <p>Development tools need standard interchange file formats. Imagine scanning in images of
+    &quot;player&quot; shapes, moving them to a paint program for editing, then incorporating
+    them into a game. Or writing a theme song with a Macintosh score editor and incorporating
+    it into an Amiga game. The data must at times be transformed, clipped, filled out, and
+    moved across machine kinds. Media projects will depend on data transfer from graphic,
+    music, sound effect, animation, and script tools. </p>
+    <p align="center"><strong>Standards are Good for Software Users</strong></p>
+    <p>Customers should be able to move their own data between independently developed
+    software products. And they should be able to buy data libraries usable across many such
+    products. The types of data objects to exchange are open-ended and include plain and
+    formatted text, raster and structured graphics, fonts, music, sound effects, musical
+    instrument descriptions, and animation. </p>
+    <p>The problem with expedient file formats typically memory dumps is that they're too
+    provincial. By designing data for one particular use (e.g. a screen snapshot), they
+    preclude future expansion (would you like a full page picture? a multi-page document?). In
+    neglecting the possibility that other programs might read their data, they fail to save
+    contextual information (how many bit planes? what resolution?). Ignoring that other
+    programs might create such files, they're intolerant of extra data (texture palette for a
+    picture editor), missing data (no color map), or minor variations (smaller image). In
+    practice, a filed representation should rarely mirror an in-memory representation. The
+    former should be designed for longevity; the latter to optimize the manipulations of a
+    particular program. The same filed data will be read into different memory formats by
+    different programs. </p>
+    <p><em>The IFF philosophy:</em> &quot;A little behind-the-scenes conversion when programs
+    read and write files is far better than NxM explicit conversion utilities for highly
+    specialized formats.&quot; </p>
+    <p>So we need some standardization for data interchange among development tools and
+    products. The more developers that adopt a standard, the better for all of us and our
+    customers. </p>
+    <p align="center"><strong>Here is &quot;EA IFF 1985&quot;</strong></p>
+    <p>Here is our offering: Electronic Arts' IFF standard for Interchange File Format. The
+    full name is &quot;EA IFF 1985&quot;. Alternatives and justifications are included for
+    certain choices. Public domain subroutine packages and utility programs are available to
+    make it easy to write and use IFF-compatible programs. </p>
+    <p>Part 1 introduces the standard. Part 2 presents its requirements and background. Parts
+    3, 4, and 5 define the primitive data types, <tt>FORM</tt>s, and <tt>LIST</tt>s,
+    respectively, and how to define new high level types. Part 6 specifies the top level file
+    structure. Appendix A is included for quick reference and Appendix B names the committee
+    responsible for this standard. </p>
+    <p align="center"><strong>References</strong></p>
+    <p><cite>American National Standard Additional Control Codes for Use with ASCII, ANSI
+    standard 3.64-1979 for an 8-bit character set.</cite> See also ISO standard 2022 and
+    ISO/DIS standard 6429.2. </p>
+    <p>Amiga&#153; is a trademark of Commodore-Amiga, Inc. </p>
+    <p><cite>C, A Reference Manual,</cite> Samuel P. Harbison and Guy L. Steele Jr., Tartan
+    Laboratories. Prentice-Hall, Englewood Cliffs, NJ, 1984. </p>
+    <p><cite>Compiler Construction, An Advanced Course,</cite> edited by F. L. Bauer and J.
+    Eickel (Springer-Verlag, 1976). This book is one of many sources for information on
+    recursive descent parsing. </p>
+    <p><cite>DIF Technical Specification</cite> © 1981 by Software Arts, Inc. DIF&#153; is
+    the format for spreadsheet data interchange developed by Software Arts, Inc.<br>
+    DIF&#153; is a trademark of Software Arts, Inc. </p>
+    <p>Electronic Arts&#153; is a trademark of Electronic Arts. </p>
+    <p><cite>&quot;<tt>FTXT</tt>&quot; IFF Formatted Text,</cite> from Electronic Arts. IFF
+    supplement document for a text format. </p>
+    <p><cite>Inside Macintosh</cite> © 1982, 1983, 1984, 1985 Apple Computer, Inc., a
+    programmer's reference manual.<br>
+    Apple® is a trademark of Apple Computer, Inc.<br>
+    Macintosh&#153; is a trademark licensed to Apple Computer, Inc. </p>
+    <p><a href="ilbm.html"><cite>&quot;ILBM&quot; IFF Interleaved Bitmap</cite></a>, from
+    Electronic Arts. IFF supplement document for a raster image format. </p>
+    <p><cite>M68000 16/32-Bit Microprocessor Programmer's Reference Manual</cite> © 1984,
+    1982, 1980, 1979 by Motorola, Inc. </p>
+    <p><cite>PostScript Language Manual</cite> © 1984 Adobe Systems Incorporated. <br>
+    PostScript&#153; is a trademark of Adobe Systems, Inc.<br>
+    Times and Helvetica® are trademarks of Allied Corporation. </p>
+    <p><cite>InterScript: A Proposal for a Standard for the Interchange of Editable Documents</cite>
+    © 1984 Xerox Corporation.<br>
+    <cite>Introduction to InterScript</cite> © 1985 Xerox Corporation. </p>
+    <hr class="PAGE-BREAK">
+    <h3>2. Background for Designers</h3>
+    <p>Part 2 is about the background, requirements, and goals for the standard. It's geared
+    for people who want to design new types of IFF objects. People just interested in using
+    the standard may wish to skip this part. </p>
+    <p align="center"><strong>What Do We Need?</strong></p>
+    <p>A standard should be long on prescription and short on overhead. It should give lots of
+    rules for designing programs and data files for synergy. But neither the programs nor the
+    files should cost too much more than the expedient variety. While we're looking to a
+    future with CD-ROMs and perpendicular recording, the standard must work well on floppy
+    disks. </p>
+    <p>For program portability, simplicity, and efficiency, formats should be designed with
+    more than one implementation style in mind. (In practice, pure stream I/O is adequate
+    although random access makes it easier to write files.) It ought to be possible to read
+    one of many objects in a file without scanning all the preceding data. Some programs need
+    to read and play out their data in real time, so we need good compromises between
+    generality and efficiency. </p>
+    <p>As much as we need standards, they can't hold up product schedules. So we also need a
+    kind of decentralized extensibility where any software developer can define and refine new
+    object types without some &quot;standards authority&quot; in the loop. Developers must be
+    able to extend existing formats in a forward- and backward-compatible way. A central
+    repository for design information and example programs can help us take full advantage of
+    the standard. </p>
+    <p>For convenience, data formats should heed the restrictions of various processors and
+    environments. E.g. word-alignment greatly helps 68000 access at insignificant cost to 8088
+    programs. </p>
+    <p>Other goals include the ability to share common elements over a list of objects and the
+    ability to construct composite objects containing other data objects with structural
+    information like directories. </p>
+    <p>And finally, <em>&quot;Simple things should be simple and complex things should be
+    possible.&quot;</em> --Alan Kay. </p>
+    <p align="center"><strong>Think Ahead</strong></p>
+    <p>Let's think ahead and build programs that read and write files for each other and for
+    programs yet to be designed. Build data formats to last for future computers so long as
+    the overhead is acceptable. This extends the usefulness and life of today's programs and
+    data. </p>
+    <p>To maximize interconnectivity, the standard file structure and the specific object
+    formats must all be general and extensible. Think ahead when designing an object. It
+    should serve many purposes and allow many programs to store and read back all the
+    information they need; even squeeze in custom data. Then a programmer can store the
+    available data and is encouraged to include fixed contextual details. Recipient programs
+    can read the needed parts, skip unrecognized stuff, default missing data, and use the
+    stored context to help transform the data as needed. </p>
+    <p align="center"><strong>Scope</strong></p>
+    <p>IFF addresses these needs by defining a standard file structure, some initial data
+    object types, ways to define new types, and rules for accessing these files. We can
+    accomplish a great deal by writing programs according to this standard, but don't expect
+    direct compatibility with existing software. We'll need conversion programs to bridge the
+    gap from the old world. </p>
+    <p>IFF is geared for computers that readily process information in 8-bit bytes. It assumes
+    a &quot;physical layer&quot; of data storage and transmission that reliably maintains
+    &quot;files&quot; as strings of 8-bit bytes. The standard treats a &quot;file&quot; as a
+    container of data bytes and is independent of how to find a file and whether it has a byte
+    count. </p>
+    <p>This standard does not by itself implement a clipboard for cutting and pasting data
+    between programs. A clipboard needs software to mediate access, to maintain a
+    &quot;contents version number&quot; so programs can detect updates, and to manage the data
+    in &quot;virtual memory&quot;. </p>
+    <p align="center"><strong>Data Abstraction</strong></p>
+    <p>The basic problem is how to represent information in a way that's program-independent,
+    compiler- independent, machine-independent, and device-independent. </p>
+    <p>The computer science approach is &quot;data abstraction&quot;, also known as
+    &quot;objects&quot;, &quot;actors&quot;, and &quot;abstract data types&quot;. A data
+    abstraction has a &quot;concrete representation&quot; (its storage format), an
+    &quot;abstract representation&quot; (its capabilities and uses), and access procedures
+    that isolate all the calling software from the concrete representation. Only the access
+    procedures touch the data storage. Hiding mutable details behind an interface is called
+    &quot;information hiding&quot;. What data abstraction does is abstract from details of
+    implementing the object, namely the selected storage representation and algorithms for
+    manipulating it. </p>
+    <p>The power of this approach is modularity. By adjusting the access procedures we can
+    extend and restructure the data without impacting the interface or its callers.
+    Conversely, we can extend and restructure the interface and callers without making
+    existing data obsolete. It's great for interchange! </p>
+    <p>But we seem to need the opposite: fixed file formats for all programs to access.
+    Actually, we could file data abstractions (&quot;filed objects&quot;) by storing the data
+    and access procedures together. We'd have to encode the access procedures in a standard
+    machine-independent programming language la PostScript. Even still, the interface can't
+    evolve freely since we can't update all copies of the access procedures. So we'll have to
+    design our abstract representations for limited evolution and occasional revolution
+    (conversion). </p>
+    <p>In any case, today's microcomputers can't practically store data abstractions. They can
+    do the next best thing: store arbitrary types of data in &quot;data chunks&quot;, each
+    with a type identifier and a length count. The type identifier is a reference by name to
+    the access procedures (any local implementation). The length count enables storage-level
+    object operations like &quot;copy&quot; and &quot;skip to next&quot; independent of object
+    type. </p>
+    <p>Chunk writing is straightforward. Chunk reading requires a trivial parser to scan each
+    chunk and dispatch to the proper access/conversion procedure. Reading chunks nested inside
+    other chunks requires recursion, but no lookahead or backup. </p>
+    <p>That's the main idea of IFF. There are, of course, a few other details. </p>
+    <p align="center"><strong>Previous Work</strong></p>
+    <p>Where our needs are similar, we borrow from existing standards. </p>
+    <p>Our basic need to move data between independently developed programs is similar to that
+    addressed by the Apple Macintosh desk scrap or &quot;clipboard&quot; [Inside Macintosh
+    chapter &quot;Scrap Manager&quot;]. The Scrap Manager works closely with the Resource
+    Manager, a handy filer and swapper for data objects (text strings, dialog window
+    templates, pictures, fonts) including types yet to be designed [Inside Macintosh chapter
+    &quot;Resource Manager&quot;]. The Resource Manager is a kin to Smalltalk's object
+    swapper. </p>
+    <p>We will probably write a Macintosh desk accessory that converts IFF files to and from
+    the Macintosh clipboard for quick and easy interchange with programs like MacPaint and
+    Resource Mover. </p>
+    <p>Macintosh uses a simple and elegant scheme of 4-character &quot;identifiers&quot; to
+    identify resource types, clipboard format types, file types, and file creator programs.
+    Alternatives are unique ID numbers assigned by a central authority or by hierarchical
+    authorities, unique ID numbers generated by algorithm, other fixed length character
+    strings, and variable length strings. Character string identifiers double as readable
+    signposts in data files and programs. The choice of 4 characters is a good tradeoff
+    between storage space, fetch/compare/store time, and name space size. We'll honor Apple's
+    designers by adopting this scheme. </p>
+    <p>&quot;<tt>PICT</tt>&quot; is a good example of a standard structured graphics format
+    (including raster images) and its many uses [Inside Macintosh chapter
+    &quot;QuickDraw&quot;]. Macintosh provides QuickDraw routines in ROM to create,
+    manipulate, and display <tt>PICT</tt>s. Any application can create a <tt>PICT</tt> by
+    simply asking QuickDraw to record a sequence of drawing commands. Since it's just as easy
+    to ask QuickDraw to render a <tt>PICT</tt> to a screen or a printer, it's very effective
+    to pass them between programs, say from an illustrator to a word processor. An important
+    feature is the ability to store &quot;comments&quot; in a <tt>PICT</tt> which QuickDraw
+    will ignore. Actually, it passes them to your optional custom &quot;comment handler&quot;.
+    </p>
+    <p>PostScript, Adobe's print file standard, is a more general way to represent any print
+    image (which is a specification for putting marks on paper) [PostScript Language Manual].
+    In fact, PostScript is a full-fledged programming language. To interpret a PostScript
+    program is to render a document on a raster output device. The language is defined in
+    layers: a lexical layer of identifiers, constants, and operators; a layer of reverse
+    polish semantics including scope rules and a way to define new subroutines; and a
+    printing-specific layer of built-in identifiers and operators for rendering graphic
+    images. It is clearly a powerful (Turing equivalent) image definition language. <tt>PICT</tt>
+    and a subset of PostScript are candidates for structured graphics standards. </p>
+    <p>A PostScript document can be printed on any raster output device (including a display)
+    but cannot generally be edited. That's because the original flexibility and constraints
+    have been discarded. Besides, a PostScript program may use arbitrary computation to supply
+    parameters like placement and size to each operator. A QuickDraw <tt>PICT</tt>, in
+    comparison, is a more restricted format of graphic primitives parameterized by constants.
+    So a <tt>PICT</tt> can be edited at the level of the primitives, e.g. move or thicken a
+    line. It cannot be edited at the higher level of, say, the bar chart data which generated
+    the picture. </p>
+    <p>PostScript has another limitation: Not all kinds of data amount to marks on paper. A
+    musical instrument description is one example. PostScript is just not geared for such
+    uses. </p>
+    <p>&quot;DIF&quot; is another example of data being stored in a general format usable by
+    future programs [DIF Technical Specification]. DIF is a format for spreadsheet data
+    interchange. DIF and PostScript are both expressed in plain ASCII text files. This is very
+    handy for printing, debugging, experimenting, and transmitting across modems. It can have
+    substantial cost in compaction and read/write work, depending on use. We won't store IFF
+    files this way but we could define an ASCII alternate representation with a converter
+    program. </p>
+    <p>InterScript is Xerox' standard for interchange of editable documents [Introduction to
+    InterScript]. It approaches a harder problem: How to represent editable word processor
+    documents that may contain formatted text, pictures, cross-references like figure numbers,
+    and even highly specialized objects like mathematical equations? InterScript aims to
+    define one standard representation for each kind of information. Each
+    InterScript-compatible editor is supposed to preserve the objects it doesn't understand
+    and even maintain nested cross-references. So a simple word processor would let you edit
+    the text of a fancy document without discarding the equations or disrupting the equation
+    numbers. </p>
+    <p>Our task is similarly to store high level information and preserve as much content as
+    practical while moving it between programs. But we need to span a larger universe of data
+    types and cannot expect to centrally define them all. Fortunately, we don't need to make
+    programs preserve information that they don't understand. And for better or worse, we
+    don't have to tackle general-purpose cross-references yet. </p>
+    <hr class="PAGE-BREAK">
+    <h3>3. Primitive Data Types</h3>
+    <p>Atomic components such as integers and characters that are interpretable directly by
+    the CPU are specified in one format for all processors. We chose a format that's most
+    convenient for the Motorola MC68000 processor [M68000 16/32-Bit Microprocessor
+    Programmer's Reference Manual]. </p>
+    <p><em>N.B.:</em> Part 3 dictates the format for &quot;primitive&quot; data types where
+    and only where used in the overall file structure and standard kinds of chunks (Cf.
+    Chunks). The number of such occurrences will be small enough that the costs of conversion,
+    storage, and management of processor- specific files would far exceed the costs of
+    conversion during I/O by &quot;foreign&quot; programs. A particular data chunk may be
+    specified with a different format for its internal primitive types or with processor- or
+    environment- specific variants if necessary to optimize local usage. Since that hurts data
+    interchange, it's not recommended. (Cf. Designing New Data Sections, in Part 4.) </p>
+    <p align="center"><strong>Alignment</strong></p>
+    <p>All data objects larger than a byte are aligned on even byte addresses relative to the
+    start of the file. This may require padding. Pad bytes are to be written as zeros, but
+    don't count on that when reading. </p>
+    <p>This means that every odd-length &quot;chunk&quot; (see below) must be padded so that
+    the next one will fall on an even boundary. Also, designers of structures to be stored in
+    chunks should include pad fields where needed to align every field larger than a byte.
+    Zeros should be stored in all the pad bytes. </p>
+    <p><em>Justification:</em> Even-alignment causes a little extra work for files that are
+    used only on certain processors but allows 68000 programs to construct and scan the data
+    in memory and do block I/O. You just add an occasional pad field to data structures that
+    you're going to block read/write or else stream read/write an extra byte. And the same
+    source code works on all processors. Unspecified alignment, on the other hand, would force
+    68000 programs to (dis)assemble word and long-word data one byte at a time. Pretty
+    cumbersome in a high level language. And if you don't conditionally compile that out for
+    other processors, you won't gain anything. </p>
+    <p align="center"><strong>Numbers</strong></p>
+    <p>Numeric types supported are two's complement binary integers in the format used by the
+    MC68000 processor high byte first, high word first the reverse of 8088 and 6502 format.
+    They could potentially include signed and unsigned 8, 16, and 32 bit integers but the
+    standard only uses the following: </p>
+    <pre>    UBYTE    8 bits unsigned
+    WORD    16 bits signed
+    UWORD   16 bits unsigned
+    LONG    32 bits signed</pre>
+    <p>The actual type definitions depend on the CPU and the compiler. In this document, we'll
+    express data type definitions in the C programming language. [See C, A Reference Manual.]
+    In 68000 Lattice C: </p>
+    <pre>   typedef unsigned char   UBYTE;  /*  8 bits unsigned */
+   typedef short           WORD;   /* 16 bits signed   */
+   typedef unsigned short  UWORD;  /* 16 bits unsigned */
+   typedef long            LONG;   /* 32 bits signed   */</pre>
+    <p align="center"><strong>Characters</strong></p>
+    <p>The following character set is assumed wherever characters are used, e.g. in text
+    strings, IDs, and <tt>TEXT</tt> chunks (see below). </p>
+    <p>Characters are encoded in 8-bit ASCII. Characters in the range <tt>NUL</tt> (hex 0)
+    through <tt>DEL</tt> (hex 7F) are well defined by the 7-bit ASCII standard. IFF uses the
+    graphic group '<tt>&nbsp;</tt>' (SP, hex 20) through '<tt>~</tt>' (hex 7E). </p>
+    <p>Most of the control character group hex 01 through hex 1F have no standard meaning in
+    IFF. The control character LF (hex 0A) is defined as a &quot;newline&quot; character. It
+    denotes an intentional line break, that is, a paragraph or line terminator. (There is no
+    way to store an automatic line break. That is strictly a function of the margins in the
+    environment the text is placed.) The control character <tt>ESC</tt> (hex 1B) is a reserved
+    escape character under the rules of ANSI standard 3.64-1979 American National Standard
+    Additional Control Codes for Use with ASCII, ISO standard 2022, and ISO/DIS standard
+    6429.2. </p>
+    <p>Characters in the range hex 7F through hex FF are not globally defined in IFF. They are
+    best left reserved for future standardization. But note that the <tt>FORM</tt> type <tt>FTXT</tt>
+    (formatted text) defines the meaning of these characters within <tt>FTXT</tt> forms. In
+    particular, character values hex 7F through hex 9F are control codes while characters hex
+    A0 through hex FF are extended graphic characters like 'é', as per the ISO and ANSI
+    standards cited above. [See the supplementary document &quot;<tt>FTXT</tt>&quot; IFF
+    Formatted Text.] </p>
+    <p align="center"><strong>Dates</strong></p>
+    <p>A &quot;creation date&quot; is defined as the date and time a stream of data bytes was
+    created. (Some systems call this a &quot;last modified date&quot;.) Editing some data
+    changes its creation date. Moving the data between volumes or machines does not. </p>
+    <p>The IFF standard date format will be one of those used in MS-DOS, Macintosh, or Amiga
+    DOS (probably a 32-bit unsigned number of seconds since a reference point). <em>Issue:</em>
+    Investigate these three. </p>
+    <p align="center"><strong>Type IDs</strong></p>
+    <p>A &quot;type ID&quot;, &quot;property name&quot;, &quot;<tt>FORM</tt> type&quot;, or
+    any other IFF identifier is a 32-bit value: the concatenation of four ASCII characters in
+    the range '<tt>&nbsp;</tt>' (SP, hex 20) through '<tt>~</tt>' (hex 7E). Spaces (hex 20)
+    should not precede printing characters; trailing spaces are ok. Control characters are
+    forbidden. </p>
+    <pre>    typedef CHAR ID[4];</pre>
+    <p>IDs are compared using a simple 32-bit case-dependent equality test. </p>
+    <p>Data section type IDs (aka <tt>FORM</tt> types) are restriced IDs. (Cf. Data Sections.)
+    Since they may be stored in filename extensions (Cf. Single Purpose Files) lower case
+    letters and punctuation marks are forbidden. Trailing spaces are ok. </p>
+    <p>Carefully choose those four characters when you pick a new ID. Make them mnemonic so
+    programmers can look at an interchange format file and figure out what kind of data it
+    contains. The name space makes it possible for developers scattered around the globe to
+    generate ID values with minimal collisions so long as they choose specific names like
+    &quot;<tt>MUS4</tt>&quot; instead of general ones like &quot;<tt>TYPE</tt>&quot; and
+    &quot;<tt>FILE</tt>&quot;. EA will &quot;register&quot; new <tt>FORM</tt> type IDs and
+    format descriptions as they're devised, but collisions will be improbable so there will be
+    no pressure on this &quot;clearinghouse&quot; process. Appendix A has a list of currently
+    defined IDs. </p>
+    <p>Sometimes it's necessary to make data format changes that aren't backward compatible.
+    Since IDs are used to denote data formats in IFF, new IDs are chosen to denote revised
+    formats. Since programs won't read chunks whose IDs they don't recognize (see Chunks,
+    below), the new IDs keep old programs from stumbling over new data. The conventional way
+    to chose a &quot;revision&quot; ID is to increment the last character if it's a digit or
+    else change the last character to a digit. E.g. first and second revisions of the ID
+    &quot;XY&quot; would be &quot;XY1&quot; and &quot;XY2&quot;. Revisions of &quot;<tt>CMAP</tt>&quot;
+    would be &quot;<tt>CMA1</tt>&quot; and &quot;<tt>CMA2</tt>&quot;. </p>
+    <p align="center"><strong>Chunks</strong></p>
+    <p>Chunks are the building blocks in the IFF structure. The form expressed as a C typedef
+    is: </p>
+    <pre>   typedef struct {
+      ID      ckID;
+      LONG    ckSize; /* sizeof(ckData) */
+      UBYTE   ckData[/* ckSize */];
+   } Chunk;</pre>
+    <p>We can diagram an example chunk a &quot;<tt>CMAP</tt>&quot; chunk containing 12 data
+    bytes like this: </p>
+    <table BORDER="1" CELLPADDING="5">
+      <tr>
+        <th valign="top" align="left">ckID: </th>
+        <td valign="top">'<tt>CMAP</tt>' </td>
+      </tr>
+      <tr>
+        <th valign="top" align="left">ckSize: </th>
+        <td valign="top">12 </td>
+      </tr>
+      <tr>
+        <th valign="top" align="left">ckData: </th>
+        <td valign="top">0, 0, 0, 32<br>
+        0, 0, 64, 0<br>
+        0, 0, 64, 0 <br>
+        (12 bytes) </td>
+      </tr>
+    </table>
+    <p>The fixed header part means &quot;Here's a type ckID chunk with ckSize bytes of
+    data.&quot; </p>
+    <p>The ckID identifies the format and purpose of the chunk. As a rule, a program must
+    recognize ckID to interpret ckData. It should skip over all unrecognized chunks. The ckID
+    also serves as a format version number as long as we pick new IDs to identify new formats
+    of ckData (see above). </p>
+    <p>The following ckIDs are universally reserved to identify chunks with particular IFF
+    meanings: &quot;<tt>LIST</tt>&quot;, &quot;<tt>FORM</tt>&quot;, &quot;<tt>PROP</tt>&quot;,
+    &quot;<tt>CAT&nbsp;</tt>&quot;, and &quot;<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>&quot;. The
+    special ID &quot;<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>&quot; (4 spaces) is a ckID for
+    &quot;filler&quot; chunks, that is, chunks that fill space but have no meaningful
+    contents. The IDs &quot;<tt>LIS1</tt>&quot; through &quot;<tt>LIS9</tt>&quot;, &quot;<tt>FOR1</tt>&quot;
+    through &quot;<tt>FOR9</tt>&quot;, and &quot;<tt>CAT1</tt>&quot; through &quot;<tt>CAT9</tt>&quot;
+    are reserved for future &quot;version number&quot; variations. All IFF-compatible software
+    must account for these 23 chunk IDs. Appendix A has a list of predefined IDs. </p>
+    <p>The ckSize is a logical block size how many data bytes are in ckData. If ckData is an
+    odd number of bytes long, a 0 pad byte follows which is not included in ckSize. (Cf.
+    Alignment.) A chunk's total physical size is ckSize rounded up to an even number plus the
+    size of the header. So the smallest chunk is 8 bytes long with ckSize = 0. For the sake of
+    following chunks, programs must respect every chunk's ckSize as a virtual end-of-file for
+    reading its ckData even if that data is malformed, e.g. if nested contents are truncated. </p>
+    <p>We can describe the syntax of a chunk as a regular expression with &quot;#&quot;
+    representing the ckSize, i.e. the length of the following {braced} bytes. The
+    &quot;[0]&quot; represents a sometimes needed pad byte. (The regular expressions in this
+    document are collected in Appendix A along with an explanation of notation.) </p>
+    <pre>   Chunk ::= ID #{ UBYTE* } [0]</pre>
+    <p>One chunk output technique is to stream write a chunk header, stream write the chunk
+    contents, then random access back to the header to fill in the size. Another technique is
+    to make a preliminary pass over the data to compute the size, then write it out all at
+    once. </p>
+    <p align="center"><strong>Strings, String Chunks, and String Properties</strong></p>
+    <p>In a string of ASCII text, <tt>LF</tt> denotes a forced line break (paragraph or line
+    terminator). Other control characters are not used. (Cf. Characters.) </p>
+    <p>The ckID for a chunk that contains a string of plain, unformatted text is &quot;<tt>TEXT</tt>&quot;.
+    As a practical matter, a text string should probably not be longer than 32767 bytes. The
+    standard allows up to 231 - 1 bytes. </p>
+    <p>When used as a data property (see below), a text string chunk may be 0 to 255
+    characters long. Such a string is readily converted to a C string or a Pascal <tt>STRING[255]</tt>.
+    The ckID of a property must be the property name, not &quot;<tt>TEXT</tt>&quot;. </p>
+    <p>When used as a part of a chunk or data property, restricted C string format is normally
+    used. That means 0 to 255 characters followed by a <tt>NUL</tt> byte (ASCII value 0). </p>
+    <p align="center"><strong>Data Properties</strong></p>
+    <p>Data properties specify attributes for following (non-property) chunks. A data property
+    essentially says &quot;identifier = value&quot;, for example &quot;XY = (10, 200)&quot;,
+    telling something about following chunks. Properties may only appear inside data sections
+    (&quot;<tt>FORM</tt>&quot; chunks, cf. Data Sections) and property sections (&quot;<tt>PROP</tt>&quot;
+    chunks, cf. Group <tt>PROP</tt>). </p>
+    <p>The form of a data property is a special case of Chunk. The ckID is a property name as
+    well as a property type. The ckSize should be small since data properties are intended to
+    be accumulated in RAM when reading a file. (256 bytes is a reasonable upper bound.)
+    Syntactically: </p>
+    <pre>    Property ::= Chunk</pre>
+    <p>When designing a data object, use properties to describe context information like the
+    size of an image, even if they don't vary in your program. Other programs will need this
+    information. </p>
+    <p>Think of property settings as assignments to variables in a programming language.
+    Multiple assignments are redundant and local assignments temporarily override global
+    assignments. The order of assignments doesn't matter as long as they precede the affected
+    chunks. (Cf. <tt>LIST</tt>s, <tt>CAT</tt>s, and Shared Properties.) </p>
+    <p>Each object type (<tt>FORM</tt> type) is a local name space for property IDs. Think of
+    a &quot;<tt>CMAP</tt>&quot; property in a &quot;<tt>FORM</tt> <tt>ILBM</tt>&quot; as the
+    qualified ID &quot;<tt>ILBM.CMAP</tt>&quot;. Property IDs specified when an object type is
+    designed (and therefore known to all clients) are called &quot;standard&quot; while
+    specialized ones added later are &quot;nonstandard&quot;. </p>
+    <p align="center"><strong>Links</strong></p>
+    <p><em>Issue:</em> A standard mechanism for &quot;links&quot; or &quot;cross
+    references&quot; is very desirable for things like combining images and sounds into
+    animations. Perhaps we'll define &quot;link&quot; chunks within <tt>FORM</tt>s that refer
+    to other <tt>FORM</tt>s or to specific chunks within the same and other <tt>FORM</tt>s.
+    This needs further work. EA IFF 1985 has no standard link mechanism. </p>
+    <p>For now, it may suffice to read a list of, say, musical instruments, and then just
+    refer to them within a musical score by index number. </p>
+    <p align="center"><strong>File References</strong></p>
+    <p><em>Issue:</em> We may need a standard form for references to other files. A &quot;file
+    ref&quot; could name a directory and a file in the same type of operating system as the
+    ref's originator. Following the reference would expect the file to be on some mounted
+    volume. In a network environment, a file ref could name a server, too. </p>
+    <p><em>Issue:</em> How can we express operating-system independent file refs? </p>
+    <p><em>Issue:</em> What about a means to reference a portion of another file? Would this
+    be a &quot;file ref&quot; plus a reference to a &quot;link&quot; within the target file? </p>
+    <hr class="PAGE-BREAK">
+    <h3>4. Data Sections</h3>
+    <p>The first thing we need of a file is to check: Does it contain IFF data and, if so,
+    does it contain the kind of data we're looking for? So we come to the notion of a
+    &quot;data section&quot;. </p>
+    <p>A &quot;data section&quot; or IFF &quot;<tt>FORM</tt>&quot; is one self-contained
+    &quot;data object&quot; that might be stored in a file by itself. It is one high level
+    data object such as a picture or a sound effect. The IFF structure &quot;<tt>FORM</tt>&quot;
+    makes it self- identifying. It could be a composite object like a musical score with
+    nested musical instrument descriptions. </p>
+    <p align="center"><strong>Group <tt>FORM</tt></strong></p>
+    <p>A data section is a chunk with ckID &quot;<tt>FORM</tt>&quot; and this arrangement: </p>
+    <pre>   FORM       ::= &quot;FORM&quot; #{ FormType (LocalChunk | FORM | LIST | CAT)* }
+   FormType   ::= ID
+   LocalChunk ::= Property | Chunk</pre>
+    <p>The ID &quot;<tt>FORM</tt>&quot; is a syntactic keyword like &quot;struct&quot; in C.
+    Think of a &quot;<tt>struct ILBM</tt>&quot; containing a field &quot;<tt>CMAP</tt>&quot;.
+    If you see &quot;<tt>FORM</tt>&quot; you'll know to expect a <tt>FORM</tt> type ID (the
+    structure name, &quot;<tt>ILBM</tt>&quot; in this example) and a particular contents
+    arrangement or &quot;syntax&quot; (local chunks, <tt>FORM</tt>s, <tt>LIST</tt>s, and <tt>CAT</tt>s).
+    (<tt>LIST</tt>s and <tt>CAT</tt>s are discussed in part 5, below.) A &quot;<tt>FORM</tt> <tt>ILBM</tt>&quot;,
+    in particular, might contain a local chunk &quot;<tt>CMAP</tt>&quot;, an &quot;<tt>ILBM.CMAP</tt>&quot;
+    (to use a qualified name). </p>
+    <p>So the chunk ID &quot;<tt>FORM</tt>&quot; indicates a data section. It implies that the
+    chunk contains an ID and some number of nested chunks. In reading a <tt>FORM</tt>, like
+    any other chunk, programs must respect its ckSize as a virtual end-of-file for reading its
+    contents, even if they're truncated. </p>
+    <p>The FormType (or <tt>FORM</tt> type) is a restricted ID that may not contain lower case
+    letters or punctuation characters. (Cf. Type IDs. Cf. Single Purpose Files.) </p>
+    <p>The type-specific information in a <tt>FORM</tt> is composed of its &quot;local
+    chunks&quot;: data properties and other chunks. Each <tt>FORM</tt> type is a local name
+    space for local chunk IDs. So &quot;<tt>CMAP</tt>&quot; local chunks in other <tt>FORM</tt>
+    types may be unrelated to &quot;<tt>ILBM.CMAP</tt>&quot;. More than that, each <tt>FORM</tt>
+    type defines semantic scope. If you know what a <tt>FORM</tt> <tt>ILBM</tt> is, you'll
+    know what an <tt>ILBM.CMAP</tt> is. </p>
+    <p>Local chunks defined when the <tt>FORM</tt> type is designed (and therefore known to
+    all clients of this type) are called &quot;standard&quot; while specialized ones added
+    later are &quot;nonstandard&quot;. </p>
+    <p>Among the local chunks, property chunks give settings for various details like text
+    font while the other chunks supply the essential information. This distinction is not
+    clear cut. A property setting cancelled by a later setting of the same property has effect
+    only on data chunks in between. E.g. in the sequence: </p>
+    <pre>   prop1 = x  (propN = value)*  prop1 = y</pre>
+    <p>where the propNs are not prop1, the setting prop1 = x has no effect. </p>
+    <p>The following universal chunk IDs are reserved inside any <tt>FORM</tt>: &quot;<tt>LIST</tt>&quot;,
+    &quot;<tt>FORM</tt>&quot;, &quot;<tt>PROP</tt>&quot;, &quot;<tt>CAT&nbsp;</tt>&quot;,
+    &quot;<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>&quot;, &quot;<tt>LIS1</tt>&quot; through &quot;<tt>LIS9</tt>&quot;,
+    &quot;<tt>FOR1</tt>&quot; through &quot;<tt>FOR9</tt>&quot;, and &quot;<tt>CAT1</tt>&quot;
+    through &quot;<tt>CAT9</tt>&quot;. (Cf. Chunks. Cf. Group <tt>LIST</tt>. Cf. Group <tt>PROP</tt>.)
+    For clarity, these universal chunk names may not be <tt>FORM</tt> type IDs, either. </p>
+    <p>Part 5, below, talks about grouping <tt>FORM</tt>s into <tt>LIST</tt>s and <tt>CAT</tt>s.
+    They let you group a bunch of <tt>FORM</tt>s but don't impose any particular meaning or
+    constraints on the grouping. Read on. </p>
+    <p align="center"><strong>Composite <tt>FORM</tt>s</strong></p>
+    <p>A <tt>FORM</tt> chunk inside a <tt>FORM</tt> is a full-fledged data section. This means
+    you can build a composite object like a multi-frame animation sequence from available
+    picture <tt>FORM</tt>s and sound effect <tt>FORM</tt>s. You can insert additional chunks
+    with information like frame rate and frame count. </p>
+    <p>Using composite <tt>FORM</tt>s, you leverage on existing programs that create and edit
+    the component <tt>FORM</tt>s. Those editors may even look into your composite object to
+    copy out its type of component, although it'll be the rare program that's fancy enough to
+    do that. Such editors are not allowed to replace their component objects within your
+    composite object. That's because the IFF standard lets you specify consistency
+    requirements for the composite <tt>FORM</tt> such as maintaining a count or a directory of
+    the components. Only programs that are written to uphold the rules of your <tt>FORM</tt>
+    type should create or modify such <tt>FORM</tt>s. </p>
+    <p>Therefore, in designing a program that creates composite objects, you are strongly
+    requested to provide a facility for your users to import and export the nested <tt>FORM</tt>s.
+    Import and export could move the data through a clipboard or a file. </p>
+    <p>Here are several existing <tt>FORM</tt> types and rules for defining new ones. </p>
+    <h4><tt>FTXT</tt></h4>
+    <p>An <tt>FTXT</tt> data section contains text with character formatting information like
+    fonts and faces. It has no paragraph or document formatting information like margins and
+    page headers. <tt>FORM</tt> <tt>FTXT</tt> is well matched to the text representation in
+    Amiga's Intuition environment. See the supplemental document &quot;<tt>FTXT</tt>&quot; IFF
+    Formatted Text. </p>
+    <h4><tt>ILBM</tt></h4>
+    <p>&quot;<tt>ILBM</tt>&quot; is an InterLeaved BitMap image with color map; a
+    machine-independent format for raster images. <tt>FORM</tt> <tt>ILBM</tt> is the standard
+    image file format for the Commodore-Amiga computer and is useful in other environments,
+    too. See the supplemental document &quot;<tt>ILBM</tt>&quot; IFF Interleaved Bitmap. </p>
+    <h4><tt>PICS</tt></h4>
+    <p>The data chunk inside a &quot;<tt>PICS</tt>&quot; data section has ID &quot;<tt>PICT</tt>&quot;
+    and holds a QuickDraw picture. Issue: Allow more than one <tt>PICT</tt> in a <tt>PICS</tt>?
+    See Inside Macintosh chapter &quot;QuickDraw&quot; for details on <tt>PICT</tt>s and how
+    to create and display them on the Macintosh computer. </p>
+    <p>The only standard property for <tt>PICS</tt> is &quot;XY&quot;, an optional property
+    that indicates the position of the <tt>PICT</tt> relative to &quot;the big picture&quot;.
+    The contents of an XY is a QuickDraw Point. </p>
+    <p><em>Note:</em> <tt>PICT</tt> may be limited to Macintosh use, in which case there'll be
+    another format for structured graphics in other environments. </p>
+    <p align="center"><strong>Other Macintosh Resource Types</strong></p>
+    <p>Some other Macintosh resource types could be adopted for use within IFF files; perhaps <tt>MWRT</tt>,
+    <tt>ICN</tt>, <tt>ICN#</tt>, and <tt>STR#</tt>. </p>
+    <p><em>Issue:</em> Consider the candidates and reserve some more IDs. </p>
+    <p align="center"><strong>Designing New Data Sections</strong></p>
+    <p>Supplemental documents will define additional object types. A supplement needs to
+    specify the object's purpose, its <tt>FORM</tt> type ID, the IDs and formats of standard
+    local chunks, and rules for generating and interpreting the data. It's a good idea to
+    supply typedefs and an example source program that accesses the new object. See &quot;<tt>ILBM</tt>&quot;
+    IFF Interleaved Bitmap for a good example. </p>
+    <p>Anyone can pick a new <tt>FORM</tt> type ID but should reserve it with Electronic Arts
+    at their earliest convenience. [Issue: EA contact person? Hand this off to another
+    organization?] While decentralized format definitions and extensions are possible in IFF,
+    our preference is to get design consensus by committee, implement a program to read and
+    write it, perhaps tune the format, and then publish the format with example code. Some
+    organization should remain in charge of answering questions and coordinating extensions to
+    the format. </p>
+    <p>If it becomes necessary to revise the design of some data section, its <tt>FORM</tt>
+    type ID will serve as a version number (Cf. Type IDs). E.g. a revised &quot;<tt>VDEO</tt>&quot;
+    data section could be called &quot;<tt>VDE1</tt>&quot;. But try to get by with compatible
+    revisions within the existing <tt>FORM</tt> type. </p>
+    <p>In a new <tt>FORM</tt> type, the rules for primitive data types and word-alignment (Cf.
+    Primitive Data Types) may be overriden for the contents of its local chunks but not for
+    the chunk structure itself if your documentation spells out the deviations. If
+    machine-specific type variants are needed, e.g. to store vast numbers of integers in
+    reverse bit order, then outline the conversion algorithm and indicate the variant inside
+    each file, perhaps via different <tt>FORM</tt> types. Needless to say, variations should
+    be minimized. </p>
+    <p>In designing a <tt>FORM</tt> type, encapsulate all the data that other programs will
+    need to interpret your files. E.g. a raster graphics image should specify the image size
+    even if your program always uses 320 x 200 pixels x 3 bitplanes. Receiving programs are
+    then empowered to append or clip the image rectangle, to add or drop bitplanes, etc. This
+    enables a lot more compatibility. </p>
+    <p>Separate the central data (like musical notes) from more specialized information (like
+    note beams) so simpler programs can extract the central parts during read-in. Leave room
+    for expansion so other programs can squeeze in new kinds of information (like lyrics). And
+    remember to keep the property chunks manageably short let's say 2 256 bytes. </p>
+    <p>When designing a data object, try to strike a good tradeoff between a super-general
+    format and a highly-specialized one. Fit the details to at least one particular need, for
+    example a raster image might as well store pixels in the current machine's scan order. But
+    add the kind of generality that makes it usable with foreseeable hardware and software.
+    E.g. use a whole byte for each red, green, and blue color value even if this year's
+    computer has only 4-bit video DACs. Think ahead and help other programs so long as the
+    overhead is acceptable. E.g. run compress a raster by scan line rather than as a unit so
+    future programs can swap images by scan line to and from secondary storage. </p>
+    <p>Try to design a general purpose &quot;least common multiple&quot; format that
+    encompasses the needs of many programs without getting too complicated. Let's coalesce our
+    uses around a few such formats widely separated in the vast design space. Two factors make
+    this flexibility and simplicity practical. First, file storage space is getting very
+    plentiful, so compaction is not a priority. Second, nearly any locally-performed data
+    conversion work during file reading and writing will be cheap compared to the I/O time. </p>
+    <p>It must be ok to copy a <tt>LIST</tt> or <tt>FORM</tt> or <tt>CAT</tt> intact, e.g. to
+    incorporate it into a composite <tt>FORM</tt>. So any kind of internal references within a
+    <tt>FORM</tt> must be relative references. They could be relative to the start of the
+    containing <tt>FORM</tt>, relative from the referencing chunk, or a sequence number into a
+    collection. </p>
+    <p>With composite <tt>FORM</tt>s, you leverage on existing programs that create and edit
+    the components. If you write a program that creates composite objects, please provide a
+    facility for your users to import and export the nested <tt>FORM</tt>s. The import and
+    export functions may move data through a separate file or a clipboard. </p>
+    <p>Finally, don't forget to specify all implied rules in detail. </p>
+    <hr class="PAGE-BREAK">
+    <h3>5. LISTs, CATs, and Shared Properties</h3>
+    <p>Data often needs to be grouped together like a list of icons. Sometimes a trick like
+    arranging little images into a big raster works, but generally they'll need to be
+    structured as a first class group. The objects &quot;<tt>LIST</tt>&quot; and &quot;<tt>CAT</tt>&quot;
+    are IFF-universal mechanisms for this purpose. </p>
+    <p>Property settings sometimes need to be shared over a list of similar objects. E.g. a
+    list of icons may share one color map. <tt>LIST</tt> provides a means called &quot;<tt>PROP</tt>&quot;
+    to do this. One purpose of a <tt>LIST</tt> is to define the scope of a <tt>PROP</tt>. A
+    &quot;<tt>CAT</tt>&quot;, on the other hand, is simply a concatenation of objects. </p>
+    <p>Simpler programs may skip <tt>LIST</tt>s and <tt>PROP</tt>s altogether and just handle <tt>FORM</tt>s
+    and <tt>CAT</tt>s. All &quot;fully-conforming&quot; IFF programs also know about &quot;<tt>CAT&nbsp;</tt>&quot;,
+    &quot;<tt>LIST</tt>&quot;, and &quot;<tt>PROP</tt>&quot;. Any program that reads a <tt>FORM</tt>
+    inside a <tt>LIST</tt> must process shared <tt>PROP</tt>s to correctly interpret that <tt>FORM</tt>.
+    </p>
+    <p align="center"><strong>Group <tt>CAT</tt></strong></p>
+    <p>A <tt>CAT</tt> is just an untyped group of data objects. </p>
+    <p>Structurally, a <tt>CAT</tt> is a chunk with chunk ID &quot;<tt>CAT&nbsp;</tt>&quot;
+    containing a &quot;contents type&quot; ID followed by the nested objects. The ckSize of
+    each contained chunk is essentially a relative pointer to the next one. </p>
+    <pre>   CAT          ::= &quot;CAT &quot; #{ ContentsType (FORM | LIST | CAT)* }
+   ContentsType ::= ID  -- a hint or an &quot;abstract data type&quot; ID</pre>
+    <p>In reading a <tt>CAT</tt>, like any other chunk, programs must respect it's ckSize as a
+    virtual end-of-file for reading the nested objects even if they're malformed or truncated.
+    </p>
+    <p>The &quot;contents type&quot; following the <tt>CAT</tt>'s ckSize indicates what kind
+    of <tt>FORM</tt>s are inside. So a <tt>CAT</tt> of <tt>ILBM</tt>s would store &quot;<tt>ILBM</tt>&quot;
+    there. It's just a hint. It may be used to store an &quot;abstract data type&quot;. A <tt>CAT</tt>
+    could just have blank contents ID (&quot;<tt> </tt>&nbsp;&nbsp; &quot;) if it contains
+    more than one kind of <tt>FORM</tt>. </p>
+    <p><tt>CAT</tt> defines only the format of the group. The group's meaning is open to
+    interpretation. This is like a list in LISP: the structure of cells is predefined but the
+    meaning of the contents as, say, an association list depends on use. If you need a group
+    with an enforced meaning (an &quot;abstract data type&quot; or Smalltalk
+    &quot;subclass&quot;), some consistency constraints, or additional data chunks, use a
+    composite <tt>FORM</tt> instead (Cf. Composite <tt>FORM</tt>s). </p>
+    <p>Since a <tt>CAT</tt> just means a concatenation of objects, <tt>CAT</tt>s are rarely
+    nested. Programs should really merge <tt>CAT</tt>s rather than nest them. </p>
+    <p align="center"><strong>Group <tt>LIST</tt></strong></p>
+    <p>A <tt>LIST</tt> defines a group very much like <tt>CAT</tt> but it also gives a scope
+    for <tt>PROP</tt>s (see below). And unlike <tt>CAT</tt>s, <tt>LIST</tt>s should not be
+    merged without understanding their contents. </p>
+    <p>Structurally, a <tt>LIST</tt> is a chunk with ckID &quot;<tt>LIST</tt>&quot; containing
+    a &quot;contents type&quot; ID, optional shared properties, and the nested contents (<tt>FORM</tt>s,
+    <tt>LIST</tt>s, and <tt>CAT</tt>s), in that order. The ckSize of each contained chunk is a
+    relative pointer to the next one. A <tt>LIST</tt> is not an arbitrary linked list the
+    cells are simply concatenated. </p>
+    <pre>    LIST         ::= &quot;LIST&quot; #{ ContentsType PROP* (FORM | LIST | CAT)* }
+    ContentsType ::= ID</pre>
+    <p align="center"><strong>Group <tt>PROP</tt></strong></p>
+    <p><tt>PROP</tt> chunks may appear in <tt>LIST</tt>s (not in <tt>FORM</tt>s or <tt>CAT</tt>s).
+    They supply shared properties for the <tt>FORM</tt>s in that <tt>LIST</tt>. This ability
+    to elevate some property settings to shared status for a list of forms is useful for both
+    indirection and compaction. E.g. a list of images with the same size and colors can share
+    one &quot;size&quot; property and one &quot;color map&quot; property. Individual <tt>FORM</tt>s
+    can override the shared settings. </p>
+    <p>The contents of a <tt>PROP</tt> is like a <tt>FORM</tt> with no data chunks: </p>
+    <pre>   PROP ::= &quot;PROP&quot; #{ FormType Property* }</pre>
+    <p>It means, &quot;Here are the shared properties for <tt>FORM</tt> type <tt>&lt;&lt;FormType&gt;&gt;</tt>.&quot;
+    </p>
+    <p>A <tt>LIST</tt> may have at most one <tt>PROP</tt> of a <tt>FORM</tt> type, and all the
+    <tt>PROP</tt>s must appear before any of the <tt>FORM</tt>s or nested <tt>LIST</tt>s and <tt>CAT</tt>s.
+    You can have subsequences of <tt>FORM</tt>s sharing properties by making each subsequence
+    a <tt>LIST</tt>. </p>
+    <p>Scoping: Think of property settings as variable bindings in nested blocks of a
+    programming language. Where in C you could write: </p>
+    <pre>   TEXT_FONT text_font = Courier;  /* program's global default */
+
+   File(); {
+      TEXT_FONT text_font = TimesRoman;    /* shared setting       */
+      {
+         TEXT_FONT text_font = Helvetica;  /* local setting        */
+         Print(&quot;Hello &quot;);                  /* uses font Helvetica  */
+      }
+
+      {
+         Print(&quot;there.&quot;);                  /* uses font TimesRoman */
+      }
+   }</pre>
+    <p>An IFF file could contain: </p>
+    <pre>   LIST {
+      PROP TEXT {
+         FONT {TimesRoman}       /* shared setting       */
+      }
+
+      FORM TEXT {
+         FONT {Helvetica}        /* local setting        */
+         CHRS {Hello }           /* uses font Helvetica  */
+      }
+
+      FORM TEXT {
+         CHRS {there.}           /* uses font TimesRoman */
+      }
+   }</pre>
+    <p>The shared property assignments selectively override the reader's global defaults, but
+    only for <tt>FORM</tt>s within the group. A <tt>FORM</tt>'s own property assignments
+    selectively override the global and group-supplied values. So when reading an IFF file,
+    keep property settings on a stack. They're designed to be small enough to hold in main
+    memory. </p>
+    <p>Shared properties are semantically equivalent to copying those properties into each of
+    the nested <tt>FORM</tt>s right after their <tt>FORM</tt> type IDs. </p>
+    <p align="center"><strong>Properties for <tt>LIST</tt></strong></p>
+    <p>Optional &quot;properties for <tt>LIST</tt>&quot; store the origin of the list's
+    contents in a <tt>PROP</tt> chunk for the fake <tt>FORM</tt> type &quot;<tt>LIST</tt>&quot;.
+    They are the properties originating program &quot;<tt>OPGM</tt>&quot;, processor family
+    &quot;<tt>OCPU</tt>&quot;, computer type &quot;<tt>OCMP</tt>&quot;, computer serial number
+    or network address &quot;<tt>OSN&nbsp;</tt>&quot;, and user name &quot;<tt>UNAM</tt>&quot;.
+    In our imperfect world, these could be called upon to distinguish between unintended
+    variations of a data format or to work around bugs in particular originating/receiving
+    program pairs. Issue: Specify the format of these properties. </p>
+    <p>A creation date could also be stored in a property but let's ask that file creating,
+    editing, and transporting programs maintain the correct date in the local file system.
+    Programs that move files between machine types are expected to copy across the creation
+    dates. </p>
+    <hr class="PAGE-BREAK">
+    <h3>6. Standard File Structure</h3>
+    <p align="center"><strong>File Structure Overview</strong></p>
+    <p>An IFF file is just a single chunk of type <tt>FORM</tt>, <tt>LIST</tt>, or <tt>CAT</tt>.
+    Therefore an IFF file can be recognized by its first 4 bytes: &quot;<tt>FORM</tt>&quot;,
+    &quot;<tt>LIST</tt>&quot;, or &quot;<tt>CAT&nbsp;</tt>&quot;. Any file contents after the
+    chunk's end are to be ignored. </p>
+    <p>Since an IFF file can be a group of objects, programs that read/write single objects
+    can communicate to an extent with programs that read/write groups. You're encouraged to
+    write programs that handle all the objects in a <tt>LIST</tt> or <tt>CAT</tt>. A graphics
+    editor, for example, could process a list of pictures as a multiple page document, one
+    page at a time. </p>
+    <p>Programs should enforce IFF's syntactic rules when reading and writing files. This
+    ensures robust data transfer. The public domain IFF reader/writer subroutine package does
+    this for you. A utility program &quot;<tt>IFFCheck</tt>&quot; is available that scans an
+    IFF file and checks it for conformance to IFF's syntactic rules. <tt>IFFCheck</tt> also
+    prints an outline of the chunks in the file, showing the ckID and ckSize of each. This is
+    quite handy when building IFF programs. Example programs are also available to show
+    details of reading and writing IFF files. </p>
+    <p>A merge program &quot;<tt>IFFJoin</tt>&quot; will be available that logically appends
+    IFF files into a single <tt>CAT</tt> group. It &quot;unwraps&quot; each input file that is
+    a <tt>CAT</tt> so that the combined file isn't nested <tt>CAT</tt>s. </p>
+    <p>If we need to revise the IFF standard, the three anchoring IDs will be used as
+    &quot;version numbers&quot;. That's why IDs &quot;<tt>FOR1</tt>&quot; through &quot;<tt>FOR9</tt>&quot;,
+    &quot;<tt>LIS1</tt>&quot; through &quot;<tt>LIS9</tt>&quot;, and &quot;<tt>CAT1</tt>&quot;
+    through &quot;<tt>CAT9</tt>&quot; are reserved. </p>
+    <p>IFF formats are designed for reasonable performance with floppy disks. We achieve
+    considerable simplicity in the formats and programs by relying on the host file system
+    rather than defining universal grouping structures like directories for <tt>LIST</tt>
+    contents. On huge storage systems, IFF files could be leaf nodes in a file structure like
+    a B-tree. Let's hope the host file system implements that for us! </p>
+    <p>Thre are two kinds of IFF files: single purpose files and scrap files. They differ in
+    the interpretation of multiple data objects and in the file's external type. </p>
+    <p align="center"><strong>Single Purpose Files</strong></p>
+    <p>A single purpose IFF file is for normal &quot;document&quot; and &quot;archive&quot;
+    storage. This is in contrast with &quot;scrap files&quot; (see below) and temporary
+    backing storage (non-interchange files). </p>
+    <p>The external file type (or filename extension, depending on the host file system)
+    indicates the file's contents. It's generally the <tt>FORM</tt> type of the data
+    contained, hence the restrictions on <tt>FORM</tt> type IDs. </p>
+    <p>Programmers and users may pick an &quot;intended use&quot; type as the filename
+    extension to make it easy to filter for the relevant files in a filename requestor. This
+    is actually a &quot;subclass&quot; or &quot;subtype&quot; that conveniently separates
+    files of the same <tt>FORM</tt> type that have different uses. Programs cannot demand
+    conformity to its expected subtypes without overly restricting data interchange since they
+    cannot know about the subtypes to be used by future programs that users will want to
+    exchange data with. </p>
+    <p><em>Issue:</em> How to generate 3-letter MS-DOS extensions from 4-letter <tt>FORM</tt>
+    type IDs? </p>
+    <p>Most single purpose files will be a single <tt>FORM</tt> (perhaps a composite <tt>FORM</tt>
+    like a musical score containing nested <tt>FORM</tt>s like musical instrument
+    descriptions). If it's a <tt>LIST</tt> or a <tt>CAT</tt>, programs should skip over
+    unrecognized objects to read the recognized ones or the first recognized one. Then a
+    program that can read a single purpose file can read something out of a &quot;scrap
+    file&quot;, too. </p>
+    <p align="center"><strong>Scrap Files</strong></p>
+    <p>A &quot;scrap file&quot; is for maximum interconnectivity in getting data between
+    programs; the core of a clipboard function. Scrap files may have type &quot;<tt>IFF&nbsp;</tt>&quot;
+    or filename extension &quot;<tt>.IFF</tt>&quot;. </p>
+    <p>A scrap file is typically a <tt>CAT</tt> containing alternate representations of the
+    same basic information. Include as many alternatives as you can readily generate. This
+    redundancy improves interconnectivity in situations where we can't make all programs read
+    and write super-general formats. [Inside Macintosh chapter &quot;Scrap Manager&quot;.]
+    E.g. a graphically-annotated musical score might be supplemented by a stripped down
+    4-voice melody and by a text (the lyrics). </p>
+    <p>The originating program should write the alternate representations in order of
+    &quot;preference&quot;: most preferred (most comprehensive) type to least preferred (least
+    comprehensive) type. A receiving program should either use the first appearing type that
+    it understands or search for its own &quot;preferred&quot; type. </p>
+    <p>A scrap file should have at most one alternative of any type. (A <tt>LIST</tt> of same
+    type objects is ok as one of the alternatives.) But don't count on this when reading;
+    ignore extra sections of a type. Then a program that reads scrap files can read something
+    out of single purpose files. </p>
+    <p align="center"><strong>Rules for Reader Programs</strong></p>
+    <p>Here are some notes on building programs that read IFF files. If you use the standard
+    IFF reader module &quot;<tt>IFFR.C</tt>&quot;, many of these rules and details will be
+    automatically handled. (See &quot;Support Software&quot; in Appendix A.) We recommend that
+    you start from the example program &quot;<tt>ShowILBM.C</tt>&quot;. You should also read
+    up on recursive descent parsers. [See, for example, Compiler Construction, An Advanced
+    Course.] <ul>
+      <li>The standard is very flexible so many programs can exchange data. This implies a program
+        has to scan the file and react to what's actually there in whatever order it appears. An
+        IFF reader program is a parser. </li>
+      <li>For interchange to really work, programs must be willing to do some conversion during
+        read-in. If the data isn't exactly what you expect, say, the raster is smaller than those
+        created by your program, then adjust it. Similarly, your program could crop a large
+        picture, add or drop bitplanes, and create/discard a mask plane. The program should give
+        up gracefully on data that it can't convert. </li>
+      <li>If it doesn't start with &quot;<tt>FORM</tt>&quot;, &quot;<tt>LIST</tt>&quot;, or &quot;<tt>CAT&nbsp;</tt>&quot;,
+        it's not an IFF-85 file. </li>
+      <li>For any chunk you encounter, you must recognize its type ID to understand its contents. </li>
+      <li>For any <tt>FORM</tt> chunk you encounter, you must recognize its <tt>FORM</tt> type ID
+        to understand the contained &quot;local chunks&quot;. Even if you don't recognize the <tt>FORM</tt>
+        type, you can still scan it for nested <tt>FORM</tt>s, <tt>LIST</tt>s, and <tt>CAT</tt>s
+        of interest. </li>
+      <li>Don't forget to skip the pad byte after every odd-length chunk. </li>
+      <li>Chunk types <tt>LIST</tt>, <tt>FORM</tt>, <tt>PROP</tt>, and <tt>CAT</tt> are generic
+        groups. They always contain a subtype ID followed by chunks. </li>
+      <li>Readers ought to handle a <tt>CAT</tt> of <tt>FORM</tt>s in a file. You may treat the <tt>FORM</tt>s
+        like document pages to sequence through or just use the first <tt>FORM</tt>. </li>
+      <li>Simpler IFF readers completely skip <tt>LIST</tt>s. &quot;Fully IFF-conforming&quot;
+        readers are those that handle <tt>LIST</tt>s, even if just to read the first <tt>FORM</tt>
+        from a file. If you do look into a <tt>LIST</tt>, you must process shared properties (in <tt>PROP</tt>
+        chunks) properly. The idea is to get the correct data or none at all. </li>
+      <li>The nicest readers are willing to look into unrecognized <tt>FORM</tt>s for nested <tt>FORM</tt>
+        types that they do recognize. For example, a musical score may contain nested instrument
+        descriptions and an animation file may contain still pictures. </li>
+    </ul>
+    <p>Note to programmers: Processing <tt>PROP</tt> chunks is not simple! You'll need some
+    background in interpreters with stack frames. If this is foreign to you, build programs
+    that read/write only one <tt>FORM</tt> per file. For the more intrepid programmers, the
+    next paragraph summarizes how to process <tt>LIST</tt>s and <tt>PROP</tt>s. See the
+    general IFF reader module &quot;<tt>IFFR.C</tt>&quot; and the example program &quot;<tt>ShowILBM.C</tt>&quot;
+    for details. </p>
+    <p>Allocate a stack frame for every <tt>LIST</tt> and <tt>FORM</tt> you encounter and
+    initialize it by copying the stack frame of the parent <tt>LIST</tt> or <tt>FORM</tt>. At
+    the top level, you'll need a stack frame initialized to your program's global defaults.
+    While reading each <tt>LIST</tt> or <tt>FORM</tt>, store all encountered properties into
+    the current stack frame. In the example <tt>ShowILBM</tt>, each stack frame has a place
+    for a bitmap header property <tt>ILBM.BMHD</tt> and a color map property <tt>ILBM.CMAP</tt>.
+    When you finally get to the <tt>ILBM</tt>'s <tt>BODY</tt> chunk, use the property settings
+    accumulated in the current stack frame. </p>
+    <p>An alternate implementation would just remember <tt>PROP</tt>s encountered, forgetting
+    each on reaching the end of its scope (the end of the containing <tt>LIST</tt>). When a <tt>FORM</tt>
+    <tt>XXXX</tt> is encountered, scan the chunks in all remembered <tt>PROP</tt>s <tt>XXXX</tt>,
+    in order, as if they appeared before the chunks actually in the <tt>FORM</tt> <tt>XXXX</tt>.
+    This gets trickier if you read <tt>FORM</tt>s inside of <tt>FORM</tt>s. </p>
+    <p align="center"><strong>Rules for Writer Programs</strong></p>
+    <p>Here are some notes on building programs that write IFF files, which is much easier
+    than reading them. If you use the standard IFF writer module &quot;<tt>IFFW.C</tt>&quot;
+    (see &quot;Support Software&quot; in Appendix A), many of these rules and details will
+    automatically be enforced. See the example program &quot;<tt>Raw2ILBM.C</tt>&quot;. <ul>
+      <li>An IFF file is a single <tt>FORM</tt>, <tt>LIST</tt>, or <tt>CAT</tt> chunk. </li>
+      <li>Any IFF-85 file must start with the 4 characters &quot;<tt>FORM</tt>&quot;, &quot;<tt>LIST</tt>&quot;,
+        or &quot;<tt>CAT&nbsp;</tt>&quot;, followed by a <tt>LONG</tt> ckSize. There should be no
+        data after the chunk end. </li>
+      <li>Chunk types <tt>LIST</tt>, <tt>FORM</tt>, <tt>PROP</tt>, and <tt>CAT</tt> are generic.
+        They always contain a subtype ID followed by chunks. These three IDs are universally
+        reserved, as are &quot;<tt>LIS1</tt>&quot; through &quot;<tt>LIS9</tt>&quot;, &quot;<tt>FOR1</tt>&quot;
+        through &quot;<tt>FOR9</tt>&quot;, &quot;<tt>CAT1</tt>&quot; through &quot;<tt>CAT9</tt>&quot;,
+        and &quot;<tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>&quot;. </li>
+      <li>Don't forget to write a 0 pad byte after each odd-length chunk. </li>
+      <li>Four techniques for writing an IFF group: (1) build the data in a file mapped into
+        virtual memory, (2) build the data in memory blocks and use block I/O, (3) stream write
+        the data piecemeal and (don't forget!) random access back to set the group length count,
+        and (4) make a preliminary pass to compute the length count then stream write the data. </li>
+      <li>Do not try to edit a file that you don't know how to create. Programs may look into a
+        file and copy out nested <tt>FORM</tt>s of types that they recognize, but don't edit and
+        replace the nested <tt>FORM</tt>s and don't add or remove them. That could make the
+        containing structure inconsistent. You may write a new file containing items you copied
+        (or copied and modified) from another IFF file, but don't copy structural parts you don't
+        understand. </li>
+      <li>You must adhere to the syntax descriptions in Appendex A. E.g. <tt>PROP</tt>s may only
+        appear inside <tt>LIST</tt>s. </li>
+    </ul>
+    <hr class="PAGE-BREAK">
+    <h3>Appendix A. Reference</h3>
+    <p align="center"><strong>Type Definitions</strong></p>
+    <p>The following C typedefs describe standard IFF structures. Declarations to use in
+    practice will vary with the CPU and compiler. For example, 68000 Lattice C produces
+    efficient comparison code if we define ID as a &quot;<tt>LONG</tt>&quot;. A macro &quot;<tt>MakeID</tt>&quot;
+    builds these IDs at compile time. </p>
+    <pre>    /* Standard IFF types, expressed in 68000 Lattice C.    */
+
+    typedef unsigned char  UBYTE;   /*  8 bits unsigned     */
+    typedef short          WORD;    /* 16 bits signed       */
+    typedef unsigned short UWORD;   /* 16 bits unsigned     */
+    typedef long           LONG;    /* 32 bits signed       */
+
+    typedef char ID[4];     /* 4 chars in ' ' through '~'   */
+
+    typedef struct {
+        ID      ckID;
+        LONG    ckSize; /* sizeof(ckData)       */
+        UBYTE   ckData[/* ckSize */];
+        } Chunk;
+
+    /* ID typedef and builder for 68000 Lattice C. */
+    typedef LONG ID;        /* 4 chars in ' ' through '~'   */
+    #define MakeID(a,b,c,d) ( (a)&lt;&lt;24 | (b)&lt;&lt;16 | (c)&lt;&lt;8 | (d) )
+
+    /* Globally reserved IDs. */
+    #define ID_FORM   MakeID('F','O','R','M')
+    #define ID_LIST   MakeID('L','I','S','T')
+    #define ID_PROP   MakeID('P','R','O','P')
+    #define ID_CAT    MakeID('C','A','T',' ')
+    #define ID_FILLER MakeID(' ',' ',' ',' ')</pre>
+    <p align="center"><strong>Syntax Definitions</strong></p>
+    <p>Here's a collection of the syntax definitions in this document. </p>
+    <pre>    Chunk        ::= ID #{ UBYTE* } [0]
+
+    Property     := Chunk
+
+    FORM         ::= &quot;FORM&quot; #{ FormType (LocalChunk | FORM | LIST | CAT)* }
+    FormType     := ID
+    LocalChunk   := Property | Chunk
+
+    CAT          ::= &quot;CAT &quot; #{ ContentsType (FORM | LIST | CAT)* }
+    ContentsType ::= ID  -- a hint or an &quot;abstract data type&quot; ID
+
+    LIST         ::= &quot;LIST&quot; #{ ContentsType PROP* (FORM | LIST | CAT)* }
+    PROP         ::= &quot;PROP&quot; #{ FormType Property* }</pre>
+    <p>In this extended regular expression notation, the token &quot;<tt>#</tt>&quot;
+    represents a ckSize <tt>LONG</tt> count of the following {braced} data bytes. Literal
+    items are shown in &quot;quotes&quot;, [square bracketed items] are optional, and &quot;<tt>*</tt>&quot;
+    means 0 or more instances. A sometimes-needed pad byte is shown as &quot;<tt>[0]</tt>&quot;.
+    </p>
+    <p align="center"><strong>Defined Chunk IDs</strong></p>
+    <p>This is a table of currently defined chunk IDs. We may also borrow some Macintosh IDs
+    and data formats. <ul>
+      <li>Group chunk IDs<br>
+        <tt>FORM</tt>, <tt>LIST</tt>, <tt>PROP</tt>, <tt>CAT</tt>.</li>
+      <li>Future revision group chunk IDs<br>
+        <tt>FOR1</tt> - <tt>FOR9</tt>, <tt>LIS1</tt> - <tt>LIS9</tt>, <tt>CAT1</tt> - <tt>CAT9</tt>.</li>
+      <li><tt>FORM</tt> type IDs<br>
+        (The above group chunk IDs may not be used for <tt>FORM</tt> type IDs.)<br>
+        (Lower case letters and punctuation marks are forbidden in <tt>FORM</tt> type IDs.)<br>
+        <tt>8SVX</tt> 8-bit sampled sound voice, <tt>ANBM</tt> animated bitmap, <tt>FNTR</tt>
+        raster font, <tt>FNTV</tt> vector font, <tt>FTXT</tt> formatted text, <tt>GSCR</tt>
+        general-use musical score, <tt>ILBM</tt> interleaved raster bitmap image, <tt>PDEF</tt>
+        Deluxe Print page definition, <tt>PICS</tt> Macintosh picture, <tt>PLBM</tt> (obsolete), <tt>USCR</tt>
+        Uhuru Sound Software musical score, <tt>UVOX</tt> Uhuru Sound Software Macintosh voice, <tt>SMUS</tt>
+        simple musical score, <tt>VDEO</tt> Deluxe Video Construction Set video.</li>
+      <li>Data chunk IDs<br>
+        &quot;<tt> </tt>&quot;, <tt>TEXT</tt>, <tt>PICT</tt>.</li>
+      <li><tt>PROP</tt> <tt>LIST</tt> property IDs<br>
+        <tt>OPGM</tt>, <tt>OCPU</tt>, <tt>OCMP</tt>, <tt>OSN</tt>, <tt>UNAM</tt>.</li>
+    </ul>
+    <hr class="PAGE-BREAK">
+    <p align="center"><strong>Support Software</strong></p>
+    <p>These public domain C source programs are available for use in building IFF-compatible
+    programs: <ul>
+      <li><tt>IFF.H</tt>, <tt>IFFR.C</tt>, <tt>IFFW.C</tt><br>
+        IFF reader and writer package. These modules handle many of the details of reliably
+        reading and writing IFF files.</li>
+      <li><tt>IFFCheck.C</tt><br>
+        This handy utility program scans an IFF file, checks that the contents are well formed,
+        and prints an outline of the chunks.</li>
+      <li><tt>PACKER.H</tt>, <tt>Packer.C</tt>, <tt>UnPacker.C</tt><br>
+        Run encoder and decoder used for ILBM files.</li>
+      <li><tt>ILBM.H</tt>, <tt>ILBMR.C</tt>, <tt>ILBMW.C</tt><br>
+        Reader and writer support routines for raster image <tt>FORM</tt> <tt>ILBM</tt>. <tt>ILBMR</tt>
+        calls <tt>IFFR</tt> and <tt>UnPacker</tt>. <tt>ILBMW</tt> calls <tt>IFFW</tt> and <tt>Packer</tt>.</li>
+      <li><tt>ShowILBM.C</tt><br>
+        Example caller of <tt>IFFR</tt> and <tt>ILBMR</tt> modules. This Commodore-Amiga program
+        reads and displays a <tt>FORM</tt> <tt>ILBM</tt>.</li>
+      <li><tt>Raw2ILBM.C</tt><br>
+        Example <tt>ILBM</tt> writer program. As a demonstration, it reads a raw raster image file
+        and writes the image as a <tt>FORM</tt> <tt>ILBM</tt> file.</li>
+      <li><tt>ILBM2Raw.C</tt><br>
+        Example <tt>ILBM</tt> reader program. Reads a <tt>FORM</tt> <tt>ILBM</tt> file and writes
+        it into a raw raster image.</li>
+      <li><tt>REMALLOC.H</tt>, <tt>Remalloc.c</tt><br>
+        Memory allocation routines used in these examples.</li>
+      <li><tt>INTUALL.H</tt><br>
+        generic &quot;include almost everything&quot; include-file with the sequence of includes
+        correctly specified.</li>
+      <li><tt>READPICT.H</tt>, <tt>ReadPict.c</tt><br>
+        given an <tt>ILBM</tt> file, read it into a bitmap and a color map</li>
+      <li><tt>PUTPICT.H</tt>, <tt>PutPict.c</tt><br>
+        given a bitmap and a color map, save it as an <tt>ILBM</tt> file.</li>
+      <li><tt>GIO.H</tt>, <tt>Gio.c</tt><br>
+        generic I/O speedup package. Attempts to speed disk I/O by buffering writes and reads.</li>
+      <li><tt>giocall.c</tt><br>
+        sample call to gio.</li>
+      <li><tt>ilbmdump.c</tt><br>
+        reads in <tt>ILBM</tt> file, prints out ascii representation for including in C files.</li>
+      <li><tt>bmprintc.c</tt><br>
+        prints out a C-language representation of data for a bitmap.</li>
+    </ul>
+    <hr class="PAGE-BREAK">
+    <p align="center"><strong>Example Diagrams</strong></p>
+    <p>Here's a box diagram for an example IFF file, a raster image <tt>FORM</tt> <tt>ILBM</tt>.
+    This <tt>FORM</tt> contains a bitmap header property chunk <tt>BMHD</tt>, a color map
+    property chunk <tt>CMAP</tt>, and a raster data chunk <tt>BODY</tt>. This particular
+    raster is 320 x 200 pixels x 3 bit planes uncompressed. The &quot;<tt>0</tt>&quot; after
+    the <tt>CMAP</tt> chunk represents a zero pad byte; included since the <tt>CMAP</tt> chunk
+    has an odd length. The text to the right of the diagram shows the outline that would be
+    printed by the <tt>IFFCheck</tt> utility program for this particular file. </p>
+    <table>
+      <tr>
+        <td><table BORDER="1" CELLPADDING="5" CELLSPACING="1">
+          <tr>
+            <td>'<tt>FORM</tt>' 24070 </td>
+          </tr>
+          <tr>
+            <td>'<tt>ILBM</tt>'<br>
+            &nbsp; <table BORDER="1" CELLPADDING="5" CELLSPACING="1" WIDTH="100%">
+              <tr>
+                <td>'<tt>BMHD</tt>' 20 <br>
+                320, 200, 0, 0, 3, 0, 0, ... </td>
+              </tr>
+              <tr>
+                <td>'<tt>CMAP</tt>' 21 <br>
+                0, 0, 0; 32, 0, 0; 64, 0, 0 ... </td>
+              </tr>
+            </table>
+            <p>0</p>
+            <table BORDER="1" CELLPADDING="5" CELLSPACING="1" WIDTH="100%">
+              <tr>
+                <td>'<tt>BODY</tt>' 24000 <br>
+                0, 0, 0, ... </td>
+              </tr>
+            </table>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td><table BORDER="0" CELLPADDING="5" CELLSPACING="3">
+          <tr>
+            <td><tt>FORM 24070 ILBM</tt> </td>
+          </tr>
+          <tr>
+            <td>&nbsp; </td>
+          </tr>
+          <tr>
+            <td><table BORDER="0" CELLPADDING="5" CELLSPACING="3">
+              <tr>
+                <td><tt>.BMHD 20</tt> <br>
+                &nbsp; </td>
+              </tr>
+              <tr>
+                <td><tt>.CMAP 21</tt> <br>
+                &nbsp; </td>
+              </tr>
+            </table>
+            <p>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><tt>.BODY 24000</tt> <br>
+            &nbsp; </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <p>This second diagram shows a <tt>LIST</tt> of two <tt>FORM</tt>s <tt>ILBM</tt> sharing a
+    common <tt>BMHD</tt> property and a common <tt>CMAP</tt> property. Again, the text on the
+    right is an outline a la <tt>IFFCheck</tt>. </p>
+    <table>
+      <tr>
+        <td><table BORDER="1" CELLPADDING="5" CELLSPACING="1">
+          <tr>
+            <td>'<tt>LIST</tt>' 48114 </td>
+          </tr>
+          <tr>
+            <td>'<tt>AAAA</tt>' </td>
+          </tr>
+          <tr>
+            <td><table BORDER="1" CELLPADDING="5" CELLSPACING="1" WIDTH="100%">
+              <tr>
+                <td>'<tt>PROP</tt>' 62 </td>
+              </tr>
+              <tr>
+                <td>'<tt>ILBM</tt>' </td>
+              </tr>
+              <tr>
+                <td><table BORDER="1" CELLPADDING="5" CELLSPACING="1" WIDTH="100%">
+                  <tr>
+                    <td>'<tt>BMHD</tt>' 20 <br>
+                    320, 200, 0, 0, 3, 0, 0, ... </td>
+                  </tr>
+                  <tr>
+                    <td>'<tt>CMAP</tt>' 21 <br>
+                    0, 0, 0; 32, 0, 0; 64, 0, 0 ... </td>
+                  </tr>
+                </table>
+                <p><br>
+                0 </td>
+              </tr>
+            </table>
+            </td>
+          </tr>
+          <tr>
+            <td><table BORDER="1" CELLPADDING="5" CELLSPACING="1" WIDTH="100%">
+              <tr>
+                <td>'<tt>FORM</tt>' 24012 </td>
+              </tr>
+              <tr>
+                <td>'<tt>ILBM</tt>' </td>
+              </tr>
+              <tr>
+                <td><table BORDER="1" CELLPADDING="5" CELLSPACING="1" WIDTH="100%">
+                  <tr>
+                    <td>'<tt>BODY</tt>' 24000 <br>
+                    0, 0, 0, ... </td>
+                  </tr>
+                </table>
+                </td>
+              </tr>
+            </table>
+            </td>
+          </tr>
+          <tr>
+            <td><table BORDER="1" CELLPADDING="5" CELLSPACING="1" WIDTH="100%">
+              <tr>
+                <td>'<tt>FORM</tt>' 24012 </td>
+              </tr>
+              <tr>
+                <td>'<tt>ILBM</tt>' </td>
+              </tr>
+              <tr>
+                <td><table BORDER="1" CELLPADDING="5" CELLSPACING="1" WIDTH="100%">
+                  <tr>
+                    <td>'<tt>BODY</tt>' 24000 <br>
+                    0, 0, 0, ... </td>
+                  </tr>
+                </table>
+                </td>
+              </tr>
+            </table>
+            </td>
+          </tr>
+        </table>
+        </td>
+        <td><table BORDER="0" CELLPADDING="5" CELLSPACING="3">
+          <tr>
+            <td><tt>LIST 48114 AAAA</tt> </td>
+          </tr>
+          <tr>
+            <td>&nbsp; </td>
+          </tr>
+          <tr>
+            <td><table BORDER="0" CELLPADDING="5" CELLSPACING="3" WIDTH="100%">
+              <tr>
+                <td><tt>.PROP 62 ILBM</tt> </td>
+              </tr>
+              <tr>
+                <td>&nbsp; </td>
+              </tr>
+              <tr>
+                <td><table BORDER="0" CELLPADDING="5" CELLSPACING="3" WIDTH="100%">
+                  <tr>
+                    <td><tt>..BMHD 20</tt> <br>
+                    &nbsp; </td>
+                  </tr>
+                  <tr>
+                    <td><tt>..CMAP 21</tt> <br>
+                    &nbsp; </td>
+                  </tr>
+                </table>
+                <p><br>
+                &nbsp; </td>
+              </tr>
+            </table>
+            </td>
+          </tr>
+          <tr>
+            <td><table BORDER="0" CELLPADDING="5" CELLSPACING="3" WIDTH="100%">
+              <tr>
+                <td><tt>.FORM 24012 ILBM</tt> </td>
+              </tr>
+              <tr>
+                <td>&nbsp; </td>
+              </tr>
+              <tr>
+                <td><table BORDER="0" CELLPADDING="5" CELLSPACING="3" WIDTH="100%">
+                  <tr>
+                    <td><tt>..BODY 24000</tt> <br>
+                    &nbsp; </td>
+                  </tr>
+                </table>
+                </td>
+              </tr>
+            </table>
+            </td>
+          </tr>
+          <tr>
+            <td><table BORDER="0" CELLPADDING="5" CELLSPACING="3" WIDTH="100%">
+              <tr>
+                <td><tt>.FORM 24012 ILBM</tt> </td>
+              </tr>
+              <tr>
+                <td>&nbsp; </td>
+              </tr>
+              <tr>
+                <td><table BORDER="0" CELLPADDING="5" CELLSPACING="3" WIDTH="100%">
+                  <tr>
+                    <td><tt>..BODY 24000</tt> <br>
+                    &nbsp; </td>
+                  </tr>
+                </table>
+                </td>
+              </tr>
+            </table>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+    <hr class="PAGE-BREAK">
+    <h3>Appendix B. Standards Committee</h3>
+    <p>The following people contributed to the design of this IFF standard: <ul>
+      <li>Bob &quot;Kodiak&quot; Burns, Commodore-Amiga </li>
+      <li>R. J. Mical, Commodore-Amiga </li>
+      <li>Jerry Morrison, Electronic Arts </li>
+      <li>Greg Riker, Electronic Arts </li>
+      <li>Steve Shaw, Electronic Arts </li>
+      <li>Barry Walsh, Commodore-Amiga </li>
+    </ul>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

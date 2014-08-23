@@ -1,0 +1,152 @@
+<html>
+
+<head>
+<title>Classes: LayoutTool</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="generic.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="LayoutGeneric"></a></td>
+    <td width="96" align="left"><a href="master.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="MasterHandler"></a></td>
+    <td width="96" align="left"><a href="../classes.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Classes"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>LayoutTool</h3>
+    <p><small><strong>Availability</strong>&nbsp; Future</small><br>
+    <small><strong>Component</strong>&nbsp; Layout</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwlaytool.h">lwlaytool.h</a></small></p>
+    <p>Layout tool plug-ins are just custom Layout tools. To the user, they behave like
+    Layout's built-in tools (the tools activated by the Move, Rotate and Scale buttons, for
+    example).</p>
+    <p>Support for this class hasn't been implemented yet.</p>
+    <p><strong>Activation Function</strong></p>
+    <pre>   XCALL_( int ) MyLayoutTool( long version, GlobalFunc *global,
+      LWLayoutTool *local, void *serverData );</pre>
+    <p>The <tt>local</tt> argument to a Layout tool's activation function is an LWLayoutTool.</p>
+    <pre>   typedef struct st_LWLayoutTool {
+      LWInstance         <strong>instance</strong>;
+      LWLayoutToolFuncs *<strong>tool</strong>;
+   } LWLayoutTool;</pre>
+    <p>The activation function fills in the <tt>instance</tt> field and the callbacks of the <tt>tool</tt>
+    field and returns. As with <a href="../handler.html">handlers</a>, the remaining
+    interaction between Layout and the plug-in takes place through the callbacks.<dl>
+      <tt>
+      <dt><strong>instance</strong></dt>
+      </tt>
+      <dd>A pointer to your user data. This will be passed to each of the tool callbacks.</dd>
+      <tt>
+      <dt><br>
+        <strong>tool</strong></dt>
+      </tt>
+      <dd>Points to a structure containing function pointers for your callbacks, described below.</dd>
+    </dl>
+    <p><strong>Tool Functions</strong></p>
+    <p>The <tt>tool</tt> field of the LWLayoutTool is a pointer to an LWLayoutToolFuncs.</p>
+    <pre>   typedef struct st_LWLayoutToolFuncs {
+      void         (*<strong>done</strong>)   (LWInstance);
+      void         (*<strong>draw</strong>)   (LWInstance, LWCustomObjAccess *);
+      const char * (*<strong>help</strong>)   (LWInstance, LWToolEvent *);
+      int          (*<strong>dirty</strong>)  (LWInstance);
+      int          (*<strong>count</strong>)  (LWInstance, LWToolEvent *);
+      int          (*<strong>handle</strong>) (LWInstance, LWToolEvent *, int i,
+                                LWDVector pos);
+      int          (*<strong>start</strong>)  (LWInstance, LWToolEvent *);
+      int          (*<strong>adjust</strong>) (LWInstance, LWToolEvent *, int i);
+      int          (*<strong>down</strong>)   (LWInstance, LWToolEvent *);
+      void         (*<strong>move</strong>)   (LWInstance, LWToolEvent *);
+      void         (*<strong>up</strong>)     (LWInstance, LWToolEvent *);
+      void         (*<strong>event</strong>)  (LWInstance, int code);
+      LWXPanelID   (*<strong>panel</strong>)  (LWInstance);
+   } LWLayoutToolFuncs;</pre>
+    <dl>
+      <tt>
+      <dt><strong>done</strong>( inst )</dt>
+      </tt>
+      <dd>Destroy the instance. Called when the user discards the tool.</dd>
+      <tt>
+      <dt><br>
+        <strong>draw</strong>( inst, custobj_access )</dt>
+      </tt>
+      <dd>Display a wireframe representation of the tool in a 3D viewport. Typically this draws
+        the handles.</dd>
+      <tt>
+      <dt><br>
+        helptext = <strong>help</strong>( inst, event )</dt>
+      </tt>
+      <dd>Returns a text string to be displayed as a help tip for this tool.</dd>
+      <tt>
+      <dt><br>
+        dirty = <strong>dirty</strong>( inst )</dt>
+      </tt>
+      <dd>Returns flag bit if either the wireframe or help string need to be refreshed.</dd>
+      <tt>
+      <dt><br>
+        nhandles = <strong>count</strong>( inst, event )</dt>
+      </tt>
+      <dd>Returns the number of handles. If zero, then <tt>start</tt> is used to set the initial
+        handle point.</dd>
+      <tt>
+      <dt><br>
+        priority = <strong>handle</strong>( inst, event, handle, pos )</dt>
+      </tt>
+      <dd>Returns the 3D location and priority of the handle, or zero if the handle is currently
+        invalid.</dd>
+      <tt>
+      <dt><br>
+        handle = <strong>start</strong>( inst, event )</dt>
+      </tt>
+      <dd>Take an initial mouse-down position and return the index of the handle that should be
+        dragged.</dd>
+      <tt>
+      <dt><br>
+        handle = <strong>adjust</strong>( inst, event, handle )</dt>
+      </tt>
+      <dd>Drag the given handle to a new location and return the index of the handle that should
+        continue being dragged (often the same as the input).</dd>
+      <tt>
+      <dt><br>
+        rawmouse = <strong>down</strong>( inst, event )</dt>
+      </tt>
+      <dd>Process a mouse-down event. If this function returns false, handle processing will be
+        done instead of raw mouse event processing.</dd>
+      <tt>
+      <dt><br>
+        <strong>move</strong>( inst, event )</dt>
+      </tt>
+      <dd>Process a mouse-move event. This is only called if the <tt>down</tt> function returned
+        true.</dd>
+      <tt>
+      <dt><br>
+        <strong>up</strong>( inst, event )</dt>
+      </tt>
+      <dd>Process a mouse-up event. This is only called if the <tt>down</tt> function returned
+        true.</dd>
+      <tt>
+      <dt><br>
+        <strong>event</strong>( inst, code )</dt>
+      </tt>
+      <dd>Process a general event: DROP, RESET or ACTIVATE</dd>
+      <tt>
+      <dt><br>
+        panel = <strong>panel</strong>( inst )</dt>
+      </tt>
+      <dd>Create and return a view-type xPanel for the tool instance.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>.</td>
+  </tr>
+</table>
+</body>
+</html>

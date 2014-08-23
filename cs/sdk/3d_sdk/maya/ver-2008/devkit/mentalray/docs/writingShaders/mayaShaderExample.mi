@@ -1,0 +1,96 @@
+#*****************************************************************************
+# Copyright (C) 1986-2007 mental images GmbH, Fasanenstr. 81, D-10623 Berlin,
+# Germany. All rights reserved.
+# Portions Copyright (C) 1997-2007 Alias Systems Corp.
+# ******************************************************************************
+# Copyright (C) Alias Systems, a division of Silicon Graphics Limited and/or
+# its licensors ("Alias").  All rights reserved.  These coded instructions,
+# statements, computer programs, and/or related material (collectively, the
+# "Material") contain unpublished information proprietary to Alias, which is
+# protected by Canadian and US federal copyright law and by international
+# treaties.  This Material may not be disclosed to third parties, or be
+# copied or duplicated, in whole or in part, without the prior written
+# consent of Alias.  ALIAS HEREBY DISCLAIMS ALL WARRANTIES RELATING TO THE
+# MATERIAL, INCLUDING, WITHOUT LIMITATION, ANY AND ALL EXPRESS OR IMPLIED
+# WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY AND/OR FITNESS FOR A
+# PARTICULAR PURPOSE.  IN NO EVENT SHALL ALIAS BE LIABLE FOR ANY DAMAGES
+# WHATSOEVER, WHETHER DIRECT, INDIRECT, SPECIAL, OR PUNITIVE, WHETHER IN AN
+# ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, OR IN EQUITY,
+# ARISING OUT OF OR RELATED TO THE ACCESS TO, USE OF, OR RELIANCE UPON THE
+# MATERIAL.
+# ******************************************************************************
+#
+#	maya_illum_lambert		use Maya light linker, now handled automatically
+#
+#	maya_light_point		set emit diffuse / specular
+#	maya_illum_phong		use emit diffuse / specular
+#
+# ******************************************************************************
+
+min version "3.0.0"
+max version "3.6.99"
+
+#
+#	mib_illum_lambert
+#	with lightLink
+#
+declare shader
+	color "maya_illum_lambert" (
+		color		"ambience",  #: default .2, .2, .2, 1.
+		color		"ambient",   #: default .5, .5, .5, 1.
+		color 		"diffuse",   #: default .7, .7, .7, 1.
+		integer		"mode",      # light selection mode 0..2, 4
+					             # mode 4 handles lightlinking
+					             # automatically, no need to check
+					             # for it in the shader
+					             #: softmin 0 softmax 4 default 4
+		array light	"lights",
+		# No longer necessary as of Maya 2008
+		#shader		"lightLink",
+		#boolean		"miLightLink"	#: default 0
+	)
+	version 3
+	apply material
+end declare
+
+#
+#	mib_light_point modification that sets 
+#	emit diffuse, emit specular
+#
+declare shader
+	color "maya_light_point" (
+		color	"color",    #: default 1., 1., 1., 1.
+		boolean	"shadow",   #: default 1
+		scalar	"factor",   #: softmin 0 softmax 1    default 0.
+		boolean	"atten",    #: default 1
+		scalar	"start",    #: softmin 0 softmax 100  default 1
+		scalar	"stop",     #: softmin 0 softmax 1000 default 100
+		boolean	"emitDiffuse",	#: default 1
+		boolean	"emitSpecular"	#: default 1
+	)
+	version 1
+	apply light
+end declare
+
+#
+#	mib_illum_phong modification that reads
+#	emit diffuse, emit specular
+#
+declare shader
+	color "maya_illum_phong" (
+		color	"ambience",  #: default .2, .2, .2, 1.
+		color	"ambient",   #: default .5, .5, .5, 1.
+		color 	"diffuse",   #: default .7, .7, .7, 1.
+		color 	"specular",  #: default .5, .5, .5, 1.
+		scalar	"exponent",  # phong exponent
+			                 #: softmin 0 softmax 100 default 50
+		integer	"mode",      # light selection mode 0..2, 4
+						     # default to using native mental ray
+						     # light linking
+			                 #: softmin 0 softmax 4 default 4
+		array light "lights"
+	)
+	version 3
+	apply material
+end declare
+

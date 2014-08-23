@@ -1,0 +1,155 @@
+<html>
+
+<head>
+<title>Globals: Context Menu Services</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="compinfo.html"><img width="96" height="20"
+    border="0" src="../images/navlt.gif" alt="Comp Info"></a></td>
+    <td width="96" align="left"><a href="dirinfo.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Directory Info"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>Context Menu Services</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave 7.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwpanel.h">lwpanel.h</a></small></p>
+    <p>Context menu services are a set of functions for creating and displaying context menus
+    over your <a href="panel.html">panels</a>. A context menu is a modal popup window
+    containing a list of options. You typically display one of these when the user
+    right-clicks or shift-clicks an item in your panel.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   ContextMenuFuncs *cmenuf;
+   cmenuf = global( LWCONTEXTMENU_GLOBAL, GFUSE_TRANSIENT );</pre>
+    <p>The global function returns a pointer to a ContextMenuFuncs.</p>
+    <pre>   typedef struct st_ContextMenuFuncs {
+      LWContextMenuID (*<strong>cmenuCreate</strong>) (LWPanPopupDesc, void *userdata);
+      int             (*<strong>cmenuDeploy</strong>) (LWContextMenuID, LWPanelID,
+                                        int item);
+      void            (*<strong>cmenuDestroy</strong>)(LWContextMenuID);
+   } ContextMenuFuncs;</pre>
+    <dl>
+      <tt>
+      <dt>menu = <strong>cmenuCreate</strong>( popdesc, userdata )</dt>
+      </tt>
+      <dd>Create a context menu. The <tt>popdesc</tt> structure, described below, contains your
+        menu parameters and callbacks. The <tt>userdata</tt> is a pointer that you want your
+        callbacks to receive.</dd>
+      <tt>
+      <dt><br>
+        selection = <strong>cmenuDeploy</strong>( menu, panel, item )</dt>
+      </tt>
+      <dd>Display the context menu, typically in response to some user action. A context menu is
+        always displayed in association with a particular <tt>panel</tt>. The <tt>item</tt> is the
+        0-based index of the menu item that should be selected when the menu is first displayed,
+        and the return value is the index of the item selected by the user. Either of these can be
+        -1 to indicate no selection.</dd>
+      <tt>
+      <dt><br>
+        <strong>cmenuDestroy</strong>( menu )</dt>
+      </tt>
+      <dd>Free the menu and related resources allocated by <tt>cmenuCreate</tt>.</dd>
+    </dl>
+    <p><strong>Popup Descriptor</strong></p>
+    <p>The <tt>cmenuCreate</tt> function uses an LWPanPopupDesc structure to define the menu.
+    This is the same structure used by <a href="panel.html">Panels</a> custom popup controls,
+    but for that purpose, its details are conveniently hidden from you by the <tt>CUSTPOPUP_CTL</tt>
+    macro. </p>
+    <pre>   typedef struct st_LWPanPopupDesc {
+      LWType  <strong>type</strong>;
+      int     <strong>width</strong>;
+      int    (*<strong>countFn</strong>)(void *userdata);
+      char * (*<strong>nameFn</strong>) (void *userdata, int item);
+   } LWPanPopupDesc;</pre>
+    <dl>
+      <tt>
+      <dt><strong>type</strong></dt>
+      </tt>
+      <dd>Set this to <tt>LWT_POPUP</tt>.</dd>
+      <tt>
+      <dt><br>
+        <strong>width</strong></dt>
+      </tt>
+      <dd>The width of the menu in pixels.</dd>
+      <tt>
+      <dt><br>
+        nitems = <strong>countFn</strong>( userdata )</dt>
+      </tt>
+      <dd>Your count callback, which returns the number of items in the menu. The <tt>userdata</tt>
+        is whatever you passed as the second argument to <tt>cmenuCreate</tt>.</dd>
+      <tt>
+      <dt><br>
+        itemstring = <strong>nameFn</strong>( userdata, item )</dt>
+      </tt>
+      <dd>Your item name callback, which returns the string that should be displayed for the item.</dd>
+    </dl>
+    <p><strong>Example</strong></p>
+    <p>The following code fragments create and display a simple context menu. First, we'll
+    create a data structure for our menu and define the callbacks. </p>
+    <pre>   typedef struct st_MyMenuData {
+      int    count;
+      char **name;
+   } MyMenuData;
+
+   static char *itemname[] = {
+      &quot;New&quot;, &quot;Load&quot;, &quot;Save&quot;, &quot;Copy&quot;, &quot;Paste&quot;, NULL };
+
+   MyMenuData menudata = { 5, itemname };
+
+   int menuCount( MyMenuData *data )
+   {
+      return data-&gt;count;
+   }
+
+   int menuName( MyMenuData *data, int index )
+   {
+      if ( index &gt;= 0 &amp;&amp; index &lt; data-&gt;count )
+         return data-&gt;name[ index ];
+      return NULL;
+   }</pre>
+    <p>Don't forget to initialize the global.</p>
+    <pre>   #include &lt;lwpanel.h&gt;
+   
+   ContextMenuFuncs *cmenuf;
+
+   cmenuf = global( LWCONTEXTMENU_GLOBAL, GFUSE_TRANSIENT );
+   if ( !cmenuf ) return AFUNC_BADGLOBAL;</pre>
+    <p>Create the menu. Typically you'll do this when you're creating the associated panel and
+    its controls.</p>
+    <pre>   LWContextMenuID menu;
+   LWPanPopupDesc desc;
+
+   desc.type    = LWT_POPUP;
+   desc.width   = 200;
+   desc.countFn = menuCount;
+   desc.nameFn  = menuName;
+   
+   menu = cmenuf-&gt;cmenuCreate( &amp;desc, menudata );
+   if ( !menu ) goto MenuFail;</pre>
+    <p>Display the context menu in response to some user action.</p>
+    <pre>   int select, current;
+
+   select = cmenuf-&gt;cmenuDeploy( menu, panel, current );
+   if ( select != -1 ) {
+      current = select;
+      ...</pre>
+    <p>When you're done with it, free the menu.</p>
+    <pre>   cmenuf-&gt;cmenuDestroy( menu );</pre>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

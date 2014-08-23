@@ -1,0 +1,511 @@
+<html>
+
+<head>
+<title>Tutorial: Box4</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="box3.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="Part 3"></a></td>
+    <td width="96" align="left"><a href="../articles.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Articles"></a></td>
+    <td width="384" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>A Tool Box</h3>
+    <p><small><strong>Author</strong>&nbsp; Ernie Wright<br>
+    <strong>Date</strong>&nbsp; 3 July 2001</small></p>
+    <p>In the first three installments of this tutorial, I introduced the basics of plug-in
+    creation, including the organization of plug-ins into <a href="../classes.html">classes</a>,
+    the use of the SDK <a href="../../include/">headers</a>, the activation function, the
+    server record, and function pointers. We walked through the build process with a specific <a
+    href="../compile.html">compiler</a>. We used <a href="../globals.html">globals</a> that
+    allowed us to create a user <a href="../globals/xpanel.html">interface</a>, query the <a
+    href="../globals/surface.html">surface</a> list, and <a href="../globals/dynaconv.html">convert</a>
+    between text and binary representations of numbers. We learned how to process a command
+    line so that our plug-in can be run in batch mode. And we created a box in Modeler, both
+    by issuing a <a href="../commands/modeler.html">command</a> (in two different ways) and by
+    calling <a href="../classes/me.html">mesh edit</a> functions.</p>
+    <p>In this final installment, we'll apply what we've learned to create a <em>tool</em>, a
+    plug-in that interacts with the user in the same way that Modeler's native tools do. The
+    user will be able to click and drag in Modeler's interface to position and size our box,
+    and our non-modal panel will open when the user requests our numeric options.</p>
+    <p>Unlike the first three versions of our box plug-in, this one isn't a <a
+    href="../classes/cs.html">CommandSequence</a> plug-in. Modeler tools are of the <a
+    href="../classes/metool.html">MeshEditTool</a> class. The complete source code for the box
+    tool can be found in <tt>sample/boxes/box4/<a href="../../sample/Modeler/CommandSequence/boxes/box4/box.c">box.c</a></tt>,
+    <tt><a href="../../sample/Modeler/CommandSequence/boxes/box4/tool.c">tool.c</a></tt> and <tt><a
+    href="../../sample/Modeler/CommandSequence/boxes/box4/ui.c">ui.c</a></tt>. Because it's difficult to use a
+    windowed debugger to trace the execution of code that responds to mouse clicks and drags,
+    I've also written debug versions of the tool and interface modules called <tt><a
+    href="../../sample/Modeler/CommandSequence/boxes/box4/wdbtool.c">wdbtool.c</a></tt> and <tt><a
+    href="../../sample/Modeler/CommandSequence/boxes/box4/wdbui.c">wdbui.c</a></tt> that write event information to a
+    file. <tt>wdbtool.c</tt> contains a few lines of Windows-specific code related to hooking
+    mouse events. Hopefully they can be easily replaced for use with other operating systems.</p>
+    <p><strong>The Basic Idea</strong></p>
+    <p>Tool plug-ins supply a set of callbacks, functions that Modeler calls while the tool is
+    active. These callbacks respond to user actions by drawing the tool and generating the
+    geometry that the tool creates or modifies.</p>
+    <p>A <em>handle</em> is a point that the user can grab and move to change the operation of
+    the tool. Our plug-in will support two handles, one for the center of the box, and the
+    other at the (+<em>x</em>, +<em>y</em>, +<em>z</em>) corner to control the size. (More
+    sophisticated tools will usually support many more handles.) The following table shows the
+    user clicking to establish the box center, then dragging to pull out the corner handle.
+    The callbacks are listed in the order in which they're typically called during each part
+    of this operation.</p>
+    <table border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="150" align="center"><font face="Helvetica, Arial, Geneva"><small><strong>mouse
+        down</strong></small></font></td>
+        <td width="150" align="center"><font face="Helvetica, Arial, Geneva"><small><strong>mouse
+        move</strong></small></font></td>
+        <td width="150" align="center"><font face="Helvetica, Arial, Geneva"><small><strong>mouse
+        up</strong></small></font></td>
+        <td width="150" align="center"><font face="Helvetica, Arial, Geneva"><small><strong>spacebar</strong></small></font></td>
+      </tr>
+      <tr>
+        <td width="150" align="center"><img vspace="8" src="boximage/tool1.gif" width="145"
+        height="113"></td>
+        <td width="150" align="center"><img vspace="8" src="boximage/tool2.gif" width="145"
+        height="113"></td>
+        <td width="150" align="center"><img vspace="8" src="boximage/tool3.gif" width="145"
+        height="113"></td>
+        <td width="150" align="center"><img vspace="8" src="boximage/tool4.gif" width="145"
+        height="113"></td>
+      </tr>
+      <tr>
+        <td width="150" valign="top"><tt><ul>
+          <li>count</li>
+          <li>start</li>
+          <li>dirty</li>
+          <li>test</tt></li>
+        </ul>
+        </td>
+        <td width="150" valign="top"><tt><ul>
+          <li>handle</li>
+          <li>adjust</li>
+          <li>dirty</li>
+          <li>test</li>
+          <li>build</li>
+          <li>draw</tt></li>
+        </ul>
+        </td>
+        <td width="150" valign="top"><tt><ul>
+          <li>end</tt></li>
+        </ul>
+        </td>
+        <td width="150" valign="top"><tt><ul>
+          <li>done</tt></li>
+        </ul>
+        </td>
+      </tr>
+    </table>
+    <p>We'll cover the implementation of each of these callbacks, pretty much in the same
+    order. But before we do that, note that all of the callbacks take an LWInstance (a pointer
+    to void) as their first argument. This is the tool's <em>instance</em>, a structure we
+    design to hold all of the information we need to maintain the tool's state and generate
+    the geometry. Our instance data structure is called BoxData. One of these is allocated in
+    our activation function, and it persists until the user is finished with the tool.</p>
+    <p><strong>Count, Start</strong></p>
+    <p>These two callbacks are related. They're only called when the user clicks the left
+    mouse button to begin dragging the tool, and <tt>start</tt> is only called if <tt>count</tt>
+    returns 0. </p>
+    <pre>   static int Count( BoxData *box, LWToolEvent *event )
+   {
+      return box-&gt;active ? 2 : 0;
+   }</pre>
+    <p>From our tool's point of view, there are two different kinds of mouse down events. The
+    first is the initial mouse down, before any box has been dragged out and before we've
+    drawn the handles. For that case, our <tt>box-&gt;active</tt> is FALSE, and our <tt>Count</tt>
+    returns 0, so that our <tt>Start</tt> will be called. The other kind of mouse down occurs
+    after the first one. The user is modifying an existing box, rather than starting a new
+    one. In this second case, <tt>Count</tt> returns 2 (because we have 2 handles), and
+    Modeler doesn't call <tt>Start</tt>.</p>
+    <pre>   static int Start( BoxData *box, LWToolEvent *event )
+   {
+      int i;
+
+      if ( !box-&gt;active )
+         box-&gt;active = 1;
+
+      for ( i = 0; i &lt; 3; i++ ) {
+         box-&gt;center[ i ] = event-&gt;posSnap[ i ];
+         box-&gt;size[ i ] = 0.0;
+      }
+      calc_handles( box );
+
+      return 1;
+   }</pre>
+    <p>When Modeler calls <tt>Start</tt>, the user has just clicked the left mouse button to
+    begin a new box. We make sure <tt>box-&gt;active</tt> is now TRUE, and we set the size of
+    the box to 0 and the center to the point at which the user clicked. We initialize the
+    precalculated handle positions, then return 1, the index of the second handle, to indicate
+    that the user has grabbed the sizing handle. While the left mouse button remains down, the
+    <tt>handle</tt> callback will only be called for this handle.</p>
+    <p><strong>Dirty, Test</strong></p>
+    <p>These two callbacks are also somewhat related. The <tt>dirty</tt> callback tells
+    Modeler whether the tool needs to be redrawn on the screen. The <tt>test</tt> callback
+    tells Modeler whether the tool needs to create new geometry or discard existing geometry.</p>
+    <pre>   static int Dirty( BoxData *box )
+   {
+      return box-&gt;dirty ? LWT_DIRTY_WIREFRAME | LWT_DIRTY_HELPTEXT : 0;
+   }</pre>
+    <p><tt>Dirty</tt> is only concerned with the tool's appearance to the user. After the
+    initial mouse down for a new box, <tt>box-&gt;dirty</tt> is FALSE, since we haven't drawn
+    anything yet, and we tell Modeler that nothing needs to be redrawn. During mouse move
+    events, our <tt>Adjust</tt> callback is called, and this sets <tt>box-&gt;dirty</tt> to
+    TRUE so that we get redrawn to follow the user's mouse moves. We're also dirty after
+    receiving reset and activate events in our <tt>Event</tt> callback. Our <tt>Draw</tt>
+    callback sets <tt>box-&gt;dirty</tt> to FALSE again after redrawing the tool.</p>
+    <pre>   static int Test( BoxData *box )
+   {
+      return box-&gt;update;
+   }</pre>
+    <p>Like <tt>box-&gt;dirty</tt>, our <tt>Adjust</tt> and <tt>Event</tt> callbacks set <tt>box-&gt;update</tt>,
+    depending on our tool's state at that point. <tt>Build</tt> also sets it (to <tt>LWT_TEST_NOTHING</tt>)
+    after creating the box geometry. Our <tt>Test</tt> just returns the value in <tt>box-&gt;update</tt>.</p>
+    <p><strong>Handle</strong></p>
+    <p>This callback tells Modeler about one of our handles. </p>
+    <pre>   static int Handle( BoxData *box, LWToolEvent *event, int handle,
+      LWDVector pos )
+   {
+      if ( handle &gt;= 0 &amp;&amp; handle &lt; 2 ) {
+         pos[ 0 ] = box-&gt;hpos[ handle ][ 0 ];
+         pos[ 1 ] = box-&gt;hpos[ handle ][ 1 ];
+         pos[ 2 ] = box-&gt;hpos[ handle ][ 2 ];
+      }
+      return handle + 1;
+   }</pre>
+    <p><tt>Handle</tt> is called during mouse moves, but only for the handle the user is
+    currently moving. It's also called right after mouse down, if <tt>Count</tt> returns a
+    non-zero number of handles. In that case, it's called for every handle, and Modeler uses
+    the positions to determine which handle the user has selected. The return value is the
+    priority of the handle, which is used to decide between handles that overlap visually
+    (have the same apparent position in the viewport). When the user points to two or more
+    overlapping handles, Modeler chooses the one with the highest priority.</p>
+    <p><strong>Adjust</strong></p>
+    <p>The <tt>adjust</tt> callback is called during mouse moves to tell you that a handle is
+    being dragged. </p>
+    <pre>   static int Adjust( BoxData *box, LWToolEvent *event, int handle )
+   {
+      if ( event-&gt;portAxis &gt;= 0 ) {
+         if ( event-&gt;flags &amp; LWTOOLF_CONSTRAIN ) {
+            int x, y, xaxis[] = { 1, 2, 0 }, yaxis[] = { 2, 0, 1 };
+            x = xaxis[ event-&gt;portAxis ];
+            y = yaxis[ event-&gt;portAxis ];
+            if ( event-&gt;flags &amp; LWTOOLF_CONS_X )
+               event-&gt;posSnap[ x ] -= event-&gt;deltaSnap[ x ];
+            else if ( event-&gt;flags &amp; LWTOOLF_CONS_Y )
+               event-&gt;posSnap[ y ] -= event-&gt;deltaSnap[ y ];
+         }
+      }</pre>
+    <p>Before we move the handle, we check whether its new position should be quantized or
+    fixed by a constraint. Typically, this is to account for the user holding down the Ctrl
+    key. The fact that Modeler doesn't do this for us means that we aren't <em>required</em>
+    to honor this convention, but in our case (and in most cases), we have no reason not to.</p>
+    <pre>      if ( handle == 0 ) {  /* center */
+         box-&gt;center[ 0 ] = event-&gt;posSnap[ 0 ];
+         box-&gt;center[ 1 ] = event-&gt;posSnap[ 1 ];
+         box-&gt;center[ 2 ] = event-&gt;posSnap[ 2 ];
+      }
+      else if ( handle == 1 ) {  /* corner */
+         box-&gt;size[ 0 ] = 2.0 * fabs( event-&gt;posSnap[ 0 ]
+            - box-&gt;center[ 0 ] );
+         box-&gt;size[ 1 ] = 2.0 * fabs( event-&gt;posSnap[ 1 ]
+            - box-&gt;center[ 1 ] );
+         box-&gt;size[ 2 ] = 2.0 * fabs( event-&gt;posSnap[ 2 ]
+            - box-&gt;center[ 2 ] );
+      }
+
+      calc_handles( box );
+      box-&gt;dirty = 1;
+      box-&gt;update = LWT_TEST_UPDATE;
+      return handle;
+   }</pre>
+    <p>If the user's moving the center handle, we set the box center to the new position, and
+    if the user is moving the size handle, we recalculate the size. In both cases, we
+    precalculate the handle positions for the next <tt>Handle</tt> and <tt>Draw</tt> calls,
+    and we tell Modeler that we need to be both redrawn and rebuilt.</p>
+    <p><strong>Build</strong></p>
+    <p>Finally! This callback creates geometry based on what the user is doing.</p>
+    <pre>   static LWError Build( BoxData *box, MeshEditOp *edit )
+   {
+      makebox( edit, box );
+      box-&gt;update = LWT_TEST_NOTHING;
+      return NULL;
+   }</pre>
+    <p>All we have to do here is call our old friend <tt>makebox</tt>, passing it the
+    MeshEditOp and the size and center set by the user. And since we've just built the
+    geometry, we set <tt>box-&gt;update</tt> to <tt>NOTHING</tt>.</p>
+    <p><strong>Draw</strong></p>
+    <p>Here we draw the tool itself. We don't have to draw the geometry we create, since
+    Modeler takes care of that for us.</p>
+    <pre>   static void Draw( BoxData *box, LWWireDrawAccess *draw )
+   {
+      if ( !box-&gt;active ) return;
+      draw-&gt;moveTo( draw-&gt;data, box-&gt;hpos[ 0 ], LWWIRE_SOLID );
+      draw-&gt;lineTo( draw-&gt;data, box-&gt;hpos[ 1 ], LWWIRE_ABSOLUTE );
+      box-&gt;dirty = 0;
+   }</pre>
+    <p>To keep this simple, we're drawing a single line segment connecting our two handles.
+    More typically, you'll draw a bounding box or some other representation of the scope of
+    your tool's effects, and you'll draw the handles in some way, so that the user knows where
+    they are.</p>
+    <p><strong>Help</strong></p>
+    <p>The <tt>help</tt> callback returns a line of text that Modeler draws while the tool is
+    selected. Modeler calls <tt>Help</tt> whenever <tt>Dirty</tt> returns the <tt>LWT_DIRTY_HELPTEXT</tt>
+    bit. It also calls <tt>Help</tt> each time the user moves the mouse cursor to a new
+    viewport, so that you can return a different string for each view.</p>
+    <pre>   static const char *Help( BoxData *box, LWToolEvent *event )
+   {
+      static char buf[] = &quot;Box Tool Plug-in Tutorial&quot;;
+      return buf;
+   }</pre>
+    <p><strong>Event</strong></p>
+    <p>This is called when the user drops, resets or re-activates the tool.</p>
+    <pre>   static void Event( BoxData *box, int code )
+   {
+      switch ( code )
+      {
+         case LWT_EVENT_DROP:
+         if ( box-&gt;active ) {
+            box-&gt;update = LWT_TEST_REJECT;
+            break;
+         }</pre>
+    <p>The user can drop a tool by clicking in a blank area of Modeler's interface outside the
+    viewports. Generally this means that the user wants to discard the geometry created with
+    the tool, so if we've created some geometry (<tt>box-&gt;active</tt> is TRUE), we set <tt>box-&gt;update</tt>
+    to <tt>LWT_TEST_REJECT</tt>, so that Modeler will discard the geometry the next time it
+    calls <tt>Test</tt>. If <tt>box-&gt;active</tt> is FALSE, we fall through to the next
+    case, treating a drop like a reset.</p>
+    <pre>         case LWT_EVENT_RESET:
+            box-&gt;size[ 0 ] = box-&gt;size[ 1 ] = box-&gt;size[ 2 ] = 1.0;
+            box-&gt;center[ 0 ] = box-&gt;center[ 1 ] = box-&gt;center[ 2 ] = 0.0;
+            strcpy( box-&gt;surfname, &quot;Default&quot; );
+            strcpy( box-&gt;vmapname, &quot;MyUVs&quot; );
+            box-&gt;update = LWT_TEST_UPDATE;
+            box-&gt;dirty = 1;
+            calc_handles( box );
+            break;</pre>
+    <p>A reset event occurs when the user selects the Reset action on Modeler's Numeric panel.
+    We set all of the box parameters to default values and set our state variables so that
+    Modeler will both rebuild and redraw us.</p>
+    <pre>         case LWT_EVENT_ACTIVATE:
+            box-&gt;update = LWT_TEST_UPDATE;
+            box-&gt;active = 1;
+            box-&gt;dirty = 1;
+            break;
+      }
+   }</pre>
+    <p>An activate event can be triggered from the Numeric window or with a keystroke, and it
+    should restart the edit operation with its current settings.</p>
+    <p><strong>End, Done</strong></p>
+    <p>These sound confusingly alike. The <tt>end</tt> callback is called at the completion of
+    a mouse down, mouse move, mouse up sequence. While the tool is selected, you may get any
+    number of <tt>end</tt> calls. The <tt>done</tt> callback is called when the user is
+    finished with the tool and has deselected it, and it's typically used to free memory
+    allocated by the activation function.</p>
+    <pre>   static void End( BoxData *box, int keep )
+   {
+      box-&gt;update = LWT_TEST_NOTHING;
+      box-&gt;active = 0;
+   }</pre>
+    <p>Our <tt>End</tt> sets <tt>box-&gt;update</tt> to <tt>NOTHING</tt> and <tt>box-&gt;active</tt>
+    to FALSE, the state we want our tool data to be in the next time <tt>Count</tt> is called.</p>
+    <pre>   static void Done( BoxData *box )
+   {
+      free( box );
+   }</pre>
+    <p>Our <tt>Done</tt> frees the BoxData structure.</p>
+    <p><strong>The Interface</strong></p>
+    <p>The panel we create for a tool is displayed inside Modeler's Numeric panel when the
+    tool is active. We don't open it ourselves. We create the panel in yet another callback,
+    and Modeler takes care of opening or closing it. The panel becomes just another way for
+    the user to interact with the tool. As settings are changed on the panel, the geometry is
+    changed and the tool is redrawn, just as if the user were dragging the mouse in the
+    viewport.</p>
+    <p>So our panel is now non-modal. It differs from previous incarnations of our interface
+    in a couple of other ways, too. Since tools use instances (our BoxData structure), it's
+    more natural to make our panel an <tt>LWXP_VIEW</tt> instead of an <tt>LWXP_FORM</tt>. And
+    the surface name list is built with the popup callbacks I avoided in Part 3.</p>
+    <pre>   LWXPanelID Panel( BoxData *box )
+   {
+      LWXPanelID panel;
+
+      static LWXPanelControl ctl[] = {
+         { ID_SIZE,     &quot;Size&quot;,      &quot;distance3&quot;  },
+         { ID_CENTER,   &quot;Center&quot;,    &quot;distance3&quot;  },
+         { ID_SURFLIST, &quot;Surface&quot;,   &quot;iPopChoice&quot; },
+         { ID_VMAPNAME, &quot;VMap Name&quot;, &quot;string&quot;     },
+         { 0 }
+      };
+      static LWXPanelDataDesc cdata[] = {
+         { ID_SIZE,     &quot;Size&quot;,      &quot;distance3&quot; },
+         { ID_CENTER,   &quot;Center&quot;,    &quot;distance3&quot; },
+         { ID_SURFLIST, &quot;Surface&quot;,   &quot;integer&quot;   },
+         { ID_VMAPNAME, &quot;VMap Name&quot;, &quot;string&quot;    },
+         { 0 }
+      };
+      LWXPanelHint hint[] = {
+         XpLABEL( 0, &quot;Box Tutorial Part 4&quot; ),
+         XpPOPFUNCS( ID_SURFLIST, get_surfcount, get_surfname ),
+         XpDIVADD( ID_SIZE ),
+         XpDIVADD( ID_CENTER ),
+         XpEND
+      };</pre>
+    <p>The control and data description arrays are the same as before, with one important
+    difference: they've been declared static. Our panel is no longer modal. It persists after
+    the <tt>Panel</tt> function returns, and the control and data descriptions must also.</p>
+    <p>The <tt>XpSTRLIST</tt> hint has been replaced by an <tt>XpPOPFUNCS</tt> hint that tells
+    XPanels to use the <tt>get_surfcount</tt> and <tt>get_surfname</tt> callbacks with the
+    surface name popup. These callbacks will be called to initialize the list each time the
+    user clicks on it to open it. They use the same techniques for enumerating the surfaces in
+    Modeler that <tt>init_surflist</tt> used in Part 3.</p>
+    <pre>      panel = xpanf-&gt;create( LWXP_VIEW, ctl );
+      if ( !panel ) return NULL;
+
+      xpanf-&gt;describe( panel, cdata, Get, Set );
+      xpanf-&gt;hint( panel, 0, hint );
+
+      return panel;
+   }</pre>
+    <p>Recall that in Part 3, the third and fourth arguments to <tt>describe</tt> were NULL.
+    Since our panel is a view, we now pass get and set callbacks.</p>
+    <p><strong>Get, Set</strong></p>
+    <p>It's easy to get these two mixed up. Just try to remember that the names are from
+    LightWave&reg;'s point of view, not yours (you're the server, LightWave&reg; is the client). XPanels
+    calls the <tt>Get</tt> callback when it wants to get the value of a control from you. It
+    calls the <tt>Set</tt> callback when it wants you to write the value of a control into
+    your instance data.</p>
+    <pre>   static void *Get( BoxData *box, unsigned long vid )
+   {
+      static int i;
+
+      switch ( vid ) {
+         case ID_SIZE:      return &amp;box-&gt;size;
+         case ID_CENTER:    return &amp;box-&gt;center;
+         case ID_SURFLIST:  i = get_surfindex( box-&gt;surfname );
+                            return &amp;i;
+         case ID_VMAPNAME:  return &amp;box-&gt;vmapname;
+         default:           return NULL;
+      }
+   }</pre>
+    <p><tt>Get</tt> is usually pretty straightforward. Just return a pointer to the
+    appropriate element of your instance data.</p>
+    <pre>   static int Set( BoxData *box, unsigned long vid, void *value )
+   {
+      const char *a;
+      double *d;
+      int i;
+
+      switch ( vid )
+      {
+         case ID_SIZE:
+            d = ( double * ) value;
+            sbox.size[ 0 ] = box-&gt;size[ 0 ] = d[ 0 ];
+            sbox.size[ 1 ] = box-&gt;size[ 1 ] = d[ 1 ];
+            sbox.size[ 2 ] = box-&gt;size[ 2 ] = d[ 2 ];
+            break;
+
+         case ID_CENTER:
+            ...</pre>
+    <p><tt>Set</tt> adds a few wrinkles. The first is that you generally need to cast the
+    value argument before assigning its contents to your instance data, so it's convenient to
+    have temporary pointers of the right type handy. The second, for us, is that we'd like to
+    keep a local copy of the instance, so that we can use it to initialize the tool instance
+    the next time the user activates the tool. The user's perception of this is that the tool
+    &quot;remembers&quot; what was done previously. So all of our assignments are duplicated
+    for the local copy.</p>
+    <pre>         default:
+            return LWXPRC_NONE;
+      }
+
+      box-&gt;update = LWT_TEST_UPDATE;
+      box-&gt;dirty = 1;
+      calc_handles( box );
+      return LWXPRC_DRAW;
+   }</pre>
+    <p>Lastly, when the value of a control changes, we want to tell Modeler to redraw and
+    rebuild us the next time it calls <tt>Dirty</tt> and <tt>Test</tt>, so we set <tt>box-&gt;update</tt>
+    and <tt>box-&gt;dirty</tt> accordingly and precalculate the positions of our handles.</p>
+    <p><strong>The Activation Function</strong></p>
+    <p>Our activation function is significantly different from the ones in previous
+    installments of this tutorial. Instead of being finished when the function returns, tool
+    plug-ins haven't really begun yet.&nbsp; The only thing a tool's activation function is
+    required to do, and all ours does, is create an instance and tell Modeler where to find
+    the callbacks. In this sense, Modeler tools are like Layout <a href="../handler.html">handlers</a>,
+    which supply callbacks that Layout later calls during animation and rendering. </p>
+    <pre>   XCALL_( int )
+   Activate( long version, GlobalFunc *global, LWMeshEditTool *local,
+      void *serverData )
+   {
+      BoxData *box;
+
+      if ( version != LWMESHEDITTOOL_VERSION )
+         return AFUNC_BADVERSION;</pre>
+    <p>Note that the third argument is now LWMeshEditTool instead of LWModCommand. Each
+    plug-in class gets its own local data. As always, the first thing we do is ensure that the
+    version of this structure in our copy of the headers is the same as the version being
+    passed to us by Modeler.</p>
+    <pre>      if ( !get_xpanf( global )) return AFUNC_BADGLOBAL;
+      box = new_box();
+      if ( !box ) return AFUNC_OK;
+      local-&gt;instance = box;</pre>
+    <p>The <tt>get_xpanf</tt> and <tt>new_box</tt> functions are in <tt><a
+    href="../../sample/Modeler/CommandSequence/boxes/box4/ui.c">ui.c</a></tt>, since that's where the LWXPanelFuncs
+    and LWSurfaceFuncs pointers and the local copy of the box settings are stored and used. <tt>get_xpanf</tt>
+    gets the globals used by the interface, and <tt>new_box</tt> allocates a BoxData and
+    initializes it with default values (or values remembered from previous invocations). The
+    BoxData will be freed when <tt>Done</tt> is called.</p>
+    <pre>      local-&gt;tool-&gt;done   = Done;
+      local-&gt;tool-&gt;help   = Help;
+      local-&gt;tool-&gt;count  = Count;
+      local-&gt;tool-&gt;handle = Handle;
+      local-&gt;tool-&gt;adjust = Adjust;
+      local-&gt;tool-&gt;start  = Start;
+      local-&gt;tool-&gt;draw   = Draw;
+      local-&gt;tool-&gt;dirty  = Dirty;
+      local-&gt;tool-&gt;event  = Event;
+      local-&gt;tool-&gt;panel  = Panel;
+
+      local-&gt;build        = Build;
+      local-&gt;test         = Test;
+      local-&gt;end          = End;
+
+      return AFUNC_OK;
+   }</pre>
+    <p>And we're done! After returning from the activation function, Modeler will start
+    calling your callbacks through the function pointers you've supplied.</p>
+    <p><strong>Server Tags</strong></p>
+    <p>Finally, note that we've added server tags to the ServerRecord array.</p>
+    <pre>   static ServerTagInfo srvtag[] = {
+      { &quot;Tutorial: Box 4&quot;,    SRVTAG_USERNAME | LANGID_USENGLISH },
+      { &quot;create&quot;,             SRVTAG_CMDGROUP },
+      { &quot;objects/primitives&quot;, SRVTAG_MENU },
+      { &quot;Tut Box 4&quot;,          SRVTAG_BUTTONNAME },
+      { &quot;&quot;, 0 }
+   };</pre>
+    <p>These are explained in detail on the <a href="../server.html#servtag">Common Elements</a>
+    page of the SDK. The user name appears in the interface in plug-in lists and popup menus.
+    The server name is used if this isn't supplied, but there are lexical constraints on
+    server names (they can't contain spaces, for example) that make them less user-friendly.
+    Modeler is currently ignoring the <tt>MENU</tt> and <tt>CMDGROUP</tt> tags, but it may not
+    in the future.</p>
+    <p><strong>What's Next</strong></p>
+    <p>Unless you had the evidence in front of you, you might not believe that a 40-page
+    tutorial about writing box plug-ins was possible. But on this thin pretext, we've briefly
+    visited most of the important techniques used to write plug-ins for LightWave&reg; Modeler. In
+    the future, we might be seeing even more boxes on a similar tour of Layout...</td>
+  </tr>
+</table>
+</body>
+</html>

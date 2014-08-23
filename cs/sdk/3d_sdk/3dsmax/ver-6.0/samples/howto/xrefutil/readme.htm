@@ -1,0 +1,157 @@
+<html>
+<head>
+	<style>
+	BLOCKQUOTE={background-color='beige'}
+	PRE={font-weight='bold';font-size=8pt}
+	BODY={font-size=12pt}
+	</style>
+</head>
+<body>
+
+<h2>Excerpts from the MaxSDK Help Doc</h2>
+
+<hr style="color=#000000"><!-- DIVIDER ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<pre>class INode : public ReferenceTarget</pre>
+
+<p>Description:</p>
+
+<p>The INode class is the interface to nodes in the scene. It provides methods to access various parts 
+of a node such as its name, transformation matrices, parents and children, display status, etc.  All 
+methods of this class are implemented by the system.</p>
+
+<b>XRef Access </b>
+<p>Scene XRef related methods. These methods are only implemented by root nodes. Note that Scene XRefs 
+are stored as complete scenes with root nodes where the XRef scene root node is a child of the current 
+scene's root node.  See Also: Class IXRefObject.</p>
+
+<blockquote>
+
+<pre>
+<span style="background-color:lightgreen">virtual int GetXRefFileCount();</span>&nbsp&nbsp<span style="background-color:pink">used in sample</span>
+virtual TSTR GetXRefFileName(int i);
+virtual void SetXRefFileName(int i,TCHAR *fname,BOOL reload);
+<span style="background-color:lightgreen">virtual BOOL AddNewXRefFile(TSTR &name, BOOL loadNow=TRUE);</span>&nbsp&nbsp<span style="background-color:pink">used in sample</span>
+virtual BOOL DeleteXRefFile(int i);
+<span style="background-color:lightgreen">virtual BOOL BindXRefFile(int i);</span>&nbsp&nbsp<span style="background-color:pink">used in sample</span>
+virtual void DeleteAllXRefs();
+<span style="background-color:lightgreen">virtual BOOL ReloadXRef(int i);</span>&nbsp&nbsp<span style="background-color:pink">used in sample</span>
+virtual void FlagXrefChanged(int i);
+virtual BOOL UpdateChangedXRefs(BOOL redraw=TRUE);
+virtual INode *GetXRefTree(int i);
+virtual INode *GetXRefParent(int i);
+virtual void SetXRefParent(int i, INode *par);
+virtual BOOL FindUnresolvedXRefs(Tab<TSTR*> &fnames);
+virtual void AttemptToResolveUnresolvedXRefs();
+virtual DWORD GetXRefFlags(int i);
+virtual void SetXRefFlags(int i,DWORD flag,BOOL onOff);
+</pre>
+
+</blockquote>
+
+<hr style="color=#000000"><!-- DIVIDER ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+<h4>Interface Classes</h4>
+<h4>See Also:  Overview of the Principal Classes, Interface Classes Overview.</h4>
+
+<p>The following classes provides interfaces into 3ds max:</p>
+<blockquote>
+Access to XRef objects: <b>Class IXRefObject.</b>
+</blockquote>
+
+<pre>class IXRefObject: public Object</pre>
+
+<p>Description:</p>
+
+<p>This class is available in release 3.0 and later only.<p>
+<p>This class is an interface to the parameters of an XRef object.  Object XRefs are derived from this class. 
+If you have an object pointer you can check its super class ID and class ID to see if it is an XRef object.  
+Then you can cast it to an instance of this class and call these methods.  For example:<p>
+
+<blockquote>
+<pre>
+INode *node = ip->GetSelNode(0);
+Object *obj = node->GetObjectRef();
+if (obj->SuperClassID()==SYSTEM_CLASS_ID && obj->ClassID()==Class_ID(XREFOBJ_CLASS_ID,0)) {
+	IXRefObject *ix = (IXRefObject *)obj;
+	ix->BrowseFile(FALSE);
+}
+</pre>
+</blockquote>
+
+<p>However, you may have an object that depends on an XRef object (for example a Boolean with an XRef 
+object as one of it’s operands) or you may have a pointer to the object that the XRef object references. 
+In such cases the only way to know for sure is to look up and down the pipeline for XRef objects.</p>
+
+<blockquote>
+<pre>
+
+virtual void Init(TSTR &fname, TSTR &oname, Object *ob, BOOL asProxy=FALSE)=0;
+virtual void SetFileName(TCHAR *name, BOOL proxy=FALSE, BOOL update=TRUE)=0;
+virtual void SetObjName(TCHAR *name, BOOL proxy=FALSE)=0;
+virtual void SetUseProxy(BOOL onOff,BOOL redraw=TRUE)=0;
+virtual void SetRenderProxy(BOOL onOff)=0;
+virtual void SetUpdateMats(BOOL onOff)=0;
+virtual TSTR GetFileName(BOOL proxy=FALSE)=0;
+virtual TSTR GetObjName(BOOL proxy=FALSE)=0;
+virtual TSTR &GetCurFileName()=0;
+virtual TSTR &GetCurObjName()=0;
+<span style="background-color:lightgreen">virtual BOOL GetUseProxy()=0;</span>
+virtual BOOL GetRenderProxy()=0;
+<span style="background-color:lightgreen">virtual BOOL GetUpdateMats()=0;</span>
+<span style="background-color:lightgreen">virtual BOOL GetIgnoreAnim()=0;</span>
+virtual void BrowseObject(BOOL proxy)=0;
+virtual void BrowseFile(BOOL proxy)=0;
+virtual void ReloadXRef()=0;
+
+</pre>
+</blockquote>
+
+
+<hr style="color=#000000"><!-- DIVIDER ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+<blockquote>
+
+<pre>
+--------------------------------------------------------------------------------
+Core Interfaces (Second Batch)                   MIA  STATUS Y/N DOC
+--------------------------------------------------------------------------------
+
+objXRefs const Interface                           Y  IObjXRefManager
+</pre>
+Description:
+
+<p>This class is available in release 4.0 and later only.
+<p>This class represents the interface to the Object XRef Manager. You can obtain a pointer to the Object XRef Manager  interface using; IObjXRefManager* GetObjXRefManager()
+. This macro will return
+<blockquote>
+<pre>(IObjXRefManager*)GetCOREInterface(OBJXREFMANAGER_INTERFACE).</pre>
+</blockquote>
+<p>All methods of this class are Implemented by the System.
+</blockquote>
+
+<hr style="color=#000000"><!-- DIVIDER ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+<p>Added class IObjXrefManager and added the following methods:</p>
+
+<blockquote>
+
+<pre>
+
+virtual IXRefObject *AddXRefObject(TCHAR *fname, TCHAR *obname, BOOL proxy = false)=0;
+virtual int GetNumXRefObjects(TCHAR *fname)=0;
+virtual IXRefObject *GetXRefObject(TCHAR *fname, int i)=0;
+virtual int GetNumFiles()=0;
+virtual TCHAR *GetFileName(int fidx)=0;
+virtual BOOL ReloadFile(TCHAR *fname)=0;
+virtual BOOL IsFileUnresolved(TCHAR *fname)=0;
+virtual BOOL IsFileDisabled(TCHAR *fname)=0;
+virtual void GetAllXRefObjects(Tab<IXRefObject*> &objs)=0;
+
+</pre>
+
+</blockquote>
+
+<hr style="color=#000000"><!-- DIVIDER ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+</body>
+</html>

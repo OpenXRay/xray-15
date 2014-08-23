@@ -1,0 +1,943 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 10">
+<meta name=Originator content="Microsoft Word 10">
+<link rel=File-List href="environmentShaders_files/filelist.xml">
+<link rel=Edit-Time-Data href="environmentShaders_files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>Environment Shader</title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="State"/>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="place"/>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>joohil</o:Author>
+  <o:LastAuthor>Anybody</o:LastAuthor>
+  <o:Revision>21</o:Revision>
+  <o:TotalTime>26</o:TotalTime>
+  <o:Created>2004-02-05T15:08:00Z</o:Created>
+  <o:LastSaved>2004-02-20T18:40:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>1135</o:Words>
+  <o:Characters>6471</o:Characters>
+  <o:Company>Alias</o:Company>
+  <o:Lines>53</o:Lines>
+  <o:Paragraphs>15</o:Paragraphs>
+  <o:CharactersWithSpaces>7591</o:CharactersWithSpaces>
+  <o:Version>10.2625</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+h1
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:16.0pt;
+	font-family:Arial;
+	mso-font-kerning:16.0pt;
+	font-weight:bold;}
+h2
+	{mso-style-next:Normal;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:16.0pt;
+	font-family:Arial;
+	color:#777A7D;
+	mso-font-kerning:16.0pt;
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:#C80000;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:#C80000;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:45027262;
+	mso-list-template-ids:1039409618;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l1
+	{mso-list-id:108277141;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-659522694 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l1:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2
+	{mso-list-id:233320797;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-721807322 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l2:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l2:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3
+	{mso-list-id:246161060;
+	mso-list-template-ids:1477503460;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l4
+	{mso-list-id:1407454010;
+	mso-list-template-ids:-1200450668;}
+@list l4:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l5
+	{mso-list-id:1460218813;
+	mso-list-type:hybrid;
+	mso-list-template-ids:2075940668 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l5:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l5:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l6
+	{mso-list-id:1528176843;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1828563976 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l6:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l6:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l6:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l6:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l6:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l6:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l6:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l6:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l6:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7
+	{mso-list-id:1590890826;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-552839052 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l7:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l7:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l8
+	{mso-list-id:1803376645;
+	mso-list-template-ids:-482451686;}
+@list l8:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l9
+	{mso-list-id:1926379296;
+	mso-list-template-ids:586207066;}
+@list l9:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l10
+	{mso-list-id:1971589472;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1778006398 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l10:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l10:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l10:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l10:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l10:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l10:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l10:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l10:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l10:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l11
+	{mso-list-id:2009364532;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1708920970 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l11:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l11:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l11:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l11:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l11:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l11:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l11:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l11:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l11:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l12
+	{mso-list-id:2100175782;
+	mso-list-template-ids:-2012811804;}
+@list l12:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body bgcolor=white lang=EN-US link="#C80000" vlink="#C80000" style='tab-interval:
+.5in' alink="#c80000" leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+
+<div class=Section1>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width="100%"
+ style='width:100.0%;mso-cellspacing:0in;mso-padding-alt:0in 0in 0in 0in'>
+ <tr style='mso-yfti-irow:0'>
+  <td style='background:black;padding:0in 0in 0in 0in'>
+  <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:Arial'><a href="http://www.alias.com"><span style='text-decoration:
+  none;text-underline:none'><img border=0 width=120 height=60 id="_x0000_i1025"
+  src=logo.gif alt=AliasLogo></span></a><o:p></o:p></span></p>
+  </td>
+  <td style='background:black;padding:0in 0in 0in 0in'>
+  <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:Arial'><o:p>&nbsp;</o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1'>
+  <td colspan=2 style='background:#CCCCCC;padding:0in 0in 0in 0in'>
+  <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:Arial'><img border=0 width=66 height=2 id="_x0000_i1026"
+  src=spacer.gif><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2'>
+  <td colspan=2 style='background:black;padding:0in 0in 0in 0in'>
+  <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:Arial'><img border=0 width=66 height=1 id="_x0000_i1027"
+  src=spacer.gif><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3;mso-yfti-lastrow:yes'>
+  <td colspan=2 style='background:white;padding:0in 0in 0in 0in'>
+  <table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:
+   1.5pt;mso-padding-alt:30.0pt 30.0pt 30.0pt 30.0pt'>
+   <tr style='mso-yfti-irow:0;mso-yfti-lastrow:yes'>
+    <td style='padding:30.0pt 30.0pt 30.0pt 30.0pt'>
+    <h2>Environment Shaders<span style='font-size:10.0pt;mso-bidi-font-size:
+    16.0pt'><o:p></o:p></span></h2>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+    font-family:Arial'><br>
+    </span><span style='font-size:10.0pt;font-family:Arial;color:black'>This section
+    shows a basic workflow to use environment shaders. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'><o:p>&nbsp;</o:p></span></p>
+    <h1><span style='color:#777A7D'>References: <o:p></o:p></span></h1>
+    <p class=MsoNormal><span class=GramE><span style='font-size:10.0pt;
+    font-family:Arial;color:black'>mental</span></span><span style='font-size:
+    10.0pt;font-family:Arial;color:black'> ray User Manual, Chapter 3.12.<o:p></o:p></span></p>
+    <p class=MsoNormal><span class=GramE><span style='font-size:10.0pt;
+    font-family:Arial;color:black'>mental</span></span><span style='font-size:
+    10.0pt;font-family:Arial;color:black'> ray Shaders Guide, Chapter 1.3.<o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'>Rendering with mental ray, Chapter 4.7, Appendix C<o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:14.0pt;mso-bidi-font-size:12.0pt;
+    font-family:Arial;color:#777A7D'>Where to find environment shaders</span><span
+    style='font-size:10.0pt;font-family:Arial;color:black'><br>
+    Material shaders appear in the <b>Hypershade &gt; Create mental ray Nodes &gt;
+    Environments</b>. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'>The following environment shaders are shipped with Maya:<o:p></o:p></span></p>
+    <ul style='margin-top:0in' type=disc>
+     <li class=MsoNormal style='color:black;mso-list:l2 level1 lfo3;tab-stops:
+         list .5in'><span class=SpellE><span style='font-size:10.0pt;
+         font-family:Arial'>mib_lookup_background</span></span><span
+         style='font-size:10.0pt;font-family:Arial'> <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l2 level1 lfo3;tab-stops:
+         list .5in'><span style='font-size:10.0pt;font-family:Arial'>mib_lookup_cube1
+         <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l2 level1 lfo3;tab-stops:
+         list .5in'><span style='font-size:10.0pt;font-family:Arial'>mib_lookup_cube6
+         <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l2 level1 lfo3;tab-stops:
+         list .5in'><span class=SpellE><span style='font-size:10.0pt;
+         font-family:Arial'>mib_lookup_cylindrical</span></span><span
+         style='font-size:10.0pt;font-family:Arial'> <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l2 level1 lfo3;tab-stops:
+         list .5in'><span class=SpellE><span style='font-size:10.0pt;
+         font-family:Arial'>mib_lookup_spherical</span></span><span
+         style='font-size:10.0pt;font-family:Arial'><o:p></o:p></span></li>
+    </ul>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'><o:p>&nbsp;</o:p></span></p>
+    <h1>Default behavior<span style='font-size:10.0pt;color:black'><o:p></o:p></span></h1>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'>The proper connection for an environment shader is: <o:p></o:p></span></p>
+    <ul style='margin-top:0in' type=disc>
+     <li class=MsoNormal style='color:black;mso-list:l1 level1 lfo6;tab-stops:
+         list .5in'><span class=GramE><span style='font-size:10.0pt;font-family:
+         Arial'>from</span></span><span style='font-size:10.0pt;font-family:
+         Arial'> <span class=SpellE>environmentShader.message</span> to <span
+         class=SpellE>shadingEngine.miEnvironmentShader</span>.<o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l1 level1 lfo6;tab-stops:
+         list .5in'><span class=GramE><span style='font-size:10.0pt;font-family:
+         Arial'>from</span></span><span style='font-size:10.0pt;font-family:
+         Arial'> <span class=SpellE>environmentShader.message</span> to <span
+         class=SpellE>cameraShape.miEnvironmentShader</span>.<o:p></o:p></span></li>
+    </ul>
+    <p class=MsoNormal><span class=SpellE><span style='font-size:10.0pt;
+    font-family:Arial;color:black'>Ctrl+drag</span></span><span
+    style='font-size:10.0pt;font-family:Arial;color:black'> from a material
+    shader to a shading engine to make the above connection.<o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'><br style='mso-special-character:line-break'>
+    <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+    <![endif]><o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+    color:black'>Image based lighting (under <b>Image Based Lighting</b> in the
+    mental ray Render <span class=SpellE>Globals</span>) feature introduced in
+    mental ray for <span class=SpellE>maya</span> 6.0 works in a similar way to
+    <span class=SpellE>mib_lookup_spherical</span>, but with more features and
+    simpler workflow. <br>
+    In this section, we explore the workflow for setting environment mapping
+    using <span class=SpellE>mib_lookup_spherical</span>. <br>
+    <span style='mso-spacerun:yes'> </span><o:p></o:p></span></p>
+    <h2><span class=GramE>Step 1.</span> Getting Ready </h2>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>Make sure the mental ray for Maya plug-in is
+    loaded.<o:p></o:p></span></p>
+    <ul style='margin-top:0in' type=disc>
+     <li class=MsoNormal style='color:black;mso-list:l11 level1 lfo9;
+         tab-stops:list .5in'><b><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Windows &gt; Settings/Preferences &gt;
+         Plug-in Manager...</span></b><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'> <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l11 level1 lfo9;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Find <b>Mayatomr</b> and check <b>loaded</b> <o:p></o:p></span></li>
+    </ul>
+    <p class=MsoNormal><b><span style='font-size:10.0pt;mso-bidi-font-size:
+    7.5pt;font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></b></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black;mso-bidi-font-weight:bold'>Open the template
+    scene we will use for this section: <span class=SpellE><b>environment_start.ma</b></span></span><span
+    style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'>. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><a
+    href="mel://setCurrentRenderer%20mentalRay%20;%20renderWindowRender%20redoPreviousRender%20renderView;">Render
+    with mental ray</a>. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:
+     1.5pt;mso-padding-alt:0in 0in 0in 0in'>
+     <tr style='mso-yfti-irow:0'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+      font-family:Arial'><img border=0 width=320 height=240 id="_x0000_i1028"
+      src="images/environment_start.jpg"><o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      class=SpellE><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+      font-family:Arial'>environment_start.ma</span></span><span
+      style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'><o:p></o:p></span></p>
+      </td>
+     </tr>
+    </table>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><br style='mso-special-character:line-break'>
+    <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+    <![endif]><o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>As shown in the image, the two spheres on
+    the left are reflective. <br>
+    The reflection is achieved by using mib_reflect. Please read <a
+    href="sampleCompositing.html">sampleCompositing.html</a> if you are not familiar
+    with this shader. <br>
+    Environment mapping would not be applied unless the material is reflective.
+    <o:p></o:p></span></p>
+    <p><b><span style='font-size:16.0pt;font-family:Arial;color:#777A7D;
+    mso-font-kerning:16.0pt'>Step 2. Local environment map </span></b><span
+    style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'><o:p></o:p></span></p>
+    <p><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'>First, let's try a local environment map, which applies to a
+    given material (or shading engine) only. <br>
+    If the ray leaving an object with the material does not intersect anything,
+    the color from the environment shader is returned. <o:p></o:p></span></p>
+    <ul style='margin-top:0in' type=disc>
+     <li class=MsoNormal style='color:black;mso-list:l7 level1 lfo12;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Open the <a href="mel://showEditor%20red_SG;/">Attribute
+         Editor</a> of <span class=SpellE>red_SG</span>. <br>
+         In the mental ray section, you can find <b>Environment Shader</b>. <br>
+         An environment shader connected to this port is applied to objects
+         with this shading engine only. <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l7 level1 lfo12;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'><a
+         href="mel://createNode%20-n%20red_env%20mib_lookup_spherical;connectAttr%20red_env.message%20red_SG.miEnvironmentShader/">Click
+         the map button next to <b>Environment Shader</b> and select <span
+         class=SpellE>mib_lookup_spherical</span></a>. Rename the shader to
+         &quot;<span class=SpellE>red_env</span>&quot;. <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l7 level1 lfo12;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Open the <a
+         href="mel://showEditor%20red_env;/">Attribute Editor</a> of <span
+         class=SpellE>red_env</span>. <br>
+         </span><st1:State><st1:place><span class=SpellE><span class=GramE><b><span
+           style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial'>tex</span></b></span></span></st1:place></st1:State><span
+         style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial'>
+         is the image to use for this shader. Click the map <a
+         href="mel://createNode%20-n%20red_tex%20mentalrayTexture;%20connectAttr%20red_tex.message%20red_env.tex;/">button.</a>
+         The button creates a <span class=SpellE>mentalrayTexture</span> node,
+         and connects to the shader. <br>
+         Rename the texture node as <span class=SpellE>red_tex</span>.<o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l7 level1 lfo12;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>From the <a
+         href="mel://showEditor%20red_tex;/">Attribute Editor</a> of the
+         texture node <span class=SpellE>red_tex</span>, choose an image file
+         to use. Choose <span class=SpellE>checker.iff</span> for example. <br
+         style='mso-special-character:line-break'>
+         <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+         <![endif]><o:p></o:p></span></li>
+    </ul>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'>Now <a
+    href="mel://setCurrentRenderer%20mentalRay%20;%20renderWindowRender%20redoPreviousRender%20renderView;">Render
+    with mental ray</a>. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><br>
+    The checker is sphere mapped to the red sphere. <o:p></o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:
+     1.5pt;mso-padding-alt:0in 0in 0in 0in'>
+     <tr style='mso-yfti-irow:0'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+      font-family:Arial'><img border=0 width=320 height=240 id="_x0000_i1029"
+      src="images/environment_start1.jpg"><o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>Local
+      environment map<o:p></o:p></span></p>
+      </td>
+     </tr>
+    </table>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <p style='margin-left:.5in;text-indent:-.25in;mso-list:l6 level1 lfo14;
+    tab-stops:list .5in'><![if !supportLists]><span style='font-size:10.0pt;
+    mso-bidi-font-size:7.5pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+    mso-bidi-font-family:Symbol;color:black'><span style='mso-list:Ignore'>·<span
+    style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span></span></span><![endif]><span class=GramE><b><span style='font-size:
+    10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;color:black'>reflect</span></b></span><span
+    style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'> attribute of mib_reflect shader decides the contribution from
+    the reflection. <a
+    href="mel://setAttr%20red_reflect.reflect%20-type%20double3%200.1%200.1%200.1;/">Decreasing
+    the value</a> means less contribution from the environment. <o:p></o:p></span></p>
+    <p style='margin-left:.5in;text-indent:-.25in;mso-list:l6 level1 lfo14;
+    tab-stops:list .5in'><![if !supportLists]><span class=MsoHyperlink><span
+    style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+    Symbol;text-decoration:none;text-underline:none'><span style='mso-list:
+    Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span></span></span></span><![endif]><span style='font-size:10.0pt;
+    mso-bidi-font-size:7.5pt;font-family:Arial;color:black'><a
+    href="mel://setAttr%20red_reflect.notrace%201;/">Turn on <span
+    class=SpellE><b>notrace</b></span> of <span class=SpellE>red_reflect</span>
+    to disable any other reflection than the environment. </a></span><span
+    class=MsoHyperlink><o:p></o:p></span></p>
+    <p><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'><a
+    href="mel://setCurrentRenderer%20mentalRay%20;%20renderWindowRender%20redoPreviousRender%20renderView;">Render</a>
+    again, and notice the sphere has a less obvious checker pattern, and no
+    reflection of the red ball. </span><span style='color:black'><o:p></o:p></span></p>
+    <table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:
+     1.5pt;mso-padding-alt:0in 0in 0in 0in'>
+     <tr style='mso-yfti-irow:0'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+      font-family:Arial'><img border=0 width=320 height=240 id="_x0000_i1030"
+      src="images/environment_start2.jpg"><o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>Local
+      environment map<o:p></o:p></span></p>
+      </td>
+     </tr>
+    </table>
+    <p><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'><o:p>&nbsp;</o:p></span></p>
+    <p><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'>Notice also that the yellow and the blue balls are not
+    affected by the environment shader of the red ball, except the reflection
+    of the red ball on it. <o:p></o:p></span></p>
+    <p><b><span style='font-size:16.0pt;font-family:Arial;color:#777A7D;
+    mso-font-kerning:16.0pt'>Step 3. Global environment map </span></b><span
+    style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'><o:p></o:p></span></p>
+    <p><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'>Another way of using an environment shader is to connect it to
+    a camera shape. <br>
+    Environment shader connected in this way is used by a primary ray that did
+    not hit anything. <br>
+    It's similar to image plane in Maya. (<span class=SpellE><span class=GramE>mib_lookup_background</span></span>
+    is closer to image plane.) <br>
+    If an object has reflective material, the environment shader affects the
+    reflection, as long as the material does not have its own environment
+    shader. <o:p></o:p></span></p>
+    <ul style='margin-top:0in' type=disc>
+     <li class=MsoNormal style='color:black;mso-list:l5 level1 lfo17;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'><a
+         href="mel://createNode%20-n%20camera_env%20mib_lookup_spherical;/">Create
+         a <span class=SpellE>mib_lookup_spherical</span>, and name it &quot;<span
+         class=SpellE>camera_env</span><span class=GramE>&quot; </span></a>. <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l5 level1 lfo17;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Create a new <span class=SpellE>mentalrayTexture</span>
+         node for the shader by clicking the <a
+         href="mel://createNode%20-n%20camera_tex%20mentalrayTexture;%20connectAttr%20camera_tex.message%20camera_env.tex;/">button
+         </a><span style='mso-spacerun:yes'> </span>next to </span><st1:State><st1:place><span
+           class=SpellE><span class=GramE><b><span style='font-size:10.0pt;
+           mso-bidi-font-size:7.5pt;font-family:Arial'>tex</span></b></span></span></st1:place></st1:State><span
+         style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial'>.<o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l5 level1 lfo17;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Then choose <span class=GramE>a</span> image,
+         <span class=SpellE>carbon_raport.rla</span> in <span class=SpellE>sourceimages</span>
+         directory for example. <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;margin-bottom:12.0pt;mso-list:l5 level1 lfo17;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'><a
+         href="mel://connectAttr%20camera_env.message%20perspShape.miEnvironmentShader;/">Ctrl
+         Drag and drop <span class=SpellE>camera_env</span> to <span
+         class=SpellE><span class=GramE>perspShape</span></span><span
+         class=GramE> </span></a>. Check the connection from <span
+         class=SpellE>camera_env.message</span> to <span class=SpellE>perspShape.miEnvirionmentShader</span>.
+         <br style='mso-special-character:line-break'>
+         <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+         <![endif]><o:p></o:p></span></li>
+    </ul>
+    <p class=MsoNormal style='margin-bottom:12.0pt'><span style='font-size:
+    10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;color:black'><a
+    href="mel://setCurrentRenderer%20mentalRay%20;%20renderWindowRender%20redoPreviousRender%20renderView;">Render</a>.
+    <o:p></o:p></span></p>
+    <table class=MsoNormalTable border=0 cellpadding=0 style='mso-cellspacing:
+     1.5pt;mso-padding-alt:0in 0in 0in 0in'>
+     <tr style='mso-yfti-irow:0'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+      font-family:Arial'><img border=0 width=320 height=240 id="_x0000_i1031"
+      src="images/environment_finish.jpg"><o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+      <td style='padding:.75pt .75pt .75pt .75pt'>
+      <p class=MsoNormal align=center style='text-align:center'><span
+      style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>Local
+      and global environment map<o:p></o:p></span></p>
+      </td>
+     </tr>
+    </table>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:7.5pt;
+    font-family:Arial;color:black'><o:p>&nbsp;</o:p></span></p>
+    <ul style='margin-top:0in' type=disc>
+     <li class=MsoNormal style='color:black;mso-list:l10 level1 lfo20;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Notice that the background is filled with <span
+         class=SpellE>camera_tex</span>. As <span class=SpellE>camera_env</span>
+         is connected to <span class=SpellE>perspShape</span>, the global
+         environment shader only affects rays originated from the <span
+         class=SpellE>persp</span> camera. If render from different camera, the
+         background is black. <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l10 level1 lfo20;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>Now the ball in the middle has reflection
+         from the environment. For an environment mapping to affect a material,
+         the material should be reflective. The yellow sphere as mib_reflect
+         connected to the material shader (<span class=SpellE>yellow_phong</span>),
+         whereas the blue sphere has a <span class=SpellE>phong</span> shader
+         only. <o:p></o:p></span></li>
+     <li class=MsoNormal style='color:black;mso-list:l10 level1 lfo20;
+         tab-stops:list .5in'><span style='font-size:10.0pt;mso-bidi-font-size:
+         7.5pt;font-family:Arial'>The red sphere on the left, in the other
+         hand, has its own environment shader, and is not using the global
+         environment map at all. Instead, the local environment mapping
+         overrides the global one. <o:p></o:p></span></li>
+    </ul>
+    <p><span class=SpellE><span class=GramE><span style='font-size:10.0pt;
+    mso-bidi-font-size:7.5pt;font-family:Arial;color:black'>environment_finish.ma</span></span></span><span
+    style='font-size:10.0pt;mso-bidi-font-size:7.5pt;font-family:Arial;
+    color:black'> shows the final state of this tutorial. <o:p></o:p></span></p>
+    </td>
+   </tr>
+  </table>
+  <p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:Arial'><o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+font-family:Arial'><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

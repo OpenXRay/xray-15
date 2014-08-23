@@ -1,0 +1,203 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_REACTOR_PARAMS DIALOG DISCARDABLE  0, 0, 180, 186
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Reactor Parameters: "
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_FALLOFF_EDIT,"CustEdit",WS_TABSTOP,129,123,32,10
+    CONTROL         "",IDC_FALLOFF_SPIN,"SpinnerControl",0x0,161,123,7,10
+    LISTBOX         IDC_REACTION_LIST,6,30,80,90,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL
+    CONTROL         "Create Reaction",IDC_CREATE_BUTTON,"CustButton",0x0,90,
+                    30,85,12
+    CONTROL         "Set Reaction Value",IDC_SET_BUTTON,"CustButton",0x0,90,
+                    60,85,12
+    CONTROL         "Delete Reaction",IDC_DELETE_BUTTON,"CustButton",0x0,90,
+                    45,85,12
+    CONTROL         "React To: ",IDC_PICK_BUTTON,"CustButton",0x0,6,5,43,10
+    CONTROL         "",IDC_NAME_EDIT,"CustEdit",WS_TABSTOP,5,123,80,10
+    LTEXT           "",IDC_TRACK_NAME,51,5,124,10,SS_SUNKEN
+    CONTROL         "Edit Reaction State",IDC_EDIT_BUTTON,"CustButton",0x0,
+                    90,75,85,12
+    LTEXT           "",IDC_VALUE_STATUS,5,150,169,10,SS_SUNKEN
+    CONTROL         "",IDC_INFLUENCE_EDIT,"CustEdit",WS_TABSTOP,135,90,32,10
+    CONTROL         "",IDC_INFLUENCE_SPIN,"SpinnerControl",0x0,167,90,7,10
+    RTEXT           "Influence:",IDC_STATIC,90,90,42,8
+    LTEXT           "",IDC_TRACK_VALUE,6,18,169,10,SS_SUNKEN
+    CONTROL         "",IDC_FLOATSTATE_EDIT,"CustEdit",WS_TABSTOP,135,78,32,
+                    10
+    CONTROL         "",IDC_FLOATSTATE_SPIN,"SpinnerControl",0x0,167,78,7,10
+    RTEXT           "State:",IDC_EDITSTATE_STATIC,90,79,42,8
+    CONTROL         "",IDC_STRENGTH_EDIT,"CustEdit",WS_TABSTOP,135,102,32,10
+    CONTROL         "",IDC_STRENGTH_SPIN,"SpinnerControl",0x0,167,102,7,10
+    RTEXT           "Strength:",IDC_STATIC,90,103,42,8
+    LTEXT           "",IDC_OUTPUT_STATUS,5,170,169,10,SS_SUNKEN
+    LTEXT           "Reaction Value:",IDC_STATIC,6,140,80,8
+    LTEXT           "Current Output:",IDC_STATIC,5,161,80,8
+    CONTROL         "Use\nCurve",IDC_USE_CURVE,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFT | BS_TOP | BS_MULTILINE | WS_TABSTOP,95,123,33,
+                    17
+    GROUPBOX        "Falloff:",IDC_STATIC,91,114,83,30,BS_LEFT
+    CONTROL         "Curve",IDC_CURVE_BUTTON,"CustButton",0x0,130,123,39,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_REACTOR_PARAMS, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 175
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 183
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_REACTOR_SHORTCUTS ACCELERATORS DISCARDABLE 
+BEGIN
+    "C",            ID_CREATE_REACTION,     VIRTKEY, CONTROL, ALT, NOINVERT
+    "D",            ID_DELETE_REACTION,     VIRTKEY, CONTROL, ALT, NOINVERT
+    "I",            ID_MAX_INFLUENCE,       VIRTKEY, CONTROL, NOINVERT
+    "I",            ID_MIN_INFLUENCE,       VIRTKEY, ALT, NOINVERT
+    "S",            ID_EDIT_STATE,          VIRTKEY, CONTROL, ALT, NOINVERT
+    "V",            ID_SET_VALUE,           VIRTKEY, CONTROL, ALT, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LIBDESCRIPTION      "Change reaction controller (Discreet)"
+    IDS_CATEGORY            "Felt Goods"
+    IDS_AF_REACTORFLOAT     "Float Reactor"
+    IDS_PARAMS              "Parameters"
+    IDS_AF_REACTORPOS       "Position Reactor"
+    IDS_AF_REACTORP3        "Point3 Reactor"
+    IDS_AF_REACTORROT       "Rotation Reactor"
+    IDS_AF_REACTORSCALE     "Scale Reactor"
+    IDS_AF_REACTORTITLE     "Reactor Parameters: "
+    IDS_AF_CHANGEFALLOFF    "Falloff Change"
+    IDS_AF_FALLOFF          "Falloff"
+    IDS_AF_VARNAME          "Reaction"
+    IDS_AF_CIRCULAR_DEPENDENCY "Circulary Dependency"
+    IDS_AF_CANT_ASSIGN      "Assignment Failed"
+    IDS_AF_REACTOR          "Reactor"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MIN_INFLUENCE       "Set Min Influence"
+    IDS_MAX_INFLUENCE       "Set Max Influence"
+    IDS_CREATE_REACTION     "Create Reaction"
+    IDS_DELETE_REACTION     "Delete Reaction"
+    IDS_SET_VALUE           "Set Reaction Value"
+    IDS_EDIT_STATE          "Edit State Toggle"
+    IDS_AF_CHANGESTRENGTH   "Strength Change"
+    IDS_AF_CHANGEINFLUENCE  "Influence Change"
+    IDS_AF_CHANGESTATE      "State Change"
+    IDS_UNSET_VALUE         "Reaction Value Change"
+    IDS_ASSIGN_TO           "Assign React To Object"
+    IDS_NOT_A_REACTOR       "Not a Reactor Controller: "
+    IDS_NOT_AN_INT          "Not a valid reaction number: "
+    IDS_NOT_A_VALID_VALUE   "Not a valid reaction value: "
+    IDS_NOT_A_NAME          "Not a valid reaction name: "
+    IDS_NOT_A_VALID_STATE   "Not a valid reaction state: "
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_NOT_A_FLOAT         "Not a valid float value: "
+    IDS_SAME_REACTION       "A reaction already exists with this value.\nFor best results set the React To object to the desired value\nbefore creating the reaction.\n\nWould you like to create the new reaction anyway?"
+    IDS_FALLOFF_CURVE       "Reactor Falloff Curve"
+    IDS_REACTION_CURVE      "Reaction Curve"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

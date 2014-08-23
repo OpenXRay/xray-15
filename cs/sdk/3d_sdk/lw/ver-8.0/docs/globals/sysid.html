@@ -1,0 +1,58 @@
+<html>
+
+<head>
+<title>Globals: System ID</title>
+<style type="text/css"><!--tt { font-size: 10pt } pre { font-size: 10pt }--></style>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#000080" vlink="#800000" alink="#0000ff">
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#d0d0d0">
+  <tr>
+    <td width="120" align="left"><a href="surface.html"><img width="96" height="20" border="0"
+    src="../images/navlt.gif" alt="Surface Functions"></a></td>
+    <td width="96" align="left"><a href="txtred.html"><img width="64" height="20" border="0"
+    src="../images/navrt.gif" alt="Texture Editor"></a></td>
+    <td width="96" align="left"><a href="../globals.html"><img width="56" height="20"
+    border="0" src="../images/navup.gif" alt="Globals"></a></td>
+    <td width="288" align="right"><a href="../index.html"><img width="230" height="20"
+    border="0" src="../images/proglw.gif" alt="Table of Contents"></a></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="600"><br>
+    <h3>System ID</h3>
+    <p><small><strong>Availability</strong>&nbsp; LightWave&reg; 6.0</small><br>
+    <small><strong>Component</strong>&nbsp; Layout, Modeler</small><br>
+    <small><strong>Header</strong>&nbsp; <a href="../../include/lwhost.h">lwhost.h</a></small></p>
+    <p>The system ID global returns the hardware key serial number. Each unique serial number
+    represents a LightWave&reg; license, so a plug-in installed on a particular machine can use
+    this value to lock that installation to the LightWave&reg; license. But note that your plug-in
+    can be called in contexts in which the host doesn't require a hardware key, so exercise
+    care when relying on the value returned by this function.</p>
+    <p><strong>Global Call</strong></p>
+    <pre>   unsigned long sysid;
+   sysid = ( unsigned long ) global( LWSYSTEMID_GLOBAL,
+      GFUSE_TRANSIENT );</pre>
+    <p>The global function ordinarily returns a <tt>void *</tt>, so this should be cast to an
+    integer type to get the return value.</p>
+    <p>The serial number is in the low 28 bits of the return value. The high four bits
+    indicate whether the plug-in is running in an interactive Layout or Modeler session, or in
+    a non-interactive Screamernet session. The two components of the number can be extracted
+    using macros defined in <tt>lwhost.h</tt>.</p>
+    <pre>   context  = sysid &amp; LWSYS_TYPEBITS;
+   serialno = sysid &amp; LWSYS_SERIALBITS;</pre>
+    <p>The <tt>context</tt> can be <tt>LWSYS_LAYOUT</tt>, <tt>LWSYS_MODELER</tt>, or <tt>LWSYS_SCREAMERNET</tt>.</p>
+    <p>If the <tt>context</tt> is <tt>LWSYS_SCREAMERNET</tt>, the serial number will either be
+    the node number, or 0 if no node number is available. The serial number can also be 0 for
+    products other than LightWave&reg; that don't require a hardware key, e.g. Inspire, regardless
+    of the context. (The <a href="prodinfo.html">product info</a> global allows you to
+    identify the product your plug-in is running in.)<dl>
+    </dl>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

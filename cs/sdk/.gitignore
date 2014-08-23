@@ -1,0 +1,3 @@
+# include sdk libraries and binaries
+!libraries/
+!binaries/

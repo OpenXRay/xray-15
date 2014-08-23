@@ -1,0 +1,3219 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "#include ""veroverrides.h""\r\n"
+    "#include ""maxversion.r""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DISPLAY_PARAMETERS DIALOGEX 0, 0, 108, 69
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    RTEXT           "Type:",IDC_STATIC,16,8,19,8
+    COMBOBOX        IDC_DISPLAYVIEWPORT,37,6,66,110,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    RTEXT           "Visible %",IDC_STATIC,19,23,28,8
+    CONTROL         "",IDC_VISIBLEVIEWPORT,"CustEdit",WS_GROUP | WS_TABSTOP,
+                    51,22,40,10
+    CONTROL         "",IDC_VISIBLEVIEWPORTSPIN,"SpinnerControl",WS_GROUP,93,
+                    22,8,10
+    CONTROL         "Show Particle IDs",IDC_NUMBER,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,37,76,10
+    RTEXT           "Selected:",IDC_STATIC,4,53,31,8
+    COMBOBOX        IDC_SELECTEDVIEWPORT,37,51,66,110,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    CONTROL         "",IDC_VIEWPORTCOLOR,"ColorSwatch",WS_GROUP | WS_TABSTOP,
+                    90,35,12,12,WS_EX_STATICEDGE
+END
+
+IDD_TESTDURATION_PARAMETERS DIALOG  0, 0, 108, 128
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    COMBOBOX        IDC_TYPE,5,6,98,56,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    GROUPBOX        "Test True If Particle Value:",IDC_STATIC,2,22,104,35
+    CONTROL         "Is Less Than Test Value",IDC_TRUELESS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,6,32,93,10
+    CONTROL         "Is Greater Than Test Value",IDC_TRUEGREATER,"Button",
+                    BS_AUTORADIOBUTTON,6,43,98,10
+    RTEXT           "Test Value:",IDC_TESTVALUETEXT,7,62,39,8
+    CONTROL         "",IDC_TEST,"CustEdit",WS_GROUP | WS_TABSTOP,49,62,42,10
+    CONTROL         "",IDC_TESTSPIN,"SpinnerControl",WS_GROUP,93,62,8,10
+    RTEXT           "Variation:",IDC_VARIATIONTEXT,14,74,32,8
+    CONTROL         "",IDC_VARIATION,"CustEdit",WS_GROUP | WS_TABSTOP,49,74,
+                    42,10
+    CONTROL         "",IDC_VARIATIONSPIN,"SpinnerControl",WS_GROUP,93,74,8,
+                    10
+    CONTROL         "Subframe Sampling",IDC_SUBFRAME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,87,90,10
+    GROUPBOX        "Uniqueness:",IDC_UNIQUENESSBOX,2,99,104,27
+    RTEXT           "Seed:",IDC_SEEDTEXT,8,111,20,8
+    CONTROL         "",IDC_SEED,"CustEdit",WS_GROUP | WS_TABSTOP,30,111,34,
+                    10
+    CONTROL         "",IDC_SEEDSPIN,"SpinnerControl",WS_GROUP,66,111,8,10
+    CONTROL         "New",IDC_NEW,"CustButton",WS_GROUP | WS_TABSTOP,78,111,
+                    22,10
+END
+
+IDD_SIMPLESHAPE_PARAMETERS DIALOG  0, 0, 108, 47
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    RTEXT           "Shape:",IDC_SHAPETEXT,19,7,24,8
+    COMBOBOX        IDC_SHAPETYPE,46,5,59,56,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    RTEXT           "Size:",IDC_SIZETEXT,27,21,16,8
+    CONTROL         "",IDC_MESHSIZE,"CustEdit",WS_GROUP | WS_TABSTOP,46,20,
+                    48,10
+    CONTROL         "",IDC_MESHSIZESPIN,"SpinnerControl",WS_GROUP,96,20,8,10
+    CONTROL         "",IDC_MESHSCALE,"CustEdit",WS_GROUP | WS_TABSTOP,46,32,
+                    48,10
+    CONTROL         "",IDC_MESHSCALESPIN,"SpinnerControl",WS_GROUP,96,32,8,
+                    10
+    CONTROL         "Scale %",IDC_USESCALE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,6,32,38,10
+END
+
+IDD_SIMPLEBIRTH_PARAMETERS DIALOGEX 0, 0, 108, 84
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    RTEXT           "Emit Start:",IDC_STARTTEXT,11,9,33,8
+    CONTROL         "",IDC_START,"CustEdit",WS_GROUP | WS_TABSTOP,47,9,42,10
+    CONTROL         "",IDC_STARTSPIN,"SpinnerControl",WS_GROUP,91,9,8,10
+    RTEXT           "Emit Stop:",IDC_FINISHTEXT,12,21,32,8
+    CONTROL         "",IDC_FINISH,"CustEdit",WS_GROUP | WS_TABSTOP,47,21,42,
+                    10
+    CONTROL         "",IDC_FINISHSPIN,"SpinnerControl",WS_GROUP,91,21,8,10
+    CONTROL         "",IDC_ISAMOUNT,"Button",BS_AUTORADIOBUTTON | WS_GROUP | 
+                    WS_TABSTOP,6,34,9,8
+    CONTROL         "",IDC_ISRATE,"Button",BS_AUTORADIOBUTTON,6,46,9,8
+    RTEXT           "Amount:",IDC_AMOUNTTEXT,15,33,29,8
+    CONTROL         "",IDC_AMOUNT,"CustEdit",WS_GROUP | WS_TABSTOP,47,33,42,
+                    10
+    CONTROL         "",IDC_AMOUNTSPIN,"SpinnerControl",WS_GROUP,91,33,8,10
+    RTEXT           "Rate:",IDC_RATETEXT,23,45,21,8
+    CONTROL         "",IDC_RATE,"CustEdit",WS_GROUP | WS_TABSTOP,47,45,42,10
+    CONTROL         "",IDC_RATESPIN,"SpinnerControl",WS_GROUP,91,45,8,10
+    RTEXT           "Total:",IDC_TOTALTEXT,15,57,29,8
+    LTEXT           "???",IDC_TOTAL,47,57,42,10,0,WS_EX_CLIENTEDGE
+    CONTROL         "Subframe Sampling",IDC_SUBFRAME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,69,76,10
+END
+
+IDD_SIMPLEPOSITION_PARAMETERS DIALOGEX 0, 0, 108, 149
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    CONTROL         "Lock On Emitter",IDC_LOCK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,9,8,90,10
+    CONTROL         "Inherit Emitter Movement",IDC_INHERIT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,20,90,10
+    RTEXT           "Multiplier %",IDC_MULTIPLIERTEXT,8,33,36,8
+    CONTROL         "",IDC_MULTIPLIER,"CustEdit",WS_GROUP | WS_TABSTOP,47,32,
+                    42,10
+    CONTROL         "",IDC_MULTIPLIERSPIN,"SpinnerControl",WS_GROUP,91,32,8,
+                    10
+    GROUPBOX        "Location:",IDC_STATIC,3,44,102,57
+    COMBOBOX        IDC_TYPE,9,55,92,67,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    CONTROL         "Distinct Points Only",IDC_DISTINCT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,73,75,10
+    RTEXT           "Total:",IDC_TOTALTEXT,23,86,21,8
+    CONTROL         "",IDC_TOTALDISTINCT,"CustEdit",WS_GROUP | WS_TABSTOP,47,
+                    86,42,10
+    CONTROL         "",IDC_TOTALDISTINCTSPIN,"SpinnerControl",WS_GROUP,91,86,
+                    8,10
+    GROUPBOX        "Uniqueness:",IDC_UNIQUENESSBOX,3,118,102,27
+    RTEXT           "Seed:",IDC_SEEDTEXT,8,130,20,8
+    CONTROL         "",IDC_SEED,"CustEdit",WS_GROUP | WS_TABSTOP,30,130,34,
+                    10
+    CONTROL         "",IDC_SEEDSPIN,"SpinnerControl",WS_GROUP,66,130,8,10
+    CONTROL         "New",IDC_NEW,"CustButton",WS_GROUP | WS_TABSTOP,78,130,
+                    22,10
+    CONTROL         "Subframe Sampling",IDC_SUBFRAME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,106,77,10
+END
+
+IDD_INSTANCESHAPE_PARAMETERS DIALOG  0, 0, 108, 285
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Particle Geometry Object:",IDC_OBJECTFRAME,2,2,104,29
+    CONTROL         "Pick Geometry Object",IDC_PICK,"CustButton",WS_TABSTOP,
+                    6,13,95,12
+    GROUPBOX        "Separate Particles for:",IDC_TYPEFRAME,2,33,104,47
+    CONTROL         "Group Members",IDC_GROUPMEMBERS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,44,66,10
+    CONTROL         "Object And Children",IDC_CHILDREN,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,55,79,10
+    CONTROL         "Object Elements",IDC_ELEMENTS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,6,66,67,10
+    LTEXT           "Vertices:",IDC_STATIC,40,82,28,8
+    LTEXT           "???????",IDC_VERTICES,71,82,29,8
+    LTEXT           "Faces:",IDC_STATIC,46,91,22,8
+    LTEXT           "???????",IDC_FACES,71,91,29,8
+    LTEXT           "Number Of Shapes:",IDC_STATIC,6,100,63,8
+    LTEXT           "???????",IDC_SHAPES,71,100,29,8
+    CONTROL         "    Scale %",IDC_SETSCALE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,6,114,47,10
+    CONTROL         "",IDC_PARTICLESCALE,"CustEdit",WS_GROUP | WS_TABSTOP,56,
+                    113,34,10
+    CONTROL         "",IDC_PARTICLESCALESPIN,"SpinnerControl",WS_GROUP,92,
+                    113,8,10
+    RTEXT           "Variation %",IDC_VARIATIONTEXT,15,125,36,8
+    CONTROL         "",IDC_VARIATION,"CustEdit",WS_GROUP | WS_TABSTOP,56,125,
+                    34,10
+    CONTROL         "",IDC_VARIATIONSPIN,"SpinnerControl",WS_GROUP,92,125,8,
+                    10
+    CONTROL         "Acquire Mapping ",IDC_MAPPING,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,6,139,71,10
+    CONTROL         "Acquire Material ",IDC_MATERIAL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,150,69,10
+    CONTROL         "Multi-Shape Random Order",IDC_ORDER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,161,101,10
+    CONTROL         "Animated Shape",IDC_ANIMATED,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,6,172,68,10
+    CONTROL         "Acquire Current Shape",IDC_ACQUIRE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,183,87,10
+    GROUPBOX        "Animation Offset Keying:",IDC_SYNCFRAME,2,196,104,41
+    LTEXT           "Sync By:",IDC_SYNCBYTEXT,7,209,28,8
+    COMBOBOX        IDC_SYNC,38,207,63,48,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    CONTROL         "Rand Offset:",IDC_SYNCRANDOM,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,6,224,52,8
+    CONTROL         "",IDC_SYNCOFFSET,"CustEdit",WS_GROUP | WS_TABSTOP,59,
+                    223,31,10
+    CONTROL         "",IDC_SYNCOFFSETSPIN,"SpinnerControl",WS_GROUP,92,223,8,
+                    10
+    GROUPBOX        "Uniqueness:",IDC_UNIQUENESSBOX,2,256,104,27
+    RTEXT           "Seed:",IDC_SEEDTEXT,8,269,20,8
+    CONTROL         "",IDC_SEED,"CustEdit",WS_GROUP | WS_TABSTOP,30,269,34,
+                    10
+    CONTROL         "",IDC_SEEDSPIN,"SpinnerControl",WS_GROUP,66,269,8,10
+    CONTROL         "New",IDC_NEW,"CustButton",WS_GROUP | WS_TABSTOP,78,269,
+                    22,10
+    CONTROL         "Update Particle Shape",IDC_UPDATESHAPE,"CustButton",
+                    WS_TABSTOP,6,242,95,12
+END
+
+IDD_SIMPLEORIENTATION_PARAMETERS DIALOGEX 0, 0, 108, 180
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "Orientation Matrix:",IDC_STATIC,3,3,102,145
+    COMBOBOX        IDC_DIRECTION,9,14,92,67,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    RTEXT           "X:",IDC_XTEXT,7,32,39,8
+    CONTROL         "",IDC_X,"CustEdit",WS_GROUP | WS_TABSTOP,49,32,42,10
+    CONTROL         "",IDC_XSPIN,"SpinnerControl",WS_GROUP,93,32,8,10
+    RTEXT           "Y:",IDC_YTEXT,7,44,39,8
+    CONTROL         "",IDC_Y,"CustEdit",WS_GROUP | WS_TABSTOP,49,44,42,10
+    CONTROL         "",IDC_YSPIN,"SpinnerControl",WS_GROUP,93,44,8,10
+    RTEXT           "Z:",IDC_ZTEXT,7,56,39,8
+    CONTROL         "",IDC_Z,"CustEdit",WS_GROUP | WS_TABSTOP,49,56,42,10
+    CONTROL         "",IDC_ZSPIN,"SpinnerControl",WS_GROUP,93,56,8,10
+    RTEXT           "Divergence:",IDC_DIVERGENCETEXT,7,71,39,8
+    CONTROL         "",IDC_DIVERGENCE,"CustEdit",WS_GROUP | WS_TABSTOP,49,71,
+                    42,10
+    CONTROL         "",IDC_DIVERGENCESPIN,"SpinnerControl",WS_GROUP,93,71,8,
+                    10
+    CONTROL         "Restrict Diverg. To Axis",IDC_RESTRICTTOAXIS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,87,90,10
+    GROUPBOX        "Divergence Axis:",IDC_DIVERGENCEAXISBOX,6,97,96,48
+    RTEXT           "X:",IDC_AXISXTEXT,22,107,20,8
+    CONTROL         "",IDC_AXISX,"CustEdit",WS_GROUP | WS_TABSTOP,45,107,42,
+                    10
+    CONTROL         "",IDC_AXISXSPIN,"SpinnerControl",WS_GROUP,89,107,8,10
+    RTEXT           "Y:",IDC_AXISYTEXT,20,119,22,8
+    CONTROL         "",IDC_AXISY,"CustEdit",WS_GROUP | WS_TABSTOP,45,119,42,
+                    10
+    CONTROL         "",IDC_AXISYSPIN,"SpinnerControl",WS_GROUP,89,119,8,10
+    RTEXT           "Z:",IDC_AXISZTEXT,21,131,21,8
+    CONTROL         "",IDC_AXISZ,"CustEdit",WS_GROUP | WS_TABSTOP,45,131,42,
+                    10
+    CONTROL         "",IDC_AXISZSPIN,"SpinnerControl",WS_GROUP,89,131,8,10
+    GROUPBOX        "Uniqueness:",IDC_UNIQUENESSBOX,3,151,102,27
+    RTEXT           "Seed:",IDC_SEEDTEXT,8,163,20,8
+    CONTROL         "",IDC_SEED,"CustEdit",WS_GROUP | WS_TABSTOP,30,163,34,
+                    10
+    CONTROL         "",IDC_SEEDSPIN,"SpinnerControl",WS_GROUP,66,163,8,10
+    CONTROL         "New",IDC_NEW,"CustButton",WS_GROUP | WS_TABSTOP,78,163,
+                    22,10
+END
+
+IDD_SIMPLESPIN_PARAMETERS DIALOG  0, 0, 108, 145
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    RTEXT           "Spin Rate:",IDC_SPINRATETEXT,7,6,39,8
+    CONTROL         "",IDC_SPINRATE,"CustEdit",WS_GROUP | WS_TABSTOP,49,6,42,
+                    10
+    CONTROL         "",IDC_SPINRATESPIN,"SpinnerControl",WS_GROUP,93,6,8,10
+    RTEXT           "Variation:",IDC_VARIATIONTEXT,7,18,39,8
+    CONTROL         "",IDC_VARIATION,"CustEdit",WS_GROUP | WS_TABSTOP,49,18,
+                    42,10
+    CONTROL         "",IDC_VARIATIONSPIN,"SpinnerControl",WS_GROUP,93,18,8,
+                    10
+    GROUPBOX        "Spin Axis:",IDC_STATIC,3,30,102,82
+    COMBOBOX        IDC_DIRECTION,9,41,92,67,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    RTEXT           "X:",IDC_XTEXT,7,59,39,8
+    CONTROL         "",IDC_X,"CustEdit",WS_GROUP | WS_TABSTOP,49,59,42,10
+    CONTROL         "",IDC_XSPIN,"SpinnerControl",WS_GROUP,93,59,8,10
+    RTEXT           "Y:",IDC_YTEXT,7,71,39,8
+    CONTROL         "",IDC_Y,"CustEdit",WS_GROUP | WS_TABSTOP,49,71,42,10
+    CONTROL         "",IDC_YSPIN,"SpinnerControl",WS_GROUP,93,71,8,10
+    RTEXT           "Z:",IDC_ZTEXT,7,83,39,8
+    CONTROL         "",IDC_Z,"CustEdit",WS_GROUP | WS_TABSTOP,49,83,42,10
+    CONTROL         "",IDC_ZSPIN,"SpinnerControl",WS_GROUP,93,83,8,10
+    RTEXT           "Divergence:",IDC_DIVERGENCETEXT,7,98,39,8
+    CONTROL         "",IDC_DIVERGENCE,"CustEdit",WS_GROUP | WS_TABSTOP,49,98,
+                    42,10
+    CONTROL         "",IDC_DIVERGENCESPIN,"SpinnerControl",WS_GROUP,93,98,8,
+                    10
+    GROUPBOX        "Uniqueness:",IDC_UNIQUENESSBOX,3,115,102,27
+    RTEXT           "Seed:",IDC_SEEDTEXT,8,127,20,8
+    CONTROL         "",IDC_SEED,"CustEdit",WS_GROUP | WS_TABSTOP,30,127,34,
+                    10
+    CONTROL         "",IDC_SEEDSPIN,"SpinnerControl",WS_GROUP,66,127,8,10
+    CONTROL         "New",IDC_NEW,"CustButton",WS_GROUP | WS_TABSTOP,78,127,
+                    22,10
+END
+
+IDD_SIMPLESPEED_PARAMETERS DIALOG  0, 0, 108, 117
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    RTEXT           "Speed:",IDC_SPEEDTEXT,21,6,24,8
+    CONTROL         "",IDC_SPEED,"CustEdit",WS_GROUP | WS_TABSTOP,49,6,42,10
+    CONTROL         "",IDC_SPEEDSPIN,"SpinnerControl",WS_GROUP,93,6,8,10
+    RTEXT           "Variation:",IDC_VARIATIONTEXT,13,18,32,8
+    CONTROL         "",IDC_VARIATION,"CustEdit",WS_GROUP | WS_TABSTOP,49,18,
+                    42,10
+    CONTROL         "",IDC_VARIATIONSPIN,"SpinnerControl",WS_GROUP,93,18,8,
+                    10
+    GROUPBOX        "Direction:",IDC_STATIC,3,30,102,54
+    COMBOBOX        IDC_DIRECTION,9,41,92,67,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    CONTROL         "Reverse",IDC_REVERSE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,9,58,43,10
+    RTEXT           "Divergence:",IDC_DIVERGENCETEXT,7,70,39,8
+    CONTROL         "",IDC_DIVERGENCE,"CustEdit",WS_GROUP | WS_TABSTOP,49,70,
+                    42,10
+    CONTROL         "",IDC_DIVERGENCESPIN,"SpinnerControl",WS_GROUP,93,70,8,
+                    10
+    GROUPBOX        "Uniqueness:",IDC_UNIQUENESSBOX,3,87,102,27
+    RTEXT           "Seed:",IDC_SEEDTEXT,8,99,20,8
+    CONTROL         "",IDC_SEED,"CustEdit",WS_GROUP | WS_TABSTOP,30,99,34,10
+    CONTROL         "",IDC_SEEDSPIN,"SpinnerControl",WS_GROUP,66,99,8,10
+    CONTROL         "New",IDC_NEW,"CustButton",WS_GROUP | WS_TABSTOP,78,99,
+                    22,10
+END
+
+IDD_FORCESPACEWARP_PARAMETERS DIALOG  0, 0, 108, 154
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Force Space Warps:",IDC_OBJECTFRAME,2,2,104,76
+    LISTBOX         IDC_FORCESWLIST,8,12,91,45,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Add",IDC_FORCESW_PICKNODE,"CustButton",WS_TABSTOP,8,61,
+                    20,12
+    CONTROL         "Remove",IDC_REMOVE_FORCESW,"CustButton",WS_TABSTOP,59,
+                    61,40,12
+    GROUPBOX        "Force Field Overlapping:",IDC_OVERLAPPINGFRAME,2,80,104,
+                    24
+    CONTROL         "Additive",IDC_ADDITIVE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,7,90,41,10
+    CONTROL         "Maximum",IDC_MAXIMUM,"Button",BS_AUTORADIOBUTTON,53,90,
+                    45,10
+    RTEXT           "Influence %",IDC_INFLUENCETEXT,9,111,38,8
+    CONTROL         "",IDC_INFLUENCE,"CustEdit",WS_GROUP | WS_TABSTOP,50,110,
+                    36,10
+    CONTROL         "",IDC_INFLUENCESPIN,"SpinnerControl",WS_GROUP,88,110,8,
+                    10
+    GROUPBOX        "Offset Influence:",IDC_SYNCFRAME,2,123,104,29
+    LTEXT           "Sync By:",IDC_SYNCBYTEXT,7,136,28,8
+    COMBOBOX        IDC_SYNC,38,134,63,48,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    PUSHBUTTON      "By List",IDC_BYLIST,28,61,28,12
+END
+
+IDD_FACINGSHAPE_PARAMETERS DIALOG  0, 0, 108, 240
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Look At Camera/Object:",IDC_LOOKATFRAME,2,2,104,41
+    CONTROL         "Pick Camera or Object",IDC_PICK,"CustButton",WS_TABSTOP,
+                    6,12,95,12
+    CONTROL         "Use Parallel Direction",IDC_PARALLEL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,29,83,10
+    GROUPBOX        "Size/Width:",IDC_SIZEFRAME,2,46,104,101
+    CONTROL         "In World Space",IDC_WORLD,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,7,59,64,8
+    CONTROL         "In Local Space:",IDC_LOCAL,"Button",BS_AUTORADIOBUTTON,
+                    7,83,67,8
+    CONTROL         "In Screen Space",IDC_SCREEN,"Button",BS_AUTORADIOBUTTON,
+                    7,108,67,8
+    LTEXT           "Units:",IDC_UNITSTEXT,35,70,19,8
+    CONTROL         "",IDC_UNITS,"CustEdit",WS_GROUP | WS_TABSTOP,57,69,34,
+                    10
+    CONTROL         "",IDC_UNITSSPIN,"SpinnerControl",WS_GROUP,93,69,8,10
+    LTEXT           "Inherited %",IDC_INHERITEDTEXT,19,96,36,8
+    CONTROL         "",IDC_INHERITED,"CustEdit",WS_GROUP | WS_TABSTOP,57,95,
+                    34,10
+    CONTROL         "",IDC_INHERITEDSPIN,"SpinnerControl",WS_GROUP,93,95,8,
+                    10
+    LTEXT           "Proportion %",IDC_PROPORTIONTEXT,14,120,40,8
+    CONTROL         "",IDC_PROPORTION,"CustEdit",WS_GROUP | WS_TABSTOP,57,
+                    119,34,10
+    CONTROL         "",IDC_PROPORTIONSPIN,"SpinnerControl",WS_GROUP,93,119,8,
+                    10
+    RTEXT           "Variation %",IDC_VARIATIONTEXT,17,133,36,8
+    CONTROL         "",IDC_VARIATION,"CustEdit",WS_GROUP | WS_TABSTOP,57,133,
+                    34,10
+    CONTROL         "",IDC_VARIATIONSPIN,"SpinnerControl",WS_GROUP,93,133,8,
+                    10
+    LTEXT           "Pivot At:",IDC_PIVOTATTEXT,28,154,28,8
+    COMBOBOX        IDC_PIVOT,57,152,45,48,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    RTEXT           "W/H Ratio:",IDC_RATIOTEXT,17,168,38,8
+    CONTROL         "",IDC_RATIO,"CustEdit",WS_GROUP | WS_TABSTOP,57,168,34,
+                    10
+    CONTROL         "",IDC_RATIOSPIN,"SpinnerControl",WS_GROUP,93,168,8,10
+    GROUPBOX        "Uniqueness:",IDC_UNIQUENESSBOX,2,210,104,28
+    RTEXT           "Seed:",IDC_SEEDTEXT,8,223,20,8
+    CONTROL         "",IDC_SEED,"CustEdit",WS_GROUP | WS_TABSTOP,30,223,34,
+                    10
+    CONTROL         "",IDC_SEEDSPIN,"SpinnerControl",WS_GROUP,66,223,8,10
+    CONTROL         "New",IDC_NEW,"CustButton",WS_GROUP | WS_TABSTOP,78,223,
+                    22,10
+    GROUPBOX        "Orientation:",IDC_ORIENTATIONFRAME,2,179,104,28
+    COMBOBOX        IDC_ORIENTATION,6,190,95,48,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+END
+
+IDD_MARKSHAPE_PARAMETERS DIALOGEX 0, 0, 107, 375
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "Contact Object:",IDC_OBJECTFRAME,2,2,104,40
+    CONTROL         "Pick Contact Object",IDC_PICK,"CustButton",WS_TABSTOP,6,
+                    12,95,12
+    CONTROL         "Align To Surface Animation",IDC_VERTEXANIMATED,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,28,97,10
+    GROUPBOX        "Orientation:",IDC_ORIENTATIONFRAME,2,45,104,41
+    RTEXT           "Align To:",IDC_LENGTHISTEXT,17,56,29,8
+    COMBOBOX        IDC_DIRECTION,47,54,54,67,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    RTEXT           "Divergence:",IDC_DIVERGENCETEXT,7,71,39,8
+    CONTROL         "",IDC_DIVERGENCE,"CustEdit",WS_GROUP | WS_TABSTOP,48,71,
+                    43,10
+    CONTROL         "",IDC_DIVERGENCESPIN,"SpinnerControl",WS_GROUP,93,71,8,
+                    10
+    GROUPBOX        "Size:",IDC_SIZEFRAME,2,90,104,115
+    CONTROL         "In World Space",IDC_WORLD,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,6,103,64,8
+    CONTROL         "In Local Space:",IDC_LOCAL,"Button",BS_AUTORADIOBUTTON,
+                    6,139,67,8
+    RTEXT           "Width:",IDC_WIDTHTEXT,33,114,22,8
+    CONTROL         "",IDC_WIDTH,"CustEdit",WS_GROUP | WS_TABSTOP,57,113,34,
+                    10
+    CONTROL         "",IDC_WIDTHSPIN,"SpinnerControl",WS_GROUP,93,113,8,10
+    RTEXT           "Length:",IDC_LENGTHTEXT,30,125,25,8
+    CONTROL         "",IDC_LENGTH,"CustEdit",WS_GROUP | WS_TABSTOP,57,125,34,
+                    10
+    CONTROL         "",IDC_LENGTHSPIN,"SpinnerControl",WS_GROUP,93,125,8,10
+    RTEXT           "Inherited %",IDC_INHERITEDTEXT,17,152,36,8
+    CONTROL         "",IDC_INHERITED,"CustEdit",WS_GROUP | WS_TABSTOP,57,151,
+                    34,10
+    CONTROL         "",IDC_INHERITEDSPIN,"SpinnerControl",WS_GROUP,93,151,8,
+                    10
+    RTEXT           "Variation %",IDC_VARIATIONTEXT,17,166,36,8
+    CONTROL         "",IDC_VARIATION,"CustEdit",WS_GROUP | WS_TABSTOP,57,165,
+                    34,10
+    CONTROL         "",IDC_VARIATIONSPIN,"SpinnerControl",WS_GROUP,93,165,8,
+                    10
+    CONTROL         "Impact Angle Distortion",IDC_IMPACTDISTORTION,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,178,89,10
+    RTEXT           "Distor. Max %",IDC_DISTORMAXTEXT,9,191,44,8
+    CONTROL         "",IDC_DISTORMAX,"CustEdit",WS_GROUP | WS_TABSTOP,57,190,
+                    34,10
+    CONTROL         "",IDC_DISTORMAXSPIN,"SpinnerControl",WS_GROUP,93,190,8,
+                    10
+    GROUPBOX        "Shape:",IDC_SHAPEFRAME,2,208,104,81
+    CONTROL         "Rectangle",IDC_RECTANGLE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,6,220,64,8
+    CONTROL         "Box Intersection",IDC_BOX,"Button",BS_AUTORADIOBUTTON,6,
+                    231,67,8
+    RTEXT           "Box Height:",IDC_HEIGHTTEXT,22,242,38,8
+    CONTROL         "",IDC_HEIGHT,"CustEdit",WS_GROUP | WS_TABSTOP,62,242,29,
+                    10
+    CONTROL         "",IDC_HEIGHTSPIN,"SpinnerControl",WS_GROUP,93,242,8,10
+    CONTROL         "Allow Multiple Elements",IDC_MULTISHAPE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,254,86,10
+    RTEXT           "Pivot Offset %",IDC_PIVOTLENGTHTEXT,13,297,45,8
+    CONTROL         "",IDC_PIVOTLENGTH,"CustEdit",WS_GROUP | WS_TABSTOP,62,
+                    296,29,10
+    CONTROL         "",IDC_PIVOTLENGTHSPIN,"SpinnerControl",WS_GROUP,93,296,
+                    8,10
+    RTEXT           "Surface Offset:",IDC_CLEARANCETEXT,12,309,48,8
+    CONTROL         "",IDC_CLEARANCE,"CustEdit",WS_GROUP | WS_TABSTOP,62,308,
+                    29,10
+    CONTROL         "",IDC_CLEARANCESPIN,"SpinnerControl",WS_GROUP,93,308,8,
+                    10
+    GROUPBOX        "Uniqueness:",IDC_UNIQUENESSBOX,2,344,104,28
+    RTEXT           "Seed:",IDC_SEEDTEXT,8,357,20,8
+    CONTROL         "",IDC_SEED,"CustEdit",WS_GROUP | WS_TABSTOP,30,357,34,
+                    10
+    CONTROL         "",IDC_SEEDSPIN,"SpinnerControl",WS_GROUP,66,357,8,10
+    CONTROL         "New",IDC_NEW,"CustButton",WS_GROUP | WS_TABSTOP,78,357,
+                    22,10
+    CONTROL         "Continuous Update",IDC_CONTUPDATE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,264,74,10
+    CONTROL         "Generate Mapping Coords.",IDC_GENERATEMAPPING,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,276,96,10
+    RTEXT           "Vertex Jitter:",IDC_VERTEXNOISETEXT,19,332,40,8
+    CONTROL         "",IDC_VERTEXNOISE,"CustEdit",WS_GROUP | WS_TABSTOP,62,
+                    332,29,10
+    CONTROL         "",IDC_VERTEXNOISESPIN,"SpinnerControl",WS_GROUP,93,332,
+                    8,10
+    RTEXT           "Offset Variation:",IDC_OFFSETVARTEXT,8,321,51,8
+    CONTROL         "",IDC_OFFSETVAR,"CustEdit",WS_GROUP | WS_TABSTOP,62,320,
+                    29,10
+    CONTROL         "",IDC_OFFSETVARSPIN,"SpinnerControl",WS_GROUP,93,320,8,
+                    10
+END
+
+IDD_COLLISIONSPACEWARP_PARAMETERS DIALOG  0, 0, 108, 255
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Deflectors:",IDC_OBJECTFRAME,2,2,104,58
+    LISTBOX         IDC_DEFLECTORLIST,8,12,91,27,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Add",IDC_COLLISION_PICKNODE,"CustButton",WS_TABSTOP,8,
+                    43,20,12
+    PUSHBUTTON      "By List",IDC_BYLIST,28,43,28,12
+    CONTROL         "Remove",IDC_REMOVE_COLLISION,"CustButton",WS_TABSTOP,59,
+                    43,40,12
+    GROUPBOX        "Test True If Particle:",IDC_STATIC,2,62,104,160
+    CONTROL         "Collides",IDC_ONCE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,7,72,40,10
+    CONTROL         "Is Slow After Collision(s)",IDC_SLOW,"Button",
+                    BS_AUTORADIOBUTTON,7,99,90,10
+    CONTROL         "Is Fast After Collision(s)",IDC_FAST,"Button",
+                    BS_AUTORADIOBUTTON,7,126,88,10
+    CONTROL         "Collided Multiple Times",IDC_MULTIPLE,"Button",
+                    BS_AUTORADIOBUTTON,7,154,87,10
+    CONTROL         "Will Collide",IDC_WILL,"Button",BS_AUTORADIOBUTTON,7,
+                    196,50,10
+    LTEXT           "Speed:",IDC_ONCESPEEDTEXT,26,84,24,8
+    COMBOBOX        IDC_ONCESPEED,51,82,51,110,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    RTEXT           "Speed Min:",IDC_SLOWSPEEDTEXT,11,111,37,8
+    CONTROL         "",IDC_SLOWSPEED,"CustEdit",WS_GROUP | WS_TABSTOP,51,111,
+                    40,10
+    CONTROL         "",IDC_SLOWSPEEDSPIN,"SpinnerControl",WS_GROUP,93,111,8,
+                    10
+    RTEXT           "Speed Max:",IDC_FASTSPEEDTEXT,9,138,39,8
+    CONTROL         "",IDC_FASTSPEED,"CustEdit",WS_GROUP | WS_TABSTOP,51,138,
+                    40,10
+    CONTROL         "",IDC_FASTSPEEDSPIN,"SpinnerControl",WS_GROUP,93,138,8,
+                    10
+    RTEXT           "# Times:",IDC_NUMTIMESTEXT,20,166,28,8
+    CONTROL         "",IDC_NUMTIMES,"CustEdit",WS_GROUP | WS_TABSTOP,51,166,
+                    40,10
+    CONTROL         "",IDC_NUMTIMESSPIN,"SpinnerControl",WS_GROUP,93,166,8,
+                    10
+    LTEXT           "Speed:",IDC_MULTISPEEDTEXT,26,181,24,8
+    COMBOBOX        IDC_MULTISPEED,51,179,51,110,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    RTEXT           "# Frames:",IDC_NUMFRAMESTEXT,17,208,32,8
+    CONTROL         "",IDC_NUMFRAMES,"CustEdit",WS_GROUP | WS_TABSTOP,51,208,
+                    40,10
+    CONTROL         "",IDC_NUMFRAMESSPIN,"SpinnerControl",WS_GROUP,93,208,8,
+                    10
+    GROUPBOX        "Uniqueness:",IDC_UNIQUENESSBOX2,2,225,104,27
+    RTEXT           "Seed:",IDC_SEEDTEXT2,8,237,20,8
+    CONTROL         "",IDC_SEED2,"CustEdit",WS_GROUP | WS_TABSTOP,30,237,34,
+                    10
+    CONTROL         "",IDC_SEEDSPIN2,"SpinnerControl",WS_GROUP,66,237,8,10
+    CONTROL         "New",IDC_NEW2,"CustButton",WS_GROUP | WS_TABSTOP,78,237,
+                    22,10
+END
+
+IDD_SPAWN_PARAMETERS DIALOG  0, 0, 108, 282
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Spawn Rate And Amount:",IDC_RATEFRAME,2,2,104,126
+    CONTROL         "Once",IDC_ONCE,"Button",BS_AUTORADIOBUTTON | WS_GROUP | 
+                    WS_TABSTOP,6,14,33,10
+    CONTROL         "Per Second",IDC_PERFRAME,"Button",BS_AUTORADIOBUTTON,6,
+                    26,52,10
+    CONTROL         "By Travel Distance",IDC_BYTRAVEL,"Button",
+                    BS_AUTORADIOBUTTON,6,48,76,10
+    CONTROL         "Delete Parent",IDC_DELETEPARENT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,43,14,56,10
+    CONTROL         "",IDC_PERFRAMENUM,"CustEdit",WS_GROUP | WS_TABSTOP,55,
+                    37,36,10
+    CONTROL         "",IDC_PERFRAMENUMSPIN,"SpinnerControl",WS_GROUP,93,37,8,
+                    10
+    LTEXT           "Step Size:",IDC_STEPSIZETEXT,20,60,33,8
+    CONTROL         "",IDC_STEPSIZE,"CustEdit",WS_GROUP | WS_TABSTOP,55,59,
+                    36,10
+    CONTROL         "",IDC_STEPSIZESPIN,"SpinnerControl",WS_GROUP,93,59,8,10
+    LTEXT           "Spawnable %",IDC_AFFECTSTEXT,9,74,44,8
+    CONTROL         "",IDC_AFFECTS,"CustEdit",WS_GROUP | WS_TABSTOP,55,73,36,
+                    10
+    CONTROL         "",IDC_AFFECTSSPIN,"SpinnerControl",WS_GROUP,93,73,8,10
+    RTEXT           "Offspring #",IDC_MULTIPLIERTEXT,9,86,42,8
+    CONTROL         "",IDC_MULTIPLIER,"CustEdit",WS_GROUP | WS_TABSTOP,55,85,
+                    36,10
+    CONTROL         "",IDC_MULTIPLIERSPIN,"SpinnerControl",WS_GROUP,93,85,8,
+                    10
+    RTEXT           "Variation %",IDC_AMOUNTVARIATIONTEXT,10,98,41,8
+    CONTROL         "",IDC_AMOUNTVARIATION,"CustEdit",WS_GROUP | WS_TABSTOP,
+                    55,97,36,10
+    CONTROL         "",IDC_AMOUNTVARIATIONSPIN,"SpinnerControl",WS_GROUP,93,
+                    97,8,10
+    LTEXT           "Sync By:",IDC_SYNCBYTEXT,8,112,28,8
+    COMBOBOX        IDC_SYNC,39,110,63,48,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    CONTROL         "Restart Particle Age",IDC_RESTARTAGE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,134,79,10
+    GROUPBOX        "Speed:",IDC_SPEEDFRAME,2,145,104,64
+    CONTROL         "    In Units:",IDC_SPEEDUNITS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,6,156,47,8
+    CONTROL         "Inherited %",IDC_SPEEDINHERITED,"Button",
+                    BS_AUTORADIOBUTTON,6,169,47,8
+    CONTROL         "",IDC_SPEED,"CustEdit",WS_GROUP | WS_TABSTOP,55,155,36,
+                    10
+    CONTROL         "",IDC_SPEEDSPIN,"SpinnerControl",WS_GROUP,93,155,8,10
+    CONTROL         "",IDC_INHERITED,"CustEdit",WS_GROUP | WS_TABSTOP,55,168,
+                    36,10
+    CONTROL         "",IDC_INHERITEDSPIN,"SpinnerControl",WS_GROUP,93,168,8,
+                    10
+    RTEXT           "Variation %",IDC_VARIATIONTEXT,14,181,38,8
+    CONTROL         "",IDC_VARIATION,"CustEdit",WS_GROUP | WS_TABSTOP,55,181,
+                    36,10
+    CONTROL         "",IDC_VARIATIONSPIN,"SpinnerControl",WS_GROUP,93,181,8,
+                    10
+    RTEXT           "Divergence:",IDC_DIVERGENCETEXT,14,194,39,8
+    CONTROL         "",IDC_DIVERGENCE,"CustEdit",WS_GROUP | WS_TABSTOP,55,
+                    194,36,10
+    CONTROL         "",IDC_DIVERGENCESPIN,"SpinnerControl",WS_GROUP,93,194,8,
+                    10
+    GROUPBOX        "Size:",IDC_SIZEFRAME,2,212,104,36
+    RTEXT           "Scale Factor %",IDC_SCALETEXT,5,222,48,8
+    CONTROL         "",IDC_SCALE,"CustEdit",WS_GROUP | WS_TABSTOP,55,221,36,
+                    10
+    CONTROL         "",IDC_SCALESPIN,"SpinnerControl",WS_GROUP,93,221,8,10
+    RTEXT           "Variation %",IDC_SCALEVARIATIONTEXT,12,234,41,8
+    CONTROL         "",IDC_SCALEVARIATION,"CustEdit",WS_GROUP | WS_TABSTOP,
+                    55,233,36,10
+    CONTROL         "",IDC_SCALEVARIATIONSPIN,"SpinnerControl",WS_GROUP,93,
+                    233,8,10
+    GROUPBOX        "Uniqueness:",IDC_UNIQUENESSBOX,2,252,104,27
+    RTEXT           "Seed:",IDC_SEEDTEXT,8,264,20,8
+    CONTROL         "",IDC_SEED,"CustEdit",WS_GROUP | WS_TABSTOP,30,264,34,
+                    10
+    CONTROL         "",IDC_SEEDSPIN,"SpinnerControl",WS_GROUP,66,264,8,10
+    CONTROL         "New",IDC_NEW,"CustButton",WS_GROUP | WS_TABSTOP,78,264,
+                    22,10
+    LTEXT           "Rate:",IDC_PERFRAMETEXT,34,37,18,8
+END
+
+IDD_SPAWNCOLLISION_PARAMETERS DIALOG  0, 0, 108, 395
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Test True for:",IDC_STATIC,2,2,104,35
+    CONTROL         "Parent Particles",IDC_PARTICLESCOLLIDED,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,12,90,10
+    CONTROL         "Spawn Particles",IDC_SPAWNPARTICLES,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,23,90,10
+    GROUPBOX        "Deflectors:",IDC_OBJECTFRAME,2,39,104,58
+    LISTBOX         IDC_DEFLECTORLIST,8,49,91,27,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Add",IDC_COLLISION_PICKNODE,"CustButton",WS_TABSTOP,8,
+                    80,20,12
+    PUSHBUTTON      "By List",IDC_BYLIST,28,80,28,12
+    CONTROL         "Remove",IDC_REMOVE_COLLISION,"CustButton",WS_TABSTOP,59,
+                    80,40,12
+    GROUPBOX        "Spawn Rate and Amount:",IDC_RATEFRAME,2,99,104,115
+    CONTROL         "Spawn On First Collision",IDC_ONCE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,6,110,91,10
+    CONTROL         "Spawn On Each Collision",IDC_EACH,"Button",
+                    BS_AUTORADIOBUTTON,6,133,91,10
+    CONTROL         "Delete Parent",IDC_DELETEPARENT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,37,121,56,10
+    LTEXT           "Until #",IDC_UNTILTEXT,31,145,22,8
+    CONTROL         "",IDC_UNTIL,"CustEdit",WS_GROUP | WS_TABSTOP,55,144,36,
+                    10
+    CONTROL         "",IDC_UNTILSPIN,"SpinnerControl",WS_GROUP,93,144,8,10
+    LTEXT           "Spawnable %",IDC_AFFECTSTEXT,10,161,44,8
+    CONTROL         "",IDC_AFFECTS,"CustEdit",WS_GROUP | WS_TABSTOP,55,160,
+                    36,10
+    CONTROL         "",IDC_AFFECTSSPIN,"SpinnerControl",WS_GROUP,93,160,8,10
+    RTEXT           "Offspring #",IDC_MULTIPLIERTEXT,10,173,42,8
+    CONTROL         "",IDC_MULTIPLIER,"CustEdit",WS_GROUP | WS_TABSTOP,55,
+                    172,36,10
+    CONTROL         "",IDC_MULTIPLIERSPIN,"SpinnerControl",WS_GROUP,93,172,8,
+                    10
+    RTEXT           "Variation %",IDC_AMOUNTVARIATIONTEXT,14,185,38,8
+    CONTROL         "",IDC_AMOUNTVARIATION,"CustEdit",WS_GROUP | WS_TABSTOP,
+                    55,184,36,10
+    CONTROL         "",IDC_AMOUNTVARIATIONSPIN,"SpinnerControl",WS_GROUP,93,
+                    184,8,10
+    LTEXT           "Sync By:",IDC_SYNCBYTEXT,8,199,28,8
+    COMBOBOX        IDC_SYNC,39,197,63,48,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    CONTROL         "Restart Particle Age",IDC_RESTARTAGE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,218,79,10
+    GROUPBOX        "Speed:",IDC_SPEEDFRAME,2,229,104,94
+    LTEXT           "Parent:",IDC_PARENTTEXT,14,240,24,8
+    COMBOBOX        IDC_PARENTSPEED,38,238,64,110,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    LTEXT           "Offspring:",IDC_CHILDSPEEDTEXT,7,255,31,8
+    COMBOBOX        IDC_CHILDSPEED,38,253,64,110,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    CONTROL         "In Units:",IDC_SPEEDUNITS,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,6,270,39,8
+    CONTROL         "Inherited %",IDC_SPEEDINHERITED,"Button",
+                    BS_AUTORADIOBUTTON,6,283,48,8
+    CONTROL         "",IDC_SPEED,"CustEdit",WS_GROUP | WS_TABSTOP,55,269,36,
+                    10
+    CONTROL         "",IDC_SPEEDSPIN,"SpinnerControl",WS_GROUP,93,269,8,10
+    CONTROL         "",IDC_INHERITED,"CustEdit",WS_GROUP | WS_TABSTOP,55,282,
+                    36,10
+    CONTROL         "",IDC_INHERITEDSPIN,"SpinnerControl",WS_GROUP,93,282,8,
+                    10
+    RTEXT           "Variation %",IDC_VARIATIONTEXT,13,295,39,8
+    CONTROL         "",IDC_VARIATION,"CustEdit",WS_GROUP | WS_TABSTOP,55,295,
+                    36,10
+    CONTROL         "",IDC_VARIATIONSPIN,"SpinnerControl",WS_GROUP,93,295,8,
+                    10
+    RTEXT           "Divergence:",IDC_DIVERGENCETEXT,14,308,39,8
+    CONTROL         "",IDC_DIVERGENCE,"CustEdit",WS_GROUP | WS_TABSTOP,55,
+                    308,36,10
+    CONTROL         "",IDC_DIVERGENCESPIN,"SpinnerControl",WS_GROUP,93,308,8,
+                    10
+    GROUPBOX        "Size:",IDC_SIZEFRAME,2,326,104,36
+    RTEXT           "Scale Factor %",IDC_SCALETEXT,5,335,47,8
+    CONTROL         "",IDC_SCALE,"CustEdit",WS_GROUP | WS_TABSTOP,55,335,36,
+                    10
+    CONTROL         "",IDC_SCALESPIN,"SpinnerControl",WS_GROUP,93,335,8,10
+    RTEXT           "Variation %",IDC_SCALEVARIATIONTEXT,16,347,36,8
+    CONTROL         "",IDC_SCALEVARIATION,"CustEdit",WS_GROUP | WS_TABSTOP,
+                    55,347,36,10
+    CONTROL         "",IDC_SCALEVARIATIONSPIN,"SpinnerControl",WS_GROUP,93,
+                    347,8,10
+    GROUPBOX        "Uniqueness:",IDC_UNIQUENESSBOX,2,366,104,27
+    RTEXT           "Seed:",IDC_SEEDTEXT,8,378,20,8
+    CONTROL         "",IDC_SEED,"CustEdit",WS_GROUP | WS_TABSTOP,30,378,34,
+                    10
+    CONTROL         "",IDC_SEEDSPIN,"SpinnerControl",WS_GROUP,66,378,8,10
+    CONTROL         "New",IDC_NEW,"CustButton",WS_GROUP | WS_TABSTOP,78,378,
+                    22,10
+END
+
+IDD_EXIT_PARAMETERS DIALOG  0, 0, 108, 110
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Remove:",IDC_TYPEFRAME,2,2,104,75
+    CONTROL         "All Particles",IDC_ALL,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,7,14,52,10
+    CONTROL         "Selected Particles Only",IDC_SELECTED,"Button",
+                    BS_AUTORADIOBUTTON,7,26,86,10
+    CONTROL         "By Particle Age",IDC_BYAGE,"Button",BS_AUTORADIOBUTTON,
+                    7,38,64,10
+    RTEXT           "Life Span:",IDC_LIFESPANTEXT,16,51,37,8
+    CONTROL         "",IDC_AGE,"CustEdit",WS_GROUP | WS_TABSTOP,56,51,36,10
+    CONTROL         "",IDC_AGESPIN,"SpinnerControl",WS_GROUP,94,51,8,10
+    RTEXT           "Variation:",IDC_VARIATIONTEXT,22,63,32,8
+    CONTROL         "",IDC_VARIATION,"CustEdit",WS_GROUP | WS_TABSTOP,56,63,
+                    36,10
+    CONTROL         "",IDC_VARIATIONSPIN,"SpinnerControl",WS_GROUP,94,63,8,
+                    10
+    GROUPBOX        "Uniqueness:",IDC_UNIQUENESSBOX,2,80,104,27
+    RTEXT           "Seed:",IDC_SEEDTEXT,8,92,20,8
+    CONTROL         "",IDC_SEED,"CustEdit",WS_GROUP | WS_TABSTOP,30,92,34,10
+    CONTROL         "",IDC_SEEDSPIN,"SpinnerControl",WS_GROUP,66,92,8,10
+    CONTROL         "New",IDC_NEW,"CustButton",WS_GROUP | WS_TABSTOP,78,92,
+                    22,10
+END
+
+IDD_SIMPLESCALE_PARAMETERS DIALOG  0, 0, 108, 226
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Type:",IDC_STATIC,4,6,19,8
+    COMBOBOX        IDC_TYPE,24,4,81,67,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    GROUPBOX        "Scale Factor:",IDC_STATIC,2,20,104,62
+    RTEXT           "X %",IDC_XSCALETEXT,26,32,19,8
+    CONTROL         "",IDC_XSCALE,"CustEdit",WS_GROUP | WS_TABSTOP,48,31,42,
+                    10
+    CONTROL         "",IDC_XSCALESPIN,"SpinnerControl",WS_GROUP,92,31,8,10
+    RTEXT           "Y %",IDC_YSCALETEXT,23,44,22,8
+    CONTROL         "",IDC_YSCALE,"CustEdit",WS_GROUP | WS_TABSTOP,48,43,42,
+                    10
+    CONTROL         "",IDC_YSCALESPIN,"SpinnerControl",WS_GROUP,92,43,8,10
+    RTEXT           "Z %",IDC_ZSCALETEXT,21,56,23,8
+    CONTROL         "",IDC_ZSCALE,"CustEdit",WS_GROUP | WS_TABSTOP,48,55,42,
+                    10
+    CONTROL         "",IDC_ZSCALESPIN,"SpinnerControl",WS_GROUP,92,55,8,10
+    CONTROL         "Constrain Proportions",IDC_CONSTRAINSCALE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,68,83,10
+    GROUPBOX        "Scale Variation:",IDC_STATIC,2,85,104,77
+    RTEXT           "X %",IDC_XVARTEXT,26,97,19,8
+    CONTROL         "",IDC_XVAR,"CustEdit",WS_GROUP | WS_TABSTOP,48,96,42,10
+    CONTROL         "",IDC_XVARSPIN,"SpinnerControl",WS_GROUP,92,96,8,10
+    RTEXT           "Y %",IDC_YVARTEXT,23,109,22,8
+    CONTROL         "",IDC_YVAR,"CustEdit",WS_GROUP | WS_TABSTOP,48,108,42,
+                    10
+    CONTROL         "",IDC_YVARSPIN,"SpinnerControl",WS_GROUP,92,108,8,10
+    RTEXT           "Z %",IDC_ZVARTEXT,21,121,23,8
+    CONTROL         "",IDC_ZVAR,"CustEdit",WS_GROUP | WS_TABSTOP,48,120,42,
+                    10
+    CONTROL         "",IDC_ZVARSPIN,"SpinnerControl",WS_GROUP,92,120,8,10
+    CONTROL         "Constrain Proportions",IDC_CONSTRAINVARIATION,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,133,83,10
+    LTEXT           "Bias:",IDC_BIASTEST,6,147,16,8
+    COMBOBOX        IDC_BIAS,23,145,79,67,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    GROUPBOX        "Animation Offset Keying:",IDC_SYNCFRAME,2,165,104,28
+    LTEXT           "Sync By:",IDC_SYNCBYTEXT,7,178,28,8
+    COMBOBOX        IDC_SYNC,38,176,63,48,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    GROUPBOX        "Uniqueness:",IDC_UNIQUENESSBOX,2,197,104,27
+    RTEXT           "Seed:",IDC_SEEDTEXT,8,209,20,8
+    CONTROL         "",IDC_SEED,"CustEdit",WS_GROUP | WS_TABSTOP,30,209,34,
+                    10
+    CONTROL         "",IDC_SEEDSPIN,"SpinnerControl",WS_GROUP,66,209,8,10
+    CONTROL         "New",IDC_NEW,"CustButton",WS_GROUP | WS_TABSTOP,78,209,
+                    22,10
+END
+
+IDD_SPLITSELECTED_PARAMETERS DIALOG  0, 0, 108, 40
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Test True If Particle:",IDC_STATIC,2,3,104,35
+    CONTROL         "Is Selected",IDC_TRUESELECTED,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,6,13,51,10
+    CONTROL         "Is Not Selected",IDC_TRUENOTSELECTED,"Button",
+                    BS_AUTORADIOBUTTON,6,24,65,10
+END
+
+IDD_SPLITBYSOURCE_PARAMETERS DIALOG  0, 0, 108, 112
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Test True If Particle:",IDC_STATIC,2,3,104,35
+    CONTROL         "Is From Selected Source",IDC_TRUESOURCE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,6,13,93,10
+    CONTROL         "Is Not From Sel. Source",IDC_TRUENOTSOURCE,"Button",
+                    BS_AUTORADIOBUTTON,6,24,91,10
+    GROUPBOX        "Select Emission Sources:",IDC_STATIC,2,41,104,68
+    LISTBOX         IDC_SOURCELIST,6,52,95,52,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_SPLITBYAMOUNT_PARAMETERS DIALOG  0, 0, 108, 144
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Test True For:",IDC_STATIC,2,4,104,107
+    CONTROL         "Fraction Of Particles",IDC_TRUEFRACTION,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,6,13,79,10
+    CONTROL         "Every Nth Particle",IDC_TRUENTH,"Button",
+                    BS_AUTORADIOBUTTON,6,38,73,10
+    CONTROL         "First N Particles",IDC_TRUEFIRSTN,"Button",
+                    BS_AUTORADIOBUTTON,6,63,65,10
+    CONTROL         "Particles After N First",IDC_TRUEAFTERN,"Button",
+                    BS_AUTORADIOBUTTON,6,74,81,10
+    RTEXT           "Ratio %",IDC_RATIOTEXT,18,25,27,8
+    CONTROL         "",IDC_RATIO,"CustEdit",WS_GROUP | WS_TABSTOP,48,24,42,
+                    10
+    CONTROL         "",IDC_RATIO2SPIN,"SpinnerControl",WS_GROUP,92,24,8,10
+    RTEXT           "N:",IDC_EVERYNTEXT,38,50,8,8
+    CONTROL         "",IDC_EVERYN,"CustEdit",WS_GROUP | WS_TABSTOP,48,49,42,
+                    10
+    CONTROL         "",IDC_EVERYNSPIN,"SpinnerControl",WS_GROUP,92,49,8,10
+    RTEXT           "N:",IDC_FIRSTNTEXT,38,86,8,8
+    CONTROL         "",IDC_FIRSTN,"CustEdit",WS_GROUP | WS_TABSTOP,48,85,42,
+                    10
+    CONTROL         "",IDC_FIRSTNSPIN,"SpinnerControl",WS_GROUP,92,85,8,10
+    CONTROL         "Per Emission Source",IDC_PERSOURCE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,97,78,10
+    GROUPBOX        "Uniqueness:",IDC_UNIQUENESSBOX,3,114,102,27
+    RTEXT           "Seed:",IDC_SEEDTEXT,8,126,20,8
+    CONTROL         "",IDC_SEED,"CustEdit",WS_GROUP | WS_TABSTOP,30,126,34,
+                    10
+    CONTROL         "",IDC_SEEDSPIN,"SpinnerControl",WS_GROUP,66,126,8,10
+    CONTROL         "New",IDC_NEW,"CustButton",WS_GROUP | WS_TABSTOP,78,126,
+                    22,10
+END
+
+IDD_SIMPLEMAPPING_PARAMETERS DIALOG  0, 0, 108, 124
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Map Values:",IDC_STATIC,2,2,104,65
+    LTEXT           "Sync By:",IDC_SYNCBYTEXT,9,52,28,8
+    COMBOBOX        IDC_SYNC,39,50,63,48,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    CONTROL         "Map Channel:",IDC_MAPCHANNEL,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,6,82,56,8
+    CONTROL         "Vertex Color Channel",IDC_VERTEXCOLORCHANNEL,"Button",
+                    BS_AUTORADIOBUTTON,6,94,87,8
+    CONTROL         "",IDC_CHANNELID,"CustEdit",WS_GROUP | WS_TABSTOP,63,81,
+                    28,10
+    CONTROL         "",IDC_CHANNELIDSPIN,"SpinnerControl",WS_GROUP,93,81,8,
+                    10
+    GROUPBOX        "Channel:",IDC_STATIC,2,70,104,37
+    RTEXT           "U:",IDC_UTEXT,17,13,20,8
+    CONTROL         "",IDC_U,"CustEdit",WS_GROUP | WS_TABSTOP,40,13,51,10
+    CONTROL         "",IDC_USPIN,"SpinnerControl",WS_GROUP,93,13,8,10
+    RTEXT           "V:",IDC_VTEXT,17,25,20,8
+    CONTROL         "",IDC_V,"CustEdit",WS_GROUP | WS_TABSTOP,40,25,51,10
+    CONTROL         "",IDC_VSPIN,"SpinnerControl",WS_GROUP,93,25,8,10
+    RTEXT           "W:",IDC_WTEXT,17,37,20,8
+    CONTROL         "",IDC_W,"CustEdit",WS_GROUP | WS_TABSTOP,40,37,51,10
+    CONTROL         "",IDC_WSPIN,"SpinnerControl",WS_GROUP,93,37,8,10
+    CONTROL         "Show Map In Viewport",IDC_SHOWINVIEWPORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,111,87,10
+END
+
+IDD_POSITIONONOBJECT_PARAMETERS DIALOG  0, 0, 108, 403
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Lock On Emitter",IDC_LOCK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,8,6,90,10
+    CONTROL         "Inherit Emitter Movement",IDC_INHERIT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,18,90,10
+    RTEXT           "Multiplier %",IDC_MULTIPLIERTEXT,15,30,36,8
+    CONTROL         "",IDC_MULTIPLIER,"CustEdit",WS_GROUP | WS_TABSTOP,55,30,
+                    35,10
+    CONTROL         "",IDC_MULTIPLIERSPIN,"SpinnerControl",WS_GROUP,92,30,8,
+                    10
+    RTEXT           "Variation %",IDC_VARIATIONTEXT,15,42,36,8
+    CONTROL         "",IDC_VARIATION2,"CustEdit",WS_GROUP | WS_TABSTOP,55,42,
+                    35,10
+    CONTROL         "",IDC_VARIATIONSPIN,"SpinnerControl",WS_GROUP,92,42,8,
+                    10
+    GROUPBOX        "Emitter Objects:",IDC_OBJECTFRAME,2,56,104,102
+    LISTBOX         IDC_OBJECTLIST,8,66,91,45,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Add",IDC_PICKNODE,"CustButton",WS_TABSTOP,8,115,20,12
+    PUSHBUTTON      "By List",IDC_BYLIST,28,115,28,12
+    CONTROL         "Remove",IDC_REMOVENODE,"CustButton",WS_TABSTOP,59,115,
+                    40,12
+    CONTROL         "Animated Shape",IDC_ANIMATED,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,8,131,68,10
+    CONTROL         "Subframe Sampling",IDC_SUBFRAME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,143,77,10
+    GROUPBOX        "Location:",IDC_STATIC,2,160,104,173
+    COMBOBOX        IDC_TYPE,8,171,93,107,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    CONTROL         "Surface Offset",IDC_SURFACEOFFSET,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,187,59,10
+    RTEXT           "Min:",IDC_OFFSETMINTEXT,31,199,21,8
+    CONTROL         "",IDC_OFFSETMIN,"CustEdit",WS_GROUP | WS_TABSTOP,54,199,
+                    36,10
+    CONTROL         "",IDC_OFFSETMINSPIN,"SpinnerControl",WS_GROUP,92,199,8,
+                    10
+    RTEXT           "Max:",IDC_OFFSETMAXTEXT,31,211,21,8
+    CONTROL         "",IDC_OFFSETMAX,"CustEdit",WS_GROUP | WS_TABSTOP,54,211,
+                    36,10
+    CONTROL         "",IDC_OFFSETMAXSPIN,"SpinnerControl",WS_GROUP,92,211,8,
+                    10
+    CONTROL         "Density By Material",IDC_NONUNIFORM,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,225,76,10
+    COMBOBOX        IDC_DENSITYTYPE,19,237,82,67,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    CONTROL         "Use Sub-Material",IDC_USESUBMAT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,19,254,70,10
+    RTEXT           "Mtl ID:",IDC_MATIDTEXT,31,266,21,8
+    CONTROL         "",IDC_MATID,"CustEdit",WS_GROUP | WS_TABSTOP,54,266,36,
+                    10
+    CONTROL         "",IDC_MATIDSPIN,"SpinnerControl",WS_GROUP,92,266,8,10
+    CONTROL         "Separation",IDC_APART,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,8,281,50,10
+    RTEXT           "Distance:",IDC_DISTANCETEXT,19,294,33,8
+    CONTROL         "",IDC_DISTANCE,"CustEdit",WS_GROUP | WS_TABSTOP,54,293,
+                    36,10
+    CONTROL         "",IDC_DISTANCESPIN,"SpinnerControl",WS_GROUP,92,293,8,
+                    10
+    CONTROL         "Distinct Points Only",IDC_DISTINCT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,305,77,10
+    RTEXT           "Total:",IDC_TOTALTEXT,31,318,21,8
+    CONTROL         "",IDC_TOTALDISTINCT,"CustEdit",WS_GROUP | WS_TABSTOP,54,
+                    317,36,10
+    CONTROL         "",IDC_TOTALDISTINCTSPIN,"SpinnerControl",WS_GROUP,92,
+                    317,8,10
+    GROUPBOX        "If Location Is Invalid:",IDC_REMOVEBOX,2,336,104,24
+    CONTROL         "Delete Particles",IDC_DELETEPARTICLES,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,346,65,10
+    GROUPBOX        "Uniqueness:",IDC_UNIQUENESSBOX,2,363,104,38
+    RTEXT           "Seed:",IDC_SEEDTEXT,8,375,20,8
+    CONTROL         "",IDC_SEED,"CustEdit",WS_GROUP | WS_TABSTOP,30,375,34,
+                    10
+    CONTROL         "",IDC_SEEDSPIN,"SpinnerControl",WS_GROUP,66,375,8,10
+    CONTROL         "New",IDC_NEW,"CustButton",WS_GROUP | WS_TABSTOP,78,375,
+                    22,10
+    RTEXT           "Attempts Max:",IDC_ATTEMPTSMAXTEXT,5,388,47,8
+    CONTROL         "",IDC_ATTEMPTSMAX,"CustEdit",WS_GROUP | WS_TABSTOP,54,
+                    387,36,10
+    CONTROL         "",IDC_ATTEMPTSMAXSPIN,"SpinnerControl",WS_GROUP,92,387,
+                    8,10
+END
+
+IDD_SPEEDSURFACENORMALS_PARAMETERS DIALOG  0, 0, 108, 378
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    COMBOBOX        IDC_SPEEDTYPE,8,4,94,67,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    CONTROL         "",IDC_USESPEEDVALUE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,8,21,10,10
+    RTEXT           "Speed:",IDC_SPEEDTEXT,23,22,24,8
+    CONTROL         "",IDC_SPEED,"CustEdit",WS_GROUP | WS_TABSTOP,49,22,42,
+                    10
+    CONTROL         "",IDC_SPEEDSPIN,"SpinnerControl",WS_GROUP,93,22,8,10
+    RTEXT           "Variation:",IDC_VARIATIONTEXT,15,34,32,8
+    CONTROL         "",IDC_VARIATION,"CustEdit",WS_GROUP | WS_TABSTOP,49,34,
+                    42,10
+    CONTROL         "",IDC_VARIATIONSPIN,"SpinnerControl",WS_GROUP,93,34,8,
+                    10
+    GROUPBOX        "Surface Geometry:",IDC_SURFACEFRAME,2,47,104,155
+    LISTBOX         IDC_OBJECTLIST,8,57,91,45,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Add",IDC_PICKNODE,"CustButton",WS_TABSTOP,8,106,20,12
+    PUSHBUTTON      "By List",IDC_BYLIST,28,106,28,12
+    CONTROL         "Remove",IDC_REMOVENODE,"CustButton",WS_TABSTOP,59,106,
+                    40,12
+    CONTROL         "Animated Shape",IDC_ANIMATED,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,8,122,68,10
+    CONTROL         "Subframe Sampling",IDC_SUBFRAME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,134,77,10
+    CONTROL         "Speed By Material",IDC_BYMATERIAL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,146,73,10
+    COMBOBOX        IDC_MATERIALTYPE,19,158,82,67,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    CONTROL         "Use Sub-Material",IDC_USESUBMAT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,19,175,70,10
+    RTEXT           "Mtl ID:",IDC_MATIDTEXT,26,187,21,8
+    CONTROL         "",IDC_MATID,"CustEdit",WS_GROUP | WS_TABSTOP,49,187,42,
+                    10
+    CONTROL         "",IDC_MATIDSPIN,"SpinnerControl",WS_GROUP,93,187,8,10
+    GROUPBOX        "Direction:",IDC_STATIC,2,205,104,43
+    COMBOBOX        IDC_DIRECTION,8,216,94,67,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    RTEXT           "Divergence:",IDC_DIVERGENCETEXT,7,233,39,8
+    CONTROL         "",IDC_DIVERGENCE,"CustEdit",WS_GROUP | WS_TABSTOP,49,
+                    233,42,10
+    CONTROL         "",IDC_DIVERGENCESPIN,"SpinnerControl",WS_GROUP,93,233,8,
+                    10
+    GROUPBOX        "Continuous Speed Control:",IDC_CONTINUOUSFRAME,2,250,
+                    104,65
+    RTEXT           "Accel Limit:",IDC_ACCELLIMITTEXT,7,262,39,8
+    CONTROL         "",IDC_ACCELLIMIT,"CustEdit",WS_GROUP | WS_TABSTOP,49,
+                    262,42,10
+    CONTROL         "",IDC_ACCELLIMITSPIN,"SpinnerControl",WS_GROUP,93,262,8,
+                    10
+    CONTROL         "Unlimited Range",IDC_UNLIMITEDRANGE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,275,68,10
+    RTEXT           "Range:",IDC_RANGETEXT,7,288,39,8
+    CONTROL         "",IDC_RANGE,"CustEdit",WS_GROUP | WS_TABSTOP,49,288,42,
+                    10
+    CONTROL         "",IDC_RANGESPIN,"SpinnerControl",WS_GROUP,93,288,8,10
+    RTEXT           "Falloff Zone:",IDC_FALLOFFTEXT,7,300,39,8
+    CONTROL         "",IDC_FALLOFF,"CustEdit",WS_GROUP | WS_TABSTOP,49,300,
+                    42,10
+    CONTROL         "",IDC_FALLOFFSPIN,"SpinnerControl",WS_GROUP,93,300,8,10
+    GROUPBOX        "Animation Offset Keying:",IDC_STATIC,2,317,104,28
+    LTEXT           "Sync By:",IDC_SYNCBYTEXT,9,329,28,8
+    COMBOBOX        IDC_SYNC,39,327,63,48,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    GROUPBOX        "Uniqueness:",IDC_UNIQUENESSBOX,2,348,104,27
+    RTEXT           "Seed:",IDC_SEEDTEXT,8,360,20,8
+    CONTROL         "",IDC_SEED,"CustEdit",WS_GROUP | WS_TABSTOP,30,360,34,
+                    10
+    CONTROL         "",IDC_SEEDSPIN,"SpinnerControl",WS_GROUP,66,360,8,10
+    CONTROL         "New",IDC_NEW,"CustButton",WS_GROUP | WS_TABSTOP,78,360,
+                    22,10
+END
+
+IDD_SPEEDGOTOTARGET_PARAMETERS DIALOGEX 0, 0, 108, 437
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    COMBOBOX        IDC_SPEEDTYPE,8,4,94,67,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    GROUPBOX        "Test True If Distance To:",IDC_TESTFRAME,2,20,104,40
+    COMBOBOX        IDC_TESTTYPE,8,30,94,67,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    RTEXT           "Is Less Than:",IDC_ISLESSTHANTEXT,7,45,45,8
+    CONTROL         "",IDC_DISTANCE,"CustEdit",WS_GROUP | WS_TABSTOP,55,45,
+                    36,10
+    CONTROL         "",IDC_DISTANCESPIN,"SpinnerControl",WS_GROUP,93,45,8,10
+    GROUPBOX        "Control By Speed:",IDC_SPEEDFRAME,2,62,104,103
+    CONTROL         "Use Cruise Speed",IDC_USECRUISESPEED,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,73,90,10
+    RTEXT           "Speed:",IDC_CRUISESPEEDTEXT,28,85,24,8
+    CONTROL         "",IDC_CRUISESPEED,"CustEdit",WS_GROUP | WS_TABSTOP,55,
+                    85,36,10
+    CONTROL         "",IDC_CRUISESPEEDSPIN,"SpinnerControl",WS_GROUP,93,85,8,
+                    10
+    RTEXT           "Variation:",IDC_CRUISEVARIATIONTEXT,20,98,32,8
+    CONTROL         "",IDC_CRUISEVARIATION,"CustEdit",WS_GROUP | WS_TABSTOP,
+                    55,98,36,10
+    CONTROL         "",IDC_CRUISEVARIATIONSPIN,"SpinnerControl",WS_GROUP,93,
+                    98,8,10
+    RTEXT           "Accel Limit:",IDC_ACCELLIMITEXT,15,116,37,8
+    CONTROL         "",IDC_ACCELLIMIT,"CustEdit",WS_GROUP | WS_TABSTOP,55,
+                    116,36,10
+    CONTROL         "",IDC_ACCELLIMITSPIN,"SpinnerControl",WS_GROUP,93,116,8,
+                    10
+    RTEXT           "Ease In %",IDC_EASEINTEXT2,19,129,32,8
+    CONTROL         "",IDC_EASEIN,"CustEdit",WS_GROUP | WS_TABSTOP,55,129,36,
+                    10
+    CONTROL         "",IDC_EASEINSPIN2,"SpinnerControl",WS_GROUP,93,129,8,10
+    LTEXT           "Sync By:",IDC_SYNCBYTEXT,9,150,28,8
+    COMBOBOX        IDC_SYNC,39,148,63,48,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    GROUPBOX        "Control By Time:",IDC_TIMEFRAME,2,62,104,103
+    LTEXT           "Timing:",IDC_TIMINGTEXT,14,74,24,8
+    COMBOBOX        IDC_TIMING,39,72,63,48,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    RTEXT           "Time:",IDC_TIMEVALUETEXT,34,90,18,8
+    CONTROL         "",IDC_TIMEVALUE,"CustEdit",WS_GROUP | WS_TABSTOP,55,90,
+                    36,10
+    CONTROL         "",IDC_TIMEVALUESPIN,"SpinnerControl",WS_GROUP,93,90,8,
+                    10
+    RTEXT           "Variation:",IDC_TIMEVARIATIONTEXT,20,102,32,8
+    CONTROL         "",IDC_TIMEVARIATION,"CustEdit",WS_GROUP | WS_TABSTOP,55,
+                    102,36,10
+    CONTROL         "",IDC_TIMEVARIATIONSPIN,"SpinnerControl",WS_GROUP,93,
+                    102,8,10
+    CONTROL         "Subframe Sampling",IDC_SUBFRAME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,115,90,10
+    CONTROL         "Use Docking Speed",IDC_USEDOCKINGSPEED,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,127,90,10
+    RTEXT           "Speed:",IDC_DOCKINGSPEEDTEXT,28,138,24,8
+    CONTROL         "",IDC_DOCKINGSPEED,"CustEdit",WS_GROUP | WS_TABSTOP,55,
+                    138,36,10
+    CONTROL         "",IDC_DOCKINGSPEEDSPIN,"SpinnerControl",WS_GROUP,93,138,
+                    8,10
+    RTEXT           "Variation:",IDC_DOCKINGVARIATIONTEXT,21,150,30,8
+    CONTROL         "",IDC_DOCKINGVARIATION,"CustEdit",WS_GROUP | WS_TABSTOP,
+                    55,150,36,10
+    CONTROL         "",IDC_DOCKINGVARIATIONSPIN,"SpinnerControl",WS_GROUP,93,
+                    150,8,10
+    GROUPBOX        "Target:",IDC_TARGETFRAME,2,167,104,171
+    CONTROL         "Icon",IDC_TARGETICON,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,8,179,28,8
+    CONTROL         "Mesh Objects",IDC_TARGETOBJECTS,"Button",
+                    BS_AUTORADIOBUTTON,40,179,57,8
+    LISTBOX         IDC_OBJECTLIST,7,190,94,45,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Add",IDC_PICKNODE,"CustButton",WS_TABSTOP,7,239,21,12
+    PUSHBUTTON      "By List",IDC_BYLIST,28,239,28,12
+    CONTROL         "Remove",IDC_REMOVENODE,"CustButton",WS_TABSTOP,59,239,
+                    41,12
+    LTEXT           "Sync By:",IDC_TARGETSYNCBYTEXT,8,256,28,8
+    COMBOBOX        IDC_TARGETSYNC,38,254,64,48,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    CONTROL         "Animated Shape",IDC_ANIMATED,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,8,270,68,10
+    CONTROL         "Follow Target Animation",IDC_FOLLOWTARGET,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,282,91,10
+    CONTROL         "Lock On Target Object",IDC_LOCKTARGET,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,324,89,10
+    LTEXT           "Point:",IDC_POINTTEXT,11,297,19,8
+    COMBOBOX        IDC_POINT,32,294,70,67,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    LTEXT           "Object:",IDC_OBJECTTEXT,7,311,24,8
+    COMBOBOX        IDC_ASSIGNMENT,32,309,70,67,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    GROUPBOX        "Docking Direction:",IDC_DOCKINGFRAME,2,340,104,40
+    LTEXT           "Type:",IDC_DOCKINGTYPETEXT,11,353,19,8
+    COMBOBOX        IDC_DIRECTION,32,350,70,67,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    RTEXT           "Distance:",IDC_DISTANCETEXT2,22,367,31,8
+    CONTROL         "",IDC_DOCKINGDISTANCE,"CustEdit",WS_GROUP | WS_TABSTOP,
+                    55,366,36,10
+    CONTROL         "",IDC_DOCKINGDISTANCESPIN,"SpinnerControl",WS_GROUP,93,
+                    366,8,10
+    RTEXT           "Icon Size:",IDC_ICONSIZETEXT,14,384,38,8
+    CONTROL         "",IDC_ICONSIZE,"CustEdit",WS_GROUP | WS_TABSTOP,55,384,
+                    36,10
+    CONTROL         "",IDC_ICONSIZESPIN,"SpinnerControl",WS_GROUP,93,384,8,
+                    10
+    GROUPBOX        "Uniqueness:",IDC_UNIQUENESSBOX,2,408,104,27
+    RTEXT           "Seed:",IDC_SEEDTEXT,8,420,20,8
+    CONTROL         "",IDC_SEED,"CustEdit",WS_GROUP | WS_TABSTOP,30,420,34,
+                    10
+    CONTROL         "",IDC_SEEDSPIN,"SpinnerControl",WS_GROUP,66,420,8,10
+    CONTROL         "New",IDC_NEW,"CustButton",WS_GROUP | WS_TABSTOP,78,420,
+                    22,10
+    CONTROL         "Color Coordinated",IDC_COLORCOORDINATED,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,396,72,10
+END
+
+IDD_SPEEDCOPY_PARAMETERS DIALOG  0, 0, 108, 223
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    RTEXT           "Accel Limit:",IDC_ACCELLIMITTEXT,10,6,37,8
+    CONTROL         "",IDC_ACCELLIMIT,"CustEdit",WS_GROUP | WS_TABSTOP,49,6,
+                    42,10
+    CONTROL         "",IDC_ACCELLIMITSPIN,"SpinnerControl",WS_GROUP,93,6,8,
+                    10
+    CONTROL         "Speed Variation",IDC_SPEEDVARIATION,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,30,66,10
+    RTEXT           "Min %",IDC_MINTEXT,6,42,39,8
+    CONTROL         "",IDC_MINSPEED,"CustEdit",WS_GROUP | WS_TABSTOP,49,42,
+                    42,10
+    CONTROL         "",IDC_MINSPEEDSPIN,"SpinnerControl",WS_GROUP,93,42,8,10
+    RTEXT           "Max %",IDC_MAXTEXT,6,54,39,8
+    CONTROL         "",IDC_MAXSPEED,"CustEdit",WS_GROUP | WS_TABSTOP,49,54,
+                    42,10
+    CONTROL         "",IDC_MAXSPEEDSPIN,"SpinnerControl",WS_GROUP,93,54,8,10
+    CONTROL         "Use Icon Orientation",IDC_USEORIENT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,67,81,10
+    CONTROL         "Steer Towards Trajectory",IDC_STEER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,79,95,10
+    RTEXT           "Distance:",IDC_DISTANCETEXT,15,91,32,8
+    CONTROL         "",IDC_DISTANCE,"CustEdit",WS_GROUP | WS_TABSTOP,49,91,
+                    42,10
+    CONTROL         "",IDC_DISTANCESPIN,"SpinnerControl",WS_GROUP,93,91,8,10
+    GROUPBOX        "Icon Animation:",IDC_ICONANIMATIONFRAME,2,135,104,28
+    LTEXT           "Sync By:",IDC_SYNCBYTEXT,9,148,28,8
+    COMBOBOX        IDC_SYNC,39,146,63,48,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    RTEXT           "Icon Size:",IDC_ICONSIZETEXT,8,170,38,8
+    CONTROL         "",IDC_ICONSIZE,"CustEdit",WS_GROUP | WS_TABSTOP,49,170,
+                    42,10
+    CONTROL         "",IDC_ICONSIZESPIN,"SpinnerControl",WS_GROUP,93,170,8,
+                    10
+    GROUPBOX        "Uniqueness:",IDC_UNIQUENESSBOX,2,194,104,27
+    RTEXT           "Seed:",IDC_SEEDTEXT,8,206,20,8
+    CONTROL         "",IDC_SEED,"CustEdit",WS_GROUP | WS_TABSTOP,30,206,34,
+                    10
+    CONTROL         "",IDC_SEEDSPIN,"SpinnerControl",WS_GROUP,66,206,8,10
+    CONTROL         "New",IDC_NEW,"CustButton",WS_GROUP | WS_TABSTOP,78,206,
+                    22,10
+    RTEXT           "Influence %",IDC_INFLUENCETEXT,7,18,38,8
+    CONTROL         "",IDC_INFLUENCE,"CustEdit",WS_GROUP | WS_TABSTOP,49,18,
+                    42,10
+    CONTROL         "",IDC_INFLUENCESPIN,"SpinnerControl",WS_GROUP,93,18,8,
+                    10
+    GROUPBOX        "Parameters Animation:",IDC_PARAMANIMATIONFRAME,2,104,
+                    104,28
+    LTEXT           "Sync By:",IDC_SYNCBYTEXT2,9,117,28,8
+    COMBOBOX        IDC_PARAMSYNC,39,115,63,48,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    CONTROL         "Color Coordinated",IDC_COLORCOORDINATED,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,182,72,10
+END
+
+IDD_SPEEDKEEPAPART_PARAMETERS DIALOG  0, 0, 108, 349
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    RTEXT           "Force:",IDC_FORCETEXT,33,6,21,8
+    CONTROL         "",IDC_FORCE,"CustEdit",WS_GROUP | WS_TABSTOP,57,6,36,10
+    CONTROL         "",IDC_FORCESPIN,"SpinnerControl",WS_GROUP,95,6,8,10
+    CONTROL         " Accel Limit:",IDC_USEACCELLIMIT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,18,51,10
+    CONTROL         "",IDC_ACCELLIMIT,"CustEdit",WS_GROUP | WS_TABSTOP,57,18,
+                    36,10
+    CONTROL         "",IDC_ACCELLIMITSPIN,"SpinnerControl",WS_GROUP,95,18,8,
+                    10
+    CONTROL         "Speed Limit:",IDC_USESPEEDLIMIT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,30,51,10
+    CONTROL         "",IDC_SPEEDLIMIT,"CustEdit",WS_GROUP | WS_TABSTOP,57,30,
+                    36,10
+    CONTROL         "",IDC_SPEEDLIMITSPIN,"SpinnerControl",WS_GROUP,95,30,8,
+                    10
+    GROUPBOX        "Range:",IDC_RANGEFRAME,2,43,104,99
+    CONTROL         "Absolute Size",IDC_ABSRANGE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,8,55,58,8
+    CONTROL         "Relative to Particle Size",IDC_RELRANGE,"Button",
+                    BS_AUTORADIOBUTTON,8,90,88,8
+    RTEXT           "Core Radius:",IDC_ABSCORETEXT,5,66,42,8
+    CONTROL         "",IDC_ABSCORE,"CustEdit",WS_GROUP | WS_TABSTOP,49,66,42,
+                    10
+    CONTROL         "",IDC_ABSCORESPIN,"SpinnerControl",WS_GROUP,93,66,8,10
+    RTEXT           "Falloff Zone:",IDC_ABSFALLOFFTEXT,7,78,39,8
+    CONTROL         "",IDC_ABSFALLOFF,"CustEdit",WS_GROUP | WS_TABSTOP,49,78,
+                    42,10
+    CONTROL         "",IDC_ABSFALLOFFSPIN,"SpinnerControl",WS_GROUP,93,78,8,
+                    10
+    RTEXT           "Core %",IDC_RELCORETEXT,15,101,29,8
+    CONTROL         "",IDC_RELCORE,"CustEdit",WS_GROUP | WS_TABSTOP,49,101,
+                    42,10
+    CONTROL         "",IDC_RELCORESPIN,"SpinnerControl",WS_GROUP,93,101,8,10
+    RTEXT           "Falloff %",IDC_RELFALLOFFTEXT,11,113,33,8
+    CONTROL         "",IDC_RELFALLOFF,"CustEdit",WS_GROUP | WS_TABSTOP,49,
+                    113,42,10
+    CONTROL         "",IDC_RELFALLOFFSPIN,"SpinnerControl",WS_GROUP,93,113,8,
+                    10
+    GROUPBOX        "Scope:",IDC_SCOPEFRAME,2,145,104,172
+    CONTROL         "Current Event",IDC_GROUP,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,8,158,58,8
+    CONTROL         "Current Particle System",IDC_SYSTEM,"Button",
+                    BS_AUTORADIOBUTTON,8,169,86,8
+    CONTROL         "Selected Events",IDC_SELGROUPS,"Button",
+                    BS_AUTORADIOBUTTON,8,180,66,8
+    CONTROL         "Selected Particle Systems",IDC_SELSYSTEMS,"Button",
+                    BS_AUTORADIOBUTTON,8,248,94,8
+    LISTBOX         IDC_GROUPLIST,8,191,92,52,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_SYSTEMLIST,8,259,92,52,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Variation %",IDC_VARIATIONTEXT,7,128,37,8
+    CONTROL         "",IDC_VARIATION,"CustEdit",WS_GROUP | WS_TABSTOP,49,128,
+                    42,10
+    CONTROL         "",IDC_VARIATIONSPIN,"SpinnerControl",WS_GROUP,93,128,8,
+                    10
+    GROUPBOX        "Uniqueness:",IDC_UNIQUENESSBOX,2,320,104,27
+    RTEXT           "Seed:",IDC_SEEDTEXT,8,332,20,8
+    CONTROL         "",IDC_SEED,"CustEdit",WS_GROUP | WS_TABSTOP,30,332,34,
+                    10
+    CONTROL         "",IDC_SEEDSPIN,"SpinnerControl",WS_GROUP,66,332,8,10
+    CONTROL         "New",IDC_NEW,"CustButton",WS_GROUP | WS_TABSTOP,78,332,
+                    22,10
+END
+
+IDD_TESTGOTONEXTEVENT_PARAMETERS DIALOG  0, 0, 108, 40
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Test True For:",IDC_STATIC,2,3,104,35
+    CONTROL         "All Particles",IDC_TRUEALL,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,7,13,52,10
+    CONTROL         "No Particles",IDC_TRUENONE,"Button",BS_AUTORADIOBUTTON,
+                    7,24,54,10
+END
+
+IDD_COMMENTS_PARAMETERS DIALOG  0, 0, 108, 204
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_COMMENTS,2,3,104,199,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_WANTRETURN | WS_VSCROLL
+END
+
+IDD_FORCESPACEWARP_SCRIPTWIRING DIALOG  0, 0, 108, 42
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Use Script Float As:",IDC_STATIC,2,3,104,36
+    CONTROL         "Not Used",IDC_NOTUSED,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,7,13,46,10
+    CONTROL         "Influence",IDC_INFLUENCE,"Button",BS_AUTORADIOBUTTON,7,
+                    24,45,10
+END
+
+IDD_SPEEDKEEPAPART_SCRIPTWIRING DIALOG  0, 0, 108, 108
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Use Script Float As:",IDC_STATIC,2,3,104,36
+    CONTROL         "Not Used",IDC_FLOATNOTUSED,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,7,13,46,10
+    CONTROL         "Force",IDC_FORCE,"Button",BS_AUTORADIOBUTTON,7,24,34,10
+    GROUPBOX        "Use Script Vector As:",IDC_STATIC,2,42,104,64
+    CONTROL         "Not Used",IDC_VECTORNOTUSED,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,7,52,46,10
+    CONTROL         "Absolute Size Range",IDC_ABSOLUTERANGE,"Button",
+                    BS_AUTORADIOBUTTON,7,63,82,10
+    CONTROL         "Relative Size Range",IDC_RELATIVERANGE,"Button",
+                    BS_AUTORADIOBUTTON,7,83,81,10
+    LTEXT           "X : Core;  Y : Falloff",IDC_STATIC,19,73,62,8
+    LTEXT           "X : Core %;  Y : Falloff %",IDC_STATIC,19,93,76,8
+END
+
+IDD_RENDER_PARAMETERS DIALOG  0, 0, 108, 104
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    COMBOBOX        IDC_DISPLAYRENDER,27,4,76,56,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    CONTROL         "",IDC_VISIBLERENDER,"CustEdit",WS_GROUP | WS_TABSTOP,63,
+                    21,28,10
+    CONTROL         "",IDC_VISIBLERENDERSPIN,"SpinnerControl",WS_GROUP,93,21,
+                    8,10
+    GROUPBOX        "Render Result:",IDC_RENDERFRAME,2,33,104,69
+    CONTROL         "Single Mesh",IDC_SINGLE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,6,43,53,9
+    CONTROL         "Multiple Meshes",IDC_MULTIPLE,"Button",
+                    BS_AUTORADIOBUTTON,6,54,66,9
+    CONTROL         "Mesh Per Particle",IDC_PARTICLE,"Button",
+                    BS_AUTORADIOBUTTON,6,89,69,9
+    RTEXT           "Mesh Count:",IDC_MESHCOUNTTEXT,20,65,41,8
+    CONTROL         "",IDC_MESHCOUNT,"CustEdit",WS_GROUP | WS_TABSTOP,63,65,
+                    28,10
+    CONTROL         "",IDC_MESHCOUNTSPIN,"SpinnerControl",WS_GROUP,93,65,8,
+                    10
+    RTEXT           "Particles p/Mesh:",IDC_PERMESHCOUNTTEXT,5,77,56,8
+    CONTROL         "",IDC_PERMESHCOUNT,"CustEdit",WS_GROUP | WS_TABSTOP,63,
+                    77,28,10
+    CONTROL         "",IDC_PERMESHCOUNTSPIN,"SpinnerControl",WS_GROUP,93,77,
+                    8,10
+    LTEXT           "Type:",IDC_TYPE,7,7,19,8
+    LTEXT           "Visible %",IDC_VISIBLE,33,22,28,8
+END
+
+IDD_MATERIALSTATIC_PARAMETERS DIALOG  0, 0, 108, 181
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Assign Material",IDC_ASSIGNMATERIAL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,5,63,10
+    CONTROL         "<Undefined>",IDC_MATERIAL,"CustButton",WS_TABSTOP,6,18,
+                    95,12
+    CONTROL         "Assign Material ID",IDC_ASSIGNID,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,36,73,10
+    CONTROL         "Show In Viewport",IDC_SHOWINVIEWPORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,16,48,71,10
+    CONTROL         "Material ID:",IDC_TYPE_ID,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,6,62,50,8
+    CONTROL         "Cycle",IDC_TYPE_CYCLE,"Button",BS_AUTORADIOBUTTON,6,75,
+                    33,8
+    CONTROL         "Random",IDC_TYPE_RANDOM,"Button",BS_AUTORADIOBUTTON,46,
+                    75,41,8
+    CONTROL         "",IDC_MATERIALID,"CustEdit",WS_GROUP | WS_TABSTOP,59,61,
+                    33,10
+    CONTROL         "",IDC_MATERIALIDSPIN,"SpinnerControl",WS_GROUP,94,61,8,
+                    10
+    RTEXT           "# Sub-Materials:",IDC_NUMSUBSTEXT,5,87,52,8
+    CONTROL         "",IDC_NUMSUBS,"CustEdit",WS_GROUP | WS_TABSTOP,59,87,33,
+                    10
+    CONTROL         "",IDC_NUMSUBSSPIN,"SpinnerControl",WS_GROUP,94,87,8,10
+    GROUPBOX        "Rate:",IDC_RATEFRAME,2,99,104,36
+    CONTROL         "Per Second:",IDC_PERSECOND,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,6,111,52,8
+    CONTROL         "Per Particle:",IDC_PERPARTICLE,"Button",
+                    BS_AUTORADIOBUTTON,6,123,51,8
+    CONTROL         "",IDC_RATEPERSEC,"CustEdit",WS_GROUP | WS_TABSTOP,59,
+                    110,33,10
+    CONTROL         "",IDC_RATEPERSECSPIN,"SpinnerControl",WS_GROUP,94,110,8,
+                    10
+    CONTROL         "",IDC_RATEPERPART,"CustEdit",WS_GROUP | WS_TABSTOP,59,
+                    122,33,10
+    CONTROL         "",IDC_RATEPERPARTSPIN,"SpinnerControl",WS_GROUP,94,122,
+                    8,10
+    CONTROL         "Loop",IDC_LOOP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
+                    138,32,10
+    GROUPBOX        "Uniqueness:",IDC_UNIQUENESSBOX,2,150,104,28
+    RTEXT           "Seed:",IDC_SEEDTEXT,8,163,20,8
+    CONTROL         "",IDC_SEED,"CustEdit",WS_GROUP | WS_TABSTOP,30,163,34,
+                    10
+    CONTROL         "",IDC_SEEDSPIN,"SpinnerControl",WS_GROUP,66,163,8,10
+    CONTROL         "New",IDC_NEW,"CustButton",WS_GROUP | WS_TABSTOP,78,163,
+                    22,10
+END
+
+IDD_MATERIALDYNAMIC_PARAMETERS DIALOG  0, 0, 108, 256
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Assign Material",IDC_ASSIGNMATERIAL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,5,63,10
+    CONTROL         "<Undefined>",IDC_MATERIAL,"CustButton",WS_TABSTOP,6,18,
+                    95,12
+    CONTROL         "Assign Material ID",IDC_ASSIGNID,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,36,73,10
+    CONTROL         "Show In Viewport",IDC_SHOWINVIEWPORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,16,48,71,10
+    GROUPBOX        "Animated Texture:",IDC_ANIMATEDFRAME,2,60,104,58
+    CONTROL         "Same As Particle ID",IDC_TYPE_PARTID,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,6,70,89,8
+    CONTROL         "Material ID:",IDC_TYPE_MTLID,"Button",
+                    BS_AUTORADIOBUTTON,6,133,50,8
+    CONTROL         "Cycle",IDC_TYPE_CYCLE,"Button",BS_AUTORADIOBUTTON,6,146,
+                    33,8
+    CONTROL         "Random",IDC_TYPE_RANDOM,"Button",BS_AUTORADIOBUTTON,46,
+                    146,41,8
+    CONTROL         "Reset Particle Age",IDC_RESETAGE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,81,75,10
+    CONTROL         "Randomize Age Offset",IDC_RANDOMIZEAGE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,92,87,10
+    RTEXT           "Max Offset:",IDC_MAXOFFSETTEXT,18,104,37,8
+    CONTROL         "",IDC_MAXOFFSET,"CustEdit",WS_GROUP | WS_TABSTOP,57,104,
+                    34,10
+    CONTROL         "",IDC_MAXOFFSETSPIN,"SpinnerControl",WS_GROUP,93,104,8,
+                    10
+    GROUPBOX        "Sub-Material Rotoscoping:",IDC_SUBMTLSFRAME,2,121,104,
+                    102
+    CONTROL         "",IDC_MATERIALID,"CustEdit",WS_GROUP | WS_TABSTOP,57,
+                    132,34,10
+    CONTROL         "",IDC_MATERIALIDSPIN,"SpinnerControl",WS_GROUP,93,132,8,
+                    10
+    RTEXT           "# Sub-Materials:",IDC_NUMSUBSTEXT,4,158,52,8
+    CONTROL         "",IDC_NUMSUBS,"CustEdit",WS_GROUP | WS_TABSTOP,57,158,
+                    34,10
+    CONTROL         "",IDC_NUMSUBSSPIN,"SpinnerControl",WS_GROUP,93,158,8,10
+    RTEXT           "Rate Per Sec:",IDC_RATETEXT,9,170,46,8
+    CONTROL         "",IDC_RATE,"CustEdit",WS_GROUP | WS_TABSTOP,57,170,34,
+                    10
+    CONTROL         "",IDC_RATESPIN,"SpinnerControl",WS_GROUP,93,170,8,10
+    CONTROL         "Loop",IDC_LOOP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,
+                    182,32,10
+    LTEXT           "Sync By:",IDC_SYNCBYTEXT,7,196,28,8
+    COMBOBOX        IDC_SYNC,38,194,64,48,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    CONTROL         "Rand Offset:",IDC_SYNCRANDOM,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,6,211,52,8
+    CONTROL         "",IDC_SYNCOFFSET,"CustEdit",WS_GROUP | WS_TABSTOP,59,
+                    210,32,10
+    CONTROL         "",IDC_SYNCOFFSETSPIN,"SpinnerControl",WS_GROUP,93,210,8,
+                    10
+    GROUPBOX        "Uniqueness:",IDC_UNIQUENESSBOX,2,226,104,28
+    RTEXT           "Seed:",IDC_SEEDTEXT,8,239,20,8
+    CONTROL         "",IDC_SEED,"CustEdit",WS_GROUP | WS_TABSTOP,30,239,34,
+                    10
+    CONTROL         "",IDC_SEEDSPIN,"SpinnerControl",WS_GROUP,66,239,8,10
+    CONTROL         "New",IDC_NEW,"CustButton",WS_GROUP | WS_TABSTOP,78,239,
+                    22,10
+END
+
+IDD_MATERIALFREQUENCY_PARAMETERS DIALOG  0, 0, 108, 227
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Assign Material",IDC_ASSIGNMATERIAL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,5,63,10
+    CONTROL         "<Undefined>",IDC_MATERIAL,"CustButton",WS_TABSTOP,6,18,
+                    95,12
+    CONTROL         "Assign Material ID",IDC_ASSIGNID,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,36,73,10
+    CONTROL         "Show In Viewport",IDC_SHOWINVIEWPORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,16,48,71,10
+    RTEXT           "# Sub-Materials:",IDC_NUMSUBSTEXT,4,63,52,8
+    LTEXT           "Material ID #1:",IDC_ID1TEXT,9,77,48,8
+    CONTROL         "",IDC_ID1,"CustEdit",WS_GROUP | WS_TABSTOP,57,76,34,10
+    CONTROL         "",IDC_ID1SPIN,"SpinnerControl",WS_GROUP,93,76,8,10
+    LTEXT           "Material ID #2:",IDC_ID2TEXT,9,88,48,8
+    CONTROL         "",IDC_ID2,"CustEdit",WS_GROUP | WS_TABSTOP,57,88,34,10
+    CONTROL         "",IDC_ID2SPIN,"SpinnerControl",WS_GROUP,93,88,8,10
+    LTEXT           "Material ID #3:",IDC_ID3TEXT,9,101,48,8
+    CONTROL         "",IDC_ID3,"CustEdit",WS_GROUP | WS_TABSTOP,57,100,34,10
+    CONTROL         "",IDC_ID3SPIN,"SpinnerControl",WS_GROUP,93,100,8,10
+    LTEXT           "Material ID #4:",IDC_ID4TEXT,9,113,48,8
+    CONTROL         "",IDC_ID4,"CustEdit",WS_GROUP | WS_TABSTOP,57,112,34,10
+    CONTROL         "",IDC_ID4SPIN,"SpinnerControl",WS_GROUP,93,112,8,10
+    LTEXT           "Material ID #5:",IDC_ID5TEXT,9,124,48,8
+    CONTROL         "",IDC_ID5,"CustEdit",WS_GROUP | WS_TABSTOP,57,124,34,10
+    CONTROL         "",IDC_ID5SPIN,"SpinnerControl",WS_GROUP,93,124,8,10
+    LTEXT           "Material ID #6:",IDC_ID6TEXT,9,137,48,8
+    CONTROL         "",IDC_ID6,"CustEdit",WS_GROUP | WS_TABSTOP,57,136,34,10
+    CONTROL         "",IDC_ID6SPIN,"SpinnerControl",WS_GROUP,93,136,8,10
+    LTEXT           "Material ID #7:",IDC_ID7TEXT,9,149,48,8
+    CONTROL         "",IDC_ID7,"CustEdit",WS_GROUP | WS_TABSTOP,57,148,34,10
+    CONTROL         "",IDC_ID7SPIN,"SpinnerControl",WS_GROUP,93,148,8,10
+    LTEXT           "Material ID #8:",IDC_ID8TEXT,9,160,48,8
+    CONTROL         "",IDC_ID8,"CustEdit",WS_GROUP | WS_TABSTOP,57,160,34,10
+    CONTROL         "",IDC_ID8SPIN,"SpinnerControl",WS_GROUP,93,160,8,10
+    GROUPBOX        "Uniqueness:",IDC_UNIQUENESSBOX,2,197,104,28
+    RTEXT           "Seed:",IDC_SEEDTEXT,8,210,20,8
+    CONTROL         "",IDC_SEED,"CustEdit",WS_GROUP | WS_TABSTOP,30,210,34,
+                    10
+    CONTROL         "",IDC_SEEDSPIN,"SpinnerControl",WS_GROUP,66,210,8,10
+    CONTROL         "New",IDC_NEW,"CustButton",WS_GROUP | WS_TABSTOP,78,210,
+                    22,10
+    LTEXT           "?",IDC_NUMSUBS,57,63,44,10,SS_SUNKEN
+    LTEXT           "Material ID #9:",IDC_ID9TEXT,9,173,48,8
+    CONTROL         "",IDC_ID9,"CustEdit",WS_GROUP | WS_TABSTOP,57,172,34,10
+    CONTROL         "",IDC_ID9SPIN,"SpinnerControl",WS_GROUP,93,172,8,10
+    LTEXT           "Material ID #10:",IDC_ID10TEXT,5,184,52,8
+    CONTROL         "",IDC_ID10,"CustEdit",WS_GROUP | WS_TABSTOP,57,184,34,
+                    10
+    CONTROL         "",IDC_ID10SPIN,"SpinnerControl",WS_GROUP,93,184,8,10
+END
+
+IDD_GOTOROTATION_PARAMETERS DIALOG  0, 0, 108, 236
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Test True When:",IDC_STATIC,2,3,104,24
+    CONTROL         "Transition Period Ends",IDC_HASTEST,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,13,90,10
+    GROUPBOX        "Transition By:",IDC_STATIC,2,30,104,55
+    COMBOBOX        IDC_TYPE,7,41,94,56,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    RTEXT           "Time:",IDC_VALUETEXT,6,57,39,8
+    CONTROL         "",IDC_VALUE,"CustEdit",WS_GROUP | WS_TABSTOP,48,57,42,
+                    10
+    CONTROL         "",IDC_VALUESPIN,"SpinnerControl",WS_GROUP,92,57,8,10
+    RTEXT           "Variation:",IDC_VARIATIONTEXT,13,69,32,8
+    CONTROL         "",IDC_VARIATION,"CustEdit",WS_GROUP | WS_TABSTOP,48,69,
+                    42,10
+    CONTROL         "",IDC_VARIATIONSPIN,"SpinnerControl",WS_GROUP,92,69,8,
+                    10
+    GROUPBOX        "Target Rotation:",IDC_TARGETFRAME,2,88,104,25
+    CONTROL         "Constant",IDC_TARGETCONSTANT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,6,99,43,8
+    CONTROL         "Changing",IDC_TARGETCHANGING,"Button",
+                    BS_AUTORADIOBUTTON,55,99,44,10
+    GROUPBOX        "Target Rotation Spin:",IDC_STATIC,2,116,104,60
+    CONTROL         "Match Initial Spin",IDC_MATCHSPIN,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,126,69,10
+    RTEXT           "Spin Rate:",IDC_SPINTEXT,6,138,39,8
+    CONTROL         "",IDC_SPINRATE,"CustEdit",WS_GROUP | WS_TABSTOP,48,138,
+                    42,10
+    CONTROL         "",IDC_SPINRATESPIN,"SpinnerControl",WS_GROUP,92,138,8,
+                    10
+    RTEXT           "Variation:",IDC_SPINVARIATIONTEXT,13,150,32,8
+    CONTROL         "",IDC_SPINVARIATION,"CustEdit",WS_GROUP | WS_TABSTOP,48,
+                    150,42,10
+    CONTROL         "",IDC_SPINVARIATIONSPIN,"SpinnerControl",WS_GROUP,92,
+                    150,8,10
+    RTEXT           "Ease In %",IDC_EASEINTEXT,8,162,37,8
+    CONTROL         "",IDC_EASEIN2,"CustEdit",WS_GROUP | WS_TABSTOP,48,162,
+                    42,10
+    CONTROL         "",IDC_EASEINSPIN,"SpinnerControl",WS_GROUP,92,162,8,10
+    GROUPBOX        "Transition End:",IDC_STATIC,2,180,104,24
+    CONTROL         "Stop Spinning",IDC_STOPSPIN,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,6,190,90,10
+    GROUPBOX        "Uniqueness:",IDC_UNIQUENESSBOX,2,207,104,27
+    RTEXT           "Seed:",IDC_SEEDTEXT,8,219,20,8
+    CONTROL         "",IDC_SEED,"CustEdit",WS_GROUP | WS_TABSTOP,30,219,34,
+                    10
+    CONTROL         "",IDC_SEEDSPIN,"SpinnerControl",WS_GROUP,66,219,8,10
+    CONTROL         "New",IDC_NEW,"CustButton",WS_GROUP | WS_TABSTOP,78,219,
+                    22,10
+END
+
+IDD_TESTSCALE_PARAMETERS DIALOG  0, 0, 108, 217
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Type:",IDC_TYPETEXT,5,8,19,8
+    COMBOBOX        IDC_TYPE,25,6,78,56,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    LTEXT           "Axis:",IDC_AXISTEXT,8,23,16,8
+    COMBOBOX        IDC_AXISTYPE,25,21,78,86,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    GROUPBOX        "Test True If Particle Value:",IDC_STATIC,2,38,104,35
+    CONTROL         "Is Less Than Test Value",IDC_TRUELESS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,6,48,93,10
+    CONTROL         "Is Greater Than Test Value",IDC_TRUEGREATER,"Button",
+                    BS_AUTORADIOBUTTON,6,59,98,10
+    GROUPBOX        "Size:",IDC_SIZEFRAME,2,76,104,36
+    RTEXT           "Test Value:",IDC_SIZEVALUETEXT,7,87,39,8
+    CONTROL         "",IDC_SIZEVALUE,"CustEdit",WS_GROUP | WS_TABSTOP,49,86,
+                    42,10
+    CONTROL         "",IDC_SIZESPIN,"SpinnerControl",WS_GROUP,93,86,8,10
+    RTEXT           "Variation:",IDC_SIZEVARTEXT,14,99,32,8
+    CONTROL         "",IDC_SIZEVAR,"CustEdit",WS_GROUP | WS_TABSTOP,49,98,42,
+                    10
+    CONTROL         "",IDC_SIZEVARSPIN,"SpinnerControl",WS_GROUP,93,98,8,10
+    GROUPBOX        "Scale:",IDC_SCALEFRAME,2,115,104,38
+    RTEXT           "Test Value %",IDC_SCALEVALUETEXT,4,127,42,8
+    CONTROL         "",IDC_SCALEVALUE,"CustEdit",WS_GROUP | WS_TABSTOP,49,
+                    126,42,10
+    CONTROL         "",IDC_SCALESPIN,"SpinnerControl",WS_GROUP,93,126,8,10
+    RTEXT           "Variation %",IDC_SCALEVARTEXT,11,139,35,8
+    CONTROL         "",IDC_SCALEVAR,"CustEdit",WS_GROUP | WS_TABSTOP,49,138,
+                    42,10
+    CONTROL         "",IDC_SCALEVARSPIN,"SpinnerControl",WS_GROUP,93,138,8,
+                    10
+    GROUPBOX        "Test Value Offset Keying:",IDC_SYNCFRAME,2,156,104,29
+    LTEXT           "Sync By:",IDC_SYNCBYTEXT,7,169,28,8
+    COMBOBOX        IDC_SYNC,38,167,63,48,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    GROUPBOX        "Uniqueness:",IDC_UNIQUENESSBOX,2,188,104,27
+    RTEXT           "Seed:",IDC_SEEDTEXT,8,200,20,8
+    CONTROL         "",IDC_SEED,"CustEdit",WS_GROUP | WS_TABSTOP,30,200,34,
+                    10
+    CONTROL         "",IDC_SEEDSPIN,"SpinnerControl",WS_GROUP,66,200,8,10
+    CONTROL         "New",IDC_NEW,"CustButton",WS_GROUP | WS_TABSTOP,78,200,
+                    22,10
+END
+
+IDD_TESTSPEED_PARAMETERS DIALOG  0, 0, 108, 131
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    COMBOBOX        IDC_TYPE,5,6,98,115,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    GROUPBOX        "Test True If Particle Value:",IDC_TESTFRAME,2,23,104,35
+    CONTROL         "Is Less Than Test Value",IDC_TRUELESS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,6,33,93,10
+    CONTROL         "Is Greater Than Test Value",IDC_TRUEGREATER,"Button",
+                    BS_AUTORADIOBUTTON,6,44,98,10
+    RTEXT           "Test Value:",IDC_TESTVALUETEXT,7,62,39,8
+    CONTROL         "",IDC_UNITVALUE,"CustEdit",WS_GROUP | WS_TABSTOP,49,62,
+                    42,10
+    CONTROL         "",IDC_UNITSPIN,"SpinnerControl",WS_GROUP,93,62,8,10
+    CONTROL         "",IDC_ANGLEVALUE,"CustEdit",WS_GROUP | WS_TABSTOP,49,62,
+                    42,10
+    CONTROL         "",IDC_ANGLESPIN,"SpinnerControl",WS_GROUP,93,62,8,10
+    RTEXT           "Variation:",IDC_VARIATIONTEXT,14,74,32,8
+    CONTROL         "",IDC_UNITVAR,"CustEdit",WS_GROUP | WS_TABSTOP,49,74,42,
+                    10
+    CONTROL         "",IDC_UNITVARSPIN,"SpinnerControl",WS_GROUP,93,74,8,10
+    CONTROL         "",IDC_ANGLEVAR,"CustEdit",WS_GROUP | WS_TABSTOP,49,74,
+                    42,10
+    CONTROL         "",IDC_ANGLEVARSPIN,"SpinnerControl",WS_GROUP,93,74,8,10
+    LTEXT           "Sync By:",IDC_SYNCBYTEXT,7,88,28,8
+    COMBOBOX        IDC_SYNC,38,86,65,48,CBS_DROPDOWNLIST | 
+                    CBS_DISABLENOSCROLL | WS_GROUP | WS_TABSTOP
+    GROUPBOX        "Uniqueness:",IDC_UNIQUENESSBOX,2,102,104,27
+    RTEXT           "Seed:",IDC_SEEDTEXT,8,114,20,8
+    CONTROL         "",IDC_SEED,"CustEdit",WS_GROUP | WS_TABSTOP,30,114,34,
+                    10
+    CONTROL         "",IDC_SEEDSPIN,"SpinnerControl",WS_GROUP,66,114,8,10
+    CONTROL         "New",IDC_NEW,"CustButton",WS_GROUP | WS_TABSTOP,78,114,
+                    22,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_DISPLAY_PARAMETERS DLGINIT
+BEGIN
+    IDC_DISPLAYVIEWPORT, 0x403, 10, 0
+0x6552, 0x7463, 0x6e61, 0x6c67, 0x0065, 
+    IDC_DISPLAYVIEWPORT, 0x403, 4, 0
+0x6f42, 0x0078, 
+    IDC_DISPLAYVIEWPORT, 0x403, 7, 0
+0x6943, 0x6372, 0x656c, "\000" 
+    IDC_DISPLAYVIEWPORT, 0x403, 7, 0
+0x7053, 0x6568, 0x6572, "\000" 
+    IDC_SELECTEDVIEWPORT, 0x403, 10, 0
+0x6552, 0x7463, 0x6e61, 0x6c67, 0x0065, 
+    IDC_SELECTEDVIEWPORT, 0x403, 4, 0
+0x6f42, 0x0078, 
+    IDC_SELECTEDVIEWPORT, 0x403, 7, 0
+0x6943, 0x6372, 0x656c, "\000" 
+    IDC_SELECTEDVIEWPORT, 0x403, 7, 0
+0x7053, 0x6568, 0x6572, "\000" 
+    0
+END
+
+IDD_TESTDURATION_PARAMETERS DLGINIT
+BEGIN
+    IDC_TYPE, 0x403, 10, 0
+0x6552, 0x7463, 0x6e61, 0x6c67, 0x0065, 
+    IDC_TYPE, 0x403, 4, 0
+0x6f42, 0x0078, 
+    IDC_TYPE, 0x403, 7, 0
+0x6943, 0x6372, 0x656c, "\000" 
+    IDC_TYPE, 0x403, 7, 0
+0x7053, 0x6568, 0x6572, "\000" 
+    0
+END
+
+IDD_SIMPLESHAPE_PARAMETERS DLGINIT
+BEGIN
+    IDC_SHAPETYPE, 0x403, 8, 0
+0x7950, 0x6172, 0x696d, 0x0064, 
+    IDC_SHAPETYPE, 0x403, 5, 0
+0x7543, 0x6562, "\000" 
+    IDC_SHAPETYPE, 0x403, 7, 0
+0x7053, 0x6568, 0x6572, "\000" 
+    0
+END
+
+IDD_SIMPLEPOSITION_PARAMETERS DLGINIT
+BEGIN
+    IDC_TYPE, 0x403, 6, 0
+0x6950, 0x6f76, 0x0074, 
+    IDC_TYPE, 0x403, 7, 0
+0x6556, 0x7472, 0x7865, "\000" 
+    IDC_TYPE, 0x403, 5, 0
+0x6445, 0x6567, "\000" 
+    IDC_TYPE, 0x403, 8, 0
+0x7553, 0x6672, 0x6361, 0x0065, 
+    IDC_TYPE, 0x403, 7, 0
+0x6f56, 0x756c, 0x656d, "\000" 
+    0
+END
+
+IDD_INSTANCESHAPE_PARAMETERS DLGINIT
+BEGIN
+    IDC_SYNC, 0x403, 14, 0
+0x6241, 0x6f73, 0x756c, 0x6574, 0x5420, 0x6d69, 0x0065, 
+    IDC_SYNC, 0x403, 13, 0
+0x6150, 0x7472, 0x6369, 0x656c, 0x4120, 0x6567, "\000" 
+    IDC_SYNC, 0x403, 12, 0
+0x7645, 0x6e65, 0x2074, 0x7453, 0x7261, 0x0074, 
+    IDC_SYNC, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    0
+END
+
+IDD_SIMPLEORIENTATION_PARAMETERS DLGINIT
+BEGIN
+    IDC_DIRECTION, 0x403, 10, 0
+0x6152, 0x646e, 0x6d6f, 0x3320, 0x0044, 
+    IDC_DIRECTION, 0x403, 18, 0
+0x6152, 0x646e, 0x6d6f, 0x4820, 0x726f, 0x7a69, 0x6e6f, 0x6174, 0x006c, 
+
+    IDC_DIRECTION, 0x403, 6, 0
+0x6f57, 0x6c72, 0x0064, 
+    IDC_DIRECTION, 0x403, 6, 0
+0x7545, 0x656c, 0x0072, 
+    0
+END
+
+IDD_SIMPLESPIN_PARAMETERS DLGINIT
+BEGIN
+    IDC_DIRECTION, 0x403, 10, 0
+0x6152, 0x646e, 0x6d6f, 0x3320, 0x0044, 
+    IDC_DIRECTION, 0x403, 18, 0
+0x6152, 0x646e, 0x6d6f, 0x4820, 0x726f, 0x7a69, 0x6e6f, 0x6174, 0x006c, 
+
+    IDC_DIRECTION, 0x403, 6, 0
+0x6f57, 0x6c72, 0x0064, 
+    IDC_DIRECTION, 0x403, 6, 0
+0x7545, 0x656c, 0x0072, 
+    0
+END
+
+IDD_SIMPLESPEED_PARAMETERS DLGINIT
+BEGIN
+    IDC_DIRECTION, 0x403, 17, 0
+0x6c41, 0x6e6f, 0x2067, 0x6349, 0x6e6f, 0x4120, 0x7272, 0x776f, "\000" 
+    IDC_DIRECTION, 0x403, 21, 0
+0x7246, 0x6d6f, 0x4920, 0x6f63, 0x206e, 0x6543, 0x746e, 0x7265, 0x4f20, 
+0x7475, "\000" 
+    IDC_DIRECTION, 0x403, 20, 0
+0x7246, 0x6d6f, 0x4920, 0x6f63, 0x206e, 0x6c50, 0x6e61, 0x2065, 0x754f, 
+0x0074, 
+    IDC_DIRECTION, 0x403, 20, 0
+0x7246, 0x6d6f, 0x4920, 0x6f63, 0x206e, 0x7241, 0x6f72, 0x2077, 0x754f, 
+0x0074, 
+    IDC_DIRECTION, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    0
+END
+
+IDD_FORCESPACEWARP_PARAMETERS DLGINIT
+BEGIN
+    IDC_SYNC, 0x403, 14, 0
+0x6241, 0x6f73, 0x756c, 0x6574, 0x5420, 0x6d69, 0x0065, 
+    IDC_SYNC, 0x403, 13, 0
+0x6150, 0x7472, 0x6369, 0x656c, 0x4120, 0x6567, "\000" 
+    IDC_SYNC, 0x403, 12, 0
+0x7645, 0x6e65, 0x2074, 0x7453, 0x7261, 0x0074, 
+    IDC_SYNC, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    0
+END
+
+IDD_FACINGSHAPE_PARAMETERS DLGINIT
+BEGIN
+    IDC_PIVOT, 0x403, 14, 0
+0x6241, 0x6f73, 0x756c, 0x6574, 0x5420, 0x6d69, 0x0065, 
+    IDC_PIVOT, 0x403, 13, 0
+0x6150, 0x7472, 0x6369, 0x656c, 0x4120, 0x6567, "\000" 
+    IDC_PIVOT, 0x403, 12, 0
+0x7645, 0x6e65, 0x2074, 0x7453, 0x7261, 0x0074, 
+    IDC_PIVOT, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    IDC_ORIENTATION, 0x403, 14, 0
+0x6241, 0x6f73, 0x756c, 0x6574, 0x5420, 0x6d69, 0x0065, 
+    IDC_ORIENTATION, 0x403, 13, 0
+0x6150, 0x7472, 0x6369, 0x656c, 0x4120, 0x6567, "\000" 
+    IDC_ORIENTATION, 0x403, 12, 0
+0x7645, 0x6e65, 0x2074, 0x7453, 0x7261, 0x0074, 
+    IDC_ORIENTATION, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    0
+END
+
+IDD_MARKSHAPE_PARAMETERS DLGINIT
+BEGIN
+    IDC_DIRECTION, 0x403, 6, 0
+0x7053, 0x6565, 0x0064, 
+    IDC_DIRECTION, 0x403, 11, 0
+0x6150, 0x7472, 0x6369, 0x656c, 0x5820, "\000" 
+    IDC_DIRECTION, 0x403, 11, 0
+0x6150, 0x7472, 0x6369, 0x656c, 0x5920, "\000" 
+    IDC_DIRECTION, 0x403, 11, 0
+0x6150, 0x7472, 0x6369, 0x656c, 0x5a20, "\000" 
+    IDC_DIRECTION, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    0
+END
+
+IDD_COLLISIONSPACEWARP_PARAMETERS DLGINIT
+BEGIN
+    IDC_ONCESPEED, 0x403, 7, 0
+0x6f42, 0x6e75, 0x6563, "\000" 
+    IDC_ONCESPEED, 0x403, 9, 0
+0x6f43, 0x746e, 0x6e69, 0x6575, "\000" 
+    IDC_ONCESPEED, 0x403, 5, 0
+0x7453, 0x706f, "\000" 
+    IDC_ONCESPEED, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    IDC_MULTISPEED, 0x403, 7, 0
+0x6f42, 0x6e75, 0x6563, "\000" 
+    IDC_MULTISPEED, 0x403, 9, 0
+0x6f43, 0x746e, 0x6e69, 0x6575, "\000" 
+    IDC_MULTISPEED, 0x403, 5, 0
+0x7453, 0x706f, "\000" 
+    IDC_MULTISPEED, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    0
+END
+
+IDD_SPAWNCOLLISION_PARAMETERS DLGINIT
+BEGIN
+    IDC_SYNC, 0x403, 14, 0
+0x6241, 0x6f73, 0x756c, 0x6574, 0x5420, 0x6d69, 0x0065, 
+    IDC_SYNC, 0x403, 13, 0
+0x6150, 0x7472, 0x6369, 0x656c, 0x4120, 0x6567, "\000" 
+    IDC_SYNC, 0x403, 12, 0
+0x7645, 0x6e65, 0x2074, 0x7453, 0x7261, 0x0074, 
+    IDC_SYNC, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    IDC_PARENTSPEED, 0x403, 7, 0
+0x6f42, 0x6e75, 0x6563, "\000" 
+    IDC_PARENTSPEED, 0x403, 9, 0
+0x6f43, 0x746e, 0x6e69, 0x6575, "\000" 
+    IDC_PARENTSPEED, 0x403, 5, 0
+0x7453, 0x706f, "\000" 
+    IDC_PARENTSPEED, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    IDC_CHILDSPEED, 0x403, 7, 0
+0x6f42, 0x6e75, 0x6563, "\000" 
+    IDC_CHILDSPEED, 0x403, 9, 0
+0x6f43, 0x746e, 0x6e69, 0x6575, "\000" 
+    IDC_CHILDSPEED, 0x403, 8, 0
+0x6154, 0x676e, 0x6e65, 0x0074, 
+    IDC_CHILDSPEED, 0x403, 5, 0
+0x7453, 0x706f, "\000" 
+    IDC_CHILDSPEED, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    0
+END
+
+IDD_SPAWN_PARAMETERS DLGINIT
+BEGIN
+    IDC_SYNC, 0x403, 14, 0
+0x6241, 0x6f73, 0x756c, 0x6574, 0x5420, 0x6d69, 0x0065, 
+    IDC_SYNC, 0x403, 13, 0
+0x6150, 0x7472, 0x6369, 0x656c, 0x4120, 0x6567, "\000" 
+    IDC_SYNC, 0x403, 12, 0
+0x7645, 0x6e65, 0x2074, 0x7453, 0x7261, 0x0074, 
+    IDC_SYNC, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    0
+END
+
+IDD_SIMPLESCALE_PARAMETERS DLGINIT
+BEGIN
+    IDC_TYPE, 0x403, 10, 0
+0x6152, 0x646e, 0x6d6f, 0x3320, 0x0044, 
+    IDC_TYPE, 0x403, 18, 0
+0x6152, 0x646e, 0x6d6f, 0x4820, 0x726f, 0x7a69, 0x6e6f, 0x6174, 0x006c, 
+
+    IDC_TYPE, 0x403, 6, 0
+0x6f57, 0x6c72, 0x0064, 
+    IDC_TYPE, 0x403, 6, 0
+0x7545, 0x656c, 0x0072, 
+    IDC_BIAS, 0x403, 10, 0
+0x6152, 0x646e, 0x6d6f, 0x3320, 0x0044, 
+    IDC_BIAS, 0x403, 18, 0
+0x6152, 0x646e, 0x6d6f, 0x4820, 0x726f, 0x7a69, 0x6e6f, 0x6174, 0x006c, 
+
+    IDC_BIAS, 0x403, 6, 0
+0x6f57, 0x6c72, 0x0064, 
+    IDC_BIAS, 0x403, 6, 0
+0x7545, 0x656c, 0x0072, 
+    IDC_SYNC, 0x403, 14, 0
+0x6241, 0x6f73, 0x756c, 0x6574, 0x5420, 0x6d69, 0x0065, 
+    IDC_SYNC, 0x403, 13, 0
+0x6150, 0x7472, 0x6369, 0x656c, 0x4120, 0x6567, "\000" 
+    IDC_SYNC, 0x403, 12, 0
+0x7645, 0x6e65, 0x2074, 0x7453, 0x7261, 0x0074, 
+    IDC_SYNC, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    0
+END
+
+IDD_SIMPLEMAPPING_PARAMETERS DLGINIT
+BEGIN
+    IDC_SYNC, 0x403, 14, 0
+0x6241, 0x6f73, 0x756c, 0x6574, 0x5420, 0x6d69, 0x0065, 
+    IDC_SYNC, 0x403, 13, 0
+0x6150, 0x7472, 0x6369, 0x656c, 0x4120, 0x6567, "\000" 
+    IDC_SYNC, 0x403, 12, 0
+0x7645, 0x6e65, 0x2074, 0x7453, 0x7261, 0x0074, 
+    IDC_SYNC, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    0
+END
+
+IDD_POSITIONONOBJECT_PARAMETERS DLGINIT
+BEGIN
+    IDC_TYPE, 0x403, 6, 0
+0x6950, 0x6f76, 0x0074, 
+    IDC_TYPE, 0x403, 7, 0
+0x6556, 0x7472, 0x7865, "\000" 
+    IDC_TYPE, 0x403, 5, 0
+0x6445, 0x6567, "\000" 
+    IDC_TYPE, 0x403, 8, 0
+0x7553, 0x6672, 0x6361, 0x0065, 
+    IDC_TYPE, 0x403, 7, 0
+0x6f56, 0x756c, 0x656d, "\000" 
+    IDC_DENSITYTYPE, 0x403, 6, 0
+0x6950, 0x6f76, 0x0074, 
+    IDC_DENSITYTYPE, 0x403, 7, 0
+0x6556, 0x7472, 0x7865, "\000" 
+    IDC_DENSITYTYPE, 0x403, 5, 0
+0x6445, 0x6567, "\000" 
+    IDC_DENSITYTYPE, 0x403, 8, 0
+0x7553, 0x6672, 0x6361, 0x0065, 
+    IDC_DENSITYTYPE, 0x403, 7, 0
+0x6f56, 0x756c, 0x656d, "\000" 
+    0
+END
+
+IDD_SPEEDSURFACENORMALS_PARAMETERS DLGINIT
+BEGIN
+    IDC_SPEEDTYPE, 0x403, 17, 0
+0x6c41, 0x6e6f, 0x2067, 0x6349, 0x6e6f, 0x4120, 0x7272, 0x776f, "\000" 
+    IDC_SPEEDTYPE, 0x403, 21, 0
+0x7246, 0x6d6f, 0x4920, 0x6f63, 0x206e, 0x6543, 0x746e, 0x7265, 0x4f20, 
+0x7475, "\000" 
+    IDC_SPEEDTYPE, 0x403, 20, 0
+0x7246, 0x6d6f, 0x4920, 0x6f63, 0x206e, 0x6c50, 0x6e61, 0x2065, 0x754f, 
+0x0074, 
+    IDC_SPEEDTYPE, 0x403, 20, 0
+0x7246, 0x6d6f, 0x4920, 0x6f63, 0x206e, 0x7241, 0x6f72, 0x2077, 0x754f, 
+0x0074, 
+    IDC_SPEEDTYPE, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    IDC_MATERIALTYPE, 0x403, 6, 0
+0x6950, 0x6f76, 0x0074, 
+    IDC_MATERIALTYPE, 0x403, 7, 0
+0x6556, 0x7472, 0x7865, "\000" 
+    IDC_MATERIALTYPE, 0x403, 5, 0
+0x6445, 0x6567, "\000" 
+    IDC_MATERIALTYPE, 0x403, 8, 0
+0x7553, 0x6672, 0x6361, 0x0065, 
+    IDC_MATERIALTYPE, 0x403, 7, 0
+0x6f56, 0x756c, 0x656d, "\000" 
+    IDC_DIRECTION, 0x403, 17, 0
+0x6c41, 0x6e6f, 0x2067, 0x6349, 0x6e6f, 0x4120, 0x7272, 0x776f, "\000" 
+    IDC_DIRECTION, 0x403, 21, 0
+0x7246, 0x6d6f, 0x4920, 0x6f63, 0x206e, 0x6543, 0x746e, 0x7265, 0x4f20, 
+0x7475, "\000" 
+    IDC_DIRECTION, 0x403, 20, 0
+0x7246, 0x6d6f, 0x4920, 0x6f63, 0x206e, 0x6c50, 0x6e61, 0x2065, 0x754f, 
+0x0074, 
+    IDC_DIRECTION, 0x403, 20, 0
+0x7246, 0x6d6f, 0x4920, 0x6f63, 0x206e, 0x7241, 0x6f72, 0x2077, 0x754f, 
+0x0074, 
+    IDC_DIRECTION, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    IDC_SYNC, 0x403, 14, 0
+0x6241, 0x6f73, 0x756c, 0x6574, 0x5420, 0x6d69, 0x0065, 
+    IDC_SYNC, 0x403, 13, 0
+0x6150, 0x7472, 0x6369, 0x656c, 0x4120, 0x6567, "\000" 
+    IDC_SYNC, 0x403, 12, 0
+0x7645, 0x6e65, 0x2074, 0x7453, 0x7261, 0x0074, 
+    IDC_SYNC, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    0
+END
+
+IDD_SPEEDGOTOTARGET_PARAMETERS DLGINIT
+BEGIN
+    IDC_SPEEDTYPE, 0x403, 17, 0
+0x6c41, 0x6e6f, 0x2067, 0x6349, 0x6e6f, 0x4120, 0x7272, 0x776f, "\000" 
+    IDC_SPEEDTYPE, 0x403, 21, 0
+0x7246, 0x6d6f, 0x4920, 0x6f63, 0x206e, 0x6543, 0x746e, 0x7265, 0x4f20, 
+0x7475, "\000" 
+    IDC_SPEEDTYPE, 0x403, 20, 0
+0x7246, 0x6d6f, 0x4920, 0x6f63, 0x206e, 0x6c50, 0x6e61, 0x2065, 0x754f, 
+0x0074, 
+    IDC_SPEEDTYPE, 0x403, 20, 0
+0x7246, 0x6d6f, 0x4920, 0x6f63, 0x206e, 0x7241, 0x6f72, 0x2077, 0x754f, 
+0x0074, 
+    IDC_SPEEDTYPE, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    IDC_TESTTYPE, 0x403, 17, 0
+0x6c41, 0x6e6f, 0x2067, 0x6349, 0x6e6f, 0x4120, 0x7272, 0x776f, "\000" 
+    IDC_TESTTYPE, 0x403, 21, 0
+0x7246, 0x6d6f, 0x4920, 0x6f63, 0x206e, 0x6543, 0x746e, 0x7265, 0x4f20, 
+0x7475, "\000" 
+    IDC_TESTTYPE, 0x403, 20, 0
+0x7246, 0x6d6f, 0x4920, 0x6f63, 0x206e, 0x6c50, 0x6e61, 0x2065, 0x754f, 
+0x0074, 
+    IDC_TESTTYPE, 0x403, 20, 0
+0x7246, 0x6d6f, 0x4920, 0x6f63, 0x206e, 0x7241, 0x6f72, 0x2077, 0x754f, 
+0x0074, 
+    IDC_TESTTYPE, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    IDC_SYNC, 0x403, 14, 0
+0x6241, 0x6f73, 0x756c, 0x6574, 0x5420, 0x6d69, 0x0065, 
+    IDC_SYNC, 0x403, 13, 0
+0x6150, 0x7472, 0x6369, 0x656c, 0x4120, 0x6567, "\000" 
+    IDC_SYNC, 0x403, 12, 0
+0x7645, 0x6e65, 0x2074, 0x7453, 0x7261, 0x0074, 
+    IDC_SYNC, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    IDC_TIMING, 0x403, 14, 0
+0x6241, 0x6f73, 0x756c, 0x6574, 0x5420, 0x6d69, 0x0065, 
+    IDC_TIMING, 0x403, 13, 0
+0x6150, 0x7472, 0x6369, 0x656c, 0x4120, 0x6567, "\000" 
+    IDC_TIMING, 0x403, 12, 0
+0x7645, 0x6e65, 0x2074, 0x7453, 0x7261, 0x0074, 
+    IDC_TIMING, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    IDC_TARGETSYNC, 0x403, 14, 0
+0x6241, 0x6f73, 0x756c, 0x6574, 0x5420, 0x6d69, 0x0065, 
+    IDC_TARGETSYNC, 0x403, 13, 0
+0x6150, 0x7472, 0x6369, 0x656c, 0x4120, 0x6567, "\000" 
+    IDC_TARGETSYNC, 0x403, 12, 0
+0x7645, 0x6e65, 0x2074, 0x7453, 0x7261, 0x0074, 
+    IDC_TARGETSYNC, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    IDC_POINT, 0x403, 17, 0
+0x6c41, 0x6e6f, 0x2067, 0x6349, 0x6e6f, 0x4120, 0x7272, 0x776f, "\000" 
+    IDC_POINT, 0x403, 21, 0
+0x7246, 0x6d6f, 0x4920, 0x6f63, 0x206e, 0x6543, 0x746e, 0x7265, 0x4f20, 
+0x7475, "\000" 
+    IDC_POINT, 0x403, 20, 0
+0x7246, 0x6d6f, 0x4920, 0x6f63, 0x206e, 0x6c50, 0x6e61, 0x2065, 0x754f, 
+0x0074, 
+    IDC_POINT, 0x403, 20, 0
+0x7246, 0x6d6f, 0x4920, 0x6f63, 0x206e, 0x7241, 0x6f72, 0x2077, 0x754f, 
+0x0074, 
+    IDC_POINT, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    IDC_ASSIGNMENT, 0x403, 17, 0
+0x6c41, 0x6e6f, 0x2067, 0x6349, 0x6e6f, 0x4120, 0x7272, 0x776f, "\000" 
+    IDC_ASSIGNMENT, 0x403, 21, 0
+0x7246, 0x6d6f, 0x4920, 0x6f63, 0x206e, 0x6543, 0x746e, 0x7265, 0x4f20, 
+0x7475, "\000" 
+    IDC_ASSIGNMENT, 0x403, 20, 0
+0x7246, 0x6d6f, 0x4920, 0x6f63, 0x206e, 0x6c50, 0x6e61, 0x2065, 0x754f, 
+0x0074, 
+    IDC_ASSIGNMENT, 0x403, 20, 0
+0x7246, 0x6d6f, 0x4920, 0x6f63, 0x206e, 0x7241, 0x6f72, 0x2077, 0x754f, 
+0x0074, 
+    IDC_ASSIGNMENT, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    IDC_DIRECTION, 0x403, 17, 0
+0x6c41, 0x6e6f, 0x2067, 0x6349, 0x6e6f, 0x4120, 0x7272, 0x776f, "\000" 
+    IDC_DIRECTION, 0x403, 21, 0
+0x7246, 0x6d6f, 0x4920, 0x6f63, 0x206e, 0x6543, 0x746e, 0x7265, 0x4f20, 
+0x7475, "\000" 
+    IDC_DIRECTION, 0x403, 20, 0
+0x7246, 0x6d6f, 0x4920, 0x6f63, 0x206e, 0x6c50, 0x6e61, 0x2065, 0x754f, 
+0x0074, 
+    IDC_DIRECTION, 0x403, 20, 0
+0x7246, 0x6d6f, 0x4920, 0x6f63, 0x206e, 0x7241, 0x6f72, 0x2077, 0x754f, 
+0x0074, 
+    IDC_DIRECTION, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    0
+END
+
+IDD_SPEEDCOPY_PARAMETERS DLGINIT
+BEGIN
+    IDC_SYNC, 0x403, 14, 0
+0x6241, 0x6f73, 0x756c, 0x6574, 0x5420, 0x6d69, 0x0065, 
+    IDC_SYNC, 0x403, 13, 0
+0x6150, 0x7472, 0x6369, 0x656c, 0x4120, 0x6567, "\000" 
+    IDC_SYNC, 0x403, 12, 0
+0x7645, 0x6e65, 0x2074, 0x7453, 0x7261, 0x0074, 
+    IDC_SYNC, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    IDC_PARAMSYNC, 0x403, 14, 0
+0x6241, 0x6f73, 0x756c, 0x6574, 0x5420, 0x6d69, 0x0065, 
+    IDC_PARAMSYNC, 0x403, 13, 0
+0x6150, 0x7472, 0x6369, 0x656c, 0x4120, 0x6567, "\000" 
+    IDC_PARAMSYNC, 0x403, 12, 0
+0x7645, 0x6e65, 0x2074, 0x7453, 0x7261, 0x0074, 
+    IDC_PARAMSYNC, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    0
+END
+
+IDD_RENDER_PARAMETERS DLGINIT
+BEGIN
+    IDC_DISPLAYRENDER, 0x403, 10, 0
+0x6552, 0x7463, 0x6e61, 0x6c67, 0x0065, 
+    IDC_DISPLAYRENDER, 0x403, 4, 0
+0x6f42, 0x0078, 
+    IDC_DISPLAYRENDER, 0x403, 7, 0
+0x6943, 0x6372, 0x656c, "\000" 
+    IDC_DISPLAYRENDER, 0x403, 7, 0
+0x7053, 0x6568, 0x6572, "\000" 
+    0
+END
+
+IDD_MATERIALDYNAMIC_PARAMETERS DLGINIT
+BEGIN
+    IDC_SYNC, 0x403, 14, 0
+0x6241, 0x6f73, 0x756c, 0x6574, 0x5420, 0x6d69, 0x0065, 
+    IDC_SYNC, 0x403, 13, 0
+0x6150, 0x7472, 0x6369, 0x656c, 0x4120, 0x6567, "\000" 
+    IDC_SYNC, 0x403, 12, 0
+0x7645, 0x6e65, 0x2074, 0x7453, 0x7261, 0x0074, 
+    IDC_SYNC, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    0
+END
+
+IDD_GOTOROTATION_PARAMETERS DLGINIT
+BEGIN
+    IDC_TYPE, 0x403, 10, 0
+0x6552, 0x7463, 0x6e61, 0x6c67, 0x0065, 
+    IDC_TYPE, 0x403, 4, 0
+0x6f42, 0x0078, 
+    IDC_TYPE, 0x403, 7, 0
+0x6943, 0x6372, 0x656c, "\000" 
+    IDC_TYPE, 0x403, 7, 0
+0x7053, 0x6568, 0x6572, "\000" 
+    0
+END
+
+IDD_TESTSCALE_PARAMETERS DLGINIT
+BEGIN
+    IDC_TYPE, 0x403, 10, 0
+0x6552, 0x7463, 0x6e61, 0x6c67, 0x0065, 
+    IDC_TYPE, 0x403, 4, 0
+0x6f42, 0x0078, 
+    IDC_TYPE, 0x403, 7, 0
+0x6943, 0x6372, 0x656c, "\000" 
+    IDC_TYPE, 0x403, 7, 0
+0x7053, 0x6568, 0x6572, "\000" 
+    IDC_AXISTYPE, 0x403, 10, 0
+0x6552, 0x7463, 0x6e61, 0x6c67, 0x0065, 
+    IDC_AXISTYPE, 0x403, 4, 0
+0x6f42, 0x0078, 
+    IDC_AXISTYPE, 0x403, 7, 0
+0x6943, 0x6372, 0x656c, "\000" 
+    IDC_AXISTYPE, 0x403, 7, 0
+0x7053, 0x6568, 0x6572, "\000" 
+    IDC_SYNC, 0x403, 14, 0
+0x6241, 0x6f73, 0x756c, 0x6574, 0x5420, 0x6d69, 0x0065, 
+    IDC_SYNC, 0x403, 13, 0
+0x6150, 0x7472, 0x6369, 0x656c, 0x4120, 0x6567, "\000" 
+    IDC_SYNC, 0x403, 12, 0
+0x7645, 0x6e65, 0x2074, 0x7453, 0x7261, 0x0074, 
+    IDC_SYNC, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    0
+END
+
+IDD_TESTSPEED_PARAMETERS DLGINIT
+BEGIN
+    IDC_TYPE, 0x403, 10, 0
+0x6552, 0x7463, 0x6e61, 0x6c67, 0x0065, 
+    IDC_TYPE, 0x403, 4, 0
+0x6f42, 0x0078, 
+    IDC_TYPE, 0x403, 7, 0
+0x6943, 0x6372, 0x656c, "\000" 
+    IDC_TYPE, 0x403, 7, 0
+0x7053, 0x6568, 0x6572, "\000" 
+    IDC_SYNC, 0x403, 14, 0
+0x6241, 0x6f73, 0x756c, 0x6574, 0x5420, 0x6d69, 0x0065, 
+    IDC_SYNC, 0x403, 13, 0
+0x6150, 0x7472, 0x6369, 0x656c, 0x4120, 0x6567, "\000" 
+    IDC_SYNC, 0x403, 12, 0
+0x7645, 0x6e65, 0x2074, 0x7453, 0x7261, 0x0074, 
+    IDC_SYNC, 0x403, 7, 0
+0x6152, 0x646e, 0x6d6f, "\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_DEPOTICONMASK_OPERATOR BITMAP                  "Operator_DepotIconMask.bmp"
+IDB_EXIT_ACTIVEICON     BITMAP                  "Exit_ActiveIcon.bmp"
+IDB_EXIT_DEPOTICON      BITMAP                  "Exit_DepotIcon.bmp"
+IDB_EXIT_INACTIVEICON   BITMAP                  "Exit_InactiveIcon.bmp"
+IDB_DEPOTICONMASK_BIRTH BITMAP                  "Birth_DepotIconMask.bmp"
+IDB_DEPOTICONMASK_TEST  BITMAP                  "Test_DepotIconMask.bmp"
+IDB_FACINGSHAPE_INACTIVEICON BITMAP                  "FacingShape_InactiveIcon.bmp"
+IDB_FACINGSHAPE_DEPOTICON BITMAP                  "FacingShape_DepotIcon.bmp"
+IDB_FACINGSHAPE_ACTIVEICON BITMAP                  "FacingShape_ActiveIcon.bmp"
+IDB_FORCESPACEWARP_INACTIVEICON BITMAP                  "ForceSpaceWarp_InactiveIcon.bmp"
+IDB_FORCESPACEWARP_DEPOTICON BITMAP                  "ForceSpaceWarp_DepotIcon.bmp"
+IDB_FORCESPACEWARP_ACTIVEICON BITMAP                  "ForceSpaceWarp_ActiveIcon.bmp"
+IDB_INSTANCESHAPE_INACTIVEICON BITMAP                  "InstanceShape_InactiveIcon.bmp"
+IDB_INSTANCESHAPE_DEPOTICON BITMAP                  "InstanceShape_DepotIcon.bmp"
+IDB_INSTANCESHAPE_ACTIVEICON BITMAP                  "InstanceShape_ActiveIcon.bmp"
+IDB_MARKSHAPE_INACTIVEICON BITMAP                  "MarkShape_InactiveIcon.bmp"
+IDB_MARKSHAPE_DEPOTICON BITMAP                  "MarkShape_DepotIcon.bmp"
+IDB_MARKSHAPE_ACTIVEICON BITMAP                  "MarkShape_ActiveIcon.bmp"
+IDB_SIMPLEBIRTH_INACTIVEICON BITMAP                  "SimpleBirth_InactiveIcon.bmp"
+IDB_SIMPLEBIRTH_DEPOTICON BITMAP                  "SimpleBirth_DepotIcon.bmp"
+IDB_SIMPLEBIRTH_ACTIVEICON BITMAP                  "SimpleBirth_ActiveIcon.bmp"
+IDB_SIMPLEORIENTATION_INACTIVEICON BITMAP                  "SimpleOrientation_InactiveIcon.bmp"
+IDB_SIMPLEORIENTATION_DEPOTICON BITMAP                  "SimpleOrientation_DepotIcon.bmp"
+IDB_SIMPLEORIENTATION_ACTIVEICON BITMAP                  "SimpleOrientation_ActiveIcon.bmp"
+IDB_SIMPLEPOSITION_INACTIVEICON BITMAP                  "SimplePosition_InactiveIcon.bmp"
+IDB_SIMPLEPOSITION_DEPOTICON BITMAP                  "SimplePosition_DepotIcon.bmp"
+IDB_SIMPLEPOSITION_ACTIVEICON BITMAP                  "SimplePosition_ActiveIcon.bmp"
+IDB_SIMPLESHAPE_INACTIVEICON BITMAP                  "SimpleShape_InactiveIcon.bmp"
+IDB_SIMPLESHAPE_DEPOTICON BITMAP                  "SimpleShape_DepotIcon.bmp"
+IDB_SIMPLESHAPE_ACTIVEICON BITMAP                  "SimpleShape_ActiveIcon.bmp"
+IDB_SIMPLESPEED_INACTIVEICON BITMAP                  "SimpleSpeed_InactiveIcon.bmp"
+IDB_SIMPLESPEED_DEPOTICON BITMAP                  "SimpleSpeed_DepotIcon.bmp"
+IDB_SIMPLESPEED_ACTIVEICON BITMAP                  "SimpleSpeed_ActiveIcon.bmp"
+IDB_SIMPLESPIN_INACTIVEICON BITMAP                  "SimpleSpin_InactiveIcon.bmp"
+IDB_SIMPLESPIN_DEPOTICON BITMAP                  "SimpleSpin_DepotIcon.bmp"
+IDB_SIMPLESPIN_ACTIVEICON BITMAP                  "SimpleSpin_ActiveIcon.bmp"
+IDB_COLLISIONSPACEWARP_TRUEICON BITMAP                  "CollisionSpaceWarp_TrueIcon.bmp"
+IDB_COLLISIONSPACEWARP_DEPOTICON BITMAP                  "CollisionSpaceWarp_DepotIcon.bmp"
+IDB_COLLISIONSPACEWARP_FALSEICON BITMAP                  "CollisionSpaceWarp_FalseIcon.bmp"
+IDB_COLLISIONSPACEWARP_ACTIVEICON BITMAP                  "CollisionSpaceWarp_ActiveIcon.bmp"
+IDB_DURATION_TRUEICON   BITMAP                  "Duration_TrueIcon.bmp"
+IDB_DURATION_DEPOTICON  BITMAP                  "Duration_DepotIcon.bmp"
+IDB_DURATION_FALSEICON  BITMAP                  "Duration_FalseIcon.bmp"
+IDB_DURATION_ACTIVEICON BITMAP                  "Duration_ActiveIcon.bmp"
+IDB_SPAWN_TRUEICON      BITMAP                  "Spawn_TrueIcon.bmp"
+IDB_SPAWN_DEPOTICON     BITMAP                  "Spawn_DepotIcon.bmp"
+IDB_SPAWN_FALSEICON     BITMAP                  "Spawn_FalseIcon.bmp"
+IDB_SPAWN_ACTIVEICON    BITMAP                  "Spawn_ActiveIcon.bmp"
+IDB_SPAWNONCOLLISION_TRUEICON BITMAP                  "SpawnOnCollision_TrueIcon.bmp"
+IDB_SPAWNONCOLLISION_DEPOTICON BITMAP                  "SpawnOnCollision_DepotIcon.bmp"
+IDB_SPAWNONCOLLISION_FALSEICON BITMAP                  "SpawnOnCollision_FalseIcon.bmp"
+IDB_SPAWNONCOLLISION_ACTIVEICON BITMAP                  "SpawnOnCollision_ActiveIcon.bmp"
+IDB_SIMPLEMAPPING_INACTIVEICON BITMAP                  "SimpleMapping_InactiveIcon.bmp"
+IDB_MATERIAL_DEPOTICON  BITMAP                  "Material_DepotIcon.bmp"
+IDB_MATERIAL_INACTIVEICON BITMAP                  "Material_InactiveIcon.bmp"
+IDB_SIMPLEMAPPING_ACTIVEICON BITMAP                  "SimpleMapping_ActiveIcon.bmp"
+IDB_SIMPLEMAPPING_DEPOTICON BITMAP                  "SimpleMapping_DepotIcon.bmp"
+IDB_MATERIAL_ACTIVEICON BITMAP                  "Material_ActiveIcon.bmp"
+IDB_POSITIONONOBJECT_INACTIVEICON BITMAP                  "PositionOnObject_InactiveIcon.bmp"
+IDB_POSITIONONOBJECT_DEPOTICON BITMAP                  "PositionOnObject_DepotIcon.bmp"
+IDB_POSITIONONOBJECT_ACTIVEICON BITMAP                  "PositionOnObject_ActiveIcon.bmp"
+IDB_SPEEDCOPY_DEPOTICON BITMAP                  "SpeedCopy_DepotIcon.bmp"
+IDB_SPEEDCOPY_INACTIVEICON BITMAP                  "SpeedCopy_InactiveIcon.bmp"
+IDB_SPEEDCOPY_ACTIVEICON BITMAP                  "SpeedCopy_ActiveIcon.bmp"
+IDB_SPEEDGOTOTARGET_DEPOTICON BITMAP                  "SpeedGoToTarget_DepotIcon.bmp"
+IDB_SPEEDGOTOTARGET_TRUEICON BITMAP                  "SpeedGoToTarget_TrueIcon.bmp"
+IDB_SPEEDGOTOTARGET_FALSEICON BITMAP                  "SpeedGoToTarget_FalseIcon.bmp"
+IDB_SPEEDGOTOTARGET_ACTIVEICON BITMAP                  "SpeedGoToTarget_ActiveIcon.bmp"
+IDB_SPEEDKEEPAPART_DEPOTICON BITMAP                  "SpeedKeepApart_DepotIcon.bmp"
+IDB_SPEEDKEEPAPART_INACTIVEICON BITMAP                  "SpeedKeepApart_InactiveIcon.bmp"
+IDB_SPEEDKEEPAPART_ACTIVEICON BITMAP                  "SpeedKeepApart_ActiveIcon.bmp"
+IDB_SPEEDSURFACENORMALS_DEPOTICON BITMAP                  "SpeedSurfaceNormals_DepotIcon.bmp"
+IDB_SPEEDSURFACENORMALS_INACTIVEICON BITMAP                  "SpeedSurfaceNormals_InactiveIcon.bmp"
+IDB_SPEEDSURFACENORMALS_ACTIVEICON BITMAP                  "SpeedSurfaceNormals_ActiveIcon.bmp"
+IDB_GOTONEXTEVENT_TRUEICON BITMAP                  "GoToNextEvent_TrueIcon.bmp"
+IDB_GOTONEXTEVENT_DEPOTICON BITMAP                  "GoToNextEvent_DepotIcon.bmp"
+IDB_GOTONEXTEVENT_FALSEICON BITMAP                  "GoToNextEvent_FalseIcon.bmp"
+IDB_GOTONEXTEVENT_ACTIVEICON BITMAP                  "GoToNextEvent_ActiveIcon.bmp"
+IDB_COMMENTS_INACTIVEICON BITMAP                  "Comments_InactiveIcon.bmp"
+IDB_COMMENTS_DEPOTICON  BITMAP                  "Comments_DepotIcon.bmp"
+IDB_COMMENTS_ACTIVEICON BITMAP                  "Comments_ActiveIcon.bmp"
+IDB_SIMPLESCALE_INACTIVEICON BITMAP                  "SimpleScale_InactiveIcon.bmp"
+IDB_SIMPLESCALE_DEPOTICON BITMAP                  "SimpleScale_DepotIcon.bmp"
+IDB_SIMPLESCALE_ACTIVEICON BITMAP                  "SimpleScale_ActiveIcon.bmp"
+IDB_SPLITBYAMOUNT_TRUEICON BITMAP                  "SplitByAmount_TrueIcon.bmp"
+IDB_SPLITBYAMOUNT_DEPOTICON BITMAP                  "SplitByAmount_DepotIcon.bmp"
+IDB_SPLITBYAMOUNT_FALSEICON BITMAP                  "SplitByAmount_FalseIcon.bmp"
+IDB_SPLITBYAMOUNT_ACTIVEICON BITMAP                  "SplitByAmount_ActiveIcon.bmp"
+IDB_SPLITBYSOURCE_TRUEICON BITMAP                  "SplitBySource_TrueIcon.bmp"
+IDB_SPLITBYSOURCE_DEPOTICON BITMAP                  "SplitBySource_DepotIcon.bmp"
+IDB_SPLITBYSOURCE_FALSEICON BITMAP                  "SplitBySource_FalseIcon.bmp"
+IDB_SPLITBYSOURCE_ACTIVEICON BITMAP                  "SplitBySource_ActiveIcon.bmp"
+IDB_SPLITSELECTED_TRUEICON BITMAP                  "SplitSelected_TrueIcon.bmp"
+IDB_SPLITSELECTED_DEPOTICON BITMAP                  "SplitSelected_DepotIcon.bmp"
+IDB_SPLITSELECTED_FALSEICON BITMAP                  "SplitSelected_FalseIcon.bmp"
+IDB_SPLITSELECTED_ACTIVEICON BITMAP                  "SplitSelected_ActiveIcon.bmp"
+IDB_DISPLAY_INACTIVEICON BITMAP                  "Display_InactiveIcon.bmp"
+IDB_DISPLAY_DEPOTICON   BITMAP                  "Display_DepotIcon.bmp"
+IDB_DISPLAY_ACTIVEICON  BITMAP                  "Display_ActiveIcon.bmp"
+IDB_RENDER_INACTIVEICON BITMAP                  "Render_InactiveIcon.bmp"
+IDB_RENDER_DEPOTICON    BITMAP                  "Render_DepotIcon.bmp"
+IDB_RENDER_ACTIVEICON   BITMAP                  "Render_ActiveIcon.bmp"
+IDB_GOTOROTATION_TRUEICON BITMAP                  "GoToRotation_TrueIcon.bmp"
+IDB_GOTOROTATION_DEPOTICON BITMAP                  "GoToRotation_DepotIcon.bmp"
+IDB_GOTOROTATION_FALSEICON BITMAP                  "GoToRotation_FalseIcon.bmp"
+IDB_GOTOROTATION_ACTIVEICON BITMAP                  "GoToRotation_ActiveIcon.bmp"
+IDB_SCALETEST_TRUEICON  BITMAP                  "ScaleTest_TrueIcon.bmp"
+IDB_SCALETEST_DEPOTICON BITMAP                  "ScaleTest_DepotIcon.bmp"
+IDB_SCALETEST_FALSEICON BITMAP                  "ScaleTest_FalseIcon.bmp"
+IDB_SCALETEST_ACTIVEICON BITMAP                  "ScaleTest_ActiveIcon.bmp"
+IDB_SPEEDTEST_TRUEICON  BITMAP                  "SpeedTest_TrueIcon.bmp"
+IDB_SPEEDTEST_DEPOTICON BITMAP                  "SpeedTest_DepotIcon.bmp"
+IDB_SPEEDTEST_FALSEICON BITMAP                  "SpeedTest_FalseIcon.bmp"
+IDB_SPEEDTEST_ACTIVEICON BITMAP                  "SpeedTest_ActiveIcon.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_PLUGINDESCRIPTION   "ParticleFlow Actions (Discreet)"
+    IDS_PARAMETERS          "Parameters"
+    IDS_EMITSTART           "Emit Start"
+    IDS_EMITSTOP            "Emit Stop"
+    IDS_AMOUNT              "Amount"
+    IDS_SUBFRAMESAMPLING    "Subframe Sampling"
+    IDS_PF_OPERATOR_CATEGORY "Operator"
+    IDS_TYPEYOURCOMMENTSHERE "Type your comments here"
+    IDS_VERTEXNOISE         "Vertex Noise"
+    IDS_SURFACEOFFSETVARIATION "Surface Offset Variation"
+    IDS_RESTRICTTOAXIS      "Restrict Divergence To Axis"
+    IDS_DIVERGENCEAXIS_X    "Divergence Axis X"
+    IDS_DIVERGENCEAXIS_Y    "Divergence Axis Y"
+    IDS_LOCATION            "Location"
+    IDS_LOCATIONTYPE_PIVOT  "Pivot"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_LOCATIONTYPE_SURFACE "Surface"
+    IDS_LOCATIONTYPE_EDGES  "Edges"
+    IDS_RANDOMSEED          "Random Seed"
+    IDS_DIVERGENCEAXIS_Z    "Divergence Axis Z"
+    IDS_SPEED               "Speed"
+    IDS_VARIANCE            "Variance"
+    IDS_OPERATOR_DISPLAY_CLASS_NAME "DisplayParticles"
+    IDS_OPERATOR_DISPLAY_OBJECT_NAME "Display "
+    IDS_OPERATOR_RENDER_CLASS_NAME "RenderParticles"
+    IDS_VIEWPORTTYPE        "Viewport Type"
+    IDS_DISPLAYTYPE_NONE    "None"
+    IDS_DISPLAYTYPE_DOTS    "Dots"
+    IDS_DISPLAYTYPE_TICKS   "Ticks"
+    IDS_DISPLAYTYPE_LINES   "Lines"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DISPLAYTYPE_BBOXES  "Bounding Boxes"
+    IDS_DISPLAYTYPE_GEOM    "Geometry"
+    IDS_VIEWPORTVISIBLE     "Viewport Visible"
+    IDS_VIEWPORTCOLOR       "Viewport Color"
+    IDS_SHOWNUMBERING       "Show Numbering"
+    IDS_RENDERTYPE          "Render Type"
+    IDS_DISPLAYRENDER       "Display Render"
+    IDS_RENDERVISIBLE       "Render Visible"
+    IDS_SELECTED            "Selected"
+    IDS_SELECTEDVIEWPORTTYPE "Selected Viewport Type"
+    IDS_SELECTEDRENDERTYPE  "Selected Render Type"
+    IDS_SELECTEDCOLOR       "Selected Color"
+    IDS_HIDDEN              "Hidden"
+    IDS_HIDEBYNUMBERS       "Hide By Numbers"
+    IDS_UNHIDEBYNUMBERS     "Unhide By Numbers"
+    IDS_OPERATOR_RENDER_OBJECT_NAME "Render "
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TEST_DURATION_CLASS_NAME "Age Test"
+    IDS_TEST_DURATION_OBJECT_NAME "Age Test "
+    IDS_PF_TEST_CATEGORY    "Test"
+    IDS_TESTTYPE            "Test Type"
+    IDS_DURATIONTYPE_TIME   "Absolute Age"
+    IDS_DURATIONTYPE_AGE    "Particle Age"
+    IDS_DURATIONTYPE_EVENT  "Event Age"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CONDITIONTYPE       "Condition Type"
+    IDS_TESTVALUE           "Test Value"
+    IDS_VARIATION           "Variation"
+    IDS_FIRSTLASTDISPARITY  "First/Last Disparity"
+    IDS_TESTFIRST           "Test First"
+    IDS_TESTLAST            "Test Last"
+    IDS_LASTINDEX           "Last Index"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPERATOR_SIMPLESHAPE_CLASS_NAME "ShapeStandard"
+    IDS_OPERATOR_SIMPLESHAPE_OBJECT_NAME "Shape "
+    IDS_SHAPETYPE           "Shape"
+    IDS_SHAPETYPE_PYRAMID   "Tetra"
+    IDS_SHAPETYPE_CUBE      "Cube"
+    IDS_SHAPETYPE_SPHERE    "Sphere"
+    IDS_MESHSIZE            "Size"
+    IDS_OPERATOR_SIMPLEBIRTH_CLASS_NAME "Birth"
+    IDS_OPERATOR_SIMPLEBIRTH_OBJECT_NAME "Birth "
+    IDS_BIRTHTYPE           "Type"
+    IDS_RATE                "Rate"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPERATOR_SIMPLEPOSITION_CLASS_NAME "Position Icon"
+    IDS_OPERATOR_SIMPLEPOSITION_OBJECT_NAME "Position Icon "
+    IDS_LOCK                "Lock On Emitter"
+    IDS_INHERIT             "Inherit Emitter Movement"
+    IDS_DISTINCT            "Distinct Points Only"
+    IDS_TOTALDISTINCT       "Total Distinct Points"
+    IDS_LOCATIONTYPE_VERTEX "Vertices"
+    IDS_LOCATIONTYPE_EDGE   "Edges"
+    IDS_LOCATIONTYPE_VOLUME "Volume"
+    IDS_DISPLAYTYPE_CIRCLES "Circles"
+    IDS_DISPLAYTYPE_DIAMONDS "Diamonds"
+    IDS_DISPLAYTYPE_BOXES   "Boxes"
+    IDS_DISPLAYTYPE_ASTERISKS "Asterisks"
+    IDS_DISPLAYTYPE_TRIANGLES "Triangles"
+    IDS_OPERATOR_INSTANCESHAPE_CLASS_NAME "Shape Instance"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPERATOR_INSTANCESHAPE_OBJECT_NAME "Shape Instance "
+    IDS_SHAPESCALE          "Scale"
+    IDS_SHAPEVARIATION      "Variation"
+    IDS_MAPPING             "Mapping"
+    IDS_MATERIAL            "Material"
+    IDS_RANDOMSHAPE         "Random Shape"
+    IDS_ANIMATEDSHAPE       "Animated Shape"
+    IDS_ACQUIRESHAPE        "Acquire Shape"
+    IDS_SYNCTYPE            "Sync Type"
+    IDS_SYNCBY_ABSOLUTE     "Absolute Time"
+    IDS_SYNCBY_PARTICLE     "Particle Age"
+    IDS_SYNCBY_EVENT        "Event Duration"
+    IDS_SYNCBY_RANDOM       "Random"
+    IDS_RANDOMOFFSET        "Random Offset"
+    IDS_INSTANCETYPE        "Instance Type"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OBJECTASWHOLE       "Object As Whole"
+    IDS_OBJECTELEMENTS      "Object Elements"
+    IDS_OBJECTWITHSUBTREE   "Object With Subtree"
+    IDS_OBJECTANDCHILDREN   "Object And Children"
+    IDS_GROUPASWHOLE        "Group As Whole"
+    IDS_GROUPMEMBERS        "Group Members"
+    IDS_GROUPOBJECT         "Group Object"
+    IDS_HIERARCHYOBJECT     "Hierarchy Object"
+    IDS_MESHOBJECT          "Mesh Object"
+    IDS_UNDEFINED           "<Undefined>"
+    IDS_XCOORD              "X Coordinate"
+    IDS_YCOORD              "Y Coordinate"
+    IDS_ADDRANDOMOFFSET     "Add Random Offset"
+    IDS_OPERATOR_FACINGSHAPE_CLASS_NAME "Shape Facing"
+    IDS_OPERATOR_FACINGSHAPE_OBJECT_NAME "Shape Facing "
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PARALLEL            "Parallel"
+    IDS_VIEWPORTTYPE_FRONT  "Front"
+    IDS_VIEWPORTTYPE_BACK   "Back"
+    IDS_VIEWPORTTYPE_TOP    "Top"
+    IDS_VIEWPORTTYPE_BOTTOM "Bottom"
+    IDS_VIEWPORTTYPE_LEFT   "Left"
+    IDS_VIEWPORTTYPE_RIGHT  "Right"
+    IDS_SIZESPACE           "Size Space"
+    IDS_UNITS               "Units"
+    IDS_PROPORTION          "Proportion"
+    IDS_SIZEVARIATION       "Variation"
+    IDS_PIVOTAT             "Pivot At"
+    IDS_PIVOTAT_TOP         "Top"
+    IDS_PIVOTAT_CENTER      "Center"
+    IDS_PIVOTAT_BOTTOM      "Bottom"
+    IDS_WHRATIO             "WH Ratio"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_NUMFSUBMTLS         "Num SubMtls"
+    IDS_LOOP                "Loop"
+    IDS_SUBSPERFRAME        "Subs Per Frame"
+    IDS_OPERATOR_SIMPLESPEED_CLASS_NAME "Speed"
+    IDS_OPERATOR_SIMPLESPEED_OBJECT_NAME "Speed "
+    IDS_DIRECTION           "Direction"
+    IDS_ALONG_ICON_ARROW    "Along Icon Arrow"
+    IDS_ICON_CENTER_0UT     "Icon Center Out"
+    IDS_ICON_ARROW_OUT      "Icon Arrow Out"
+    IDS_RAND_3D             "Random 3D"
+    IDS_RAND_HORIZ          "Random Horizontal"
+    IDS_INHERIT_PREV        "Inherit Previous"
+    IDS_REVERSE             "Reverse"
+    IDS_DIVERGENCE          "Divergence"
+    IDS_WORLD               "World"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_EULER               "Euler"
+    IDS_EULER_X             "Euler X"
+    IDS_EULER_Y             "Euler Y"
+    IDS_EULER_Z             "Euler Z"
+    IDS_INHERITEDSCALE      "Inherited Scale"
+    IDS_USEMATERIAL         "Use Material"
+    IDS_OPERATOR_SIMPLEORIENTATION_CLASS_NAME "Rotation"
+    IDS_OPERATOR_SIMPLEORIENTATION_OBJECT_NAME "Rotation "
+    IDS_OPERATOR_MARKSHAPE_CLASS_NAME "Shape Mark"
+    IDS_OPERATOR_MARKSHAPE_OBJECT_NAME "Shape Mark "
+    IDS_CONTACTOBJECT       "Contact Object"
+    IDS_PICKCONTACTOBJECT   "Pick contact object."
+    IDS_SURFACEAMINATION    "Surface Animation"
+    IDS_ALIGNTO             "Align To"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ALIGNTO_SPEED       "Speed"
+    IDS_ALIGNTO_PARTICLEX   "Particle X"
+    IDS_ALIGNTO_PARTICLEY   "Particle Y"
+    IDS_ALIGNTO_PARTICLEZ   "Particle Z"
+    IDS_ALIGNTO_RANDOM      "Random"
+    IDS_WIDTH               "Width"
+    IDS_LENGTH              "Length"
+    IDS_ANGLEDISTORTION     "Angle Distortion"
+    IDS_MAXDISTORTION       "Max Distortion"
+    IDS_MARKTYPE            "Mark Type"
+    IDS_HEIGHT              "Height"
+    IDS_MULTIELEMENTS       "Multi Elements"
+    IDS_PIVOTOFFSET         "Pivot Offset"
+    IDS_SURFACEOFFSET       "Surface Offset"
+    IDS_UPDATESCHEMATICS    "Update PView Schematics"
+    IDS_SPINRATE            "Spinrate"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_WORLD_SPACE         "World Space"
+    IDS_PARTICLE_SPACE      "Particle Space"
+    IDS_SPEED_SPACE         "Speed Space"
+    IDS_SPIN_X              "Spin X Axis"
+    IDS_SPIN_Y              "Spin Y Axis"
+    IDS_SPIN_Z              "Spin Z Axis"
+    IDS_PW_FORCENODE        "Force Node"
+    IDS_PW_INFLUENCE        "Influence"
+    IDS_PW_SYNC             "Sync"
+    IDS_PW_ABSOLUTE         "Absolute"
+    IDS_PW_PARTICLEAGE      "Particle Age"
+    IDS_PW_EVENTDURATION    "Event Duration"
+    IDS_OPERATOR_FORCESPACEWARP_CLASS_NAME "Force"
+    IDS_OPERATOR_FORCESPACEWARP_OBJECT_NAME "Force "
+    IDS_TESTDURATION_DESCRIPTION 
+                            "Age Test checks either absolute time, or particle age, or for how long a particle was present in the current event."
+    IDS_OPERATOR_SIMPLESPIN_CLASS_NAME "Spin"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPERATOR_SIMPLESPIN_OBJECT_NAME "Spin "
+    IDS_TEST_COLLISIONSPACEWARP_CLASS_NAME "Collision"
+    IDS_OPERATOR_FACINGSHAPE_DESCRIPTION 
+                            "Shape Facing creates a flat particle shape that is oriented towards the camera, the viewport, or an object."
+    IDS_OPERATOR_FORCESW_DESCRIPTION 
+                            "Force accepts any force-type particle space warp as a force source. The force is applied to all particles in the current event."
+    IDS_OPERATOR_INSTANCESHAPE_DESCRIPTION 
+                            "Shape Instance creates particles whose shape is based on a reference geometry object. The object's animation can be synchronized with particle events."
+    IDS_OPERATOR_MARKSHAPE_DESCRIPTION 
+                            "Shape Mark creates particle shapes to simulate spot marks on a contact geometry object. The particle shape is either rectangle or is fit to the contact geometry."
+    IDS_OPERATOR_DISPLAY_DESCRIPTION "Display draws particles in viewports."
+    IDS_OPERATOR_SIMPLEBIRTH_DESCRIPTION "Birth generates particles."
+    IDS_OPERATOR_SIMPLESPEED_DESCRIPTION 
+                            "Speed sets the initial speed for particles in the current event.  The speed direction is based on the emitter orientation."
+    IDS_OPERATOR_SIMPLEPOSITION_DESCRIPTION 
+                            "Position Icon sets the initial position for particles in the current event. Particles are placed on the emitter icon."
+    IDS_OPERATOR_SIMPLESPIN_DESCRIPTION 
+                            "Spin sets the initial angular velocity for particles in the current event. The rotation axis can be either random, or related to global, local or speed space of a particle."
+    IDS_ACTIONLISTWIDTH     "width"
+    IDS_TESTSPAWN_DESCRIPTION 
+                            "Spawn generates new particles from existing particles and sends them to the next event."
+    IDS_TESTSPAWNONCOLLISION_DESCRIPTION 
+                            "Collision Spawn spawns particles upon a collision. The test accepts any deflector-type particle space warp for a collision test. The newly spawned particles are sent to the next event."
+    IDS_SPAWNTYPE           "Spawn Type"
+    IDS_DELETEPARENT        "Delete Parent"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_SPAWNRATE           "Spawn Rate"
+    IDS_SPAWNSTEPSIZE       "Spawn Step Size"
+    IDS_SPAWNABLE           "Spawn Able"
+    IDS_OFFSPRINGSNUM       "Number of Offsprings"
+    IDS_RESTARTAGE          "Restart Particle Age"
+    IDS_SPEEDTYPE           "Speed Type"
+    IDS_SPEEDINHERITED      "Speed Inherited"
+    IDS_SCALE               "Scale"
+    IDS_TESTCOLLISIONSPACEWARP_DESCRIPTION 
+                            "Collision accepts any deflector-type particle space warp for a collision test. The collided or to-be-colliding particles are sent to the next event."
+    IDS_TEST_COLLISIONSPACEWARP_OBJECT_NAME "Collision "
+    IDS_NUMCOLLISIONS       "Number of Collisions"
+    IDS_PARENTSPEED         "Parent Speed"
+    IDS_OFFSPRINGSPEED      "Offspring Speed"
+    IDS_SPEEDTYPE_BOUNCE    "Bounce"
+    IDS_SPEEDTYPE_CONTINUE  "Continue"
+    IDS_SPEEDTYPE_STOP      "Stop"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_SPEEDTYPE_RANDOM    "Random"
+    IDS_SPEEDTYPE_TANGENT   "Tangent"
+    IDS_TEST_SPAWN_CLASS_NAME "Spawn"
+    IDS_TEST_SPAWN_OBJECT_NAME "Spawn "
+    IDS_TEST_SPAWNONCOLLISION_CLASS_NAME "Collision Spawn"
+    IDS_TEST_SPAWNONCOLLISION_OBJECT_NAME "Collision Spawn "
+    IDS_OPERATOR_EXIT_CLASS_NAME "DeleteParticles"
+    IDS_OPERATOR_EXIT_OBJECT_NAME "Delete "
+    IDS_OPERATOR_EXIT_DESCRIPTION "Delete operator deletes particles."
+    IDS_EXITTYPE            "Type"
+    IDS_LIFESPAN            "Life Span"
+    IDS_TEST_COLLISIONSPACEWARP_NODE "Collision Node"
+    IDS_PW_COLLISIONTESTTYPE "Collision Test Type"
+    IDS_PW_COLLISIONSPEEDOPTION "Speed Option"
+    IDS_OPERATOR_RENDER_DESCRIPTION "Render creates geometry to render."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PW_MINSPEED         "Min. Speed"
+    IDS_PW_MAXSPEED         "Max Speed"
+    IDS_PW_WILLCOLLIDEFRAME "Will Collide Frame"
+    IDS_PW_COLLISIONCOUNT   "Collision Count"
+    IDS_PW_COLLISIONCOUNTOPTIONS "Collision Count Options"
+    IDS_PARTICLE            "Particle"
+    IDS_SELECTIONLEVEL      "Selection Level"
+    IDS_GENERATESELECTIONCHANNEL "Generate Selection Channel"
+    IDS_SPEED_SPACE_FOLLOW  "Speed Space Follow"
+    IDS_NEWRANDOMSEED       "New Random Seed"
+    IDS_PICKOBJECT          "Pick Object"
+    IDS_PICKCAMERA          "Pick Camera"
+    IDS_TEST_COLLISIONSPACEWARP_NODES "Collision Nodes"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TRUEFORPARTICLESCOLLIDED "True for Particles Collided"
+    IDS_TRUEFORSPAWNPARTICLES "True for Spawn Particles"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PARTICLEFLOW_CATEGORY "Particle Flow"
+    IDS_OPERATOR_SIMPLESHAPE_DESCRIPTION 
+                            "Shape creates particles whose shape is predefined."
+    IDS_OPERATOR_SIMPLEORIENTATION_DESCRIPTION 
+                            "Rotation sets the initial orientation for particles in the  current event. The operator can control particle orientation constantly if 'Speed Space Follow' is chosen."
+    IDS_OPERATOR_MATERIALSTATIC_CLASS_NAME "Material Static"
+    IDS_OPERATOR_MATERIALSTATIC_OBJECT_NAME "Material Static "
+    IDS_OPERATOR_MATERIALSTATIC_DESCRIPTION 
+                            "Material Static assigns material to particles in the current event.  A particle maintains the same sub-material ID while in the current event."
+    IDS_OPERATOR_SIMPLEMAPPING_CLASS_NAME "Mapping"
+    IDS_OPERATOR_SIMPLEMAPPING_OBJECT_NAME "Mapping "
+    IDS_OPERATOR_SIMPLEMAPPING_DESCRIPTION 
+                            "Mapping assigns uniform mapping coordinates to a particle."
+    IDS_UMAP                "U Map Coordinate"
+    IDS_VMAP                "V Map Coordinate"
+    IDS_WMAP                "W Map Coordinate"
+    IDS_ASSIGNMATERIAL      "Assign Material"
+    IDS_ASSIGNMATERIALID    "Assign Material ID"
+    IDS_MTLIDTYPE           "Material ID Type"
+    IDS_IDANIMTYPE          "Material ID Animation Type"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_NUMSUBMTLS          "Number of Sub-Materials"
+    IDS_MATERIALID          "Material ID"
+    IDS_SUBMTLRATE          "Sub-Materials Rate"
+    IDS_MTLID1FREQ          "Material ID #1 Frequency"
+    IDS_MTLID2FREQ          "Material ID #2 Frequency"
+    IDS_MTLID3FREQ          "Material ID #3 Frequency"
+    IDS_MTLID4FREQ          "Material ID #4 Frequency"
+    IDS_MTLID5FREQ          "Material ID #5 Frequency"
+    IDS_MTLID6FREQ          "Material ID #6 Frequency"
+    IDS_MTLID7FREQ          "Material ID #7 Frequency"
+    IDS_MTLID8FREQ          "Material ID #8 Frequency"
+    IDS_RATEPERFRAME        "Rate per Frame:"
+    IDS_RATEPERPARTICLE     "Rate p/Particle:"
+    IDS_CHANNELTYPE         "Channel Type"
+    IDS_MAPCHANNEL          "Map Channel"
+    IDS_SHOWINVIEWPORT      "Show In Viewport"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPERATOR_POSITIONONOBJECT_CLASS_NAME "Position Object"
+    IDS_OPERATOR_POSITIONONOBJECT_OBJECT_NAME "Position Object "
+    IDS_OPERATOR_POSITIONONOBJECT_DESCRIPTION 
+                            "Position Object places particles on a set of reference objects."
+    IDS_OPERATOR_EMITTER_NODES "Emitter Objects"
+    IDS_USESURFACEOFFSET    "Use Surface Offset"
+    IDS_SURFACEOFFSETMINIMUM "Surface Offset Minimum"
+    IDS_SURFACEOFFSETMAXIMUM "Surface Offset Maximum"
+    IDS_USENONUNIFORMDENSITY "Density By Emitter Material"
+    IDS_NONUNIFORMTYPE      "Non-Uniform Density Type"
+    IDS_ATTEMPTSMAX         "Maximum Number of Attempts"
+    IDS_APARTPLACEMENT      "Apart Placement"
+    IDS_DISTINCTPOINTSONLY  "Distinct Points Only"
+    IDS_APARTDISTANCE       "Apart Distance"
+    IDS_DENSITYTYPE         "Density Type"
+    IDS_USESUBMTL           "Use Sub-Material"
+    IDS_DENSITYTYPE_GRAYSCALE "Grayscale"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DENSITYTYPE_OPACITY "Opacity"
+    IDS_DENSITYTYPE_GRAYSCALEOPACITY "Grayscale & Opacity"
+    IDS_DENSITYTYPE_RED     "Red"
+    IDS_DENSITYTYPE_GREEN   "Green"
+    IDS_DENSITYTYPE_BLUE    "Blue"
+    IDS_OPERATOR_SPEEDSURFACENORMALS_CLASS_NAME "Speed By Surface"
+    IDS_OPERATOR_SPEEDSURFACENORMALS_OBJECT_NAME "Speed By Surface "
+    IDS_OPERATOR_SPEEDSURFACENORMALS_DESCRIPTION 
+                            "Speed By Surface either sets the initial speed or modifies the existing speed for particles in the current event.  The speed direction is based on geometry of the reference objects."
+    IDS_OPERATOR_MATERIALDYNAMIC_CLASS_NAME "Material Dynamic"
+    IDS_OPERATOR_MATERIALDYNAMIC_OBJECT_NAME "Material Dynamic "
+    IDS_OPERATOR_MATERIALDYNAMIC_DESCRIPTION 
+                            "Material Dynamic assigns animated material to particles in the current event. The material can be animated either by animated texture or by sub-materials rotoscoping."
+    IDS_OPERATOR_MATERIALFREQUENCY_CLASS_NAME "Material Frequency"
+    IDS_OPERATOR_MATERIALFREQUENCY_OBJECT_NAME "Material Frequency "
+    IDS_OPERATOR_MATERIALFREQUENCY_DESCRIPTION 
+                            "Material Frequency assigns static material to particles in the current event. The sub-material IDs are distributed according to parametric frequencies."
+    IDS_OPERATOR_SPEEDCOPY_CLASS_NAME "SpeedByIcon"
+    IDS_OPERATOR_SPEEDCOPY_OBJECT_NAME "Speed By Icon "
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPERATOR_SPEEDCOPY_DESCRIPTION 
+                            "Speed By Icon uses its icon movement as a template for particle speed."
+    IDS_OPERATOR_SPEEDKEEPAPART_CLASS_NAME "Keep Apart"
+    IDS_OPERATOR_SPEEDKEEPAPART_OBJECT_NAME "Keep Apart "
+    IDS_OPERATOR_SPEEDKEEPAPART_DESCRIPTION 
+                            "Keep Apart prevents inter-particle collisions by controlling their speed."
+    IDS_TEST_SPEEDGOTOTARGET_CLASS_NAME "Find Target"
+    IDS_TEST_SPEEDGOTOTARGET_OBJECT_NAME "Find Target "
+    IDS_TEST_SPEEDGOTOTARGET_DESCRIPTION 
+                            "Find Target directs particles to a specified target that is either the operator icon or a reference geometry. Once a particle reaches the target then the particle is sent to the next event."
+    IDS_SPEEDTYPE_ONCE      "Set Speed Once"
+    IDS_SPEEDTYPE_CONTINUOUS "Control Speed Continuously"
+    IDS_SETSPEEDMAGNITUDE   "Set Speed Magnitude"
+    IDS_SPEEDVALUE          "Speed Value"
+    IDS_SPEEDVARIATION      "Speed Variation"
+    IDS_SURFACEOBJECTS      "Surface Objects"
+    IDS_SETSPEEDBYSURFACEMTL "Set Speed by Surface Material"
+    IDS_MATERIALTYPE        "Material Type"
+    IDS_MATERIALTYPE_GRAYSCALE "Grayscale Multiplier"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_MATERIALTYPE_RGBASWORLD "RGB as World XYZ Mult."
+    IDS_MATERIALTYPE_RGBASLOCAL "RGB as Local XYZ Mult."
+    IDS_DIRECTIONTYPE_NORMALS "Surface Normals"
+    IDS_DIRECTIONTYPE_OUTOFSURFACE "Out Of Surface"
+    IDS_DIRECTIONTYPE_PARALLEL "Parallel To Surface"
+    IDS_ACCELERATIONLIMIT   "Acceleration Limit"
+    IDS_UNLIMITEDRANGE      "Unlimited Range"
+    IDS_RANGE               "Range"
+    IDS_FALLOFF             "Falloff"
+    IDS_DIRECTIONTYPE       "Direction Type"
+    IDS_SPEEDTYPE_BYSPEED   "Control By Speed"
+    IDS_SPEEDTYPE_BYTIME    "Control By Time"
+    IDS_CRUISESPEED         "Cruise Speed"
+    IDS_TIMINGTYPE          "Timing Type"
+    IDS_TIME                "Time"
+    IDS_TIMEVARIATION       "Time Variation"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_USEDOCKINGSPEED     "Use Docking Speed"
+    IDS_DOCKINGSPEED        "Docking Speed"
+    IDS_DOCKINGEASYIN       "Docking Easy In"
+    IDS_TARGETTYPE          "Target Type"
+    IDS_TARGETOBJECTS       "Target Objects"
+    IDS_ASSIGNMENTTYPE      "Assignment Type"
+    IDS_ASSIGNMENT_RANDOM   "Random"
+    IDS_ASSIGNMENT_DISTANCE "Closest Pivot"
+    IDS_ASSIGNMENT_INTEGER  "By Script Integer"
+    IDS_USEDOCKINGDIRECTION "Use Docking Direction"
+    IDS_DOCKINGTYPE         "Docking Type"
+    IDS_DOCKINGTYPE_PARALLEL "Along Icon Arrow"
+    IDS_DOCKINGTYPE_SPHERICAL "Icon Spherical"
+    IDS_DOCKINGTYPE_CYLINDRICAL "Icon Cylindrical"
+    IDS_ICONSIZE            "Icon Size"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DOCKINGTYPE_NORMAL  "Surface Normals"
+    IDS_SHAPETYPE_VERTEX    "Vertex"
+    IDS_SPEEDTYPE_NOCONTROL "No Control"
+    IDS_USECRUISESPEED      "Use Cruise Speed"
+    IDS_CRUISESPEEDVARIATION "Cruise Speed Variation"
+    IDS_DOCKINGSPEEDVARIATION "Docking Speed Variation"
+    IDS_TESTDISTANCE        "Test Distance"
+    IDS_FOLLOWTARGET        "Follow Target"
+    IDS_DOCKINGTYPE_NONE    "None Specified"
+    IDS_LOCKONTARGET        "Lock On Target"
+    IDS_ASSIGNMENT_SURFACE  "Closest Surface"
+    IDS_ASSIGMENT_DEVIATION "Least Deviation"
+    IDS_AIMPOINTTYPE        "Aim Point Type"
+    IDS_AIMPOINT_RANDOM     "Random"
+    IDS_AIMPOINT_SURFACE    "Closest Surface"
+    IDS_AIMPOINT_VECTOR     "By Script Vector"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_FORCE               "Force"
+    IDS_RANGETYPE           "Range Type"
+    IDS_CORESIZE            "Core Size"
+    IDS_FALLOFFSIZE         "Falloff Size"
+    IDS_CORERATIO           "Core Percentage"
+    IDS_FALLOFFRATIO        "Falloff Percentage"
+    IDS_SELECTEDGROUPS      "Selected Events"
+    IDS_SELECTEDSYSTEMS     "Selected Systems"
+    IDS_SCOPETYPE           "Scope Type"
+    IDS_PARAMETERCHANGE     "Parameter Change"
+    IDS_USEACCELLIMIT       "Use Accel Limit"
+    IDS_USESPEEDLIMIT       "Use Speed Limit"
+    IDS_ACCELLIMIT          "Accel Limit"
+    IDS_SPEEDLIMIT          "Speed Limit"
+    IDS_USESPEEDVARIATION   "Use Speed Variation"
+    IDS_SPEEDMIN            "Speed Minimum (%)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_SPEEDMAX            "Speed Maximum (%)"
+    IDS_STEERTOWARDSTRAJECTORY "Steer Towards Trajectory"
+    IDS_DISTANCE            "Distance"
+    IDS_USEORIENT           "User Icon Orientation"
+    IDS_INFLUENCE           "Influence"
+    IDS_TEST_GOTONEXTEVENT_CLASS_NAME "Send Out"
+    IDS_TEST_GOTONEXTEVENT_OBJECT_NAME "Send Out "
+    IDS_TEST_GOTONEXTEVENT_DESCRIPTION 
+                            "Send Out sets the test result for all particles to either True, thus sending them to the next event, or False, keeping them in the current event."
+    IDS_OPERATOR_COMMENTS_CLASS_NAME "Notes"
+    IDS_OPERATOR_COMMENTS_OBJECT_NAME "Notes "
+    IDS_OPERATOR_COMMENTS_DESCRIPTION 
+                            "Notes is a non-executable operator to place comments in an event."
+    IDS_COMMENTS            "Comments"
+    IDS_OPERATOR_SIMPLESCALE_CLASS_NAME "ScaleParticles"
+    IDS_OPERATOR_SIMPLESCALE_OBJECT_NAME "Scale "
+    IDS_OPERATOR_SIMPLESCALE_DESCRIPTION "Scale controls particle size."
+    IDS_TYPE                "Type"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OVERWRITE_ONCE      "Overwrite Once"
+    IDS_INHERIT_ONCE        "Inherit Once"
+    IDS_ABSOLUTE            "Absolute"
+    IDS_RELATIVE_FIRST      "Relative First"
+    IDS_RELATIVE_SUCCESSIVE "Relative Successive"
+    IDS_XSCALE_FACTOR       "X Scale Factor"
+    IDS_YSCALE_FACTOR       "Y Scale Factor"
+    IDS_ZSCALE_FACTOR       "Z Scale Factor"
+    IDS_CONSTRAINSCALE      "Constrain Scale"
+    IDS_XSCALE_VARIATION    "X Scale Variation"
+    IDS_YSCALE_VARIATION    "Y Scale Variation"
+    IDS_ZSCALE_VARIATION    "Z Scale Variation"
+    IDS_BIAS                "Bias"
+    IDS_NONE                "None"
+    IDS_CENTERED            "Centered"
+    IDS_TOWARDSMIN          "Towards Minimum"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TOWARDSMAX          "Towards Maximum"
+    IDS_CONSTRAINVARIATION  "Constrain Scale Variation"
+    IDS_MULTIPLIER          "Multiplier (%)"
+    IDS_FORCESPACEWARP_NODES "Force Space Warps"
+    IDS_FORCEOVERLAPPING    "Force Overlapping"
+    IDS_RATIO               "Ratio (%)"
+    IDS_SELECTEDSOURCES     "Selected Sources"
+    IDS_EVERYNTH            "Every Nth"
+    IDS_FIRSTN              "First N"
+    IDS_PEREMISSIONSOURCE   "Per Emission Source"
+    IDS_TEST_SPLITBYAMOUNT_CLASS_NAME "Split Amount"
+    IDS_TEST_SPLITBYAMOUNT_OBJECT_NAME "Split Amount "
+    IDS_TESTSPLITBYAMOUNT_DESCRIPTION 
+                            "Split Amount checks numerical particle property, and sends to the next event either a fraction of particles, or every Nth particle, or the first N particles, or all the particles after the N first."
+    IDS_TEST_SPLITBYSOURCE_CLASS_NAME "Split Source"
+    IDS_TEST_SPLITBYSOURCE_OBJECT_NAME "Split Source "
+    IDS_TESTSPLITBYSOURCE_DESCRIPTION 
+                            "Split Source verifies particle origin, and if a particle is generated by a specified emitter then the particle is sent to the next event."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TEST_SPLITSELECTED_CLASS_NAME "Split Selected"
+    IDS_TEST_SPLITSELECTED_OBJECT_NAME "Split Selected "
+    IDS_TESTSPLITSELECTED_DESCRIPTION 
+                            "Split Selected checks selection status of a particle."
+    IDS_LOCATIONTYPE_SELVERTEX "Selected Vertices"
+    IDS_LOCATIONTYPE_SELEDGE "Selected Edges"
+    IDS_LOCATIONTYPE_SELFACES "Selected Faces"
+    IDS_SCRIPTWIRING        "Script Wiring"
+    IDS_USESCRIPTWIRING     "Use Script Wiring"
+    IDS_USESCRIPTFLOAT      "Use Script Float"
+    IDS_USESCRIPTINTEGER    "Use Script Integer"
+    IDS_USESCRIPTVECTOR     "Use Script Vector"
+    IDS_USESCRIPTMATRIX     "Use Script Matrix"
+    IDS_TEST_SPEEDGOTOTARGET_PVIEW_NAME "Find Target"
+    IDS_OPERATOR_SPEEDCOPY_PVIEW_NAME "Speed By Icon"
+    IDS_RESETPARTICLEAGE    "Reset Particle Age"
+    IDS_VISIBLE             "Visible"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_COLOR               "Color"
+    IDS_SELECTEDTYPE        "Selected Type"
+    IDS_ALIGNTOHORIZON      "Align to Horizon"
+    IDS_ALIGNTOSPEEDFOLLOW  "Align to Speed Follow"
+    IDS_RANDOM              "Random"
+    IDS_ALLOWSPIN           "Allow Spinning"
+    IDS_ORIENTATION         "Orientation"
+    IDS_MTLID9FREQ          "Material ID #9 Frequency"
+    IDS_MTLID10FREQ         "Material ID #10 Frequency"
+    IDS_RATETYPE            "Rate Type"
+    IDS_RATEPERSECOND       "Rate Per Second"
+    IDS_RANDOMIZEAGE        "Randomize Age"
+    IDS_MAXAGEOFFSET        "Max Age Offset"
+    IDS_MESHUSESCALE        "Use Scale"
+    IDS_MESHSCALE           "Scale"
+    IDS_TEST_GOTOROTATION_CLASS_NAME "Go To Rotation"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TEST_GOTOROTATION_OBJECT_NAME "Go To Rotation "
+    IDS_SENDOUT             "Send Out"
+    IDS_TRANSITIONTYPE      "Transition Type"
+    IDS_TARGETROTATION      "Target Rotation"
+    IDS_STOPSPINNING        "Stop Spinning"
+    IDS_AGE                 "Age"
+    IDS_DURATION            "Duration"
+    IDS_TESTGOTOROTATION_DESCRIPTION 
+                            "Go To Rotation makes a smooth transition from the current rotation to the rotation defined by the next rotation-type operator. At the end of the transition particles are sent to the next event."
+    IDS_MATCHINITIALSPIN    "Match Initial Spin"
+    IDS_SPINVARIATION       "Spin Rate Variation"
+    IDS_EASEIN              "Ease In (%)"
+    IDS_ABSOLUTE_ABBR       "Abs"
+    IDS_EVENT               "Event"
+    IDS_PICKGEOMETRYOBJECT  "Pick geometry object"
+    IDS_PICKCAMERAOROBJECT  "Pick camera or object"
+    IDS_TOTAL_ABBR          "T"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ALL                 "All"
+    IDS_BYAGE               "By Age"
+    IDS_GROUP               "Group"
+    IDS_SYSTEM              "System"
+    IDS_SELECTEDGROUPS_ABBR "Sel. Groups"
+    IDS_SELECTEDSYSTEMS_ABBR "Sel. Systems"
+    IDS_ONCE                "Once"
+    IDS_BYRATE              "By Rate"
+    IDS_BYTRAVEL            "By Travel"
+    IDS_SPEEDTHENTIME       "Speed, Time"
+    IDS_TH_LikeInNth        "th"
+    IDS_FIRST               "First"
+    IDS_AFTER               "After"
+    IDS_FRACTION            "Fraction"
+    IDS_EVERY               "Every"
+    IDS_ST_LikeIn1st        "st"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ND_LikeIn2nd        "nd"
+    IDS_RD_LikeIn3rd        "rd"
+    IDS_AT                  "At"
+    IDS_SELECTFORCESPACEWARPS "Select Force Space Warps"
+    IDS_SELECT              "Select"
+    IDS_SELECTEMITTEROBJECTS "Select Emitter Objects"
+    IDS_SELECTSURFACEOBJECTS "Select Surface Objects"
+    IDS_SELECTTARGETOBJECTS "Select Target Objects"
+    IDS_SELECTDEFLECTORS    "Select Deflectors"
+    IDS_SPLITTYPE           "Split Type"
+    IDS_MESHCOUNT           "Mesh Count"
+    IDS_PARTICLESPERMESH    "Particles Per Mesh"
+    IDS_TEST_SCALE_CLASS_NAME "Scale Test"
+    IDS_TEST_SCALE_OBJECT_NAME "Scale Test "
+    IDS_PRESIZE             "PreSize"
+    IDS_POSTSIZE            "PostSize"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_SCALETYPE_PRESIZE   "PreScale Size"
+    IDS_SCALETYPE_POSTSIZE  "PostScale Size"
+    IDS_SCALETYPE_SCALE     "Scale"
+    IDS_AXISTYPE            "Axis Type"
+    IDS_AXISTYPE_AVERAGE    "Average"
+    IDS_AXISTYPE_MINIMUM    "Minimum"
+    IDS_AXISTYPE_MEDIAN     "Median"
+    IDS_AXISTYPE_MAXIMUM    "Maximum"
+    IDS_AXISTYPE_X          "X"
+    IDS_AXISTYPE_Y          "Y"
+    IDS_AXISTYPE_Z          "Z"
+    IDS_SIZEVALUE           "Size Value"
+    IDS_SCALEVALUE          "Scale Value"
+    IDS_SCALEVARIATION      "Scale Variation"
+    IDS_TESTSCALE_DESCRIPTION 
+                            "Scale Test checks particle size or scale. The size can be measured on pre-scale or post-scale basis."
+    IDS_TEST_SPEED_CLASS_NAME "Speed Test"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TEST_SPEED_OBJECT_NAME "Speed Test "
+    IDS_SPEEDX              "SpeedX"
+    IDS_SPEEDY              "SpeedY"
+    IDS_SPEEDZ              "SpeedZ"
+    IDS_ACCELERATION_ABBR   "Accel"
+    IDS_ACCELERATIONX_ABBR  "AccelX"
+    IDS_ACCELERATIONY_ABBR  "AccelY"
+    IDS_ACCELERATIONZ_ABBR  "AccelZ"
+    IDS_STEERING            "Steering"
+    IDS_SPEEDTYPE_SPEEDMAG  "Velocity Magnitude"
+    IDS_SPEEDTYPE_SPEEDX    "Velocity X"
+    IDS_SPEEDTYPE_SPEEDY    "Velocity Y"
+    IDS_SPEEDTYPE_SPEEDZ    "Velocity Z"
+    IDS_SPEEDTYPE_ACCELMAG  "Acceleration Magnitude"
+    IDS_SPEEDTYPE_ACCELX    "Acceleration X"
+    IDS_SPEEDTYPE_ACCELY    "Acceleration Y"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_SPEEDTYPE_ACCELZ    "Acceleration Z"
+    IDS_SPEEDTYPE_STEERINGRATE "Steering Rate"
+    IDS_UNITVALUE           "Unit Value"
+    IDS_UNITVARIATION       "Unit Variation"
+    IDS_ANGLEVALUE          "Angle Value"
+    IDS_ANGLEVARIATION      "Angle Variation"
+    IDS_TESTSPEED_DESCRIPTION 
+                            "Speed Test checks particle speed, or acceleration, or steering rate."
+    IDS_SPEEDTYPE_WHENACCELS "True When Accelerates"
+    IDS_SPEEDTYPE_WHENSLOWS "True When Decelerates"
+    IDS_IFACCELERATES_ABBR  "If Accel"
+    IDS_IFDECELERATES_ABBR  "If Decel"
+    IDS_CONTINUOUSUPDATE    "Continuous Update"
+    IDS_GENERATEMAPPINGCOORDS "Generate Mapping Coords"
+    IDS_SPEED_FOLLOW        "Speed Follow"
+    IDS_TESTTYPE_TARGETPIVOT "Target Pivot"
+    IDS_TESTTYPE_TARGETPOINT "Target Point"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TARGETSYNCTYPE      "Target Sync Type"
+    IDS_NOCONTROL           "No Control"
+    IDS_DOCKINGDISTANCE     "Docking Distance"
+    IDS_COLORTYPE           "Color Type"
+    IDS_OPERATOR_SIMPLESHAPE_PVIEW_NAME "Shape"
+    IDS_OPERATOR_EXIT_PVIEW_NAME "Delete"
+    IDS_OPERATOR_SIMPLESCALE_PVIEW_NAME "Scale"
+    IDS_OPERATOR_DISPLAY_PVIEW_NAME "Display"
+    IDS_OPERATOR_RENDER_PVIEW_NAME "Render"
+    IDS_DELETE              "Delete"
+    IDS_SETSCALE            "Set Scale"
+    IDS_MATERIALTYPE_LUMCENTER "Signed Grayscale"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DISPLAYTYPE_PHANTOM "Phantom"
+    IDS_ASSIGNEDMATERIAL    "Assigned Material"
+    IDS_NOTHING             " "
+    IDS_LOOKATOBJECT        "Look At Object"
+    IDS_SHAPEOBJECT         "Shape Object"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#include "veroverrides.h"
+#include "maxversion.r"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
