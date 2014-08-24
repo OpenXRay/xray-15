@@ -75,7 +75,7 @@
       <Culture>0x0419</Culture>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(SolutionDir)libraries\$(ProjectName).lib</OutputFile>
+      <OutputFile>$(SolutionDir)libraries\$(Configuration)\$(TargetName).lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Lib>
@@ -105,7 +105,7 @@
       <Culture>0x0419</Culture>
     </ResourceCompile>
     <Lib>
-      <OutputFile>Server\$(Configuration)\lw_serverd.lib</OutputFile>
+      <OutputFile>$(SolutionDir)libraries\$(Configuration)\$(TargetName).lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Lib>
   </ItemDefinitionGroup>
