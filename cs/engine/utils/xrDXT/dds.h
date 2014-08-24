@@ -1,5 +1,3 @@
-// dds.h
-//
 // This header defines constants and structures that are useful when parsing 
 // DDS files.  DDS files were originally designed to use several structures
 // and constants that are native to DirectDraw and are defined in ddraw.h,
@@ -10,9 +8,9 @@
 #ifndef _DDS_H_
 #define _DDS_H_
 
-#define DDS_FOURCC 0x00000004  // DDPF_FOURCC
-#define DDS_RGB    0x00000040  // DDPF_RGB
-#define DDS_RGBA   0x00000041  // DDPF_RGB | DDPF_ALPHAPIXELS
+#define DDS_FOURCC 0x00000004 // DDPF_FOURCC
+#define DDS_RGB 0x00000040 // DDPF_RGB
+#define DDS_RGBA 0x00000041 // DDPF_RGB | DDPF_ALPHAPIXELS
 
 const DDS_PIXELFORMAT DDSPF_DXT1 =
     { sizeof(DDS_PIXELFORMAT), DDS_FOURCC, MAKEFOURCC('D','X','T','1'), 0, 0, 0, 0, 0 };
@@ -67,7 +65,6 @@ const DDS_PIXELFORMAT DDSPF_R5G6B5 =
 
 #define DDS_FLAGS_VOLUME 0x00200000 // DDSCAPS2_VOLUME
 
-
 struct DDS_HEADER
 {
     DWORD dwSize;
@@ -86,16 +83,14 @@ struct DDS_HEADER
 
 enum DDS_HEADER_FLAGS
 {
-	DDSD_CAPS			= (1 << 0),
-    DDSD_HEIGHT			= (1 << 1),
-	DDSD_WIDTH			= (1 << 2),
-	DDSD_PITCH			= (1 << 3),
-	DDSD_PIXELFORMAT	= (1 << 12),
-	DDSD_MIPMAPCOUNT	= (1 << 17),
-	DDSD_LINEARSIZE		= (1 << 19),
-	DDSD_DEPTH			= (1 << 23),
+	DDSD_CAPS = 1 << 0,
+    DDSD_HEIGHT = 1 << 1,
+	DDSD_WIDTH = 1 << 2,
+	DDSD_PITCH = 1 << 3,
+	DDSD_PIXELFORMAT = 1 << 12,
+	DDSD_MIPMAPCOUNT = 1 << 17,
+	DDSD_LINEARSIZE = 1 << 19,
+	DDSD_DEPTH = 1 << 23,
 };
-
-
 
 #endif
