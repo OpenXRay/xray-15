@@ -149,7 +149,8 @@ gsproduct_t products[MAX_PRODUCTS];
 int gcd_init(int gameid)
 {
 	int ret;
-	const char defaulthost[] =  {'k','e','y','.','g','a','m','e','s','p','y','.','c','o','m','\0'}; //key.gamespy.com
+	// gamespy.com is not available
+	const char* defaulthost = "key.gamegsc.com";
 
 	// check if the backend is available
 	if(__GSIACResult != GSIACAvailable)

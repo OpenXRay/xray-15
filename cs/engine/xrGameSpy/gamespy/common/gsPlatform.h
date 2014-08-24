@@ -262,7 +262,7 @@
 #endif
 
 #if !defined(GSI_DOMAIN_NAME)
-	#define GSI_DOMAIN_NAME "gamespy.com"
+	#define GSI_DOMAIN_NAME "gamegsc.com"
 #endif
 
 
