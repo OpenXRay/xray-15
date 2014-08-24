@@ -635,27 +635,25 @@ void Image_DXTC::DecompressDXT5()
     int yblocks = m_DDSD.dwHeight / 4;
     DWORD* pBase = (DWORD*)m_pDecompBytes;
     DWORD* pImPos = (DWORD*)pBase; // pos in decompressed data
-    WORD* pPos = (WORD*)m_pCompBytes; // pos in compressed data
-    DXTColBlock* pBlock;
-    DXTAlphaBlock3BitLinear* pAlphaBlock;
-    Color8888 col_0, col_1, col_2, col_3;
-    WORD wrd;
+    WORD* pPos = (WORD*)m_pCompBytes; // pos in compressed data    
+    Color8888 col_0, col_1, col_2, col_3;    
     // fill alphazero with appropriate value to zero out alpha when
     //  alphazero is ANDed with the image color 32 bit DWORD:
     col_0.a = 0;
     col_0.r = col_0.g = col_0.b = 0xff;
     DWORD alphazero = *(DWORD*)&col_0;
+    WORD wrd;
     //	//TRACE("blocks: x: %d    y: %d\n", xblocks, yblocks );
     for (int j = 0; j < yblocks; j++)
     {
         // 8 bytes per block
         // 1 block for alpha, 1 block for color
-        pBlock = (DXTColBlock*)((DWORD)m_pCompBytes + j * xblocks * 16);
+        DXTColBlock* pBlock = (DXTColBlock*)((DWORD)m_pCompBytes + j * xblocks * 16);
         for (int i = 0; i < xblocks; i++, pBlock++)
         {
             // inline
             // Get alpha block
-            pAlphaBlock = (DXTAlphaBlock3BitLinear*)pBlock;
+            DXTAlphaBlock3BitLinear* pAlphaBlock = (DXTAlphaBlock3BitLinear*)pBlock;
             // inline func:
             // Get color block & colors
             pBlock++;

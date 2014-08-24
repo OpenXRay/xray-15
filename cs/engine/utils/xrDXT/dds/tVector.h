@@ -280,7 +280,7 @@ public:
     {}
 
     // Copy ctor.
-    nvVector(const nvVector & a) :
+    nvVector(const nvVector& a) :
         m_buffer(NULL), m_size(0), m_buffer_size(0)
     {
         copy(a.m_buffer, a.m_size);
@@ -486,7 +486,7 @@ public:
     }
 
     // Assignment operator.
-    void operator=(const nvVector & a)
+    void operator=(const nvVector& a)
     {
         copy(a.m_buffer, a.m_size);
     }
