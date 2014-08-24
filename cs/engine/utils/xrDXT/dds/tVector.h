@@ -507,10 +507,7 @@ private:
         }
         else // realloc the buffer
         {
-            if (m_buffer)
-                m_buffer = (T*)::realloc(m_buffer, sizeof(T) * m_buffer_size);
-            else
-                m_buffer = (T*)malloc(sizeof(T) * m_buffer_size);
+            m_buffer = (T*)::realloc(m_buffer, sizeof(T) * m_buffer_size);
         }
     }
 
