@@ -116,9 +116,7 @@ bool Token::parse(const char * format, int count, ...) const
 	va_list arg;
 	va_start(arg, count);
 
-//	int readCount = vsscanf(m_str, format, arg);
-
-	int readCount = sscanf(m_str, format, arg);
+    int readCount = vsscanf(m_str, format, arg);
 
 	va_end(arg);
 
