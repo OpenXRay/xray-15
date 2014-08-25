@@ -2,7 +2,7 @@
 #define	xrSASH_included
 #pragma once
 
-#include "OpenAutomate/OpenAutomate.h"
+#include <OpenAutomate/inc/OpenAutomate.h>
 
 //struct oaOptionDependencyStruct;
 //typedef struct oaOptionDependencyStruct oaOptionDependency;
