@@ -43,8 +43,6 @@ private:
 	void					compress_configs	();
 
 	static void				dumper_thread		(void* my_ptr);
-	void __stdcall			yield_cb			(long progress);
-	void __stdcall			switch_thread		();
 
 	bool const				is_active			() const { return m_state == ds_active; };
 
@@ -61,7 +59,6 @@ private:
 
 	enum_dumper_state		m_state;
 	complete_callback_t		m_complete_cb;
-	yield_callback_t		m_yield_cb;
 	CMemoryWriter			m_dump_result;
 	dump_signer				m_dump_signer;
 	

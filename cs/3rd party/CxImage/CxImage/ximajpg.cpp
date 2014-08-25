@@ -277,10 +277,6 @@ bool CxImageJPG::Decode(CxFile * hFile)
 #endif //CXIMAGE_SUPPORT_DECODE
 ////////////////////////////////////////////////////////////////////////////////
 #if CXIMAGE_SUPPORT_ENCODE
-
-//jpeg_encode_callback_func g_jpeg_encode_cb = NULL;
-fastdelegate::FastDelegate1< long > g_jpeg_encode_delegate;
-
 ////////////////////////////////////////////////////////////////////////////////
 bool CxImageJPG::Encode(CxFile * hFile)
 {
@@ -466,18 +462,9 @@ bool CxImageJPG::Encode(CxFile * hFile)
 	CTimer tmp_dbg_timer;
 	tmp_dbg_timer.Start();
 #endif //#ifdef DEBUG
-	long new_progress = 0;
-	long last_progress = 0;
 
 	iter.Upset();
 	while (cinfo.next_scanline < cinfo.image_height) {
-		if ( g_jpeg_encode_delegate )
-		{
-			new_progress = 100*cinfo.next_scanline/cinfo.image_height;
-			if (new_progress != last_progress)
-				g_jpeg_encode_delegate ( new_progress );
-			last_progress = new_progress;
-		}
 		// info.nProgress = (long)(100*cinfo.next_scanline/cinfo.image_height);
 		iter.GetRow(buffer[0], row_stride);
 		// not necessary if swapped red and blue definition in jmorecfg.h;ln322 <W. Morrison>

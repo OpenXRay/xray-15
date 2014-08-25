@@ -38,7 +38,7 @@ void writer::set_player_cdkey_digest	(shared_str const & cdkeydigest)
 	m_info_data.w_string(ss_info_secion, ss_admin_name_key, admin_name.c_str());
 }*/
 
-u32	const writer::write_info(sha_process_yielder* yielder)
+u32	const writer::write_info()
 {
 	string64	time_string;
 	m_info_data.w_string			(
@@ -60,13 +60,7 @@ u32	const writer::write_info(sha_process_yielder* yielder)
 	
 	
 	shared_str tmp_sign_res;
-	if (yielder && *yielder)
-	{
-		tmp_sign_res = m_signer.sign_mt(m_buffer, jpeg_data_size, *yielder);
-	} else
-	{
-		tmp_sign_res = m_signer.sign(m_buffer, jpeg_data_size);
-	}
+	tmp_sign_res = m_signer.sign(m_buffer, jpeg_data_size);
 	
 	m_info_data.w_string			(
 		ss_info_secion,

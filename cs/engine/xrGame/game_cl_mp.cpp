@@ -1748,14 +1748,12 @@ void game_cl_mp::decompress_and_process_config(LPCSTR file_name, u8* data, u32 d
 	}
 
 	reinit_compress_buffer(file_size);
-	ppmd_yield_callback_t	tmp_cb;
 
-	u32 original_size = ppmd_decompress_mt(
+	u32 original_size = ppmd_decompress(
 		buffer_for_compress,
 		buffer_for_compress_size,
 		data,
-		data_size,
-		tmp_cb
+		data_size
 	);
 	
 	if (original_size != file_size)

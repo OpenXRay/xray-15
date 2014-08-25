@@ -119,17 +119,7 @@ void configs_dumper::write_configs()
 	long i							= 0;
 	m_dump_result.clear				();
 	m_ltx_configs.start_dump		();
-	if (m_yield_cb)
-	{
-		while (m_ltx_configs.dump_one(m_dump_result))
-		{
-			m_yield_cb(i);
-			++i;
-		}
-	} else
-	{
-		while (m_ltx_configs.dump_one(m_dump_result)) {};
-	}
+	while (m_ltx_configs.dump_one(m_dump_result)) {};
 	CInifile			active_params_dumper(NULL, FALSE, FALSE, FALSE);
 	active_objects_t	active_objects(
 		_alloca(sizeof(active_objects_t::value_type) * max_active_objects),
@@ -175,19 +165,9 @@ void configs_dumper::sign_configs		()
 	tmp_ini.w_string				(cd_info_secion, cd_player_digest_key, tmp_cdkey_digest);
 	tmp_ini.w_string				(cd_info_secion, cd_creation_date, creation_date);
 
-	shared_str	tmp_dsign;
-	if (m_yield_cb)
-	{
-		tmp_dsign = m_dump_signer.sign_mt(
-			m_dump_result.pointer(),
-			m_dump_result.size(),
-			m_yield_cb);
-	} else
-	{
-		tmp_dsign = m_dump_signer.sign(
-			m_dump_result.pointer(),
-			m_dump_result.size());
-	}
+	shared_str	tmp_dsign = m_dump_signer.sign(
+		m_dump_result.pointer(),
+		m_dump_result.size());
 	m_dump_result.seek				(tmp_w_pos);
 	tmp_ini.w_string				(cd_info_secion, cd_digital_sign_key, tmp_dsign.c_str());
 	tmp_ini.save_as					(m_dump_result);
@@ -202,23 +182,7 @@ void configs_dumper::dump_config(complete_callback_t complete_cb)
 		Msg("! ERROR: CL: dump making already in progress...");
 #endif
 		return;
-	}
-
-	DWORD	process_affinity_mask;
-	DWORD	tmp_dword;
-	GetProcessAffinityMask(
-		GetCurrentProcess(),
-		&process_affinity_mask,
-		&tmp_dword);
-	bool single_core = (btwCount1(static_cast<u32>(process_affinity_mask)) == 1);
-	if (single_core)
-	{
-		m_yield_cb.bind(this, &configs_dumper::yield_cb);
-	} else
-	{
-		m_yield_cb.clear();
-	}
-	
+	}	
 	m_complete_cb		= complete_cb;
 	m_state				= ds_active;
 	if (m_make_start_event)
@@ -236,17 +200,11 @@ void configs_dumper::dump_config(complete_callback_t complete_cb)
 void configs_dumper::compress_configs	()
 {
 	realloc_compress_buffer(m_dump_result.size());
-	ppmd_yield_callback_t ts_cb;
-	if (m_yield_cb)
-	{
-		ts_cb.bind(this, &configs_dumper::switch_thread);
-	}
-	m_buffer_for_compress_size = ppmd_compress_mt(
+	m_buffer_for_compress_size = ppmd_compress(
 		m_buffer_for_compress,
 		m_buffer_for_compress_capacity,
 		m_dump_result.pointer(),
-		m_dump_result.size(),
-		ts_cb
+		m_dump_result.size()
 	);
 }
 
@@ -271,20 +229,6 @@ void configs_dumper::dumper_thread(void* my_ptr)
 		wait_result = WaitForSingleObject(this_ptr->m_make_start_event, INFINITE);
 	}
 	SetEvent(this_ptr->m_make_done_event);
-}
-
-void __stdcall	configs_dumper::yield_cb(long progress)
-{
-	if (progress % 5 == 0)
-	{
-		switch_thread();
-	}
-}
-
-void __stdcall configs_dumper::switch_thread()
-{
-	if (!SwitchToThread())
-			Sleep(10);
 }
 
 void configs_dumper::realloc_compress_buffer(u32 need_size)

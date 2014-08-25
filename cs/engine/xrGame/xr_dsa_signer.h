@@ -15,9 +15,6 @@ public:
 
 	shared_str const	sign					(u8 const * data,
 												 u32 data_size);
-	shared_str const	sign_mt					(u8 const * data,
-												 u32 data_size,
-												 sha_process_yielder yielder);
 protected:
 	crypto::xr_dsa::private_key_t	m_private_key;
 private:

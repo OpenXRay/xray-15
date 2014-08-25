@@ -22,7 +22,6 @@ public:
 	virtual bool						shedule_Needed		()			{ return true; };
 			void						make_screenshot		(complete_callback_t cb);
 			void						set_draw_downloads	(bool draw);
-			void	__stdcall			jpeg_compress_cb	(long progress);
 private:
 	CMemoryWriter						m_result_writer;
 			void						make_jpeg_file		();
@@ -49,7 +48,7 @@ private:
 	inline	bool						is_active()				const	{ return (is_making_screenshot() || is_drawing_downloads()); };
 	complete_callback_t					m_complete_callback;
 
-			void						process_screenshot(bool in_other_thread);	
+			void						process_screenshot();	
 	HANDLE				m_make_start_event;
 	HANDLE				m_make_done_event;
 	static	void						screenshot_maker_thread(void* this_ptr);

@@ -28,20 +28,6 @@ shared_str const xr_dsa_signer::sign(u8 const * data,
 	return m_dsa.sign		(m_private_key, m_sha.pointer(), m_sha.digest_length);
 }
 
-shared_str const xr_dsa_signer::sign_mt(u8 const * data,
-										u32 data_size,
-										sha_process_yielder yielder)
-{
-	m_sha.start_calculate	(data, data_size);
-	long sha_process_counter = 0;
-	while					(!m_sha.continue_calculate())
-	{
-		yielder(sha_process_counter);
-		++sha_process_counter;
-	}
-	return m_dsa.sign		(m_private_key, m_sha.pointer(), m_sha.digest_length);
-}
-
 char const * current_time(string64 & dest_time)
 {
 	time_t		tmp_curr_time;

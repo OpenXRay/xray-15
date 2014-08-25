@@ -30,18 +30,6 @@ void*	cxrealloc(void* ptr, size_t size)
 {
 	return xr_realloc(ptr, size);
 }
-/*
-void jpeg_encode_callback(long progress)
-{
-#ifdef DEBUG
-	Msg("* JPEG encoding progress : %d%%", progress);
-#endif
-	if (progress % 5 == 0)
-	{
-		if (!SwitchToThread())
-			Sleep(10);
-	}
-}*/
 
 screenshot_manager::screenshot_manager()
 {
@@ -157,7 +145,7 @@ void screenshot_manager::sign_jpeg_file()
 	game_cl_mp*	tmp_cl_game				= smart_cast<game_cl_mp*>(&Game());
 	tmp_writer.set_player_name			(tmp_cl_game->local_player->name);
 	tmp_writer.set_player_cdkey_digest	(Level().get_cdkey_digest());
-	m_jpeg_buffer_size					= tmp_writer.write_info(&g_jpeg_encode_delegate);
+	m_jpeg_buffer_size					= tmp_writer.write_info();
 }
 
 
@@ -206,15 +194,7 @@ void screenshot_manager::shedule_Update(u32 dt)
 			}
 		}
 #endif //#ifdef DEBUG*/
-		DWORD	process_affinity_mask;
-		DWORD	tmp_dword;
-		GetProcessAffinityMask(
-			GetCurrentProcess(),
-			&process_affinity_mask,
-			&tmp_dword);
-		process_screenshot(
-			btwCount1(static_cast<u32>(process_affinity_mask)) == 1
-		);
+		process_screenshot();
 	}
 	if (is_drawing_downloads())
 	{
@@ -264,19 +244,8 @@ void screenshot_manager::set_draw_downloads(bool draw)
 	}
 }
 
-void screenshot_manager::process_screenshot(bool singlecore)
-{
-	if (singlecore)
-	{
-		//g_jpeg_encode_cb = &jpeg_encode_callback;
-		g_jpeg_encode_delegate.bind(this,
-			&screenshot_manager::jpeg_compress_cb);
-	} else
-	{
-		//g_jpeg_encode_cb = NULL;
-		g_jpeg_encode_delegate.clear();
-	}
-		
+void screenshot_manager::process_screenshot()
+{		
 	if (m_make_start_event)
 	{
 		SetEvent(m_make_start_event);
@@ -285,17 +254,6 @@ void screenshot_manager::process_screenshot(bool singlecore)
 	m_make_start_event	= CreateEvent(NULL, FALSE, TRUE, NULL);
 	m_make_done_event	= CreateEvent(NULL, FALSE, FALSE, NULL);
 	thread_spawn	(&screenshot_manager::screenshot_maker_thread, "screenshot_maker", 0, this);
-}
-void	__stdcall	screenshot_manager::jpeg_compress_cb(long progress)
-{
-/*#ifdef DEBUG
-	Msg("* JPEG encoding progress : %d%%", progress);
-#endif*/
-	if (progress % 5 == 0)
-	{
-		if (!SwitchToThread())
-			Sleep(10);
-	}
 }
 
 void screenshot_manager::screenshot_maker_thread(void* arg_ptr)

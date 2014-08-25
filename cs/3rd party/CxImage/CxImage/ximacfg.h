@@ -1,14 +1,9 @@
 #if !defined(__ximaCFG_h)
 #define __ximaCFG_h
 
-#include "xrCore/fastdelegate.h"
-
 extern "C" void*	cxalloc(size_t size);
 extern "C" void		cxfree(void* ptr);
 extern "C" void*	cxrealloc(void* ptr, size_t size);
-
-//typedef void (*xima_progress_callback)(int progress);
-//extern xima_progress_callback	xima_jpeg_encode_process_cb;
 
 #ifdef CXIMAGE_AS_SHARED_LIBRARY //must be defined in Release_Shared configuration
 
@@ -29,11 +24,6 @@ extern "C" void*	cxrealloc(void* ptr, size_t size);
 #else  //if CXIMAGE_AS_SHARED_LIBRARY linking as static library ...
 #	define	CXIMAGE_API
 #endif //CXIMAGE_AS_SHARED_LIBRARY
-typedef void (*jpeg_encode_callback_func)(long);
-
-//CXIMAGE_API jpeg_encode_callback_func g_jpeg_encode_cb;
-extern "C" CXIMAGE_API fastdelegate::FastDelegate1< long > g_jpeg_encode_delegate;
-
 
 /////////////////////////////////////////////////////////////////////////////
 // CxImage supported features

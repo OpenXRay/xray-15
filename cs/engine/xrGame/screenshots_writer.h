@@ -34,7 +34,7 @@ public:
 	void	set_player_cdkey_digest	(shared_str const & cdkeydigest);
 	//void	set_admin_name			(shared_str const & admin_name);
 
-	u32	const write_info			(sha_process_yielder* yielder = NULL);
+	u32	const write_info			();
 private:
 	writer() : m_info_data(NULL, FALSE, FALSE, FALSE) {};
 	
