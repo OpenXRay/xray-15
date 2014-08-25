@@ -14,7 +14,6 @@
 #include <cximage/xmemfile.h>
 
 #pragma comment(lib,"cximage.lib")
-#pragma comment(lib,"jpeg.lib")
 
 void*	cxalloc(size_t size)
 {

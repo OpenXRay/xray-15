@@ -87,7 +87,7 @@
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
-      <AdditionalIncludeDirectories>.\;$(SolutionDir)engine;$(SolutionDir)engine\xrServerEntities;$(SolutionDir)3rd party\cximage;$(SolutionDir)sdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;$(SolutionDir)engine;$(SolutionDir)engine\xrServerEntities;$(SolutionDir)3rd party;$(SolutionDir)sdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;DEBUG;_WINDOWS;_USRDLL;XRGAME_EXPORTS;dSINGLE;MSVC;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
@@ -121,7 +121,7 @@
       <AdditionalOptions>/MACHINE:I386 /ignore:4075 %(AdditionalOptions)</AdditionalOptions>
       <ShowProgress>NotSet</ShowProgress>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(SolutionDir)sdk\libraries;$(SolutionDir)libraries\$(Configuration);$(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>e:\dev\jpeg\libraries\$(Configuration);$(SolutionDir)sdk\libraries;$(SolutionDir)libraries\$(Configuration);$(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <GenerateMapFile>false</GenerateMapFile>
       <MapFileName />
@@ -145,7 +145,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>false</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
-      <AdditionalIncludeDirectories>.\;$(SolutionDir)engine;$(SolutionDir)engine\xrServerEntities;$(SolutionDir)3rd party\cximage;$(SolutionDir)sdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;$(SolutionDir)engine;$(SolutionDir)engine\xrServerEntities;$(SolutionDir)3rd party;$(SolutionDir)sdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG;MIXED;WIN32;_WINDOWS;_USRDLL;XRGAME_EXPORTS;dSINGLE;MSVC;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -175,7 +175,7 @@
     <Link>
       <AdditionalOptions>/MACHINE:I386  %(AdditionalOptions)</AdditionalOptions>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(SolutionDir)sdk\libraries;$(SolutionDir)libraries\$(Configuration);$(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>e:\dev\jpeg\libraries\$(Configuration);$(SolutionDir)sdk\libraries;$(SolutionDir)libraries\$(Configuration);$(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <GenerateMapFile>false</GenerateMapFile>
       <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
@@ -200,7 +200,7 @@
       <OmitFramePointers>true</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.\;$(SolutionDir)engine;$(SolutionDir)engine\xrServerEntities;$(SolutionDir)3rd party\cximage;$(SolutionDir)sdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;$(SolutionDir)engine;$(SolutionDir)engine\xrServerEntities;$(SolutionDir)3rd party;$(SolutionDir)sdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;XRGAME_EXPORTS;dSINGLE;MSVC;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <ExceptionHandling />
@@ -233,7 +233,7 @@
     <Link>
       <AdditionalOptions>/MACHINE:I386  %(AdditionalOptions)</AdditionalOptions>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(SolutionDir)sdk\libraries;$(SolutionDir)libraries\$(Configuration);$(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>e:\dev\jpeg\libraries\$(Configuration);$(SolutionDir)sdk\libraries;$(SolutionDir)libraries\$(Configuration);$(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
       <GenerateMapFile>false</GenerateMapFile>
@@ -5630,10 +5630,6 @@
   <ItemGroup>
     <ProjectReference Include="$(SolutionDir)3rd party\crypto\crypto.vcxproj">
       <Project>{fa169092-ea3e-40c1-8e5a-a2b575700fe8}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="$(SolutionDir)3rd party\cximage\CxImage\cximage.vcxproj">
-      <Project>{880cd250-ba77-4daf-a8d4-552f12dd3ae4}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="$(SolutionDir)3rd party\luabind\luabind.beta7-devel.rc4.vcxproj">

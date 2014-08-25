@@ -28,10 +28,16 @@
 
 #define CXIMAGEJPG_SUPPORT_EXIF 1
 
+#define XMD_H
+#define HAVE_BOOLEAN
 extern "C" {
- #include "../jpeg/jpeglib.h"
- #include "../jpeg/jerror.h"
+ #include <jpeg/jpeglib.h>
+ #include <jpeg/jerror.h>
 }
+#undef HAVE_BOOLEAN
+#undef XMD_H
+
+#pragma comment(lib, "libjpeg.lib")
 
 class DLL_EXP CxImageJPG: public CxImage
 {
