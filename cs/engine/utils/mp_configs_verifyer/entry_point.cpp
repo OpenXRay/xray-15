@@ -113,14 +113,12 @@ void unpack_file(LPCSTR file_name)
 		return;
 	}
 	u8*		uncomp_data		= static_cast<u8*>(xr_malloc(uncomp_size));
-	ppmd_yield_callback_t tmp_cb;
 	
-	u32 original_size		= ppmd_decompress_mt(
+	u32 original_size		= ppmd_decompress(
 		uncomp_data,
 		uncomp_size,
 		data,
-		data_size,
-		tmp_cb
+		data_size
 	);
 	
 	if (uncomp_size != original_size)
