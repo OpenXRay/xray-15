@@ -41,7 +41,7 @@ extern bool shared_str_initialized;
 #include <dbghelp.h>						// MiniDump flags
 
 #ifdef USE_BUG_TRAP
-#	include "../../3rd party/bugtrap/bugtrap/bugtrap.h"						// for BugTrap functionality
+#	include <bugtrap.h>						// for BugTrap functionality
     #ifndef __BORLANDC__
         #	pragma comment(lib,"BugTrap.lib")		// Link to ANSI DLL
     #else
@@ -358,7 +358,7 @@ void CALLBACK PreErrorHandler	(INT_PTR)
 	if (*g_bug_report_file)
 		BT_AddLogFile		(g_bug_report_file);
 
-	BT_MakeSnapshot			( 0 );
+	BT_SaveSnapshot			( 0 );
 #endif // USE_BUG_TRAP
 }
 
