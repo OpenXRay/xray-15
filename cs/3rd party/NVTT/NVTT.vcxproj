@@ -108,7 +108,10 @@
     <ClCompile Include="src\nvimage\BlockDXT.cpp" />
     <ClCompile Include="src\nvimage\ColorBlock.cpp" />
     <ClCompile Include="src\nvimage\ConeMap.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\nvimage\DirectDrawSurface.cpp" />
     <ClCompile Include="src\nvimage\Filter.cpp" />
