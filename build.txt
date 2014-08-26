@@ -6,7 +6,10 @@ To build X-Ray Engine you'll need following libraries and SDKs:
     - Use "jpeg" as project root directory name for compatibility with CxImage
   * zlib [http://zlib.net]
   * BugTrap [https://github.com/nitrocaster/BugTrap]
-  * Windows SDK [link]
-  * DirectX SDK Jun 2010 [link]
+  * Windows SDK [http://www.microsoft.com/en-us/download/details.aspx?id=8279]
+  * DirectX SDK June 2010 [http://www.microsoft.com/en-us/download/details.aspx?id=6812]
     - replace dxguid.lib with the one from Windows SDK
       (for DirectPlay GUIDs)
+
+Mixed configuration isn't currently configured properly,
+Debug/Release should work.
