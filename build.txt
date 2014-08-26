@@ -1,0 +1,12 @@
+By default, all libraries are assumed to be in e:\dev
+
+To build X-Ray Engine you'll need following libraries and SDKs:
+  * nVidia OpenAutomate [https://developer.nvidia.com/openautomate]
+  * libjpeg [http://sourceforge.net/projects/libjpeg]
+    - Use "jpeg" as project root directory name for compatibility with CxImage
+  * zlib [http://zlib.net]
+  * BugTrap [https://github.com/nitrocaster/BugTrap]
+  * Windows SDK [link]
+  * DirectX SDK Jun 2010 [link]
+    - replace dxguid.lib with the one from Windows SDK
+      (for DirectPlay GUIDs)
