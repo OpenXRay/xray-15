@@ -1,0 +1,50 @@
+X-Ray Engine version plan
+
+Legend
+------
+- Planned
+* In progress
++ Done
+o On hold
+? Decision pending
+c Canceled
+
+- Modules
+  - subdivide xrGame into multiple modules
+    (so changed code could be compiled faster)
+  + merge xrCPU_Pipe into xrCore
+- xrGameSpy
+  + fix master server name (gamespy is down)
+- xrCore
+  - get rid of old blackbox code
+  - refactor xrDebug
+- 3rd party libraries
+  - detach/update ODE
+    - dig through current ODE and analyze changes that were made by GSC
+    - get the latest ODE and make sure it can be used with xray
+  c detach NVTT
+  - detach/update LuaJIT
+  - detach/update LuaBind
+  - update nvapi
+  - update atimgpu (or (better) use amd ags instead)
+- unknown crashes
+  - AV at dBodyIsEnabled (dBodyID is invalid pointer)
+    called from CSheduler::Update()+433
+- known bugs
+  - generic
+    - stackoverflow when starting with too long command line
+    - crash when game directory contains too many files
+    - various crashes on some console commands
+    - GetColorFromText bug
+    - (bytes_need<=mSize) && vl_Count
+  - multiplayer
+    - known multiple vulnerabilities
+- log messages
+  - add console command for disabling detailed server log, i.e:
+    downloaded 33792 from 34309 bytes of config from client [-1902085969]
+    uploaded 33792 from 34309 bytes to client [-1965000538]
+    file: 33792 of 34309 bytes received ...
+    CL: On Update Request
+	CL: On Update Respond from [player_name]
+    BattlEye Server: Failed to resolve BE Master 'stalkercs1.battleye.com'
+    BattlEye Server: Update attempt failed
