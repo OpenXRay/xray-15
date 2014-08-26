@@ -50,8 +50,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xrCDB", "engine\xrCDB\xrCDB
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xrCore", "engine\xrCore\xrCore.vcxproj", "{A0F7D1FB-59A7-4717-A7E4-96F37E91998E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xrCPU_Pipe", "engine\xrCPU_Pipe\xrCPU_Pipe.vcxproj", "{CA0649DD-D089-423A-981C-46B57A884EB9}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xrGame", "engine\xrGame\xrGame.vcxproj", "{200652A6-043E-4634-8837-87983B3BD5E0}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xrGameSpy", "engine\xrGameSpy\xrGameSpy.vcxproj", "{5535F6B4-7AE6-4B66-8AEA-CC31C14D7AB7}"
@@ -276,15 +274,6 @@ Global
 		{A0F7D1FB-59A7-4717-A7E4-96F37E91998E}.Release_Dedicated|Win32.ActiveCfg = Release|Win32
 		{A0F7D1FB-59A7-4717-A7E4-96F37E91998E}.Release|Win32.ActiveCfg = Release|Win32
 		{A0F7D1FB-59A7-4717-A7E4-96F37E91998E}.Release|Win32.Build.0 = Release|Win32
-		{CA0649DD-D089-423A-981C-46B57A884EB9}.Debug_Dedicated|Win32.ActiveCfg = Debug|Win32
-		{CA0649DD-D089-423A-981C-46B57A884EB9}.Debug|Win32.ActiveCfg = Debug|Win32
-		{CA0649DD-D089-423A-981C-46B57A884EB9}.Debug|Win32.Build.0 = Debug|Win32
-		{CA0649DD-D089-423A-981C-46B57A884EB9}.Mixed_Dedicated|Win32.ActiveCfg = Mixed|Win32
-		{CA0649DD-D089-423A-981C-46B57A884EB9}.Mixed|Win32.ActiveCfg = Mixed|Win32
-		{CA0649DD-D089-423A-981C-46B57A884EB9}.Mixed|Win32.Build.0 = Mixed|Win32
-		{CA0649DD-D089-423A-981C-46B57A884EB9}.Release_Dedicated|Win32.ActiveCfg = Release|Win32
-		{CA0649DD-D089-423A-981C-46B57A884EB9}.Release|Win32.ActiveCfg = Release|Win32
-		{CA0649DD-D089-423A-981C-46B57A884EB9}.Release|Win32.Build.0 = Release|Win32
 		{200652A6-043E-4634-8837-87983B3BD5E0}.Debug_Dedicated|Win32.ActiveCfg = Debug|Win32
 		{200652A6-043E-4634-8837-87983B3BD5E0}.Debug|Win32.ActiveCfg = Debug|Win32
 		{200652A6-043E-4634-8837-87983B3BD5E0}.Debug|Win32.Build.0 = Debug|Win32

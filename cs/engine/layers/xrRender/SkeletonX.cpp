@@ -10,15 +10,15 @@
 #pragma warning(default:4995)
 
 #ifndef _EDITOR
-	#include	"../../xrEngine/Render.h"
+	#include	<xrEngine/Render.h>
 #else
-	#include "../../Include/xrAPI/xrAPI.h"
+	#include <include/xrAPI/xrAPI.h>
 #endif
 
 #include "SkeletonX.h"
 #include "SkeletonCustom.h"
-#include "../../xrEngine/fmesh.h"
-#include "../../xrCPU_Pipe/xrCPU_Pipe.h"
+#include <xrEngine/fmesh.h>
+#include "skinw.h"
 
 shared_str	s_bones_array_const;
 
@@ -121,7 +121,7 @@ void CSkeletonX::_Render_soft	(ref_geom& hGeom, u32 vCount, u32 iOffset, u32 pCo
 		Device.Statistic->RenderDUMP_SKIN.Begin	();
 		if (*Vertices1W)
 		{
-			PSGP.skin1W(
+			skin1W(
 				Dest,										// dest
 				*Vertices1W,								// source
 				vCount,										// count
@@ -130,7 +130,7 @@ void CSkeletonX::_Render_soft	(ref_geom& hGeom, u32 vCount, u32 iOffset, u32 pCo
 		}else 
 		if(*Vertices2W)
 		{
-			PSGP.skin2W(
+			skin2W(
 				Dest,										// dest
 				*Vertices2W,								// source
 				vCount,										// count
@@ -139,7 +139,7 @@ void CSkeletonX::_Render_soft	(ref_geom& hGeom, u32 vCount, u32 iOffset, u32 pCo
 		}else
 		if(*Vertices3W)
 		{
-			PSGP.skin3W(
+			skin3W(
 				Dest,										// dest
 				*Vertices3W,								// source
 				vCount,										// count
@@ -148,7 +148,7 @@ void CSkeletonX::_Render_soft	(ref_geom& hGeom, u32 vCount, u32 iOffset, u32 pCo
 		}else
 		if(*Vertices4W)
 		{
-			PSGP.skin4W(
+			skin4W(
 				Dest,										// dest
 				*Vertices4W,								// source
 				vCount,										// count

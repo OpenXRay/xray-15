@@ -326,6 +326,7 @@
     <ClInclude Include="$(SolutionDir)engine\layers\xrRender\xrRender_console.h" />
     <ClInclude Include="$(SolutionDir)engine\layers\xrRender\xrStripify.h" />
     <ClInclude Include="$(SolutionDir)engine\layers\xrRender\xr_effgamma.h" />
+    <ClInclude Include="$(SolutionDir)engine\layers\xrRender\skinw.h" />
     <ClInclude Include="blender_bloom_build.h" />
     <ClInclude Include="blender_combine.h" />
     <ClInclude Include="blender_deffer_aref.h" />
@@ -486,6 +487,7 @@
     <ClCompile Include="$(SolutionDir)engine\layers\xrRender\xrRender_console.cpp" />
     <ClCompile Include="$(SolutionDir)engine\layers\xrRender\xrStripify.cpp" />
     <ClCompile Include="$(SolutionDir)engine\layers\xrRender\xr_effgamma.cpp" />
+    <ClCompile Include="$(SolutionDir)engine\layers\xrRender\skinw.cpp" />
     <ClCompile Include="blender_bloom_build.cpp" />
     <ClCompile Include="blender_combine.cpp" />
     <ClCompile Include="blender_deffer_aref.cpp" />

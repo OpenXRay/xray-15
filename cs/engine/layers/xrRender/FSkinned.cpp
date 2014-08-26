@@ -9,8 +9,7 @@
 #include <d3dx9.h>
 #pragma warning(default:4995)
 
-#include "../../xrEngine/fmesh.h"
-#include "../../xrCPU_Pipe/xrCPU_Pipe.h"
+#include <xrEngine/fmesh.h>
 #include "FSkinned.h"
 #include "SkeletonX.h"
 
