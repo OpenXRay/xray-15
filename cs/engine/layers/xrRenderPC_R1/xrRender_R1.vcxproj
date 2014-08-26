@@ -80,7 +80,7 @@
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <AdditionalIncludeDirectories>.\;$(SolutionDir)engine;$(SolutionDir)sdk\include;$(DXSDK_DIR)Include;E:\dev;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;DEBUG;_WINDOWS;_USRDLL;XRRENDER_R1_EXPORTS;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
+      <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>Sync</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <SmallerTypeCheck>true</SmallerTypeCheck>
@@ -96,6 +96,7 @@
       <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <AdditionalDependencies>nvapi.lib;atimgpud_mtdll_x86.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -140,6 +141,7 @@
       <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <AdditionalDependencies>nvapi.lib;atimgpud_mtdll_x86.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -184,6 +186,7 @@
       <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <AdditionalDependencies>nvapi.lib;atimgpud_mtdll_x86.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -331,7 +334,6 @@
     <ClInclude Include="$(SolutionDir)engine\layers\xrRender\xrRender_console.h" />
     <ClInclude Include="$(SolutionDir)engine\layers\xrRender\xrStripify.h" />
     <ClInclude Include="$(SolutionDir)engine\layers\xrRender\xr_effgamma.h" />
-    <ClInclude Include="..\xrRender\skinw.h" />
     <ClInclude Include="BlenderDefault.h" />
     <ClInclude Include="Blender_Blur.h" />
     <ClInclude Include="Blender_default_aref.h" />
@@ -478,7 +480,6 @@
     <ClCompile Include="$(SolutionDir)engine\layers\xrRender\xrRender_console.cpp" />
     <ClCompile Include="$(SolutionDir)engine\layers\xrRender\xrStripify.cpp" />
     <ClCompile Include="$(SolutionDir)engine\layers\xrRender\xr_effgamma.cpp" />
-    <ClCompile Include="..\xrRender\skinw.cpp" />
     <ClCompile Include="BlenderDefault.cpp" />
     <ClCompile Include="Blender_Blur.cpp" />
     <ClCompile Include="Blender_default_aref.cpp" />
