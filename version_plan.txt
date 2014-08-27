@@ -1,4 +1,4 @@
-X-Ray Engine version plan
+TITLE: X-Ray Engine version plan
 
 Legend
 ------
@@ -9,6 +9,7 @@ o On hold
 ? Decision pending
 c Canceled
 
+nitrocaster:
 - Modules
   - subdivide xrGame into multiple modules
     (so changed code could be compiled faster)
@@ -39,6 +40,12 @@ c Canceled
     - (bytes_need<=mSize) && vl_Count
   - multiplayer
     - known multiple vulnerabilities
+  - render
+    - if d3d compiler fails to compile some shader, it says
+      "Your video card doesn't meet game requirements ..."
+      even if GPU actually meets game requirements (vs/gs/ps levels)
+      dx10ResourceManager_Resources.cpp
+      CResourceManager::_CreatePS/_CreateGS/_CreateVS      
 - log messages
   - add console command for disabling detailed server log, i.e:
     downloaded 33792 from 34309 bytes of config from client [-1902085969]
