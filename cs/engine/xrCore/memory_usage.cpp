@@ -161,5 +161,5 @@ u32	mem_usage_impl	(HANDLE heap_handle, u32* pBlocksUsed, u32* pBlocksFree)
 
 u32		xrMemory::mem_usage		(u32* pBlocksUsed, u32* pBlocksFree)
 {
-	return				(mem_usage_impl((HANDLE)_get_heap_handle(),pBlocksUsed,pBlocksFree));
+	return				(mem_usage_impl(GetProcessHeap(),pBlocksUsed,pBlocksFree));
 }
