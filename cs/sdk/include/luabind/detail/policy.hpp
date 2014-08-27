@@ -670,7 +670,7 @@ namespace luabind { namespace detail
 			if (back_reference<T>::extract(L, ptr))
 				return;
 
-			class_rep* crep = get_class_rep<class T>(L);
+			class_rep* crep = get_class_rep<T>(L);
 
 			// if you get caught in this assert you are
 			// trying to use an unregistered type
