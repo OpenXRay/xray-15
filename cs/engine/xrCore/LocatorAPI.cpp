@@ -800,11 +800,11 @@ void CLocatorAPI::_initialize	(u32 flags, LPCSTR target_folder, LPCSTR fs_name)
 		
 
 	u32	M2			= Memory.mem_usage();
-	Msg				("FS: %d files cached %d archives, %dKb memory used.",m_files.size(),m_archives.size(), (M2-M1)/1024);
+	Msg				("FS: %d files cached in %d archives, %d KB memory used.",m_files.size(),m_archives.size(), (M2-M1)/1024);
 
 	m_Flags.set		(flReady,TRUE);
 
-	Msg("Init FileSystem %f sec",t.GetElapsed_sec());
+	Msg("Init FileSystem %f s",t.GetElapsed_sec());
 	//-----------------------------------------------------------
 	if (strstr(Core.Params, "-overlaypath"))
 	{
