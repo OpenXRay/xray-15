@@ -38,6 +38,9 @@ nitrocaster:
     - various crashes on some console commands
     - GetColorFromText bug
     - (bytes_need<=mSize) && vl_Count
+  - core
+    - xrMemory::mem_usage -> mem_usage_impl falls into infinite loop
+      or finds bad nodes
   - multiplayer
     - known multiple vulnerabilities
   - render
@@ -45,7 +48,7 @@ nitrocaster:
       "Your video card doesn't meet game requirements ..."
       even if GPU actually meets game requirements (vs/gs/ps levels)
       dx10ResourceManager_Resources.cpp
-      CResourceManager::_CreatePS/_CreateGS/_CreateVS      
+      CResourceManager::_CreatePS/_CreateGS/_CreateVS
 - log messages
   - add console command for disabling detailed server log, i.e:
     downloaded 33792 from 34309 bytes of config from client [-1902085969]
