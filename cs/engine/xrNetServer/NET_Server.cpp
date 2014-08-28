@@ -525,11 +525,20 @@ HRESULT	IPureServer::net_Handler(u32 dwMessageType, PVOID pMessage)
 
 			CHK_DX					(_hr);
 			
-			string64			cname;
-			CHK_DX( WideCharToMultiByte( CP_ACP, 0, Pinfo->pwszName, -1, cname, sizeof(cname) , 0, 0 ) );
-
-			SClientConnectData	cl_data;
-			strcpy_s( cl_data.name, cname );
+            SClientConnectData cl_data;
+            int ret = WideCharToMultiByte(CP_ACP, 0, Pinfo->pwszName, -1, cl_data.name, sizeof(cl_data.name), 0, 0);
+            if (ret == 0) // invalid unicode / insufficient buffer
+            {
+                if (GetLastError() == ERROR_INSUFFICIENT_BUFFER) // dirtysky exploit
+                {
+                    cl_data.name[sizeof(cl_data.name) - 1] = 0;
+                    return S_FALSE; // XXX nitrocaster: remove to allow connection
+                }
+                else
+                {
+                    strcpy_s(cl_data.name, "player");
+                }
+            }
 
 			if( Pinfo->pvData && Pinfo->dwDataSize == sizeof(cl_data) )
 			{
