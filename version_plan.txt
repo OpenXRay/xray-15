@@ -44,8 +44,10 @@ nitrocaster:
     + xrMemory::mem_usage -> mem_usage_impl falls into infinite loop
       or finds bad nodes
     + correct CPU detection
-  - multiplayer
-    - known multiple vulnerabilities
+  * multiplayer
+    * known multiple vulnerabilities
+	  + dirtysky
+	- ipv6 support
   - render
     - if d3d compiler fails to compile some shader, it says
       "Your video card doesn't meet game requirements ..."
