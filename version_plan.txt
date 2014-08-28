@@ -39,7 +39,7 @@ nitrocaster:
     - GetColorFromText bug
     - (bytes_need<=mSize) && vl_Count
   - core
-    - xrMemory::mem_usage -> mem_usage_impl falls into infinite loop
+    + xrMemory::mem_usage -> mem_usage_impl falls into infinite loop
       or finds bad nodes
   - multiplayer
     - known multiple vulnerabilities
