@@ -58,3 +58,5 @@ nitrocaster:
 	CL: On Update Respond from [player_name]
     BattlEye Server: Failed to resolve BE Master 'stalkercs1.battleye.com'
     BattlEye Server: Update attempt failed
+  + fix log messages format (normally, the 'color' character should be 
+    followed by a space)
