@@ -34,132 +34,31 @@ XRCORE_API void log_vminfo	()
 	);
 }
 
-int heap_walk (
-	    HANDLE heap_handle,
-        struct _heapinfo *_entry
-        )
+size_t xrMemory::mem_usage()
 {
-        PROCESS_HEAP_ENTRY Entry;
-        DWORD errval;
-        int errflag;
-        int retval = _HEAPOK;
-
-        Entry.wFlags = 0;
-        Entry.iRegionIndex = 0;
-		Entry.cbData = 0;
-        if ( (Entry.lpData = _entry->_pentry) == NULL ) {
-            if ( !HeapWalk( heap_handle, &Entry ) ) {
-                if ( GetLastError() == ERROR_CALL_NOT_IMPLEMENTED ) {
-                    _doserrno = ERROR_CALL_NOT_IMPLEMENTED;
-                    errno = ENOSYS;
-                    return _HEAPEND;
-                }
-                return _HEAPBADBEGIN;
-            }
-        }
-        else {
-            if ( _entry->_useflag == _USEDENTRY ) {
-                if ( !HeapValidate( heap_handle, 0, _entry->_pentry ) )
-                    return _HEAPBADNODE;
-                Entry.wFlags = PROCESS_HEAP_ENTRY_BUSY;
-            }
-nextBlock:
-            /*
-             * Guard the HeapWalk call in case we were passed a bad pointer
-             * to an allegedly free block.
-             */
-            __try {
-                errflag = 0;
-                if ( !HeapWalk( heap_handle, &Entry ) )
-                    errflag = 1;
-            }
-            __except( EXCEPTION_EXECUTE_HANDLER ) {
-                errflag = 2;
-            }
-
-            /*
-             * Check errflag to see how HeapWalk fared...
-             */
-            if ( errflag == 1 ) {
-                /*
-                 * HeapWalk returned an error.
-                 */
-                if ( (errval = GetLastError()) == ERROR_NO_MORE_ITEMS ) {
-                    return _HEAPEND;
-                }
-                else if ( errval == ERROR_CALL_NOT_IMPLEMENTED ) {
-                    _doserrno = errval;
-                    errno = ENOSYS;
-                    return _HEAPEND;
-                }
-                return _HEAPBADNODE;
-            }
-            else if ( errflag == 2 ) {
-                /*
-                 * Exception occurred during the HeapWalk!
-                 */
-                return _HEAPBADNODE;
-            }
-        }
-
-        if ( Entry.wFlags & (PROCESS_HEAP_REGION |
-             PROCESS_HEAP_UNCOMMITTED_RANGE) )
-        {
-            goto nextBlock;
-        }
-
-        _entry->_pentry = (int*)Entry.lpData;
-        _entry->_size = Entry.cbData;
-        if ( Entry.wFlags & PROCESS_HEAP_ENTRY_BUSY ) {
-            _entry->_useflag = _USEDENTRY;
-        }
-        else {
-            _entry->_useflag = _FREEENTRY;
-        }
-
-        return( retval );
-}
-
-u32	mem_usage_impl	(HANDLE heap_handle, u32* pBlocksUsed, u32* pBlocksFree)
-{
-	_HEAPINFO		hinfo;
-	int				heapstatus;
-	hinfo._pentry	= NULL;
-	size_t	total	= 0;
-	u32	blocks_free	= 0;
-	u32	blocks_used	= 0;
-	while( ( heapstatus = heap_walk( heap_handle, &hinfo ) ) == _HEAPOK )
-	{ 
-		if (hinfo._useflag == _USEDENTRY)	{
-			total		+= hinfo._size;
-			blocks_used	+= 1;
-		} else {
-			blocks_free	+= 1;
-		}
-	}
-	if (pBlocksFree)	*pBlocksFree= 1024*(u32)blocks_free;
-	if (pBlocksUsed)	*pBlocksUsed= 1024*(u32)blocks_used;
-
-	switch( heapstatus )
-	{
-	case _HEAPEMPTY:
-		break;
-	case _HEAPEND:
-		break;
-	case _HEAPBADPTR:
-		FATAL			("bad pointer to heap");
-		break;
-	case _HEAPBADBEGIN:
-		FATAL			("bad start of heap");
-		break;
-	case _HEAPBADNODE:
-		FATAL			("bad node in heap");
-		break;
-	}
-	return (u32) total;
-}
-
-u32		xrMemory::mem_usage		(u32* pBlocksUsed, u32* pBlocksFree)
-{
-	return				(mem_usage_impl(GetProcessHeap(),pBlocksUsed,pBlocksFree));
+    _HEAPINFO hinfo = {0};
+    int status;
+    size_t bytesUsed = 0;
+    while ((status = _heapwalk(&hinfo)) == _HEAPOK)
+    {
+        if (hinfo._useflag == _USEDENTRY)
+            bytesUsed += hinfo._size;
+    }
+    switch (status)
+    {
+    case _HEAPEMPTY:
+        break;
+    case _HEAPEND:
+        break;
+    case _HEAPBADPTR:
+        FATAL("bad pointer to heap");
+        break;
+    case _HEAPBADBEGIN:
+        FATAL("bad start of heap");
+        break;
+    case _HEAPBADNODE:
+        FATAL("bad node in heap");
+        break;
+    }
+    return bytesUsed;
 }
