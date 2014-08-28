@@ -6,9 +6,11 @@
 #pragma warning(pop)
 
 #include "xrCDB.h"
+#include <xrCore/CPUID.hpp>
 
 using namespace		CDB;
 using namespace		Opcode;
+using namespace xray;
 
 // can you say "barebone"?
 #ifndef _MM_ALIGN16
@@ -350,7 +352,8 @@ void	COLLIDER::ray_query	(const MODEL *m_def, const Fvector& r_start,  const Fve
 	const AABBNoLeafNode* N = T->GetNodes();
 	r_clear					();
 	
-	if (CPU::ID.feature&_CPU_FEATURE_SSE)	{
+	if (CPUID::IsFeaturePresent(CPUID::Feature::SSE))
+    {
 		// SSE
 		// Binary dispatcher
 		if (ray_mode&OPT_CULL)		{

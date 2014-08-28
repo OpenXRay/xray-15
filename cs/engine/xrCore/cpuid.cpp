@@ -1,335 +1,410 @@
 #include "stdafx.h"
-#pragma hdrstop
 
-#include "cpuid.h"
+#include "CPUID.hpp"
+#include <windows.h>
+#include <intrin.h>
 
-#ifdef _M_AMD64
+using namespace xray;
 
-int _cpuid (_processor_info *pinfo)
+#define add_feature_generic(feature, container, bit)  featuresGeneric.insert({feature, FeatureInfo(container, bit)})
+#define add_feature_intel(feature, container, bit)    featuresIntel.insert({feature, FeatureInfo(container, bit)})
+#define add_feature_intel_ex(feature, container, bit) featuresIntelExtended.insert({feature, FeatureInfo(container, bit)})
+#define add_feature_amd(feature, container, bit)      featuresAmd.insert({feature, FeatureInfo(container, bit)})
+#define add_feature_amd_ex(feature, container, bit)   featuresAmdExtended.insert({feature, FeatureInfo(container, bit)})
+
+CPUID::Vendor CPUID::vendor;
+int CPUID::family;
+int CPUID::model;
+int CPUID::stepping;
+int CPUID::cpuidLevel;
+int CPUID::exIds1;
+int CPUID::exIds2;
+char CPUID::longName[80];
+char CPUID::shortName[13];
+int CPUID::flagsECX;
+int CPUID::flagsEDX;
+int CPUID::eflagsECX;
+int CPUID::eflagsEDX;
+int CPUID::speed;
+int CPUID::logicalCores;
+bool CPUID::featuresInitialized = false;
+
+std::unordered_map<CPUID::Feature, CPUID::FeatureInfo> CPUID::featuresGeneric;
+std::unordered_map<CPUID::Feature, CPUID::FeatureInfo> CPUID::featuresIntel, CPUID::featuresIntelExtended;
+std::unordered_map<CPUID::Feature, CPUID::FeatureInfo> CPUID::featuresAmd, CPUID::featuresAmdExtended;
+
+static void CleanDups(char* s, char c = ' ')
 {
-	_processor_info&	P	= *pinfo;
-	strcpy_s				(P.v_name,		"AuthenticAMD");
-	strcpy_s				(P.model_name,	"AMD64 family");
-	P.family			=	8;
-	P.model				=	8;
-	P.stepping			=	0;
-	P.feature			=	_CPU_FEATURE_SSE | _CPU_FEATURE_SSE2;
-	P.os_support		=	_CPU_FEATURE_SSE | _CPU_FEATURE_SSE2;
-	return P.feature;
-}
-
-#else
-
-#ifdef	M_VISUAL
-#include "mmintrin.h"
-#endif
-
-// These are the bit flags that get set on calling cpuid
-// with register eax set to 1
-#define _MMX_FEATURE_BIT			0x00800000
-#define _SSE_FEATURE_BIT			0x02000000
-#define _SSE2_FEATURE_BIT			0x04000000
-
-// This bit is set when cpuid is called with
-// register set to 80000001h (only applicable to AMD)
-#define _3DNOW_FEATURE_BIT			0x80000000
- 
-int IsCPUID()
-{
-    __try {
-        _asm
-        {
-            xor eax, eax
-            cpuid
-        }
-    } __except ( EXCEPTION_EXECUTE_HANDLER) {
-        return 0;
-    }
-    return 1;
-}
-
-
-/***
-* int _os_support(int feature,...)
-*   - Checks if OS Supports the capablity or not
-****************************************************************/
-
-#ifdef M_VISUAL
-void _os_support(int feature, int& res)
-{
-
-    __try
-    {
-        switch (feature)
-        {
-        case _CPU_FEATURE_SSE:
-            __asm {
-                xorps xmm0, xmm0        // __asm _emit 0x0f __asm _emit 0x57 __asm _emit 0xc0
-                                        // executing SSE instruction
-            }
-            break;
-        case _CPU_FEATURE_SSE2:
-            __asm {
-                __asm _emit 0x66 __asm _emit 0x0f __asm _emit 0x57 __asm _emit 0xc0
-                                        // xorpd xmm0, xmm0
-                                        // executing WNI instruction
-            }
-            break;
-        case _CPU_FEATURE_3DNOW:
-            __asm 
-			{
-                __asm _emit 0x0f __asm _emit 0x0f __asm _emit 0xc0 __asm _emit 0x96 
-                                        // pfrcp mm0, mm0
-                                        // executing 3Dnow instruction
-            }
-            break;
-        case _CPU_FEATURE_MMX:
-            __asm 
-			{
-                pxor mm0, mm0           // executing MMX instruction
-            }
-            break;
-        }
-    } __except (EXCEPTION_EXECUTE_HANDLER) {
-		_mm_empty	();
+    if (*s == 0)
         return;
-    }
-	_mm_empty	();
-	res |= feature;
-}
-#endif
-
-#ifdef M_BORLAND
-// borland doesn't understand MMX/3DNow!/SSE/SSE2 asm opcodes
-void _os_support(int feature, int& res)
-{
-	res |= feature;
-}
-#endif
-
-
-/***
-*
-* void map_mname(int, int, const char *, char *) maps family and model to processor name
-*
-****************************************************/
-
-void map_mname( int family, int model, const char * v_name, char *m_name)
-{
-    if (!strncmp("AuthenticAMD", v_name, 12))
+    char* dst = s;
+    char* src = s + 1;
+    while (*src != 0)
     {
-        switch (family) // extract family code
-        {
-        case 4: // Am486/AM5x86
-            strcpy (m_name,"Am486");
-            break;
+        if (*src == c && *dst == c)
+            ++src;
+        else
+            *++dst = *src++;
+    }
+    *++dst = 0;
+}
 
-        case 5: // K6
-            switch (model) // extract model code
+bool IsCpuidSupported()
+{
+    __asm
+    {
+        pushfd                  // push the flags onto the stack
+        pop     eax             // pop them back out, into EAX
+        mov     ebx, eax        // keep original
+        xor     eax, 00200000h  // turn bit 21 on
+        push    eax             // put altered EAX on stack
+        popfd                   // pop stack into flags
+        pushfd                  // push flags back onto stack
+        pop     eax             // put them back into EAX
+        cmp     eax, ebx
+        jz      not_supported
+    }
+    return true;
+not_supported:
+    return false;
+}
+
+void CPUID::DetectShortName()
+{
+    char* name = shortName;
+    __asm
+    {
+        mov     ebx, name
+        mov     cl, 0
+    clear_id:
+        inc     cl
+        mov     dword ptr[ebx], 0
+        cmp     cl, 13
+        jb      clear_id
+        xor     eax, eax    // set request type to the string ID
+        cpuid               // send request
+        xchg    eax, ebx    // swap so address register can be used
+        mov     ebx, name   // get destination string offset
+        mov     [ebx], eax  // save first four letters of string
+        add     ebx, 4      // go up anther four bytes			
+        // repeat for next two registers
+        mov     [ebx], edx
+        add     ebx, 4
+        mov     [ebx], ecx
+    }
+}
+
+void CPUID::DetectLongName()
+{
+    memset(longName, '\0', sizeof(longName));
+    int cpuInfo[4] = { -1 };
+    __cpuid(cpuInfo, 0x80000000);
+    uint nExIds = cpuInfo[0];
+    // Get the information associated with each extended ID
+    for (uint i = 0x80000000; i <= nExIds; ++i)
+    {
+        __cpuid(cpuInfo, i);
+        // Interpret CPU brand string and cache information
+        if (i == 0x80000002)
+        {
+            memcpy(longName, cpuInfo, sizeof(cpuInfo));
+        }
+        else if (i == 0x80000003)
+        {
+            memcpy(longName + 16, cpuInfo, sizeof(cpuInfo));
+        }
+        else if (i == 0x80000004)
+        {
+            memcpy(longName + 32, cpuInfo, sizeof(cpuInfo));
+        }
+    }
+    CleanDups(longName);
+}
+
+void CPUID::DetectFeatures()
+{
+    CpuIdData id;
+    __cpuid(id.data, 0x00000001);
+    flagsECX = id.ecx;
+    flagsEDX = id.edx;
+    if (exIds1 >= 0x80000001)
+    {
+        __cpuid(id.data, 0x80000001);
+        eflagsECX = id.ecx;
+        eflagsEDX = id.edx;
+    }
+}
+
+bool CPUID::Detect()
+{
+    if (!IsCpuidSupported())
+    {
+        return false;
+    }
+    if (!featuresInitialized)
+    {
+        #pragma region [ initialize features ]
+        // --- Generic ---
+        // flagsEDX
+        add_feature_generic(Feature::FPU, &flagsEDX, 0);
+        add_feature_generic(Feature::VME, &flagsEDX, 1);
+        add_feature_generic(Feature::DE, &flagsEDX, 2);
+        add_feature_generic(Feature::PSE, &flagsEDX, 3);
+        add_feature_generic(Feature::TSC, &flagsEDX, 4);
+        add_feature_generic(Feature::MSR, &flagsEDX, 5);
+        add_feature_generic(Feature::PAE, &flagsEDX, 6);
+        add_feature_generic(Feature::MCE, &flagsEDX, 7);
+        add_feature_generic(Feature::CX8, &flagsEDX, 8);
+        add_feature_generic(Feature::APIC, &flagsEDX, 9);
+        add_feature_generic(Feature::SEP, &flagsEDX, 11);
+        add_feature_generic(Feature::MTRR, &flagsEDX, 12);
+        add_feature_generic(Feature::PGE, &flagsEDX, 13);
+        add_feature_generic(Feature::MCA, &flagsEDX, 14);
+        add_feature_generic(Feature::CMOV, &flagsEDX, 15);
+        add_feature_generic(Feature::PAT, &flagsEDX, 16);
+        add_feature_generic(Feature::PSE36, &flagsEDX, 17);
+        add_feature_generic(Feature::PSN, &flagsEDX, 18);
+        add_feature_generic(Feature::CLFLSH, &flagsEDX, 19);
+        add_feature_generic(Feature::DS, &flagsEDX, 21);
+        add_feature_generic(Feature::ACPI, &flagsEDX, 22);
+        add_feature_generic(Feature::MMX, &flagsEDX, 23);
+        add_feature_generic(Feature::FXSR, &flagsEDX, 24);
+        add_feature_generic(Feature::SSE, &flagsEDX, 25);
+        add_feature_generic(Feature::SSE2, &flagsEDX, 26);
+        add_feature_generic(Feature::SS, &flagsEDX, 27);
+        add_feature_generic(Feature::HT, &flagsEDX, 28);
+        add_feature_generic(Feature::TM, &flagsEDX, 29);
+        add_feature_generic(Feature::PBE, &flagsEDX, 31);
+        // --- Intel ---
+        // flagsECX
+        add_feature_intel(Feature::SSE3, &flagsECX, 0);
+        add_feature_intel(Feature::PCLMULDQ, &flagsECX, 1);
+        add_feature_intel(Feature::DTES64, &flagsECX, 2);
+        add_feature_intel(Feature::MONITOR_MWAIT, &flagsECX, 3);
+        add_feature_intel(Feature::DS_CPL, &flagsECX, 4);
+        add_feature_intel(Feature::VMX, &flagsECX, 5);
+        add_feature_intel(Feature::SMX, &flagsECX, 6);
+        add_feature_intel(Feature::EST, &flagsECX, 7);
+        add_feature_intel(Feature::TM2, &flagsECX, 8);
+        add_feature_intel(Feature::SSSE3, &flagsECX, 9);
+        add_feature_intel(Feature::CID, &flagsECX, 10);
+        add_feature_intel(Feature::FMA, &flagsECX, 12);
+        add_feature_intel(Feature::CX16, &flagsECX, 13);
+        add_feature_intel(Feature::XTPR, &flagsECX, 14);
+        add_feature_intel(Feature::PDCM, &flagsECX, 15);
+        add_feature_intel(Feature::PCID, &flagsECX, 17);
+        add_feature_intel(Feature::DCA, &flagsECX, 18);
+        add_feature_intel(Feature::SSE4_1, &flagsECX, 19);
+        add_feature_intel(Feature::SSE4_2, &flagsECX, 20);
+        add_feature_intel(Feature::X2APIC, &flagsECX, 21);
+        add_feature_intel(Feature::MOVBE, &flagsECX, 22);
+        add_feature_intel(Feature::POPCNT, &flagsECX, 23);
+        add_feature_intel(Feature::TSC_DEADLINE, &flagsECX, 24);
+        add_feature_intel(Feature::AES, &flagsECX, 25);
+        add_feature_intel(Feature::XSAVE, &flagsECX, 26);
+        add_feature_intel(Feature::OSXSAVE, &flagsECX, 27);
+        add_feature_intel(Feature::AVX, &flagsECX, 28);
+        // eflagsEDX
+        add_feature_intel_ex(Feature::SYSCALL, &eflagsEDX, 11);
+        add_feature_intel_ex(Feature::XD, &eflagsEDX, 20);
+        add_feature_intel_ex(Feature::PDPE1GB, &eflagsEDX, 26);
+        add_feature_intel_ex(Feature::RDTSCP, &eflagsEDX, 27);
+        add_feature_intel_ex(Feature::EM64T, &eflagsEDX, 29);
+        // --- AMD ---
+        // flagsECX
+        add_feature_amd(Feature::SSE3, &flagsECX, 0);
+        add_feature_amd(Feature::PCLMULQDQ, &flagsECX, 1);
+        add_feature_amd(Feature::MONITOR_MWAIT, &flagsECX, 3);
+        add_feature_amd(Feature::SSSE3, &flagsECX, 9);
+        add_feature_amd(Feature::FMA, &flagsECX, 12);
+        add_feature_amd(Feature::CMPXCHG16B, &flagsECX, 13);
+        add_feature_amd(Feature::SSE4_1, &flagsECX, 19);
+        add_feature_amd(Feature::SSE4_2, &flagsECX, 20);
+        add_feature_amd(Feature::POPCNT, &flagsECX, 23);
+        add_feature_amd(Feature::AES, &flagsECX, 25);
+        add_feature_amd(Feature::XSAVE, &flagsECX, 26);
+        add_feature_amd(Feature::OSXSAVE, &flagsECX, 27);
+        add_feature_amd(Feature::AVX, &flagsECX, 28);
+        add_feature_amd(Feature::F16C, &flagsECX, 29);
+        // eflagsEDX
+        add_feature_amd_ex(Feature::FPU, &eflagsEDX, 0);
+        add_feature_amd_ex(Feature::VME, &eflagsEDX, 1);
+        add_feature_amd_ex(Feature::DE, &eflagsEDX, 2);
+        add_feature_amd_ex(Feature::PSE, &eflagsEDX, 3);
+        add_feature_amd_ex(Feature::TSC, &eflagsEDX, 4);
+        add_feature_amd_ex(Feature::MSR, &eflagsEDX, 5);
+        add_feature_amd_ex(Feature::PAE, &eflagsEDX, 6);
+        add_feature_amd_ex(Feature::MCE, &eflagsEDX, 7);
+        add_feature_amd_ex(Feature::CX8, &eflagsEDX, 8);
+        add_feature_amd_ex(Feature::APIC, &eflagsEDX, 9);
+        add_feature_amd_ex(Feature::SEP, &eflagsEDX, 11);
+        add_feature_amd_ex(Feature::MTRR, &eflagsEDX, 12);
+        add_feature_amd_ex(Feature::PGE, &eflagsEDX, 13);
+        add_feature_amd_ex(Feature::MCA, &eflagsEDX, 14);
+        add_feature_amd_ex(Feature::CMOV, &eflagsEDX, 15);
+        add_feature_amd_ex(Feature::PAT, &eflagsEDX, 16);
+        add_feature_amd_ex(Feature::PSE36, &eflagsEDX, 17);
+        add_feature_amd_ex(Feature::MP, &eflagsEDX, 19);
+        add_feature_amd_ex(Feature::NX, &eflagsEDX, 20);
+        add_feature_amd_ex(Feature::MMXEXT, &eflagsEDX, 22);
+        add_feature_amd_ex(Feature::MMX, &eflagsEDX, 23);
+        add_feature_amd_ex(Feature::FXSR, &eflagsEDX, 24);
+        add_feature_amd_ex(Feature::FFXSR, &eflagsEDX, 25);
+        add_feature_amd_ex(Feature::PAGE1GB, &eflagsEDX, 26);
+        add_feature_amd_ex(Feature::RDTSCP, &eflagsEDX, 27);
+        add_feature_amd_ex(Feature::LM, &eflagsEDX, 29);
+        add_feature_amd_ex(Feature::_3DNowExt, &eflagsEDX, 30);
+        add_feature_amd_ex(Feature::_3DNow, &eflagsEDX, 31);
+        // eflagsECX
+        add_feature_amd_ex(Feature::lahf_sahf, &eflagsECX, 0);
+        add_feature_amd_ex(Feature::CmpLegacy, &eflagsECX, 1);
+        add_feature_amd_ex(Feature::svm, &eflagsECX, 2);
+        add_feature_amd_ex(Feature::ExtApicSpace, &eflagsECX, 3);
+        add_feature_amd_ex(Feature::LockMovCr0, &eflagsECX, 4);
+        add_feature_amd_ex(Feature::abm, &eflagsECX, 5);
+        add_feature_amd_ex(Feature::SSE4a, &eflagsECX, 6);
+        add_feature_amd_ex(Feature::misalignsse, &eflagsECX, 7);
+        add_feature_amd_ex(Feature::_3DNowPref, &eflagsECX, 8);
+        add_feature_amd_ex(Feature::osvw, &eflagsECX, 9);
+        add_feature_amd_ex(Feature::ibs, &eflagsECX, 10);
+        add_feature_amd_ex(Feature::xop, &eflagsECX, 11);
+        add_feature_amd_ex(Feature::skinit, &eflagsECX, 12);
+        add_feature_amd_ex(Feature::wdt, &eflagsECX, 13);
+        add_feature_amd_ex(Feature::lwp, &eflagsECX, 15);
+        add_feature_amd_ex(Feature::fma4, &eflagsECX, 16);
+        add_feature_amd_ex(Feature::tce, &eflagsECX, 17);
+        add_feature_amd_ex(Feature::NodeId, &eflagsECX, 19);
+        add_feature_amd_ex(Feature::tbm, &eflagsECX, 21);
+        add_feature_amd_ex(Feature::TopoExt, &eflagsECX, 22);
+        add_feature_amd_ex(Feature::PerfCtrExtCore, &eflagsECX, 23);
+        add_feature_amd_ex(Feature::PerfCtrExtNB, &eflagsECX, 24);
+        #pragma endregion
+        featuresInitialized = true;
+    }
+    CpuIdData id;
+    __cpuid(id.data, 0);
+    cpuidLevel = id.eax & 0xFFFF;
+    uint vendorId = id.ebx;
+    if (cpuidLevel < 1)
+    {
+        return false;
+    }
+    __cpuid(id.data, 1);
+    stepping = (id.eax >> 0) & 0xF;
+    model = (id.eax >> 4) & 0xF;
+    family = (id.eax >> 8) & 0xF;
+    logicalCores = (id.ebx >> 16) & 0xFF;
+    __cpuid(id.data, 0x80000000);
+    exIds1 = id.eax;
+    __cpuid(id.data, 0xC0000000);
+    exIds2 = id.eax;
+    switch (vendorId)
+    {
+    case 0x756e6547:
+        vendor = Vendor::Intel;
+        break;
+    case 0x68747541:
+        vendor = Vendor::AMD;
+        break;
+    default:
+        vendor = Vendor::Unknown;
+        break;
+    }
+    DetectFeatures();
+    DetectShortName();
+    DetectLongName();
+    return true;
+}
+
+CPUID::Vendor CPUID::GetVendor()
+{
+    return vendor;
+}
+
+int CPUID::GetFamily()
+{
+    return family;
+}
+
+int CPUID::GetModel()
+{
+    return model;
+}
+
+int CPUID::GetStepping()
+{
+    return stepping;
+}
+
+char const* CPUID::GetShortName()
+{
+    return shortName;
+}
+
+char const* CPUID::GetLongName()
+{
+    return longName;
+}
+
+int CPUID::GetLogicalCoreCount()
+{
+    return logicalCores;
+}
+
+double CPUID::GetSpeed()
+{
+    SetPriorityClass(GetCurrentProcess(), REALTIME_PRIORITY_CLASS);
+    LARGE_INTEGER qwWait, qwStart, qwCurrent;
+    QueryPerformanceCounter(&qwStart);
+    QueryPerformanceFrequency(&qwWait);
+    qwWait.QuadPart >>= 5;
+    uint64 start = __rdtsc();
+    do
+    {
+        QueryPerformanceCounter(&qwCurrent);
+    } while (qwCurrent.QuadPart - qwStart.QuadPart < qwWait.QuadPart);
+    double speed = ((__rdtsc() - start) << 5) / 1000000.0;
+    SetPriorityClass(GetCurrentProcess(), NORMAL_PRIORITY_CLASS);
+    return speed;
+}
+
+bool CPUID::IsFeaturePresent(Feature feature)
+{
+    auto i = featuresGeneric.find(feature);
+    bool found = i != featuresGeneric.end() && i->second.Check();
+    if (!found)
+    {
+        // Vendor specific extensions
+        switch (vendor)
+        {
+        case Vendor::Intel:
+            i = featuresIntel.find(feature);
+            found = i != featuresIntel.end() && i->second.Check();
+            if (exIds1 < 0x80000001)
             {
-            case 0:		strcpy (m_name,"K5 Model 0");	break;
-            case 1:		strcpy (m_name,"K5 Model 1");	break;
-            case 2:		strcpy (m_name,"K5 Model 2");	break;
-            case 3:		strcpy (m_name,"K5 Model 3");	break;
-            case 4:     break;	// Not really used
-            case 5:     break;  // Not really used
-            case 6:		strcpy (m_name,"K6 Model 1");	break;
-            case 7:		strcpy (m_name,"K6 Model 2");	break;
-            case 8:		strcpy (m_name,"K6-2");			break;
-            case 9: 
-            case 10:
-            case 11:
-            case 12:
-            case 13:
-            case 14:
-            case 15:	strcpy (m_name,"K6-3");			break;
-            default:	strcpy (m_name,"K6 family");	break;
+                break;
+            }
+            if (!found)
+            {
+                i = featuresIntelExtended.find(feature);
+                found = i != featuresIntelExtended.end() && i->second.Check();
             }
             break;
 
-        case 6: // Athlon
-            switch(model)  // No model numbers are currently defined
+        case Vendor::AMD:
+            i = featuresAmd.find(feature);
+            found = i != featuresAmd.end() && i->second.Check();
+            if (exIds1 < 0x80000001)
             {
-            case 1:		strcpy (m_name,"ATHLON Model 1");	break;
-			case 2:		strcpy (m_name,"ATHLON Model 2");	break;
-			case 3:		strcpy (m_name,"DURON");			break;
-			case 4:	
-			case 5:		strcpy (m_name,"ATHLON TB");		break;
-			case 6:		strcpy (m_name,"ATHLON XP");		break;
-			case 7:		strcpy (m_name,"DURON XP");			break;
-            default:    strcpy (m_name,"K7 Family");		break;
-			}
+                break;
+            }
+            if (!found)
+            {
+                i = featuresAmdExtended.find(feature);
+                found = i != featuresAmdExtended.end() && i->second.Check();
+            }
             break;
         }
-    } else if ( !strncmp("GenuineIntel", v_name, 12))
-    {
-        switch (family) // extract family code
-        {
-        case 4:
-            switch (model) // extract model code
-            {
-            case 0:
-            case 1:		strcpy (m_name,"i486DX");			break;
-            case 2:		strcpy (m_name,"i486SX");			break;
-            case 3:		strcpy (m_name,"i486DX2");			break;
-            case 4:		strcpy (m_name,"i486SL");			break;
-            case 5:		strcpy (m_name,"i486SX2");			break;
-            case 7:		strcpy (m_name,"i486DX2E");			break;
-            case 8:		strcpy (m_name,"i486DX4");			break;
-            default:    strcpy (m_name,"i486 family");		break;
-            }
-            break;
-        case 5:
-            switch (model) // extract model code
-            {
-            case 1:
-            case 2:
-            case 3:		strcpy (m_name,"Pentium");			break;
-            case 4:		strcpy (m_name,"Pentium-MMX");		break;
-            default:	strcpy (m_name,"P5 family");		break;
-            }
-            break;
-        case 6:
-            switch (model) // extract model code
-            {
-            case 1:		strcpy (m_name,"Pentium-Pro");		break;
-            case 3:		strcpy (m_name,"Pentium-II");		break;
-            case 5:		strcpy (m_name,"Pentium-II");		break;  // actual differentiation depends on cache settings
-            case 6:		strcpy (m_name,"Celeron");			break;
-            case 7:		strcpy (m_name,"Pentium-III");		break;  // actual differentiation depends on cache settings
-			case 8:		strcpy (m_name,"P3 Coppermine");	break;
-            default:	strcpy (m_name,"P3 family");		break;
-            }
-            break;
-		case 15:
-			// F15/M2/S4 ???
-			switch (model)
-			{
-			case 2:		strcpy	(m_name,"Pentium 4");		break;
-			default:	strcpy	(m_name,"P4 family");		break;
-			}
-        }
-    } else if ( !strncmp("CyrixInstead", v_name,12))
-    {
-        strcpy (m_name,"Unknown");
-    } else if ( !strncmp("CentaurHauls", v_name,12))
-    {
-        strcpy (m_name,"Unknown");
-    } else 
-    {
-        strcpy (m_name, "Unknown");
     }
-
+    return found;
 }
-
-
-/***
-*
-* int _cpuid (_p_info *pinfo)
-* 
-* Entry:
-*
-*   pinfo: pointer to _p_info.
-*
-* Exit:
-*
-*   Returns int with capablity bit set even if pinfo = NULL
-*
-****************************************************/
-
-
-int _cpuid (_processor_info *pinfo)
-{
-    u32 dwStandard = 0;
-    u32 dwFeature = 0;
-    u32 dwMax = 0;
-    u32 dwExt = 0;
-    int feature = 0, os_support = 0;
-    union
-    {
-        char cBuf[12+1];
-        struct
-        {
-            u32 dw0;
-            u32 dw1;
-            u32 dw2;
-        };
-    } Ident;
-
-    if (!IsCPUID())
-    {
-        return 0;
-    }
-
-    _asm
-    {
-        push ebx
-        push ecx
-        push edx
-
-        // get the vendor string
-        xor eax,eax
-        cpuid
-        mov dwMax,eax
-        mov dword ptr Ident.dw0,ebx
-        mov dword ptr Ident.dw1,edx
-        mov dword ptr Ident.dw2,ecx
-
-        // get the Standard bits
-        mov eax,1
-        cpuid
-        mov dwStandard,eax
-        mov dwFeature,edx
-
-        // get AMD-specials
-        mov eax,80000000h
-        cpuid
-        cmp eax,80000000h
-        jc notamd
-        mov eax,80000001h
-        cpuid
-        mov dwExt,edx
-
-notamd:
-        pop ecx
-        pop ebx
-        pop edx
-    }
-
-    if (dwFeature & _MMX_FEATURE_BIT)
-    {
-        feature |= _CPU_FEATURE_MMX;
-        _os_support(_CPU_FEATURE_MMX,os_support);
-    }
-    if (dwExt & _3DNOW_FEATURE_BIT)
-    {
-        feature |= _CPU_FEATURE_3DNOW;
-        _os_support(_CPU_FEATURE_3DNOW,os_support);
-    }
-    if (dwFeature & _SSE_FEATURE_BIT)
-    {
-        feature |= _CPU_FEATURE_SSE;
-        _os_support(_CPU_FEATURE_SSE,os_support);
-    }
-    if (dwFeature & _SSE2_FEATURE_BIT)
-    {
-        feature |= _CPU_FEATURE_SSE2;
-        _os_support(_CPU_FEATURE_SSE2,os_support);
-    }
-
-	if (pinfo)
-    {
-        memset		(pinfo, 0, sizeof(_processor_info));
-        pinfo->os_support = os_support;
-        pinfo->feature = feature;
-        pinfo->family = (dwStandard >> 8)&0xF;  // retriving family
-        pinfo->model = (dwStandard >> 4)&0xF;   // retriving model
-        pinfo->stepping = (dwStandard) & 0xF;   // retriving stepping
-        Ident.cBuf[12] = 0;
-        strcpy_s		(pinfo->v_name, Ident.cBuf);
-        map_mname	(pinfo->family, pinfo->model, pinfo->v_name, pinfo->model_name);
-    }
-   return feature;
-}
-
-#endif

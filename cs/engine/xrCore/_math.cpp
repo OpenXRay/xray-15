@@ -135,9 +135,6 @@ namespace CPU
 	XRCORE_API u64				qpc_freq		= 0	;
 	XRCORE_API u64				qpc_overhead	= 0	;
 	XRCORE_API u32				qpc_counter		= 0	;
-	
-	XRCORE_API _processor_info	ID;
-
 	XRCORE_API u64				QPC	()			{
 		u64		_dest	;
 		QueryPerformanceCounter			((PLARGE_INTEGER)&_dest);
@@ -152,93 +149,66 @@ namespace CPU
 		_asm    db 0x31;
 	}
 #endif
-
-	void Detect	()
-	{
-		// General CPU identification
-		if (!_cpuid	(&ID))	
-		{
-			// Core.Fatal		("Fatal error: can't detect CPU/FPU.");
-			abort				();
-		}
-
-		// Timers & frequency
-		u64			start,end;
-		u32			dwStart,dwTest;
-
-		SetPriorityClass		(GetCurrentProcess(),REALTIME_PRIORITY_CLASS);
-
-		// Detect Freq
-		dwTest	= timeGetTime();
-		do { dwStart = timeGetTime(); } while (dwTest==dwStart);
-		start	= GetCLK();
-		while (timeGetTime()-dwStart<1000) ;
-		end		= GetCLK();
-		clk_per_second = end-start;
-
-		// Detect RDTSC Overhead
-		clk_overhead	= 0;
-		u64 dummy		= 0;
-		for (int i=0; i<256; i++)	{
-			start			=	GetCLK();
-			clk_overhead	+=	GetCLK()-start-dummy;
-		}
-		clk_overhead		/=	256;
-
-		// Detect QPC Overhead
-		QueryPerformanceFrequency	((PLARGE_INTEGER)&qpc_freq)	;
-		qpc_overhead	= 0;
-		for (i=0; i<256; i++)	{
-			start			=	QPC();
-			qpc_overhead	+=	QPC()-start-dummy;
-		}
-		qpc_overhead		/=	256;
-
-		SetPriorityClass	(GetCurrentProcess(),NORMAL_PRIORITY_CLASS);
-
-		clk_per_second	-=	clk_overhead;
-		clk_per_milisec	=	clk_per_second/1000;
-		clk_per_microsec	=	clk_per_milisec/1000;
-
-		_control87	( _PC_64,   MCW_PC );
-//		_control87	( _RC_CHOP, MCW_RC );
-		double a,b;
-		a = 1;		b = double(clk_per_second);
-		clk_to_seconds = float(double(a/b));
-		a = 1000;	b = double(clk_per_second);
-		clk_to_milisec = float(double(a/b));
-		a = 1000000;b = double(clk_per_second);
-		clk_to_microsec = float(double(a/b));
-	}
 };
 
 bool g_initialize_cpu_called = false;
 
+#include "CPUID.hpp"
+using namespace xray;
+
 //------------------------------------------------------------------------------------
 void _initialize_cpu	(void) 
 {
-	Msg("* Detected CPU: %s %s, F%d/M%d/S%d, %.2f mhz, %d-clk 'rdtsc'",
-		CPU::ID.v_name,CPU::ID.model_name,
-		CPU::ID.family,CPU::ID.model,CPU::ID.stepping,
-		float(CPU::clk_per_second/u64(1000000)),
-		u32(CPU::clk_overhead)
-		);
-
-//	DUMP_PHASE;
-
-	if (strstr(Core.Params,"-x86"))		{
-		CPU::ID.feature	&= ~_CPU_FEATURE_3DNOW	;
-		CPU::ID.feature	&= ~_CPU_FEATURE_SSE	;
-		CPU::ID.feature	&= ~_CPU_FEATURE_SSE2	;
-	};
-
-	string128	features;	strcpy_s(features,sizeof(features),"RDTSC");
-    if (CPU::ID.feature&_CPU_FEATURE_MMX)	strcat(features,", MMX");
-    if (CPU::ID.feature&_CPU_FEATURE_3DNOW)	strcat(features,", 3DNow!");
-    if (CPU::ID.feature&_CPU_FEATURE_SSE)	strcat(features,", SSE");
-    if (CPU::ID.feature&_CPU_FEATURE_SSE2)	strcat(features,", SSE2");
-	Msg("* CPU Features: %s\n",features);
-
+    if (CPUID::Detect())
+    {
+        auto shortName = CPUID::GetShortName();
+        auto longName = CPUID::GetLongName();
+        auto family = CPUID::GetFamily();
+        auto model = CPUID::GetModel();
+        auto stepping = CPUID::GetStepping();
+        auto tsc = CPUID::IsFeaturePresent(CPUID::Feature::TSC);
+        auto mmx = CPUID::IsFeaturePresent(CPUID::Feature::MMX);
+        auto sse = CPUID::IsFeaturePresent(CPUID::Feature::SSE);
+        auto sse2 = CPUID::IsFeaturePresent(CPUID::Feature::SSE2);
+        auto sse3 = CPUID::IsFeaturePresent(CPUID::Feature::SSE3);
+        auto ssse3 = CPUID::IsFeaturePresent(CPUID::Feature::SSSE3);
+        auto sse41 = CPUID::IsFeaturePresent(CPUID::Feature::SSE4_1);
+        auto sse42 = CPUID::IsFeaturePresent(CPUID::Feature::SSE4_2);
+        auto avx = CPUID::IsFeaturePresent(CPUID::Feature::AVX);
+        auto monitorMWait = CPUID::IsFeaturePresent(CPUID::Feature::MONITOR_MWAIT);
+        auto threads = CPUID::GetLogicalCoreCount();
+        auto speed = CPUID::GetSpeed();
+        Msg("* Detected CPU: %s [%s], F%d/M%d/S%d, %.2f MHz", longName, shortName, family, model, stepping, speed);
+        char features[1024];
+        features[0] = 0;
+        if (tsc)
+            strcat_s(features, "TSC");
+        if (mmx)
+            strcat_s(features, ", MMX");
+        if (sse)
+            strcat_s(features, ", SSE");
+        if (sse2)
+            strcat_s(features, ", SSE2");
+        if (sse3)
+            strcat_s(features, ", SSE3");
+        if (monitorMWait)
+            strcat_s(features, ", MONITOR/MWAIT");
+        if (ssse3)
+            strcat_s(features, ", SSSE3");
+        if (sse41)
+            strcat_s(features, ", SSE4.1");
+        if (sse42)
+            strcat_s(features, ", SSE4.2");
+        if (avx)
+            strcat_s(features, ", AVX");
+        Msg("* CPU features: %s", features);
+        Msg("* CPU threads: %d\n", threads);
+    }
+    else
+    {
+        Msg("* CPUID not supported.\n");
+    }
+    // DUMP_PHASE;    
 	Fidentity.identity		();	// Identity matrix
 	Didentity.identity		();	// Identity matrix
 	pvInitializeStatics		();	// Lookup table for compressed normals
@@ -272,7 +242,8 @@ void _initialize_cpu_thread	()
 	// fpu & sse 
 	FPU::m24r	();
 #endif  // XRCORE_STATIC
-	if (CPU::ID.feature&_CPU_FEATURE_SSE)	{
+	if (CPUID::IsFeaturePresent(CPUID::Feature::SSE))
+    {
 		//_mm_setcsr ( _mm_getcsr() | (_MM_FLUSH_ZERO_ON+_MM_DENORMALS_ZERO_ON) );
 		_MM_SET_FLUSH_ZERO_MODE			(_MM_FLUSH_ZERO_ON);
 		if (_denormals_are_zero_supported)	{

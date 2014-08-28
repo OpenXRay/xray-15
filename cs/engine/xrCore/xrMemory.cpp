@@ -1,10 +1,12 @@
 #include "stdafx.h"
 #pragma hdrstop
 
-#include	"xrsharedmem.h"
-#include	"xrMemory_pure.h"
+#include "xrsharedmem.h"
+#include "xrMemory_pure.h"
+#include "CPUID.hpp"
+#include <malloc.h>
 
-#include	<malloc.h>
+using namespace xray;
 
 xrMemory	Memory;
 BOOL		mem_initialized	= FALSE;
@@ -61,9 +63,8 @@ void	xrMemory::_initialize	(BOOL bDebug)
 
 	stat_calls				= 0;
 	stat_counter			= 0;
-
-	u32	features		= CPU::ID.feature & CPU::ID.os_support;
-	if (features & _CPU_FEATURE_MMX)
+    // XXX nitrocaster: do we really need it?
+	if (CPUID::IsFeaturePresent(CPUID::Feature::MMX))
 	{
 		mem_copy	= xrMemCopy_MMX;
 		mem_fill	= xrMemFill_x86;

@@ -1,8 +1,6 @@
 #ifndef __XR_MATH_H__
 #define __XR_MATH_H__
 
-#include "cpuid.h"
-
 namespace FPU {
 	XRCORE_API void	 m24	(void);
 	XRCORE_API void	 m24r	(void);	
@@ -23,8 +21,6 @@ namespace CPU {
 	XRCORE_API extern u64				qpc_freq			;
 	XRCORE_API extern u64				qpc_overhead		;
 	XRCORE_API extern u32				qpc_counter			;
-
-	XRCORE_API extern	_processor_info	ID					;
 	XRCORE_API extern	u64				QPC	()				;
 
 #ifdef M_VISUAL
