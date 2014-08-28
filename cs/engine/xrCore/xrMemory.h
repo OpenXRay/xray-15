@@ -58,7 +58,7 @@ public:
 	void				dbg_unregister	(void* _p);
 	void				dbg_check		();
 
-	u32					mem_usage		(u32* pBlocksUsed=NULL, u32* pBlocksFree=NULL);
+	size_t				mem_usage		();
 	void				mem_compact		();
 	void				mem_counter_set	(u32 _val)	{ stat_counter = _val;	}
 	u32					mem_counter_get	()			{ return stat_counter;	}
@@ -142,6 +142,5 @@ extern		BOOL		mem_initialized;
 
 XRCORE_API void vminfo			(size_t *_free, size_t *reserved, size_t *committed);
 XRCORE_API void log_vminfo		();
-XRCORE_API u32	mem_usage_impl	(HANDLE heap_handle, u32* pBlocksUsed, u32* pBlocksFree);
 
 #endif // xrMemoryH

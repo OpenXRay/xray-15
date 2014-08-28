@@ -310,7 +310,7 @@ void __cdecl xrDebug::fatal(const char *file, int line, const char *function, co
 int out_of_memory_handler	(size_t size)
 {
 	Memory.mem_compact		();
-	u32						process_heap	= mem_usage_impl(GetProcessHeap(),0,0);
+    u32						process_heap 	= Memory.mem_usage();
 	int						eco_strings		= (int)g_pStringContainer->stat_economy			();
 	int						eco_smem		= (int)g_pSharedMemoryContainer->stat_economy	();
 	Msg						("* [x-ray]: process heap[%d K]",process_heap/1024);
