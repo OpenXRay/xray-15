@@ -118,7 +118,7 @@ void CHelicopter::SetDestPosition (Fvector* pos)
 	m_movement.SetDestPosition(pos);
 #ifndef MASTER_GOLD
 	if(bDebug)
-		Msg("---SetDestPosition %f %f %f", pos->x, pos->y, pos->z);
+		Msg("* SetDestPosition %f %f %f", pos->x, pos->y, pos->z);
 #endif // #ifndef MASTER_GOLD
 }
 
@@ -172,7 +172,7 @@ void CHelicopter::SetSpeedInDestPoint(float sp)
 	m_movement.SetSpeedInDestPoint(sp);
 #ifndef MASTER_GOLD
 	if(bDebug)
-		Msg("---SetSpeedInDestPoint %f", sp);
+		Msg("* SetSpeedInDestPoint %f", sp);
 #endif // #ifndef MASTER_GOLD
 }
 
@@ -185,7 +185,7 @@ void CHelicopter::SetOnPointRangeDist(float d)
 	m_movement.onPointRangeDist = d;
 #ifndef MASTER_GOLD
 	if(bDebug)
-		Msg("---SetOnPointRangeDist %f", d);
+		Msg("* SetOnPointRangeDist %f", d);
 #endif // #ifndef MASTER_GOLD
 }
 
@@ -226,7 +226,7 @@ void	CHelicopter::Hit							(SHit* pHDS)
 		curHealth -= pHDS->damage()*It->second*1000.0f;
 		SetfHealth(curHealth);
 #ifdef DEBUG
-		if (bDebug)	Log("----Helicopter::PilotHit(). health=",curHealth);
+		if (bDebug)	Log("* Helicopter::PilotHit(). health=",curHealth);
 #endif
 	}else {
 		float hit_power		= pHDS->damage();
@@ -235,7 +235,7 @@ void	CHelicopter::Hit							(SHit* pHDS)
 		SetfHealth(GetfHealth()-hit_power);
 #ifdef DEBUG
 		if (bDebug)
-			Log("----Helicopter::Hit(). health=",GetfHealth());
+			Log("* Helicopter::Hit(). health=",GetfHealth());
 #endif
 	};
 	if (pHDS->who&&

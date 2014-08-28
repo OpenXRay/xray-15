@@ -54,7 +54,7 @@ bool  CDialogScriptHelper::CheckInfo		(const CInventoryOwner* pOwner) const
 		if (!Actor()->HasInfo(m_HasInfo[i])) {
 #ifdef DEBUG
 			if(psAI_Flags.test(aiDialogs) )
-				Msg("----rejected: [%s] has info %s", pOwner->Name(), *m_HasInfo[i]);
+				Msg("* CheckInfo rejected: [%s] have info %s", pOwner->Name(), *m_HasInfo[i]);
 #endif
 			return false;
 		}
@@ -71,7 +71,7 @@ bool  CDialogScriptHelper::CheckInfo		(const CInventoryOwner* pOwner) const
 		if (Actor()->HasInfo(m_DontHasInfo[i])) {
 #ifdef DEBUG
 			if(psAI_Flags.test(aiDialogs) )
-				Msg("----rejected: [%s] dont has info %s", pOwner->Name(), *m_DontHasInfo[i]);
+				Msg("* CheckInfo rejected: [%s] haven't info %s", pOwner->Name(), *m_DontHasInfo[i]);
 #endif
 			return false;
 		}

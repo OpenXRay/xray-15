@@ -376,11 +376,11 @@ BOOL		g_bDebugEvents = FALSE	;
 
 void CLevel::cl_Process_Event				(u16 dest, u16 type, NET_Packet& P)
 {
-	//			Msg				("--- event[%d] for [%d]",type,dest);
+	//			Msg				("* event[%d] for [%d]",type,dest);
 	CObject*	 O	= Objects.net_Find	(dest);
 	if (0==O)		{
 #ifdef DEBUG
-		Msg("* WARNING: c_EVENT[%d] to [%d]: unknown dest",type,dest);
+		Msg("! WARNING: c_EVENT[%d] to [%d]: unknown dest",type,dest);
 #endif // DEBUG
 		return;
 	}
@@ -581,7 +581,7 @@ void CLevel::OnFrame	()
 		if (OnClient() && GameID() != eGameIDSingle)
 		{
 #ifdef DEBUG
-			Msg("--- I'm disconnected, so clear all objects...");
+			Msg("* I'm disconnected, so clear all objects...");
 #endif // #ifdef DEBUG
 			ClearAllObjects();
 		}
@@ -965,7 +965,7 @@ void CLevel::make_NetCorrectionPrediction	()
 	ph_world->m_steps_num -= m_dwNumSteps;
 	if(g_bDebugDumpPhysicsStep&&m_dwNumSteps>10)
 	{
-		Msg("!!!TOO MANY PHYSICS STEPS FOR CORRECTION PREDICTION = %d !!!",m_dwNumSteps);
+		Msg("! TOO MANY PHYSICS STEPS FOR CORRECTION PREDICTION = %d !!!",m_dwNumSteps);
 		m_dwNumSteps = 10;
 	};
 //////////////////////////////////////////////////////////////////////////////////

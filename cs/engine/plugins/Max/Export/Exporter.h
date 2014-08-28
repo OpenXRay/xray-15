@@ -9,7 +9,7 @@ DEFINE_VECTOR(INode*,INodeVec,INodeIt);
 //-----------------------------------------------------------------------------
 IC void ERR(LPCSTR s, LPCSTR dop="") 
 { 
-	Msg("!Error: %s%s",s,dop);
+	Msg("! Error: %s%s",s,dop);
 }
 IC int CGINTM(INode* node, int r)
 {

@@ -54,7 +54,7 @@ BOOL CPGDef::Load(IReader& F)
 	u16 version		= F.r_u16();
 
     if (version!=PGD_VERSION){
-		Log			("!Unsupported PG version. Load failed.");
+		Log			("! Unsupported PG version. Load failed.");
     	return FALSE;
     }
 
@@ -246,7 +246,7 @@ void CParticleGroup::SItem::StartFreeChild(CParticleEffect* emitter, LPCSTR nm, 
         _children_free.push_back(C);
     }else{
 #ifdef _EDITOR        
-        Msg			("!Can't use looped effect '%s' as 'On Birth' child for group.",nm);
+        Msg			("! Can't use looped effect '%s' as 'On Birth' child for group.",nm);
 #else
         Debug.fatal	(DEBUG_INFO,"Can't use looped effect '%s' as 'On Birth' child for group.",nm);
 #endif
@@ -434,7 +434,7 @@ CParticleGroup::CParticleGroup()
 
 CParticleGroup::~CParticleGroup()
 {
-	// Msg ("!!! destoy PG");
+	// Msg ("! destoy PG");
 	for (u32 i=0; i<items.size(); i++) items[i].Clear();
 	items.clear();
 }

@@ -777,7 +777,7 @@ void game_sv_Deathmatch::assign_RP(CSE_Abstract* E, game_PlayerState* ps_who)
 	VERIFY				(E);
 	u32		Team		= RP_2_Use(E);
 #ifdef DEBUG
-	Msg("--- Deathmatch RPoint for %s uses team %d", ps_who->name, Team);
+	Msg("* Deathmatch RPoint for %s uses team %d", ps_who->name, Team);
 #endif // #ifdef DEBUG
 	VERIFY				(rpoints[Team].size());
 
@@ -1060,7 +1060,7 @@ void	game_sv_Deathmatch::SpawnWeaponsForActor(CSE_Abstract* pE, game_PlayerState
 	{
 		u16 ItemID			= ps->pItemList.front();
 #ifdef DEBUG
-		Msg("--- Server: spawning item [%d] for actor [%s]", ItemID, ps->name);
+		Msg("* Server: spawning item [%d] for actor [%s]", ItemID, ps->name);
 #endif // #ifdef DEBUG
 		SpawnWeapon4Actor	(pA->ID, *m_strWeaponsData->GetItemName(ItemID& 0x00FF), u8((ItemID & 0xFF00)>>0x08), ps->pItemList);
 		//Game().m_WeaponUsageStatistic->OnWeaponBought(ps, *m_strWeaponsData->GetItemName(ItemID& 0x00FF));

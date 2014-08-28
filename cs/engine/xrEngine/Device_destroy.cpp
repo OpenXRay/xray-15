@@ -77,7 +77,7 @@ void CRenderDevice::Reset		(bool precache)
 	if (precache)
 		PreCache			(20);
 	u32 tm_end				= TimerAsync();
-	Msg						("*** RESET [%d ms]",tm_end-tm_start);
+	Msg						("* RESET [%d ms]",tm_end-tm_start);
 
 	//	TODO: Remove this! It may hide crash
 	Memory.mem_compact();

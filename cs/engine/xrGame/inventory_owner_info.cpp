@@ -93,15 +93,12 @@ bool CInventoryOwner::OnReceiveInfo(shared_str info_id) const
 void CInventoryOwner::DumpInfo() const
 {
 	KNOWN_INFO_VECTOR& known_info = m_known_info_registry->registry().objects();
-
-	Msg("------------------------------------------");	
-	Msg("Start KnownInfo dump for [%s]",Name());	
+	Msg("* Start KnownInfo dump for [%s]",Name());	
 	KNOWN_INFO_VECTOR_IT it = known_info.begin();
 	for(int i=0;it!=known_info.end();++it,++i){
-		Msg("known info[%d]:%s",i,*(*it).info_id);	
+		Msg("* known info[%d]:%s",i,*(*it).info_id);	
 	}
-	Msg("------------------------------------------");	
-
+	Msg("* KnownInfo dump end");
 }
 #endif
 
@@ -112,7 +109,7 @@ void CInventoryOwner::OnDisableInfo(shared_str info_id) const
 	
 #ifdef DEBUG
 	if(psAI_Flags.test(aiInfoPortion))
-		Msg("[%s] Disabled Info [%s]", Name(), *info_id);
+		Msg("* [%s] Disabled Info [%s]", Name(), *info_id);
 #endif
 
 	KNOWN_INFO_VECTOR& known_info = m_known_info_registry->registry().objects();

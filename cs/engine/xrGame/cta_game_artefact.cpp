@@ -95,7 +95,7 @@ void CtaGameArtefact::UpdateCLChild()
 	if (!m_artefact_rpoint)
 	{
 #ifdef DEBUG
-		Msg("--- Waiting for sync packet, for artefact rpoint.");
+		Msg("* Waiting for sync packet, for artefact rpoint.");
 #endif // #ifdef DEBUG
 		return;
 	}

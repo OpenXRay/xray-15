@@ -75,7 +75,7 @@ void CPHSimpleCharacter::UpdateDynamicDamage(dContact* c,u16 obj_material_idx,dB
 		float dbg_my_effective_e=Kself*m_collision_damage_factor;
 		float dbg_obj_effective_e=Kobj*object_damage_factor;
 		float dbg_free_energy=KK;
-		Msg("-----------------------------------------------------------------------------------------");
+		Msg("- ---------------------------------------------------------------------------------------");
 		Msg("cd %s -effective vell %f",		*PhysicsRefObject()->cName(),				c_vel);
 		Msg("cd %s -my_norm_vell %f",		*PhysicsRefObject()->cName(),				dbg_my_norm_vell);
 		Msg("cd %s -obj_norm_vell %f",		*PhysicsRefObject()->cName(),				dbg_obj_norm_vell);
@@ -86,7 +86,7 @@ void CPHSimpleCharacter::UpdateDynamicDamage(dContact* c,u16 obj_material_idx,dB
 		Msg("cd %s -effective_acceted_e %f",*PhysicsRefObject()->cName(),				accepted_energy);
 		Msg("cd %s -real_acceted_e %f",		*PhysicsRefObject()->cName(),				Kself+Kobj-KK);
 		Msg("cd %s -free_energy %f",		*PhysicsRefObject()->cName(),				dbg_free_energy);
-		Msg("-----------------------------------------------------------------------------------------");
+		Msg("- ---------------------------------------------------------------------------------------");
 		/*
 		static float dbg_my_norm_vell=0.f;
 		static float dbg_obj_norm_vell=0.f;

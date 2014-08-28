@@ -266,7 +266,7 @@ void game_sv_CaptureTheArtefact::SM_SwitchOnNextActivePlayer()
 	};
 	SM_SwitchOnPlayer				(pNewObject);
 #ifndef MASTER_GOLD
-	Msg("---SM Switched on player %s", pNewObject->cName().c_str());
+	Msg("* SM Switched on player %s", pNewObject->cName().c_str());
 #endif // #ifndef MASTER_GOLD
 };
 
@@ -501,7 +501,7 @@ void game_sv_CaptureTheArtefact::OnPlayerReady(ClientID id_who)
 		
 		
 #ifndef MASTER_GOLD
-		Msg("---Respawning player %s - he's ready", xrCData->name.c_str());
+		Msg("* Respawning player %s - he's ready", xrCData->name.c_str());
 #endif // #ifndef MASTER_GOLD
 		
 		RespawnPlayer(id_who, false);
@@ -556,7 +556,7 @@ void game_sv_CaptureTheArtefact::Create(shared_str &options)
 	teams[etGreenTeam].score = 0;
 	teams[etBlueTeam].score = 0;
 #ifndef MASTER_GOLD
-	Msg("---Starting new round, scores: [ %d : %d ]",
+	Msg("* Starting new round, scores: [ %d : %d ]",
 		teams[etGreenTeam].score, teams[etBlueTeam].score);
 #endif // #ifndef MASTER_GOLD
 	m_iMoney_for_BuySpawn	= READ_IF_EXISTS(pSettings, r_s32, "capturetheartefact_gamedata", "spawn_cost", -10000);
@@ -1867,7 +1867,7 @@ void game_sv_CaptureTheArtefact::FillDeathActorRejectItems(CSE_ActorMP *actor, x
 		}
 		//R_ASSERT		(server_item);
 #ifdef MP_LOGGING
-		Msg("--- SV: to_reject [%d]", server_item->ID);
+		Msg("* SV: to_reject [%d]", server_item->ID);
 #endif
 		to_reject.push_back(server_item);
 
@@ -2023,7 +2023,7 @@ void game_sv_CaptureTheArtefact::RespawnClient(xrClientData const * pclient)
 	if (pclient->ps->testFlag(GAME_PLAYER_FLAG_VERY_VERY_DEAD))
 	{
 #ifndef MASTER_GOLD
-		Msg("---Respawning dead player [%s]", pclient->name.c_str());
+		Msg("* Respawning dead player [%s]", pclient->name.c_str());
 #endif // #ifndef MASTER_GOLD
 		RespawnPlayer(pclient->ID, true);
 		VERIFY(pclient->ps);
@@ -2188,7 +2188,7 @@ void game_sv_CaptureTheArtefact::StartNewRound()
 	m_item_respawner.respawn_level_items();
 	VERIFY(TeamList.size() >= 2);
 #ifndef MASTER_GOLD
-	Msg("---Starting new round, scores: [ %d : %d ]",
+	Msg("* Starting new round, scores: [ %d : %d ]",
 		teams[etGreenTeam].score, teams[etBlueTeam].score);
 #endif // #ifndef MASTER_GOLD
 }

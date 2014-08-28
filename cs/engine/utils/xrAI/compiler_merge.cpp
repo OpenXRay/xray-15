@@ -75,7 +75,7 @@ void ProcessOne		(u32 Base, u32 limit=8)
 	}
 	
 	// main cycle
-	//	Msg("-----");
+	//	Msg("- ---");
 	u32	BasePos	= BaseLine[BL_Left];
 	for (u32 left=0; left<=BL_Left; left++)
 	{

@@ -283,13 +283,13 @@ void OGF::MakeProgressive	(float metric_limit)
 	{
 		// prepare progressive geom
 		VIPM_Init				();
-		//clMsg("--- append v start .");
+		//clMsg("- append v start .");
 		for (u32 v_idx=0;  v_idx<data.vertices.size(); v_idx++)	
 			VIPM_AppendVertex	(data.vertices[v_idx].P,	data.vertices[v_idx].UV[0]					);
-		//clMsg("--- append f start .");
+		//clMsg("- append f start .");
 		for (u32 f_idx=0;  f_idx<data.faces.size();    f_idx++)	
 			VIPM_AppendFace		(data.faces[f_idx].v[0],	data.faces[f_idx].v[1],	data.faces[f_idx].v[2]	);
-		//clMsg("--- append end.");
+		//clMsg("- append end.");
 
 		// Convert
 		VIPM_Result*	VR		= 0;

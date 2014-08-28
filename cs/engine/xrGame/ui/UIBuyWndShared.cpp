@@ -78,7 +78,7 @@ void CItemMgr::Dump() const
 	COST_MAP_CIT it		= m_items.begin();
 	COST_MAP_CIT it_e	= m_items.end();
 
-	Msg("--CItemMgr::Dump");
+	Msg("* CItemMgr::Dump");
 	for(;it!=it_e;++it)
 	{
 		const _i&		val		= it->second; 

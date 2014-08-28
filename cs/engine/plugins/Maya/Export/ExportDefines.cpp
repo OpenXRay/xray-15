@@ -20,12 +20,12 @@ MObject findShader(MObject& setNode, SXRShaderData& d)
 		shaderPlug.connectedTo( connectedPlugs, asDst, asSrc );
 
 		if (connectedPlugs.length() != 1)
-			Msg("!Error getting shader");
+			Msg("! Error getting shader");
 		else 
 			return connectedPlugs[0].node();
 	}
 
-	Msg("!Error finding surface shader for node '%s'",fnNode.name().asChar());
+	Msg("! Error finding surface shader for node '%s'",fnNode.name().asChar());
 	return MObject::kNullObj;
 }
 

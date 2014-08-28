@@ -1041,7 +1041,7 @@ bool game_cl_CaptureTheArtefact::CanBeReady()
 		return false;
 	}
 #ifndef MASTER_GOLD
-	Msg("---CanBeReady = true: [%s][%d]", local_player->name, local_player->GameID);
+	Msg("* CanBeReady = true: [%s][%d]", local_player->name, local_player->GameID);
 #endif // #ifndef MASTER_GOLD
 	return true;
 }
@@ -1135,7 +1135,7 @@ void game_cl_CaptureTheArtefact::OnGameRoundStarted	()
 	{
 		OnTeamChanged			(); //updates buy menu...
 #ifdef DEBUG
-		Msg("--- CTA: Round started !!!");
+		Msg("- CTA: Round started !!!");
 #endif // #ifdef DEBUG
 	}
 }
@@ -1237,14 +1237,14 @@ void game_cl_CaptureTheArtefact::OnVoteStart(NET_Packet& P)
 	u32					tcmd_len = cmd_len;
 
 #ifdef CLIENT_CTA_LOG
-	Msg("---Received vote begin message: (command: %s), (player: %s)", command, player);
+	Msg("* Received vote begin message: (command: %s), (player: %s)", command, player);
 #endif
 
 	if (!cmd_len)
 		return;
 
 #ifdef CLIENT_CTA_LOG
-	Msg("---Vote command: %s", cmd_name);
+	Msg("* Vote command: %s", cmd_name);
 #endif
 
 	int					args_count = sscanf_s(command + cmd_len, 
@@ -1258,7 +1258,7 @@ void game_cl_CaptureTheArtefact::OnVoteStart(NET_Packet& P)
 		args_count = 0;
 
 #ifdef CLIENT_CTA_LOG
-	Msg("---Args count: %d", args_count);
+	Msg("* Args count: %d", args_count);
 #endif
 
 	
@@ -1272,7 +1272,7 @@ void game_cl_CaptureTheArtefact::OnVoteStart(NET_Packet& P)
 			tcmd_name		= static_cast<char*>(_alloca(tcmd_len));
 			strcpy_s(tcmd_name, tcmd_len, ted_str);
 #ifdef CLIENT_CTA_LOG
-			Msg("---Translated command to: %s", tcmd_name);
+			Msg("* Translated command to: %s", tcmd_name);
 #endif
 			break;
 		}
@@ -1284,7 +1284,7 @@ void game_cl_CaptureTheArtefact::OnVoteStart(NET_Packet& P)
 	for (int i = 0; i < args_count; ++i)
 	{
 #ifdef CLIENT_CTA_LOG
-		Msg("---Next cat iteration state: %s", vstr);
+		Msg("* Next cat iteration state: %s", vstr);
 #endif
 		strcat_s(vstr, vstr_size, " ");
 		strcat_s(vstr, vstr_size, st.translate(args[i]).c_str());
@@ -1295,13 +1295,13 @@ void game_cl_CaptureTheArtefact::OnVoteStart(NET_Packet& P)
 	char*				fin_str = static_cast<char*>(_alloca(fin_str_size));
 
 #ifdef CLIENT_CTA_LOG
-	Msg("---Making finally string: (t_vote_str: %s), (vstr: %s), (player: %s)", t_vote_str, vstr, player);
+	Msg("* Making final string: (t_vote_str: %s), (vstr: %s), (player: %s)", t_vote_str, vstr, player);
 #endif
 	
 	sprintf_s			(fin_str, fin_str_size, t_vote_str, vstr, player);
 
 #ifdef CLIENT_CTA_LOG
-	Msg("---Starting vote: %s", fin_str);
+	Msg("* Starting vote: %s", fin_str);
 #endif
 
 	m_game_ui->SetVoteMessage(fin_str);
@@ -1362,7 +1362,7 @@ void game_cl_CaptureTheArtefact::OnVoteStop(NET_Packet& P)
 {
 	inherited::OnVoteStop(P);
 #ifdef CLIENT_CTA_LOG
-	Msg("---Voting stoped...");
+	Msg("* Voting stopped...");
 #endif
 	if (m_game_ui)
 	{

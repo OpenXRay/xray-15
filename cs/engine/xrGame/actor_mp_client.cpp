@@ -14,7 +14,7 @@ void CActorMP::OnEvent		( NET_Packet &P, u16 type)
 #ifdef DEBUG
 	if (type == GE_ACTOR_MAX_HEALTH)
 	{
-		Msg("--- CActorMP after GE_ACTOR_MAX_HEALTH health is: %2.04f", m_state_holder.state().health);
+		Msg("* CActorMP after GE_ACTOR_MAX_HEALTH health is: %2.04f", m_state_holder.state().health);
 	}
 #endif // #ifdef DEBUG
 }

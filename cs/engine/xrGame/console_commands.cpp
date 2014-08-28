@@ -275,7 +275,7 @@ public:
 			}
 		}
 		else
-			Log("!Not a single player game!");
+			Log("! Not a single player game!");
 	}
 };
 
@@ -294,7 +294,7 @@ public:
 				tpGame->alife().set_process_time(id1);
 		}
 		else
-			Log("!Not a single player game!");
+			Log("! Not a single player game!");
 	}
 };
 
@@ -311,7 +311,7 @@ public:
 			tpGame->alife().objects_per_update(id1);
 		}
 		else
-			Log("!Not a single player game!");
+			Log("! Not a single player game!");
 	}
 };
 
@@ -328,7 +328,7 @@ public:
 			tpGame->alife().set_switch_factor(id1);
 		}
 		else
-			Log		("!Not a single player game!");
+			Log		("! Not a single player game!");
 	}
 };
 

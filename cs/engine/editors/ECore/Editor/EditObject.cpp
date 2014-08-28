@@ -271,12 +271,12 @@ bool CEditableObject::Validate()
 	bool bRes = true;
     for(SurfaceIt 	s_it=m_Surfaces.begin(); s_it!=m_Surfaces.end(); s_it++)
         if (false==(*s_it)->Validate()){ 
-        	Msg("!Invalid surface found: Object [%s], Surface [%s].",GetName(),(*s_it)->_Name());
+        	Msg("! Invalid surface found: Object [%s], Surface [%s].",GetName(),(*s_it)->_Name());
         	bRes=false;
         }
     for(EditMeshIt m_def=m_Meshes.begin();m_def!=m_Meshes.end();m_def++)
         if (false==(*m_def)->Validate()){ 
-        	Msg("!Invalid mesh found: Object [%s], Mesh [%s].",m_LibName.c_str(),(*m_def)->Name().c_str());
+        	Msg("! Invalid mesh found: Object [%s], Mesh [%s].",m_LibName.c_str(),(*m_def)->Name().c_str());
         	bRes=false;
         }
     return bRes;

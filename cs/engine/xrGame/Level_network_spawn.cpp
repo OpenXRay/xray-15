@@ -99,7 +99,7 @@ void CLevel::g_sv_Spawn		(CSE_Abstract* E)
 	// Client spawn
 //	T.Start		();
 	CObject*	O		= Objects.Create	(*E->s_name);
-	// Msg				("--spawn--CREATE: %f ms",1000.f*T.GetAsync());
+	// Msg				("* spawn CREATE: %f ms",1000.f*T.GetAsync());
 
 //	T.Start		();
 #ifdef DEBUG_MEMORY_MANAGER
@@ -121,7 +121,7 @@ void CLevel::g_sv_Spawn		(CSE_Abstract* E)
 #endif // DEBUG_MEMORY_MANAGER
 		if(!g_dedicated_server)
 			client_spawn_manager().callback(O);
-		//Msg			("--spawn--SPAWN: %f ms",1000.f*T.GetAsync());
+		//Msg			("* spawn SPAWN: %f ms",1000.f*T.GetAsync());
 		
 		if ((E->s_flags.is(M_SPAWN_OBJECT_LOCAL)) && 
 			(E->s_flags.is(M_SPAWN_OBJECT_ASPLAYER)) )	

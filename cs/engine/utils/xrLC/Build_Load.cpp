@@ -270,9 +270,9 @@ void CBuild::Load	(const b_params& Params, const IReader& _in_FS)
 				L_static().rgb			= TEST.lights;
 			}
 		}
-		clMsg	("*lighting*: HEMI:   %d lights",L_static().hemi.size());
-		clMsg	("*lighting*: SUN:    %d lights",L_static().sun.size());
-		clMsg	("*lighting*: STATIC: %d lights",L_static().rgb.size());
+		clMsg	("* lighting*: HEMI:   %d lights",L_static().hemi.size());
+		clMsg	("* lighting*: SUN:    %d lights",L_static().sun.size());
+		clMsg	("* lighting*: STATIC: %d lights",L_static().rgb.size());
 		R_ASSERT(L_static().hemi.size());
 		R_ASSERT(L_static().sun.size());
 		R_ASSERT(L_static().rgb.size());

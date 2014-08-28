@@ -47,7 +47,7 @@ MStatus CXRayObjectExport::writer ( const MFileObject& file, const MString& opti
 		Log("Object succesfully exported.");
 		Msg("%d vertices, %d faces", OBJECT->GetVertexCount(), OBJECT->GetFaceCount());
 	}else{
-		Log("!Export failed.");
+		Log("! Export failed.");
 	}
 	xr_delete(OBJECT);
 
@@ -326,15 +326,15 @@ bool CXRayObjectExport::initializeSetsAndLookupTables( bool exportAll )
 //				objectGroupsTablePtr[i] = (bool*)calloc( length, sizeof(bool) );	
 				objectGroupsTablePtr[i] = xr_alloc<bool>(length);
 				ZeroMemory(objectGroupsTablePtr[i],length*sizeof(bool));
-				
+                // XXX nitrocaster: remove this 'cause malloc failure shouldn't be handled there
 				if ( objectGroupsTablePtr[i] == NULL ) {
-					Log("!calloc returned NULL (objectGroupsTablePtr)");
+					Log("! calloc returned NULL (objectGroupsTablePtr)");
 					return false;
 				}
 			}
 		}
 //		else{
-//			Log("!Can't find transform for node.");
+//			Log("! Can't find transform for node.");
 //			return false;
 //		}
 	}
@@ -351,17 +351,18 @@ bool CXRayObjectExport::initializeSetsAndLookupTables( bool exportAll )
 //			vertexTablePtr[i] = (bool*)calloc( vertexCounts[i]*numSets, sizeof(bool) );	
 			vertexTablePtr[i] = xr_alloc<bool>(vertexCounts[i]*numSets);
 			ZeroMemory(vertexTablePtr[i],vertexCounts[i]*numSets*sizeof(bool));
-
+            // XXX nitrocaster: remove this 'cause malloc failure shouldn't be handled there
 			if ( vertexTablePtr[i] == NULL ) {
-				Log("!calloc returned NULL (vertexTable)");
+				Log("! calloc returned NULL (vertexTable)");
 				return false;
 			}
 	
 //			polygonTablePtr[i] = (bool*)calloc( polygonCounts[i]*numSets, sizeof(bool) );
 			polygonTablePtr[i] = xr_alloc<bool>(polygonCounts[i]*numSets);
 			ZeroMemory(polygonTablePtr[i],polygonCounts[i]*numSets*sizeof(bool));
+            // XXX nitrocaster: remove this 'cause malloc failure shouldn't be handled there
 			if ( polygonTablePtr[i] == NULL ) {
-				Log("!calloc returned NULL (polygonTable)");
+				Log("! calloc returned NULL (polygonTable)");
 				return false;
 			}
 		}	
@@ -451,7 +452,7 @@ bool CXRayObjectExport::initializeSetsAndLookupTables( bool exportAll )
 									// Check for bad components in the set
 									//									
 									if ( compIdx >= polygonCounts[o] ) {
-										Msg("!Bad polygon index '%d' found. Polygon skipped",compIdx);
+										Msg("! Bad polygon index '%d' found. Polygon skipped",compIdx);
 										break;
 									}
 									
@@ -499,7 +500,7 @@ bool CXRayObjectExport::initializeSetsAndLookupTables( bool exportAll )
 								// Check for bad components in the set
 								//
 								if ( compIdx >= polygonCounts[o] ) {
-									Msg("!Bad polygon index '%d' found. Polygon skipped",compIdx);
+									Msg("! Bad polygon index '%d' found. Polygon skipped",compIdx);
 									break;
 								}
 								// Mark set i as true in the table
@@ -797,7 +798,7 @@ bool CXRayObjectExport::smoothingAlgorithm( int polyId, MFnMesh& fnMesh )
                     smoothingAlgorithm( adjPoly, fnMesh );
                 }
                 else if ( polySmoothingGroups[adjPoly] != currSmoothingGroup ) {
-					Msg("!smoothing group problem at polygon %d",adjPoly);
+					Msg("! smoothing group problem at polygon %d",adjPoly);
                 }
             }
         }

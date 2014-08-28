@@ -34,7 +34,7 @@ void xrServer::Process_event_destroy	(NET_Packet& P, ClientID sender, u32 time, 
 	if (!e_dest) 
 	{
 #ifndef MASTER_GOLD
-		Msg							("!SV:ge_destroy: [%d] not found on server",id_dest);
+		Msg							("! SV:ge_destroy: [%d] not found on server",id_dest);
 #endif // #ifndef MASTER_GOLD
 		return;
 	};
@@ -47,7 +47,7 @@ void xrServer::Process_event_destroy	(NET_Packet& P, ClientID sender, u32 time, 
 	u16								parent_id = e_dest->ID_Parent;
 
 #ifdef MP_LOGGING
-	Msg("--- SV: Process destroy: parent [%d] item [%d][%s]", 
+	Msg("- SV: Process destroy: parent [%d] item [%d][%s]", 
 		parent_id, id_dest, e_dest->name());
 #endif //#ifdef MP_LOGGING
 

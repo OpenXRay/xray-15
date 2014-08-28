@@ -1708,7 +1708,7 @@ void CSE_ALifeObjectPhysic::UPDATE_Write	(NET_Packet	&tNetPacket)
 		}
 
 	}
-//.	Msg("--- Sync PH [%d].", ID);
+//.	Msg("* Sync PH [%d].", ID);
 	tNetPacket.w_u8(1);	//not freezed - doesn't mean anything..
 
 #ifdef XRGAME_EXPORTS

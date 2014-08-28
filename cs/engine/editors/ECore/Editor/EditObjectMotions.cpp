@@ -442,18 +442,18 @@ bool CEditableObject::CheckBoneCompliance(CSMotion* M)
 /*
     BoneMotionVec& lst = M->BoneMotions();
 	if (m_Bones.size()!=lst.size()){
-		Log		("!Different bone count.\nObject has '%d' bones. Motion has '%d' bones.",m_Bones.size(),lst.size());
+		Log		("! Different bone count.\nObject has '%d' bones. Motion has '%d' bones.",m_Bones.size(),lst.size());
     	return false;
     }
     for(BoneMotionIt bm_it=lst.begin(); bm_it!=lst.end(); bm_it++)
     	if (!FindBoneByName(*bm_it->name)){
-        	Msg		("!Can't find bone '%s' in object.",bm_it->name);
+        	Msg		("! Can't find bone '%s' in object.",bm_it->name);
         	return false;
         }
 */
     for(BoneIt b_it=m_Bones.begin(); b_it!=m_Bones.end(); b_it++)
     	if (!M->FindBoneMotion((*b_it)->Name())) {
-//        	Msg		("!Can't find bone '%s' in motion.",*(*b_it)->Name());
+//        	Msg		("! Can't find bone '%s' in motion.",*(*b_it)->Name());
 //        	return false;
 			M->add_empty_motion	((*b_it)->Name());
 			continue;

@@ -96,7 +96,7 @@ void COMotion::SaveMotion(const char* buf){
 	Save			(F);
 	F.close_chunk	();
 	if (!F.save_to(buf)) 
-        Log			("!Can't save object motion:",buf);
+        Log			("! Can't save object motion:",buf);
 }
 
 bool COMotion::LoadMotion(const char* buf)
@@ -352,7 +352,7 @@ void CSMotion::SaveMotion(const char* buf){
 	Save			(F);
 	F.close_chunk	();
 	if (!F.save_to(buf)) 
-        Log			("!Can't save skeleton motion:",buf);
+        Log			("! Can't save skeleton motion:",buf);
 }
 
 bool CSMotion::LoadMotion(const char* buf)

@@ -445,7 +445,7 @@ PLAYERS_STATS_it WeaponUsageStatistic::FindPlayer(LPCSTR PlayerName)
 	if (!GetPlayer(PlayerName, pPlayerI))
 	{
 #ifdef DEBUG
-		Msg("--- Adding new player [%s] to statistics", PlayerName);
+		Msg("* Adding new player [%s] to statistics", PlayerName);
 #endif // #ifdef DEBUG
 		aPlayersStatistic.push_back	(Player_Statistic(PlayerName));
 		pPlayerI					= aPlayersStatistic.end()-1;
@@ -471,7 +471,7 @@ WEAPON_STATS_it	Player_Statistic::FindPlayersWeapon	(LPCSTR WeaponName)
 		pWeaponI = aWeaponStats.end()-1;
 		pWeaponI->InvName = pSettings->r_string_wb(WeaponName, "inv_name");
 #ifdef DEBUG
-		Msg("--- Just added weapon %s to statistics", WeaponName);
+		Msg("* Just added weapon %s to statistics", WeaponName);
 #endif // #ifdef DEBUG
 	}
 	return pWeaponI;
@@ -990,7 +990,8 @@ void WeaponUsageStatistic::OnUpdateRespond(NET_Packet* P, shared_str const & sen
 	P->r_stringZ(PName);
 	Player_Statistic& PS = *(FindPlayer(*PName));
 	PS.PDigest = sender_digest;
-	Msg("--- CL: On Update Respond from [%s]", PName.c_str());
+    // XXX nitrocaster: add some option to enable/disable such messages
+	Msg("* CL: On Update Respond from [%s]", PName.c_str());
 	PS.net_load(P);
 };
 

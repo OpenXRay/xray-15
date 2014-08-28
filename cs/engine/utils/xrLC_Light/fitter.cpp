@@ -60,7 +60,7 @@ void vfOptimizeParameters(xr_vector<xr_vector<REAL> > &A, xr_vector<xr_vector<RE
 	xr_vector<xr_vector<REAL> >	daEvalResults; daEvalResults.resize(dwTestCount);
 	
 	if (!B.size()) {
-		clMsg				("ERROR : there are no parameters to fit!");
+		clMsg				("! ERROR : there are no parameters to fit!");
 		return;
 	}
 	
@@ -75,7 +75,7 @@ void vfOptimizeParameters(xr_vector<xr_vector<REAL> > &A, xr_vector<xr_vector<RE
 	}
 	u32						i = 0;
 	REAL					dFunctional = dfComputeEvalResults(daEvalResults,A,B,C,D), dPreviousFunctional;
-	//clMsg					("***MU-fitter***: %6d : %17.8f (%17.8f)",i,dFunctional,dFunctional/dwTestCount);
+	//clMsg					("* MU-fitter: %6d : %17.8f (%17.8f)",i,dFunctional,dFunctional/dwTestCount);
 	do {
 		dPreviousFunctional = dFunctional;
 		dafGradient			(daEvalResults,			daGradient,			B,					dNormaFactor);
@@ -96,5 +96,5 @@ void vfOptimizeParameters(xr_vector<xr_vector<REAL> > &A, xr_vector<xr_vector<RE
 	}
 	
 	dFunctional				= dfComputeEvalResults(daEvalResults,A,B,C,D);
-	//clMsg					("***MU-fitter***: %6d : %17.8f (%17.8f)",i,dFunctional,dFunctional/dwTestCount);
+	//clMsg					("* MU-fitter: %6d : %17.8f (%17.8f)",i,dFunctional,dFunctional/dwTestCount);
 }

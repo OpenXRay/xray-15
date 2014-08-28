@@ -158,7 +158,7 @@ void CEditableMesh::GenerateVNormals(const Fmatrix* parent_xform)
 	                N.div	(len);
                 }else
 				{
-//.                	Msg		("!Invalid smooth group found (Maya type). Object: '%s'. Vertex: [%3.2f, %3.2f, %3.2f]",m_Parent->GetName(),VPUSH(m_Vertices[m_Faces[f_i].pv[k].pindex]));
+//.                	Msg		("! Invalid smooth group found (Maya type). Object: '%s'. Vertex: [%3.2f, %3.2f, %3.2f]",m_Parent->GetName(),VPUSH(m_Vertices[m_Faces[f_i].pv[k].pindex]));
 
 #ifdef _EDITOR
 					if(parent_xform)
@@ -220,7 +220,7 @@ void CEditableMesh::GenerateVNormals(const Fmatrix* parent_xform)
 	                    N.div	(len);
                     }else
 					{
-//.                    	Msg		("!Invalid smooth group found (MAX type). Object: '%s'. Vertex: [%3.2f, %3.2f, %3.2f]",m_Parent->GetName(),VPUSH(m_Vertices[m_Faces[f_i].pv[k].pindex]));
+//.                    	Msg		("! Invalid smooth group found (MAX type). Object: '%s'. Vertex: [%3.2f, %3.2f, %3.2f]",m_Parent->GetName(),VPUSH(m_Vertices[m_Faces[f_i].pv[k].pindex]));
 #ifdef _EDITOR
 						Fvector p0;
                         p0 = m_Vertices[m_Faces[f_i].pv[k].pindex];
@@ -264,7 +264,7 @@ void CEditableMesh::GenerateVNormals(const Fmatrix* parent_xform)
 	                    N.div	(len);
                     }else
 					{
-//.                    	Msg		("!Invalid smooth group found (Maya type). Object: '%s'. Vertex: [%3.2f, %3.2f, %3.2f]",m_Parent->GetName(),VPUSH(m_Vertices[m_Faces[f_i].pv[k].pindex]));
+//.                    	Msg		("! Invalid smooth group found (Maya type). Object: '%s'. Vertex: [%3.2f, %3.2f, %3.2f]",m_Parent->GetName(),VPUSH(m_Vertices[m_Faces[f_i].pv[k].pindex]));
 
 #ifdef _EDITOR
 						if(parent_xform)
@@ -290,7 +290,7 @@ void CEditableMesh::GenerateVNormals(const Fmatrix* parent_xform)
      //               if (len>EPS_S){
 	    //                N.div	(len);
      //               }else{
-     //               	Msg		("!Invalid smooth group found (No smooth). Object: '%s'. Vertex: [%3.2f, %3.2f, %3.2f]",m_Parent->GetName(),VPUSH(m_Verts[m_Faces[f_i].pv[k].pindex]));
+     //               	Msg		("! Invalid smooth group found (No smooth). Object: '%s'. Vertex: [%3.2f, %3.2f, %3.2f]",m_Parent->GetName(),VPUSH(m_Verts[m_Faces[f_i].pv[k].pindex]));
      //                   N.set	(m_FNormals[a_lst.front()]);
      //               }
                     

@@ -659,7 +659,7 @@ void CKinematicsAnimated::Load(const char* N, IReader *data, u32 dwFlags)
                 if (!FS.exist(fn, "$game_meshes$", nm))
                 {
 #ifdef _EDITOR
-                    Msg			("!Can't find motion file '%s'.",nm);
+                    Msg			("! Can't find motion file '%s'.",nm);
                     return;
 #else
                     Debug.fatal	(DEBUG_INFO,"Can't find motion file '%s'.",nm);
@@ -698,7 +698,7 @@ void CKinematicsAnimated::Load(const char* N, IReader *data, u32 dwFlags)
                 if (!FS.exist(fn, "$game_meshes$", nm))
                 {
 #ifdef _EDITOR
-                    Msg			("!Can't find motion file '%s'.",nm);
+                    Msg			("! Can't find motion file '%s'.",nm);
                     return;
 #else
                     Debug.fatal	(DEBUG_INFO,"Can't find motion file '%s'.",nm);

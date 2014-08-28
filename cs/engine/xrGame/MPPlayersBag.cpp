@@ -28,7 +28,7 @@ void CMPPlayersBag::OnEvent(NET_Packet& P, u16 type)
 				R_ASSERT					(pIItem->m_pInventory==NULL);
 				
 #ifdef MP_LOGGING
-				Msg("--- Rukzak [%d] takes [%d][%s]", ID(), O->ID(), O->cNameSect().c_str());
+				Msg("* Rukzak [%d] takes [%d][%s]", ID(), O->ID(), O->cNameSect().c_str());
 #endif // MP_LOGGING
 
 				O->H_SetParent(this);
@@ -40,7 +40,7 @@ void CMPPlayersBag::OnEvent(NET_Packet& P, u16 type)
 				CObject* O = Level().Objects.net_Find(id);
 				
 #ifdef MP_LOGGING
-				Msg("--- Rukzak [%d] rejects [%d][%s]", ID(), O->ID(), O->cNameSect().c_str());
+				Msg("* Rukzak [%d] rejects [%d][%s]", ID(), O->ID(), O->cNameSect().c_str());
 #endif // MP_LOGGING
 
 				O->H_SetParent(0,!P.r_eof() && P.r_u8());

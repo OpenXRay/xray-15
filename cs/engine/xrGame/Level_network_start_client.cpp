@@ -97,7 +97,7 @@ bool	CLevel::net_start_client3				()
 			return false;
 		}
 #ifdef DEBUG
-		Msg("--- net_start_client3: level_id [%d], level_name[%s], level_version[%s]", level_id, level_name, level_ver);
+		Msg("* net_start_client3: level_id [%d], level_name[%s], level_version[%s]", level_id, level_name, level_ver);
 #endif // #ifdef DEBUG
 		map_data.m_name					= level_name;
 		map_data.m_map_version			= level_ver;
@@ -206,7 +206,7 @@ bool	CLevel::net_start_client6				()
 			g_hud->OnConnected				();
 
 #ifdef DEBUG
-		Msg("--- net_start_client6");
+		Msg("* net_start_client6");
 #endif // #ifdef DEBUG
 
 		if (game)

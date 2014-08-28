@@ -336,7 +336,7 @@ IReader* CLocatorAPI::r_open	(LPCSTR path, LPCSTR _fname)
                     }
                 }
             }else{
-            	Log			("!Can't build:",source_name);
+            	Log			("! Can't build:",source_name);
             }
 		}
 	}
@@ -503,7 +503,7 @@ void CLocatorAPI::set_file_age(LPCSTR nm, time_t age)
     tm.actime	= age;
     tm.modtime	= age;
     int res 	= _utime(nm,&tm);
-    if (0!=res)	Msg("!Can't set file age: '%s'. Error: '%s'",nm,_sys_errlist[errno]);
+    if (0!=res)	Msg("! Can't set file age: '%s'. Error: '%s'",nm,_sys_errlist[errno]);
 }
 
 BOOL CLocatorAPI::can_write_to_folder(LPCSTR path)

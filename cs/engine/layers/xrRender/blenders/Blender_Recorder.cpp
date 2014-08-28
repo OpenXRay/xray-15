@@ -135,7 +135,7 @@ void	CBlender_Compile::SetParams		(int iPriority, bool bStrictB2F)
 	if (bStrictB2F){			
 #ifdef _EDITOR    
 		if (1!=(SH->flags.iPriority/2)){
-        	Log("!If StrictB2F true then Priority must div 2.");
+        	Log("! If StrictB2F true then Priority must div 2.");
             SH->flags.bStrictB2F	= FALSE;
         }
 #else

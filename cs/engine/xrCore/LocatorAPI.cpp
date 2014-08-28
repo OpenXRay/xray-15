@@ -153,24 +153,24 @@ XRCORE_API void _dump_open_files(int mode)
 			if(_of._reader!=NULL)
 			{
 				if(!bShow)
-					Log("----opened files");
+					Log("* opened files");
 
 				bShow = true;
-				Msg("[%d] fname:%s", _of._used ,_of._fn.c_str());
+				Msg("* [%d] fname: %s", _of._used ,_of._fn.c_str());
 			}
 		}
 	}else
 	{
-		Log("----un-used");
+		Log("* unused");
 		for(it = g_open_files.begin(); it!=it_e; ++it)
 		{
 			_open_file& _of = *it;
 			if(_of._reader==NULL)
-				Msg("[%d] fname:%s", _of._used ,_of._fn.c_str());
+				Msg("* [%d] fname: %s", _of._used ,_of._fn.c_str());
 		}
 	}
 	if(bShow)
-		Log("----total count=",g_open_files.size());
+		Log("* total count=",g_open_files.size());
 }
 
 CLocatorAPI::CLocatorAPI()
@@ -214,7 +214,7 @@ void CLocatorAPI::Register		(LPCSTR name, u32 vfs, u32 crc, u32 ptr, u32 size_re
 //	if file already exist - update info
 	files_it			I = m_files.find(desc);
 	if (I != m_files.end()) {
-//.		Msg("-- file already scanned [%s]", I->name);
+//.		Msg("- file already scanned [%s]", I->name);
 		desc.name		= I->name;
 
 		// sad but true, performance option
@@ -1192,7 +1192,7 @@ void CLocatorAPI::copy_file_to_build	(T *&r, LPCSTR source_name)
 	update_path				(cpy_name,"$build_copy$",source_name+xr_strlen(P->m_Path));
 	IWriter* W = w_open		(cpy_name);
     if (!W) {
-        Log					("!Can't build:",source_name);
+        Log					("! Can't build:",source_name);
 		return;
 	}
 
@@ -1542,7 +1542,7 @@ void CLocatorAPI::set_file_age(LPCSTR nm, u32 age)
     tm.modtime	= age;
     int res 	= _utime(nm,&tm);
     if (0!=res){
-    	Msg			("!Can't set file age: '%s'. Error: '%s'",nm,_sys_errlist[errno]);
+    	Msg			("! Can't set file age: '%s'. Error: '%s'",nm,_sys_errlist[errno]);
     }else{
         // update record
         files_it I 		= file_find_it(nm);

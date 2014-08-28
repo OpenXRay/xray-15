@@ -238,13 +238,13 @@ void	game_sv_mp::KillPlayer				(ClientID id_who, u16 GameID)
 	xrClientData* xrCData	=	m_server->ID_to_client(id_who);
 #ifdef DEBUG
 	if (xrCData && xrCData->ps && xrCData->ps->name)
-		Msg("--- Killing player [%s]", xrCData->ps->name);
+		Msg("* Killing player [%s]", xrCData->ps->name);
 #endif // #ifdef DEBUG
 	
 	if (xrCData && xrCData->ps && xrCData->ps->testFlag(GAME_PLAYER_FLAG_VERY_VERY_DEAD))
 	{
 #ifdef DEBUG
-		Msg("--- Killing dead player [%s]", xrCData->ps->name);
+		Msg("* Killing dead player [%s]", xrCData->ps->name);
 #endif // #ifdef DEBUG
 		return;
 	}
@@ -297,7 +297,7 @@ void	game_sv_mp::OnEvent (NET_Packet &P, u16 type, u32 time, ClientID sender )
 #ifdef DEBUG
 			xrClientData *l_pC	= m_server->ID_to_client(sender);
 			if (l_pC && l_pC->ps)
-				Msg("--- GAME_EVENT_PLAYER_KILLED: sender [%d][0x%08x]", l_pC->ps->GameID, sender);
+				Msg("* GAME_EVENT_PLAYER_KILLED: sender [%d][0x%08x]", l_pC->ps->GameID, sender);
 #endif // #ifdef DEBUG
 			OnPlayerKilled(P);
 		}break;
@@ -306,7 +306,7 @@ void	game_sv_mp::OnEvent (NET_Packet &P, u16 type, u32 time, ClientID sender )
 #ifdef DEBUG
 			xrClientData *l_pC	= m_server->ID_to_client(sender);
 			if (l_pC && l_pC->ps)
-				Msg("--- GAME_EVENT_PLAYER_HITTED: sender [%d][0x%08x]", l_pC->ps->GameID, sender);
+				Msg("* GAME_EVENT_PLAYER_HITTED: sender [%d][0x%08x]", l_pC->ps->GameID, sender);
 #endif // #ifdef DEBUG
 			OnPlayerHitted(P);			
 		}break;
@@ -360,7 +360,7 @@ void	game_sv_mp::OnEvent (NET_Packet &P, u16 type, u32 time, ClientID sender )
 	case GAME_EVENT_PLAYER_STARTED:
 		{
 #ifdef DEBUG
-			Msg("--- Player 0x%08x started.", sender);
+			Msg("* Player 0x%08x started.", sender);
 #endif // #ifdef DEBUG
 			if (CheckPlayerMapName(sender, P))
 			{
@@ -426,7 +426,7 @@ LPCSTR GameTypeToString(EGameIDs gt, bool bShort);
 void game_sv_mp::ReconnectPlayer(ClientID const & clientID)
 {
 #ifdef DEBUG
-	Msg("--- Reconnecting player 0x%08x", clientID);
+	Msg("* Reconnecting player 0x%08x", clientID);
 #endif // #ifdef DEBUG
 	NET_Packet			P;
 	P.w_begin			(M_CHANGE_LEVEL_GAME);
@@ -1063,7 +1063,7 @@ void game_sv_mp::OnVoteStart				(LPCSTR VoteCommand, ClientID sender)
 				LevelVersion, sizeof(LevelVersion)
 			);
 #ifdef DEBUG
-			Msg("--- Starting vote for changing level to: %s[%s]", LevelName, LevelVersion);
+			Msg("* Starting vote for changing level to: %s[%s]", LevelName, LevelVersion);
 #endif // #ifdef DEBUG
 			LevelName[255] = 0;
 			LevelVersion[255] = 0;
@@ -1416,7 +1416,7 @@ void game_sv_mp::OnPlayerKilled(NET_Packet P)
 		return;
 	}
 #ifdef MP_LOGGING
-	Msg("--- Player [%d] killed player [%d], Frame [%d]", KillerID, KilledID, Device.dwFrame);
+	Msg("* Player [%d] killed player [%d], Frame [%d]", KillerID, KilledID, Device.dwFrame);
 #endif
 	
 
@@ -1451,7 +1451,7 @@ void game_sv_mp::OnPlayerHitted(NET_Packet P)
 void	game_sv_mp::SendPlayerKilledMessage	(u16 KilledID, KILL_TYPE KillType, u16 KillerID, u16 WeaponID, SPECIAL_KILL_TYPE SpecialKill)
 {
 #ifndef MASTER_GOLD
-	Msg("---Server: sending player [%d] killed message...", KillerID);
+	Msg("* Server: sending player [%d] killed message...", KillerID);
 #endif // #ifndef MASTER_GOLD
 	NET_Packet			P;
 	GenerateGameMessage (P);
@@ -1836,7 +1836,7 @@ void game_sv_mp::RenewAllActorsHealth	()
 			if (l_pC->ps->testFlag(GAME_PLAYER_FLAG_VERY_VERY_DEAD))
 			{
 #ifdef DEBUG
-				Msg("--- Actor has dead flag in player state");
+				Msg("* Actor has dead flag in player state");
 #endif // #ifdef DEBUG
 				return;
 			}
@@ -2188,7 +2188,7 @@ void game_sv_mp::DestroyAllPlayerItems(ClientID id_who)	//except rukzak
 	VERIFY(xrCData->ps);
 	game_PlayerState*	ps	=	xrCData->ps;
 #ifndef MASTER_GOLD
-	Msg("---Destroying player [%s] items before spawning new bought items.", ps->name);
+	Msg("* Destroying player [%s] items before spawning new bought items.", ps->name);
 #endif // #ifndef MASTER_GOLD
 	
 	CActor* pActor = smart_cast<CActor*>(Level().Objects.net_Find(ps->GameID));

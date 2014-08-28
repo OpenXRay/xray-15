@@ -222,7 +222,7 @@ MStatus CXRaySkinExport::writer (const MFileObject& file, const MString& options
 		Msg("Trying to export mesh - %s",m_strSkinCluster.asChar());
 
 	if (!status) {
-		Msg("!problem setting up bone table");
+		Msg("! problem setting up bone table");
 		return status;
 	}
 
@@ -230,19 +230,19 @@ MStatus CXRaySkinExport::writer (const MFileObject& file, const MString& options
 	// clusters and load and store their weights in table by vertex.
 	status = getBones();
 	if (!status)
-		Msg("!problem loading bone weights");
+		Msg("! problem loading bone weights");
 
 	// now look through the scene for any geometry directly attached to bones
 	// this is most commonly found when creating mechanical models vs. organic models
 	status = parseBoneGeometry ();
 	if (!status)
-		Msg("!problem loading skin information");
+		Msg("! problem loading skin information");
 
 	// now load the geometry information for any skin cluster objects detected earlier
 	if (m_skinPath.isValid()) {
 		status = parseShape (m_skinPath);
 		if (!status) {
-			Msg("!problem loading skin information");
+			Msg("! problem loading skin information");
 			return status;
 		}
 	}
@@ -253,7 +253,7 @@ MStatus CXRaySkinExport::writer (const MFileObject& file, const MString& options
 	if (MS::kSuccess==status){ 
 		Msg("Object succesfully exported.");
 	}else{
-		Msg("!Export failed.");
+		Msg("! Export failed.");
 	}
 
 	return status;
@@ -261,7 +261,7 @@ MStatus CXRaySkinExport::writer (const MFileObject& file, const MString& options
 
 MStatus CXRaySkinExport::reader (const MFileObject& file, const MString& options, FileAccessMode mode)
 {
-    Msg("!reader called in error.");
+    Msg("! reader called in error.");
     return MS::kFailure;
 }
 
@@ -278,7 +278,7 @@ CSurface* CEditableObject::CreateSurface(MObject shader)
 		SXRShaderData	d;
 		MStatus status	= parseShader(shader, d);
 		if (status == MStatus::kFailure) {
-			Msg			("!Unable to retrieve filename of texture");
+			Msg			("! Unable to retrieve filename of texture");
 			xr_delete	(S);
 			return		0;
 		}
@@ -308,13 +308,13 @@ MStatus	CXRaySkinExport::gotoBindPose(void)
 			if ((*itBones)->parentId==-1){
 				MFnTransform fnJoint = (*itBones)->path.node(&status);
 				if (!status) {
-					Msg("!Unable to cast as Transform!");
+					Msg("! Unable to cast as Transform!");
 					break;
 				}
 				MString cmd = "dagPose -r -g -bp "+fnJoint.fullPathName();
 				MGlobal::executeCommand(cmd, status );
 				if (!status) {
-					Msg("!Unable goto bind pose!");
+					Msg("! Unable goto bind pose!");
 					break;
 				}
 			}
@@ -423,7 +423,7 @@ MStatus CXRaySkinExport::exportObject(LPCSTR fn)
 	status = getBoneData();
 	if (!status) 
 	{
-		Msg("!error getting bind pose.");
+		Msg("! error getting bind pose.");
 		MGlobal::executeCommand("doEnableNodeItems true all");
 		return status;
 	}
@@ -451,7 +451,7 @@ MStatus CXRaySkinExport::exportObject(LPCSTR fn)
 
 	if ((MESH->GetVertexCount()<4)||(MESH->GetFaceCount()<2))
 	{
-		Log		("!Invalid mesh: '%s'. Faces<2 or Verts<4",*MESH->Name());
+		Log		("! Invalid mesh: '%s'. Faces<2 or Verts<4",*MESH->Name());
 		MGlobal::executeCommand("doEnableNodeItems true all");
 		return MStatus::kFailure;
 	}
@@ -490,7 +490,7 @@ MStatus CXRaySkinExport::exportMotion(LPCSTR fn)
 	tmNew.setUnit		(MTime::uiUnit());
 
 	if (currentFrame.unit()!=MTime::kNTSCFrame){
-		Msg("!Can't export animation with FPS!=30.f");
+		Msg("! Can't export animation with FPS!=30.f");
 		return MStatus::kFailure;
 	}
 	float iFPS			= 30.f;
@@ -535,7 +535,7 @@ MStatus CXRaySkinExport::exportMotion(LPCSTR fn)
 
 			status			= getBoneData();
 			if (!status){
-				Msg("!error getting bone data at frame: ",i);
+				Msg("! error getting bone data at frame: ",i);
 				continue;
 			}
 
@@ -638,21 +638,21 @@ MStatus CXRaySkinExport::parsePolySet(MItMeshPolygon &meshPoly, MObjectArray& rg
 		// verify polygon zero area
 		if (meshPoly.zeroArea()){
 			status = MS::kFailure;
-			Log("!polygon have zero area:",meshPoly.index());
+			Log("! polygon have zero area:",meshPoly.index());
 			return status;
 		}
 
 		// verify polygon zero UV area
 /*		if (meshPoly.zeroUVArea()){
 			status = MS::kFailure;
-			Log("!polygon have zero UV area:",meshPoly.index());
+			Log("! polygon have zero UV area:",meshPoly.index());
 			return status;
 		}
 */
 		// verify polygon has UV information
 		if (!meshPoly.hasUVs ()) {
 			status = MS::kFailure;
-			Log("!polygon is missing UV information:",meshPoly.index());
+			Log("! polygon is missing UV information:",meshPoly.index());
 			return status;
 		}
 
@@ -682,14 +682,14 @@ MStatus CXRaySkinExport::parsePolySet(MItMeshPolygon &meshPoly, MObjectArray& rg
 			}
 
 			if ((rgpt.length() != 3) || (rgint.length() != 3)) {
-				Msg("!3 points not returned for triangle");
+				Msg("! 3 points not returned for triangle");
 				status = MS::kFailure;
 				return status;
 			}
 
 			tri = xr_new<SmdTriangle>();
 			if (tri == NULL) {
-				Msg("!error creating triangle");
+				Msg("! error creating triangle");
 				status = MS::kFailure;
 				return status;
 			}
@@ -756,14 +756,14 @@ MStatus CXRaySkinExport::CalculateTriangleVertex (int vt, MVector &pt, float &u,
 /*
 	status = meshPoly.getNormal (vtLocal, n, MSpace::kWorld);
 	if (!status) {
-		Msg("!error getting normal for local vertex '%d' and object vertex '%d'",vtLocal,vt);
+		Msg("! error getting normal for local vertex '%d' and object vertex '%d'",vtLocal,vt);
 		return status;
 	}
 */
 
 	status = meshPoly.getUVIndex (vtLocal, vtUV, u, v);
 	if (!status) {
-		Msg("!error getting UV Index for local vertex '%d' and object vertex '%d'",vtLocal,vt);
+		Msg("! error getting UV Index for local vertex '%d' and object vertex '%d'",vtLocal,vt);
 		return status;
 	}
 
@@ -784,7 +784,7 @@ MStatus CXRaySkinExport::CalculateTriangleVertex (int vt, MVector &pt, float &u,
 			weight = (*mapIt2).second;
 		} else {
 			// error - bone not found!
-			Msg("!can't find weight bone with index '%d' and name '%s' in joint map.",weight,name);
+			Msg("! can't find weight bone with index '%d' and name '%s' in joint map.",weight,name);
 			return MS::kFailure;
 		}
 	} else {
@@ -842,14 +842,14 @@ MStatus CXRaySkinExport::getBones(void)
 		for (size_t ii = 0; ii < nGeoms; ++ii) {
 			unsigned int index = skinCluster.indexForOutputConnection(ii,&stat);
 			if (!stat) {
-				Msg("!Error getting geometry index.");
+				Msg("! Error getting geometry index.");
 				return stat;
 			}
 
 			// get the dag path of the ii'th geometry
 			stat = skinCluster.getPathAtIndex(index,m_skinPath);
 			if (!stat) {
-				Msg("!Error getting geometry path.");
+				Msg("! Error getting geometry path.");
 				return stat;
 			}
 
@@ -864,14 +864,14 @@ MStatus CXRaySkinExport::getBones(void)
 			m_rgWeights = xr_new<VWBVec>();
 			m_rgWeights->resize(gIter.count(&stat));
 			if (!stat) {
-				Msg("!Error creating array of vertices");
+				Msg("! Error creating array of vertices");
 				return stat;
 			}
 
 			for (; !gIter.isDone(); gIter.next()) {
 				MObject comp = gIter.component(&stat);
 				if (!stat) {
-					Msg("!Error getting component.");
+					Msg("! Error getting component.");
 					return stat;
 				}
 
@@ -880,11 +880,11 @@ MStatus CXRaySkinExport::getBones(void)
 				unsigned int infCount;
 				stat = skinCluster.getWeights(m_skinPath,comp,wts,infCount);
 				if (!stat) {
-					Msg("!Error getting weights.");
+					Msg("! Error getting weights.");
 					return stat;
 				}
 
-				if (0==infCount)	{ Msg("!0 influence objects.");	return MStatus::kFailure; }
+				if (0==infCount)	{ Msg("! 0 influence objects.");	return MStatus::kFailure; }
 
 				// find the strongest influencer for this vertex
 				st_VertexWB& wb			= (*m_rgWeights)[gIter.index()]; 
@@ -903,12 +903,12 @@ MStatus CXRaySkinExport::getBones(void)
 								bone_idx = (*mapIt2).second;
 							} else {
 								// error - bone not found!
-								Msg("!can't find weight bone with name '%s' in joint map.",name);
+								Msg("! can't find weight bone with name '%s' in joint map.",name);
 								return MS::kFailure;
 							}
 						}
 						if (bone_idx!=iInf){
-							Msg("!bone_idx!=iInf.[%d-%d]",bone_idx,iInf);
+							Msg("! bone_idx!=iInf.[%d-%d]",bone_idx,iInf);
 						}
 						wb.push_back	(st_WB(bone_idx,wts[iInf]));
 					}
@@ -920,10 +920,10 @@ MStatus CXRaySkinExport::getBones(void)
 
 
 	if (0 == count) {
-		Msg("!No skinned meshes found in this scene. Is your mesh bound to a skeleton?");
+		Msg("! No skinned meshes found in this scene. Is your mesh bound to a skeleton?");
 		return MStatus::kFailure;
 	} else if (m_skinPath.partialPathName().length() == 0) {
-		Msg("!Could not find desired skin cluster '%s'",m_strSkinCluster.asChar());
+		Msg("! Could not find desired skin cluster '%s'",m_strSkinCluster.asChar());
 		return MStatus::kFailure;
 	} else {
 		Msg("Processing skin cluster '%s'",m_strSkinCluster.asChar());
@@ -1093,14 +1093,14 @@ MStatus CXRaySkinExport::getBoneData (void)
 			MFnTransform fnJoint = (*itBones)->path.node(&status);
 			LPCSTR nm = fnJoint.name().asChar();
 			if (!status) {
-				Msg("!Unable to cast as Transform!");
+				Msg("! Unable to cast as Transform!");
 				return status;
 			}
 
 			// get rotation/translation from the transformation matrix
 			MTransformationMatrix mat = fnJoint.transformationMatrix(&status); 
 			if (!status) {
-				Msg("!Unable to get transformation matrix!");
+				Msg("! Unable to get transformation matrix!");
 				return status;
 			}
 
@@ -1182,7 +1182,7 @@ MStatus CXRaySkinExport::parseBoneGeometry( )
 				status = fnMesh.getConnectedShaders (instanceNum, rgShaders, rgFaces);
 				if (status == MStatus::kFailure)
 				{
-					Msg("!Unable to load shaders for mesh");
+					Msg("! Unable to load shaders for mesh");
 					return (MStatus::kFailure);
 				}
 
@@ -1426,7 +1426,7 @@ bool CXRaySkinExport::smoothingAlgorithm( int polyId, MFnMesh& fnMesh )
 					smoothingAlgorithm( adjPoly, fnMesh );
 				}
 				else if ( polySmoothingGroups[adjPoly] != currSmoothingGroup ) {
-					Msg("!smoothing group problem at polygon %d",adjPoly);
+					Msg("! smoothing group problem at polygon %d",adjPoly);
 				}
 			}
 		}

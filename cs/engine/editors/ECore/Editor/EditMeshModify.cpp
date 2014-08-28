@@ -213,7 +213,7 @@ bool CEditableMesh::OptimizeFace(st_Face& face){
 	}
 
 	if ((mface[0]==mface[1])||(mface[1]==mface[2])||(mface[0]==mface[2])){
-		Msg("!Optimize: Invalid face found. Removed.");
+		Msg("! Optimize: Invalid face found. Removed.");
         return false;
 	}else{
     	face.pv[0].pindex = mface[0];

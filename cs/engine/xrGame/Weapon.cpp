@@ -573,7 +573,7 @@ void CWeapon::net_Import(NET_Packet& P)
 	default:
 		{
 			if (ammoType >= m_ammoTypes.size())
-				Msg("!! Weapon [%d], State - [%d]", ID(), wstate);
+				Msg("! Weapon [%d], State - [%d]", ID(), wstate);
 			else
 			{
 				m_ammoType = ammoType;
@@ -1320,7 +1320,7 @@ void CWeapon::SwitchState(u32 S)
 #ifndef MASTER_GOLD
 	if ( bDebug )
 	{
-		Msg("---Server is going to send GE_WPN_STATE_CHANGE to [%d], weapon_section[%s], parent[%s]",
+		Msg("* Server is going to send GE_WPN_STATE_CHANGE to [%d], weapon_section[%s], parent[%s]",
 			S, cNameSect().c_str(), H_Parent() ? H_Parent()->cName().c_str() : "NULL Parent");
 	}
 #endif // #ifndef MASTER_GOLD

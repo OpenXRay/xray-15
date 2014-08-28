@@ -49,7 +49,7 @@ void unregister_file_mapping		(void *address, const u32 &size)
 	g_file_mapped_memory			-= (*I).second.first;
 	--g_file_mapped_count;
 
-//	Msg								("--unregister_file_mapping(%2d): [0x%08x]%s", g_file_mapped_count + 1, *((u32*)&address), (*I).second.second.c_str());
+//	Msg								("* unregister_file_mapping(%2d): [0x%08x]%s", g_file_mapped_count + 1, *((u32*)&address), (*I).second.second.c_str());
 
 	g_file_mappings.erase			(I);
 

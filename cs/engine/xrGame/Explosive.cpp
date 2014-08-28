@@ -330,7 +330,7 @@ void CExplosive::Explode()
 		DBG_DrawPoint(pos,0.3f,D3DCOLOR_XRGB(255,0,0));
 	}
 #endif
-//	Msg("---------CExplosive Explode [%d] frame[%d]",cast_game_object()->ID(), Device.dwFrame);
+//	Msg("* CExplosive Explode [%d] frame[%d]",cast_game_object()->ID(), Device.dwFrame);
 	OnBeforeExplosion();
 	//играем звук взрыва
 	Sound->play_at_pos(sndExplode, 0, pos, false);
@@ -485,7 +485,7 @@ void CExplosive::UpdateCL()
 		StopLight();
 		
 
-//		Msg("---------CExplosive OnAfterExplosion [%d] frame[%d]",cast_game_object()->ID(), Device.dwFrame);
+//		Msg("* CExplosive OnAfterExplosion [%d] frame[%d]",cast_game_object()->ID(), Device.dwFrame);
 
 	} 
 	else
@@ -537,7 +537,7 @@ void CExplosive::OnBeforeExplosion()
 	if (m_bHideInExplosion) 
 	{
 		HideExplosive();
-		//	Msg("---------CExplosive OnBeforeExplosion setVisible(false) [%d] frame[%d]",cast_game_object()->ID(), Device.dwFrame);
+		//	Msg("* CExplosive OnBeforeExplosion setVisible(false) [%d] frame[%d]",cast_game_object()->ID(), Device.dwFrame);
 	}
 }
 void CExplosive::HideExplosive()

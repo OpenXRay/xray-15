@@ -16,7 +16,7 @@ BOOL CEditableObject::ParseMAMaterial(CSurface* dest, SXRShaderData& d)
 	dest->m_Flags.set	(CSurface::sf2Sided,d.double_side);
 	LPCSTR sh_name		= _ChangeSymbol(strcpy(tmp,d.eng_name.asChar()),'/','\\');
 	if (!sh_name||!sh_name[0]){
-		Log("!Empty shader name, material: ",d.name.asChar());
+		Log("! Empty shader name, material: ",d.name.asChar());
 		return FALSE;
 	}
 	dest->SetShader		(sh_name);
@@ -273,7 +273,7 @@ MStatus CXRayObjectExport::ExportPart(CEditableObject* O, MDagPath& mdagPath, MO
 	status = fnMesh.getConnectedShaders (instanceNum, rgShaders, texMap);
 	if (status == MStatus::kFailure)
 	{
-		Log("!Unable to load shaders for mesh");
+		Log("! Unable to load shaders for mesh");
 		return (MStatus::kFailure);
 	}
 
@@ -360,21 +360,21 @@ MStatus CXRayObjectExport::ExportPart(CEditableObject* O, MDagPath& mdagPath, MO
 			// verify polygon zero area
 			if (meshPoly.zeroArea()){
 				status = MS::kFailure;
-				Log("!polygon have zero area:",meshPoly.index());
+				Log("! polygon have zero area:",meshPoly.index());
 				return status;
 			}
 
 			// verify polygon zero UV area
 /*			if (meshPoly.zeroUVArea()){
 				status = MS::kFailure;
-				Log("!polygon have zero UV area:",meshPoly.index());
+				Log("! polygon have zero UV area:",meshPoly.index());
 				return status;
 			}
 */
 			// verify polygon has UV information
 			if (!meshPoly.hasUVs (&status)) {
 				status = MS::kFailure;
-				Log("!polygon is missing UV information:",meshPoly.index());
+				Log("! polygon is missing UV information:",meshPoly.index());
 				return status;
 			}
 
@@ -382,7 +382,7 @@ MStatus CXRayObjectExport::ExportPart(CEditableObject* O, MDagPath& mdagPath, MO
 			// now iterate through each triangle on this polygon and create a triangle object in our list
 			status = meshPoly.numTriangles (cTri);	
 			if (!status) {
-				Log("!can't getting triangle count");
+				Log("! can't getting triangle count");
 				return status;
 			}
 
@@ -396,12 +396,12 @@ MStatus CXRayObjectExport::ExportPart(CEditableObject* O, MDagPath& mdagPath, MO
 				status = meshPoly.getTriangle (i, rgpt, rgint, MSpace::kWorld);
 
 				if (!status) {
-					Log("can't getting triangle for mesh poly");
+					Log("! can't getting triangle for mesh poly");
 					return status;
 				}
 
 				if ((rgpt.length() != 3) || (rgint.length() != 3)) {
-					Msg("!3 points not returned for triangle");
+					Msg("! 3 points not returned for triangle");
 					return MS::kFailure;
 				}
 
@@ -423,14 +423,14 @@ MStatus CXRayObjectExport::ExportPart(CEditableObject* O, MDagPath& mdagPath, MO
 					mapIt = ptMap.find(vt);
 					Fvector2 uv;
 					if (mapIt == ptMap.end()){
-						Msg("!Can't find local index.");
+						Msg("! Can't find local index.");
 						return MS::kFailure;
 					}
 					vtLocal = (*mapIt).second;
 
 					status = meshPoly.getUVIndex (vtLocal, vtUV, uv.x, uv.y); 
 					if (!status) {
-						Msg("!error getting UV Index for local vertex '%d' and object vertex '%d'",vtLocal,vt);
+						Msg("! error getting UV Index for local vertex '%d' and object vertex '%d'",vtLocal,vt);
 						return status;
 					}
 
@@ -473,7 +473,7 @@ MStatus CXRayObjectExport::ExportPart(CEditableObject* O, MDagPath& mdagPath, MO
 		}
 		if ((MESH->GetVertexCount()<4)||(MESH->GetFaceCount()<2))
 		{
-			Log		("!Invalid mesh: '%s'. Faces<2 or Verts<4",*MESH->Name());
+			Log		("! Invalid mesh: '%s'. Faces<2 or Verts<4",*MESH->Name());
 			return MS::kFailure;
 		}
 	}

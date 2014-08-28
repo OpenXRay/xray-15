@@ -18,7 +18,7 @@ u16 CPartition::part_id(const shared_str& name) const
 		if(pd.Name == name)
 			return i;
 	}
-	Msg("!there is no part named [%s]", name.c_str() );
+	Msg("! there is no part named [%s]", name.c_str() );
 	return u16(-1);
 }
 
@@ -109,13 +109,13 @@ BOOL motions_value::load		(LPCSTR N, IReader *data, vecBones* bones)
 				if (*b_it==BI_NONE )
                 {
 					bRes		= false;
-					Msg			("!Can't find bone: '%s'", buf);
+					Msg			("! Can't find bone: '%s'", buf);
 				}
 
 				if (rm_bones.size() <= m_idx)
                 {
 					bRes		= false;
-					Msg			("!Can't load: '%s' invalid bones count", N);
+					Msg			("! Can't load: '%s' invalid bones count", N);
 				}
 #else
 				VERIFY3			(*b_it!=BI_NONE,"Can't find bone:", buf);
@@ -128,7 +128,7 @@ BOOL motions_value::load		(LPCSTR N, IReader *data, vecBones* bones)
 #ifdef _EDITOR
 		if (part_bone_cnt!=(u16)bones->size()){
 			bRes = false;
-			Msg("!Different bone count[%s] [Object: '%d' <-> Motions: '%d']", N, bones->size(),part_bone_cnt);
+			Msg("! Different bone count[%s] [Object: '%d' <-> Motions: '%d']", N, bones->size(),part_bone_cnt);
 		}
 #else
 		VERIFY3(part_bone_cnt==(u16)bones->size(),"Different bone count '%s'",N);
@@ -309,14 +309,14 @@ void motions_container::dump()
 {
 	SharedMotionsMapIt it	= container.begin();
 	SharedMotionsMapIt _E	= container.end();
-	Log	("--- motion container --- begin:");
+	Log	("- --- motion container --- begin:");
 	u32 sz					= sizeof(*this);
 	for (u32 k=0; it!=_E; k++,it++){
 		sz					+= it->second->mem_usage();
 		Msg("#%3d: [%3d/%5d Kb] - %s",k,it->second->m_dwReference,it->second->mem_usage()/1024,it->first.c_str());
 	}
-	Msg ("--- items: %d, mem usage: %d Kb ",container.size(),sz/1024);
-	Log	("--- motion container --- end.");
+	Msg ("- items: %d, mem usage: %d Kb ",container.size(),sz/1024);
+	Log	("- --- motion container --- end.");
 }
 
 //////////////////////////////////////////////////////////////////////////

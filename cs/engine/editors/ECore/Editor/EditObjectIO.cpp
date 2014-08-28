@@ -324,7 +324,7 @@ bool CEditableObject::Load(IReader& F)
                 for (SMotionIt s_it=m_SMotions.begin(); s_it!=m_SMotions.end(); s_it++){
                     *s_it = xr_new<CSMotion>();
                     if (!(*s_it)->Load(F)){
-                        Log		("!Motions has different version. Load failed.");
+                        Log		("! Motions has different version. Load failed.");
                         xr_delete(*s_it);
                         m_SMotions.clear();
                         break;                 
@@ -372,7 +372,7 @@ bool CEditableObject::Load(IReader& F)
                         if ((idx>=0)&&(idx<(int)m_Bones.size())){
                             *s_it	= m_Bones[idx]->Name();
                         }else{
-		                    Log		("!Invalid bone parts.",GetName());
+		                    Log		("! Invalid bone parts.",GetName());
                             bBPok = false;
                             break;
                         }
@@ -381,7 +381,7 @@ bool CEditableObject::Load(IReader& F)
                 }
 				if (!bBPok)	m_BoneParts.clear();
                 if (!m_BoneParts.empty()&&!VerifyBoneParts())
-                    Log		("!Invalid bone parts. Found duplicate bones in object '%s'.",GetName());
+                    Log		("! Invalid bone parts. Found duplicate bones in object '%s'.",GetName());
             }else if (F.find_chunk(EOBJ_CHUNK_BONEPARTS2)){
                 m_BoneParts.resize(F.r_u32());
                 for (BPIt bp_it=m_BoneParts.begin(); bp_it!=m_BoneParts.end(); bp_it++){
@@ -391,7 +391,7 @@ bool CEditableObject::Load(IReader& F)
                         F.r_stringZ(*s_it);
                 }
                 if (!m_BoneParts.empty()&&!VerifyBoneParts())
-                    Log			("!Invalid bone parts. Found duplicate bones in object '%s'.",GetName());
+                    Log			("! Invalid bone parts. Found duplicate bones in object '%s'.",GetName());
             }
         }
 

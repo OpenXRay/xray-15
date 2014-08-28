@@ -654,7 +654,7 @@ void CInventoryItem::net_Export			(NET_Packet& P)
 	if (!num_items.common)
 	{
 #ifdef DEBUG
-		Msg("--- Number of sync items of inv item object is 0");
+		Msg("* Number of sync items of inv item object is 0");
 #endif // #ifdef DEBUG
 		return;
 	}

@@ -82,7 +82,7 @@ void Startup(LPSTR     lpCmdLine)
 	u32	dwMax			= 1900*(1024*1024);
 	if (0==SetProcessWorkingSetSize(GetCurrentProcess(),dwMin,dwMax))
 	{
-		clMsg("*** Failed to expand working set");
+		clMsg("! Failed to expand working set");
 	};
 	*/
 	

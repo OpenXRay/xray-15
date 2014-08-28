@@ -60,7 +60,7 @@ void CActor::OnEvent(NET_Packet& P, u16 type)
 #ifdef MP_LOGGING
 				string64 act;
 				strcpy_s( act, (type == GE_TRADE_BUY)? "buys" : "takes" );
-				Msg("--- Actor [%d][%s]  %s  [%d][%s]", ID(), Name(), act, _GO->ID(), _GO->cNameSect().c_str());
+				Msg("* Actor [%d][%s]  %s  [%d][%s]", ID(), Name(), act, _GO->ID(), _GO->cNameSect().c_str());
 #endif // MP_LOGGING
 				
 				inventory().Take	(_GO, false, true);
@@ -77,7 +77,7 @@ void CActor::OnEvent(NET_Packet& P, u16 type)
 					u_EventSend		(P);
 				} else
 				{
-					Msg("! ERROR: Actor [%d][%s]  tries to drop on take [%d][%s]", ID(), Name(), _GO->ID(), _GO->cNameSect().c_str());
+					Msg("! ERROR: Actor [%d][%s] tries to drop on take [%d][%s]", ID(), Name(), _GO->ID(), _GO->cNameSect().c_str());
 				}
 			}
 		}
@@ -104,7 +104,7 @@ void CActor::OnEvent(NET_Packet& P, u16 type)
 #ifdef MP_LOGGING
 			string64 act;
 			strcpy_s( act, (type == GE_TRADE_SELL)? "sells" : "rejects" );
-			Msg("--- Actor [%d][%s]  %s  [%d][%s]", ID(), Name(), act, GO->ID(), GO->cNameSect().c_str());
+			Msg("* Actor [%d][%s]  %s  [%d][%s]", ID(), Name(), act, GO->ID(), GO->cNameSect().c_str());
 #endif // MP_LOGGING
 			
 			VERIFY( GO->H_Parent() );

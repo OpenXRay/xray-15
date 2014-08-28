@@ -247,13 +247,13 @@ bool CInventory::DropItem(CGameObject *pObj, bool just_before_destroy)
 					if (just_before_destroy)
 					{
 #ifdef DEBUG
-						Msg("---DropItem activating slot [-1], forced, Frame[%d]", Device.dwFrame);
+						Msg("* DropItem activating slot [-1], forced, Frame[%d]", Device.dwFrame);
 #endif // #ifdef DEBUG
 						Activate		(NO_ACTIVE_SLOT, true);
 					} else 
 					{
 #ifdef DEBUG
-						Msg("---DropItem activating slot [-1], Frame[%d]", Device.dwFrame);
+						Msg("* DropItem activating slot [-1], Frame[%d]", Device.dwFrame);
 #endif // #ifdef DEBUG
 						Activate		(NO_ACTIVE_SLOT);
 					}
@@ -356,7 +356,7 @@ bool CInventory::Slot(PIItem pIItem, bool bNotActivate, bool strict_placement)
 			);
 		}
 #ifdef MP_LOGGING
-		Msg("--- Actor [%d] places to slot item [%d]", GetOwner()->object_id(), pIItem->object_id());
+		Msg("* Actor [%d] places to slot item [%d]", GetOwner()->object_id(), pIItem->object_id());
 #endif //#ifdef MP_LOGGING
 	} else
 	{
@@ -369,7 +369,7 @@ bool CInventory::Slot(PIItem pIItem, bool bNotActivate, bool strict_placement)
 	if (((m_iActiveSlot==pIItem->GetSlot()) ||(m_iActiveSlot==NO_ACTIVE_SLOT) && m_iNextActiveSlot==NO_ACTIVE_SLOT) && (!bNotActivate))
 	{
 #ifdef DEBUG
-		Msg("---To Slot: activating slot [%d], Frame[%d]", pIItem->GetSlot(), Device.dwFrame);
+		Msg("* To Slot: activating slot [%d], Frame[%d]", pIItem->GetSlot(), Device.dwFrame);
 #endif // #ifdef DEBUG
 		Activate				(pIItem->GetSlot());
 	}
@@ -456,7 +456,7 @@ bool CInventory::Ruck(PIItem pIItem, bool strict_placement)
 				inventory_owner_id, pIItem->object_id(), item_parent_id).c_str()
 			);
 #ifdef MP_LOGGING
-			Msg("--- Actor [%d] place to ruck item [%d]", inventory_owner_id, pIItem->object_id());
+			Msg("* Actor [%d] place to ruck item [%d]", inventory_owner_id, pIItem->object_id());
 #endif
 		}
 	}
@@ -586,11 +586,11 @@ void CInventory::Activate(u32 slot, /*EActivationReason reason, */bool bForce)
 	if (m_iActiveSlot==slot || (m_iNextActiveSlot==slot && !bForce))
 	{
 		m_iNextActiveSlot=slot;
-//		Msg("--- There's no need to activate slot [%d], next active slot is [%d]", slot, m_iNextActiveSlot);
+//		Msg("* There's no need to activate slot [%d], next active slot is [%d]", slot, m_iNextActiveSlot);
 		return;
 	}
 #ifdef DEBUG
-	Msg("--- Activating slot [%d], inventory owner: [%s], Frame[%d]", slot, m_pOwner->Name(), Device.dwFrame);
+	Msg("* Activating slot [%d], inventory owner: [%s], Frame[%d]", slot, m_pOwner->Name(), Device.dwFrame);
 #endif // #ifdef DEBUG
 
 	/*if(Device.dwFrame == m_iLoadActiveSlotFrame) 
@@ -663,7 +663,7 @@ void CInventory::Activate(u32 slot, /*EActivationReason reason, */bool bForce)
 			tempItem->SendDeactivateItem();
 
 #ifdef DEBUG
-			Msg("--- Inventory owner [%s]: send deactivate item [%s]", m_pOwner->Name(), active_item->NameItem());
+			Msg("* Inventory owner [%s]: send deactivate item [%s]", m_pOwner->Name(), active_item->NameItem());
 #endif // #ifdef DEBUG
 		} else //in case where weapon is going to destroy
 		{

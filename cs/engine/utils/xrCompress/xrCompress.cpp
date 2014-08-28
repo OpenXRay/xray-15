@@ -453,7 +453,7 @@ void xrCompressor::PerformWork()
 			xr_free				(c_heap);
 	}else 
 	{
-		Msg						("ERROR: folder not found.");
+		Msg						("! ERROR: folder not found.");
 	}
 }
 
@@ -476,7 +476,7 @@ void xrCompressor::GatherFiles(LPCSTR path)
 {
 	xr_vector<char*>*	i_list	= FS.file_list_open	("$target_folder$",path,FS_ListFiles|FS_RootOnly);
 	if (!i_list){
-		Msg				("ERROR: Unable to open file list:%s", path);
+		Msg				("! ERROR: Unable to open file list:%s", path);
 		return;
 	}
 	xr_vector<char*>::iterator it	= i_list->begin();
@@ -488,7 +488,7 @@ void xrCompressor::GatherFiles(LPCSTR path)
 		{
 			files_list->push_back	(xr_strdup(tmp_path.c_str()));
 		}else{
-			Msg				("-f: %s",tmp_path.c_str());
+			Msg				("* -f: %s",tmp_path.c_str());
 		}
 	}
 	FS.file_list_close	(i_list);
@@ -567,19 +567,19 @@ void xrCompressor::ProcessLTX(CInifile& ltx)
 					if (val)
 					{
 						folders_list->push_back(xr_strdup(tmp_path.c_str()));
-						Msg			("+F: %s",tmp_path.c_str());
+						Msg			("* +F: %s",tmp_path.c_str());
 						// collect files
 						if (ifRecurse) 
 							GatherFiles (tmp_path.c_str());
 					}else
 					{
-						Msg			("-F: %s",tmp_path.c_str());
+						Msg			("* -F: %s",tmp_path.c_str());
 					}
 				}
 				FS.file_list_close	(i_fl_list);
 			}else
 			{
-				Msg					("-F: %s",path);
+				Msg					("* -F: %s",path);
 			}
 		}
 	}//if(ltx.section_exist("include_folders"))

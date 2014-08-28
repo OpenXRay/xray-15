@@ -160,7 +160,7 @@ void show_animation_stats	()
 		return;
 
 	show_animations				();
-	Msg							("--------------------------------------------------");
+	Msg							("- ------------------------------------------------");
 	show_blends					();
 #endif
 }

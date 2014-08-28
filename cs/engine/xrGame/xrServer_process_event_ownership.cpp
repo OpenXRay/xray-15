@@ -64,7 +64,7 @@ void xrServer::Process_event_ownership(NET_Packet& P, ClientID sender, u32 time,
 	if (alife_entity && !alife_entity->g_Alive() && game->Type()!=eGameIDSingle)
 	{
 #ifdef MP_LOGGING
-		Msg("--- SV: WARNING: dead player [%d] tries to take item [%d]", id_parent, id_entity);
+		Msg("! WARNING: dead player [%d] tries to take item [%d]", id_parent, id_entity);
 #endif //#ifdef MP_LOGGING
 		return;
 	};

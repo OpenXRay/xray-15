@@ -683,7 +683,7 @@ void start_tutorial(LPCSTR name);
 void CActor::Die	(CObject* who)
 {
 #ifdef DEBUG
-	Msg("--- Actor [%s] dies !", this->Name());
+	Msg("* Actor [%s] dies!", this->Name());
 #endif // #ifdef DEBUG
 	inherited::Die		(who);
 
@@ -1020,13 +1020,13 @@ void CActor::shedule_Update	(u32 DT)
 			}else
 			{
 					g_player_hud->detach_item_idx	( 0 );
-					//Msg("---No active item in inventory(), item 0 detached.");
+					//Msg("* No active item in inventory(), item 0 detached.");
 			}
 		}
 		else
 		{
 			g_player_hud->detach_all_items();
-			//Msg("---No hud view found, all items detached.");
+			//Msg("* No hud view found, all items detached.");
 		}
 			
 	}

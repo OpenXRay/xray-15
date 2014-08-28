@@ -50,13 +50,13 @@ bool CLevel::synchronize_map_data()
 	map_data.CheckToSendMapSync	();
 
 #ifdef DEBUG
-	Msg("--- Waiting for server map name...");
+	Msg("* Waiting for server map name...");
 #endif // #ifdef DEBUG
 	ClientReceive(); 
 
 	if ((map_data.m_wait_map_time >= 1000) && (!map_data.m_map_sync_received) && !IsDemoPlay())//about 5 seconds
 	{
-		Msg("Wait map data time out: reconnecting...");
+		Msg("* Wait map data time out: reconnecting...");
 		MakeReconnect();
 		g_loading_events.erase(++g_loading_events.begin(), g_loading_events.end());
 		return true;
@@ -101,7 +101,7 @@ bool	CLevel::synchronize_client()
 		return true;
 	}
 #ifdef DEBUG
-	Msg("--- Waiting for server configuration...");
+	Msg("* Waiting for server configuration...");
 #endif // #ifdef DEBUG
 	if(Server)
 	{

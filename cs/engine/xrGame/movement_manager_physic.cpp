@@ -383,7 +383,7 @@ void CMovementManager::move_along_path		(CPHMovementControl *movement_control, F
 	if(!movement_control->CharacterExist())
 	{
 #ifdef	DEBUG
-		Msg("!! Can not move - physics movement shell does not exist. Try to move in wonded state?");
+		Msg("! Can not move - physics movement shell does not exist. Try to move in wonded state?");
 #endif
 		return;
 	}

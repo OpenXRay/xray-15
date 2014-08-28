@@ -191,7 +191,7 @@ bool game_cl_mp::OnKeyboardPress(int key)
 		if(b_need_to_send_ready){
 				CGameObject* GO = smart_cast<CGameObject*>(curr);
 #ifdef DEBUG
-				Msg("---I'm ready (ID = %d) sending player ready packet !!!", GO->ID());
+				Msg("* I'm ready (ID = %d) sending player ready packet !!!", GO->ID());
 #endif // #ifdef DEBUG
 				NET_Packet			P;
 				GO->u_EventGen		(P,GE_GAME_EVENT,GO->ID()	);
@@ -202,7 +202,7 @@ bool game_cl_mp::OnKeyboardPress(int key)
 		else
 		{
 #ifdef DEBUG
-			Msg("---I'm not ready, is_actor = %d, is_spectator = %d", is_actor, is_spectator);
+			Msg("* I'm not ready, is_actor = %d, is_spectator = %d", is_actor, is_spectator);
 #endif // #ifdef DEBUG
 			return false;
 		}
@@ -425,7 +425,7 @@ void game_cl_mp::TranslateGameMessage	(u32 msg, NET_Packet& P)
 		{
 			OnGameRoundStarted();
 #ifdef DEBUG
-			Msg("--- On round started !!!");
+			Msg("- On round started !!!");
 #endif // #ifdef DEBUG
 		}break;
 	case GAME_EVENT_ROUND_END:
@@ -433,7 +433,7 @@ void game_cl_mp::TranslateGameMessage	(u32 msg, NET_Packet& P)
 			string64 reason;
 			P.r_stringZ(reason);
 #ifdef DEBUG
-			Msg("--- On round end !!!");
+			Msg("- On round end !!!");
 #endif // #ifdef DEBUG
 		}break;
 	case GAME_EVENT_SERVER_STRING_MESSAGE:

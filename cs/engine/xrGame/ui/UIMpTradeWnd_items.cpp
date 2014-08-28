@@ -857,7 +857,7 @@ void CUIMpTradeWnd::DumpAllItems(LPCSTR s)
 		SBuyItemInfo* iinfo = *it;
 		Msg("[%s] state[%s]", iinfo->m_name_sect.c_str(), iinfo->GetStateAsText());
 	}
-	Msg("------");
+	Msg("- ***");
 #endif // #ifndef MASTER_GOLD
 }
 

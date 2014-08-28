@@ -532,7 +532,7 @@ void	game_sv_GameState::assign_RP				(CSE_Abstract* E, game_PlayerState* ps_who)
 	{
 		l_uc_team = tpSpectator->g_team();
 #ifdef DEBUG
-		Msg("--- game_sv_GameState RPoint for Spectators uses team [%d]", l_uc_team);
+		Msg("* game_sv_GameState RPoint for Spectators uses team [%d]", l_uc_team);
 #endif // #ifdef DEBUG
 	} else
 	{
@@ -541,7 +541,7 @@ void	game_sv_GameState::assign_RP				(CSE_Abstract* E, game_PlayerState* ps_who)
 		{
 			l_uc_team = tpTeamed->g_team();
 #ifdef DEBUG
-		Msg("--- game_sv_GameState RPoint for AlifeCreature uses team [%d]", l_uc_team);
+		Msg("* game_sv_GameState RPoint for AlifeCreature uses team [%d]", l_uc_team);
 #endif // #ifdef DEBUG
 		} else
 		{
@@ -553,7 +553,7 @@ void	game_sv_GameState::assign_RP				(CSE_Abstract* E, game_PlayerState* ps_who)
 	
 	xr_vector<RPoint>&	rp	= rpoints[l_uc_team];
 #ifdef DEBUG
-	Msg("---Size of rpoints of team [%d] is [%d]", l_uc_team, rp.size());
+	Msg("* Size of rpoints of team [%d] is [%d]", l_uc_team, rp.size());
 #endif
 	//-----------------------------------------------------------
 	xr_vector<u32>	xrp;//	= rpoints[l_uc_team];
@@ -580,7 +580,7 @@ void	game_sv_GameState::assign_RP				(CSE_Abstract* E, game_PlayerState* ps_who)
 	}
 	//-----------------------------------------------------------
 #ifdef DEBUG
-	Msg("--- Result rpoint is [%d]", rpoint);
+	Msg("* Result rpoint is [%d]", rpoint);
 #endif // #ifdef DEBUG
 	RPoint&				r	= rp[rpoint];
 	if (!tpSpectator)

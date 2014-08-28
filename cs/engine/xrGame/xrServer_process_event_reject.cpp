@@ -36,7 +36,7 @@ bool xrServer::Process_event_reject	(NET_Packet& P, const ClientID sender, const
 	}*/
 
 #ifdef MP_LOGGING
-	Msg ( "--- SV: Process reject: parent[%d][%s], item[%d][%s]", id_parent, e_parent->name_replace(), id_entity, e_entity->name());
+	Msg ( "* SV: Process reject: parent[%d][%s], item[%d][%s]", id_parent, e_parent->name_replace(), id_entity, e_entity->name());
 #endif // MP_LOGGING
 
 	xr_vector<u16>& C		= e_parent->children;

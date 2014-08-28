@@ -37,7 +37,7 @@ void CImage::SaveTGA(LPCSTR name, BOOL b24)
 		tga.maketga	(*F);
     	FS.w_close	(F);
     }else{
-        Log			("!Can't save tga:",name);
+        Log			("! Can't save tga:",name);
     }
 }
 

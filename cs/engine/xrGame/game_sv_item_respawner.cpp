@@ -330,7 +330,7 @@ u16 item_respawn_manager::respawn_item(CSE_Abstract* item_object)
 	R_ASSERT(item_object);
 	spawn_packet_store.write_start();
 #ifdef DEBUG
-	Msg("--- Respawning item %s - it's time...", item_object->name());
+	Msg("* Respawning item %s - it's time...", item_object->name());
 #endif // #ifdef DEBUG
 	item_object->Spawn_Write(spawn_packet_store, false);
 	u16 skip_header;
@@ -354,7 +354,7 @@ void item_respawn_manager::clear_level_items()
 		if (entity->ID_Parent != u16(-1))
 			continue;
 #ifndef MASTER_GOLD
-		Msg("---Destroying level item [%d] before respawn...", *i);
+		Msg("* Destroying level item [%d] before respawn...", *i);
 #endif // #ifndef MASTER_GOLD
 		m_server->Perform_destroy(entity, net_flags(TRUE,TRUE));
 	}

@@ -309,7 +309,7 @@ u32 CHudItem::PlayHUDMotion_noCB(const shared_str& motion_name, BOOL bMixIn)
 
 	if(bDebug && item().m_pInventory)
 	{
-		Msg("-[%s] as[%d] [%d]anim_play [%s][%d]",
+		Msg("- [%s] as[%d] [%d]anim_play [%s][%d]",
 			HudItemData()?"HUD":"Simulating", 
 			item().m_pInventory->GetActiveSlot(), 
 			item().object_id(),

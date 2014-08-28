@@ -10,7 +10,7 @@ void xrServer::Process_update(NET_Packet& P, ClientID sender)
 	R_ASSERT2				(CL,"Process_update client not found");
 
 #ifndef MASTER_GOLD
-	if (g_Dump_Update_Read) Msg("---- UPDATE_Read --- ");
+	if (g_Dump_Update_Read) Msg("* *** UPDATE_Read ***");
 #endif // #ifndef MASTER_GOLD
 
 	R_ASSERT(CL->flags.bLocal);
@@ -50,7 +50,7 @@ void xrServer::Process_update(NET_Packet& P, ClientID sender)
 			P.r_advance	(size);
 	}
 #ifndef MASTER_GOLD
-	if (g_Dump_Update_Read) Msg("-------------------- ");
+	if (g_Dump_Update_Read) Msg("* *** ~UPDATE_Read ***");
 #endif // #ifndef MASTER_GOLD
 
 }

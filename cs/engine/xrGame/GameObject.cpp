@@ -227,7 +227,7 @@ void CGameObject::OnEvent		(NET_Packet& P, u16 type)
 				break;
 			}
 #ifdef MP_LOGGING
-			Msg("--- Object: GE_DESTROY of [%d][%s]", ID(), cNameSect().c_str());
+			Msg("* Object: GE_DESTROY of [%d][%s]", ID(), cNameSect().c_str());
 #endif // MP_LOGGING
 
 			setDestroy		(TRUE);
@@ -812,12 +812,12 @@ void CGameObject::shedule_Update	(u32 dt)
 	if(NeedToDestroyObject())
 	{
 #ifndef MASTER_GOLD
-		Msg("--NeedToDestroyObject for [%d][%d]", ID(), Device.dwFrame);
+		Msg("* NeedToDestroyObject for [%d][%d]", ID(), Device.dwFrame);
 #endif // #ifndef MASTER_GOLD
 		DestroyObject			();
 	}
 
-	// Msg							("-SUB-:[%x][%s] CGameObject::shedule_Update",smart_cast<void*>(this),*cName());
+	// Msg							("* SUB:[%x][%s] CGameObject::shedule_Update",smart_cast<void*>(this),*cName());
 	inherited::shedule_Update	(dt);
 	
 	if(!g_dedicated_server)

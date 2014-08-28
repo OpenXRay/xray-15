@@ -822,6 +822,6 @@ void CRelationMapLocation::UpdateLevelMap(CUICustomMap* map)
 void CRelationMapLocation::Dump							()
 {
 	inherited::Dump();
-	Msg("--CRelationMapLocation m_curr_spot_name=[%s]",*m_curr_spot_name);
+	Msg("* CRelationMapLocation m_curr_spot_name=[%s]",*m_curr_spot_name);
 }
 #endif

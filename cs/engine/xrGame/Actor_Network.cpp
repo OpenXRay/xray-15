@@ -1926,7 +1926,7 @@ void				CActor::OnCriticalWoundHealthLoss		()
 {
 	if (GameID() == eGameIDSingle || !OnServer()) return;
 #ifdef DEBUG
-	Msg("--- %s is bleed out", *cName());
+	Msg("* %s is bleed out", *cName());
 #endif // #ifdef DEBUG
 	//-------------------------------
 	NET_Packet P;

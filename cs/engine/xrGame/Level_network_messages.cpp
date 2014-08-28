@@ -80,7 +80,7 @@ void CLevel::ClientReceive()
 				/*/
 				cl_Process_Spawn(*P);
 				/*/
-				//Msg("--- Client received M_SPAWN message...");
+				//Msg("- Client received M_SPAWN message...");
 				game_events->insert		(*P);
 				if (g_bDebugEvents)		ProcessGameEvents();
 				//*/
@@ -312,7 +312,7 @@ void CLevel::ClientReceive()
 		case M_CHANGE_LEVEL:
 			{
 #ifdef DEBUG
-				Msg("--- Changing level message received...");
+				Msg("* Changing level message received...");
 #endif // #ifdef DEBUG
 				if(m_type==M_LOAD_GAME)
 				{
@@ -469,14 +469,14 @@ void CLevel::ClientReceive()
 			}break;
 		case M_STATISTIC_UPDATE:
 			{
-				Msg("--- CL: On Update Request");
+				Msg("* CL: On Update Request");
 					if (!game) break;
 				game_events->insert		(*P);
 				if (g_bDebugEvents)		ProcessGameEvents();
 			}break;
 		case M_STATISTIC_UPDATE_RESPOND: //deprecated, see  xrServer::OnMessage
 			{
-				/*Msg("--- CL: On Update Respond");
+				/*Msg("* CL: On Update Respond");
 				if (!game) break;
 				if (GameID() != eGameIDSingle)
 					Game().m_WeaponUsageStatistic->OnUpdateRespond(P);*/

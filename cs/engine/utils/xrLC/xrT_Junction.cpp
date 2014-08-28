@@ -142,7 +142,7 @@ void CBuild::CorrectTJunctions()
 		}
 		Progress(float(I)/float(lc_global_data()->g_faces().size()));
 	}
-	clMsg("*** %d junctions and %d long edges found.",vecJunctions->size(),vecEdges->size());
+	clMsg("* %d junctions and %d long edges found.",vecJunctions->size(),vecEdges->size());
 
 	xr_delete(vecJunctions);
 	xr_delete(vecEdges);
