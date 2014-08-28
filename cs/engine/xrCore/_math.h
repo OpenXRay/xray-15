@@ -22,6 +22,7 @@ namespace CPU {
 	XRCORE_API extern u64				qpc_overhead		;
 	XRCORE_API extern u32				qpc_counter			;
 	XRCORE_API extern	u64				QPC	()				;
+    XRCORE_API extern void Initialize();
 
 #ifdef M_VISUAL
 	#ifndef _M_AMD64

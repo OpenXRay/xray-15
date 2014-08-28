@@ -142,6 +142,49 @@ namespace CPU
 		return	_dest	;
 	}
 
+    void Initialize()
+    {
+        SetPriorityClass(GetCurrentProcess(), REALTIME_PRIORITY_CLASS);
+        // Detect Freq
+        u32 timeStart;
+        u32 timeStart0 = timeGetTime();
+        do
+        {
+            timeStart = timeGetTime();
+        } while (timeStart0 == timeStart);
+        u64 start = GetCLK();
+        while (timeGetTime() - timeStart < 1000)
+            ;
+        u64 end = GetCLK();
+        clk_per_second = end - start;
+        // Detect RDTSC Overhead
+        clk_overhead = 0;
+        u64 dummy = 0;
+        for (int i = 0; i < 256; i++)
+        {
+            start = GetCLK();
+            clk_overhead += GetCLK() - start - dummy;
+        }
+        clk_overhead /= 256;
+        // Detect QPC Overhead
+        QueryPerformanceFrequency((PLARGE_INTEGER)&qpc_freq);
+        qpc_overhead = 0;
+        for (i = 0; i < 256; i++)
+        {
+            start = QPC();
+            qpc_overhead += QPC() - start - dummy;
+        }
+        qpc_overhead /= 256;
+        SetPriorityClass(GetCurrentProcess(), NORMAL_PRIORITY_CLASS);
+        clk_per_second -= clk_overhead;
+        clk_per_milisec = clk_per_second / 1000;
+        clk_per_microsec = clk_per_milisec / 1000;
+        _control87(_PC_64, MCW_PC);
+        clk_to_seconds = float(1.0 / double(clk_per_second));
+        clk_to_milisec = float(1000.0 / double(clk_per_second));
+        clk_to_microsec = float(1000000.0 / double(clk_per_second));
+    }
+
 #ifdef M_BORLAND
 	u64	__fastcall GetCLK		(void)
 	{
