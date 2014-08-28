@@ -467,14 +467,12 @@ u16 NET_Compressor::Decompress	(BYTE* dest, const u32 &dest_size, BYTE* src, con
     Msg( "#decompress %u  %02X (%08X)", count, src[0], *((u32*)(src+1)) );
     #endif
 
-    #if NET_USE_COMPRESSSION
+    #if NET_USE_COMPRESSION
     if( src[0] != NET_TAG_COMPRESSED  &&  src[0] != NET_TAG_NONCOMPRESSED )
     {
-        Msg( "! invalid compression-tag %02X", src[0] );
-        __asm { int 3 }
+        Msg( "! NET_Compressor: invalid compression tag: %02X", src[0] );
     }
-    #endif NET_USE_COMPRESSSION
-
+    #endif // NET_USE_COMPRESSION
 
 #if !NET_USE_COMPRESSION
 
