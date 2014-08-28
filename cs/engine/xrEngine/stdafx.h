@@ -7,7 +7,7 @@
 #else
 
 #include "../xrCore/xrCore.h"
-#include "../Include/xrAPI/xrAPI.h"
+#include <layers/xrAPI/xrAPI.hpp>
 
 #ifndef NDEBUG
 #	ifndef INGAME_EDITOR

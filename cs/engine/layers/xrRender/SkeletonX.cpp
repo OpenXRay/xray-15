@@ -12,7 +12,7 @@
 #ifndef _EDITOR
 	#include	<xrEngine/Render.h>
 #else
-	#include <include/xrAPI/xrAPI.h>
+	#include <layers/xrAPI/xrAPI.hpp>
 #endif
 
 #include "SkeletonX.h"

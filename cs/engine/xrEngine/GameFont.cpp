@@ -13,7 +13,7 @@ unsigned short int mbhMulti2Wide
 extern ENGINE_API BOOL g_bRendering; 
 ENGINE_API Fvector2		g_current_font_scale={1.0f,1.0f};
 
-#include "../Include/xrAPI/xrAPI.h"
+#include <layers/xrAPI/xrAPI.hpp>
 #include "../Include/xrRender/RenderFactory.h"
 #include "../Include/xrRender/FontRender.h"
 

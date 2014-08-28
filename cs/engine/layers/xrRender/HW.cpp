@@ -88,10 +88,7 @@ void CHW::Reset		(HWND hwnd)
 #endif
 }
 
-//xr_token*				vid_mode_token = NULL;
-//extern xr_token*		vid_mode_token;
-#include "../../Include/xrAPI/xrAPI.h"
-//xr_token*				vid_quality_token = NULL;
+#include <layers/xrAPI/xrAPI.hpp>
 
 void CHW::CreateD3D	()
 {
