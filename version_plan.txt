@@ -14,6 +14,8 @@ nitrocaster:
   - subdivide xrGame into multiple modules
     (so changed code could be compiled faster)
   + merge xrCPU_Pipe into xrCore
+  - merge xrAPI into xrCore
+  - merge xrXMLParser into xrCore
 - xrGameSpy
   + fix master server name (gamespy is down)
 - xrCore
@@ -41,6 +43,7 @@ nitrocaster:
   - core
     + xrMemory::mem_usage -> mem_usage_impl falls into infinite loop
       or finds bad nodes
+    + correct CPU detection
   - multiplayer
     - known multiple vulnerabilities
   - render
