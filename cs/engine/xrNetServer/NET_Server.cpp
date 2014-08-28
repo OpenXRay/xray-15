@@ -19,7 +19,7 @@ static	INetLog* pSvNetLog = NULL;
 
 #define NET_BANNED_STR                "Player banned by server!"
 #define NET_PROTECTED_SERVER_STR      "Access denied by protected server for this player!"
-#define NET_NOTFOR_SUBNET_STR		  "Your IP does not present in server's subnet"
+#define NET_NOTFOR_SUBNET_STR		  "Your IP isn't present in server's subnet"
 
 void	dump_URL	(LPCSTR p, IDirectPlay8Address* A);
 
