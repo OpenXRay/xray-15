@@ -9,6 +9,7 @@ o On hold
 ? Decision pending
 c Canceled
 
+--------------------------------
 nitrocaster:
 - Modules
   - subdivide xrGame into multiple modules
@@ -16,14 +17,6 @@ nitrocaster:
   + merge xrCPU_Pipe into xrCore
   - merge xrAPI into xrCore
   - merge xrXMLParser into xrCore
-- xrGameSpy
-  + fix master server name (gamespy is down)
-- xrCore
-  - get rid of old blackbox code
-  - refactor xrDebug
-  - logger
-    - don't keep log in std::vector, write to log file immediately
-    - tweak CConsole to use new logger
 - 3rd party libraries
   - detach/update ODE
     - dig through current ODE and analyze changes that were made by GSC
@@ -48,21 +41,34 @@ nitrocaster:
       or finds bad nodes
     + correct CPU detection
   * multiplayer
+    + xrGameSpy: fix master server name (gamespy is down)
     - dedicated server
       * known multiple vulnerabilities
 	    + dirtysky
 	    + stalkazz (fixed by GSC!)
-      - log suspicious packets and kick/ban its senders after X attempts
-      - remove unnecessary modules initialization (render/sound/etc...)
-      - console (remove GUI and use separate administrative tool?)
-	- ipv6 support
-    - get rid of DirectPlay
+        + stalkerbof (fixed by GSC!)
+        + stalkerboom    
   - render
     - if d3d compiler fails to compile some shader, it says
       "Your video card doesn't meet game requirements ..."
       even if GPU actually meets game requirements (vs/gs/ps levels)
       dx10ResourceManager_Resources.cpp
       CResourceManager::_CreatePS/_CreateGS/_CreateVS
+- improvements
+  - multiplayer
+  	- ipv6 support
+    - get rid of DirectPlay
+    - log suspicious packets and kick/ban its senders after X attempts
+    - dedicated server
+      - remove unnecessary modules initialization (render/sound/etc...)
+      - console (remove GUI and use separate administrative tool?)
+      + remove topmost startup logo window
+  - xrCore
+    - get rid of old blackbox code
+    - refactor xrDebug
+    - logger
+      - don't keep log in std::vector, write to log file immediately
+      - tweak CConsole to use new logger
 - log messages
   - add console command for disabling detailed server log, i.e:
     downloaded 33792 from 34309 bytes of config from client [-1902085969]
