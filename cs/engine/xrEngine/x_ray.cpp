@@ -30,9 +30,6 @@
 //---------------------------------------------------------------------
 ENGINE_API CInifile* pGameIni		= NULL;
 BOOL	g_bIntroFinished			= FALSE;
-extern	void	Intro				( void* fn );
-extern	void	Intro_DSHOW			( void* fn );
-extern	int PASCAL IntroDSHOW_wnd	(HINSTANCE hInstC, HINSTANCE hInstP, LPSTR lpCmdLine, int nCmdShow);
 //int		max_load_stage = 0;
 
 // computing build id
