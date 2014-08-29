@@ -21,6 +21,9 @@ nitrocaster:
 - xrCore
   - get rid of old blackbox code
   - refactor xrDebug
+  - logger
+    - don't keep log in std::vector, write to log file immediately
+    - tweak CConsole to use new logger
 - 3rd party libraries
   - detach/update ODE
     - dig through current ODE and analyze changes that were made by GSC
@@ -45,9 +48,15 @@ nitrocaster:
       or finds bad nodes
     + correct CPU detection
   * multiplayer
-    * known multiple vulnerabilities
-	  + dirtysky
+    - dedicated server
+      * known multiple vulnerabilities
+	    + dirtysky
+	    + stalkazz (fixed by GSC!)
+      - log suspicious packets and kick/ban its senders after X attempts
+      - remove unnecessary modules initialization (render/sound/etc...)
+      - console (remove GUI and use separate administrative tool?)
 	- ipv6 support
+    - get rid of DirectPlay
   - render
     - if d3d compiler fails to compile some shader, it says
       "Your video card doesn't meet game requirements ..."
