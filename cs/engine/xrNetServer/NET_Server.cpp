@@ -47,7 +47,7 @@ void ip_address::set(LPCSTR src_string)
 	}
 }
 
-xr_string ip_address::to_string() const
+xr_string ip_address::to_string() const // XXX nitrocaster: don't use xr_string here
 {
 	string128	res;
 	sprintf_s	(res,sizeof(res),"%d.%d.%d.%d", m_data.a1, m_data.a2, m_data.a3, m_data.a4);
