@@ -1284,8 +1284,9 @@ void doBenchmark(LPCSTR name)
 		strcpy_s				(g_sBenchmarkName, test_name);
 		
 		test_command		= ini.r_string_wb("benchmark",test_name);
-		strcpy_s			(Core.Params,*test_command);
-		_strlwr_s				(Core.Params);
+        Core.Params = (char*)xr_realloc(Core.Params, test_command.size() + 1);
+		strcpy(Core.Params, *test_command);
+		strlwr(Core.Params);
 		
 		InitInput					();
 		if(i){
