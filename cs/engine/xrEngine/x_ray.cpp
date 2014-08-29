@@ -99,8 +99,9 @@ struct _SoundProcessor	: public pureFrame
 //////////////////////////////////////////////////////////////////////////
 // global variables
 ENGINE_API	CApplication*	pApp			= NULL;
+#ifndef DEDICATED_SERVER
 static		HWND			logoWindow		= NULL;
-
+#endif
 			int				doLauncher		();
 			void			doBenchmark		(LPCSTR name);
 ENGINE_API	bool			g_bBenchmark	= false;
@@ -258,12 +259,13 @@ void Startup()
 	g_SpatialSpacePhysic		= xr_new<ISpatial_DB>	();
 	
 	// Destroy LOGO
+#ifndef DEDICATED_SERVER
 	DestroyWindow				(logoWindow);
 	logoWindow					= NULL;
-
+#endif
 	// Main cycle
 	CheckCopyProtection			( );
-Memory.mem_usage();
+    Memory.mem_usage();
 	Device.Run					( );
 
 	// Destroy APP
@@ -292,6 +294,7 @@ Memory.mem_usage();
 	destroyEngine();
 }
 
+#ifndef DEDICATED_SERVER
 static BOOL CALLBACK logDlgProc( HWND hw, UINT msg, WPARAM wp, LPARAM lp )
 {
 	switch( msg ){
@@ -309,6 +312,8 @@ static BOOL CALLBACK logDlgProc( HWND hw, UINT msg, WPARAM wp, LPARAM lp )
 	}
 	return TRUE;
 }
+#endif
+
 /*
 void	test_rtc	()
 {
@@ -621,6 +626,7 @@ int APIENTRY WinMain_impl(HINSTANCE hInstance,
 	SetThreadAffinityMask		(GetCurrentThread(),1);
 
 	// Title window
+#ifndef DEDICATED_SERVER
 	logoWindow					= CreateDialog(GetModuleHandle(NULL),	MAKEINTRESOURCE(IDD_STARTUP), 0, logDlgProc );
 	
 	HWND logoPicture			= GetDlgItem(logoWindow, IDC_STATIC_LOGO);
@@ -641,6 +647,7 @@ int APIENTRY WinMain_impl(HINSTANCE hInstance,
 		SWP_NOMOVE | SWP_SHOWWINDOW// | SWP_NOSIZE
 	);
 	UpdateWindow(logoWindow);
+#endif
 
 	// AVI
 	g_bIntroFinished			= TRUE;
