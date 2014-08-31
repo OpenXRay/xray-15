@@ -15,8 +15,8 @@ nitrocaster:
   - subdivide xrGame into multiple modules
     (so changed code could be compiled faster)
   + merge xrCPU_Pipe into xrCore
-  - merge xrAPI into xrCore
-  - merge xrXMLParser into xrCore
+  + merge xrAPI into xrCore
+  + merge xrXMLParser into xrCore
 - 3rd party libraries
   - detach/update ODE
     - dig through current ODE and analyze changes that were made by GSC
@@ -38,6 +38,7 @@ nitrocaster:
     + xrMemory::mem_usage -> mem_usage_impl falls into infinite loop
       or finds bad nodes
     + correct CPU detection
+    + buffer overflow when copying command line to Core.Params
   * multiplayer
     + xrGameSpy: fix master server name (gamespy is down)
     - dedicated server
