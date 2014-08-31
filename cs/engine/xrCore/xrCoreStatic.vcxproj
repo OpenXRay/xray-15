@@ -274,7 +274,7 @@
       <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">TurnOffAllWarnings</WarningLevel>
     </ClCompile>
     <ClCompile Include="clsid.cpp" />
-    <ClCompile Include="cpuid.cpp" />
+    <ClCompile Include="CPUID.cpp" />
     <ClCompile Include="crc32.cpp" />
     <ClCompile Include="ELocatorAPI.cpp" />
     <ClCompile Include="FileSystem.cpp" />
@@ -389,7 +389,7 @@
     <ClInclude Include="Coder.hpp" />
     <ClInclude Include="compression_ppmd_stream.h" />
     <ClInclude Include="compression_ppmd_stream_inline.h" />
-    <ClInclude Include="cpuid.h" />
+    <ClInclude Include="CPUID.hpp" />
     <ClInclude Include="ELocatorAPI.h" />
     <ClInclude Include="fastdelegate.h" />
     <CustomBuild Include="FileSystem.h" />
