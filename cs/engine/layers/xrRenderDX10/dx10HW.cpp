@@ -9,7 +9,7 @@
 #pragma warning(default:4995)
 #include "../xrRender/HW.h"
 #include "../../xrEngine/XR_IOConsole.h"
-#include <layers/xrAPI/xrAPI.hpp>
+#include <xrCore/xrAPI.hpp>
 
 #include "StateManager\dx10SamplerStateCache.h"
 #include "StateManager\dx10StateCache.h"

@@ -92,8 +92,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Maya_Export_2008", "engine\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Maya_Material_2008", "engine\plugins\Maya\Maya_Material2008.vcxproj", "{84D91673-C1A1-47FF-9A75-4E73F31F4C63}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xrAPI", "engine\layers\xrAPI\xrAPI.vcxproj", "{1DAEC516-E52C-4A3C-A4DA-AE3553E6E0F8}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xrRender_R3", "engine\layers\xrRenderPC_R3\xrRender_R3.vcxproj", "{3F383D3C-FCD8-4170-990B-EB4833F09248}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "editor", "engine\editor\editor.vcxproj", "{492D3DFE-9068-4E7E-A008-7C2420A651C0}"
@@ -463,15 +461,6 @@ Global
 		{84D91673-C1A1-47FF-9A75-4E73F31F4C63}.Release_Dedicated|Win32.ActiveCfg = Release|Win32
 		{84D91673-C1A1-47FF-9A75-4E73F31F4C63}.Release|Win32.ActiveCfg = Release|Win32
 		{84D91673-C1A1-47FF-9A75-4E73F31F4C63}.Release|Win32.Build.0 = Release|Win32
-		{1DAEC516-E52C-4A3C-A4DA-AE3553E6E0F8}.Debug_Dedicated|Win32.ActiveCfg = Debug|Win32
-		{1DAEC516-E52C-4A3C-A4DA-AE3553E6E0F8}.Debug|Win32.ActiveCfg = Debug|Win32
-		{1DAEC516-E52C-4A3C-A4DA-AE3553E6E0F8}.Debug|Win32.Build.0 = Debug|Win32
-		{1DAEC516-E52C-4A3C-A4DA-AE3553E6E0F8}.Mixed_Dedicated|Win32.ActiveCfg = Debug|Win32
-		{1DAEC516-E52C-4A3C-A4DA-AE3553E6E0F8}.Mixed|Win32.ActiveCfg = Debug|Win32
-		{1DAEC516-E52C-4A3C-A4DA-AE3553E6E0F8}.Mixed|Win32.Build.0 = Debug|Win32
-		{1DAEC516-E52C-4A3C-A4DA-AE3553E6E0F8}.Release_Dedicated|Win32.ActiveCfg = Release|Win32
-		{1DAEC516-E52C-4A3C-A4DA-AE3553E6E0F8}.Release|Win32.ActiveCfg = Release|Win32
-		{1DAEC516-E52C-4A3C-A4DA-AE3553E6E0F8}.Release|Win32.Build.0 = Release|Win32
 		{3F383D3C-FCD8-4170-990B-EB4833F09248}.Debug_Dedicated|Win32.ActiveCfg = Debug|Win32
 		{3F383D3C-FCD8-4170-990B-EB4833F09248}.Debug|Win32.ActiveCfg = Debug|Win32
 		{3F383D3C-FCD8-4170-990B-EB4833F09248}.Debug|Win32.Build.0 = Debug|Win32

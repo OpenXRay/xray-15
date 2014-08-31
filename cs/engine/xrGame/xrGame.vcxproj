@@ -90,7 +90,7 @@
       <AdditionalIncludeDirectories>.\;$(SolutionDir)engine;$(SolutionDir)engine\xrServerEntities;$(SolutionDir)3rd party;$(SolutionDir)sdk\include;$(DXSDK_DIR)Include;e:\dev;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;DEBUG;_WINDOWS;_USRDLL;XRGAME_EXPORTS;dSINGLE;MSVC;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
-      <MinimalRebuild>true</MinimalRebuild>
+      <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>Sync</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <SmallerTypeCheck>true</SmallerTypeCheck>
@@ -111,7 +111,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4237;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -5640,10 +5640,6 @@
     </ProjectReference>
     <ProjectReference Include="$(SolutionDir)3rd party\luajit\lua.JIT.1.1.4.vcxproj">
       <Project>{f6c4f74a-152c-4612-9e3b-d02346234855}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="$(SolutionDir)engine\layers\xrAPI\xrAPI.vcxproj">
-      <Project>{1daec516-e52c-4a3c-a4da-ae3553e6e0f8}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="$(SolutionDir)engine\xrEngine\xrEngine.vcxproj">

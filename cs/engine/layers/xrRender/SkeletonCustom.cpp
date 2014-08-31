@@ -18,7 +18,7 @@ xrCriticalSection	UCalc_Mutex
 #ifndef _EDITOR
 #include "../../xrServerEntities/smart_cast.h"
 #else
-#include <layers/xrAPI/xrAPI.hpp>
+#include <xrCore/xrAPI.hpp>
 #endif
 
 //////////////////////////////////////////////////////////////////////

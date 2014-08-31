@@ -10,7 +10,7 @@
 #ifndef _EDITOR
 #include "../../xrEngine/render.h"
 #else
-#include <layers/xrAPI/xrAPI.hpp>
+#include <xrCore/xrAPI.hpp>
 #endif
 
 //////////////////////////////////////////////////////////////////////

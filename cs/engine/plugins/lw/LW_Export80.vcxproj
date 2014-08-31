@@ -90,7 +90,7 @@
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;lw_server.lib;lwo.lib;xrcorestatic.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)xray_export.p</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>Server\$(Configuration);$(SolutionDir)libraries\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>Server\$(Configuration);$(SolutionDir)libraries\$(Configuration);e:\dev\bugtrap\bin;$(DXSDK_DIR)Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>Server\serv.def</ModuleDefinitionFile>
       <ProgramDatabaseFile />
       <ImportLibrary>$(SolutionDir)intermediate_plugs\$(Configuration)\$(ProjectName).lib</ImportLibrary>
@@ -137,7 +137,7 @@
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;lw_serverd.lib;xrcorestaticd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)xray_export.p</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>Server\$(Configuration);$(SolutionDir)libraries\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>Server\$(Configuration);$(SolutionDir)libraries\$(Configuration);e:\dev\bugtrap\bin;$(DXSDK_DIR)Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>Server\serv.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)xray_export.pdb</ProgramDatabaseFile>

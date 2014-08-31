@@ -3,7 +3,7 @@
 #pragma once
 
 #include "RenderFactory.h"
-#include <layers/xrAPI/xrAPI.hpp>
+#include <xrCore/xrAPI.hpp>
 
 #define FACTORY_PTR_INSTANCIATE(Class) \
 	inline void FactoryPtr<I##Class>::CreateObject(void) \

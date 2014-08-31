@@ -354,6 +354,7 @@
     </ClCompile>
     <ClCompile Include="stream_reader.cpp" />
     <ClCompile Include="string_concatenations.cpp" />
+    <ClCompile Include="xrAPI.cpp" />
     <ClCompile Include="xrCore.cpp" />
     <ClCompile Include="xrDebug.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -451,6 +452,7 @@
     <ClInclude Include="string_concatenations_inline.h" />
     <ClInclude Include="SubAlloc.hpp" />
     <ClInclude Include="vector.h" />
+    <ClInclude Include="xrAPI.hpp" />
     <ClInclude Include="xrCore.h" />
     <ClInclude Include="xrCore_platform.h" />
     <ClInclude Include="xrDebug.h" />

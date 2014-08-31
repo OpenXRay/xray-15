@@ -88,7 +88,7 @@ void CHW::Reset		(HWND hwnd)
 #endif
 }
 
-#include <layers/xrAPI/xrAPI.hpp>
+#include <xrCore/xrAPI.hpp>
 
 void CHW::CreateD3D	()
 {

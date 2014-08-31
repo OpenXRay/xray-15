@@ -7,7 +7,7 @@
 #else
 
 #include "../xrCore/xrCore.h"
-#include <layers/xrAPI/xrAPI.hpp>
+#include <xrCore/xrAPI.hpp>
 
 #ifndef NDEBUG
 #	ifndef INGAME_EDITOR
@@ -62,8 +62,6 @@ extern ENGINE_API CInifile *pGameIni;
 
 #include "lua/library_linkage.h"
 #include "luabind/library_linkage.h"
-
-#pragma comment( lib, "xrAPI.lib"	)
 
 #pragma comment( lib, "winmm.lib"		)
 
