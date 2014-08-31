@@ -25,3 +25,4 @@
 
 #include "xrCore.h"
 #include "xrCore_platform.h"
+#include "XML/xrXML.hpp"

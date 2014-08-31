@@ -452,10 +452,6 @@
       <Project>{a0f7d1fb-59a7-4717-a7e4-96f37e91998e}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="$(SolutionDir)engine\xrXMLParser\xrXMLParser.vcxproj">
-      <Project>{94a1c366-3d19-48e6-8170-4adc2e70df98}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="$(SolutionDir)engine\utils\ETools\ETools.vcxproj">
       <Project>{65cbb9d0-fbc6-41a4-8316-f5e9b5d7fb33}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

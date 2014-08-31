@@ -82,6 +82,12 @@
     <Filter Include="Threading">
       <UniqueIdentifier>{d8dac3e9-3fce-4b17-b68b-0acb142552c1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="XML">
+      <UniqueIdentifier>{bf80905c-5340-4d12-b0a1-9cd02751bfdf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XML\TinyXML">
+      <UniqueIdentifier>{be20e9e7-49e7-4c89-a240-2949aa331156}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FTimer.cpp">
@@ -269,6 +275,21 @@
     </ClCompile>
     <ClCompile Include="xrSyncronize.cpp">
       <Filter>Threading</Filter>
+    </ClCompile>
+    <ClCompile Include="XML\tinyxmlparser.cpp">
+      <Filter>XML\TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="XML\tinystr.cpp">
+      <Filter>XML\TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="XML\tinyxml.cpp">
+      <Filter>XML\TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="XML\tinyxmlerror.cpp">
+      <Filter>XML\TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="XML\xrXML.cpp">
+      <Filter>XML</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -559,6 +580,15 @@
     </ClInclude>
     <ClInclude Include="xrSyncronize.h">
       <Filter>Threading</Filter>
+    </ClInclude>
+    <ClInclude Include="XML\tinystr.h">
+      <Filter>XML\TinyXML</Filter>
+    </ClInclude>
+    <ClInclude Include="XML\tinyxml.h">
+      <Filter>XML\TinyXML</Filter>
+    </ClInclude>
+    <ClInclude Include="XML\xrXML.hpp">
+      <Filter>XML</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
