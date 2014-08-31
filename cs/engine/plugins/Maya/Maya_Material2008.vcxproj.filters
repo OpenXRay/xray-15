@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Kernel">
+      <UniqueIdentifier>{184a5fef-cf2b-4cf7-aead-c0cb23e2ebf9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared Files">
+      <UniqueIdentifier>{a99a8452-f894-497e-afdd-26a507b7f354}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared Files\Engine">
+      <UniqueIdentifier>{a3e78bc6-3a2c-4761-9462-dcd358f1393a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared Files\Editor">
+      <UniqueIdentifier>{be5eb25a-2920-4cbc-9d92-1b187a7d2e81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared Files\Plugins">
+      <UniqueIdentifier>{e4203f8a-a066-4aaf-bffa-5a74afb8d2ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{31ec4cc8-45e4-463d-a695-9c772ec08a1e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Material\stdafx.cpp">
+      <Filter>Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="Material\crc16.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Material\lambertShader.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)engine\plugins\shared\BlenderListLoader.cpp" />
+    <ClCompile Include="$(SolutionDir)engine\plugins\shared\ELog.cpp" />
+    <ClCompile Include="$(SolutionDir)engine\plugins\shared\GameMtlLib.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(SolutionDir)engine\plugins\shared\BlenderListLoader.h" />
+    <ClInclude Include="$(SolutionDir)engine\plugins\shared\ELog.h" />
+    <ClInclude Include="$(SolutionDir)engine\plugins\shared\GameMtlLib.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Material\AElambertShaderTemplate.mel">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Material\AEXRayMtlTemplate.mel">
+      <Filter>Shader</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Material\Stdafx.h">
+      <Filter>Kernel</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

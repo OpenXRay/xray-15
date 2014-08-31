@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Kernel">
+      <UniqueIdentifier>{637f1d3b-4bd6-456a-b56c-11202c193d19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared Files">
+      <UniqueIdentifier>{8f06cf48-99fa-4211-b8f2-a276f40257ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared Files\Engine">
+      <UniqueIdentifier>{e828b844-474d-4989-a1fe-4704b208afd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared Files\Editor">
+      <UniqueIdentifier>{8d712ae8-3462-4deb-a492-07fdeba68d98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared Files\Server">
+      <UniqueIdentifier>{a4636918-8df5-42e2-9517-96f8b3be19f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Export">
+      <UniqueIdentifier>{c74c4adc-37e4-4c3c-a79b-b6d456186c05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Export\SceneScan">
+      <UniqueIdentifier>{a0d3ba96-ba14-4d4e-a480-f483c8e8aac9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Export\LWO">
+      <UniqueIdentifier>{7aeb6cb0-e6e2-467c-9d34-14242071c74b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Export\stdafx.cpp">
+      <Filter>Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="Server\servmain.c">
+      <Filter>Shared Files\Server</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\bone_lw.cpp">
+      <Filter>Export</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\envtest.c">
+      <Filter>Export</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\LW_export_keys.cpp">
+      <Filter>Export</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\LW_export_motion.cpp">
+      <Filter>Export</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\LW_export_object.cpp">
+      <Filter>Export</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\motion_lw.cpp">
+      <Filter>Export</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\scenscan\objectdb.cpp">
+      <Filter>Export\SceneScan</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\scenscan\ptsearch.cpp">
+      <Filter>Export\SceneScan</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\scenscan\surface.cpp">
+      <Filter>Export\SceneScan</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\scenscan\vecmat.cpp">
+      <Filter>Export\SceneScan</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\scenscan\vmap.cpp">
+      <Filter>Export\SceneScan</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)engine\editors\ECore\Editor\EditMesh.cpp" />
+    <ClCompile Include="$(SolutionDir)engine\editors\ECore\Editor\EditMeshIO.cpp" />
+    <ClCompile Include="$(SolutionDir)engine\editors\ECore\Editor\EditMeshModify.cpp" />
+    <ClCompile Include="$(SolutionDir)engine\editors\ECore\Editor\EditObject.cpp" />
+    <ClCompile Include="$(SolutionDir)engine\editors\ECore\Editor\EditObjectImport.cpp" />
+    <ClCompile Include="$(SolutionDir)engine\editors\ECore\Editor\EditObjectIO.cpp" />
+    <ClCompile Include="$(SolutionDir)engine\editors\ECore\Editor\EditObjectMotions.cpp" />
+    <ClCompile Include="$(SolutionDir)engine\editors\ECore\Editor\ELog.cpp" />
+    <ClCompile Include="$(SolutionDir)engine\utils\LWO\clip.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\LWO\envelope.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\LWO\list.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\LWO\lwio.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\LWO\LWO.cpp" />
+    <ClCompile Include="$(SolutionDir)engine\utils\LWO\lwo2.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\LWO\lwob.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\LWO\main.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\LWO\pntspols.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\LWO\surface.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\LWO\vecmath.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\LWO\vmap.c" />
+    <ClCompile Include="$(SolutionDir)engine\plugins\shared\bone.cpp" />
+    <ClCompile Include="$(SolutionDir)engine\plugins\shared\Envelope.cpp" />
+    <ClCompile Include="$(SolutionDir)engine\plugins\shared\interp.cpp" />
+    <ClCompile Include="$(SolutionDir)engine\plugins\shared\motion.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Export\stdafx.h">
+      <Filter>Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="Export\lwo2.h">
+      <Filter>Export</Filter>
+    </ClInclude>
+    <ClInclude Include="Export\resource.h">
+      <Filter>Export</Filter>
+    </ClInclude>
+    <ClInclude Include="Export\scenscan\objectdb.h">
+      <Filter>Export\SceneScan</Filter>
+    </ClInclude>
+    <ClInclude Include="Export\scenscan\scenscan.h">
+      <Filter>Export\SceneScan</Filter>
+    </ClInclude>
+    <ClInclude Include="Export\scenscan\vecmat.h">
+      <Filter>Export\SceneScan</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\editors\ECore\Editor\EditMesh.h" />
+    <ClInclude Include="$(SolutionDir)engine\editors\ECore\Editor\EditObject.h" />
+    <ClInclude Include="$(SolutionDir)engine\editors\ECore\Editor\ELog.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\LWO\envelope.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\LWO\lwo2.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\LWO\StdAfx.h" />
+    <ClInclude Include="$(SolutionDir)engine\plugins\shared\bone.h" />
+    <ClInclude Include="$(SolutionDir)engine\plugins\shared\envelope.h" />
+    <ClInclude Include="$(SolutionDir)engine\plugins\shared\motion.h" />
+  </ItemGroup>
+</Project>

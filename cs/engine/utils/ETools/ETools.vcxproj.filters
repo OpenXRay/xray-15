@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Kernel">
+      <UniqueIdentifier>{dfd22d61-6031-44d8-9df6-0923d51ea51a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="VIPM">
+      <UniqueIdentifier>{6d6a03da-3b06-482c-bef0-bca48f0865d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OGG encoder">
+      <UniqueIdentifier>{09308e5b-4004-4de1-b54d-30efa0456153}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="ColorPicker.lib">
+      <Filter>Kernel</Filter>
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CreateDX.cpp">
+      <Filter>Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="ETools.cpp">
+      <Filter>Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="ETools_cm.cpp">
+      <Filter>Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="xrXRC.cpp">
+      <Filter>Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="object.cpp">
+      <Filter>VIPM</Filter>
+    </ClCompile>
+    <ClCompile Include="object_sliding.cpp">
+      <Filter>VIPM</Filter>
+    </ClCompile>
+    <ClCompile Include="optimize_vertex_order.cpp">
+      <Filter>VIPM</Filter>
+    </ClCompile>
+    <ClCompile Include="PropSlimTools.cpp">
+      <Filter>VIPM</Filter>
+    </ClCompile>
+    <ClCompile Include="audio.cpp">
+      <Filter>OGG encoder</Filter>
+    </ClCompile>
+    <ClCompile Include="encode.cpp">
+      <Filter>OGG encoder</Filter>
+    </ClCompile>
+    <ClCompile Include="ogg_enc.cpp">
+      <Filter>OGG encoder</Filter>
+    </ClCompile>
+    <ClCompile Include="platform.cpp">
+      <Filter>OGG encoder</Filter>
+    </ClCompile>
+    <ClCompile Include="resample.cpp">
+      <Filter>OGG encoder</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D3DX_Wrapper.h">
+      <Filter>Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="ETools.h">
+      <Filter>Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="StdAfx.h">
+      <Filter>Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="xrXRC.h">
+      <Filter>Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="ArbitraryList.h">
+      <Filter>VIPM</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryHeap.h">
+      <Filter>VIPM</Filter>
+    </ClInclude>
+    <ClInclude Include="DLink.h">
+      <Filter>VIPM</Filter>
+    </ClInclude>
+    <ClInclude Include="mesh.h">
+      <Filter>VIPM</Filter>
+    </ClInclude>
+    <ClInclude Include="object.h">
+      <Filter>VIPM</Filter>
+    </ClInclude>
+    <ClInclude Include="object_sliding.h">
+      <Filter>VIPM</Filter>
+    </ClInclude>
+    <ClInclude Include="PropSlimTools.h">
+      <Filter>VIPM</Filter>
+    </ClInclude>
+    <ClInclude Include="quad.h">
+      <Filter>VIPM</Filter>
+    </ClInclude>
+    <ClInclude Include="audio.h">
+      <Filter>OGG encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="encode.h">
+      <Filter>OGG encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="platform.h">
+      <Filter>OGG encoder</Filter>
+    </ClInclude>
+    <ClInclude Include="resample.h">
+      <Filter>OGG encoder</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

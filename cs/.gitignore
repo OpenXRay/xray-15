@@ -11,7 +11,6 @@ ipch/
 *.sdf
 *.opensdf
 *.user
-*.vcxproj.filters
 
 # Visual Studio profiler
 *.psess

@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="PPMd">
+      <UniqueIdentifier>{60c488df-3596-46a2-b137-5734a57a6cc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LZO">
+      <UniqueIdentifier>{b023daa9-fe58-4fc0-87f2-64c9234a6b96}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(SolutionDir)engine\xrCore\Coder.hpp" />
+    <ClInclude Include="$(SolutionDir)engine\xrCore\compression_ppmd_stream.h" />
+    <ClInclude Include="$(SolutionDir)engine\xrCore\compression_ppmd_stream_inline.h" />
+    <ClInclude Include="$(SolutionDir)engine\xrCore\PPMd.h" />
+    <ClInclude Include="$(SolutionDir)engine\xrCore\PPMdType.h" />
+    <ClInclude Include="$(SolutionDir)engine\xrCore\SubAlloc.hpp" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\compr1b.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\compr1c.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\config1.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\config1a.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\config1b.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\config1c.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\config1f.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\config1x.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\config1y.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\config1z.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\config2a.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\fake16.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo16bit.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1a.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1a_de.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1b.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1b_cc.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1b_de.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1c.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1c_cc.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1f.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1x.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1y.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1z.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo2a.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzoconf.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzoutil.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo_conf.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo_dict.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo_ptr.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo_util.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\stats1a.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\stats1b.h" />
+    <ClInclude Include="$(SolutionDir)engine\utils\xrCompress\lzo\stats1c.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CompressionTest.cpp" />
+    <ClCompile Include="$(SolutionDir)engine\xrCore\Model.cpp" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\alloc.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\io.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1a.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1a_99.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1b_1.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1b_2.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1b_3.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1b_4.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1b_5.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1b_6.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1b_7.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1b_8.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1b_9.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1b_99.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1b_9x.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1b_cc.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1b_d1.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1b_d2.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1b_rr.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1b_xx.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1c_1.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1c_2.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1c_3.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1c_4.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1c_5.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1c_6.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1c_7.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1c_8.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1c_9.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1c_99.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1c_9x.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1c_cc.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1c_d1.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1c_d2.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1c_rr.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1c_xx.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1f_1.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1f_9x.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1f_d1.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1f_d2.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1x_1.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1x_1k.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1x_1l.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1x_1o.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1x_9x.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1x_d1.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1x_d2.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1x_d3.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1x_o.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1y_1.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1y_9x.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1y_d1.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1y_d2.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1y_d3.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1y_o.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1z_9x.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1z_d1.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1z_d2.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1z_d3.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo1_99.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo2a_9x.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo2a_d1.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo2a_d2.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo_crc.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo_dll.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo_init.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo_ptr.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo_str.c" />
+    <ClCompile Include="$(SolutionDir)engine\utils\xrCompress\lzo\lzo_util.c" />
+  </ItemGroup>
+</Project>

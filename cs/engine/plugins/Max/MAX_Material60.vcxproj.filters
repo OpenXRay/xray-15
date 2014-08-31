@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Kernel">
+      <UniqueIdentifier>{ac0cd223-0328-4b8a-a422-5482c0949145}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared Files">
+      <UniqueIdentifier>{720e522f-5795-4274-bb57-32853708dbd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared Files\Engine">
+      <UniqueIdentifier>{89e5eeb9-1315-4a77-899a-6e0215d47e8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared Files\Editor">
+      <UniqueIdentifier>{63ead822-dd80-424b-887e-0f0f62fe4238}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Material\DllEntry.cpp">
+      <Filter>Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="Material\stdafx.cpp">
+      <Filter>Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)engine\plugins\shared\BlenderListLoader.cpp" />
+    <ClCompile Include="$(SolutionDir)engine\plugins\shared\ELog.cpp" />
+    <ClCompile Include="$(SolutionDir)engine\plugins\shared\GameMaterial.cpp" />
+    <ClCompile Include="$(SolutionDir)engine\plugins\shared\GameMtlLib.cpp" />
+    <ClCompile Include="$(SolutionDir)engine\plugins\shared\TexMaps.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(SolutionDir)engine\plugins\shared\GameMaterial.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Material\Stdafx.h">
+      <Filter>Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\plugins\shared\BlenderListLoader.h" />
+    <ClInclude Include="$(SolutionDir)engine\plugins\shared\ELog.h" />
+    <ClInclude Include="$(SolutionDir)engine\plugins\shared\GameMaterial.h" />
+    <ClInclude Include="$(SolutionDir)engine\plugins\shared\GameMtlLib.h" />
+    <ClInclude Include="$(SolutionDir)engine\plugins\shared\Shader_xrLC.h" />
+    <ClInclude Include="$(SolutionDir)engine\plugins\shared\TexMaps.h" />
+    <ClInclude Include="$(SolutionDir)engine\plugins\shared\XRayMtlRes.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Material\GameMaterial.rc">
+      <Filter>Kernel</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Material\dmtlbut.bmp" />
+    <Image Include="Material\dmtlmsk.bmp" />
+  </ItemGroup>
+</Project>
