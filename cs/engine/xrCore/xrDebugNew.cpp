@@ -260,17 +260,17 @@ LPCSTR xrDebug::error2string	(long code)
 
 void xrDebug::error		(long hr, const char* expr, const char *file, int line, const char *function, bool &ignore_always)
 {
-	backend		(error2string(hr),expr,0,0,file,line,function,ignore_always);
+    backend(expr, error2string(hr), 0, 0, file, line, function, ignore_always);
 }
 
 void xrDebug::error		(long hr, const char* expr, const char* e2, const char *file, int line, const char *function, bool &ignore_always)
 {
-	backend		(error2string(hr),expr,e2,0,file,line,function,ignore_always);
+    backend(expr, error2string(hr), e2, 0, file, line, function, ignore_always);
 }
 
 void xrDebug::fail		(const char *e1, const char *file, int line, const char *function, bool &ignore_always)
 {
-	backend		("assertion failed",e1,0,0,file,line,function,ignore_always);
+    backend(e1, "assertion failed", 0, 0, file, line, function, ignore_always);
 }
 
 void xrDebug::fail		(const char *e1, const std::string &e2, const char *file, int line, const char *function, bool &ignore_always)
@@ -304,7 +304,7 @@ void __cdecl xrDebug::fatal(const char *file, int line, const char *function, co
 
 	bool		ignore_always = true;
 
-	backend		("fatal error","<no expression>",buffer,0,file,line,function,ignore_always);
+    backend("<no expression>", "fatal error", buffer, 0, file, line, function, ignore_always);
 }
 
 int out_of_memory_handler	(size_t size)
@@ -730,7 +730,7 @@ LONG WINAPI UnhandledFilter	(_EXCEPTION_POINTERS *pExceptionInfo)
 	{
 		bool							ignore_always = false;
 		Debug.backend					(
-			"error handler is invoked!",
+			"<no expression>",
 			reason_string,
 			0,
 			0,
@@ -790,8 +790,8 @@ LONG WINAPI UnhandledFilter	(_EXCEPTION_POINTERS *pExceptionInfo)
 		}
 
 		Debug.backend					(
-			"error handler is invoked!",
-			expression_,
+            expression_,
+            "invalid parameter",
 			0,
 			0,
 			file_,
