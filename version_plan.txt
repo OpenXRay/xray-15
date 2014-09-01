@@ -39,6 +39,7 @@ nitrocaster:
       or finds bad nodes
     + correct CPU detection
     + buffer overflow when copying command line to Core.Params
+    + misplaced arguments in calls to xrDebug::backend
   * multiplayer
     + xrGameSpy: fix master server name (gamespy is down)
     - dedicated server
@@ -60,6 +61,8 @@ nitrocaster:
     - log suspicious packets and kick/ban its senders after X attempts
     - dedicated server
       - remove unnecessary modules initialization (render/sound/etc...)
+      - use standard windows unput instead of DirectInput (causes problems
+        on dedicated servers)
       - console (remove GUI and use separate administrative tool?)
       + remove topmost startup logo window
   - xrCore
