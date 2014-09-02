@@ -56,8 +56,6 @@ string512 g_sBenchmarkName;
 ENGINE_API string512 g_sLaunchOnExit_params;
 ENGINE_API string512 g_sLaunchOnExit_app;
 ENGINE_API string_path g_sLaunchWorkingFolder;
-static const char* BuildDate;
-static u32 BuildId;
 static CTimer PhaseTimer;
 static bool IntroFinished = false;
 
@@ -87,38 +85,6 @@ bool IsOutOfVirtualMemory()
     MessageBox(NULL, message, error, MB_OK | MB_ICONHAND);
     SECUROM_MARKER_HIGH_SECURITY_OFF(1)
         return true;
-}
-
-void ComputeBuildId()
-{
-    static const char* monthId[12] =
-    {
-        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-    };
-    static int daysInMonth[12] =
-    {
-        31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
-    };
-    static const int startDay = 31, startMonth = 1, startYear = 1999;
-    BuildDate = __DATE__;
-    int days, years;
-    string16 month;
-    sscanf(BuildDate, "%s %d %d", month, &days, &years);
-    int months = 0;
-    for (int i = 0; i < 12; i++)
-    {
-        if (stricmp(monthId[i], month))
-            continue;
-        months = i;
-        break;
-    }
-    u32 buildId = (years - startYear) * 365 + days - startDay;
-    for (int i = 0; i < months; ++i)
-        buildId += daysInMonth[i];
-    for (int i = 0; i < startMonth - 1; ++i)
-        buildId -= daysInMonth[i];
-    BuildId = buildId;
 }
 
 class _SoundProcessor : public pureFrame
@@ -457,7 +423,6 @@ int APIENTRY WinMain_impl(HINSTANCE hInstance, HINSTANCE hPrevInstance, char* lp
         fsltxPath += strlen(fsltx);
         sscanf(fsltxPath, "%[^ ] ", fsgame);
     }
-    ComputeBuildId();
     Core._initialize("xray", NULL, TRUE, strlen(fsgame) > 0 ? fsgame : nullptr);
     InitSettings();
     // Adjust player & computer name for Asian
