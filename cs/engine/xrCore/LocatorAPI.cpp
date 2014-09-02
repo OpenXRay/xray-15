@@ -638,7 +638,7 @@ void CLocatorAPI::setup_fs_path		(LPCSTR fs_name)
 
 	FS_Path				*path = xr_new<FS_Path>(full_current_directory,"","","",0);
 #ifdef DEBUG
-	Msg					("$fs_root$ = %s", full_current_directory);
+	Msg					("* $fs_root$ = %s", full_current_directory);
 #endif // #ifdef DEBUG
 
 	pathes.insert		(
