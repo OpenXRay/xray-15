@@ -30,7 +30,10 @@ nitrocaster:
 - known bugs
   - generic
     + stackoverflow when starting with too long command line
-    - crash when game directory contains too many files
+    + stackoverflow when game directory contains too many files
+      - can me improved (get rid of recursive directory traversal)
+      - exclude $app_data_root$/logs and $app_data_root$/screenshots
+        from index
     - various crashes on some console commands
     - GetColorFromText bug
     - (bytes_need<=mSize) && vl_Count
