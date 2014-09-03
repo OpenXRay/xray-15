@@ -485,10 +485,8 @@ bool CLocatorAPI::load_all_unloaded_archives()
 }
 
 
-void CLocatorAPI::ProcessOne(LPCSTR path, void* _F)
+void CLocatorAPI::ProcessOne(LPCSTR path, const _finddata_t& F)
 {
-	_finddata_t& F	= *((_finddata_t*)_F);
-
 	string_path		N;
 	strcpy_s		(N,sizeof(N),path);
 	strcat_s		(N,F.name);
@@ -540,73 +538,55 @@ bool ignore_path(const char* _path){
 		return true;
 }
 
-bool CLocatorAPI::Recurse		(const char* path)
+bool CLocatorAPI::Recurse(const char* path)
 {
-    _finddata_t		sFile;
-    intptr_t		hFile;
-
-	string_path		N;
-	strcpy_s		(N,sizeof(N),path);
-	strcat			(N,"*.*");
-
-	rec_files.reserve(256);
-
-	// find all files    
-	if (-1==(hFile=_findfirst(N, &sFile)))
-	{
-    	// Log		("! Wrong path: ",path);
-    	return		false;
+    string_path scanPath;
+    strcpy_s(scanPath, sizeof(scanPath), path);
+    strcat(scanPath, "*.*");
+    // find all files
+    _finddata_t findData;
+    intptr_t handle = _findfirst(scanPath, &findData);
+    if (handle == -1)
+    {
+        if (false)
+            Log("! Invalid path:", path);
+        return false;
     }
-
-	string1024 full_path;
-	if (m_Flags.test(flNeedCheck))
-	{
-		strcpy_s(full_path,sizeof(full_path), path);
-		strcat(full_path, sFile.name);
-
-		// загоняем в вектор для того *.db* приходили в сортированном порядке
-		if(!ignore_name(sFile.name) && !ignore_path(full_path))
-			rec_files.push_back(sFile);
-
-		while ( _findnext( hFile, &sFile ) == 0 )
-		{
-			strcpy_s(full_path,sizeof(full_path), path);
-			strcat(full_path, sFile.name);
-			if(!ignore_name(sFile.name) && !ignore_path(full_path)) 
-				rec_files.push_back(sFile);
-		}
-	}
-	else
-	{
-		// загоняем в вектор для того *.db* приходили в сортированном порядке
-		if(!ignore_name(sFile.name))
-			rec_files.push_back(sFile);
-
-		while ( _findnext( hFile, &sFile ) == 0 )
-		{
-			if(!ignore_name(sFile.name)) 
-				rec_files.push_back(sFile);
-		}
-
-	}
-
-	_findclose		( hFile );
-
-	u32				count = rec_files.size();
-	_finddata_t		*buffer = (_finddata_t*)_alloca(count*sizeof(_finddata_t));
-	std::copy		(&*rec_files.begin(), &*rec_files.begin() + count, buffer);
-
-//.	std::copy		(&*rec_files.begin(),&*rec_files.end(),buffer);
-
-	rec_files.clear_not_free();
-	std::sort		(buffer, buffer + count, pred_str_ff);
-	for (_finddata_t *I = buffer, *E = buffer + count; I != E; ++I)
-		ProcessOne	(path,I);
-
-	// insert self
-    if (path&&path[0])\
-		Register	(path,0xffffffff,0,0,0,0,0);
-
+    rec_files.reserve(256);
+    size_t oldSize = rec_files.size();
+    intptr_t done = handle;
+    while (done != -1)
+    {
+        string1024 fullPath;
+        bool ignore = false;
+        if (m_Flags.test(flNeedCheck))
+        {
+            strcpy_s(fullPath, sizeof(fullPath), path);
+            strcat(fullPath, findData.name);
+            ignore = ignore_name(findData.name) || ignore_path(fullPath);
+        }
+        else
+        {
+            ignore = ignore_name(findData.name);
+        }
+        if (!ignore)
+            rec_files.push_back(findData);
+        done = _findnext(handle, &findData);
+    }
+    _findclose(handle);
+    size_t newSize = rec_files.size();
+    if (newSize > oldSize)
+    {
+        std::sort(rec_files.begin() + oldSize, rec_files.end(), pred_str_ff);
+        for (size_t i = oldSize; i < newSize; i++)
+        {
+            ProcessOne(path, rec_files[i]);
+        }
+        rec_files.erase(rec_files.begin() + oldSize, rec_files.end());
+    }
+    // insert self
+    if (path && path[0] != 0)
+        Register(path, 0xffffffff, 0, 0, 0, 0, 0);
     return true;
 }
 
