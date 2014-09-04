@@ -42,12 +42,12 @@
     <_ProjectFileVersion>12.0.30501.0</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)binaries_plugs\$(Configuration)\$(ProjectName)\</OutDir>
-    <IntDir>$(SolutionDir)intermediate_plugs\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)libraries\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)intermediate\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)binaries_plugs\$(Configuration)\$(ProjectName)\</OutDir>
-    <IntDir>$(SolutionDir)intermediate_plugs\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)libraries\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)intermediate\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -75,7 +75,7 @@
       <Culture>0x0419</Culture>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(SolutionDir)libraries\$(Configuration)\$(TargetName).lib</OutputFile>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Lib>
@@ -105,7 +105,7 @@
       <Culture>0x0419</Culture>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(SolutionDir)libraries\$(Configuration)\$(TargetName).lib</OutputFile>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Lib>
   </ItemDefinitionGroup>
