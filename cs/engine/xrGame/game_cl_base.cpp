@@ -191,15 +191,6 @@ void game_cl_GameState::TranslateGameMessage	(u32 msg, NET_Packet& P)
 	{
 	case GAME_EVENT_PLAYER_CONNECTED:
 		{
-
-#ifdef BATTLEYE
-			if ( g_pGameLevel && Level().battleye_system.GetTestClient() )
-			{
-				bool res_battleye = Level().battleye_system.LoadClient();
-				VERIFY( res_battleye );
-			}
-#endif // BATTLEYE
-
 			string64 PlayerName;
 			// [19.11.07] Alexander Maniluk: changed packet format
 			game_PlayerState*	PS = createPlayerState();

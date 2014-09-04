@@ -481,12 +481,6 @@ void CLevel::ClientReceive()
 				if (GameID() != eGameIDSingle)
 					Game().m_WeaponUsageStatistic->OnUpdateRespond(P);*/
 			}break;
-		case M_BATTLEYE:
-			{
-#ifdef BATTLEYE
-			battleye_system.ReadPacketClient( P );
-#endif // BATTLEYE
-			}break;
 		case M_FILE_TRANSFER:
 			{
 				game_events->insert		(*P);

@@ -829,8 +829,6 @@
     <ClInclude Include="base_client_classes.h" />
     <ClInclude Include="base_client_classes_wrappers.h" />
     <ClInclude Include="BastArtifact.h" />
-    <ClInclude Include="battleye.h" />
-    <ClInclude Include="battleye_system.h" />
     <ClInclude Include="BlackDrops.h" />
     <ClInclude Include="BlackGraviArtifact.h" />
     <ClInclude Include="BlockAllocator.h" />
@@ -1875,11 +1873,9 @@
     <ClInclude Include="xrServer.h" />
     <ClInclude Include="xrServerMapSync.h" />
     <ClInclude Include="xrServer_svclient_validation.h" />
-    <ClInclude Include="xr_Client_BattlEye.h" />
     <ClInclude Include="xr_dsa_signer.h" />
     <ClInclude Include="xr_dsa_verifyer.h" />
     <ClInclude Include="xr_level_controller.h" />
-    <ClInclude Include="xr_Server_BattlEye.h" />
     <ClInclude Include="xr_time.h" />
     <ClInclude Include="ZoneCampfire.h" />
     <ClInclude Include="ZoneVisual.h" />
@@ -2916,7 +2912,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)$(ProjectName)_script.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="BastArtifact.cpp" />
-    <ClCompile Include="battleye_system.cpp" />
     <ClCompile Include="BlackDrops.cpp" />
     <ClCompile Include="BlackGraviArtifact.cpp" />
     <ClCompile Include="Bolt.cpp" />
@@ -5618,11 +5613,9 @@
     <ClCompile Include="xrServer_secure_messaging.cpp" />
     <ClCompile Include="xrServer_sls_clear.cpp" />
     <ClCompile Include="xrServer_svclient_validation.cpp" />
-    <ClCompile Include="xr_Client_BattlEye.cpp" />
     <ClCompile Include="xr_dsa_signer.cpp" />
     <ClCompile Include="xr_dsa_verifyer.cpp" />
     <ClCompile Include="xr_level_controller.cpp" />
-    <ClCompile Include="xr_Server_BattlEye.cpp" />
     <ClCompile Include="xr_time.cpp" />
     <ClCompile Include="ZoneCampfire.cpp" />
     <ClCompile Include="ZoneVisual.cpp" />

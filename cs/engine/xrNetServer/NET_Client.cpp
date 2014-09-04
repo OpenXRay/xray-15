@@ -4,7 +4,6 @@
 #include "net_server.h"
 #include "net_messages.h"
 #include "NET_Log.h"
-#include "../xrGame/battleye.h"
 
 #pragma warning(push)
 #pragma warning(disable:4995)
@@ -202,10 +201,9 @@ IPureClient::_Recieve( const void* data, u32 data_size, u32 /*param*/ )
 {
     MSYS_PING*    cfg = (MSYS_PING*)data;
 
-	if(     (data_size>2*sizeof(u32)) 
-	    &&  (cfg->sign1==0x12071980) 
-	    &&  (cfg->sign2==0x26111975)
-	  )
+    if ((data_size >= sizeof(MSYS_CONFIG))
+        && (cfg->sign1 == 0x12071980)
+        && (cfg->sign2 == 0x26111975))
 	{
 		// Internal system message
 		if( (data_size == sizeof(MSYS_PING)) )
@@ -223,19 +221,9 @@ IPureClient::_Recieve( const void* data, u32 data_size, u32 /*param*/ )
 		if ( data_size == sizeof(MSYS_CONFIG) )
 		{
 			MSYS_CONFIG* msys_cfg = (MSYS_CONFIG*)data;
-			if ( msys_cfg->is_battleye )
-			{
-#ifdef BATTLEYE
-				if ( !TestLoadBEClient() )
-				{
-					net_Connected = EnmConnectionFails;
-					return;
-				}
-#endif // BATTLEYE
-			}
-					net_Connected = EnmConnectionCompleted;
+			net_Connected = EnmConnectionCompleted;
 			return;
-			}
+		}
 		Msg( "! Unknown system message" );
 		return;
 	} 

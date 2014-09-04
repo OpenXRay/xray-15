@@ -305,11 +305,10 @@ void xrGameSpyServer::GetServerInfo( CServerInfo* si )
 	si->AddItem( "Game version", QR2()->GetGameVersion( res ), RGB(0,158,255) );
 	
 	strcpy_s( res, "" );
-	if ( HasProtected() || Password.size() > 0 || HasBattlEye() )
+	if ( HasProtected() || Password.size() > 0)
 	{
 		if ( HasProtected() )			strcat_s( res, "protected  " );
 		if ( Password.size() > 0 )		strcat_s( res, "password  " );
-		if ( HasBattlEye() )			strcat_s( res, "BattlEye  " );
 	}
 	else
 	{

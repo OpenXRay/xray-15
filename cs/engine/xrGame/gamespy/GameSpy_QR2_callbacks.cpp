@@ -61,18 +61,6 @@ void __cdecl callback_serverkey(int keyid, void* outbuf, void *userdata)
 			pQR2->BufferAdd_Int( outbuf, 0 );
 		}
 		break;
-	case G_BATTLEYE_KEY:
-#ifdef BATTLEYE
-		if ( g_pGameLevel && Level().battleye_system.server )
-		{
-			pQR2->BufferAdd_Int( outbuf, 1 );
-		}
-		else
-		{
-			pQR2->BufferAdd_Int( outbuf, 0 );
-		}
-#endif // BATTLEYE
-		break;
 	case HOSTPORT_KEY:		pQR2->BufferAdd_Int(outbuf, pServer->GetPort()); break;
 
 	case DEDICATED_KEY:		pQR2->BufferAdd_Int(outbuf, pServer->IsDedicated());		break;
@@ -230,9 +218,6 @@ void __cdecl callback_keylist(qr2_key_type keytype, void* keybuffer, void *userd
 			pQR2->KeyBufferAdd(keybuffer, GAMETYPE_NAME_KEY);
 			pQR2->KeyBufferAdd(keybuffer, NUMTEAMS_KEY);
 			pQR2->KeyBufferAdd(keybuffer, G_MAX_PING_KEY);
-#ifdef BATTLEYE
-			pQR2->KeyBufferAdd(keybuffer, G_BATTLEYE_KEY);
-#endif // BATTLEYE
 			//---- game_sv_base ---
 			pQR2->KeyBufferAdd(keybuffer, G_MAP_ROTATION_KEY);
 			pQR2->KeyBufferAdd(keybuffer, G_VOTING_ENABLED_KEY);

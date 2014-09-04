@@ -430,12 +430,6 @@ bool CServerList::IsValidItem(ServerInfo& item)
 	result &= !m_sf.with_pass ? (m_sf.with_pass == item.m_bPassword)							: true;
 	result &= !m_sf.without_pass ? (m_sf.without_pass != item.m_bPassword)						: true;
 	result &= !m_sf.without_ff ? (m_sf.without_ff != item.m_bFFire)								: true;
-#ifdef BATTLEYE
-	if ( !m_b_local )
-	{
-		result &= m_sf.with_battleye ? (/*m_sf.with_battleye	== */item.m_bBattlEye)			: true;
-	}
-#endif // BATTLEYE
 	result &= !m_sf.listen_servers ? (m_sf.listen_servers != item.m_bDedicated)					: true;
 
 	return result;

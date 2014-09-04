@@ -122,8 +122,6 @@ public:
 	virtual	LPCSTR			GetMsgId2Name			(u16 ID) { return ""; }
 	virtual void			OnSessionTerminate		(LPCSTR reason){};
 
-	virtual bool			TestLoadBEClient		() { return false; }
-
 private:
 
     virtual void    _Recieve( const void* data, u32 data_size, u32 param );

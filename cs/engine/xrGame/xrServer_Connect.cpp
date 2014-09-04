@@ -80,39 +80,6 @@ xrServer::EConnect xrServer::Connect(shared_str &session_name, GameDescriptionDa
 	strcpy_s(game_descr.download_url, get_map_download_url(game_descr.map_name, game_descr.map_version));
 
 	game->Create			(session_name);
-
-#ifdef BATTLEYE
-	if ( game->get_option_i( *session_name, "battleye", 1) != 0 ) // default => battleye enable (always)
-	{
-		// if level exist & if server in internet
-		if ( g_pGameLevel && (game->get_option_i( *session_name, "public", 0) != 0)  )
-		{
-			if ( Level().battleye_system.server )
-		{
-				Msg( "Warning: BattlEye already loaded!" );
-			}
-			else
-			{
-				if ( !Level().battleye_system.LoadServer( this ) )
-				{
-				return ErrBELoad;
-			}
-		}
-		}//g_pGameLevel
-	}
-/*	if ( g_pGameLevel && Level().battleye_system.server )
-	{
-		if ( game->get_option_i( *session_name, "battleye_update", 1) != 0 ) // default => battleye auto_update enable (always)
-		{
-			Level().battleye_system.auto_update = 1;
-		}
-		else
-		{
-			Level().battleye_system.auto_update = 0;
-		}
-	}*/
-#endif // BATTLEYE
-	
 	return IPureServer::Connect(*session_name, game_descr);
 }
 
@@ -164,12 +131,6 @@ void xrServer::AttachNewClient			(IClient* CL)
 	MSYS_CONFIG	msgConfig;
 	msgConfig.sign1 = 0x12071980;
 	msgConfig.sign2 = 0x26111975;
-	msgConfig.is_battleye = 0;
-
-#ifdef BATTLEYE
-	msgConfig.is_battleye = (g_pGameLevel && Level().battleye_system.server != 0)? 1 : 0;
-#endif // BATTLEYE
-
 	if(psNET_direct_connect) //single_game
 	{
         SV_Client			= CL;
