@@ -999,7 +999,4 @@
       <Filter>Interface implementations\WallMarkArray</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="Pipeline.txt" />
-  </ItemGroup>
 </Project>

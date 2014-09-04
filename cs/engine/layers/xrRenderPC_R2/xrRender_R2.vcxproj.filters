@@ -1125,7 +1125,4 @@
       <Filter>Shading templates</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="todo.txt" />
-  </ItemGroup>
 </Project>

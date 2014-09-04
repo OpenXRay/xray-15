@@ -508,9 +508,6 @@
     <ClCompile Include="xrRender_R1.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Pipeline.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="$(SolutionDir)engine\xrEngine\xrEngine.vcxproj">
       <Project>{2578c6d8-660d-48ae-9322-7422f8664f06}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
