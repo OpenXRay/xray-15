@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="NET_Client.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="NET_Common.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="NET_Compressor.cpp">
+      <Filter>Compressor</Filter>
+    </ClCompile>
+    <ClCompile Include="NET_Log.cpp">
+      <Filter>Log</Filter>
+    </ClCompile>
+    <ClCompile Include="NET_Server.cpp">
+      <Filter>Server</Filter>
+    </ClCompile>
+    <ClCompile Include="ip_filter.cpp">
+      <Filter>IP filter</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="NET_Client.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="NET_Common.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="NET_Compressor.h">
+      <Filter>Compressor</Filter>
+    </ClInclude>
+    <ClInclude Include="NET_Log.h">
+      <Filter>Log</Filter>
+    </ClInclude>
+    <ClInclude Include="NET_Server.h">
+      <Filter>Server</Filter>
+    </ClInclude>
+    <ClInclude Include="ip_filter.h">
+      <Filter>IP filter</Filter>
+    </ClInclude>
+    <ClInclude Include="NET_Messages.h" />
+    <ClInclude Include="NET_PlayersMonitor.h" />
+    <ClInclude Include="NET_Shared.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Client">
+      <UniqueIdentifier>{cb9250b9-d06c-46bf-b2d2-54557aab5c3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server">
+      <UniqueIdentifier>{09a2646e-d8b6-4a0e-b98a-d2e1b4b9bf18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Log">
+      <UniqueIdentifier>{f395db6e-8866-4df5-bb5a-26208eb8a1f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Compressor">
+      <UniqueIdentifier>{4bef1aab-0bc0-4581-888d-08c35bde0077}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{3cddd25a-a969-44f4-89c7-4aa8a2bedb32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IP filter">
+      <UniqueIdentifier>{06620459-a9ed-4c62-ba45-4dd098d1ad8f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
