@@ -352,20 +352,48 @@
     <ClCompile Include="guid_generator.cpp">
       <Filter>ALife\guid_generator</Filter>
     </ClCompile>
-    <ClCompile Include="$(SolutionDir)engine\xrEngine\xrLoadSurface.cpp" />
-    <ClCompile Include="$(SolutionDir)engine\xrServerEntities\alife_human_brain.cpp" />
-    <ClCompile Include="$(SolutionDir)engine\xrServerEntities\alife_monster_brain.cpp" />
-    <ClCompile Include="$(SolutionDir)engine\xrServerEntities\alife_space.cpp" />
-    <ClCompile Include="$(SolutionDir)engine\xrServerEntities\PHNetState.cpp" />
-    <ClCompile Include="$(SolutionDir)engine\xrServerEntities\PHSynchronize.cpp" />
-    <ClCompile Include="$(SolutionDir)engine\xrServerEntities\smart_cast.cpp" />
-    <ClCompile Include="$(SolutionDir)engine\xrServerEntities\smart_cast_stats.cpp" />
-    <ClCompile Include="$(SolutionDir)engine\xrServerEntities\xrServer_Objects.cpp" />
-    <ClCompile Include="$(SolutionDir)engine\xrServerEntities\xrServer_Objects_Abstract.cpp" />
-    <ClCompile Include="$(SolutionDir)engine\xrServerEntities\xrServer_Objects_ALife.cpp" />
-    <ClCompile Include="$(SolutionDir)engine\xrServerEntities\xrServer_Objects_ALife_Items.cpp" />
-    <ClCompile Include="$(SolutionDir)engine\xrServerEntities\xrServer_Objects_ALife_Monsters.cpp" />
-    <ClCompile Include="$(SolutionDir)engine\xrServerEntities\xrServer_Object_Base.cpp" />
+    <ClCompile Include="$(SolutionDir)engine\xrServerEntities\smart_cast_stats.cpp">
+      <Filter>ALife\Shared\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)engine\xrServerEntities\smart_cast.cpp">
+      <Filter>ALife\Shared\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)engine\xrServerEntities\PHNetState.cpp">
+      <Filter>ALife\Shared\Server</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)engine\xrServerEntities\PHSynchronize.cpp">
+      <Filter>ALife\Shared\Server</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)engine\xrServerEntities\xrServer_Object_Base.cpp">
+      <Filter>ALife\Shared\ServerEntities</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)engine\xrServerEntities\xrServer_Objects.cpp">
+      <Filter>ALife\Shared\ServerEntities</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)engine\xrServerEntities\xrServer_Objects_Abstract.cpp">
+      <Filter>ALife\Shared\ServerEntities</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)engine\xrServerEntities\xrServer_Objects_ALife.cpp">
+      <Filter>ALife\Shared\ServerEntities</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)engine\xrServerEntities\xrServer_Objects_ALife_Items.cpp">
+      <Filter>ALife\Shared\ServerEntities</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)engine\xrServerEntities\xrServer_Objects_ALife_Monsters.cpp">
+      <Filter>ALife\Shared\ServerEntities</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)engine\xrServerEntities\alife_human_brain.cpp">
+      <Filter>ALife\Shared\ALife\alife_human_brain</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)engine\xrServerEntities\alife_monster_brain.cpp">
+      <Filter>ALife\Shared\ALife\alife_monster_brain</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)engine\xrServerEntities\alife_space.cpp">
+      <Filter>ALife\Shared\ALife\alife_space</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)engine\xrEngine\xrLoadSurface.cpp">
+      <Filter>Compiler</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AIMapExport.h">
@@ -740,56 +768,156 @@
     <ClInclude Include="guid_generator.h">
       <Filter>ALife\guid_generator</Filter>
     </ClInclude>
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\alife_human_brain.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\alife_human_brain_inline.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\alife_monster_brain.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\alife_monster_brain_inline.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\alife_space.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\associative_vector.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\associative_vector_compare_predicate.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\associative_vector_compare_predicate_inline.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\associative_vector_inline.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\character_info_defs.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\clsid_game.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\DrawUtils.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\FastDelegate.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\game_base_space.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\game_graph_space.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\InfoPortionDefs.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\inventory_space.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\ItemListTypes.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\object_broker.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\object_cloner.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\object_comparer.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\object_destroyer.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\object_interfaces.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\object_loader.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\object_saver.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\object_type_traits.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\PHNetState.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\PHSynchronize.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\PropertiesListTypes.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\restriction_space.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\script_export_space.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\script_value_container.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\script_value_container_impl.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\ShapeData.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\smart_cast.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\smart_cast_impl0.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\smart_cast_impl1.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\smart_cast_impl2.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\WaveForm.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\xrEProps.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\xrMessages.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\xrServer_Objects.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\xrServer_Objects_Abstract.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\xrServer_Objects_ALife.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\xrServer_Objects_ALife_All.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\xrServer_Objects_ALife_Items.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\xrServer_Objects_ALife_Monsters.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\xrServer_Object_Base.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\xrServer_Space.h" />
-    <ClInclude Include="$(SolutionDir)engine\xrEngine\xrLevel.h" />
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\associative_vector.h">
+      <Filter>ALife\Shared\associative_vector</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\associative_vector_compare_predicate.h">
+      <Filter>ALife\Shared\associative_vector</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\associative_vector_compare_predicate_inline.h">
+      <Filter>ALife\Shared\associative_vector</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\associative_vector_inline.h">
+      <Filter>ALife\Shared\associative_vector</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\clsid_game.h">
+      <Filter>ALife\Shared\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\smart_cast.h">
+      <Filter>ALife\Shared\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\smart_cast_impl0.h">
+      <Filter>ALife\Shared\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\smart_cast_impl1.h">
+      <Filter>ALife\Shared\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\smart_cast_impl2.h">
+      <Filter>ALife\Shared\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\game_base_space.h">
+      <Filter>ALife\Shared\Server</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\PHNetState.h">
+      <Filter>ALife\Shared\Server</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\PHSynchronize.h">
+      <Filter>ALife\Shared\Server</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\xrMessages.h">
+      <Filter>ALife\Shared\Server</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\object_broker.h">
+      <Filter>ALife\Shared\ObjectBroker</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\object_cloner.h">
+      <Filter>ALife\Shared\ObjectBroker</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\object_comparer.h">
+      <Filter>ALife\Shared\ObjectBroker</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\object_destroyer.h">
+      <Filter>ALife\Shared\ObjectBroker</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\object_interfaces.h">
+      <Filter>ALife\Shared\ObjectBroker</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\object_loader.h">
+      <Filter>ALife\Shared\ObjectBroker</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\object_saver.h">
+      <Filter>ALife\Shared\ObjectBroker</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\object_type_traits.h">
+      <Filter>ALife\Shared\ObjectBroker</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\character_info_defs.h">
+      <Filter>ALife\Shared\ServerEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\DrawUtils.h">
+      <Filter>ALife\Shared\ServerEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\InfoPortionDefs.h">
+      <Filter>ALife\Shared\ServerEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\inventory_space.h">
+      <Filter>ALife\Shared\ServerEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\ItemListTypes.h">
+      <Filter>ALife\Shared\ServerEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\PropertiesListTypes.h">
+      <Filter>ALife\Shared\ServerEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\script_export_space.h">
+      <Filter>ALife\Shared\ServerEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\script_value_container.h">
+      <Filter>ALife\Shared\ServerEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\script_value_container_impl.h">
+      <Filter>ALife\Shared\ServerEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\ShapeData.h">
+      <Filter>ALife\Shared\ServerEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\WaveForm.h">
+      <Filter>ALife\Shared\ServerEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\xrEProps.h">
+      <Filter>ALife\Shared\ServerEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\xrServer_Object_Base.h">
+      <Filter>ALife\Shared\ServerEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\xrServer_Objects.h">
+      <Filter>ALife\Shared\ServerEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\xrServer_Objects_Abstract.h">
+      <Filter>ALife\Shared\ServerEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\xrServer_Objects_ALife.h">
+      <Filter>ALife\Shared\ServerEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\xrServer_Objects_ALife_All.h">
+      <Filter>ALife\Shared\ServerEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\xrServer_Objects_ALife_Items.h">
+      <Filter>ALife\Shared\ServerEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\xrServer_Objects_ALife_Monsters.h">
+      <Filter>ALife\Shared\ServerEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\xrServer_Space.h">
+      <Filter>ALife\Shared\ServerEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\alife_human_brain.h">
+      <Filter>ALife\Shared\ALife\alife_human_brain</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\alife_human_brain_inline.h">
+      <Filter>ALife\Shared\ALife\alife_human_brain</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\alife_monster_brain.h">
+      <Filter>ALife\Shared\ALife\alife_monster_brain</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\alife_monster_brain_inline.h">
+      <Filter>ALife\Shared\ALife\alife_monster_brain</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\alife_space.h">
+      <Filter>ALife\Shared\ALife\alife_space</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\restriction_space.h">
+      <Filter>ALife\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\FastDelegate.h">
+      <Filter>Compiler\Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrEngine\xrLevel.h">
+      <Filter>Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)engine\xrServerEntities\game_graph_space.h">
+      <Filter>ALife\search\graphs\game_graph</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc">
