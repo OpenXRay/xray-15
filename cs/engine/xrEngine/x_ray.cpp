@@ -396,7 +396,7 @@ int APIENTRY WinMain_impl(HINSTANCE hInstance, HINSTANCE hPrevInstance, char* lp
     }
     else
     {
-        CloseHandle(hCheckPresenceMutex);
+        CloseHandle(presenceMutex);
         return 0;
     }
 #endif // !DEDICATED_SERVER && NO_MULTI_INSTANCES
