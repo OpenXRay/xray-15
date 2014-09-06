@@ -1,22 +1,18 @@
 #include "stdafx.h"
 #include "burer.h"
 #include "burer_state_manager.h"
-
-#include "../control_animation_base.h"
-#include "../control_direction_base.h"
-#include "../control_movement_base.h"
-#include "../control_path_builder_base.h"
-
-#include "../states/monster_state_rest.h"
-#include "../states/monster_state_panic.h"
-#include "../states/monster_state_eat.h"
-#include "../states/monster_state_hear_int_sound.h"
-#include "../states/monster_state_hear_danger_sound.h"
-#include "../states/monster_state_hitted.h"
-#include "../states/state_custom_action.h"
-
+#include "AI/Monsters/control_animation_base.h"
+#include "AI/Monsters/control_direction_base.h"
+#include "AI/Monsters/control_movement_base.h"
+#include "AI/Monsters/control_path_builder_base.h"
+#include "AI/Monsters/States/monster_state_rest.h"
+#include "AI/Monsters/States/monster_state_panic.h"
+#include "AI/Monsters/States/monster_state_eat.h"
+#include "AI/Monsters/States/monster_state_hear_int_sound.h"
+#include "AI/Monsters/States/monster_state_hear_danger_sound.h"
+#include "AI/Monsters/States/monster_state_hitted.h"
+#include "AI/Monsters/States/state_custom_action.h"
 #include "burer_state_attack.h"
-
 
 CStateManagerBurer::CStateManagerBurer(CBurer *monster) : inherited(monster)
 {

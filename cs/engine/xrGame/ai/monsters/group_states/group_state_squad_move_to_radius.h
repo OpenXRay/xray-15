@@ -1,6 +1,6 @@
 #pragma once
-#include "../state.h"
-#include "../states/state_data.h"
+#include "AI/Monsters/state.h"
+#include "AI/Monsters/States/state_data.h"
 
 template<typename _Object>
 class CStateGroupSquadMoveToRadiusEx : public CState<_Object> {

@@ -5,7 +5,7 @@
 #include "MathUtils.h"
 #include "PHWorld.h"
 #ifdef DEBUG
-#include "../xrEngine/Statgraph.h"
+#include <xrEngine/Statgraph.h>
 #include "PHDebug.h"
 #endif
 static const float getting_on_dist		=0.3f;

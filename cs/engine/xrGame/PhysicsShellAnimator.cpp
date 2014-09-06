@@ -1,15 +1,12 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "PhysicsShellAnimator.h"
 #include "PhysicsShellAnimatorBoneData.h"
-#include "../Include/xrRender/KinematicsAnimated.h"
-#include "../Include/xrRender/Kinematics.h"
+#include "Include/xrRender/KinematicsAnimated.h"
+#include "Include/xrRender/Kinematics.h"
 #include "PHDynamicData.h"
 #include "game_object_space.h"
 #include "PhysicsShellHolder.h"
-#include "../xrEngine/bone.h"
-
-
-
+#include "xrEngine/bone.h"
 
 CPhysicsShellAnimator::CPhysicsShellAnimator( CPhysicsShell* _pPhysicsShell, CInifile* ini, LPCSTR section ) : m_pPhysicsShell( _pPhysicsShell ) 
 {

@@ -43,7 +43,7 @@ using namespace StalkerDecisionSpace;
 #endif // #ifdef DEBUG
 
 #ifdef GRENADE_TEST
-#	include "actor.h"
+#	include "Actor.h"
 #endif // #ifdef GRENADE_TEST
 
 //////////////////////////////////////////////////////////////////////////

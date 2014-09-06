@@ -2,7 +2,7 @@
 
 #include	"death_anims.h"
 
-#include	"actor.h"
+#include	"Actor.h"
 #include	"ai/stalker/ai_stalker.h"
 #include	"stalker_movement_manager_smart_cover.h"
 #include	"weaponshotgun.h"

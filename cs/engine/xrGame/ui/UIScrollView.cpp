@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "UIScrollView.h"
 #include "UIScrollBar.h"
-#include "../ui_base.h"
-#include "../UICursor.h"
-#include "../../xrEngine/xr_input.h"	
+#include "ui_base.h"
+#include "UICursor.h"
+#include "xrEngine/xr_input.h"	
 
 CUIScrollView::CUIScrollView()
 {

@@ -3,11 +3,11 @@
 #include "UIMap.h"
 #include "UIXmlInit.h"
 
-#include "../Actor.h"
-#include "../map_manager.h"
+#include "Actor.h"
+#include "map_manager.h"
 #include "UIInventoryUtilities.h"
-#include "../map_spot.h"
-#include "../map_location.h"
+#include "map_spot.h"
+#include "map_location.h"
 
 #include "UIScrollBar.h"
 #include "UIFrameWindow.h"
@@ -19,10 +19,10 @@
 #include "UIHint.h"
 #include "map_hint.h"
 
-#include "../HUDManager.h"
+#include "HUDManager.h"
 
 //#include <dinput.h>						//remove me !!!
-#include "../../xrEngine/xr_input.h"		//remove me !!!
+#include "xrEngine/xr_input.h"		//remove me !!!
 
 //const int     SCROLLBARS_SHIFT		= 5;
 
@@ -734,10 +734,10 @@ void CUIMapWnd::Reset()
 	ResetActionPlanner			();
 }
 
-#include "../gametaskmanager.h"
-#include "../actor.h"
-#include "../map_spot.h"
-#include "../gametask.h"
+#include "GametaskManager.h"
+#include "Actor.h"
+#include "map_spot.h"
+#include "GameTask.h"
 
 void CUIMapWnd::SpotSelected(CUIWindow* w)
 {

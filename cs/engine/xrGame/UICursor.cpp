@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "uicursor.h"
 
-#include "../xrEngine/CustomHUD.h"
+#include <xrEngine/CustomHUD.h>
 #include "UI.h"
 #include "HUDManager.h"
 #include "ui/UIStatic.h"

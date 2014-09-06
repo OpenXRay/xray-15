@@ -3,11 +3,11 @@
 //////////////////////////////////////////////////////////////////////
 #include "stdafx.h"
 #include "UIWindow.h"
-#include "../UICursor.h"
-#include "../MainMenu.h"
+#include "UICursor.h"
+#include "MainMenu.h"
 
-#include "../Include/xrRender/DebugRender.h"
-#include "../Include/xrRender/UIRender.h"
+#include <Include/xrRender/DebugRender.h>
+#include "Include/xrRender/UIRender.h"
 
 poolSS< _12b, 128>	ui_allocator;
 

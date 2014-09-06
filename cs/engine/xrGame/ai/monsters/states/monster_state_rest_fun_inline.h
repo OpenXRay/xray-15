@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../../../PhysicsShell.h"
-#include "../../../PHInterpolation.h"
-#include "../../../PHElement.h"
+#include "PhysicsShell.h"
+#include "PHInterpolation.h"
+#include "PHElement.h"
 
 #define TEMPLATE_SPECIALIZATION template <\
 	typename _Object\

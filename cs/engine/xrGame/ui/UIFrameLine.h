@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../UIStaticItem.h"
+#include "UIStaticItem.h"
 
 class CUIFrameLine: public CUICustomItem
 {

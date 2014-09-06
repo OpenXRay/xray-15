@@ -1,10 +1,7 @@
-#include	"stdafx.h"
-
-#include	"moving_bones_snd_player.h"
-
-#include "../Include/xrRender/Kinematics.h"
-#include "../xrEngine/bone.h"
-
+#include "stdafx.h"
+#include "moving_bones_snd_player.h"
+#include "Include/xrRender/Kinematics.h"
+#include "xrEngine/bone.h"
 #include "gameobject.h"
 #include "matrix_utils.h"
 #ifdef DEBUG

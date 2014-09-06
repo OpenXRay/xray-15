@@ -9,14 +9,14 @@
 #include "UIFrameLineWnd.h"
 
 #include "xrMessages.h"
-#include "../alife_registry_wrappers.h"
-#include "../GameObject.h"
-#include "../InventoryOwner.h"
-#include "../Inventory.h"
-#include "../Inventory_item.h"
-#include "../InventoryBox.h"
-#include "../string_table.h"
-#include "../ai/monsters/BaseMonster/base_monster.h"
+#include "alife_registry_wrappers.h"
+#include "GameObject.h"
+#include "InventoryOwner.h"
+#include "Inventory.h"
+#include "inventory_item.h"
+#include "InventoryBox.h"
+#include "string_table.h"
+#include "AI/Monsters/BaseMonster/base_monster.h"
 
 void move_item_from_to (u16 from_id, u16 to_id, u16 what_id)
 {

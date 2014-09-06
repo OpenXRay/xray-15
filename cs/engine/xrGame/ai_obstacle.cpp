@@ -11,10 +11,10 @@
 #include "ai_space.h"
 #include "level_graph.h"
 #include "GameObject.h"
-#include "../Include/xrRender/Kinematics.h"
+#include "Include/xrRender/Kinematics.h"
 #include <boost/crc.hpp>
 
-#include "../xrEngine/bone.h"
+#include "xrEngine/bone.h"
 
 #pragma warning(push)
 #pragma warning(disable:4995)

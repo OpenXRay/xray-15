@@ -13,10 +13,10 @@
 #include "UIListWnd.h"
 #include "UITreeViewItem.h"
 #include "UIEncyclopediaArticleWnd.h"
-#include "../level.h"
-#include "../actor.h"
-#include "../alife_registry_wrappers.h"
-#include "../encyclopedia_article.h"
+#include "Level.h"
+#include "Actor.h"
+#include "alife_registry_wrappers.h"
+#include "encyclopedia_article.h"
 
 extern u32			g_pda_info_state;
 

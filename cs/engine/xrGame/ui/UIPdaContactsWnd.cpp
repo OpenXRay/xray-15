@@ -1,14 +1,14 @@
 #include "stdafx.h"
 #include "UIPdaContactsWnd.h"
-#include "../Pda.h"
+#include "PDA.h"
 #include "UIXmlInit.h"
-#include "../actor.h"
+#include "Actor.h"
 #include "UIFrameWindow.h"
 #include "UIFrameLineWnd.h"
 #include "UIAnimatedStatic.h"
 #include "UIScrollView.h"
-#include "../actor.h"
-#include "../string_table.h"
+#include "Actor.h"
+#include "string_table.h"
 
 #define PDA_CONTACT_HEIGHT 70
 

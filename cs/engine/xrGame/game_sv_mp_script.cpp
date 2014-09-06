@@ -3,7 +3,7 @@
 #include "xrServer_script_macroses.h"
 #include "xrserver.h"
 #include "xrserver_objects_alife_monsters.h"
-#include "level.h"
+#include "Level.h"
 #include "ai_space.h"
 #include "script_engine.h"
 

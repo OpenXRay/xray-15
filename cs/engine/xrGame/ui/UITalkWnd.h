@@ -1,14 +1,11 @@
 #pragma once
-
 #include "UIDialogWnd.h"
 #include "UIStatic.h"
 #include "UIButton.h"
 #include "UIEditBox.h"
 #include "UIListWnd.h"
 #include "UIFrameWindow.h"
-
-
-#include "../PhraseDialogDefs.h"
+#include "PhraseDialogDefs.h"
 
 class CActor;
 class CInventoryOwner;

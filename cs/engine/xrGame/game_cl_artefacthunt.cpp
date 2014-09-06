@@ -2,13 +2,13 @@
 #include "game_cl_artefacthunt.h"
 #include "xrMessages.h"
 #include "hudmanager.h"
-#include "level.h"
+#include "Level.h"
 #include "UIGameAHunt.h"
 #include "map_manager.h"
 #include "LevelGameDef.h"
 #include "hit.h"
 #include "PHDestroyable.h"
-#include "actor.h"
+#include "Actor.h"
 #include "ui/UIMainIngameWnd.h"
 #include "ui/UISkinSelector.h"
 #include "ui/UIPdaWnd.h"
@@ -33,7 +33,7 @@
 #define MESSAGE_MENUS	"ahunt_messages_menu"
 
 #include "game_cl_artefacthunt_snd_msg.h"
-#include "../xrEngine/IGame_Persistent.h"
+#include "xrEngine/IGame_Persistent.h"
 
 game_cl_ArtefactHunt::game_cl_ArtefactHunt()
 {

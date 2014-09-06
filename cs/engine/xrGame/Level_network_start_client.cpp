@@ -1,12 +1,12 @@
 #include "stdafx.h"
-//#include "../xrEngine/resourcemanager.h"
-//#include "../xrEngine/resourcemanager.h"
+//#include <xrEngine/resourcemanager.h>
+//#include <xrEngine/resourcemanager.h>
 #include "HUDmanager.h"
 #include "PHdynamicdata.h"
 #include "Physics.h"
-#include "level.h"
-#include "../xrEngine/x_ray.h"
-#include "../xrEngine/igame_persistent.h"
+#include "Level.h"
+#include <xrEngine/x_ray.h>
+#include "xrEngine/IGame_Persistent.h"
 #include "PhysicsGamePars.h"
 #include "ai_space.h"
 #include "game_cl_base.h"

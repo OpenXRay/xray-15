@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "ParticlesObject.h"
-#include "../xrEngine/gamemtllib.h"
-#include "level.h"
-#include "gamepersistent.h"
+#include "xrEngine/GameMtlLib.h"
+#include "Level.h"
+#include "GamePersistent.h"
 #include "Extendedgeom.h"
 #include "PhysicsGamePars.h"
 #include "PhysicsCommon.h"
@@ -12,8 +12,8 @@
 #include "MathUtils.h"
 #include "PHWorld.h"
 
-#include "../Include/xrRender/FactoryPtr.h"
-#include "../Include/xrRender/WallMarkArray.h"
+#include "Include/xrRender/FactoryPtr.h"
+#include <Include/xrRender/WallMarkArray.h>
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 static const float PARTICLE_EFFECT_DIST=70.f;

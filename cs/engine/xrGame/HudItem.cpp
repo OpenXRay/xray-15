@@ -1,15 +1,15 @@
 #include "stdafx.h"
 #include "HudItem.h"
 #include "physic_item.h"
-#include "actor.h"
+#include "Actor.h"
 #include "actoreffector.h"
 #include "Missile.h"
 #include "xrmessages.h"
-#include "level.h"
+#include "Level.h"
 #include "inventory.h"
-#include "../xrEngine/CameraBase.h"
+#include "xrEngine/CameraBase.h"
 #include "player_hud.h"
-#include "../xrEngine/SkeletonMotions.h"
+#include <xrEngine/SkeletonMotions.h>
 
 CHudItem::CHudItem()
 {

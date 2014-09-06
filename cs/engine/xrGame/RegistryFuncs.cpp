@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "RegistryFuncs.h"
 
 #define REGISTRY_BASE	HKEY_LOCAL_MACHINE

@@ -1,12 +1,12 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "UIOutfitInfo2.h"
 /*
 #include "UIXmlInit.h"
 #include "UIStatic.h"
 #include "UIScrollView.h"
-#include "../actor.h"
-#include "../CustomOutfit.h"
-#include "../string_table.h"
+#include "Actor.h"
+#include "CustomOutfit.h"
+#include "string_table.h"
 
 CUIOutfitInfo2::CUIOutfitInfo2()
 {

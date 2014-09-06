@@ -8,17 +8,16 @@
 #include "UIInventoryUtilities.h"
 #include "UICellItemFactory.h"
 
-#include "../InventoryOwner.h"
-#include "../Inventory.h"
-#include "../Trade.h"
-#include "../Entity.h"
-#include "../Actor.h"
-#include "../Weapon.h"
-#include "../trade_parameters.h"
-#include "../inventory_item_object.h"
-#include "../string_table.h"
-#include "../ai/monsters/BaseMonster/base_monster.h"
-
+#include "InventoryOwner.h"
+#include "Inventory.h"
+#include "Trade.h"
+#include "Entity.h"
+#include "Actor.h"
+#include "Weapon.h"
+#include "trade_parameters.h"
+#include "inventory_item_object.h"
+#include "string_table.h"
+#include "AI/Monsters/BaseMonster/base_monster.h"
 
 // -------------------------------------------------
 

@@ -4,7 +4,7 @@
 
 #include "stdafx.h"
 #include ".\uicheckbutton.h"
-#include "../HUDManager.h"
+#include "HUDManager.h"
 #include "UILines.h"
 #include "UIXmlInit.h"
 #include "UIHint.h"

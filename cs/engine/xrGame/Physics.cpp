@@ -1,9 +1,9 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "PHDynamicData.h"
 #include "Physics.h"
 #include "tri-colliderknoopc/dTriList.h"
 #include "PHContactBodyEffector.h"
-#include "../xrEngine/gamemtllib.h"
+#include "xrEngine/GameMtlLib.h"
 #include "gameobject.h"
 #include "PhysicsShellHolder.h"
 #include "PHCollideValidator.h"
@@ -13,9 +13,9 @@
 ///////////////////////////////////////////////////////////////
 #pragma warning(disable:4995)
 #pragma warning(disable:4267)
-#include "../3rd party/ode/src/collision_kernel.h"
-#include "../3rd party/ode/src/joint.h"
-#include "../3rd party/ode/src/objects.h"
+#include "ode/src/collision_kernel.h"
+#include "ode/src/joint.h"
+#include "ode/src/objects.h"
 #pragma warning(default:4267)
 #pragma warning(default:4995)
 

@@ -19,7 +19,7 @@
 #include "stalker_planner.h"
 #include "weapon.h"
 #include "inventory.h"
-#include "customzone.h"
+#include "CustomZone.h"
 #include "patrol_path_manager.h"
 #include "object_handler_planner.h"
 #include "object_handler_space.h"

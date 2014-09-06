@@ -1,18 +1,16 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include <dinput.h>
 #include "UISkinSelector.h"
-#include "../level.h"
-//#include"../hudmanager.h"
+#include "Level.h"
 #include "UIXmlInit.h"
 #include "UIStatic.h"
 #include "UIAnimatedStatic.h"
 #include "UI3tButton.h"
 #include "UIStatix.h"
-#include "../game_cl_deathmatch.h"
-#include "../xr_level_controller.h"
-#include "../HUDManager.h"
+#include "game_cl_deathmatch.h"
+#include "xr_level_controller.h"
+#include "HUDManager.h"
 #include "CExtraContentFilter.h"
-
 #include "object_broker.h"
 
 CUISkinSelectorWnd::CUISkinSelectorWnd(const char* strSectionName, s16 team)

@@ -1,13 +1,13 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "UISpeechMenu.h"
 #include "UIScrollView.h"
 #include "UIStatic.h"
 #include "UIXmlInit.h"
-#include "../game_cl_mp.h"
+#include "game_cl_mp.h"
 #include <dinput.h>
-#include "../level.h"
-#include "../string_table.h"
-#include "../HUDManager.h"
+#include "Level.h"
+#include "string_table.h"
+#include "HUDManager.h"
 
 CUISpeechMenu::CUISpeechMenu(LPCSTR section_name)
 {

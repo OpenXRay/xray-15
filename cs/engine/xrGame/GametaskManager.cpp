@@ -7,7 +7,7 @@
 #include "map_manager.h"
 #include "map_location.h"
 #include "HUDManager.h"
-#include "actor.h"
+#include "Actor.h"
 #include "UIGameSP.h"
 #include "ui/UIPDAWnd.h"
 #include "encyclopedia_article.h"

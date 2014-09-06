@@ -6,7 +6,7 @@
 #include "Level.h"
 #include "HUDManager.h"
 #include "UIGameCustom.h"
-#include "actor.h"
+#include "Actor.h"
 
 CActorFollowerMngr::CActorFollowerMngr()
 {

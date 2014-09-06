@@ -1,13 +1,11 @@
 #include "stdafx.h"
 #include "UITalkDialogWnd.h"
-
 #include "xrUIXmlParser.h"
 #include "UIXmlInit.h"
 #include "UIScrollView.h"
 #include "UI3tButton.h"
-#include "../UI.h"
+#include "UI.h"
 #include "UITalkWnd.h"
-
 
 #define				TALK_XML				"talk.xml"
 
@@ -177,10 +175,10 @@ void CUITalkDialogWnd::AddQuestion(LPCSTR str, LPCSTR value)
 	Register						(itm);
 }
 
-#include "../game_news.h"
-#include "../level.h"
-#include "../actor.h"
-#include "../alife_registry_wrappers.h"
+#include "game_news.h"
+#include "Level.h"
+#include "Actor.h"
+#include "alife_registry_wrappers.h"
 
 void CUITalkDialogWnd::AddAnswer(LPCSTR SpeakerName, LPCSTR str, bool bActor)
 {

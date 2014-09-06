@@ -4,7 +4,7 @@
 #include "ui\UIFrameWindow.h"
 #include "entity_alive.h"
 #include "visual_memory_manager.h"
-#include "actor.h"
+#include "Actor.h"
 #include "actor_memory.h"
 #include "relation_registry.h"
 #include "object_broker.h"
@@ -13,7 +13,7 @@
 #include "Level.h"
 #include "game_cl_base.h"
 #include "AI/Monsters/BaseMonster/base_monster.h"
-#include "../xrEngine/igame_persistent.h"
+#include "xrEngine/IGame_Persistent.h"
 
 #define RECT_SIZE	11
 

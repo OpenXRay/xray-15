@@ -6,10 +6,10 @@
 //
 // Copyright 2005 GSC Game World
 
-#include "StdAfx.h"
+#include "stdafx.h"
 
 #include "UILines.h"
-#include "../HUDmanager.h"
+#include "HUDManager.h"
 #include "UIXmlInit.h"
 #include "uilinestd.h"
 

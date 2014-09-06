@@ -17,11 +17,11 @@
 
 // client entities includes
 #ifndef NO_XR_GAME
-#	include "../xrEngine/std_classes.h"
-#	include "level.h"
-#	include "gamepersistent.h"
+#	include <xrEngine/std_classes.h>
+#	include "Level.h"
+#	include "GamePersistent.h"
 #	include "hudmanager.h"
-#	include "actor.h"
+#	include "Actor.h"
 #	include "spectator.h"
 
 #	include "ai/monsters/flesh/flesh.h"
@@ -50,7 +50,7 @@
 #	include "ai/crow/ai_crow.h"
 
 #	ifdef DEBUG
-#		include "../xrEngine/StatGraph.h"
+#		include <xrEngine/StatGraph.h>
 #		include "PHDebug.h"
 #	endif // DEBUG
 
@@ -122,7 +122,7 @@
 
 #	include "MPPlayersBag.h"
 
-#	include "customzone.h"
+#	include "CustomZone.h"
 #	include "mosquitobald.h"
 #	include "mincer.h"
 #	include "gravizone.h"

@@ -2,7 +2,7 @@
 
 #include "UIEditKeyBind.h"
 #include "UIColorAnimatorWrapper.h"
-#include "../xr_level_controller.h"
+#include "xr_level_controller.h"
 #include "object_broker.h"
 
 CUIEditKeyBind::CUIEditKeyBind(bool bPrim)
@@ -181,7 +181,7 @@ void CUIEditKeyBind::SaveValue()
 	m_bChanged			= false;
 }
 
-#include "../../xrEngine/xr_ioconsole.h"
+#include <xrEngine/xr_ioconsole.h>
 void CUIEditKeyBind::BindAction2Key()
 {
 	xr_string comm_unbind	= (m_bPrimary)?"unbind ":"unbind_sec ";

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../states/state_custom_action.h"
+#include "AI/Monsters/States/state_custom_action.h"
 
 #define TEMPLATE_SPECIALIZATION template <\
 	typename _Object\

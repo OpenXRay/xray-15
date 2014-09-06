@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "UIFrameWindow.h"
-#include "../HUDManager.h"
+#include "HUDManager.h"
 #include "UITextureMaster.h"
 #include "UIXmlInit.h"
 #include "UIStatic.h"
-#include "../Include/xrRender/UIRender.h"
+#include "Include/xrRender/UIRender.h"
 
 CUIFrameWindow::CUIFrameWindow()
 {}

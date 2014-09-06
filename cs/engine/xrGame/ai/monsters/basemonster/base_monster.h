@@ -1,29 +1,29 @@
 #pragma once
 
-#include "../../../CustomMonster.h"
+#include "CustomMonster.h"
 
-#include "../monster_enemy_memory.h"
-#include "../monster_corpse_memory.h"
-#include "../monster_sound_memory.h"
-#include "../monster_hit_memory.h"
+#include "AI/Monsters/monster_enemy_memory.h"
+#include "AI/Monsters/monster_corpse_memory.h"
+#include "AI/Monsters/monster_sound_memory.h"
+#include "AI/Monsters/monster_hit_memory.h"
 
-#include "../monster_enemy_manager.h"
-#include "../monster_corpse_manager.h"
+#include "AI/Monsters/monster_enemy_manager.h"
+#include "AI/Monsters/monster_corpse_manager.h"
 
-#include "../../../step_manager.h"
-#include "../monster_event_manager.h"
-#include "../melee_checker.h"
-#include "../monster_morale.h"
+#include "step_manager.h"
+#include "AI/Monsters/monster_event_manager.h"
+#include "AI/Monsters/melee_checker.h"
+#include "AI/Monsters/monster_morale.h"
 
-#include "../control_manager.h"
-#include "../control_sequencer.h"
+#include "AI/Monsters/control_manager.h"
+#include "AI/Monsters/control_sequencer.h"
 
-#include "../ai_monster_utils.h"
+#include "AI/Monsters/ai_monster_utils.h"
 
-#include "../control_manager_custom.h"
-#include "../ai_monster_shared_data.h"
-#include "../monster_sound_defs.h"
-#include "../../../inventoryowner.h"
+#include "AI/Monsters/control_manager_custom.h"
+#include "AI/Monsters/ai_monster_shared_data.h"
+#include "AI/Monsters/monster_sound_defs.h"
+#include "InventoryOwner.h"
 
 class CCharacterPhysicsSupport;
 class CMonsterCorpseCoverEvaluator;

@@ -1,10 +1,10 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "string_table.h"
 #include "Level.h"
 #include "ui/TeamInfo.h"
 #include "game_cl_capture_the_artefact.h"
 #include "game_cl_capture_the_artefact_captions_manager.h"
-#include "actor.h"
+#include "Actor.h"
 
 CTAGameClCaptionsManager::CTAGameClCaptionsManager()
 {

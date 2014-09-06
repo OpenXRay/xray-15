@@ -6,14 +6,14 @@
 #define AFX_LEVEL_H__38F63863_DB0C_494B_AFAB_C495876EC671__INCLUDED_
 #pragma once
 
-#include "../xrEngine/igame_level.h"
-#include "../xrEngine/IGame_Persistent.h"
-#include "../xrNetServer/net_client.h"
+#include <xrEngine/igame_level.h>
+#include "xrEngine/IGame_Persistent.h"
+#include <xrNetServer/net_client.h>
 #include "script_export_space.h"
-#include "../xrEngine/StatGraph.h"
+#include <xrEngine/StatGraph.h>
 #include "xrMessages.h"
 #include "alife_space.h"
-#include "../xrcore/xrDebug.h"
+#include <xrcore/xrDebug.h>
 #include "xrServer.h"
 #include "GlobalFeelTouch.hpp"
 #include "customdetector.h"

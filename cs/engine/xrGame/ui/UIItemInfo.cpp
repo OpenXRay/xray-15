@@ -4,24 +4,22 @@
 #include "uiiteminfo.h"
 #include "uistatic.h"
 #include "UIXmlInit.h"
-
 #include "UIListWnd.h"
 #include "UIProgressBar.h"
 #include "UIScrollView.h"
 #include "UIFrameWindow.h"
-
 #include "ai_space.h"
 #include "alife_simulator.h"
-#include "../string_table.h"
-#include "../Inventory_Item.h"
+#include "string_table.h"
+#include "inventory_item.h"
 #include "UIInventoryUtilities.h"
-#include "../PhysicsShellHolder.h"
+#include "PhysicsShellHolder.h"
 #include "UIWpnParams.h"
 #include "ui_af_params.h"
 #include "UIInvUpgradeProperty.h"
 #include "UIOutfitInfo.h"
-#include "../Weapon.h"
-#include "../CustomOutfit.h"
+#include "Weapon.h"
+#include "CustomOutfit.h"
 
 extern const LPCSTR g_inventory_upgrade_xml;
 

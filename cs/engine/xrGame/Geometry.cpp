@@ -2,9 +2,8 @@
 #include "Geometry.h"
 #include "PHDynamicData.h"
 #include "ExtendedGeom.h"
-#include "dcylinder//dCylinder.h"
-
-#include "../xrEngine/bone.h"
+#include "dCylinder/dCylinder.h"
+#include "xrEngine/bone.h"
 
 //global
 #ifdef DEBUG

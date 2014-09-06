@@ -1,22 +1,22 @@
 #include "stdafx.h"
 #include "UIInventoryWnd.h"
 /*
-#include "../actor.h"
-#include "../silencer.h"
-#include "../scope.h"
-#include "../grenadelauncher.h"
-#include "../Artefact.h"
-#include "../eatable_item.h"
-#include "../BottleItem.h"
-#include "../WeaponMagazined.h"
-#include "../inventory.h"
-#include "../game_base.h"
-#include "../game_cl_base.h"
-#include "../xr_level_controller.h"
+#include "Actor.h"
+#include "Silencer.h"
+#include "Scope.h"
+#include "GrenadeLauncher.h"
+#include "Artefact.h"
+#include "eatable_item.h"
+#include "BottleItem.h"
+#include "WeaponMagazined.h"
+#include "Inventory.h"
+#include "game_base.h"
+#include "game_cl_base.h"
+#include "xr_level_controller.h"
 #include "UICellItem.h"
 #include "UIListBoxItem.h"
-#include "../CustomOutfit.h"
-#include "../UICursor.h"
+#include "CustomOutfit.h"
+#include "UICursor.h"
 
 
 void CUIInventoryWnd::EatItem(PIItem itm)
@@ -32,8 +32,8 @@ void CUIInventoryWnd::EatItem(PIItem itm)
 	PlaySnd									(eInvItemUse);
 }
 
-#include "../Medkit.h"
-#include "../Antirad.h"
+#include "Medkit.h"
+#include "Antirad.h"
 void CUIInventoryWnd::ActivatePropertiesBox()
 {
 	// Флаг-признак для невлючения пункта контекстного меню: Dreess Outfit, если костюм уже надет

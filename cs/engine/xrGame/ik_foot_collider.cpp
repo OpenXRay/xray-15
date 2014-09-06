@@ -1,22 +1,17 @@
-#include	"stdafx.h"
-#include	"ik_foot_collider.h"
-
-#include "../xrEngine/gamemtllib.h"
-#include "../xrEngine/cl_intersect.h"
-#include "../include/xrrender/Kinematics.h"
-
+#include "stdafx.h"
+#include "ik_foot_collider.h"
+#include "xrEngine/gamemtllib.h"
+#include "xrEngine/cl_intersect.h"
+#include "Include/xrRender/Kinematics.h"
 #include "Level.h"
 #include "GameObject.h"
 #include "entity_alive.h"
-
 #include "ode_include.h"
 #include "MathUtils.h"
-
 #include "ik_collide_data.h"
 
-
 #ifdef DEBUG
-#include "PHDebug.h"
+    #include "PHDebug.h"
 #endif
 
 ik_foot_collider::ik_foot_collider()

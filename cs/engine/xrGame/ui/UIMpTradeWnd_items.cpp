@@ -1,15 +1,14 @@
 #include "stdafx.h"
 #include "UIMpTradeWnd.h"
-#include "../inventory_item.h"
-#include "../PhysicsShellHolder.h"
+#include "inventory_item.h"
+#include "PhysicsShellHolder.h"
 #include "object_broker.h"
 #include "UICellItem.h"
 #include "UIDragDropListEx.h"
-#include "../string_table.h"
+#include "string_table.h"
 #include "UIMpItemsStoreWnd.h"
-
-#include "../Weapon.h"
-#include "../WeaponMagazinedWGrenade.h"
+#include "Weapon.h"
+#include "WeaponMagazinedWGrenade.h"
 #include "UICellCustomItems.h"
 
 extern "C"
@@ -886,7 +885,7 @@ void CUIMpTradeWnd::DumpPreset(ETradePreset idx)
 }
 
 #include <dinput.h>
-#include "../HUDManager.h"
+#include "HUDManager.h"
 void CUICellItemTradeMenuDraw::OnDraw(CUICellItem* cell)
 {
 	Fvector2							pos;

@@ -2,12 +2,12 @@
 #include "telewhirlwind.h"
 #include "PhysicsShell.h"
 #include "PhysicsShellHolder.h"
-#include "level.h"
+#include "Level.h"
 #include "hit.h"
 #include "phdestroyable.h"
 #include "xrmessages.h"
-#include "../Include/xrRender/Kinematics.h"
-#include "../Include/xrRender/KinematicsAnimated.h"
+#include "Include/xrRender/Kinematics.h"
+#include "Include/xrRender/KinematicsAnimated.h"
 #include "PHWorld.h"
 CTeleWhirlwind ::CTeleWhirlwind () 
 {

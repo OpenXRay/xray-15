@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../ai_monster_squad.h"
-#include "../ai_monster_squad_manager.h"
+#include "AI/Monsters/ai_monster_squad.h"
+#include "AI/Monsters/ai_monster_squad_manager.h"
 
 #define TEMPLATE_SPECIALIZATION template <\
 	typename _Object\

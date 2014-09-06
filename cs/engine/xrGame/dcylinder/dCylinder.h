@@ -2,7 +2,7 @@
 #ifndef dCylinder_h
 #define dCylinder_h
 
-#include "../ode_include.h"
+#include "ode_include.h"
 
 struct dxCylinder;
 extern int dCylinderClassUser;

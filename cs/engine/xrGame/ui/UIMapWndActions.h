@@ -1,6 +1,6 @@
 #pragma once
-#include "../action_planner.h"
-#include "../property_evaluator_const.h"
+#include "action_planner.h"
+#include "property_evaluator_const.h"
 
 class CUIMapWnd;
 class CUICustomMap;

@@ -20,14 +20,14 @@
 #include "UIFrameLineWnd.h"
 #include "UIHint.h"
 
-#include "../GameTaskDefs.h"
-#include "../gametask.h"
-#include "../map_location.h"
+#include "GameTaskDefs.h"
+#include "GameTask.h"
+#include "map_location.h"
 #include "UIInventoryUtilities.h"
-#include "../string_table.h"
-#include "../level.h"
-#include "../gametaskmanager.h"
-#include "../actor.h"
+#include "string_table.h"
+#include "Level.h"
+#include "GametaskManager.h"
+#include "Actor.h"
 
 
 UISecondTaskWnd::UISecondTaskWnd()

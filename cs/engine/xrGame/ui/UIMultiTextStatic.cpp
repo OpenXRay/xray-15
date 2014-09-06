@@ -9,7 +9,7 @@
 
 #include "stdafx.h"
 #include "UIMultiTextStatic.h"
-#include "../../xrEngine/CustomHUD.h"
+#include <xrEngine/CustomHUD.h>
 
 //////////////////////////////////////////////////////////////////////////
 CUIMultiTextStatic::CUIMultiTextStatic				()
@@ -121,7 +121,7 @@ void CUIMultiTextStatic::SPh::SetText(const char *fmt, ...)
 	}*/
 }
 
-#include "../string_table.h"
+#include "string_table.h"
 
 void CUICaption::addCustomMessage(const shared_str& msg_name, float x, float y, float font_size, 
 								  CGameFont *pFont, CGameFont::EAligment al, u32 color, LPCSTR def_str)

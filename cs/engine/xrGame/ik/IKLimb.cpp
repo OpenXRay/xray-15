@@ -1,23 +1,17 @@
 #include "stdafx.h"
 #include "IKLimb.h"
-
 #include <boost/noncopyable.hpp>
-
-#include "../../include/xrrender/Kinematics.h"
-
+#include "Include/xrRender/Kinematics.h"
 #include "gameobject.h"
-
-#include "../game_object_space.h"
-#include "../ik_anim_state.h"
-
-#include "../ode_include.h"
-#include "../MathUtils.h"
-#include "../matrix_utils.h"
-#include "../pose_extrapolation.h"
+#include "game_object_space.h"
+#include "ik_anim_state.h"
+#include "ode_include.h"
+#include "MathUtils.h"
+#include "matrix_utils.h"
+#include "pose_extrapolation.h"
 #ifdef DEBUG
-#include "../PHDebug.h"
+    #include "PHDebug.h"
 #endif
-
 
 extern int	ik_allign_free_foot;
 

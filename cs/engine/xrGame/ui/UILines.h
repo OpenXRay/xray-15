@@ -9,7 +9,7 @@
 #pragma once
 
 #include "UILine.h"
-#include "../UI.h"
+#include "UI.h"
 #include "uiabstract.h"
 
 class CUILines : public IUITextControl,

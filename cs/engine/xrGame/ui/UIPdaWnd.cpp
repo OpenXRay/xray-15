@@ -1,14 +1,14 @@
 #include "stdafx.h"
 #include "UIPdaWnd.h"
-#include "../Pda.h"
+#include "PDA.h"
 
 #include "xrUIXmlParser.h"
 #include "UIXmlInit.h"
 #include "UIInventoryUtilities.h"
 
-#include "../HUDManager.h"
-#include "../level.h"
-#include "../game_cl_base.h"
+#include "HUDManager.h"
+#include "Level.h"
+#include "game_cl_base.h"
 
 #include "UIStatic.h"
 #include "UIFrameWindow.h"

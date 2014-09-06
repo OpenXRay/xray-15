@@ -10,7 +10,7 @@
 
 #include "script_export_macroses.h"
 #include "xrEProps.h"
-#include "ai_space.h"
+#include "ai_space.h" // xrSE_Factory/ai_space.h or xrGame/ai_space.h
 #include "script_engine.h"
 #include "luabind/error.hpp"
 

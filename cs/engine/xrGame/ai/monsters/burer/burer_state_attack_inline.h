@@ -3,8 +3,8 @@
 #include "burer_state_attack_tele.h"
 #include "burer_state_attack_gravi.h"
 #include "burer_state_attack_melee.h"
-#include "../states/state_look_point.h"
-#include "../states/state_move_to_restrictor.h"
+#include "AI/Monsters/States/state_look_point.h"
+#include "AI/Monsters/States/state_move_to_restrictor.h"
 #include "burer_state_attack_run_around.h"
 
 #define GRAVI_PERCENT		80

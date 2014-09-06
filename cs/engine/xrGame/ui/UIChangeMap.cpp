@@ -5,15 +5,14 @@
 #include "UI3tButton.h"
 #include "UIListBox.h"
 #include "UIListBoxItem.h"
-#include "../level.h"
-#include "../game_cl_teamdeathmatch.h"
-#include "../../xrEngine/xr_ioconsole.h"
+#include "Level.h"
+#include "game_cl_teamdeathmatch.h"
+#include "xrEngine/xr_IOConsole.h"
 #include "UIMapList.h"
 #include "CExtraContentFilter.h"
-
 #include "object_broker.h"
-#include "../UIGameCustom.h"
-#include "../UIDialogHolder.h"
+#include "UIGameCustom.h"
+#include "UIDialogHolder.h"
 
 xr_token	game_types		[];
 
@@ -142,7 +141,7 @@ void CUIChangeMap::OnBtnOk()
 		GetHolder()->StartStopMenu	(this, true);
 	}
 }
-#include "../string_table.h"
+#include "string_table.h"
 void CUIChangeMap::FillUpList()
 {
 	lst->Clear				();

@@ -8,10 +8,10 @@
 #include "pch_script.h"
 #include "UIActorMenu.h"
 
-#include "../actor.h"
-#include "../inventory_item.h"
-#include "../ai_space.h"
-#include "../../xrServerEntities/script_engine.h"
+#include "Actor.h"
+#include "inventory_item.h"
+#include "ai_space.h"
+#include "xrServerEntities/script_engine.h"
 
 using namespace luabind;
 

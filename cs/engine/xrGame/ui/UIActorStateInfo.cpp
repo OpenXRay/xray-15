@@ -19,16 +19,16 @@
 #include "ui_arrow.h"
 #include "UIHudStatesWnd.h"
 
-#include "../Level.h"
-#include "../location_manager.h"
-#include "../player_hud.h"
-#include "../hudmanager.h"
+#include "Level.h"
+#include "location_manager.h"
+#include "player_hud.h"
+#include "HUDManager.h"
 #include "UIMainIngameWnd.h"
 
-#include "../Actor.h"
-#include "../ActorCondition.h"
-#include "../CustomOutfit.h"
-#include "../string_table.h"
+#include "Actor.h"
+#include "ActorCondition.h"
+#include "CustomOutfit.h"
+#include "string_table.h"
 
 ui_actor_state_wnd::ui_actor_state_wnd()
 {

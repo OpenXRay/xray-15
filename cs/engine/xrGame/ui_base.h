@@ -6,8 +6,8 @@
 struct CFontManager;
 class CUICursor;
 
-#include "../Include/xrRender/UIRender.h"
-#include "../Include/xrRender/FactoryPtr.h"
+#include "Include/xrRender/UIRender.h"
+#include "Include/xrRender/FactoryPtr.h"
 
 #include "ui_defs.h"
 

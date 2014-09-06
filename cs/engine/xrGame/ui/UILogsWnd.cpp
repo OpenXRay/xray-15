@@ -18,13 +18,13 @@
 #include "UICharacterInfo.h"
 #include "UIInventoryUtilities.h"
 
-#include "../actor.h"
-#include "../game_news.h"
-#include "../alife_time_manager.h"
-#include "../alife_registry_wrappers.h"
-#include "../string_table.h"
+#include "Actor.h"
+#include "game_news.h"
+#include "alife_time_manager.h"
+#include "alife_registry_wrappers.h"
+#include "string_table.h"
 #include "UINewsItemWnd.h"
-#include "../../xrEngine/xr_input.h"
+#include "xrEngine/xr_input.h"
 
 
 #define  PDA_LOGS_XML		"pda_logs.xml"

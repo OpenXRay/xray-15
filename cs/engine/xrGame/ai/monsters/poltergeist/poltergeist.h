@@ -1,8 +1,8 @@
 #pragma once
-#include "../BaseMonster/base_monster.h"
-#include "../telekinesis.h"
-#include "../energy_holder.h"
-#include "../../../../xrServerEntities/script_export_space.h"
+#include "AI/Monsters/BaseMonster/base_monster.h"
+#include "AI/Monsters/telekinesis.h"
+#include "AI/Monsters/energy_holder.h"
+#include "xrServerEntities/script_export_space.h"
 
 class CPhysicsShellHolder;
 class CStateManagerPoltergeist;

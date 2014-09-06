@@ -1,14 +1,14 @@
 #include "stdafx.h"
 #ifdef DEBUG
 #include "ode_include.h"
-#include "../xrEngine/StatGraph.h"
+#include <xrEngine/StatGraph.h>
 #include "PHDebug.h"
 #endif
 #include "alife_space.h"
 #include "hit.h"
 #include "PHDestroyable.h"
 #include "car.h"
-#include "../Include/xrRender/Kinematics.h"
+#include "Include/xrRender/Kinematics.h"
 #include "MathUtils.h"
 #include "game_object_space.h"
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

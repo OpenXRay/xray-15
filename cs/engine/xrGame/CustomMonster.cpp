@@ -14,8 +14,8 @@
 #include "team_hierarchy_holder.h"
 #include "squad_hierarchy_holder.h"
 #include "group_hierarchy_holder.h"
-#include "customzone.h"
-#include "../Include/xrRender/Kinematics.h"
+#include "CustomZone.h"
+#include "Include/xrRender/Kinematics.h"
 #include "detail_path_manager.h"
 #include "memory_manager.h"
 #include "visual_memory_manager.h"
@@ -27,9 +27,9 @@
 #include "level_graph.h"
 #include "game_graph.h"
 #include "movement_manager.h"
-#include "entitycondition.h"
+#include "EntityCondition.h"
 #include "sound_player.h"
-#include "level.h"
+#include "Level.h"
 #include "level_debug.h"
 #include "material_manager.h"
 #include "sound_user_data_visitor.h"
@@ -41,14 +41,14 @@
 #include "ai/monsters/snork/snork.h"
 #include "ai/monsters/burer/burer.h"
 #include "GamePersistent.h"
-#include "actor.h"
+#include "Actor.h"
 #include "alife_simulator.h"
 #include "alife_object_registry.h"
 #include "client_spawn_manager.h"
 #include "moving_object.h"
 
 // Lain: added
-#include "../xrEngine/IGame_Level.h"
+#include <xrEngine/IGame_Level.h>
 
 #ifdef DEBUG
 #	include "debug_renderer.h"

@@ -30,7 +30,7 @@ struct						dSurfaceParameters;
 // defs
 
 #ifdef DEBUG
-	#include "../xrEngine/StatGraph.h"
+	#include <xrEngine/StatGraph.h>
 	#include "PHDebug.h"
 #endif
 

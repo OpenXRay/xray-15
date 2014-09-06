@@ -4,7 +4,7 @@
 #include "PHSynchronize.h"
 #include "PHDisabling.h"
 
-#include "../xrEngine/iphysicsshell.h"
+#include <xrEngine/iphysicsshell.h>
 
 
 class CPhysicsShellHolder;

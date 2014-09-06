@@ -1,10 +1,8 @@
 #pragma once
 
 #include "CustomZone.h"
-//#include "../Include/xrRender/KinematicsAnimated.h"
-#include "../Include/xrRender/KinematicsAnimated.h"
+#include "Include/xrRender/KinematicsAnimated.h"
 #include "ZoneVisual.h"
-
 #include "script_export_space.h"
 
 class CHairsZone : public CVisualZone {

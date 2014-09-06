@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "actor.h"
+#include "Actor.h"
 #include "weapon.h"
 #include "mercuryball.h"
 #include "inventory.h"
@@ -7,8 +7,8 @@
 #include "character_info.h"
 #include "xr_level_controller.h"
 #include "UsableScriptObject.h"
-#include "customzone.h"
-#include "../xrEngine/gamemtllib.h"
+#include "CustomZone.h"
+#include "xrEngine/GameMtlLib.h"
 #include "ui/UIMainIngameWnd.h"
 #include "Grenade.h"
 #include "WeaponRPG7.h"
@@ -145,7 +145,7 @@ void CActor::PickupModeUpdate()
 		if (CanPickItem(frustum,Device.vCameraPosition,*it)) PickupInfoDraw(*it);
 }
 
-#include "../xrEngine/CameraBase.h"
+#include "xrEngine/CameraBase.h"
 BOOL	g_b_COD_PickUpMode = TRUE;
 void	CActor::PickupModeUpdate_COD	()
 {

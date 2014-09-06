@@ -8,8 +8,8 @@
 
 #include "stdafx.h"
 #include "smart_cover_object.h"
-#include "../xrServerEntities/xrServer_Objects_ALife.h"
-#include "level.h"
+#include "xrServerEntities/xrServer_objects_ALife.h"
+#include "Level.h"
 #include "debug_renderer.h"
 #include "ai_space.h"
 #include "cover_manager.h"

@@ -4,9 +4,9 @@
 #include "dTriColliderCommon.h"
 #include "dTriColliderMath.h"
 #include "__aabb_tri.h"
-#include "../MathUtils.h"
+#include "MathUtils.h"
 #ifdef DEBUG
-#include "../PHDebug.h"
+    #include "PHDebug.h"
 #endif
 
 

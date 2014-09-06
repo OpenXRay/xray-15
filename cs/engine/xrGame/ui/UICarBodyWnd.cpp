@@ -4,29 +4,29 @@
 #include "UICarBodyWnd.h"
 #include "xrUIXmlParser.h"
 #include "UIXmlInit.h"
-#include "../HUDManager.h"
-#include "../level.h"
+#include "HUDManager.h"
+#include "Level.h"
 #include "UICharacterInfo.h"
 #include "UIDragDropListEx.h"
 #include "UIFrameWindow.h"
 #include "UIItemInfo.h"
 #include "UIPropertiesBox.h"
-#include "../ai/monsters/BaseMonster/base_monster.h"
-#include "../inventory.h"
+#include "AI/Monsters/BaseMonster/base_monster.h"
+#include "Inventory.h"
 #include "UIInventoryUtilities.h"
 #include "UICellItem.h"
 #include "UICellItemFactory.h"
-#include "../WeaponMagazined.h"
-#include "../Actor.h"
-#include "../eatable_item.h"
-#include "../alife_registry_wrappers.h"
+#include "WeaponMagazined.h"
+#include "Actor.h"
+#include "eatable_item.h"
+#include "alife_registry_wrappers.h"
 #include "UI3tButton.h"
 #include "UIListBoxItem.h"
-#include "../InventoryBox.h"
-#include "../game_object_space.h"
-#include "../script_callback_ex.h"
-#include "../script_game_object.h"
-#include "../BottleItem.h"
+#include "InventoryBox.h"
+#include "game_object_space.h"
+#include "script_callback_ex.h"
+#include "script_game_object.h"
+#include "BottleItem.h"
 
 void move_item (u16 from_id, u16 to_id, u16 what_id);
 
@@ -385,7 +385,7 @@ void CUICarBodyWnd::TakeAll()
 }
 
 
-#include "../xr_level_controller.h"
+#include "xr_level_controller.h"
 
 bool CUICarBodyWnd::OnKeyboard(int dik, EUIMessages keyboard_action)
 {
@@ -399,8 +399,8 @@ bool CUICarBodyWnd::OnKeyboard(int dik, EUIMessages keyboard_action)
 	return false;
 }
 
-#include "../Medkit.h"
-#include "../Antirad.h"
+#include "Medkit.h"
+#include "Antirad.h"
 
 void CUICarBodyWnd::ActivatePropertiesBox()
 {

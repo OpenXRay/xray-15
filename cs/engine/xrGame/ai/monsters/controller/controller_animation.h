@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../control_animation_base.h"
-#include "../ai_monster_defs.h"
-#include "../../../../Include/xrRender/KinematicsAnimated.h"
+#include "AI/Monsters/control_animation_base.h"
+#include "AI/Monsters/ai_monster_defs.h"
+#include "Include/xrRender/KinematicsAnimated.h"
 
 class CController;
 

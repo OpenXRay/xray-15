@@ -2,11 +2,11 @@
 #include "game_sv_deathmatch.h"
 #include "HUDmanager.h"
 #include "xrserver_objects_alife_monsters.h"
-#include "level.h"
+#include "Level.h"
 #include "xrserver.h"
 #include "Inventory.h"
 #include "CustomZone.h"
-#include "../xrEngine/igame_persistent.h"
+#include "xrEngine/IGame_Persistent.h"
 #include "Actor.h"
 #include "game_cl_base.h"
 #include "xr_level_controller.h"
@@ -20,7 +20,7 @@
 
 //#define DELAYED_ROUND_TIME	7000
 #include "ui\UIBuyWndShared.h"
-#include "../xrEngine/xr_ioconsole.h"
+#include "xrEngine/xr_IOConsole.h"
 
 #define UNBUYABLESLOT		20
 

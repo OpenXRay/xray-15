@@ -24,7 +24,7 @@
 #include "ai/stalker/ai_stalker.h"
 #include "xrServer_Objects_ALife_Monsters.h"
 #include "alife_human_brain.h"
-#include "actor.h"
+#include "Actor.h"
 #include "actor_memory.h"
 #include "stalker_movement_manager_smart_cover.h"
 #include "agent_manager.h"

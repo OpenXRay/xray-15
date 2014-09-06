@@ -2,11 +2,11 @@
 #include "player_hud.h"
 #include "HudItem.h"
 #include "ui_base.h"
-#include "actor.h"
+#include "Actor.h"
 #include "physic_item.h"
 #include "static_cast_checked.hpp"
 #include "actoreffector.h"
-#include "../xrEngine/IGame_Persistent.h"
+#include "xrEngine/IGame_Persistent.h"
 
 player_hud* g_player_hud = NULL;
 Fvector _ancor_pos;
@@ -503,7 +503,7 @@ void player_hud::render_hud()
 }
 
 
-#include "../xrEngine/motion.h"
+#include "xrEngine/motion.h"
 
 u32 player_hud::motion_length(const shared_str& anim_name, const shared_str& hud_name, const CMotionDef*& md)
 {

@@ -1,15 +1,10 @@
-#include	"stdafx.h"
-
-#include	"interactive_animation.h"
-
-#include	"physicsshell.h"
-#include	"ExtendedGeom.h"
-#include	"mathutils.h"
-#include	"phobject.h"
-
-#include	"../Include/xrRender/KinematicsAnimated.h"
-
-
+#include "stdafx.h"
+#include "interactive_animation.h"
+#include "PhysicsShell.h"
+#include "ExtendedGeom.h"
+#include "MathUtils.h"
+#include "PHObject.h"
+#include "Include/xrRender/KinematicsAnimated.h"
 
 interactive_animation::interactive_animation(  CGameObject* O, CBlend* b ) :
 	physics_shell_animated( O, false ), blend( b )

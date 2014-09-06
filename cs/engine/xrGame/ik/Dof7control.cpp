@@ -30,7 +30,7 @@
   MODIFICATIONS.
 
  */
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "dof7control.h"
 #include "mathTrig.h" 
 

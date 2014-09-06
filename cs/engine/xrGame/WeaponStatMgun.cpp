@@ -1,16 +1,16 @@
 #include "stdafx.h"
 #include "WeaponStatMgun.h"
-#include "../Include/xrRender/Kinematics.h"
+#include "Include/xrRender/Kinematics.h"
 #include "PhysicsShell.h"
 #include "weaponAmmo.h"
 #include "object_broker.h"
 #include "ai_sounds.h"
-#include "actor.h"
+#include "Actor.h"
 #include "actorEffector.h"
 #include "camerafirsteye.h"
 #include "xr_level_controller.h"
 #include "game_object_space.h"
-#include "level.h"
+#include "Level.h"
 
 void 	CWeaponStatMgun::BoneCallbackX		(CBoneInstance *B)
 {

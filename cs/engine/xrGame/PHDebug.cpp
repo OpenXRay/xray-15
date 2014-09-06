@@ -2,7 +2,7 @@
 #ifdef DEBUG
 #include "physics.h"
 #include "MathUtils.h"
-#include "../xrEngine/StatGraph.h"
+#include "xrEngine/StatGraph.h"
 #include "PHDebug.h"
 #include "PHObject.h"
 #include "ExtendedGeom.h"
@@ -12,10 +12,10 @@
 #include "debug_renderer.h"
 #include "physicsshellholder.h"
 
-#include "../Include/xrRender/Kinematics.h"
-#include "../Include/xrRender/KinematicsAnimated.h"
-#include "../xrEngine/bone.h"
-#include "../xrEngine/iphdebug.h"
+#include "Include/xrRender/Kinematics.h"
+#include "Include/xrRender/KinematicsAnimated.h"
+#include "xrEngine/bone.h"
+#include "xrEngine/iphdebug.h"
 #include "phelement.h"
 
 Flags32		ph_dbg_draw_mask						;

@@ -8,11 +8,11 @@
 // copyright 2005 GSC Game World
 
 
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "UITextureMaster.h"
 #include "uiabstract.h"
 #include "xrUIXmlParser.h"
-#include "../Include/xrRender/UIShader.h"
+#include "Include/xrRender/UIShader.h"
 
 xr_map<shared_str, TEX_INFO>	CUITextureMaster::m_textures;
 

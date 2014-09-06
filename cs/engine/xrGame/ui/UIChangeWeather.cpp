@@ -2,10 +2,9 @@
 #include "UIChangeWeather.h"
 #include "UIXmlInit.h"
 #include "UI3tButton.h"
-#include "../game_cl_teamdeathmatch.h"
+#include "game_cl_teamdeathmatch.h"
 #include "UIKickPlayer.h"
 #include "UIChangeMap.h"
-//#include "UIMapList.h"
 
 CUIChangeWeather::CUIChangeWeather(){
 	bkgrnd = xr_new<CUIStatic>(); 
@@ -87,7 +86,7 @@ bool CUIChangeWeather::OnKeyboard(int dik, EUIMessages keyboard_action){
 	return false;
 }
 
-#include "../../xrEngine/xr_ioconsole.h"
+#include "xrEngine/xr_IOConsole.h"
 
 void CUIChangeWeather::OnBtn(int i){
 	game_cl_mp* game		= smart_cast<game_cl_mp*>(&Game());
@@ -103,7 +102,7 @@ void CUIChangeWeather::OnBtnCancel(){
 }
 
 #include "UIMapList.h"
-#include "../UIGameCustom.h"
+#include "UIGameCustom.h"
 
 void CUIChangeWeather::ParseWeather()
 {

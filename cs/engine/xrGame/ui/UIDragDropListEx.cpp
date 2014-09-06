@@ -4,8 +4,8 @@
 #include "object_broker.h"
 #include "UICellItem.h"
 
-#include "../Include/xrRender/UIRender.h"
-#include "../Include/xrRender/UIShader.h"
+#include "Include/xrRender/UIRender.h"
+#include "Include/xrRender/UIShader.h"
 
 CUIDragItem* CUIDragDropListEx::m_drag_item = NULL;
 
@@ -291,7 +291,7 @@ void CUIDragDropListEx::Compact()
 }
 
 
-#include "../HUDManager.h"
+#include "HUDManager.h"
 void CUIDragDropListEx::Draw()
 {
 	inherited::Draw				();

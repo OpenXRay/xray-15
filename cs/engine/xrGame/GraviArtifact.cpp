@@ -7,10 +7,10 @@
 #include "stdafx.h"
 #include "GraviArtifact.h"
 #include "PhysicsShell.h"
-#include "level.h"
+#include "Level.h"
 #include "xrmessages.h"
 #include "game_cl_base.h"
-#include "../Include/xrRender/Kinematics.h"
+#include "Include/xrRender/Kinematics.h"
 #include "phworld.h"
 extern CPHWorld*	ph_world;
 #define CHOOSE_MAX(x,inst_x,y,inst_y,z,inst_z)\

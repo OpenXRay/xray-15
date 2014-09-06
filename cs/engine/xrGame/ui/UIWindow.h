@@ -1,5 +1,5 @@
 #pragma once
-#include "../xr_level_controller.h"
+#include "xr_level_controller.h"
 class CUIWindow;
 
 struct _12b	{ DWORD _[3]; };
@@ -62,7 +62,7 @@ class	ui_list 		: public std::list<T,uialloc<T> >{ public: u32 size() const {ret
 //////////////////////////////////////////////////////////////////////////
 
 #include "UIMessages.h"
-#include "../../xrServerEntities/script_export_space.h"
+#include "xrServerEntities/script_export_space.h"
 #include "uiabstract.h"
 
 

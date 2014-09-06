@@ -3,32 +3,32 @@
 /*
 #include "xrUIXmlParser.h"
 #include "UIXmlInit.h"
-#include "../string_table.h"
+#include "string_table.h"
 
-#include "../actor.h"
-#include "../uigamesp.h"
-#include "../hudmanager.h"
+#include "Actor.h"
+#include "UIGameSP.h"
+#include "HUDManager.h"
 
-#include "../CustomOutfit.h"
+#include "CustomOutfit.h"
 
-#include "../weapon.h"
+#include "Weapon.h"
 
-#include "../../xrServerEntities/script_process.h"
+#include <xrServerEntities/script_process.h>
 
-#include "../eatable_item.h"
-#include "../inventory.h"
+#include "eatable_item.h"
+#include "Inventory.h"
 
 #include "UIInventoryUtilities.h"
 using namespace InventoryUtilities;
 
 
-#include "../InfoPortion.h"
-#include "../level.h"
+#include "InfoPortion.h"
+#include "Level.h"
 #include "game_base_space.h"
-#include "../entitycondition.h"
+#include "EntityCondition.h"
 
-#include "../game_cl_base.h"
-#include "../ActorCondition.h"
+#include "game_cl_base.h"
+#include "ActorCondition.h"
 #include "UIDragDropListEx.h"
 #include "UIOutfitSlot.h"
 #include "UI3tButton.h"
@@ -460,7 +460,7 @@ void CUIInventoryWnd::BindDragDropListEnents(CUIDragDropListEx* lst)
 }
 
 
-#include "../xr_level_controller.h"
+#include "xr_level_controller.h"
 #include <dinput.h>
 
 bool CUIInventoryWnd::OnKeyboard(int dik, EUIMessages keyboard_action)

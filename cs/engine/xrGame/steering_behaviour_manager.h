@@ -14,10 +14,10 @@
 
 class CAI_Rat;
 
-// #include "../../../steering_behaviour_manager.h"
-// #include "../../../steering_behaviour_cohesion.h"
-// #include "../../../steering_behaviour_alignment.h"
-// #include "../../../steering_behaviour_separation.h"	private boost::noncopyable,
+// #include "steering_behaviour_manager.h"
+// #include "steering_behaviour_cohesion.h"
+// #include "steering_behaviour_alignment.h"
+// #include "steering_behaviour_separation.h"	private boost::noncopyable,
 	private debug::make_final<manager>,
 	private boost::noncopyable 
 {

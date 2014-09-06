@@ -1,12 +1,12 @@
 #include "stdafx.h"
 
-#include "actor.h"
+#include "Actor.h"
 #include "inventory.h"
 #include "weapon.h"
-#include "../xrEngine/CameraBase.h"
+#include "xrEngine/CameraBase.h"
 #include "xrMessages.h"
 
-#include "level.h"
+#include "Level.h"
 #include "HUDManager.h"
 #include "UI.h"
 #include "string_table.h"

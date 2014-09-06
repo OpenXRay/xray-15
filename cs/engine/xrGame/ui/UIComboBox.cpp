@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "UIComboBox.h"
 #include "UITextureMaster.h"
 #include "UIScrollBar.h"
@@ -116,7 +116,7 @@ void CUIComboBox::enable_id(int id)
 		m_disabled.erase(it);
 }
 
-#include "../string_table.h"
+#include "string_table.h"
 void CUIComboBox::SetCurrentValue()
 {
 	m_list_box.Clear		();

@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "UIEncyclopediaArticleWnd.h"
 #include "UIStatic.h"
-#include "../encyclopedia_article.h"
+#include "encyclopedia_article.h"
 #include "UIXmlInit.h"
-#include "../string_table.h"
-#include "../../Include/xrRender/UIShader.h"
+#include "string_table.h"
+#include "Include/xrRender/UIShader.h"
 
 CUIEncyclopediaArticleWnd::CUIEncyclopediaArticleWnd	()
 :m_Article(NULL)

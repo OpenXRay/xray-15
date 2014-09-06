@@ -11,7 +11,7 @@
 #include "ai/stalker/ai_stalker.h"
 #include "script_game_object.h"
 #include "stalker_decision_space.h"
-#include "customzone.h"
+#include "CustomZone.h"
 #include "space_restriction_manager.h"
 #include "space_restriction_bridge.h"
 #include "space_restriction_base.h"

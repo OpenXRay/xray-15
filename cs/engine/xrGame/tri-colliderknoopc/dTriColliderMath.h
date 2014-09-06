@@ -1,8 +1,8 @@
 #ifndef D_TRI_COLLIDER_MATH_H
 #define D_TRI_COLLIDER_MATH_H
 #include "__aabb_tri.h"
-#include "../ode_include.h"
-#include "../mathutils.h"
+#include "ode_include.h"
+#include "MathUtils.h"
 #include "dcTriangle.h"
 
 inline bool  TriContainPoint(const dReal* v0,const dReal* v1,const dReal* v2,

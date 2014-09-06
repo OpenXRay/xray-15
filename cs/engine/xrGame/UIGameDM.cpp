@@ -8,7 +8,7 @@
 #include "ui/UIPdaWnd.h"
 #include "ui/UIMapDesc.h"
 #include "HUDManager.h"
-#include "level.h"
+#include "Level.h"
 #include "game_cl_base.h"
 #include "Spectator.h"
 #include "Inventory.h"

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 /*
 #include "UITextVote.h"
 #include "UIVotingCategory.h"
@@ -7,10 +7,10 @@
 #include "UIEditboxEx.h"
 
 //#include "UIMapList.h"
-#include "../level.h"
-//#include "../game_cl_base.h"
-#include "../game_cl_teamdeathmatch.h"
-#include "../../xrEngine/xr_ioconsole.h"
+#include "Level.h"
+//#include "game_cl_base.h"
+#include "game_cl_teamdeathmatch.h"
+#include "xrEngine/xr_IOConsole.h"
 
 
 

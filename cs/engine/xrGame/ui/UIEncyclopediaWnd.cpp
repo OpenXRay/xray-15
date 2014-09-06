@@ -6,7 +6,7 @@
 //  Encyclopedia window
 //=============================================================================
 
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "UIEncyclopediaWnd.h"
 /*#include "UIXmlInit.h"
 #include "UIFrameWindow.h"
@@ -16,9 +16,9 @@
 #include "UIScrollView.h"
 #include "UITreeViewItem.h"
 #include "UIEncyclopediaArticleWnd.h"
-#include "../encyclopedia_article.h"
-#include "../alife_registry_wrappers.h"
-#include "../actor.h"
+#include "encyclopedia_article.h"
+#include "alife_registry_wrappers.h"
+#include "Actor.h"
 #include "object_broker.h"
 
 #define				ENCYCLOPEDIA_DIALOG_XML		"encyclopedia.xml"
@@ -91,7 +91,7 @@ void CUIEncyclopediaWnd::Init()
 	xml_init.InitAutoStatic(uiXml, "right_auto_static", UIEncyclopediaIdxBkg);
 }
 
-#include "../string_table.h"
+#include "string_table.h"
 void CUIEncyclopediaWnd::SendMessage(CUIWindow *pWnd, s16 msg, void* pData)
 {
 	if (UIIdxList == pWnd && LIST_ITEM_CLICKED == msg)

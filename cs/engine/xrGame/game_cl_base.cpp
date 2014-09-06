@@ -1,7 +1,7 @@
 #include "pch_script.h"
 #include "hudmanager.h"
 #include "game_cl_base.h"
-#include "level.h"
+#include "Level.h"
 #include "GamePersistent.h"
 #include "UIGameCustom.h"
 #include "script_engine.h"

@@ -1,9 +1,9 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "UIBuyWeaponTab.h"
 #include "UITabButtonMP.h"
-#include "../string_table.h"
-#include "../HUDManager.h"
-#include "../UI.h"
+#include "string_table.h"
+#include "HUDManager.h"
+#include "UI.h"
 #include "UIXmlInit.h"
 
 

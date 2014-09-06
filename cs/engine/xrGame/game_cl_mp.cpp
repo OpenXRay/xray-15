@@ -5,7 +5,7 @@
 #include "GameObject.h"
 #include "Actor.h"
 #include "ExplosiveItem.h"
-#include "level.h"
+#include "Level.h"
 #include "hudmanager.h"
 #include "ui/UIChatWnd.h"
 #include "ui/UIGameLog.h"
@@ -24,17 +24,17 @@
 #include "ui/UIVote.h"
 #include "ui/UIMessageBoxEx.h"
 #include "string_table.h"
-#include "../xrEngine/IGame_Persistent.h"
-#include "../Include/xrRender/UIShader.h"
+#include "xrEngine/IGame_Persistent.h"
+#include "Include/xrRender/UIShader.h"
 #include "clsid_game.h"
 #include "mainmenu.h"
 #include "WeaponKnife.h"
 #include "RegistryFuncs.h"
-#include "../xrGameSpy/xrGameSpy_MainDefs.h"
+#include <xrGameSpy/xrGameSpy_MainDefs.h>
 #include "file_transfer.h"
 #include "screenshot_server.h"
-#include "../xrCore/ppmd_compressor.h"
-#include "../xrCore/rt_compressor.h"
+#include <xrCore/ppmd_compressor.h>
+#include <xrCore/rt_compressor.h>
 
 #define KILLEVENT_ICONS "ui\\ui_hud_mp_icon_death"
 #define RADIATION_ICONS "ui\\ui_mn_radiations_hard"
@@ -45,7 +45,7 @@
 #define KILLEVENT_GRID_HEIGHT	64
 
 #include "game_cl_mp_snd_messages.h"
-#include "../3rd party/crypto/crypto.h"
+#include "crypto/crypto.h"
 #include "player_name_modifyer.h"
 
 BOOL g_draw_downloads = TRUE;

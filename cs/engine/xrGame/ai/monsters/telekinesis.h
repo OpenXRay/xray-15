@@ -1,10 +1,7 @@
 #pragma once
 
 #include "telekinetic_object.h"
-#include "../../PHObject.h"
-
-
-
+#include "PHObject.h"
 
 class CTelekinesis : public CPHUpdateObject {
 

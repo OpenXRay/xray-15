@@ -8,7 +8,7 @@
 #include "game_cl_base.h"
 #include "Level.h"
 #include "BoneProtections.h"
-#include "../Include/xrRender/Kinematics.h"
+#include "Include/xrRender/Kinematics.h"
 #include "player_hud.h"
 
 

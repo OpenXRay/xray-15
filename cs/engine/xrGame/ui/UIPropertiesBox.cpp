@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "UIPropertiesBox.h"
-#include "../hudmanager.h"
-#include "../level.h"
+#include "HUDManager.h"
+#include "Level.h"
 #include "UIListBoxItem.h"
 #include "UIXmlInit.h"
 

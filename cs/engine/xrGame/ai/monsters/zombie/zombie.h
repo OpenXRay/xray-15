@@ -1,9 +1,9 @@
 #pragma once
-#include "../BaseMonster/base_monster.h"
-#include "../controlled_entity.h"
-#include "../ai_monster_bones.h"
-#include "../anim_triple.h"
-#include "../../../../xrServerEntities/script_export_space.h"
+#include "AI/Monsters/BaseMonster/base_monster.h"
+#include "AI/Monsters/controlled_entity.h"
+#include "AI/Monsters/ai_monster_bones.h"
+#include "AI/Monsters/anim_triple.h"
+#include "xrServerEntities/script_export_space.h"
 
 #define FAKE_DEATH_TYPES_COUNT	4
 

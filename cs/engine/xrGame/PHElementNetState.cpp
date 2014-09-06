@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "physicsshell.h"
 #include "phinterpolation.h"
 #include "phelement.h"

@@ -7,8 +7,8 @@
 #include "weapon.h"
 #include "level_bullet_manager.h"
 #include "ai_space.h"
-#include "../xrEngine/gamemtllib.h"
-#include "level.h"
+#include "xrEngine/GameMtlLib.h"
+#include "Level.h"
 #include "string_table.h"
 
 #define BULLET_MANAGER_SECTION "bullet_manager"

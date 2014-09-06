@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "entity.h"
 #include "xrserver_objects.h"
-#include "level.h"
+#include "Level.h"
 #include "xrmessages.h"
 #include "game_cl_base.h"
 #include "net_queue.h"

@@ -3,7 +3,7 @@
 #include "game_cl_base.h"
 #include "script_export_space.h"
 #include "game_cl_mp_snd_messages.h"
-#include "../xrSound/Sound.h"
+#include <xrSound/Sound.h>
 #include "ui/UISpeechMenu.h"
 #include "Spectator.h"
 #include "file_transfer.h"

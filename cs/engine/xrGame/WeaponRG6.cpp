@@ -2,9 +2,9 @@
 #include "WeaponRG6.h"
 #include "entity.h"
 #include "explosiveRocket.h"
-#include "level.h"
+#include "Level.h"
 #include "MathUtils.h"
-#include "actor.h"
+#include "Actor.h"
 
 #ifdef DEBUG
 #	include "phdebug.h"

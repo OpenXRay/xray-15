@@ -1,14 +1,14 @@
 #include "stdafx.h"
-#include "../xrEngine/xr_ioconsole.h"
-#include "../xrEngine/xr_ioc_cmd.h"
-#include "level.h"
+#include "xrEngine/xr_IOConsole.h"
+#include <xrEngine/xr_ioc_cmd.h>
+#include "Level.h"
 #include "xrServer.h"
 #include "game_cl_base.h"
 #include "game_cl_mp.h"
-#include "actor.h"
+#include "Actor.h"
 #include "xrServer_Object_base.h"
 #include "RegistryFuncs.h"
-#include "gamepersistent.h"
+#include "GamePersistent.h"
 #include "MainMenu.h"
 #include "UIGameCustom.h"
 #include "game_sv_deathmatch.h"
@@ -17,7 +17,7 @@
 #include "date_time.h"
 #include "game_cl_base_weapon_usage_statistic.h"
 #include "string_table.h"
-#include "../xrGameSpy/xrGameSpy_MainDefs.h"
+#include <xrGameSpy/xrGameSpy_MainDefs.h>
 
 EGameIDs ParseStringToGameType(LPCSTR str);
 

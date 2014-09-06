@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #pragma hdrstop
 
-#include "actor.h"
-#include "../xrEngine/CameraBase.h"
+#include "Actor.h"
+#include "xrEngine/CameraBase.h"
 #include "ActorEffector.h"
 #include "CharacterPhysicsSupport.h"
 

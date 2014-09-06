@@ -3,7 +3,7 @@
 #include "hudmanager.h"
 #ifdef DEBUG
 #	include "ode_include.h"
-#	include "../xrEngine/StatGraph.h"
+#	include <xrEngine/StatGraph.h>
 #	include "PHDebug.h"
 #endif // DEBUG
 #include "alife_space.h"
@@ -29,7 +29,7 @@
 #include "Torch.h"
 
 // breakpoints
-#include "../xrEngine/xr_input.h"
+#include "xrEngine/xr_input.h"
 //
 #include "Actor.h"
 #include "ActorAnimation.h"
@@ -40,17 +40,17 @@
 #include "trade.h"
 #include "inventory.h"
 #include "Physics.h"
-#include "level.h"
+#include "Level.h"
 #include "GamePersistent.h"
 #include "game_cl_base.h"
 #include "game_cl_single.h"
 #include "xrmessages.h"
 #include "string_table.h"
 #include "usablescriptobject.h"
-#include "../xrEngine/cl_intersect.h"
+#include <xrEngine/cl_intersect.h>
 #include "ExtendedGeom.h"
 #include "alife_registry_wrappers.h"
-#include "../Include/xrRender/Kinematics.h"
+#include "Include/xrRender/Kinematics.h"
 #include "artefact.h"
 #include "CharacterPhysicsSupport.h"
 #include "material_manager.h"
@@ -66,7 +66,7 @@
 #include "location_manager.h"
 #include "player_hud.h"
 
-#include "../Include/xrRender/UIRender.h"
+#include "Include/xrRender/UIRender.h"
 
 #include "ai_object_location.h"
 

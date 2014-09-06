@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "uicustomitem.h"
 #include "hudmanager.h"
-#include "../Include/xrRender/UIRender.h"
+#include "Include/xrRender/UIRender.h"
 
 CUICustomItem::CUICustomItem()
 {    

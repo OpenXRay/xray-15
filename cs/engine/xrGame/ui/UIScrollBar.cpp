@@ -173,7 +173,7 @@ void CUIScrollBar::UpdateScrollBar()
 	ClampByViewRect();
 }
 
-#include "../uicursor.h"
+#include "UICursor.h"
 u32 last_hold_time =0;
 
 bool CUIScrollBar::OnKeyboardHold(int dik)

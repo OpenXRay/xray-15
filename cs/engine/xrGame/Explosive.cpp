@@ -14,15 +14,15 @@
 //для вызова статических функций поражения осколками
 #include "Weapon.h"
 
-#include "actor.h"
+#include "Actor.h"
 #include "actoreffector.h"
-#include "level.h"
+#include "Level.h"
 #include "level_bullet_manager.h"
 #include "xrmessages.h"
-#include "../xrEngine/gamemtllib.h"
+#include "xrEngine/GameMtlLib.h"
 
 #ifdef DEBUG
-#	include "../xrEngine/StatGraph.h"
+#	include <xrEngine/StatGraph.h>
 #	include "PHDebug.h"
 #endif
 
@@ -33,7 +33,7 @@
 #include "game_base_space.h"
 #include "profiler.h"
 
-#include "../Include/xrRender/Kinematics.h"
+#include "Include/xrRender/Kinematics.h"
 #define EFFECTOR_RADIUS 30.f
 const u16	TEST_RAYS_PER_OBJECT=5;
 const u16	BLASTED_OBJ_PROCESSED_PER_FRAME=3;

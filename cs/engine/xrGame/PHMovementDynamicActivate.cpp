@@ -7,7 +7,7 @@
 #include "MathUtils.h"
 #include "Physics.h"
 #include "Level.h"
-#include "../xrEngine/gamemtllib.h"
+#include "xrEngine/GameMtlLib.h"
 #include "PhysicsShellHolder.h"
 
 extern	class CPHWorld	*ph_world;

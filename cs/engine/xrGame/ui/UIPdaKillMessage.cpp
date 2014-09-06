@@ -6,10 +6,10 @@
 // 
 // Copyright 2005 GSC GameWorld
 
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "UIPdaKillMessage.h"
 #include "UIInventoryUtilities.h"
-#include "../Include/xrRender/UIShader.h"
+#include "Include/xrRender/UIShader.h"
 
 using namespace InventoryUtilities;
 

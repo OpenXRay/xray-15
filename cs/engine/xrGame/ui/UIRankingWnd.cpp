@@ -15,15 +15,15 @@
 #include "UIHelper.h"
 #include "UIInventoryUtilities.h"
 
-#include "../actor.h"
-#include "../ai_space.h"
-#include "../alife_simulator.h"
+#include "Actor.h"
+#include "ai_space.h"
+#include "alife_simulator.h"
 
-#include "../../xrServerEntities/script_engine.h"
-#include "../character_community.h"
-#include "../character_reputation.h"
-#include "../relation_registry.h"
-#include "../string_table.h"
+#include "xrServerEntities/script_engine.h"
+#include "character_community.h"
+#include "character_reputation.h"
+#include "relation_registry.h"
+#include "string_table.h"
 #include "UICharacterInfo.h"
 
 #define  PDA_RANKING_XML		"pda_ranking.xml"

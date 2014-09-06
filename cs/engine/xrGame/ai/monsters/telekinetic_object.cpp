@@ -1,11 +1,11 @@
 #include "stdafx.h"
-#include "../../physicsshellholder.h"
+#include "physicsshellholder.h"
 #include "telekinetic_object.h"
-#include "../../PhysicsShell.h"
-#include "../../PHInterpolation.h"
-#include "../../PHElement.h"
-#include "../../level.h"
-#include "../../gameobject.h"
+#include "PhysicsShell.h"
+#include "PHInterpolation.h"
+#include "PHElement.h"
+#include "Level.h"
+#include "gameobject.h"
 
 #define KEEP_IMPULSE_UPDATE 200
 #define FIRE_TIME			3000

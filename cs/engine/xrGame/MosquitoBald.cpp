@@ -2,7 +2,7 @@
 #include "mosquitobald.h"
 #include "hudmanager.h"
 #include "ParticlesObject.h"
-#include "level.h"
+#include "Level.h"
 #include "physicsshellholder.h"
 
 CMosquitoBald::CMosquitoBald(void) 

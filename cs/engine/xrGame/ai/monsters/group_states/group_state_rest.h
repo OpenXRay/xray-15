@@ -1,8 +1,8 @@
 #pragma once
+#include "AI/Monsters/state.h"
+#include "EntityCondition.h"
+#include "AI/Monsters/States/state_data.h"
 
-#include "../state.h"
-#include "../../../entitycondition.h"
-#include "../states/state_data.h"
 template<typename _Object>
 class	CStateGroupRest : public CState<_Object> {
 protected:

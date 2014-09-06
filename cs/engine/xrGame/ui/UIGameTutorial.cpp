@@ -4,10 +4,10 @@
 #include "UIStatic.h"
 #include "UIXmlInit.h"
 #include "object_broker.h"
-#include "../../xrEngine/xr_input.h"
-#include "../xr_level_controller.h"
-#include "../../xrServerEntities/script_engine.h"
-#include "../ai_space.h"
+#include "xrEngine/xr_input.h"
+#include "xr_level_controller.h"
+#include "xrServerEntities/script_engine.h"
+#include "ai_space.h"
 
 void CUISequenceItem::Load(CUIXml* xml, int idx)
 {

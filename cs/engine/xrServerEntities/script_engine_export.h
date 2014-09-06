@@ -43,7 +43,7 @@
 #	include "ai/stalker/ai_stalker.h"
 #	include "script_effector.h"
 #	include "particlesobject.h"
-#	include "level.h"
+#	include "Level.h"
 #	include "memory_space.h"
 #	include "script_render_device.h"
 #	include "script_game_object.h"
@@ -162,5 +162,5 @@
 #	include "physicobject.h"
 #	include "smart_cover_object.h"
 #	include "ui/FactionState.h"
-#	include "actor.h"
+#	include "Actor.h"
 #endif

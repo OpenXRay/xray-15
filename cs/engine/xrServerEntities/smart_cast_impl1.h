@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "../xrcore/_type_traits.h"
+#include <xrcore/_type_traits.h>
 #include "object_type_traits.h"
 
 #ifdef DEBUG

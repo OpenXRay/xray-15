@@ -1,14 +1,14 @@
 #include "stdafx.h"
 #include "hudtarget.h"
 #include "hudmanager.h"
-#include "../xrEngine/gamemtllib.h"
+#include "xrEngine/GameMtlLib.h"
 
-#include "../xrEngine/Environment.h"
-#include "../xrEngine/CustomHUD.h"
+#include <xrEngine/Environment.h>
+#include <xrEngine/CustomHUD.h>
 #include "Entity.h"
-#include "level.h"
+#include "Level.h"
 #include "game_cl_base.h"
-#include "../xrEngine/igame_persistent.h"
+#include "xrEngine/IGame_Persistent.h"
 
 
 #include "InventoryOwner.h"
@@ -21,7 +21,7 @@
 #include "inventory_item.h"
 #include "inventory.h"
 
-#include "../Include/xrRender/UIRender.h"
+#include "Include/xrRender/UIRender.h"
 
 
 u32 C_ON_ENEMY		D3DCOLOR_RGBA(0xff,0,0,0x80);

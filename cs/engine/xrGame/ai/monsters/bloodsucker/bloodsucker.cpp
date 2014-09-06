@@ -1,32 +1,32 @@
 #include "stdafx.h"
 #include "bloodsucker.h"
 #include "bloodsucker_state_manager.h"
-#include "../../../actor.h"
-#include "../../../ActorEffector.h"
-#include "../../../../Include/xrRender/KinematicsAnimated.h"
-#include "../../../level.h"
-#include "../../../material_manager.h"
+#include "Actor.h"
+#include "ActorEffector.h"
+#include "Include/xrRender/KinematicsAnimated.h"
+#include "Level.h"
+#include "material_manager.h"
 #include "bloodsucker_vampire_effector.h"
-#include "../../../detail_path_manager.h"
-#include "../../../level_debug.h"
-#include "../monster_velocity_space.h"
-#include "../../../gamepersistent.h"
-#include "../../../game_object_space.h"
+#include "detail_path_manager.h"
+#include "level_debug.h"
+#include "AI/Monsters/monster_velocity_space.h"
+#include "GamePersistent.h"
+#include "game_object_space.h"
 
-#include "../control_animation_base.h"
-#include "../control_movement_base.h"
-#include "../control_rotation_jump.h"
+#include "AI/Monsters/control_animation_base.h"
+#include "AI/Monsters/control_movement_base.h"
+#include "AI/Monsters/control_rotation_jump.h"
 
-#include "../../../sound_player.h"
-#include "../../../../xrEngine/camerabase.h"
-#include "../../../xr_level_controller.h"
-#include "../../../ActorCondition.h"
+#include "sound_player.h"
+#include "xrEngine/CameraBase.h"
+#include "xr_level_controller.h"
+#include "ActorCondition.h"
 
-#include "../../../PHDestroyable.h"
-#include "../../../CharacterPhysicsSupport.h"
+#include "PHDestroyable.h"
+#include "CharacterPhysicsSupport.h"
 
 #ifdef DEBUG
-#	include <dinput.h>
+    #include <dinput.h> // XXX nitrocaster: don't expose input implementation details
 #endif // DEBUG
 
 

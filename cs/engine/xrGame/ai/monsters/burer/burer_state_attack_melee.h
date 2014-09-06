@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../state.h"
-#include "../states/monster_state_attack.h"
+#include "AI/Monsters/state.h"
+#include "AI/Monsters/States/monster_state_attack.h"
 
 template<typename _Object>
 class	CStateBurerAttackMelee : public CStateMonsterAttack<_Object> {

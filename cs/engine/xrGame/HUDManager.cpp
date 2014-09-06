@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "HUDManager.h"
 #include "hudtarget.h"
-#include "actor.h"
-#include "../xrEngine/igame_level.h"
-#include "../xrEngine/xr_input.h"
+#include "Actor.h"
+#include <xrEngine/igame_level.h>
+#include "xrEngine/xr_input.h"
 #include "GamePersistent.h"
 #include "MainMenu.h"
 #include "grenade.h"

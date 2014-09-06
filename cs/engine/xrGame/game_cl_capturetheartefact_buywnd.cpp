@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "game_cl_capture_the_artefact.h"
 
-#include "level.h"
-#include "actor.h"
+#include "Level.h"
+#include "Actor.h"
 #include "inventory.h"
 #include "xrServer_Objects_ALife_Items.h"
 #include "weapon.h"

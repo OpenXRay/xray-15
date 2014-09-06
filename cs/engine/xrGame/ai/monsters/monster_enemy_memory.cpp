@@ -1,10 +1,10 @@
 #include "pch_script.h"
 #include "monster_enemy_memory.h"
 #include "BaseMonster/base_monster.h"
-#include "../../memory_manager.h"
-#include "../../visual_memory_manager.h"
-#include "../../enemy_manager.h"
-#include "../../ai_object_location.h"
+#include "memory_manager.h"
+#include "visual_memory_manager.h"
+#include "enemy_manager.h"
+#include "ai_object_location.h"
 #include "monster_home.h"
 
 CMonsterEnemyMemory::CMonsterEnemyMemory()

@@ -2,7 +2,7 @@
 
 #include "PHDynamicData.h"
 #include "ExtendedGeom.h"
-#include "../xrEngine/cl_intersect.h"
+#include <xrEngine/cl_intersect.h>
 #include "tri-colliderKNoOPC\__aabb_tri.h"
 #include "PHSimpleCharacter.h"
 #include "PHContactBodyEffector.h"
@@ -10,11 +10,11 @@
 #include "SpaceUtils.h"
 #include "PhysicsGamePars.h"
 #include "MathUtils.h" 
-#include "level.h"
-#include "../xrEngine/gamemtllib.h"
+#include "Level.h"
+#include "xrEngine/GameMtlLib.h"
 #include "gameobject.h"
 #include "physicsshellholder.h"
-#include "../Include/xrRender/Kinematics.h"
+#include "Include/xrRender/Kinematics.h"
 #include "PHSimpleCharacterInline.h"
 #include "DamageSource.h"
 #include "PHCollideValidator.h"

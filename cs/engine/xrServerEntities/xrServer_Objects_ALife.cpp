@@ -22,8 +22,8 @@
 #	include "defines.h"
 	LPCSTR GAME_CONFIG = "game.ltx";
 #else // XRGAME_EXPORTS
-#	include "../xrEngine/bone.h"
-#	include "../xrEngine/render.h"
+#	include "xrEngine/bone.h"
+#	include "xrEngine/render.h"
 #endif // XRGAME_EXPORTS
 
 #ifdef XRSE_FACTORY_EXPORTS

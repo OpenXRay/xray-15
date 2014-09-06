@@ -1,7 +1,7 @@
 #pragma once
 
 #include "UIDialogWnd.h"
-#include "../encyclopedia_article_defs.h"
+#include "encyclopedia_article_defs.h"
 
 class CInventoryOwner;
 class CUIFrameLineWnd;

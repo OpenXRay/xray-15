@@ -3,7 +3,7 @@
 #include "ui/uiabstract.h"
 #include "uicustomitem.h"
 
-#include "../Include/xrRender/FactoryPtr.h"
+#include "Include/xrRender/FactoryPtr.h"
 
 void		CreateUIGeom		();
 void		DestroyUIGeom		();

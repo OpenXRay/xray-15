@@ -9,8 +9,8 @@
 #include "UIMapInfo.h"
 #include "UIComboBox.h"
 #include "UIListBoxItem.h"
-#include "../../xrEngine/xr_ioconsole.h"
-#include "../string_table.h"
+#include <xrEngine/xr_ioconsole.h>
+#include "string_table.h"
 #include "CExtraContentFilter.h"
 
 #include "object_broker.h"
@@ -219,7 +219,7 @@ const char* CUIMapList::GetCommandLine(LPCSTR player_name){
 
     return m_command.c_str();
 }
-#include "../UIGameCustom.h"
+#include "UIGameCustom.h"
 void CUIMapList::LoadMapList()
 {
 

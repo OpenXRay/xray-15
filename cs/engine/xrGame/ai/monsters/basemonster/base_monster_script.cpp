@@ -1,23 +1,23 @@
 #include "pch_script.h"
 #include "base_monster.h"
-#include "../../../script_entity_action.h"
-#include "../../../phmovementcontrol.h"
-#include "../../../sight_manager.h"
-#include "../../../detail_path_manager.h"
-#include "../../../ai_object_location.h"
-#include "../../../sound_player.h"
-#include "../../../ai_monster_space.h"
-#include "../state_manager.h"
+#include "script_entity_action.h"
+#include "phmovementcontrol.h"
+#include "sight_manager.h"
+#include "detail_path_manager.h"
+#include "ai_object_location.h"
+#include "sound_player.h"
+#include "ai_monster_space.h"
+#include "AI/Monsters/state_manager.h"
 
-#include "../../../ai_debug.h"
-#include "../../../level.h"
-#include "../../../level_debug.h"
+#include "ai_debug.h"
+#include "Level.h"
+#include "level_debug.h"
 
-#include "../control_animation_base.h"
-#include "../control_path_builder_base.h"
+#include "AI/Monsters/control_animation_base.h"
+#include "AI/Monsters/control_path_builder_base.h"
 
-#include "../../../patrol_path_manager.h"
-#include "../../../patrol_path_manager_space.h"
+#include "patrol_path_manager.h"
+#include "patrol_path_manager_space.h"
 
 
 using namespace MonsterSpace;

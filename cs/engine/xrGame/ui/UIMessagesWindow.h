@@ -10,8 +10,8 @@
 
 #include "UIWindow.h"
 #include "KillMessageStruct.h"
-#include "../pda_space.h"
-#include "../../xrServerEntities/InfoPortionDefs.h"
+#include "pda_space.h"
+#include "xrServerEntities/InfoPortionDefs.h"
 
 class CUIGameLog;
 class CUIChatWnd;

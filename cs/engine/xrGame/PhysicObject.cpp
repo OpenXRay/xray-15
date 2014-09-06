@@ -1,19 +1,19 @@
 #include "pch_script.h"
-#include "physicobject.h"
+#include "PhysicObject.h"
 #include "PhysicsShell.h"
 #include "Physics.h"
 #include "xrserver_objects_alife.h"
 #include "Level.h"
-#include "../Include/xrRender/Kinematics.h"
-#include "../Include/xrRender/KinematicsAnimated.h"
-#include "../xrEngine/xr_collide_form.h"
-#include "../xrEngine/cf_dynamic_mesh.h"
+#include "Include/xrRender/Kinematics.h"
+#include "Include/xrRender/KinematicsAnimated.h"
+#include "xrEngine/xr_collide_form.h"
+#include "xrEngine/cf_dynamic_mesh.h"
 
 #include "game_object_space.h"
 #include "PhysicsShellAnimator.h"
 #include "moving_bones_snd_player.h"
 #ifdef	DEBUG
-#include "phdebug.h"
+#include "PHDebug.h"
 #endif
 
 CPhysicObject::CPhysicObject(void): 

@@ -222,7 +222,7 @@ Fvector CSightManager::object_position				() const
 	return				(target);
 }
 
-#include "actor.h"
+#include "Actor.h"
 CActor*			Actor()	;
 
 Fvector	CSightManager::aiming_position				() const

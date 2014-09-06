@@ -5,7 +5,7 @@
 #include "stdafx.h"
 #include <dinput.h>
 #include "uieditbox.h"
-#include "../HUDManager.h"
+#include "HUDManager.h"
 #include "UIColorAnimatorWrapper.h"
 
 

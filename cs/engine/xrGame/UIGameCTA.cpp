@@ -11,8 +11,8 @@
 #include "game_cl_capture_the_artefact.h"
 #include "game_cl_mp.h"
 
-#include "level.h"
-#include "actor.h"
+#include "Level.h"
+#include "Actor.h"
 #include "artefact.h"
 #include "inventory.h"
 #include "xrServer_Objects_ALife_Items.h"

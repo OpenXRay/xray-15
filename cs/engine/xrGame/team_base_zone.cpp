@@ -12,12 +12,12 @@
 #include "hit.h"
 #include "Actor.h"
 #include "HUDManager.h"
-#include "level.h"
+#include "Level.h"
 #include "xrserver.h"
 #include "game_cl_base.h"
 #include "map_manager.h"
 #include "map_location.h"
-#include "../xrEngine/IGame_Persistent.h"
+#include "xrEngine/IGame_Persistent.h"
 
 #ifdef DEBUG
 #	include "debug_renderer.h"

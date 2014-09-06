@@ -2,7 +2,7 @@
 #include "xr_level_controller.h"
 #include "map_manager.h"
 #include "map_location.h"
-#include "actor.h"
+#include "Actor.h"
 #include "ActorCondition.h"
 #include "Artefact.h"
 #include "ui/UIMainIngameWnd.h"
@@ -15,11 +15,11 @@
 #include "string_table.h"
 #include "game_cl_capture_the_artefact.h"
 #include "clsid_game.h"
-#include "actor.h"
+#include "Actor.h"
 #include "weapon.h"
 #include "game_cl_base_weapon_usage_statistic.h"
 
-#include "../xrEngine/IGame_Persistent.h"
+#include "xrEngine/IGame_Persistent.h"
 #include "ui/UIActorMenu.h"
 
 #include "game_cl_capturetheartefact_snd_msg.h"

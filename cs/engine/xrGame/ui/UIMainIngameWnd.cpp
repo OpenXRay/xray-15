@@ -3,52 +3,45 @@
 #include <functional>
 #include "UIMainIngameWnd.h"
 #include "UIMessagesWindow.h"
-#include "../UIZoneMap.h"
-
+#include "UIZoneMap.h"
 
 #include <dinput.h>
-#include "../actor.h"
-#include "../ActorCondition.h"
-#include "../CustomOutfit.h"
-#include "../HUDManager.h"
-#include "../PDA.h"
-//.7#include "../WeaponHUD.h"
-#include "../xrServerEntities/character_info.h"
-#include "../inventory.h"
-#include "../UIGameSP.h"
-#include "../weaponmagazined.h"
-#include "../missile.h"
-#include "../Grenade.h"
-#include "../xrServerEntities/xrServer_objects_ALife.h"
-#include "../alife_simulator.h"
-#include "../alife_object_registry.h"
-#include "../game_cl_base.h"
-#include "../level.h"
-#include "../seniority_hierarchy_holder.h"
-
-#include "../date_time.h"
-#include "../xrServerEntities/xrServer_Objects_ALife_Monsters.h"
-#include "../../xrEngine/LightAnimLibrary.h"
-
+#include "Actor.h"
+#include "ActorCondition.h"
+#include "CustomOutfit.h"
+#include "HUDManager.h"
+#include "PDA.h"
+#include "xrServerEntities/character_info.h"
+#include "inventory.h"
+#include "UIGameSP.h"
+#include "weaponmagazined.h"
+#include "missile.h"
+#include "Grenade.h"
+#include "xrServerEntities/xrServer_objects_ALife.h"
+#include "alife_simulator.h"
+#include "alife_object_registry.h"
+#include "game_cl_base.h"
+#include "Level.h"
+#include "seniority_hierarchy_holder.h"
+#include "date_time.h"
+#include "xrServerEntities/xrServer_Objects_ALife_Monsters.h"
+#include "xrEngine/LightAnimLibrary.h"
 #include "UIInventoryUtilities.h"
-
-
 #include "UIXmlInit.h"
 #include "UIPdaMsgListItem.h"
-#include "../alife_registry_wrappers.h"
-#include "../actorcondition.h"
-
-#include "../string_table.h"
+#include "alife_registry_wrappers.h"
+#include "actorcondition.h"
+#include "string_table.h"
 
 #ifdef DEBUG
-#	include "../attachable_item.h"
-#	include "../../xrEngine/xr_input.h"
+#	include "attachable_item.h"
+#	include "xrEngine/xr_input.h"
 #endif
 
 #include "UIScrollView.h"
 #include "map_hint.h"
 #include "UIColorAnimatorWrapper.h"
-#include "../game_news.h"
+#include "game_news.h"
 
 #include "static_cast_checked.hpp"
 #include "game_cl_capture_the_artefact.h"
@@ -58,7 +51,7 @@
 void test_draw	();
 void test_key	(int dik);
 
-#include "../Include/xrRender/Kinematics.h"
+#include "Include/xrRender/Kinematics.h"
 
 
 using namespace InventoryUtilities;
@@ -736,8 +729,8 @@ void CUIMainIngameWnd::reset_ui()
 }
 
 
-#include "../../xrEngine/xr_input.h"
-#include "../GamePersistent.h"
+#include "xrEngine/xr_input.h"
+#include "GamePersistent.h"
 
 void hud_adjust_mode_keyb(int dik);
 void hud_draw_adjust_mode();

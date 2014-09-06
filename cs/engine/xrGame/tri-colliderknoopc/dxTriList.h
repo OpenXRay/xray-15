@@ -4,7 +4,7 @@
 #define __DXTRILIST_INCLUDED__
 
 
-#include "../ode_include.h"
+#include "ode_include.h"
 
 
 

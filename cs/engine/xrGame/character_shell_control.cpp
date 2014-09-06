@@ -1,18 +1,15 @@
 #include "stdafx.h"
-
 #include "character_shell_control.h"
-
-#include "../Include/xrRender/Kinematics.h"
-#include "../xrEngine/bone.h"
-
+#include "Include/xrRender/Kinematics.h"
+#include "xrEngine/bone.h"
 #include "Physics.h"
 #include "ExtendedGeom.h"
 #include "hit.h"
-#include "level.h"
+#include "Level.h"
 #include "CustomZone.h"
 
 #ifdef DEBUG
-extern	BOOL death_anim_debug;
+    extern	BOOL death_anim_debug;
 #endif // DEBUG
 
 character_shell_control::character_shell_control():

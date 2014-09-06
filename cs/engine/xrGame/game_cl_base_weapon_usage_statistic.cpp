@@ -9,7 +9,7 @@
 #include "xrServer.h"
 #include "hudmanager.h"
 #include "game_cl_base_weapon_usage_statistic.h"
-#include "../Include/xrRender/Kinematics.h"
+#include "Include/xrRender/Kinematics.h"
 #include "game_cl_mp.h"
 //#include "GameFont.h"
 

@@ -1,6 +1,6 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "UITabButtonMP.h"
-#include "../HUDManager.h"
+#include "HUDManager.h"
 
 CUITabButtonMP::CUITabButtonMP()
 {

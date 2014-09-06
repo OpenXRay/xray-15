@@ -2,8 +2,8 @@
 
 #include "Actor.h"
 
-#include "../xrEngine/CameraBase.h"
-#include "../xrEngine/gamemtllib.h"
+#include "xrEngine/CameraBase.h"
+#include "xrEngine/GameMtlLib.h"
 
 #include "phworld.h"
 #include "phcollidevalidator.h"

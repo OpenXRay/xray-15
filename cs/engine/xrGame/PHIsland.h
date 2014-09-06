@@ -3,8 +3,8 @@
 
 #pragma warning(disable:4995)
 #pragma warning(disable:4267)
-#include "../3rd party/ode/src/objects.h"
-#include "../3rd party/ode/src/joint.h"
+#include "ode/src/objects.h"
+#include "ode/src/joint.h"
 #pragma warning(default:4995)
 #pragma warning(default:4267)
 #include "PhysicsCommon.h"

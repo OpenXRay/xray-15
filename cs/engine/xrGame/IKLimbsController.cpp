@@ -1,23 +1,16 @@
 #include "stdafx.h"
-
 #include "IKLimbsController.h"
-
 #include "IK/IKLimb.h"
 #include "physicsshellholder.h"
-
 #include "ik_anim_state.h"
-
-#include "../Include/xrRender/RenderVisual.h"
-#include "../Include/xrRender/Kinematics.h"
+#include "Include/xrRender/RenderVisual.h"
+#include "Include/xrRender/Kinematics.h"
 #include "ode_include.h"
 #include "characterphysicssupport.h"
-#include "../xrEngine/motion.h"
+#include "xrEngine/motion.h"
 #ifdef DEBUG
 #	include "PHDebug.h"
 #endif // DEBUG
-
-
-
 
 CIKLimbsController::CIKLimbsController(): m_object(0), m_legs_blend(0)
 {

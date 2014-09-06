@@ -1,13 +1,10 @@
 #include "stdafx.h"
-
 #include "dTriCollideK.h"
 #include "dxTriList.h"
 #include "dcTriListCollider.h"
-#include "../ExtendedGeom.h"
+#include "ExtendedGeom.h"
 #include "dcTriListCollider.cpp"	// Allow inlining
-#include "../gameobject.h"
-
-
+#include "GameObject.h"
 
 int dTriListClass = -1;
 

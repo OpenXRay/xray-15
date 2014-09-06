@@ -2,14 +2,12 @@
 #include "UIVotingCategory.h"
 #include "UIXmlInit.h"
 #include "UI3tButton.h"
-#include "../game_cl_teamdeathmatch.h"
+#include "game_cl_teamdeathmatch.h"
 #include "UIKickPlayer.h"
 #include "UIChangeMap.h"
 #include "UIChangeWeather.h"
 #include "UITextVote.h"
-
-#include "../game_sv_mp_vote_flags.h"
-
+#include "game_sv_mp_vote_flags.h"
 
 CUIVotingCategory::CUIVotingCategory()
 {
@@ -105,7 +103,7 @@ bool CUIVotingCategory::OnKeyboard(int dik, EUIMessages keyboard_action)
 	return false;
 }
 
-#include "../../xrEngine/xr_ioconsole.h"
+#include "xrEngine/xr_IOConsole.h"
 
 void CUIVotingCategory::OnBtn(int i)
 {

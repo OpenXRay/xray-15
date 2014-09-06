@@ -1,11 +1,11 @@
 #include "stdafx.h"
 #include "UIHudStatesWnd.h"
 
-#include "../Actor.h"
-#include "../ActorCondition.h"
-#include "../CustomOutfit.h"
-#include "../inventory.h"
-#include "../RadioactiveZone.h"
+#include "Actor.h"
+#include "ActorCondition.h"
+#include "CustomOutfit.h"
+#include "Inventory.h"
+#include "RadioactiveZone.h"
 
 #include "UIStatic.h"
 #include "UIProgressBar.h"
@@ -14,7 +14,7 @@
 #include "UIHelper.h"
 #include "ui_arrow.h"
 #include "UIInventoryUtilities.h"
-#include "../HUDManager.h"
+#include "HUDManager.h"
 
 CUIHudStatesWnd::CUIHudStatesWnd()
 {

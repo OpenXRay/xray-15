@@ -6,20 +6,20 @@
 //
 // Copyright 2005 GSC Game World
 
-#include "StdAfx.h"
+#include "stdafx.h"
 
 #include "UIMessagesWindow.h"
-#include "../level.h"
+#include "Level.h"
 #include "UIGameLog.h"
 #include "xrUIXmlParser.h"
 #include "UIXmlInit.h"
 #include "UIChatWnd.h"
 #include "UIPdaMsgListItem.h"
 #include "UIColorAnimatorWrapper.h"
-#include "../InfoPortion.h"
-#include "../string_table.h"
-#include "../game_cl_artefacthunt.h"
-#include "../game_news.h"
+#include "InfoPortion.h"
+#include "string_table.h"
+#include "game_cl_artefacthunt.h"
+#include "game_news.h"
 #include "UIInventoryUtilities.h"
 
 CUIMessagesWindow::CUIMessagesWindow(){

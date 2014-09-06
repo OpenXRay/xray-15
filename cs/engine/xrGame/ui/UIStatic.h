@@ -2,8 +2,8 @@
 
 
 #include "uiwindow.h"
-#include "../uistaticitem.h"
-#include "../../xrServerEntities/script_export_space.h"
+#include "UIStaticItem.h"
+#include "xrServerEntities/script_export_space.h"
 
 class CUIFrameWindow;
 class CLAItem;

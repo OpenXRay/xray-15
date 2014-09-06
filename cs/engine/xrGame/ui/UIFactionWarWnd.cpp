@@ -17,9 +17,9 @@
 #include "UIPdaWnd.h"
 #include "UICharacterInfo.h"
 
-#include "../actor.h"
-#include "../ai_space.h"
-#include "../../xrServerEntities/script_engine.h"
+#include "Actor.h"
+#include "ai_space.h"
+#include "xrServerEntities/script_engine.h"
 
 #define PDA_FACTION_WAR_XML		"pda_fraction_war.xml"
 

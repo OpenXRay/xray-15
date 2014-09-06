@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../states/monster_state_rest.h"
+#include "AI/Monsters/States/monster_state_rest.h"
 
 template<typename _Object>
 class	CPoltergeistStateRest : public CStateMonsterRest<_Object> {

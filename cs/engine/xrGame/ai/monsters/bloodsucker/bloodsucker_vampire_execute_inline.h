@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../../../../Include/xrRender/KinematicsAnimated.h"
-#include "../../../actor.h"
-#include "../../../../xrEngine/CameraBase.h"
+#include "Include/xrRender/KinematicsAnimated.h"
+#include "Actor.h"
+#include "xrEngine/CameraBase.h"
 
 #define TEMPLATE_SPECIALIZATION template <\
 	typename _Object\

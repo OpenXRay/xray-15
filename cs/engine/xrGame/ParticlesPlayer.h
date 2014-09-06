@@ -6,7 +6,7 @@
 #pragma once
 
 #include "ParticlesObject.h"
-#include "../xrEngine/bone.h"
+#include "xrEngine/bone.h"
 
 
 DEFINE_VECTOR(CParticlesObject*, PARTICLES_PTR_VECTOR, PARTICLES_PTR_VECTOR_IT);

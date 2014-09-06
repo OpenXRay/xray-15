@@ -10,14 +10,14 @@
 
 #ifndef PURE_DYNAMIC_CAST
 #	ifdef XRGAME_EXPORTS
-#		include "../include/xrRender/rendervisual.h"
+#		include "Include/xrRender/RenderVisual.h"
 #		include "alife_space.h"
 #		include "hit.h"
-#		include "actor.h"
+#		include "Actor.h"
 #		include "custommonster.h"
 #		include "ai/stalker/ai_stalker.h"
 #		include "ui/uiwindow.h"
-#		include "customzone.h"
+#		include "CustomZone.h"
 #		include "weapon.h"
 #		include "cameraeffector.h"
 #	endif

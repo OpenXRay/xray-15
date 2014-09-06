@@ -1,49 +1,49 @@
 #include "stdafx.h"
 #include "controller.h"
 #include "controller_state_manager.h"
-#include "../controlled_entity.h"
-#include "../../../actor.h"
-#include "../../../ActorEffector.h"
-#include "../ai_monster_effector.h"
-#include "../../../hudmanager.h"
-#include "../../../ui.h"
-#include "../../../../Include/xrRender/KinematicsAnimated.h"
-#include "../../../level.h"
-#include "../../../sound_player.h"
-#include "../../../ai_monster_space.h"
-//#include "../../../ui/UIMainIngameWnd.h"
-#include "../../../UIGameCustom.h"
-#include "../../../ui/UIStatic.h"
+#include "AI/Monsters/controlled_entity.h"
+#include "Actor.h"
+#include "ActorEffector.h"
+#include "AI/Monsters/ai_monster_effector.h"
+#include "hudmanager.h"
+#include "ui.h"
+#include "Include/xrRender/KinematicsAnimated.h"
+#include "Level.h"
+#include "sound_player.h"
+#include "ai_monster_space.h"
+//#include <ui/UIMainIngameWnd.h>
+#include "UIGameCustom.h"
+#include <ui/UIStatic.h>
 
-#include "../monster_velocity_space.h"
-#include "../../../level_debug.h"
-#include "../../../game_object_space.h"
-#include "../../../detail_path_manager.h"
-#include "../../../ai_space.h"
-#include "../../../cover_point.h"
-#include "../../../cover_manager.h"
+#include "AI/Monsters/monster_velocity_space.h"
+#include "level_debug.h"
+#include "game_object_space.h"
+#include "detail_path_manager.h"
+#include "ai_space.h"
+#include "cover_point.h"
+#include "cover_manager.h"
 
 #include "controller_animation.h"
 #include "controller_direction.h"
 
-#include "../control_direction_base.h"
-#include "../control_movement_base.h"
-#include "../control_path_builder_base.h"
+#include "AI/Monsters/control_direction_base.h"
+#include "AI/Monsters/control_movement_base.h"
+#include "AI/Monsters/control_path_builder_base.h"
 
-#include "../../../level_graph.h"
-#include "../../../ai_object_location.h"
+#include "level_graph.h"
+#include "ai_object_location.h"
 
-#include "../../../monster_community.h"
-#include "../../../character_community.h"
-#include "../../../InventoryOwner.h"
-#include "../../../../xrServerEntities/character_info.h"
+#include "monster_community.h"
+#include "character_community.h"
+#include "InventoryOwner.h"
+#include "xrServerEntities/character_info.h"
 
 #include "controller_psy_hit.h"
-#include "../monster_cover_manager.h"
+#include "AI/Monsters/monster_cover_manager.h"
 #include "controller_psy_aura.h"
 
 #ifdef _DEBUG
-#	include <dinput.h>
+    #include <dinput.h>
 #endif
 
 const u32	_pmt_psy_attack_delay		= 2000;

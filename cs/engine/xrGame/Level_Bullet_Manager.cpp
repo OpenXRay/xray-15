@@ -7,12 +7,12 @@
 #include "Level_Bullet_Manager.h"
 #include "game_cl_base.h"
 #include "Actor.h"
-#include "gamepersistent.h"
+#include "GamePersistent.h"
 #include "mt_config.h"
 #include "game_cl_base_weapon_usage_statistic.h"
 
-#include "../Include/xrRender/UIRender.h"
-#include "../Include/xrRender/Kinematics.h"
+#include "Include/xrRender/UIRender.h"
+#include "Include/xrRender/Kinematics.h"
 
 #ifdef DEBUG
 #	include "debug_renderer.h"

@@ -1,25 +1,25 @@
 #include "pch_script.h"
-#include "gamepersistent.h"
-#include "../xrEngine/fmesh.h"
-#include "../xrEngine/xr_ioconsole.h"
-#include "../xrEngine/gamemtllib.h"
-#include "../Include/xrRender/Kinematics.h"
+#include "GamePersistent.h"
+#include <xrEngine/fmesh.h>
+#include "xrEngine/xr_IOConsole.h"
+#include "xrEngine/GameMtlLib.h"
+#include "Include/xrRender/Kinematics.h"
 #include "profiler.h"
 #include "MainMenu.h"
 #include "UICursor.h"
 #include "game_base_space.h"
-#include "level.h"
+#include "Level.h"
 #include "ParticlesObject.h"
-#include "actor.h"
+#include "Actor.h"
 #include "game_base_space.h"
 #include "stalker_animation_data_storage.h"
 #include "stalker_velocity_holder.h"
 
 #include "ActorEffector.h"
-#include "actor.h"
+#include "Actor.h"
 #include "spectator.h"
 
-#include "../xrEngine/xrSASH.h"
+#include <xrEngine/xrSASH.h>
 
 #ifndef MASTER_GOLD
 #	include "custommonster.h"
@@ -706,7 +706,7 @@ void CGamePersistent::OnRenderPPUI_PP()
 	MainMenu()->OnRenderPPUI_PP();
 }
 #include "string_table.h"
-#include "../xrEngine/x_ray.h"
+#include <xrEngine/x_ray.h>
 void CGamePersistent::LoadTitle(LPCSTR str)
 {
 	string512			buff;

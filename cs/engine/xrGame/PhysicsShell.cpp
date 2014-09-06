@@ -10,7 +10,7 @@
 #include "PHSplitedShell.h"
 #include "gameobject.h"
 #include "physicsshellholder.h"
-#include "../Include/xrRender/Kinematics.h"
+#include "Include/xrRender/Kinematics.h"
 #include "objectdump.h"
 #include "phvalide.h"
 extern CPHWorld			*ph_world;

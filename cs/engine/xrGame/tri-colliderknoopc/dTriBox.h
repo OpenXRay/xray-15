@@ -2,8 +2,8 @@
 #define		D_TRI_BOX_H
 
 #include "TriPrimitiveCollideClassDef.h"
-#include "../ode_include.h"
-#include "../MathUtils.h"
+#include "ode_include.h"
+#include "MathUtils.h"
 #include "dcTriListCollider.h"
 struct Triangle;
 struct dxBox {

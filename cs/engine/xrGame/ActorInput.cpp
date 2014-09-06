@@ -3,7 +3,7 @@
 #include "Actor.h"
 #include "Torch.h"
 #include "trade.h"
-#include "../xrEngine/CameraBase.h"
+#include "xrEngine/CameraBase.h"
 
 #ifdef DEBUG
 #	include "PHDebug.h"
@@ -15,7 +15,7 @@
 #include "HudManager.h"
 #include "UIGameSP.h"
 #include "inventory.h"
-#include "level.h"
+#include "Level.h"
 #include "game_cl_base.h"
 #include "xr_level_controller.h"
 #include "UsableScriptObject.h"
@@ -26,7 +26,7 @@
 #include "CharacterPhysicsSupport.h"
 #include "InventoryBox.h"
 #include "player_hud.h"
-#include "../xrEngine/xr_input.h"
+#include "xrEngine/xr_input.h"
 #include "flare.h"
 #include "CustomDetector.h"
 #include "clsid_game.h"

@@ -1,5 +1,4 @@
 #pragma once
-
 #include "monster_state_attack_melee.h"
 #include "monster_state_attack_run.h"
 #include "monster_state_attack_run_attack.h"
@@ -8,11 +7,9 @@
 #include "monster_state_steal.h"
 #include "monster_state_attack_camp.h"
 #include "monster_state_home_point_attack.h"
-
-#include "../ai_monster_squad.h"
-#include "../ai_monster_squad_manager.h"
-
-#include "../../../actor.h"
+#include "AI/Monsters/ai_monster_squad.h"
+#include "AI/Monsters/ai_monster_squad_manager.h"
+#include "Actor.h"
 
 #define TEMPLATE_SPECIALIZATION template <\
 	typename _Object\

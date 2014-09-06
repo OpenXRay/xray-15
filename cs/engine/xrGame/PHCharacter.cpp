@@ -6,11 +6,11 @@
 #include "ExtendedGeom.h"
 #include "physicsshellholder.h"
 
-#include "../xrEngine/cl_intersect.h"
-#include "../xrEngine/gamemtllib.h"
+#include <xrEngine/cl_intersect.h>
+#include "xrEngine/GameMtlLib.h"
 
 #include "tri-colliderKNoOPC/__aabb_tri.h"
-#include "../3rd party/ode/src/util.h"
+#include "ode/src/util.h"
 
 CPHCharacter::CPHCharacter(void):
   CPHDisablingTranslational()

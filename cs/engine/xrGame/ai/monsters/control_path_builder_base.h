@@ -2,7 +2,7 @@
 
 #include "ai_monster_defs.h"
 #include "control_combase.h"
-#include "../../movement_manager_space.h"
+#include "movement_manager_space.h"
 
 class CMotionStats;
 class CCoverEvaluatorCloseToEnemy;

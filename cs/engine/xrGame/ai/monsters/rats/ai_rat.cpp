@@ -8,31 +8,31 @@
 
 #include "stdafx.h"
 #include "ai_rat.h"
-#include "../../ai_monsters_misc.h"
-#include "../../../PhysicsShell.h"
-#include "../../../game_graph.h"
-#include "../../../game_level_cross_table.h"
-#include "../../../../xrServerEntities/xrserver_objects_alife_monsters.h"
+#include "AI/ai_monsters_misc.h"
+#include "PhysicsShell.h"
+#include "game_graph.h"
+#include "game_level_cross_table.h"
+#include "xrServerEntities/xrserver_objects_alife_monsters.h"
 
 #include "ai_rat_space.h"
-#include "../../../../Include/xrRender/KinematicsAnimated.h"
-#include "../../../detail_path_manager.h"
-#include "../../../ai_object_location.h"
-#include "../../../movement_manager.h"
-#include "../../../location_manager.h"
-#include "../../../../xrServerEntities/ai_sounds.h"
-#include "../../../sound_player.h"
+#include "Include/xrRender/KinematicsAnimated.h"
+#include "detail_path_manager.h"
+#include "ai_object_location.h"
+#include "movement_manager.h"
+#include "location_manager.h"
+#include "xrServerEntities/ai_sounds.h"
+#include "sound_player.h"
 #include "ai_rat_impl.h"
-#include "../../../ai_space.h"
+#include "ai_space.h"
 
-#include "../../../rat_state_manager.h"
-#include "../../../rat_states.h"
+#include "rat_state_manager.h"
+#include "rat_states.h"
 #include "object_broker.h"
-#include "../ai_monster_squad_manager.h"
-#include "../ai_monster_squad.h"
-#include "../../../patrol_path_storage.h"
-#include "../../../patrol_path.h"
-#include "../../../Actor.h"
+#include "AI/Monsters/ai_monster_squad_manager.h"
+#include "AI/Monsters/ai_monster_squad.h"
+#include "patrol_path_storage.h"
+#include "patrol_path.h"
+#include "Actor.h"
 
 
 #ifdef DEBUG
@@ -41,10 +41,10 @@
 
 using namespace RatSpace;
 
-// #include "../../../steering_behaviour_manager.h"
-// #include "../../../steering_behaviour_cohesion.h"
-// #include "../../../steering_behaviour_alignment.h"
-// #include "../../../steering_behaviour_separation.h"
+// #include "steering_behaviour_manager.h"
+// #include "steering_behaviour_cohesion.h"
+// #include "steering_behaviour_alignment.h"
+// #include "steering_behaviour_separation.h"
 
 CAI_Rat::CAI_Rat() :
 	m_behaviour_manager		(0)

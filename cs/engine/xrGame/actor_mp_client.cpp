@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "actor_mp_client.h"
 #include "actorcondition.h"
-#include "../xrEngine/CameraBase.h"
+#include "xrEngine/CameraBase.h"
 
 CActorMP::CActorMP			()
 {

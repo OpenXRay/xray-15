@@ -8,9 +8,9 @@
 
 #include "stdafx.h"
 #include "ai_rat.h"
-#include "../../../../Include/xrRender/KinematicsAnimated.h"
-#include "../../../ai_debug.h"
-#include "../../../movement_manager.h"
+#include "Include/xrRender/KinematicsAnimated.h"
+#include "ai_debug.h"
+#include "movement_manager.h"
 
 #define MIN_TURN_ANGLE PI_DIV_6*.5f
 

@@ -14,7 +14,7 @@ class CInventory;
 
 #include "UIOutfitInfo2.h"
 #include "UIItemInfo.h"
-#include "../../xrServerEntities/inventory_space.h"
+#include <xrServerEntities/inventory_space.h>
 
 class CArtefact;
 class CUI3tButton;

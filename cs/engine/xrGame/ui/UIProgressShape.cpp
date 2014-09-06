@@ -1,9 +1,9 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "UIProgressShape.h"
 
 #include "UIStatic.h"
-#include "../Include/xrRender/UIShader.h"
-#include "../Include/xrRender/UIRender.h"
+#include "Include/xrRender/UIShader.h"
+#include "Include/xrRender/UIRender.h"
 
 CUIProgressShape::CUIProgressShape()
 {

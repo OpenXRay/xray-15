@@ -3,15 +3,15 @@
 #include "WeaponKnife.h"
 #include "Entity.h"
 #include "Actor.h"
-#include "level.h"
+#include "Level.h"
 #include "xr_level_controller.h"
 #include "game_cl_base.h"
-#include "../Include/xrRender/Kinematics.h"
-#include "../xrEngine/gamemtllib.h"
+#include "Include/xrRender/Kinematics.h"
+#include "xrEngine/GameMtlLib.h"
 #include "level_bullet_manager.h"
 #include "ai_sounds.h"
 #include "game_cl_single.h"
-#include "../xrEngine/SkeletonMotions.h"
+#include <xrEngine/SkeletonMotions.h>
 
 #define KNIFE_MATERIAL_NAME "objects\\knife"
 

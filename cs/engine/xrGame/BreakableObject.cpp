@@ -4,8 +4,8 @@
 #include "PHStaticGeomShell.h"
 #include "PhysicsShell.h"
 #include "Physics.h"
-#include "../xrEngine/xr_collide_form.h"
-#include "../Include/xrRender/Kinematics.h"
+#include <xrEngine/xr_collide_form.h>
+#include "Include/xrRender/Kinematics.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

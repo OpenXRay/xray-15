@@ -1,7 +1,6 @@
 #pragma once
-
 #include "bloodsucker_vampire_execute.h"
-#include "../states/state_hide_from_point.h"
+#include "AI/Monsters/States/state_hide_from_point.h"
 #include "bloodsucker_vampire_approach.h"
 #include "bloodsucker_vampire_hide.h"
 

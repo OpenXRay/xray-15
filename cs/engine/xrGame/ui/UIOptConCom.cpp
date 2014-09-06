@@ -1,12 +1,11 @@
-#include "StdAfx.h"
-#include "../../xrEngine/xr_ioconsole.h"
-#include "../../xrEngine/xr_ioc_cmd.h"
+#include "stdafx.h"
+#include "xrEngine/xr_IOConsole.h"
+#include "xrEngine/xr_ioc_cmd.h"
 #include "UIOptConCom.h"
-#include "../../xrcore/xrCore.h"
-//#include "game_base_space.h"
+#include "xrCore/xrCore.h"
 #include "gametype_chooser.h"
-#include "../RegistryFuncs.h"
-#include "../../xrGameSpy/xrGameSpy_MainDefs.h"
+#include "RegistryFuncs.h"
+#include "xrGameSpy/xrGameSpy_MainDefs.h"
 #include "player_name_modifyer.h"
 
 extern	void	GetCDKey_FromRegistry		(char* cdkey);

@@ -5,7 +5,7 @@
 #include "UI3tButton.h"
 #include "UIFrameLineWnd.h"
 
-#include "../InfoPortion.h"
+#include "InfoPortion.h"
 
 #include "UICharacterInfo.h"
 #include "UIItemInfo.h"

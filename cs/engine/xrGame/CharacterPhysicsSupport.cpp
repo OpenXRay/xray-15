@@ -6,7 +6,7 @@
 #include "PHMovementControl.h"
 #include "CustomMonster.h"
 #include "PhysicsShell.h"
-#include "../Include/xrRender/KinematicsAnimated.h"
+#include "Include/xrRender/KinematicsAnimated.h"
 #include "Actor.h"
 
 #include "Extendedgeom.h"
@@ -37,7 +37,7 @@
 extern	BOOL death_anim_debug;
 #endif // DEBUG
 
-#include "../xrEngine/device.h"
+#include <xrEngine/device.h>
 
 #define USE_SMART_HITS
 #define USE_IK

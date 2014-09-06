@@ -2,20 +2,20 @@
 #include "chimera.h"
 #include "chimera_state_manager.h"
 
-#include "../control_animation_base.h"
-#include "../control_direction_base.h"
-#include "../control_movement_base.h"
-#include "../control_path_builder_base.h"
+#include "AI/Monsters/control_animation_base.h"
+#include "AI/Monsters/control_direction_base.h"
+#include "AI/Monsters/control_movement_base.h"
+#include "AI/Monsters/control_path_builder_base.h"
 
-#include "../states/monster_state_rest.h"
-#include "../states/monster_state_attack.h"
-#include "../states/monster_state_panic.h"
-#include "../states/monster_state_eat.h"
-#include "../states/monster_state_hear_int_sound.h"
-#include "../states/monster_state_hear_danger_sound.h"
-#include "../states/monster_state_hitted.h"
+#include "AI/Monsters/States/monster_state_rest.h"
+#include "AI/Monsters/States/monster_state_attack.h"
+#include "AI/Monsters/States/monster_state_panic.h"
+#include "AI/Monsters/States/monster_state_eat.h"
+#include "AI/Monsters/States/monster_state_hear_int_sound.h"
+#include "AI/Monsters/States/monster_state_hear_danger_sound.h"
+#include "AI/Monsters/States/monster_state_hitted.h"
 #include "chimera_state_threaten.h"
-#include "../states/state_test_state.h"
+#include "AI/Monsters/States/state_test_state.h"
 
 CStateManagerChimera::CStateManagerChimera(CChimera *obj) : inherited(obj)
 {

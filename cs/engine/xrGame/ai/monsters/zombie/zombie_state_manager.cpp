@@ -2,20 +2,20 @@
 #include "zombie.h"
 #include "zombie_state_manager.h"
 
-#include "../control_animation_base.h"
-#include "../control_direction_base.h"
-#include "../control_movement_base.h"
-#include "../control_path_builder_base.h"
+#include "AI/Monsters/control_animation_base.h"
+#include "AI/Monsters/control_direction_base.h"
+#include "AI/Monsters/control_movement_base.h"
+#include "AI/Monsters/control_path_builder_base.h"
 
-#include "../states/monster_state_rest.h"
-#include "../states/monster_state_attack.h"
-#include "../states/monster_state_eat.h"
-#include "../states/monster_state_hear_int_sound.h"
+#include "AI/Monsters/States/monster_state_rest.h"
+#include "AI/Monsters/States/monster_state_attack.h"
+#include "AI/Monsters/States/monster_state_eat.h"
+#include "AI/Monsters/States/monster_state_hear_int_sound.h"
 #include "zombie_state_attack_run.h"
-#include "../../../entitycondition.h"
-#include "../../../detail_path_manager.h"
-#include "../states/monster_state_controlled.h"
-#include "../states/monster_state_help_sound.h"
+#include "EntityCondition.h"
+#include "detail_path_manager.h"
+#include "AI/Monsters/States/monster_state_controlled.h"
+#include "AI/Monsters/States/monster_state_help_sound.h"
 
 CStateManagerZombie::CStateManagerZombie(CZombie *obj) : inherited(obj)
 {
