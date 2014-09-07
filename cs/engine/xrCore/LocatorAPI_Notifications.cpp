@@ -98,7 +98,7 @@ void CFS_PathNotificator::Execute(void)
 void CLocatorAPI::SetEventNotification()
 {
 	InitializeCriticalSection	(&CS);
-    FThread 					= xr_new<CFS_PathNotificator>();
+    FThread 					= new CFS_PathNotificator();
 	FThread->FNotifyOptionFlags	= FILE_NOTIFY_CHANGE_FILE_NAME|FILE_NOTIFY_CHANGE_DIR_NAME|FILE_NOTIFY_CHANGE_LAST_WRITE;
 	for(PathPairIt p_it=pathes.begin(); p_it!=pathes.end(); p_it++)
     	if (p_it->second->m_Flags.is(FS_Path::flNotif)) FThread->RegisterPath(*p_it->second);

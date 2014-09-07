@@ -36,7 +36,7 @@ stalker_movement_manager_obstacles::stalker_movement_manager_obstacles	(CAI_Stal
 CRestrictedObject *stalker_movement_manager_obstacles::create_restricted_object	()
 {
 	m_restricted_object				= 
-		xr_new<CRestrictedObjectObstacle>(
+		new CRestrictedObjectObstacle(
 			&object(),
 			m_static_obstacles.active_query(),
 			m_dynamic_obstacles.active_query()

@@ -164,7 +164,7 @@ BOOL R_constant_table::parseConstants(ID3D10ShaderReflectionConstantBuffer* pTab
 				// We have determined all valuable info, search if constant already created
 				ref_constant	C		=	get	(name);
 				if (!C)	{
-				C					=	xr_new<R_constant>();//.g_constant_allocator.create();
+				C					= new R_constant();//.g_constant_allocator.create();
 				C->name				=	name;
 				C->destination		=	RC_dest_sampler;
 				C->type				=	RC_sampler;
@@ -198,7 +198,7 @@ BOOL R_constant_table::parseConstants(ID3D10ShaderReflectionConstantBuffer* pTab
 		// We have determined all valuable info, search if constant already created
 		ref_constant	C		=	get	(name);
 		if (!C)	{
-			C					=	xr_new<R_constant>();//.g_constant_allocator.create();
+			C					= new R_constant();//.g_constant_allocator.create();
 			C->name				=	name;
 			C->destination		=	destination;
 			C->type				=	type;
@@ -257,7 +257,7 @@ BOOL R_constant_table::parseResources(ID3D10ShaderReflection* pReflection, int R
 		ref_constant	C		=	get	(ResDesc.Name);
 		if (!C)	
 		{
-			C					=	xr_new<R_constant>();//.g_constant_allocator.create();
+			C					= new R_constant();//.g_constant_allocator.create();
 			C->name				=	ResDesc.Name;
 			C->destination		=	RC_dest_sampler;
 			C->type				=	type;

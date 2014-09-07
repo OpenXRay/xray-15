@@ -77,7 +77,7 @@ void CSoundRender_CoreA::_initialize(int stage)
 {
 	if(stage==0)
 	{
-		pDeviceList					= xr_new<ALDeviceList>();
+		pDeviceList					= new ALDeviceList();
 
 		if (0==pDeviceList->GetNumDevices())
 		{ 
@@ -148,7 +148,7 @@ void CSoundRender_CoreA::_initialize(int stage)
 		CSoundRender_Target*	T	= 0;
 		for (u32 tit=0; tit<u32(psSoundTargets); tit++)
 		{
-			T						=	xr_new<CSoundRender_TargetA>();
+			T						= new CSoundRender_TargetA();
 			if (T->_initialize())
 			{
 				s_targets.push_back	(T);

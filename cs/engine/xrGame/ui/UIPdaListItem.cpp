@@ -31,7 +31,7 @@ void CUIPdaListItem::InitPdaListItem(Fvector2 pos, Fvector2 size)
 	uiXml.Load									(CONFIG_PATH, UI_PATH, PDA_CONTACT_CHAR);
 
 	CUIXmlInit xml_init;
-	UIInfo = xr_new<CUICharacterInfo>			();
+	UIInfo = new CUICharacterInfo();
 	UIInfo->SetAutoDelete						(true);
 	AttachChild									(UIInfo);
 	UIInfo->InitCharacterInfo					(Fvector2().set(0,0), size, PDA_CONTACT_CHAR);

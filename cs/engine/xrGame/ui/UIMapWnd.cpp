@@ -80,13 +80,13 @@ void CUIMapWnd::Init(LPCSTR xml_name, LPCSTR start_from)
 
 	m_map_move_step					= uiXml.ReadAttribFlt( start_from, 0, "map_move_step", 10.0f );
 
-	m_UILevelFrame					= xr_new<CUIWindow>(); m_UILevelFrame->SetAutoDelete(true);
+	m_UILevelFrame					= new CUIWindow(); m_UILevelFrame->SetAutoDelete(true);
 	strconcat(sizeof(pth),pth,start_from,":level_frame");
 	xml_init.InitWindow				(uiXml, pth, 0, m_UILevelFrame);
 //	m_UIMainFrame->AttachChild		(m_UILevelFrame);
 	AttachChild						(m_UILevelFrame);
 
-	m_UIMainFrame					= xr_new<CUIFrameWindow>(); m_UIMainFrame->SetAutoDelete(true);
+	m_UIMainFrame					= new CUIFrameWindow(); m_UIMainFrame->SetAutoDelete(true);
 	AttachChild						(m_UIMainFrame);
 	strconcat(sizeof(pth),pth,start_from,":main_map_frame");
 	xml_init.InitFrameWindow		(uiXml, pth, 0, m_UIMainFrame);
@@ -104,7 +104,7 @@ void CUIMapWnd::Init(LPCSTR xml_name, LPCSTR start_from)
 		CUIWindow* rect_parent			= m_UIMainFrame;//m_UILevelFrame;
 		Frect r							= rect_parent->GetWndRect();
 
-		m_UIMainScrollH					= xr_new<CUIScrollBar>(); m_UIMainScrollH->SetAutoDelete(true);
+		m_UIMainScrollH					= new CUIScrollBar(); m_UIMainScrollH->SetAutoDelete(true);
 		m_UIMainScrollH->InitScrollBar	(Fvector2().set(r.left+dx, r.bottom-sy), r.right-r.left-dx*2-sx, true, "pda");
 		m_UIMainScrollH->SetWindowName	("scroll_h");
 		m_UIMainScrollH->SetStepSize	( _max( 1, (int)(m_UILevelFrame->GetWidth()*0.1f) ) );
@@ -113,7 +113,7 @@ void CUIMapWnd::Init(LPCSTR xml_name, LPCSTR start_from)
 		Register						(m_UIMainScrollH);
 		AddCallback						("scroll_h",SCROLLBAR_HSCROLL,CUIWndCallback::void_function(this,&CUIMapWnd::OnScrollH));
 
-		m_UIMainScrollV					= xr_new<CUIScrollBar>(); m_UIMainScrollV->SetAutoDelete(true);
+		m_UIMainScrollV					= new CUIScrollBar(); m_UIMainScrollV->SetAutoDelete(true);
 		m_UIMainScrollV->InitScrollBar	(Fvector2().set(r.right-sx, r.top+dy), r.bottom-r.top-dy*2, false, "pda");
 		m_UIMainScrollV->SetWindowName	("scroll_v");
 		m_UIMainScrollV->SetStepSize	( _max( 1, (int)(m_UILevelFrame->GetHeight()*0.1f) ) );
@@ -126,20 +126,20 @@ void CUIMapWnd::Init(LPCSTR xml_name, LPCSTR start_from)
 	/*strconcat						(sizeof(pth),pth,start_from,":map_header_frame_line");
 	if(uiXml.NavigateToNode(pth,0))
 	{
-		UIMainMapHeader				= xr_new<CUIFrameLineWnd>(); 
+		UIMainMapHeader				= new CUIFrameLineWnd(); 
 		UIMainMapHeader->SetAutoDelete(true);
 		m_UIMainFrame->AttachChild	(UIMainMapHeader);
 		xml_init.InitFrameLine		(uiXml, pth, 0, UIMainMapHeader);
 	}*/
 
-	m_map_location_hint					= xr_new<CUIMapLocationHint>();
+	m_map_location_hint					= new CUIMapLocationHint();
 	strconcat							(sizeof(pth),pth,start_from,":map_hint_item");
 	m_map_location_hint->Init			(uiXml, pth);
 	m_map_location_hint->SetAutoDelete	(false);
 
 // Load maps
 
-	m_GlobalMap								= xr_new<CUIGlobalMap>(this);
+	m_GlobalMap								= new CUIGlobalMap(this);
 	m_GlobalMap->SetAutoDelete				(true);
 	m_GlobalMap->Initialize					();
 
@@ -151,12 +151,12 @@ void CUIMapWnd::Init(LPCSTR xml_name, LPCSTR start_from)
 	init_xml_nav( uiXml );
 /*
 #ifdef DEBUG
-	m_dbg_text_hint						= xr_new<CUIStatic>();
+	m_dbg_text_hint						= new CUIStatic();
 	strconcat							(sizeof(pth),pth,start_from,":text_hint");
 	xml_init.InitStatic					(uiXml, pth, 0, m_dbg_text_hint);
 	m_dbg_text_hint->SetAutoDelete		(true);
 
-	m_dbg_info							= xr_new<CUIStatic>();
+	m_dbg_info							= new CUIStatic();
 	strconcat							(sizeof(pth),pth,start_from,":dbg_info");
 	xml_init.InitStatic					(uiXml, pth, 0, m_dbg_info);
 	m_dbg_info->SetAutoDelete			(true);
@@ -181,7 +181,7 @@ void CUIMapWnd::Init(LPCSTR xml_name, LPCSTR start_from)
 			
 			CUICustomMap*& l		= m_GameMaps[map_name];
 
-			l						= xr_new<CUILevelMap>(this);
+			l						= new CUILevelMap(this);
 			R_ASSERT2				(pGameIni->section_exist(map_name),map_name.c_str());
 			l->Initialize			(map_name, "hud\\default");
 
@@ -209,7 +209,7 @@ void CUIMapWnd::Init(LPCSTR xml_name, LPCSTR start_from)
 #endif
 
 	Register				(m_GlobalMap);
-	m_ActionPlanner			= xr_new<CMapActionPlanner>();
+	m_ActionPlanner			= new CMapActionPlanner();
 	m_ActionPlanner->setup	(this);
 	m_view_actor			= true;
 }

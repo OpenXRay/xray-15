@@ -25,7 +25,7 @@
 CUIGameTDM::CUIGameTDM()
 {
 	m_game					= NULL;
-	m_pUITeamSelectWnd		= xr_new<CUISpawnWnd>	();
+	m_pUITeamSelectWnd		= new CUISpawnWnd();
 	m_team1_icon			= NULL;
 	m_team2_icon			= NULL;
 	m_team1_score			= NULL;
@@ -45,10 +45,10 @@ void CUIGameTDM::Init ()
 	CUIXml							uiXml, xml2;
 	uiXml.Load						(CONFIG_PATH, UI_PATH, "ui_game_tdm.xml");
 
-	m_team1_icon					= xr_new<CUIStatic>();
-	m_team2_icon					= xr_new<CUIStatic>();
-	m_team1_score					= xr_new<CUIStatic>();
-	m_team2_score					= xr_new<CUIStatic>();
+	m_team1_icon					= new CUIStatic();
+	m_team2_icon					= new CUIStatic();
+	m_team1_score					= new CUIStatic();
+	m_team2_score					= new CUIStatic();
 	CUIXmlInit::InitStatic			(uiXml, "team1_icon", 0,	m_team1_icon);
 	CUIXmlInit::InitStatic			(uiXml, "team2_icon", 0,	m_team2_icon);
 	CUIXmlInit::InitStatic			(uiXml, "team1_score", 0,	m_team1_score);
@@ -57,9 +57,9 @@ void CUIGameTDM::Init ()
 
 	xml2.Load(CONFIG_PATH, UI_PATH, "stats.xml");
 
-	CUIFrags2* pFragList		= xr_new<CUIFrags2>();			pFragList->SetAutoDelete(true);
+	CUIFrags2* pFragList		= new CUIFrags2();			pFragList->SetAutoDelete(true);
 	//-----------------------------------------------------------
-	CUIDMStatisticWnd* pStatisticWnd = xr_new<CUIDMStatisticWnd>(); pStatisticWnd->SetAutoDelete(true);
+	CUIDMStatisticWnd* pStatisticWnd = new CUIDMStatisticWnd(); pStatisticWnd->SetAutoDelete(true);
 
 	pFragList->Init(xml2,"stats_wnd","frag_wnd_tdm");
 	m_pTeamPanels->Init(TEAM_PANELS_TDM_XML_NAME, "team_panels_wnd");
@@ -75,8 +75,8 @@ void CUIGameTDM::Init ()
 	//-----------------------------------------------------------
 	m_pFragLists->AttachChild(pFragList);
 	//-----------------------------------------------------------
-	CUIFrags2* pPlayerListT1	= xr_new<CUIFrags2>	();pPlayerListT1->SetAutoDelete(true);
-//	CUIFrags2* pPlayerListT2	= xr_new<CUIFrags2>	();pPlayerListT2->SetAutoDelete(true);
+	CUIFrags2* pPlayerListT1	= new CUIFrags2();pPlayerListT1->SetAutoDelete(true);
+//	CUIFrags2* pPlayerListT2	= new CUIFrags2();pPlayerListT2->SetAutoDelete(true);
 
 	pPlayerListT1->Init(xml2, "players_wnd", "frag_wnd_tdm");
 //	pPlayerListT2->Init(xml_doc, "players_wnd", "frag_wnd_tdm");

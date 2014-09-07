@@ -140,9 +140,9 @@ BOOL CScriptDebugger::Active()
 
 CScriptDebugger::CScriptDebugger()
 {
-	m_threads			= xr_new<CDbgScriptThreads>(this);
-	m_callStack			= xr_new<CScriptCallStack>(this);
-	m_lua				= xr_new<CDbgLuaHelper>(this);
+	m_threads			= new CDbgScriptThreads(this);
+	m_callStack			= new CScriptCallStack(this);
+	m_lua				= new CDbgLuaHelper(this);
 
 	ZeroMemory(m_curr_connected_mslot,sizeof(m_curr_connected_mslot));
 //	m_pDebugger					= this;

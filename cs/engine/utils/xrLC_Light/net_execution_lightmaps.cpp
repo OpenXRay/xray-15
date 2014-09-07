@@ -120,7 +120,7 @@ namespace lc_net
 	bool	execution_lightmaps	::	receive_task	( IAgent* agent, DWORD sessionId, IGenericStream* inStream ) 
 		{
 			R_ASSERT(!task);
-			task	= xr_new<net_task >( agent, sessionId );
+			task	= new net_task( agent, sessionId );
 			if( TaskReceive( *task, agent, sessionId, inStream ) )
 				return true;
 			xr_delete(task);

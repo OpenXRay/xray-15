@@ -97,7 +97,7 @@ CVisualMemoryManager::CVisualMemoryManager		(vision_client *client)
 	m_client			= client;
 	initialize			();
 	
-	m_objects			= xr_new<VISIBLES>();
+	m_objects			= new VISIBLES();
 }
 
 void CVisualMemoryManager::initialize			()

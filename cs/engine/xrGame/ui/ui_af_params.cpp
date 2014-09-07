@@ -104,7 +104,7 @@ void CUIArtefactParams::InitFromXml( CUIXml& xml )
 	
 	for ( u32 i = 0; i < ALife::infl_max_count; ++i )
 	{
-		m_immunity_item[i] = xr_new<UIArtefactParamItem>();
+		m_immunity_item[i] = new UIArtefactParamItem();
 		m_immunity_item[i]->Init( xml, af_immunity_section_names[i] );
 		m_immunity_item[i]->SetAutoDelete(false);
 
@@ -116,7 +116,7 @@ void CUIArtefactParams::InitFromXml( CUIXml& xml )
 
 	for ( u32 i = 0; i < ALife::eRestoreTypeMax; ++i )
 	{
-		m_restore_item[i] = xr_new<UIArtefactParamItem>();
+		m_restore_item[i] = new UIArtefactParamItem();
 		m_restore_item[i]->Init( xml, af_restore_section_names[i] );
 		m_restore_item[i]->SetAutoDelete(false);
 
@@ -127,7 +127,7 @@ void CUIArtefactParams::InitFromXml( CUIXml& xml )
 	}
 	
 	{
-		m_additional_weight = xr_new<UIArtefactParamItem>();
+		m_additional_weight = new UIArtefactParamItem();
 		m_additional_weight->Init( xml, "additional_weight" );
 		m_additional_weight->SetAutoDelete(false);
 

@@ -48,7 +48,7 @@ void CUIZoneMap::Init()
 	xml_init.InitStatic(uiXml, "minimap:center", 0, &m_center);
 	
 	
-	m_activeMap						= xr_new<CUIMiniMap>();
+	m_activeMap						= new CUIMiniMap();
 	m_clipFrame.AttachChild			(m_activeMap);
 	m_activeMap->SetAutoDelete		(true);
 

@@ -15,7 +15,7 @@ void CUIListItemAdv::AddField(LPCSTR val, float width)
 {
 	float height = GetHeight();
 
-	CUIStatic* st			= xr_new<CUIStatic>();
+	CUIStatic* st			= new CUIStatic();
 	st->SetWndPos			(Fvector2().set(GetNextLeftPos(), 0.0f));
 	st->SetWndSize			(Fvector2().set(width, height));
 	st->SetTextComplexMode	(false);

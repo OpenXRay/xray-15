@@ -34,7 +34,7 @@ MStatus CXRayObjectExport::writer ( const MFileObject& file, const MString& opti
 	LPCSTR	fname = mname.asChar();
 
 	Log("Export object: ",fname);
-	CEditableObject* OBJECT = xr_new<CEditableObject>(fname);
+	CEditableObject* OBJECT = new CEditableObject(fname);
 	OBJECT->SetVersionToCurrent(TRUE,TRUE);
 	if((mode==MPxFileTranslator::kExportAccessMode)||(mode==MPxFileTranslator::kSaveAccessMode)){
 		status = ExportAll(OBJECT)?MS::kSuccess:MS::kFailure;
@@ -141,7 +141,7 @@ bool CXRayObjectExport::initializeSetsAndLookupTables( bool exportAll )
 	// 
 	MStringArray result;
 	MGlobal::executeCommand( "ls -sets", result );
-	MSelectionList * setList = xr_new<MSelectionList>();
+	MSelectionList * setList = new MSelectionList();
 	length = result.length();
 	for ( i=0; i<length; i++ )
 	{	
@@ -154,7 +154,7 @@ bool CXRayObjectExport::initializeSetsAndLookupTables( bool exportAll )
 	// in which case we can ignore those sets. 
 	//
 	MObject mset;
-	sets = xr_new<MObjectArray>();
+	sets = new MObjectArray();
 	length = setList->length();
 	for ( i=0; i<length; i++ )
 	{
@@ -195,7 +195,7 @@ bool CXRayObjectExport::initializeSetsAndLookupTables( bool exportAll )
     	    return false;
     	}
 		
-		objectNames = xr_new<MStringArray>();
+		objectNames = new MStringArray();
 		
     	for ( ; !dagIterator.isDone(); dagIterator.next() ) 
 		{
@@ -246,7 +246,7 @@ bool CXRayObjectExport::initializeSetsAndLookupTables( bool exportAll )
     	MItSelectionList iter( slist );
 		MStatus status;
 
-		objectNames = xr_new<MStringArray>();
+		objectNames = new MStringArray();
 
 		// We will need to interate over a selected node's heirarchy
 		// in the case where shapes are grouped, and the group is selected.

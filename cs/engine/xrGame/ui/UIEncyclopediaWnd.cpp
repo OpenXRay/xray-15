@@ -44,7 +44,7 @@ void CUIEncyclopediaWnd::Init()
 	xml_init.InitWindow		(uiXml, "main_wnd", 0, this);
 
 	// Load xml data
-	UIEncyclopediaIdxBkg		= xr_new<CUIFrameWindow>(); UIEncyclopediaIdxBkg->SetAutoDelete(true);
+	UIEncyclopediaIdxBkg		= new CUIFrameWindow(); UIEncyclopediaIdxBkg->SetAutoDelete(true);
 	AttachChild(UIEncyclopediaIdxBkg);
 	xml_init.InitFrameWindow(uiXml, "right_frame_window", 0, UIEncyclopediaIdxBkg);
 
@@ -54,36 +54,36 @@ void CUIEncyclopediaWnd::Init()
 	R_ASSERT(m_pTreeRootFont);
 
 
-	UIEncyclopediaIdxHeader		= xr_new<CUIFrameLineWnd>(); UIEncyclopediaIdxHeader->SetAutoDelete(true);
+	UIEncyclopediaIdxHeader		= new CUIFrameLineWnd(); UIEncyclopediaIdxHeader->SetAutoDelete(true);
 	UIEncyclopediaIdxBkg->AttachChild(UIEncyclopediaIdxHeader);
 	xml_init.InitFrameLine(uiXml, "right_frame_line", 0, UIEncyclopediaIdxHeader);
 
-	UIAnimation					= xr_new<CUIAnimatedStatic>(); UIAnimation->SetAutoDelete(true);
+	UIAnimation					= new CUIAnimatedStatic(); UIAnimation->SetAutoDelete(true);
 	UIEncyclopediaIdxHeader->AttachChild(UIAnimation);
 	xml_init.InitAnimatedStatic(uiXml, "a_static", 0, UIAnimation);
 
-	UIEncyclopediaInfoBkg		= xr_new<CUIFrameWindow>();UIEncyclopediaInfoBkg->SetAutoDelete(true);
+	UIEncyclopediaInfoBkg		= new CUIFrameWindow();UIEncyclopediaInfoBkg->SetAutoDelete(true);
 	AttachChild(UIEncyclopediaInfoBkg);
 	xml_init.InitFrameWindow(uiXml, "left_frame_window", 0, UIEncyclopediaInfoBkg);
 
-	UIEncyclopediaInfoHeader	= xr_new<CUIFrameLineWnd>();UIEncyclopediaInfoHeader->SetAutoDelete(true);
+	UIEncyclopediaInfoHeader	= new CUIFrameLineWnd();UIEncyclopediaInfoHeader->SetAutoDelete(true);
 	UIEncyclopediaInfoBkg->AttachChild(UIEncyclopediaInfoHeader);
 
 #pragma todo("implement this")
 //.	UIEncyclopediaInfoHeader->UITitleText.SetEllipsis(CUIStatic::eepBegin, 20);
 	xml_init.InitFrameLine(uiXml, "left_frame_line", 0, UIEncyclopediaInfoHeader);
 
-	UIArticleHeader				= xr_new<CUIStatic>(); UIArticleHeader->SetAutoDelete(true);
+	UIArticleHeader				= new CUIStatic(); UIArticleHeader->SetAutoDelete(true);
 	UIEncyclopediaInfoBkg->AttachChild(UIArticleHeader);
 	xml_init.InitStatic(uiXml, "article_header_static", 0, UIArticleHeader);
 
-	UIIdxList					= xr_new<CUIListWnd>(); UIIdxList->SetAutoDelete(true);
+	UIIdxList					= new CUIListWnd(); UIIdxList->SetAutoDelete(true);
 	UIEncyclopediaIdxBkg->AttachChild(UIIdxList);
 	xml_init.InitListWnd(uiXml, "idx_list", 0, UIIdxList);
 	UIIdxList->SetMessageTarget(this);
 	UIIdxList->EnableScrollBar(true);
 
-	UIInfoList					= xr_new<CUIScrollView>(); UIInfoList->SetAutoDelete(true);
+	UIInfoList					= new CUIScrollView(); UIInfoList->SetAutoDelete(true);
 	UIEncyclopediaInfoBkg->AttachChild(UIInfoList);
 	xml_init.InitScrollView(uiXml, "info_list", 0, UIInfoList);
 
@@ -199,7 +199,7 @@ void CUIEncyclopediaWnd::SetCurrentArtice(CUITreeViewItem *pTVItem)
 	if (!pTVItem->IsRoot())
 	{
 
-		CUIEncyclopediaArticleWnd*	article_info = xr_new<CUIEncyclopediaArticleWnd>();
+		CUIEncyclopediaArticleWnd*	article_info = new CUIEncyclopediaArticleWnd();
 		article_info->Init			("encyclopedia_item.xml","encyclopedia_wnd:objective_item");
 		article_info->SetArticle	(m_ArticlesDB[pTVItem->GetValue()]);
 		UIInfoList->AddWindow		(article_info, true);
@@ -234,7 +234,7 @@ void CUIEncyclopediaWnd::AddArticle(shared_str article_id, bool bReaded)
 	// Добавляем элемент
 	m_ArticlesDB.resize(m_ArticlesDB.size() + 1);
 	CEncyclopediaArticle*& a = m_ArticlesDB.back();
-	a = xr_new<CEncyclopediaArticle>();
+	a = new CEncyclopediaArticle();
 	a->Load(article_id);
 
 

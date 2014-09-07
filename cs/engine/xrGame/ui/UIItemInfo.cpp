@@ -77,7 +77,7 @@ void CUIItemInfo::InitItemInfo(LPCSTR xml_name)
 	}
 	if(uiXml.NavigateToNode("background_frame",0))
 	{
-		UIBackground				= xr_new<CUIFrameWindow>();
+		UIBackground				= new CUIFrameWindow();
 		UIBackground->SetAutoDelete	(true);
 		AttachChild					(UIBackground);
 		xml_init.InitFrameWindow	(uiXml, "background_frame", 0,	UIBackground);
@@ -85,7 +85,7 @@ void CUIItemInfo::InitItemInfo(LPCSTR xml_name)
 	m_complex_desc = false;
 	if(uiXml.NavigateToNode("static_name",0))
 	{
-		UIName						= xr_new<CUIStatic>();	 
+		UIName						= new CUIStatic();	 
 		AttachChild					(UIName);		
 		UIName->SetAutoDelete		(true);
 		xml_init.InitStatic			(uiXml, "static_name", 0,	UIName);
@@ -93,7 +93,7 @@ void CUIItemInfo::InitItemInfo(LPCSTR xml_name)
 	}
 	if(uiXml.NavigateToNode("static_weight",0))
 	{
-		UIWeight				= xr_new<CUIStatic>();	 
+		UIWeight				= new CUIStatic();	 
 		AttachChild				(UIWeight);		
 		UIWeight->SetAutoDelete(true);
 		xml_init.InitStatic		(uiXml, "static_weight", 0,			UIWeight);
@@ -101,7 +101,7 @@ void CUIItemInfo::InitItemInfo(LPCSTR xml_name)
 
 	if(uiXml.NavigateToNode("static_cost",0))
 	{
-		UICost					= xr_new<CUIStatic>();	 
+		UICost					= new CUIStatic();	 
 		AttachChild				(UICost);
 		UICost->SetAutoDelete	(true);
 		xml_init.InitStatic		(uiXml, "static_cost", 0,			UICost);
@@ -109,20 +109,20 @@ void CUIItemInfo::InitItemInfo(LPCSTR xml_name)
 
 	if(uiXml.NavigateToNode("descr_list",0))
 	{
-		UIConditionWnd					= xr_new<CUIConditionParams>();
+		UIConditionWnd					= new CUIConditionParams();
 		UIConditionWnd->InitFromXml		(uiXml);
-		UIWpnParams						= xr_new<CUIWpnParams>();
+		UIWpnParams						= new CUIWpnParams();
 		UIWpnParams->InitFromXml		(uiXml);
-		UIArtefactParams				= xr_new<CUIArtefactParams>();
+		UIArtefactParams				= new CUIArtefactParams();
 		UIArtefactParams->InitFromXml	(uiXml);
 
 		if ( ai().get_alife() ) // (-designer)
 		{
-			UIProperties					= xr_new<UIInvUpgPropertiesWnd>();
+			UIProperties					= new UIInvUpgPropertiesWnd();
 			UIProperties->init_from_xml		("actor_menu_item.xml");
 		}
 
-		UIDesc							= xr_new<CUIScrollView>(); 
+		UIDesc							= new CUIScrollView(); 
 		AttachChild						(UIDesc);		
 		UIDesc->SetAutoDelete			(true);
 		m_desc_info.bShowDescrText		= !!uiXml.ReadAttribInt("descr_list",0,"only_text_info", 1);
@@ -133,7 +133,7 @@ void CUIItemInfo::InitItemInfo(LPCSTR xml_name)
 
 	if (uiXml.NavigateToNode("image_static", 0))
 	{	
-		UIItemImage					= xr_new<CUIStatic>();	 
+		UIItemImage					= new CUIStatic();	 
 		AttachChild					(UIItemImage);	
 		UIItemImage->SetAutoDelete	(true);
 		xml_init.InitStatic			(uiXml, "image_static", 0, UIItemImage);
@@ -146,7 +146,7 @@ void CUIItemInfo::InitItemInfo(LPCSTR xml_name)
 	
 	if ( uiXml.NavigateToNode( "outfit_info", 0 ) )
 	{
-		UIOutfitInfo			= xr_new<CUIOutfitInfo>();
+		UIOutfitInfo			= new CUIOutfitInfo();
 		UIOutfitInfo->InitFromXml( uiXml );
 	}
 
@@ -232,7 +232,7 @@ void CUIItemInfo::InitItem(CInventoryItem* pInvItem, CInventoryItem* pCompareIte
 		VERIFY					(0==UIDesc->GetSize());
 		if(m_desc_info.bShowDescrText)
 		{
-			CUIStatic* pItem					= xr_new<CUIStatic>();
+			CUIStatic* pItem					= new CUIStatic();
 			pItem->SetTextColor					(m_desc_info.uDescClr);
 			pItem->SetFont						(m_desc_info.pDescFont);
 			pItem->SetWidth						(UIDesc->GetDesiredChildWidth());

@@ -234,7 +234,7 @@ void	hash_Initialize ()
 	{
 		for (int j=0; j<HDIM_Z; j++)
 		{
-			HASH[i][j]	= xr_new<vecDW>();
+			HASH[i][j]	= new vecDW();
 			HASH[i][j]->reserve	(64);
 		}
 	}
@@ -320,14 +320,14 @@ u32 BuildNode(Fvector& vFrom, Fvector& vAt)	// return node's index
 
 	if (!CanTravel(vFrom, vAt))	return InvalidNode;
 
-	// *** set up xr_new<node
+	// *** set up new node
 	vertex N;
 	if (CreateNode(vAt,N)) {
 		//*** check if similar node exists
 		u32	old		= FindNode(N.Pos);
 		if (old==InvalidNode)	
 		{
-			// register xr_new<node
+			// register new node
 			RegisterNode(N);
 			return g_nodes.size()-1;
 		} else {

@@ -75,7 +75,7 @@ CUIMainIngameWnd::CUIMainIngameWnd()
 //	m_pWeapon					= NULL;
 	m_pGrenade					= NULL;
 	m_pItem						= NULL;
-	UIZoneMap					= xr_new<CUIZoneMap>();
+	UIZoneMap					= new CUIZoneMap();
 	m_pPickUpItem				= NULL;
 	m_pMPChatWnd				= NULL;
 	m_pMPLogWnd					= NULL;	
@@ -136,7 +136,7 @@ void CUIMainIngameWnd::Init()
 
 	uiXml.SetLocalRoot			(uiXml.GetRoot());
 
-	m_UIIcons					= xr_new<CUIScrollView>(); m_UIIcons->SetAutoDelete(true);
+	m_UIIcons					= new CUIScrollView(); m_UIIcons->SetAutoDelete(true);
 	xml_init.InitScrollView		(uiXml, "icons_scroll_view", 0, m_UIIcons);
 	AttachChild					(m_UIIcons);
 
@@ -216,7 +216,7 @@ void CUIMainIngameWnd::Init()
 	AttachChild								(&UIStaticDiskIO);
 	xml_init.InitStatic						(uiXml, "disk_io", 0, &UIStaticDiskIO);
 
-	m_ui_hud_states							= xr_new<CUIHudStatesWnd>();
+	m_ui_hud_states							= new CUIHudStatesWnd();
 	m_ui_hud_states->SetAutoDelete			(true);
 	AttachChild								(m_ui_hud_states);
 	m_ui_hud_states->InitFromXml			(uiXml, "hud_states");
@@ -599,7 +599,7 @@ void CUIMainIngameWnd::InitFlashingIcons(CUIXml* node)
 	// Пробегаемся по всем нодам и инициализируем из них статики
 	for (int i = 0; i < staticsCount; ++i)
 	{
-		pIcon = xr_new<CUIStatic>();
+		pIcon = new CUIStatic();
 		xml_init.InitStatic(*node, flashingIconNodeName, i, pIcon);
 		shared_str iconType = node->ReadAttrib(flashingIconNodeName, i, "type", "none");
 
@@ -755,7 +755,7 @@ void test_key(int dik)
 	{
 		if (!pTS)
 		{
-			pTS =  xr_new<TS>();
+			pTS = new TS();
 			Msg("created");
 		}else
 		{

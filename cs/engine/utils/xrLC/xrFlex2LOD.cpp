@@ -9,7 +9,7 @@ void	CBuild::Flex2LOD()
 
 		// Create Node and fill it with information
 		b_lod&		LOD		= lods[it];
-		OGF_LOD*	pNode	= xr_new<OGF_LOD> (1,pBuild->materials[LOD.dwMaterial].sector);
+		OGF_LOD*	pNode	= new OGF_LOD(1,pBuild->materials[LOD.dwMaterial].sector);
 		pNode->lod_Material	= LOD.dwMaterial;
 		for (int lf=0; lf<8; lf++)
 		{

@@ -28,7 +28,7 @@ void start_tutorial(LPCSTR name)
 		g_tutorial2			= g_tutorial;
 	};
 		
-	g_tutorial							= xr_new<CUISequencer>();
+	g_tutorial							= new CUISequencer();
 	g_tutorial->Start					(name);
 	if(g_tutorial2)
 		g_tutorial->m_pStoredInputReceiver = g_tutorial2->m_pStoredInputReceiver;

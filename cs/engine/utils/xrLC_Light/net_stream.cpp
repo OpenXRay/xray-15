@@ -44,7 +44,7 @@ void		INetBlockReader::			create_block	( u32 size )
 {
 	VERIFY(!mem_reader);
 
-	mem_reader = xr_new<CMemoryReadBlock>( size );
+	mem_reader = new CMemoryReadBlock( size );
 }
 
 INetBlockReader::~INetBlockReader		()
@@ -114,7 +114,7 @@ void	INetBlockReader::load_buffer (LPCSTR fn)
 	IReader* fs			= FS.r_open(fn);
 	 if(fs)
 	 {
-		//mem_reader = xr_new<CMemoryReader>( fs->length() );
+		//mem_reader = new CMemoryReader( fs->length() );
 	    create_block( fs->length() );
 		fs->r( mem_reader->pdata(), fs->length() );
 		FS.r_close(fs);// ->close();
@@ -182,7 +182,7 @@ void INetFileBuffWriter::w(const void* ptr, u32 count)
 void INetMemoryBuffWriter::create_block()
 {
 	VERIFY(!mem_writter);
-	mem_writter = xr_new<CMemoryWriteBlock>( net_block_write_data_size );
+	mem_writter = new CMemoryWriteBlock( net_block_write_data_size );
 }
 INetMemoryBuffWriter::			~INetMemoryBuffWriter	()
 {
@@ -203,7 +203,7 @@ void	INetWriter::save_buffer		( LPCSTR fn )const
 INetFileBuffWriter::INetFileBuffWriter(LPCSTR	_file_name, u32 block_size, bool _reopen ):INetWriter()
 {
 	
-	mem_writter = xr_new<CFileWriteBlock>( _file_name, block_size, _reopen );
+	mem_writter = new CFileWriteBlock( _file_name, block_size, _reopen );
 }
 
 INetFileBuffWriter::~INetFileBuffWriter()

@@ -19,10 +19,10 @@ bool CBurer::can_scan = true;
 
 CBurer::CBurer()
 {
-	StateMan = xr_new<CStateManagerBurer>(this);
+	StateMan = new CStateManagerBurer(this);
 	TScanner::init_external(this);
 
-	m_fast_gravi		= xr_new<CBurerFastGravi>();
+	m_fast_gravi		= new CBurerFastGravi();
 	control().add		(m_fast_gravi,  ControlCom::eComCustom1);
 
 }

@@ -11,7 +11,7 @@
 #include "Include/xrRender/UIRender.h"
 
 const char * const	clDefault	= "default";
-#define CREATE_LINES if (!m_pLines) {m_pLines = xr_new<CUILines>(); m_pLines->SetTextAlignment(CGameFont::alLeft);}
+#define CREATE_LINES if (!m_pLines) {m_pLines = new CUILines(); m_pLines->SetTextAlignment(CGameFont::alLeft);}
 #define LA_CYCLIC			(1<<0)
 #define LA_ONLYALPHA		(1<<1)
 #define LA_TEXTCOLOR		(1<<2)

@@ -53,7 +53,7 @@ void CWeaponBinoculars::OnZoomIn		()
 		if(m_bVision && !m_binoc_vision) 
 		{
 			//.VERIFY			(!m_binoc_vision);
-			m_binoc_vision	= xr_new<CBinocularsVision>(cNameSect());
+			m_binoc_vision	= new CBinocularsVision(cNameSect());
 		}
 	}
 

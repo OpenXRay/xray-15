@@ -136,7 +136,7 @@ BOOL	R_constant_table::parse	(void* _desc, u16 destination)
 						// We have determined all valuable info, search if constant already created
 						ref_constant	C		=	get	(name);
 						if (!C)	{
-							C					=	xr_new<R_constant>();//.g_constant_allocator.create();
+							C					= new R_constant();//.g_constant_allocator.create();
 							C->name				=	name;
 							C->destination		=	RC_dest_sampler;
 							C->type				=	RC_sampler;
@@ -169,7 +169,7 @@ BOOL	R_constant_table::parse	(void* _desc, u16 destination)
 		// We have determined all valuable info, search if constant already created
 		ref_constant	C		=	get	(name);
 		if (!C)	{
-			C					=	xr_new<R_constant>();//.g_constant_allocator.create();
+			C					= new R_constant();//.g_constant_allocator.create();
 			C->name				=	name;
 			C->destination		=	destination;
 			C->type				=	type;
@@ -201,7 +201,7 @@ void R_constant_table::merge(R_constant_table* T)
 		ref_constant C			=	get	(*src->name);
 		if (!C)	
 		{
-			C					=	xr_new<R_constant>();//.g_constant_allocator.create();
+			C					= new R_constant();//.g_constant_allocator.create();
 			C->name				=	src->name;
 			C->destination		=	src->destination;
 			C->type				=	src->type;

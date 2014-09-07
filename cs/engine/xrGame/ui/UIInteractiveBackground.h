@@ -95,7 +95,7 @@ T*	 CUIInteractiveBackground<T>::CreateE(){
 	Fvector2 size = GetWndSize();
 	if (!m_stateEnabled)
 	{
-		m_stateEnabled = xr_new<T>();
+		m_stateEnabled = new T();
 		m_stateEnabled->SetAutoDelete(true);
 		AttachChild					(m_stateEnabled);
 		m_stateEnabled->SetWndPos	(Fvector2().set(0,0));
@@ -110,7 +110,7 @@ T*	 CUIInteractiveBackground<T>::CreateD(){
 	Fvector2 size = GetWndSize();
 	if (!m_stateDisabled)
 	{
-		m_stateDisabled = xr_new<T>();
+		m_stateDisabled = new T();
 		m_stateDisabled->SetAutoDelete(true);
 		AttachChild(m_stateDisabled);
 		m_stateDisabled->SetWndPos	(Fvector2().set(0,0));
@@ -124,7 +124,7 @@ T*	 CUIInteractiveBackground<T>::CreateT(){
 	Fvector2 size = GetWndSize();
 	if (!m_stateTouched)
 	{
-		m_stateTouched = xr_new<T>();
+		m_stateTouched = new T();
 		m_stateTouched->SetAutoDelete(true);
 		AttachChild(m_stateTouched);		
 		m_stateTouched->SetWndPos	(Fvector2().set(0,0));
@@ -138,7 +138,7 @@ T*	 CUIInteractiveBackground<T>::CreateH(){
 	Fvector2 size = GetWndSize();
 	if (!m_stateHighlighted)
 	{
-		m_stateHighlighted = xr_new<T>();
+		m_stateHighlighted = new T();
 		m_stateHighlighted->SetAutoDelete(true);
 		AttachChild(m_stateHighlighted);
 		m_stateHighlighted->SetWndPos	(Fvector2().set(0,0));
@@ -173,7 +173,7 @@ void CUIInteractiveBackground<T>::InitEnabledState(LPCSTR texture_e){
 
 	if (!m_stateEnabled)
 	{
-		m_stateEnabled = xr_new<T>();
+		m_stateEnabled = new T();
 		m_stateEnabled->SetAutoDelete(true);
 		AttachChild(m_stateEnabled);
 	}
@@ -191,7 +191,7 @@ void CUIInteractiveBackground<T>::InitDisabledState(LPCSTR texture_d){
 
 	if (!m_stateDisabled)
 	{
-		m_stateDisabled = xr_new<T>();
+		m_stateDisabled = new T();
 		m_stateDisabled->SetAutoDelete(true);
 		AttachChild(m_stateDisabled);
 	}
@@ -208,7 +208,7 @@ void CUIInteractiveBackground<T>::InitHighlightedState(LPCSTR texture_h){
     
 	if (!m_stateHighlighted)
 	{
-		m_stateHighlighted = xr_new<T>();
+		m_stateHighlighted = new T();
 		m_stateHighlighted->SetAutoDelete(true);
 		AttachChild(m_stateHighlighted);		
 	}
@@ -224,7 +224,7 @@ void CUIInteractiveBackground<T>::InitTouchedState(LPCSTR texture_t){
 
     if (!m_stateTouched)
 	{
-		m_stateTouched = xr_new<T>();
+		m_stateTouched = new T();
 		m_stateTouched->SetAutoDelete(true);
 		AttachChild(m_stateTouched);		
 	}

@@ -92,7 +92,7 @@ float CUIListBoxItem::FieldsLength()
 
 CUIStatic* CUIListBoxItem::AddField(LPCSTR txt, float len, LPCSTR key)
 {
-	fields.push_back		(xr_new<CUIStatic>());
+	fields.push_back		(new CUIStatic());
 	CUIStatic* st			= fields.back();
 	AttachChild				(st);
 	st->SetWndPos			(Fvector2().set(FieldsLength(),0.0f));

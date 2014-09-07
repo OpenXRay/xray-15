@@ -43,7 +43,7 @@ CUIStatic* CUIGameLog::AddLogMessage(LPCSTR msg)
 // initialization of item's height, text static and icon still necessary
 CUIPdaMsgListItem* CUIGameLog::AddPdaMessage()
 {
-	CUIPdaMsgListItem* pItem				= xr_new<CUIPdaMsgListItem>();
+	CUIPdaMsgListItem* pItem				= new CUIPdaMsgListItem();
 	pItem->InitPdaMsgListItem				(Fvector2().set(0,0), Fvector2().set(GetDesiredChildWidth(),10.0f));
     pItem->SetClrLightAnim					(CHAT_LOG_ITEMS_ANIMATION, false, true, true, true);
 	AddWindow								(pItem, true);
@@ -56,7 +56,7 @@ u32 CUIGameLog::GetTextColor(){
 }
 
 CUIPdaKillMessage* CUIGameLog::AddLogMessage(KillMessageStruct& msg){
-	CUIPdaKillMessage* pItem = pItem = xr_new<CUIPdaKillMessage>();	
+	CUIPdaKillMessage* pItem = pItem = new CUIPdaKillMessage();	
 	pItem->SetFont(GetFont());
 	pItem->SetWidth(GetDesiredChildWidth());
 	pItem->SetHeight(kill_msg_height);
@@ -75,7 +75,7 @@ void CUIGameLog::AddChatMessage(LPCSTR msg, LPCSTR author){
     
 	CUIStatic* pItem = NULL;
 
-	pItem = xr_new<CUIStatic>();
+	pItem = new CUIStatic();
 	pItem->SetTextComplexMode		(true);
 	pItem->SetText(fullLine);
     pItem->m_pLines->SetCutWordsMode(true);

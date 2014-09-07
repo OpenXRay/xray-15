@@ -6,10 +6,10 @@
 #include "UIStatic.h"
 
 CUIFrags::CUIFrags(){	
-	m_pBackT = xr_new<CUIStatic>(); AttachChild(m_pBackT);
-	m_pBackC = xr_new<CUIStatic>(); AttachChild(m_pBackC);
-	m_pBackB = xr_new<CUIStatic>(); AttachChild(m_pBackB);
-	m_pStats = xr_new<CUIStats>();  AttachChild(m_pStats);
+	m_pBackT = new CUIStatic(); AttachChild(m_pBackT);
+	m_pBackC = new CUIStatic(); AttachChild(m_pBackC);
+	m_pBackB = new CUIStatic(); AttachChild(m_pBackB);
+	m_pStats = new CUIStats();  AttachChild(m_pStats);
 }
 
 CUIFrags::~CUIFrags(){

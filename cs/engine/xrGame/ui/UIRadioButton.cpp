@@ -8,7 +8,7 @@ void CUIRadioButton::InitButton(Fvector2 pos, Fvector2 size)
 	inherited::InitButton(pos, size);
 
 	if (!m_pLines)
-		m_pLines = xr_new<CUILines>();
+		m_pLines = new CUILines();
 	m_pLines->SetTextAlignment(CGameFont::alLeft);
 
     CUI3tButton::InitTexture("ui_radio");

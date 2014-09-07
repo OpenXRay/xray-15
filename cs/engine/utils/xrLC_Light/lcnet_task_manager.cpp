@@ -17,7 +17,7 @@ namespace	lc_net{
 
 	// void				  create_net_task_manager()
 	//{
-	//	g_task_manager = xr_new<task_manager>();
+	//	g_task_manager = new task_manager();
 	//}
 	// void				  destroy_net_task_manager()
 	//{

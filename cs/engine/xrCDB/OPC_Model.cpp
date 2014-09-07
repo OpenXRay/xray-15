@@ -201,7 +201,7 @@ bool OPCODE_Model::Build(const OPCODECREATE& create)
 	// We continue nonetheless.... 
 
 	// 2) Build a generic AABB Tree.
-	mSource = xr_new<AABBTree>();
+	mSource = new AABBTree();
 	CHECKALLOC(mSource);
 
 	// 2-1) Setup a builder. Our primitives here are triangles from input mesh,
@@ -220,13 +220,13 @@ bool OPCODE_Model::Build(const OPCODECREATE& create)
 
 	if(mNoLeaf)
 	{
-		if(mQuantized)	mTree = xr_new<AABBQuantizedNoLeafTree>();
-		else			mTree = xr_new<AABBNoLeafTree>();
+		if(mQuantized)	mTree = new AABBQuantizedNoLeafTree();
+		else			mTree = new AABBNoLeafTree();
 	}
 	else
 	{
-		if(mQuantized)	mTree = xr_new<AABBQuantizedTree>();
-		else			mTree = xr_new<AABBCollisionTree>();
+		if(mQuantized)	mTree = new AABBQuantizedTree();
+		else			mTree = new AABBCollisionTree();
 	}
 
 	// 3-2) Create optimized tree
@@ -243,7 +243,7 @@ bool OPCODE_Model::Build(const OPCODECREATE& create)
 	if(create.CollisionHull)
 	{
 		// Create hull
-		mHull = xr_new<CollisionHull>();
+		mHull = new CollisionHull();
 		CHECKALLOC(mHull);
 
 		CONVEXHULLCREATE CHC;

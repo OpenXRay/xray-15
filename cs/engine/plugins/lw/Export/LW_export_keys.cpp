@@ -96,7 +96,7 @@ void __cdecl SaveSkeletonMotion(GlobalFunc *global)
 		object		= g_iteminfo->first( LWI_OBJECT, NULL );
 		int obj_cnt = 0;
 		_splitpath( buf, 0, 0, name, 0 );
-		m_Motion	= xr_new<CSMotion>();
+		m_Motion	= new CSMotion();
 		m_Motion->SetName(name);
 		while ( object ) {
 			if(g_intinfo->itemFlags(object)&LWITEMF_SELECTED){

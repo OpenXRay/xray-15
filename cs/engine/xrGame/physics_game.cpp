@@ -116,7 +116,7 @@ void  TContactShotMark(CDB::TRI* T,dContactGeom* c)
 				//ref_shader pWallmarkShader = mtl_pair->CollideMarks[::Random.randI(0,mtl_pair->CollideMarks.size())];
 				wm_shader WallmarkShader = mtl_pair->m_pCollideMarks->GenerateWallmark();
 				//ref_shader pWallmarkShader = mtl_pair->CollideMarks[::Random.randI(0,mtl_pair->CollideMarks.size())];
-				Level().ph_commander().add_call(xr_new<CPHOnesCondition>(),xr_new<CPHWallMarksCall>( *((Fvector*)c->pos),T,WallmarkShader));
+				Level().ph_commander().add_call(new CPHOnesCondition(),new CPHWallMarksCall( *((Fvector*)c->pos),T,WallmarkShader));
 			}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			if(square_cam_dist<SQUARE_SOUND_EFFECT_DIST)
@@ -151,7 +151,7 @@ void  TContactShotMark(CDB::TRI* T,dContactGeom* c)
 				{
 					LPCSTR ps_name = *mtl_pair->CollideParticles[::Random.randI(0,mtl_pair->CollideParticles.size())];
 					//отыграть партиклы столкновения материалов
-					Level().ph_commander().add_call(xr_new<CPHOnesCondition>(),xr_new<CPHParticlesPlayCall>(*c,b_invert_normal,ps_name));
+					Level().ph_commander().add_call(new CPHOnesCondition(),new CPHParticlesPlayCall(*c,b_invert_normal,ps_name));
 				}
 			}
 		}

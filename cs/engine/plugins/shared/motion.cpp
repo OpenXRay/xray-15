@@ -59,14 +59,14 @@ COMotion::COMotion():CCustomMotion()
 {
 	mtype			=mtObject;
 	for (int ch=0; ch<ctMaxChannel; ch++)
-		envs[ch]	= xr_new<CEnvelope> ();
+		envs[ch]	= new CEnvelope();
 }
 
 COMotion::COMotion(COMotion* source):CCustomMotion(source)
 {
 	// bone motions
 	for (int ch=0; ch<ctMaxChannel; ch++)
-		envs[ch]	= xr_new<CEnvelope> (source->envs[ch]);
+		envs[ch]	= new CEnvelope(source->envs[ch]);
 }
 
 COMotion::~COMotion()
@@ -121,22 +121,22 @@ bool COMotion::Load(IReader& F)
     if (vers==0x0003){
 	    Clear	();
         for (int ch=0; ch<ctMaxChannel; ch++){
-            envs[ch] = xr_new<CEnvelope> ();
+            envs[ch] = new CEnvelope();
             envs[ch]->Load_1(F);
         }
     }else if (vers==0x0004){
 	    Clear	();
-        envs[ctPositionX] = xr_new<CEnvelope>();	envs[ctPositionX]->Load_2(F);
-        envs[ctPositionY] = xr_new<CEnvelope>();	envs[ctPositionY]->Load_2(F);
-        envs[ctPositionZ] = xr_new<CEnvelope>();	envs[ctPositionZ]->Load_2(F);
-        envs[ctRotationP] = xr_new<CEnvelope>();	envs[ctRotationP]->Load_2(F);
-        envs[ctRotationH] = xr_new<CEnvelope>();	envs[ctRotationH]->Load_2(F);
-        envs[ctRotationB] = xr_new<CEnvelope>();	envs[ctRotationB]->Load_2(F);
+        envs[ctPositionX] = new CEnvelope();	envs[ctPositionX]->Load_2(F);
+        envs[ctPositionY] = new CEnvelope();	envs[ctPositionY]->Load_2(F);
+        envs[ctPositionZ] = new CEnvelope();	envs[ctPositionZ]->Load_2(F);
+        envs[ctRotationP] = new CEnvelope();	envs[ctRotationP]->Load_2(F);
+        envs[ctRotationH] = new CEnvelope();	envs[ctRotationH]->Load_2(F);
+        envs[ctRotationB] = new CEnvelope();	envs[ctRotationB]->Load_2(F);
     }else{
 		if (vers!=EOBJ_OMOTION_VERSION) return false;
 	    Clear	();
         for (int ch=0; ch<ctMaxChannel; ch++){
-            envs[ch] = xr_new<CEnvelope> ();
+            envs[ch] = new CEnvelope();
             envs[ch]->Load_2(F);
         }
     }
@@ -264,7 +264,7 @@ CSMotion::CSMotion(CSMotion* source):CCustomMotion(source){
     	dest 		= &bone_mots[i];
     	src 		= &source->bone_mots[i];
 		for (int ch=0; ch<ctMaxChannel; ch++)
-			dest->envs[ch] = xr_new<CEnvelope> (src->envs[ch]);
+			dest->envs[ch] = new CEnvelope(src->envs[ch]);
     }
 }
 
@@ -299,7 +299,7 @@ void CSMotion::add_empty_motion	(shared_str const &bone_id)
 	motion.m_Flags.assign	( 1 << 1);
 
 	for (int ch=0; ch<ctMaxChannel; ch++){
-		motion.envs[ch] = xr_new<CEnvelope> ();
+		motion.envs[ch] = new CEnvelope();
 //		motion.envs[ch];
 	}
 
@@ -319,7 +319,7 @@ void CSMotion::CopyMotion(CSMotion* source){
     	dest 		= &bone_mots[i];
     	src 		= &source->bone_mots[i];
 		for (int ch=0; ch<ctMaxChannel; ch++)
-			dest->envs[ch] = xr_new<CEnvelope> (src->envs[ch]);
+			dest->envs[ch] = new CEnvelope(src->envs[ch]);
     }
 }
 
@@ -408,7 +408,7 @@ bool CSMotion::Load(IReader& F)
         	bm_it->SetName	(itoa(int(bm_it-bone_mots.begin()),temp_buf,10));
 			bm_it->m_Flags.assign((u8)F.r_u32());
 			for (int ch=0; ch<ctMaxChannel; ch++){
-				bm_it->envs[ch] = xr_new<CEnvelope> ();
+				bm_it->envs[ch] = new CEnvelope();
 				bm_it->envs[ch]->Load_1(F);
 			}
 		}
@@ -427,7 +427,7 @@ bool CSMotion::Load(IReader& F)
                 bm_it->SetName	(buf);
                 bm_it->m_Flags.assign((u8)F.r_u32());
                 for (int ch=0; ch<ctMaxChannel; ch++){
-                    bm_it->envs[ch] = xr_new<CEnvelope> ();
+                    bm_it->envs[ch] = new CEnvelope();
                     bm_it->envs[ch]->Load_1(F);
                 }
             }
@@ -447,7 +447,7 @@ bool CSMotion::Load(IReader& F)
                     bm_it->SetName	(buf);
                     bm_it->m_Flags.assign(F.r_u8());
                     for (int ch=0; ch<ctMaxChannel; ch++){
-                        bm_it->envs[ch] = xr_new<CEnvelope> ();
+                        bm_it->envs[ch] = new CEnvelope();
                         bm_it->envs[ch]->Load_2(F);
                     }
                 }

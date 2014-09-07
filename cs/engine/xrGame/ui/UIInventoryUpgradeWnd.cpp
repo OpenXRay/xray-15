@@ -74,12 +74,12 @@ void CUIInventoryUpgradeWnd::Init()
 	m_background = UIHelper::CreateStatic( uiXml, "background", this );
 //	m_delimiter  = UIHelper::CreateFrameLine( uiXml, "delimiter", this );
 
-	m_scheme_wnd = xr_new<CUIWindow>();
+	m_scheme_wnd = new CUIWindow();
 	m_scheme_wnd->SetAutoDelete( true );
 	AttachChild( m_scheme_wnd );
 	xml_init.InitWindow( uiXml, "scheme", 0, m_scheme_wnd );
 
-	m_item_info = xr_new<CUIItemInfo>();
+	m_item_info = new CUIItemInfo();
 	m_item_info->SetAutoDelete( true );
 	AttachChild( m_item_info );
 	m_item_info->InitItemInfo( "inventory_upgrade_info.xml" );

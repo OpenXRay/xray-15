@@ -127,7 +127,7 @@ public:
 		u32	stride			= pBuild->mu_refs().size()/MU_THREADS;
 		u32	last			= pBuild->mu_refs().size()-stride*(MU_THREADS-1);
 		for (u32 thID=0; thID<MU_THREADS; thID++)
-			mu_secondary.start	(xr_new<CMULight> (thID,thID*stride,thID*stride+((thID==(MU_THREADS-1))?last:stride)));
+			mu_secondary.start	(new CMULight(thID,thID*stride,thID*stride+((thID==(MU_THREADS-1))?last:stride)));
 	}
 };
 
@@ -274,7 +274,7 @@ void CBuild::Run	(LPCSTR P)
 }
 void	CBuild::StartMu	()
 {
-  mu_base.start				(xr_new<CMUThread> (0));
+  mu_base.start				(new CMUThread(0));
 }
 void CBuild::	RunAfterLight			( IWriter* fs	)
 {

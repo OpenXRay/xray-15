@@ -212,7 +212,7 @@ BOOL CTorch::net_Spawn(CSE_Abstract* DC)
 
 	R_ASSERT				(!CFORM());
 	R_ASSERT				(smart_cast<IKinematics*>(Visual()));
-	collidable.model		= xr_new<CCF_Skeleton>	(this);
+	collidable.model		= new CCF_Skeleton(this);
 
 	if (!inherited::net_Spawn(DC))
 		return				(FALSE);

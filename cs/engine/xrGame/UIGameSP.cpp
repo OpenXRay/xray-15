@@ -22,8 +22,8 @@ CUIGameSP::CUIGameSP()
 {
 	m_game			= NULL;
 	
-	TalkMenu		= xr_new<CUITalkWnd>		();
-	UIChangeLevelWnd= xr_new<CChangeLevelWnd>	();
+	TalkMenu		= new CUITalkWnd();
+	UIChangeLevelWnd= new CChangeLevelWnd();
 }
 
 CUIGameSP::~CUIGameSP() 
@@ -217,7 +217,7 @@ void CUIGameSP::reset_ui()
 
 CChangeLevelWnd::CChangeLevelWnd		()
 {
-	m_messageBox			= xr_new<CUIMessageBox>();	
+	m_messageBox			= new CUIMessageBox();	
 	m_messageBox->SetAutoDelete(true);
 	AttachChild				(m_messageBox);
 }

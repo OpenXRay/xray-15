@@ -356,8 +356,8 @@ void add_call(const luabind::functor<bool> &condition,const luabind::functor<voi
 {
 	luabind::functor<bool>		_condition = condition;
 	luabind::functor<void>		_action = action;
-	CPHScriptCondition	* c=xr_new<CPHScriptCondition>(_condition);
-	CPHScriptAction		* a=xr_new<CPHScriptAction>(_action);
+	CPHScriptCondition	* c= new CPHScriptCondition(_condition);
+	CPHScriptAction		* a= new CPHScriptAction(_action);
 	Level().ph_commander_scripts().add_call(c,a);
 }
 
@@ -371,12 +371,12 @@ void remove_call(const luabind::functor<bool> &condition,const luabind::functor<
 void add_call(const luabind::object &lua_object, LPCSTR condition,LPCSTR action)
 {
 //	try{	
-//		CPHScriptObjectCondition	*c=xr_new<CPHScriptObjectCondition>(lua_object,condition);
-//		CPHScriptObjectAction		*a=xr_new<CPHScriptObjectAction>(lua_object,action);
+//		CPHScriptObjectCondition	*c= new CPHScriptObjectCondition(lua_object,condition);
+//		CPHScriptObjectAction		*a= new CPHScriptObjectAction(lua_object,action);
 		luabind::functor<bool>		_condition = object_cast<luabind::functor<bool> >(lua_object[condition]);
 		luabind::functor<void>		_action = object_cast<luabind::functor<void> >(lua_object[action]);
-		CPHScriptObjectConditionN	*c=xr_new<CPHScriptObjectConditionN>(lua_object,_condition);
-		CPHScriptObjectActionN		*a=xr_new<CPHScriptObjectActionN>(lua_object,_action);
+		CPHScriptObjectConditionN	*c= new CPHScriptObjectConditionN(lua_object,_condition);
+		CPHScriptObjectActionN		*a= new CPHScriptObjectActionN(lua_object,_action);
 		Level().ph_commander_scripts().add_call_unique(c,c,a,a);
 //	}
 //	catch(...)
@@ -395,8 +395,8 @@ void remove_call(const luabind::object &lua_object, LPCSTR condition,LPCSTR acti
 void add_call(const luabind::object &lua_object, const luabind::functor<bool> &condition,const luabind::functor<void> &action)
 {
 
-	CPHScriptObjectConditionN	*c=xr_new<CPHScriptObjectConditionN>(lua_object,condition);
-	CPHScriptObjectActionN		*a=xr_new<CPHScriptObjectActionN>(lua_object,action);
+	CPHScriptObjectConditionN	*c= new CPHScriptObjectConditionN(lua_object,condition);
+	CPHScriptObjectActionN		*a= new CPHScriptObjectActionN(lua_object,action);
 	Level().ph_commander_scripts().add_call(c,a);
 }
 
@@ -488,7 +488,7 @@ void iterate_sounds2				(LPCSTR prefix, u32 max_count, luabind::object object, l
 #include "actoreffector.h"
 float add_cam_effector(LPCSTR fn, int id, bool cyclic, LPCSTR cb_func)
 {
-	CAnimatorCamEffectorScriptCB* e		= xr_new<CAnimatorCamEffectorScriptCB>(cb_func);
+	CAnimatorCamEffectorScriptCB* e		= new CAnimatorCamEffectorScriptCB(cb_func);
 	e->SetType					((ECamEffectorType)id);
 	e->SetCyclic				(cyclic);
 	e->Start					(fn);
@@ -498,7 +498,7 @@ float add_cam_effector(LPCSTR fn, int id, bool cyclic, LPCSTR cb_func)
 
 float add_cam_effector2(LPCSTR fn, int id, bool cyclic, LPCSTR cb_func)
 {
-	CAnimatorCamEffectorScriptCB* e		= xr_new<CAnimatorCamEffectorScriptCB>(cb_func);
+	CAnimatorCamEffectorScriptCB* e		= new CAnimatorCamEffectorScriptCB(cb_func);
 	e->m_bAbsolutePositioning	= true;
 	e->SetType					((ECamEffectorType)id);
 	e->SetCyclic				(cyclic);
@@ -557,7 +557,7 @@ void remove_complex_effector(int id)
 #include "postprocessanimator.h"
 void add_pp_effector(LPCSTR fn, int id, bool cyclic)
 {
-	CPostprocessAnimator* pp		= xr_new<CPostprocessAnimator>(id, cyclic);
+	CPostprocessAnimator* pp		= new CPostprocessAnimator(id, cyclic);
 	pp->Load						(fn);
 	Actor()->Cameras().AddPPEffector	(pp);
 }

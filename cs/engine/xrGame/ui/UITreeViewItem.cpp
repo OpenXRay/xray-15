@@ -456,7 +456,7 @@ void CreateTreeBranch(shared_str nesting, shared_str leafName, CUIListWnd *pList
 
 			for (GroupTree_it it2 = it; it2 != cont.end(); ++it2)
 			{
-				pNewItem = xr_new<CUITreeViewItem>();
+				pNewItem = new CUITreeViewItem();
 				pItemToIns->AddItem(pNewItem);
 				pNewItem->SetFont(pRootFnt);
 				pNewItem->SetText(*(*it2));
@@ -544,7 +544,7 @@ void CreateTreeBranch(shared_str nesting, shared_str leafName, CUIListWnd *pList
 	// ѕрошли все существующее дерево, и не нашли? “огда добавл€ем новую иерархию
 	if (!pTVItemChilds)
 	{
-		pTVItemChilds = xr_new<CUITreeViewItem>();
+		pTVItemChilds = new CUITreeViewItem();
 		pTVItemChilds->SetFont(pRootFont);
 		pTVItemChilds->SetText(*groupTree.front());
 		pTVItemChilds->SetReadedColor(rootColor);
@@ -562,7 +562,7 @@ void CreateTreeBranch(shared_str nesting, shared_str leafName, CUIListWnd *pList
 	// Cначала провер€ем нет ли записи с таким названием, и добавл€ем если нет
 	//	if (!pTVItemChilds->Find(*name))
 	//	{
-	pTVItem		= xr_new<CUITreeViewItem>();
+	pTVItem		= new CUITreeViewItem();
 	pTVItem->SetFont(pLeafFont);
 	pTVItem->SetReadedColor(leafColor);
 	pTVItem->SetText(*CStringTable().translate(*leafName));

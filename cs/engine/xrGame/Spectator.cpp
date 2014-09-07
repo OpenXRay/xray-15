@@ -37,16 +37,16 @@ CSpectator::CSpectator() : CGameObject()
 	m_timer.Start			();
 	m_fTimeDelta			= EPS_S;	
 	// Cameras
-	cameras[eacFirstEye]	= xr_new<CCameraFirstEye>	(this);
+	cameras[eacFirstEye]	= new CCameraFirstEye(this);
 	cameras[eacFirstEye]->Load("actor_firsteye_cam");
 
-	cameras[eacLookAt]		= xr_new<CCameraLook>		(this);
+	cameras[eacLookAt]		= new CCameraLook(this);
 	cameras[eacLookAt]->Load("actor_look_cam");
 
-	cameras[eacFreeLook]	= xr_new<CCameraLook>		(this);
+	cameras[eacFreeLook]	= new CCameraLook(this);
 	cameras[eacFreeLook]->Load("actor_free_cam");
 
-	cameras[eacFreeFly]		= xr_new<CSpectrCameraFirstEye>	(m_fTimeDelta, this, 0);
+	cameras[eacFreeFly]		= new CSpectrCameraFirstEye(m_fTimeDelta, this, 0);
 	cameras[eacFreeFly]->Load("actor_firsteye_cam");
 
 //	cam_active				= eacFreeFly;

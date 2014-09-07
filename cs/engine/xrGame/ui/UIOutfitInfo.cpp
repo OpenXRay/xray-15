@@ -110,7 +110,7 @@ void CUIOutfitInfo::InitFromXml( CUIXml& xml_doc )
 
 	CUIXmlInit::InitWindow( xml_doc, base_str, 0, this );
 	
-	m_caption = xr_new<CUIStatic>();
+	m_caption = new CUIStatic();
 	AttachChild( m_caption );
 	m_caption->SetAutoDelete( true );	
 	string128 buf;
@@ -126,7 +126,7 @@ void CUIOutfitInfo::InitFromXml( CUIXml& xml_doc )
 		{
 			continue;
 		}
-		m_items[i] = xr_new<CUIOutfitImmunity>();
+		m_items[i] = new CUIOutfitImmunity();
 		m_items[i]->InitFromXml( xml_doc, base_str, i );
 		AttachChild( m_items[i] );
 		m_items[i]->SetWndPos( pos );

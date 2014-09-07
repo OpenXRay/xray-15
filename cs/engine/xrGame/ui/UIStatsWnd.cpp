@@ -51,7 +51,7 @@ void CUIStatsWnd::Init(LPCSTR XML)
 
 CUIStatsListItem * CUIStatsWnd::AddItem()
 {
-	CUIStatsListItem *pNewItem = xr_new<CUIStatsListItem>();
+	CUIStatsListItem *pNewItem = new CUIStatsListItem();
 	UIStatsList.AddItem<CUIListItem>(pNewItem); 
 	UIStatsList.ScrollToBegin();
 
@@ -142,7 +142,7 @@ void CUIStatsListItem::XmlInit(const char *path, CUIXml &uiXml)
 
 	for (int i = 0; i < tabsCount; ++i)
 	{
-		pButton = xr_new<CUIButton>();
+		pButton = new CUIButton();
 		pButton->SetAutoDelete(true);
 		xml_init.InitStatic(uiXml, "static", i, pButton);
 		pButton->SetTextAlignment(CGameFont::alLeft);

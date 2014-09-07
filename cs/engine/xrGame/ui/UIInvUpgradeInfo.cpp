@@ -47,27 +47,27 @@ void UIInvUpgradeInfo::init_from_xml( LPCSTR xml_name )
 
 	xml_init.InitWindow( ui_xml, "main_frame", 0, this );
 	
-	m_background = xr_new<CUIFrameWindow>();
+	m_background = new CUIFrameWindow();
 	AttachChild( m_background );
 	m_background->SetAutoDelete( true );
 	xml_init.InitFrameWindow( ui_xml, "background_frame", 0, m_background );
 
-	m_name = xr_new<CUIStatic>();	 
+	m_name = new CUIStatic();	 
 	AttachChild( m_name );		
 	m_name->SetAutoDelete( true );
 	xml_init.InitStatic( ui_xml, "info_name", 0, m_name );
 
-	m_desc = xr_new<CUIStatic>();	 
+	m_desc = new CUIStatic();	 
 	AttachChild( m_desc );
 	m_desc->SetAutoDelete( true );
 	xml_init.InitStatic( ui_xml, "info_desc", 0, m_desc );
 
-	m_prereq = xr_new<CUIStatic>();	 
+	m_prereq = new CUIStatic();	 
 	AttachChild( m_prereq );
 	m_prereq->SetAutoDelete( true );
 	xml_init.InitStatic( ui_xml, "info_prerequisites", 0, m_prereq );
 
-	m_properties_wnd = xr_new<UIInvUpgPropertiesWnd>();	 
+	m_properties_wnd = new UIInvUpgPropertiesWnd();	 
 	AttachChild( m_properties_wnd );
 	m_properties_wnd->SetAutoDelete( true );
 	m_properties_wnd->init_from_xml( xml_name );

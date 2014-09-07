@@ -18,7 +18,7 @@ CEliteDetector::~CEliteDetector()
 void CEliteDetector::CreateUI()
 {
 	R_ASSERT(NULL==m_ui);
-	m_ui				= xr_new<CUIArtefactDetectorElite>();
+	m_ui				= new CUIArtefactDetectorElite();
 	ui().construct		(this);
 }
 
@@ -98,12 +98,12 @@ void CUIArtefactDetectorElite::construct(CEliteDetector* p)
 
 	xml_init.InitWindow					(uiXml, "elite", 0, this);
 
-	m_wrk_area							= xr_new<CUIWindow>();
+	m_wrk_area							= new CUIWindow();
 	xml_init.InitWindow					(uiXml, "elite:wrk_area", 0, m_wrk_area);
 	m_wrk_area->SetAutoDelete			(true);
 	AttachChild							(m_wrk_area);
 
-	m_af_sign							= xr_new<CUIStatic>();
+	m_af_sign							= new CUIStatic();
 	xml_init.InitStatic					(uiXml, "elite:af_sign", 0, m_af_sign);
 	m_af_sign->SetAutoDelete			(true);
 	m_wrk_area->AttachChild				(m_af_sign);

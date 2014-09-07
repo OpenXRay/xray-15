@@ -110,7 +110,7 @@ CEnvelope* CCustomMotion::CreateEnvelope(LWChannelID chan, LWChannelID* chan_par
 	st_Key *key, *tail = NULL;
 	double val;
 	
-	env = xr_new<CEnvelope>();
+	env = new CEnvelope();
 	
 	group = g_chinfo->channelParent( chan );
 	lwenv = g_chinfo->channelEnvelope( chan );
@@ -136,7 +136,7 @@ CEnvelope* CCustomMotion::CreateEnvelope(LWChannelID chan, LWChannelID* chan_par
 	}
 	
 	while ( lwkey = g_envf->nextKey( lwenv, lwkey )) {
-		key = xr_new<st_Key>();
+		key = new st_Key();
 		
 		env->keys.push_back(key);
 

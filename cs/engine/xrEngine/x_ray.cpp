@@ -190,11 +190,11 @@ PROTECT_API void InitSettings()
 #ifdef DEBUG
     Msg("Updated path to system.ltx is %s", fname);
 #endif // DEBUG
-    pSettings = xr_new<CInifile>(fname, TRUE);
+    pSettings = new CInifile(fname, TRUE);
     CHECK_OR_EXIT(!pSettings->sections().empty(),
         make_string("Cannot find file %s.\nReinstalling application may fix this problem.", fname));
     FS.update_path(fname, "$game_config$", "game.ltx");
-    pGameIni = xr_new<CInifile>(fname, TRUE);
+    pGameIni = new CInifile(fname, TRUE);
     CHECK_OR_EXIT(!pGameIni->sections().empty(),
         make_string("Cannot find file %s.\nReinstalling application may fix this problem.", fname));
 }
@@ -202,9 +202,9 @@ PROTECT_API void InitSettings()
 PROTECT_API void InitConsole()
 {
 #ifdef DEDICATED_SERVER
-    Console = xr_new<CTextConsole>();
+    Console = new CTextConsole();
 #else
-    Console = xr_new<CConsole>();
+    Console = new CConsole();
 #endif
     Console->Initialize();
     strcpy_s(Console->ConfigFile, "user.ltx");
@@ -221,7 +221,7 @@ PROTECT_API void InitConsole()
 PROTECT_API void InitInput()
 {
     bool captureInput = !strstr(Core.Params, "-i");
-    pInput = xr_new<CInput>(captureInput);
+    pInput = new CInput(captureInput);
 }
 
 void destroyInput()
@@ -319,10 +319,10 @@ void Startup()
     ShowWindow(Device.m_hWnd, SW_SHOWNORMAL);
     Device.Create();
     LALib.OnCreate();
-    pApp = xr_new<CApplication>();
+    pApp = new CApplication();
     g_pGamePersistent = (IGame_Persistent*)Engine.External.pCreate(CLSID_GAME_PERSISTANT);
-    g_SpatialSpace = xr_new<ISpatial_DB>();
-    g_SpatialSpacePhysic = xr_new<ISpatial_DB>();
+    g_SpatialSpace = new ISpatial_DB();
+    g_SpatialSpacePhysic = new ISpatial_DB();
     // Destroy LOGO
 #ifndef DEDICATED_SERVER
     DestroyWindow(logoWindow);
@@ -478,7 +478,7 @@ int APIENTRY WinMain_impl(HINSTANCE hInstance, HINSTANCE hPrevInstance, char* lp
     else
     {
         // XXX nitrocaster: construct CCC_LoadCFG_custom on stack?
-        auto cmd = xr_new<CCC_LoadCFG_custom>("renderer ");
+        auto cmd = new CCC_LoadCFG_custom("renderer ");
         cmd->Execute(Console->ConfigFile);
         xr_delete(cmd);
     }
@@ -559,7 +559,7 @@ void _InitializeFont(CGameFont*& F, LPCSTR section, u32 flags)
     R_ASSERT(fontTextureName);
     if (!F)
     {
-        F = xr_new<CGameFont>("font", fontTextureName, flags);
+        F = new CGameFont("font", fontTextureName, flags);
         Device.seqRender.Add(F, REG_PRIORITY_LOW - 1000);
     }
     else

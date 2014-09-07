@@ -17,11 +17,11 @@ extern string_path g_last_saved_game;
 
 CUIMMShniaga::CUIMMShniaga()
 {
-	m_sound			= xr_new<CMMSound>();
+	m_sound			= new CMMSound();
 
-	m_view			= xr_new<CUIScrollView>();	AttachChild(m_view);
-	m_shniaga		= xr_new<CUIStatic>();	AttachChild(m_shniaga);
-	m_magnifier		= xr_new<CUIStatic>();	m_shniaga->AttachChild(m_magnifier);	m_magnifier->SetPPMode();
+	m_view			= new CUIScrollView();	AttachChild(m_view);
+	m_shniaga		= new CUIStatic();	AttachChild(m_shniaga);
+	m_magnifier		= new CUIStatic();	m_shniaga->AttachChild(m_magnifier);	m_magnifier->SetPPMode();
 	m_mag_pos		= 0;
 
 	m_selected		= NULL;
@@ -115,7 +115,7 @@ void CUIMMShniaga::CreateList(xr_vector<CUIStatic*>& lst, CUIXml& xml_doc, LPCST
 
 	for (int i = 0; i < nodes_num; ++i)
 	{		
-		st							= xr_new<CUIStatic>();
+		st							= new CUIStatic();
 		st->SetWndPos				(Fvector2().set(0,0));
 		st->SetWndSize				(Fvector2().set(m_view->GetDesiredChildWidth(), button_height));
 		st->SetTextComplexMode		(false);

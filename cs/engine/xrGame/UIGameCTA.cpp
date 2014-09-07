@@ -61,27 +61,27 @@
 
 CUIGameCTA::CUIGameCTA()
 {
-	teamPanels			= xr_new<UITeamPanels>();
-	m_pUITeamSelectWnd	= xr_new<CUISpawnWnd>();
+	teamPanels			= new UITeamPanels();
+	m_pUITeamSelectWnd	= new CUISpawnWnd();
 
-//-	m_pActorMenu		= xr_new<CUIActorMenu>();
-//-	m_pPdaMenu			= xr_new<CUIPdaWnd>	();
+//-	m_pActorMenu		= new CUIActorMenu();
+//-	m_pPdaMenu			= new CUIPdaWnd();
 	
 	CUIXml							uiXml;
 	uiXml.Load						(CONFIG_PATH, UI_PATH, CTA_GAME_WND_XML);
-	m_pMoneyIndicator				= xr_new<CUIMoneyIndicator>();
+	m_pMoneyIndicator				= new CUIMoneyIndicator();
 	m_pMoneyIndicator->InitFromXML	(uiXml);
-	m_pRankIndicator				= xr_new<CUIRankIndicator>();
+	m_pRankIndicator				= new CUIRankIndicator();
 	m_pRankIndicator->InitFromXml	(uiXml);
-	m_pReinforcementInidcator = xr_new<CUIProgressShape>();
+	m_pReinforcementInidcator = new CUIProgressShape();
 	CUIXmlInit::InitProgressShape	(uiXml, "reinforcement", 0, m_pReinforcementInidcator);
 
-	m_team1_icon					= xr_new<CUIStatic>();
-	m_team2_icon					= xr_new<CUIStatic>();
-	m_team1_score					= xr_new<CUIStatic>();
-	m_team2_score					= xr_new<CUIStatic>();
+	m_team1_icon					= new CUIStatic();
+	m_team2_icon					= new CUIStatic();
+	m_team1_score					= new CUIStatic();
+	m_team2_score					= new CUIStatic();
 
-	m_pFragLimitIndicator			= xr_new<CUIStatic>();
+	m_pFragLimitIndicator			= new CUIStatic();
 	CUIXmlInit::InitStatic			(uiXml,"fraglimit", 0, m_pFragLimitIndicator);
 
 	CUIXmlInit::InitStatic			(uiXml, "team1_icon", 0,	m_team1_icon);
@@ -189,7 +189,7 @@ void CUIGameCTA::SetClGame(game_cl_GameState* g)
 		}
 		delete_data(m_pMapDesc);
 	}
-	m_pMapDesc = xr_new<CUIMapDesc>();
+	m_pMapDesc = new CUIMapDesc();
 	
 	if (m_pBuySpawnMsgBox)
 	{
@@ -200,7 +200,7 @@ void CUIGameCTA::SetClGame(game_cl_GameState* g)
 		delete_data(m_pBuySpawnMsgBox);
 	}
 	
-	m_pBuySpawnMsgBox					= xr_new<CUIMessageBoxEx>();	
+	m_pBuySpawnMsgBox					= new CUIMessageBoxEx();	
 	m_pBuySpawnMsgBox->InitMessageBox	("message_box_buy_spawn");
 	m_pBuySpawnMsgBox->SetText			("");
 	
@@ -278,7 +278,7 @@ void CUIGameCTA::UpdateBuyMenu(shared_str const & teamSection, shared_str const 
 	}
 	m_teamSectionForBuyMenu = teamSection;
 	/// warning !!!
-	m_pCurBuyMenu = xr_new<BUY_WND_TYPE>();	
+	m_pCurBuyMenu = new BUY_WND_TYPE();	
 	m_pCurBuyMenu->Init(m_teamSectionForBuyMenu, costSection);
 	m_costSection = costSection;
 	m_pCurBuyMenu->SetSkin(0);
@@ -306,7 +306,7 @@ void CUIGameCTA::UpdateSkinMenu(shared_str const & teamSection)
 		m_pCurSkinMenu = NULL;
 	}
 	m_teamSectionForSkinMenu = teamSection;
-	m_pCurSkinMenu = xr_new<CUISkinSelectorWnd>(m_teamSectionForSkinMenu.c_str(), static_cast<s16>(tempPlayerState->team));
+	m_pCurSkinMenu = new CUISkinSelectorWnd(m_teamSectionForSkinMenu.c_str(), static_cast<s16>(tempPlayerState->team));
 }
 
 
@@ -867,7 +867,7 @@ void CUIGameCTA::SetVoteMessage(LPCSTR str)
 	if (str) {
 		CUIXml							uiXml;
 		uiXml.Load						(CONFIG_PATH, UI_PATH, "ui_game_dm.xml");
-		m_voteStatusWnd					= xr_new<UIVoteStatusWnd>();
+		m_voteStatusWnd					= new UIVoteStatusWnd();
 		m_voteStatusWnd->InitFromXML	(uiXml);
 		m_voteStatusWnd->Show			(true);
 		m_voteStatusWnd->SetVoteMsg		(str);

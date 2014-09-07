@@ -122,7 +122,7 @@ void CRenderDevice::_Create	(LPCSTR shName)
 void CRenderDevice::Create	() 
 {
 	if (b_is_Ready)		return;		// prevent double call
-	Statistic			= xr_new<CStats>();
+	Statistic			= new CStats();
 	Log					("Starting RENDER device...");
 
 #ifdef _EDITOR
@@ -142,7 +142,7 @@ void CRenderDevice::Create	()
 	FS.update_path		(fname,"$game_data$","shaders.xr");
 
 	//////////////////////////////////////////////////////////////////////////
-	Resources			= xr_new<CResourceManager>		();
+	Resources			= new CResourceManager();
 	_Create				(fname);
 
 	PreCache			(0);
@@ -158,7 +158,7 @@ void CRenderDevice::ConnectToRender()
 PROTECT_API void CRenderDevice::Create	() 
 {
 	if (b_is_Ready)		return;		// prevent double call
-	Statistic			= xr_new<CStats>();
+	Statistic			= new CStats();
 	if (!m_pRender)
 		m_pRender			= RenderFactory->CreateRenderDeviceRender();
 	SetupGPU(m_pRender);

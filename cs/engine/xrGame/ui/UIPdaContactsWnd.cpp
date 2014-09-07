@@ -37,32 +37,32 @@ void CUIPdaContactsWnd::Init()
 
 	xml_init.InitWindow					(uiXml, "main_wnd", 0, this);
 
-	UIFrameContacts						= xr_new<CUIFrameWindow>();UIFrameContacts->SetAutoDelete(true);
+	UIFrameContacts						= new CUIFrameWindow();UIFrameContacts->SetAutoDelete(true);
 	AttachChild							(UIFrameContacts);
 	xml_init.InitFrameWindow			(uiXml, "left_frame_window", 0, UIFrameContacts);
 
 
-	UIContactsHeader					= xr_new<CUIFrameLineWnd>();UIContactsHeader->SetAutoDelete(true);
+	UIContactsHeader					= new CUIFrameLineWnd();UIContactsHeader->SetAutoDelete(true);
 	UIFrameContacts->AttachChild		(UIContactsHeader);
 	xml_init.InitFrameLine				(uiXml, "left_frame_line", 0, UIContactsHeader);
 
-	UIRightFrame						= xr_new<CUIFrameWindow>();UIRightFrame->SetAutoDelete(true);
+	UIRightFrame						= new CUIFrameWindow();UIRightFrame->SetAutoDelete(true);
 	AttachChild							(UIRightFrame);
 	xml_init.InitFrameWindow			(uiXml, "right_frame_window", 0, UIRightFrame);
 
-	UIRightFrameHeader					= xr_new<CUIFrameLineWnd>();UIRightFrameHeader->SetAutoDelete(true);
+	UIRightFrameHeader					= new CUIFrameLineWnd();UIRightFrameHeader->SetAutoDelete(true);
 	UIRightFrame->AttachChild			(UIRightFrameHeader);
 	xml_init.InitFrameLine				(uiXml, "right_frame_line", 0, UIRightFrameHeader);
 
-	UIAnimation							= xr_new<CUIAnimatedStatic>();UIAnimation->SetAutoDelete(true);
+	UIAnimation							= new CUIAnimatedStatic();UIAnimation->SetAutoDelete(true);
 	UIContactsHeader->AttachChild		(UIAnimation);
 	xml_init.InitAnimatedStatic			(uiXml, "a_static", 0, UIAnimation);
 
-	UIListWnd							= xr_new<CUIScrollView>();UIListWnd->SetAutoDelete(true);
+	UIListWnd							= new CUIScrollView();UIListWnd->SetAutoDelete(true);
 	UIFrameContacts->AttachChild		(UIListWnd);
 	xml_init.InitScrollView				(uiXml, "list", 0, UIListWnd);
 
-	UIDetailsWnd						= xr_new<CUIScrollView>();UIDetailsWnd->SetAutoDelete(true);
+	UIDetailsWnd						= new CUIScrollView();UIDetailsWnd->SetAutoDelete(true);
 	UIRightFrame->AttachChild			(UIDetailsWnd);
 	xml_init.InitScrollView				(uiXml, "detail_list", 0, UIDetailsWnd);
 	
@@ -98,7 +98,7 @@ void CUIPdaContactsWnd::AddContact(CPda* pda)
 
 
 	CUIPdaContactItem* pItem		= NULL;
-	pItem							= xr_new<CUIPdaContactItem>(this);
+	pItem							= new CUIPdaContactItem(this);
 	UIListWnd->AddWindow			(pItem, true);
 	pItem->InitPdaListItem			(Fvector2().set(0,0), Fvector2().set(UIListWnd->GetWidth(),85.0f));
 	pItem->InitCharacter			(pda->GetOriginalOwner());

@@ -45,7 +45,7 @@ CUIListBoxItem* CUIListBox::AddItem(LPCSTR text)
 	if (!text)			
 		return					NULL;
 
-	CUIListBoxItem* pItem		= xr_new<CUIListBoxItem>();
+	CUIListBoxItem* pItem		= new CUIListBoxItem();
 	pItem->InitFrameLineWnd		(Fvector2().set(0,0), Fvector2().set(this->GetDesiredChildWidth()-5, m_def_item_height) );
 	if (!m_selection_texture)
         pItem->InitDefault		();

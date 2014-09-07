@@ -22,7 +22,7 @@ CExtraContentFilter::CExtraContentFilter()
 		u32 PacksCount = pSettings->line_count(EXTRA_CONTENT_SECTION);
 		for (u32 i=0; i<PacksCount; i++)
 		{
-			PackData* pNewPack = xr_new<PackData>();
+			PackData* pNewPack = new PackData();
 			LPCSTR PackName, KeyName;
 			pSettings->r_line(EXTRA_CONTENT_SECTION, i, &PackName, &KeyName);
 			pNewPack->sPackName = PackName;

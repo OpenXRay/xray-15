@@ -121,9 +121,9 @@ void CUIInventoryWnd::Init()
 
 	if (!IsGameTypeSingle())
 	{
-		UIRankFrame = xr_new<CUIStatic> (); 
+		UIRankFrame = new CUIStatic(); 
 		UIRankFrame->SetAutoDelete		(true);
-		UIRank = xr_new<CUIStatic>		(); 
+		UIRank = new CUIStatic(); 
 		UIRank->SetAutoDelete			(true);
 
 		CUIXmlInit::InitStatic			(uiXml, "rank", 0, UIRankFrame);
@@ -132,23 +132,23 @@ void CUIInventoryWnd::Init()
 		UIRankFrame->AttachChild		(UIRank);		
 	}
 
-	m_pUIBagList						= xr_new<CUIDragDropListEx>(); UIBagWnd.AttachChild(m_pUIBagList); m_pUIBagList->SetAutoDelete(true);
+	m_pUIBagList						= new CUIDragDropListEx(); UIBagWnd.AttachChild(m_pUIBagList); m_pUIBagList->SetAutoDelete(true);
 	xml_init.InitDragDropListEx			(uiXml, "dragdrop_bag", 0, m_pUIBagList);
 	BindDragDropListEnents				(m_pUIBagList);
 
-	m_pUIBeltList						= xr_new<CUIDragDropListEx>(); AttachChild(m_pUIBeltList); m_pUIBeltList->SetAutoDelete(true);
+	m_pUIBeltList						= new CUIDragDropListEx(); AttachChild(m_pUIBeltList); m_pUIBeltList->SetAutoDelete(true);
 	xml_init.InitDragDropListEx			(uiXml, "dragdrop_belt", 0, m_pUIBeltList);
 	BindDragDropListEnents				(m_pUIBeltList);
 
-	m_pUIOutfitList						= xr_new<CUIOutfitDragDropList>(); AttachChild(m_pUIOutfitList); m_pUIOutfitList->SetAutoDelete(true);
+	m_pUIOutfitList						= new CUIOutfitDragDropList(); AttachChild(m_pUIOutfitList); m_pUIOutfitList->SetAutoDelete(true);
 	xml_init.InitDragDropListEx			(uiXml, "dragdrop_outfit", 0, m_pUIOutfitList);
 	BindDragDropListEnents				(m_pUIOutfitList);
 
-	m_pUIPistolList						= xr_new<CUIDragDropListEx>(); AttachChild(m_pUIPistolList); m_pUIPistolList->SetAutoDelete(true);
+	m_pUIPistolList						= new CUIDragDropListEx(); AttachChild(m_pUIPistolList); m_pUIPistolList->SetAutoDelete(true);
 	xml_init.InitDragDropListEx			(uiXml, "dragdrop_pistol", 0, m_pUIPistolList);
 	BindDragDropListEnents				(m_pUIPistolList);
 
-	m_pUIAutomaticList						= xr_new<CUIDragDropListEx>(); AttachChild(m_pUIAutomaticList); m_pUIAutomaticList->SetAutoDelete(true);
+	m_pUIAutomaticList						= new CUIDragDropListEx(); AttachChild(m_pUIAutomaticList); m_pUIAutomaticList->SetAutoDelete(true);
 	xml_init.InitDragDropListEx			(uiXml, "dragdrop_automatic", 0, m_pUIAutomaticList);
 	BindDragDropListEnents				(m_pUIAutomaticList);
 
@@ -163,7 +163,7 @@ void CUIInventoryWnd::Init()
 	UIStaticTime.AttachChild			(&UIStaticTimeString);
 	xml_init.InitStatic					(uiXml, "time_static_str", 0, &UIStaticTimeString);
 
-	UIExitButton						= xr_new<CUI3tButton>();UIExitButton->SetAutoDelete(true);
+	UIExitButton						= new CUI3tButton();UIExitButton->SetAutoDelete(true);
 	AttachChild							(UIExitButton);
 	xml_init.Init3tButton				(uiXml, "exit_button", 0, UIExitButton);
 

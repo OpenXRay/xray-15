@@ -9,9 +9,9 @@ CUIProgressShape::CUIProgressShape()
 {
 	m_pBackground	= NULL;
 	m_bText			= false;
-	m_pTexture		= xr_new<CUIStatic>();
+	m_pTexture		= new CUIStatic();
 	AttachChild		(m_pTexture);	
-	m_pBackground	= xr_new<CUIStatic>();
+	m_pBackground	= new CUIStatic();
 	AttachChild		(m_pBackground);
 	m_blend			= true;
 	m_angle_begin	= 0.0f;

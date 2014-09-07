@@ -27,7 +27,7 @@ CUI3tButton::CUI3tButton()
 
 void CUI3tButton::CreateHint()
 {
-	m_hint				= xr_new<CUIStatic>();
+	m_hint				= new CUIStatic();
 	m_hint->SetAutoDelete(true);
 	m_hint->SetCustomDraw(true);
 	AttachChild			(m_hint);
@@ -115,7 +115,7 @@ void CUI3tButton::InitButton(Fvector2 pos, Fvector2 size)
 	{
 		if ( !m_back_frameline )
 		{
-			m_back_frameline = xr_new<CUI_IB_FrameLineWnd>();
+			m_back_frameline = new CUI_IB_FrameLineWnd();
 			m_back_frameline->SetAutoDelete	(true);
 			AttachChild						(m_back_frameline);
 		}
@@ -126,7 +126,7 @@ void CUI3tButton::InitButton(Fvector2 pos, Fvector2 size)
 	{
 		if ( !m_background )
 		{
-			m_background = xr_new<CUI_IB_Static>();
+			m_background = new CUI_IB_Static();
 			m_background->SetAutoDelete		(true);
 			AttachChild						(m_background);
 		}
@@ -332,7 +332,7 @@ void CUI3tButtonEx::init_from_xml( CUIXml& xml, LPCSTR path )
 
 	if ( xml.NavigateToNode( "hint_text", 0 ) )
 	{
-		m_hint_owner = xr_new<UIHintWindow>();
+		m_hint_owner = new UIHintWindow();
 		m_hint_owner->SetAutoDelete( true );
 		AttachChild( m_hint_owner );
 		CUIXmlInit::InitHintWindow( xml, "hint_text", 0, m_hint_owner );

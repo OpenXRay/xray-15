@@ -60,7 +60,7 @@ bool CEditableObject::Import_LWO(const char* fn, bool bNeedOptimize)
                 for (Isf=I->surf; Isf; Isf=Isf->next){
 //                    UI->ProgressUpdate(i);
                     Isf->alpha_mode=i; // перетираем для внутренних целей !!!
-                    CSurface* Osf = xr_new<CSurface>();
+                    CSurface* Osf = new CSurface();
                     m_Surfaces.push_back(Osf);
                     if (Isf->name&&Isf->name[0]) Osf->SetName(Isf->name); else Osf->SetName("Default");
                     Osf->m_Flags.set(CSurface::sf2Sided,(Isf->sideflags==3)?TRUE:FALSE);
@@ -150,7 +150,7 @@ bool CEditableObject::Import_LWO(const char* fn, bool bNeedOptimize)
 	            int k=0;
  	           	for (Ilr=I->layer; Ilr; Ilr=Ilr->next){
                     // create new mesh
-                    CEditableMesh* MESH=xr_new<CEditableMesh>(this);
+                    CEditableMesh* MESH= new CEditableMesh(this);
                     m_Meshes.push_back(MESH);
 
                     if (Ilr->name)	MESH->SetName(Ilr->name); else MESH->SetName("");
@@ -178,7 +178,7 @@ bool CEditableObject::Import_LWO(const char* fn, bool bNeedOptimize)
                                 bResult=false;
                                 break;
                             }
-                            MESH->m_VMaps.push_back(xr_new<st_VMap>(Ivmap->name,vmtUV,!!Ivmap->perpoly));
+                            MESH->m_VMaps.push_back(new st_VMap(Ivmap->name,vmtUV,!!Ivmap->perpoly));
                             st_VMap* Mvmap=MESH->m_VMaps.back();
                             int vcnt=Ivmap->nverts;
                             // VMap
@@ -198,7 +198,7 @@ bool CEditableObject::Import_LWO(const char* fn, bool bNeedOptimize)
                                 bResult=false;
                                 break;
                             }
-                            MESH->m_VMaps.push_back(xr_new<st_VMap>(Ivmap->name,vmtWeight,false));
+                            MESH->m_VMaps.push_back(new st_VMap(Ivmap->name,vmtWeight,false));
                             st_VMap* Mvmap=MESH->m_VMaps.back();
                             int vcnt=Ivmap->nverts;
                             // VMap

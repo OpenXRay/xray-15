@@ -103,7 +103,7 @@ void CUILogsWnd::Init()
 
 	m_background		= UIHelper::CreateFrameLine( m_uiXml, "background", this );
 	
-	m_actor_ch_info = xr_new<CUICharacterInfo>();
+	m_actor_ch_info = new CUICharacterInfo();
 	m_actor_ch_info->SetAutoDelete( true );
 	AttachChild( m_actor_ch_info );
 	m_actor_ch_info->InitCharacterInfo( &m_uiXml, "actor_ch_info" );
@@ -116,7 +116,7 @@ void CUILogsWnd::Init()
 	strcat_s( buf, sizeof(buf), CStringTable().translate("ui_logs_center_caption").c_str() );
 	m_center_caption->SetText( buf );
 
-	m_list = xr_new<CUIScrollView>();
+	m_list = new CUIScrollView();
 	m_list->SetAutoDelete( true );
 	AttachChild( m_list );
 	CUIXmlInit::InitScrollView( m_uiXml, "logs_list", 0, m_list );
@@ -248,7 +248,7 @@ void CUILogsWnd::PerformWork()
 CUIWindow*	CUILogsWnd::CreateItem()
 {
 	CUINewsItemWnd* itm_res;
-	itm_res = xr_new<CUINewsItemWnd>();
+	itm_res = new CUINewsItemWnd();
 	itm_res->Init(m_uiXml, "logs_item");
 	return itm_res;
 }

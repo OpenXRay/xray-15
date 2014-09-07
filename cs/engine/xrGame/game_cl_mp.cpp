@@ -81,7 +81,7 @@ game_cl_mp::game_cl_mp()
 	buffer_for_compress_size = 0;
 	//-----------------------------------------------------------
 	//-----------------------------------------------------------
-/*	pBuySpawnMsgBox		= xr_new<CUIMessageBoxEx>();
+/*	pBuySpawnMsgBox		= new CUIMessageBoxEx();
 	//.	pBuySpawnMsgBox->SetWorkPhase(GAME_PHASE_INPROGRESS);
 	pBuySpawnMsgBox->Init("message_box_buy_spawn");
 	pBuySpawnMsgBox->AddCallback("msg_box", MESSAGE_BOX_YES_CLICKED, CUIWndCallback::void_function(this, &game_cl_mp::OnBuySpawn));
@@ -140,7 +140,7 @@ game_cl_mp::~game_cl_mp()
 
 CUIGameCustom*		game_cl_mp::createGameUI			()
 {
-//	m_pSpeechMenu = xr_new<CUISpeechMenu>("test_speech_section");
+//	m_pSpeechMenu = new CUISpeechMenu("test_speech_section");
 	HUD().GetUI()->m_pMessagesWnd->SetChatOwner(this);
 		
 	return NULL;
@@ -327,7 +327,7 @@ bool game_cl_mp::OnKeyboardPress(int key)
 void	game_cl_mp::VotingBegin()
 {
 	if(!m_pVoteStartWindow)
-		m_pVoteStartWindow		= xr_new<CUIVotingCategory>();
+		m_pVoteStartWindow		= new CUIVotingCategory();
 
 	StartStopMenu(m_pVoteStartWindow, true);
 }
@@ -335,7 +335,7 @@ void	game_cl_mp::VotingBegin()
 void	game_cl_mp::Vote()
 {
 	if(!m_pVoteRespondWindow)
-		m_pVoteRespondWindow	= xr_new<CUIVote>();
+		m_pVoteRespondWindow	= new CUIVote();
 
 	StartStopMenu			(m_pVoteRespondWindow, true);
 }
@@ -343,7 +343,7 @@ void	game_cl_mp::Vote()
 void	game_cl_mp::OnCantVoteMsg(LPCSTR Text)
 {
 	if (!m_pMessageBox)
-		m_pMessageBox = xr_new<CUIMessageBoxEx>();
+		m_pMessageBox = new CUIMessageBoxEx();
 
 	m_pMessageBox->InitMessageBox	("cant_vote");
 	m_pMessageBox->SetText			(Text);

@@ -81,7 +81,7 @@ void CUICheckButton::init_hint_wnd_xml( CUIXml& xml, LPCSTR path )
 
 	if ( xml.NavigateToNode( "hint_text", 0 ) )
 	{
-		m_hint_owner = xr_new<UIHintWindow>();
+		m_hint_owner = new UIHintWindow();
 		m_hint_owner->SetAutoDelete( true );
 		AttachChild( m_hint_owner );
 		CUIXmlInit::InitHintWindow( xml, "hint_text", 0, m_hint_owner );

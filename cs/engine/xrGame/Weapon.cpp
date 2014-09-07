@@ -1721,7 +1721,7 @@ void CWeapon::OnStateSwitch	(u32 S)
 		{
 			CActor* current_actor	= smart_cast<CActor*>(H_Parent());
 			if (current_actor)
-				current_actor->Cameras().AddCamEffector(xr_new<CEffectorDOF>(m_zoom_params.m_ReloadDof) );
+				current_actor->Cameras().AddCamEffector(new CEffectorDOF(m_zoom_params.m_ReloadDof) );
 		}
 	}
 }

@@ -70,7 +70,7 @@ u32 CConsole::get_mark_color( Console_mark type )
 
 CConsole::CConsole()
 {
-	m_editor = xr_new<text_editor::line_editor>( (u32)CONSOLE_BUF_SIZE );
+	m_editor = new text_editor::line_editor( (u32)CONSOLE_BUF_SIZE );
 	m_cmd_history_max = 64;
 	Register_callbacks();
 }
@@ -182,12 +182,12 @@ void CConsole::OnRender()
 
 	if ( !pFont )
 	{
-		pFont = xr_new<CGameFont>( "hud_font_di", CGameFont::fsDeviceIndependent );
+		pFont = new CGameFont( "hud_font_di", CGameFont::fsDeviceIndependent );
 		pFont->SetHeightI(  0.025f );
 	}
 	if( !pFont2 )
 	{
-		pFont2 = xr_new<CGameFont>( "hud_font_di2", CGameFont::fsDeviceIndependent );
+		pFont2 = new CGameFont( "hud_font_di2", CGameFont::fsDeviceIndependent );
 		pFont2->SetHeightI( 0.025f );
 	}
 

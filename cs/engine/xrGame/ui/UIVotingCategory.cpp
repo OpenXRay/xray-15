@@ -17,18 +17,18 @@ CUIVotingCategory::CUIVotingCategory()
 	change_map		= NULL;
 	change_gametype	= NULL;
 
-	bkgrnd			= xr_new<CUIStatic>(); bkgrnd->SetAutoDelete(true); AttachChild(bkgrnd);
-	header			= xr_new<CUIStatic>(); header->SetAutoDelete(true);	AttachChild(header);
-	btn_cancel		= xr_new<CUI3tButtonEx>();btn_cancel->SetAutoDelete(true); AttachChild(btn_cancel);
+	bkgrnd			= new CUIStatic(); bkgrnd->SetAutoDelete(true); AttachChild(bkgrnd);
+	header			= new CUIStatic(); header->SetAutoDelete(true);	AttachChild(header);
+	btn_cancel		= new CUI3tButtonEx();btn_cancel->SetAutoDelete(true); AttachChild(btn_cancel);
 
 	for (int i = 0; i<7; i++)
 	{
-		btn[i] = xr_new<CUI3tButtonEx>();
+		btn[i] = new CUI3tButtonEx();
 		btn[i]->SetAutoDelete(true);
 		AttachChild(btn[i]);
 
 
-		txt[i] = xr_new<CUIStatic>();
+		txt[i] = new CUIStatic();
 		txt[i]->SetAutoDelete(true);
 		AttachChild(txt[i]);
 	}
@@ -48,7 +48,7 @@ CUIVotingCategory::~CUIVotingCategory()
 void CUIVotingCategory::InitVotingCategory()
 {
 	if (!xml_doc)
-		xml_doc = xr_new<CUIXml>();
+		xml_doc = new CUIXml();
 
 	xml_doc->Load(CONFIG_PATH, UI_PATH, "voting_category.xml");
 
@@ -125,35 +125,35 @@ void CUIVotingCategory::OnBtn(int i)
 		case 2:
 			game->StartStopMenu(this, true);
 			if (!kick)
-				kick = xr_new<CUIKickPlayer>();
+				kick = new CUIKickPlayer();
 			kick->InitKick(*xml_doc);
 			game->StartStopMenu(kick, true);
 			break;
 		case 3:
 			game->StartStopMenu(this, true);
 			if (!kick)
-				kick = xr_new<CUIKickPlayer>();
+				kick = new CUIKickPlayer();
 			kick->InitBan(*xml_doc);
 			game->StartStopMenu(kick, true);
 			break;
 		case 4:
 			game->StartStopMenu			(this, true);
 			if (!change_map)
-				change_map				= xr_new<CUIChangeMap>();
+				change_map				= new CUIChangeMap();
 			change_map->InitChangeMap	(*xml_doc);
 			game->StartStopMenu			(change_map, true);
 			break;
 		case 5:
 			game->StartStopMenu			(this, true);
 			if (!change_weather)
-				change_weather			= xr_new<CUIChangeWeather>();
+				change_weather			= new CUIChangeWeather();
 			change_weather->InitChangeWeather(*xml_doc);
 			game->StartStopMenu(change_weather, true);
 			break;
 		case 6:
 			game->StartStopMenu			(this, true);
 			if (!change_gametype)
-				change_gametype			= xr_new<CUIChangeGameType>();
+				change_gametype			= new CUIChangeGameType();
 			change_gametype->InitChangeGameType(*xml_doc);
 			game->StartStopMenu(change_gametype, true);
 			break;

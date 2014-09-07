@@ -122,7 +122,7 @@ bool	CLevel::net_start_client4				()
 
 		// Send physics to single or multithreaded mode
 		LoadPhysicsGameParams				();
-		ph_world							= xr_new<CPHWorld>();
+		ph_world							= new CPHWorld();
 		ph_world->Create					();
 
 		// Send network to single or multithreaded mode
@@ -214,7 +214,7 @@ bool	CLevel::net_start_client6				()
 			game->OnConnected				();
 			if (game->Type() != eGameIDSingle)
 			{
-				m_file_transfer = xr_new<file_transfer::client_site>();
+				m_file_transfer = new file_transfer::client_site();
 			}
 		}
 

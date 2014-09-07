@@ -53,10 +53,10 @@ CGameObject::CGameObject		()
 	m_bCrPr_Activated			= false;
 	m_dwCrPr_ActivationStep		= 0;
 	m_spawn_time				= 0;
-	m_ai_location				= !g_dedicated_server ? xr_new<CAI_ObjectLocation>() : 0;
+	m_ai_location				= !g_dedicated_server ? new CAI_ObjectLocation() : 0;
 	m_server_flags.one			();
 
-	m_callbacks					= xr_new<CALLBACK_MAP>();
+	m_callbacks					= new CALLBACK_MAP();
 	m_anim_mov_ctrl				= 0;
 }
 
@@ -244,7 +244,7 @@ BOOL CGameObject::net_Spawn		(CSE_Abstract*	DC)
 	VERIFY							(!m_spawned);
 	m_spawned						= true;
 	m_spawn_time					= Device.dwFrame;
-	m_ai_obstacle					= xr_new<ai_obstacle>(this);
+	m_ai_obstacle					= new ai_obstacle(this);
 
 	CSE_Abstract					*E = (CSE_Abstract*)DC;
 	VERIFY							(E);
@@ -298,7 +298,7 @@ BOOL CGameObject::net_Spawn		(CSE_Abstract*	DC)
 	if (O && xr_strlen(O->m_ini_string)) {
 #pragma warning(push)
 #pragma warning(disable:4238)
-		m_ini_file					= xr_new<CInifile>(
+		m_ini_file					= new CInifile(
 			&IReader				(
 				(void*)(*(O->m_ini_string)),
 				O->m_ini_string.size()
@@ -782,7 +782,7 @@ CScriptGameObject *CGameObject::lua_game_object		() const
 #endif
 	THROW							(m_spawned);
 	if (!m_lua_game_object)
-		m_lua_game_object			= xr_new<CScriptGameObject>(const_cast<CGameObject*>(this));
+		m_lua_game_object			= new CScriptGameObject(const_cast<CGameObject*>(this));
 	return							(m_lua_game_object);
 }
 
@@ -972,7 +972,7 @@ void CGameObject::create_anim_mov_ctrl	( CBlend *b, Fmatrix *start_pose, bool lo
 		IKinematics		*K = Visual( )->dcast_PKinematics( );
 		VERIFY			( K );
 
-		m_anim_mov_ctrl	= xr_new<animation_movement_controller>( &XFORM(), *start_pose, K, b ); 
+		m_anim_mov_ctrl	= new animation_movement_controller( &XFORM(), *start_pose, K, b ); 
 	}
 }
 

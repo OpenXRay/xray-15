@@ -86,7 +86,7 @@ void CLocatorAPI::_initialize	(u32 flags, LPCSTR target_folder, LPCSTR fs_fname)
 			lp_capt		=(cnt>=6)?capt:0;
 			PathPairIt p_it = pathes.find(root);
 			std::pair<PathPairIt, bool> I;
-			FS_Path* P	= xr_new<FS_Path>((p_it!=pathes.end())?p_it->second->m_Path:root,lp_add,lp_def,lp_capt,fl);
+			FS_Path* P	= new FS_Path((p_it!=pathes.end())?p_it->second->m_Path:root,lp_add,lp_def,lp_capt,fl);
 			I			= pathes.insert(mk_pair(xr_strdup(id),P));
 			
 			R_ASSERT	(I.second);
@@ -283,8 +283,8 @@ IReader* CLocatorAPI::r_open	(LPCSTR path, LPCSTR _fname)
 	LPCSTR	source_name 	= &fname[0];
 
     // open file
-    if (desc.size<256*1024)	R = xr_new<CFileReader>			(fname);
-    else			  		R = xr_new<CVirtualFileReader>	(fname);
+    if (desc.size<256*1024)	R = new CFileReader(fname);
+    else			  		R = new CVirtualFileReader(fname);
     
 #ifdef DEBUG
 	if ( R && m_Flags.is(flBuildCopy|flReady) ){
@@ -354,7 +354,7 @@ IWriter* CLocatorAPI::w_open	(LPCSTR path, LPCSTR _fname)
 	string_path	fname;
 	xr_strlwr(strcpy(fname,_fname));//,".$");
 	if (path&&path[0]) update_path(fname,path,fname);
-    CFileWriter* W 	= xr_new<CFileWriter>(fname,false); 
+    CFileWriter* W 	= new CFileWriter(fname,false); 
 #ifdef _EDITOR
 	if (!W->valid()) xr_delete(W);
 #endif    
@@ -366,7 +366,7 @@ IWriter* CLocatorAPI::w_open_ex	(LPCSTR path, LPCSTR _fname)
 	string_path	fname;
 	xr_strlwr(strcpy(fname,_fname));//,".$");
 	if (path&&path[0]) update_path(fname,path,fname);
-    CFileWriter* W 	= xr_new<CFileWriter>(fname,true); 
+    CFileWriter* W 	= new CFileWriter(fname,true); 
 #ifdef _EDITOR
 	if (!W->valid()) xr_delete(W);
 #endif    
@@ -468,7 +468,7 @@ FS_Path* CLocatorAPI::append_path(LPCSTR path_alias, LPCSTR root, LPCSTR add, BO
 {
 	VERIFY			(root/*&&root[0]*/);
 	VERIFY			(false==path_exist(path_alias));
-	FS_Path* P		= xr_new<FS_Path>(root,add,LPCSTR(0),LPCSTR(0),0);
+	FS_Path* P		= new FS_Path(root,add,LPCSTR(0),LPCSTR(0),0);
 	pathes.insert	(mk_pair(xr_strdup(path_alias),P));
 	return P;
 }

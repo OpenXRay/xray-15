@@ -57,7 +57,7 @@ void P_BuildStaticGeomShell(CPHStaticGeomShell* pUnbrokenObject,CGameObject* obj
 }
 CPHStaticGeomShell* P_BuildStaticGeomShell(CGameObject* obj,ObjectContactCallbackFun* object_contact_callback,Fobb &b)
 {
-	CPHStaticGeomShell* pUnbrokenObject=xr_new<CPHStaticGeomShell>();
+	CPHStaticGeomShell* pUnbrokenObject= new CPHStaticGeomShell();
 	P_BuildStaticGeomShell(pUnbrokenObject,obj,object_contact_callback,b);
 	return pUnbrokenObject;
 }

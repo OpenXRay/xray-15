@@ -7,25 +7,25 @@
 #include "UIChangeMap.h"
 
 CUIChangeWeather::CUIChangeWeather(){
-	bkgrnd = xr_new<CUIStatic>(); 
+	bkgrnd = new CUIStatic(); 
 	bkgrnd->SetAutoDelete(true);
 	AttachChild(bkgrnd);
 
-	header = xr_new<CUIStatic>();
+	header = new CUIStatic();
 	header->SetAutoDelete(true);
 	AttachChild(header);
 
-	btn_cancel = xr_new<CUI3tButtonEx>();
+	btn_cancel = new CUI3tButtonEx();
 	btn_cancel->SetAutoDelete(true);
 	AttachChild(btn_cancel);
 
 	for (int i = 0; i<4; i++)
 	{
-		btn[i] = xr_new<CUI3tButtonEx>();
+		btn[i] = new CUI3tButtonEx();
 		btn[i]->SetAutoDelete(true);
 		AttachChild(btn[i]);
 
-		m_data[i].m_static = xr_new<CUIStatic>();
+		m_data[i].m_static = new CUIStatic();
 		m_data[i].m_static->SetAutoDelete(true);
 		AttachChild(m_data[i].m_static);
 	}

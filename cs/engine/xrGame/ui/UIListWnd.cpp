@@ -52,7 +52,7 @@ void CUIListWnd::InitListWnd(Fvector2 pos, Fvector2 size, float item_height)
 	inherited::SetWndSize(size);
 
 	//добавить полосу прокрутки
-	m_ScrollBar = xr_new<CUIScrollBar>(); m_ScrollBar->SetAutoDelete(true);
+	m_ScrollBar = new CUIScrollBar(); m_ScrollBar->SetAutoDelete(true);
 	AttachChild(m_ScrollBar);
 
 	if (!!m_scrollbar_profile)
@@ -626,7 +626,7 @@ void CUIListWnd::create_active_back()
 {
 	if(m_ActiveBackgroundFrame)	return;
 
-	m_ActiveBackgroundFrame = xr_new<CUIFrameLineWnd>();
+	m_ActiveBackgroundFrame = new CUIFrameLineWnd();
 	m_ActiveBackgroundFrame->InitFrameLineWnd("ui_listline",Fvector2().set(0.0f,0.0f), Fvector2().set(GetWidth(),18.0f) );
 }
 

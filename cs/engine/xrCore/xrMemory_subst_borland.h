@@ -1,10 +1,4 @@
-template <typename TObject, typename ...Args>
-IC TObject* xr_new(Args&&... args)
-{
-    return new TObject(std::forward<Args>(args)...);
-}
-
-template <class T>
+template <typename T>
 IC void xr_delete (T*& ptr)
 {
     if (ptr)

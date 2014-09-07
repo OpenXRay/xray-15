@@ -101,7 +101,7 @@ BOOL CClimableObject::	net_Spawn			( CSE_Abstract* DC)
 	XFORM().transform_dir(shift);
 	CObject::Position().sub(shift);
 	m_box.xform_set(Fidentity);
-	m_pStaticShell=xr_new<CPHLeaderGeomShell>(this);
+	m_pStaticShell= new CPHLeaderGeomShell(this);
 	P_BuildStaticGeomShell(smart_cast<CPHStaticGeomShell*>(m_pStaticShell),smart_cast<CGameObject*>(this),0,m_box);
 	m_pStaticShell->SetMaterial("materials\\fake_ladders");
 	

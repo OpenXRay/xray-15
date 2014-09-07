@@ -22,14 +22,14 @@ CGameSpy_Full::CGameSpy_Full()
 
 	LoadGameSpy();
 	//---------------------------------------
-	m_pGSA = xr_new<CGameSpy_Available>(m_hGameSpyDLL);
+	m_pGSA = new CGameSpy_Available(m_hGameSpyDLL);
 	//-----------------------------------------------------
 	shared_str resultstr;
 	m_bServicesAlreadyChecked = m_pGSA->CheckAvailableServices(resultstr);
 	//-----------------------------------------------------
-	m_pGS_Patching = xr_new<CGameSpy_Patching>(m_hGameSpyDLL);
-	m_pGS_HTTP  = xr_new<CGameSpy_HTTP>(m_hGameSpyDLL);
-	m_pGS_SB = xr_new<CGameSpy_Browser>(m_hGameSpyDLL);
+	m_pGS_Patching = new CGameSpy_Patching(m_hGameSpyDLL);
+	m_pGS_HTTP  = new CGameSpy_HTTP(m_hGameSpyDLL);
+	m_pGS_SB = new CGameSpy_Browser(m_hGameSpyDLL);
 }
 
 CGameSpy_Full::~CGameSpy_Full()
