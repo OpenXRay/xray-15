@@ -54,7 +54,7 @@ STR_VECTOR* CEntityAlive::m_pFireParticlesVector = NULL;
 CEntityAlive::CEntityAlive()
 {
 	
-	monster_community		= xr_new<MONSTER_COMMUNITY>	();
+	monster_community		= new MONSTER_COMMUNITY();
 
 	m_ef_weapon_type		= u32(-1);
 	m_ef_detector_type		= u32(-1);
@@ -98,8 +98,8 @@ void CEntityAlive::LoadBloodyWallmarks (LPCSTR section)
 {
 	VERIFY					(0==m_pBloodMarksVector);
 	VERIFY					(0==m_pBloodDropsVector);
-	m_pBloodMarksVector		= xr_new<FactoryPtr<IWallMarkArray> >();
-	m_pBloodDropsVector		= xr_new<FactoryPtr<IWallMarkArray> >();
+	m_pBloodMarksVector		= new FactoryPtr<IWallMarkArray> ();
+	m_pBloodDropsVector		= new FactoryPtr<IWallMarkArray> ();
 	
 	//кровавые отметки на стенах
 	string256	tmp;
@@ -162,7 +162,7 @@ void CEntityAlive::UnloadBloodyWallmarks	()
 
 void CEntityAlive::LoadFireParticles(LPCSTR section)
 {
-	m_pFireParticlesVector = xr_new<STR_VECTOR>();
+	m_pFireParticlesVector = new STR_VECTOR();
 
 	string256	tmp;
 	LPCSTR particles_name = pSettings->r_string(section, "fire_particles"); 
@@ -615,7 +615,7 @@ BOOL	CEntityAlive::net_SaveRelevant		()
 CEntityConditionSimple* CEntityAlive::create_entity_condition	(CEntityConditionSimple* ec)
 {
 	if(!ec)
-		m_entity_condition		= xr_new<CEntityCondition>(this);
+		m_entity_condition		= new CEntityCondition(this);
 	else
 		m_entity_condition		= smart_cast<CEntityCondition*>(ec);
 	
@@ -658,7 +658,7 @@ float CEntityAlive::g_Radiation	()	const
 DLL_Pure *CEntityAlive::_construct	()
 {
 	inherited::_construct	();
-	if(character_physics_support())m_material_manager		= xr_new<CMaterialManager>(this,character_physics_support()->movement());
+	if(character_physics_support())m_material_manager		= new CMaterialManager(this,character_physics_support()->movement());
 	return					(this);
 }
 

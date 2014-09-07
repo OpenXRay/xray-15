@@ -12,8 +12,8 @@ class ENGINE_API CPS_Instance	:
 {
 	friend class			IGame_Persistent;
 
-	template <bool _is_pm, typename T>
-	friend struct xr_special_free;
+	template <typename T>
+    friend struct xr_special_delete;
 
 private:
 	bool					m_destroy_on_game_load;

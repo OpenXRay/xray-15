@@ -113,9 +113,9 @@ bool CLevel::net_start1				()
 		params							&p = g_pGamePersistent->m_game_params;
 		// Connect
 		if (!xr_strcmp(p.m_game_type,"single"))
-			Server					= xr_new<xrServer>();		
+			Server					= new xrServer();		
 		else
-			Server					= xr_new<xrGameSpyServer>();
+			Server					= new xrGameSpyServer();
 		
 		if (xr_strcmp(p.m_alife,"alife"))
 		{

@@ -161,7 +161,7 @@ void CUILines::ParseText(){
 		line = ParseTextToColoredLine(m_text.c_str());
 	else
 	{
-		line = xr_new<CUILine>();
+		line = new CUILine();
 		CUISubLine subline;
 		subline.m_text = m_text;
 		subline.m_color = GetTextColor();
@@ -172,7 +172,7 @@ void CUILines::ParseText(){
 
 	if (uFlags.test(flRecognizeNewLine))
 		if ( m_pFont->IsMultibyte() ) {
-			CUILine *ptmp_line = xr_new<CUILine>();
+			CUILine *ptmp_line = new CUILine();
 			int vsz = line->m_subLines.size();
 			VERIFY( vsz );
 			for ( int i = 0 ; i < vsz ; i++ ) {
@@ -545,7 +545,7 @@ u32 CUILines::GetColorFromText(const xr_string& str)const{
 }
 
 CUILine* CUILines::ParseTextToColoredLine(const xr_string& str){
-	CUILine* line = xr_new<CUILine>();
+	CUILine* line = new CUILine();
 	xr_string tmp = str;
 	xr_string entry;
 	u32 color;

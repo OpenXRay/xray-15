@@ -77,7 +77,7 @@ static void initialize_lua_studio	( lua_State* state, cs::lua_debugger::world*& 
 		);
 	R_ASSERT2						(s_destroy_world, "can't find function \"destroy_world\" in the library");
 
-	engine							= xr_new<lua_studio_engine>();
+	engine							= new lua_studio_engine();
 	world							= s_create_world(*engine);
 	VERIFY							(world);
 
@@ -343,7 +343,7 @@ void CScriptEngine::load_common_scripts()
 #endif
 	string_path		S;
 	FS.update_path	(S,"$game_config$","script.ltx");
-	CInifile		*l_tpIniFile = xr_new<CInifile>(S);
+	CInifile		*l_tpIniFile = new CInifile(S);
 	R_ASSERT		(l_tpIniFile);
 	if (!l_tpIniFile->section_exist("common")) {
 		xr_delete			(l_tpIniFile);
@@ -418,7 +418,7 @@ void CScriptEngine::register_script_classes		()
 #endif
 	string_path					S;
 	FS.update_path				(S,"$game_config$","script.ltx");
-	CInifile					*l_tpIniFile = xr_new<CInifile>(S);
+	CInifile					*l_tpIniFile = new CInifile(S);
 	R_ASSERT					(l_tpIniFile);
 
 	if (!l_tpIniFile->section_exist("common")) {
@@ -485,7 +485,7 @@ void CScriptEngine::restartDebugger				()
 	if(debugger())
 		stopDebugger();
 
-	m_scriptDebugger = xr_new<CScriptDebugger>();
+	m_scriptDebugger = new CScriptDebugger();
 	debugger()->PrepareLuaBind();
 	Msg				("Script debugger succesfully restarted.");
 }

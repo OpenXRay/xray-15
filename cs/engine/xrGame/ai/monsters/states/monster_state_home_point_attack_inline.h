@@ -22,18 +22,18 @@ TEMPLATE_SPECIALIZATION
 CStateMonsterAttackMoveToHomePointAbstract::CStateMonsterAttackMoveToHomePoint(_Object *obj) 
                              : inherited(obj), m_ignore_enemies_while_hide(0)
 {
-	add_state	(eStateAttack_HomePoint_Hide,			xr_new<CStateMonsterMoveToPointEx<_Object> >	(obj));
-	add_state	(eStateAttack_HomePoint_LookOpenPlace,	xr_new<CStateMonsterLookToPoint<_Object> >		(obj));
-	add_state	(eStateAttack_HomePoint_Camp,			xr_new<CStateMonsterCustomAction<_Object> >		(obj));
+	add_state	(eStateAttack_HomePoint_Hide,			new CStateMonsterMoveToPointEx<_Object> (obj));
+	add_state	(eStateAttack_HomePoint_LookOpenPlace,	new CStateMonsterLookToPoint<_Object> (obj));
+	add_state	(eStateAttack_HomePoint_Camp,			new CStateMonsterCustomAction<_Object> (obj));
 }
 
 TEMPLATE_SPECIALIZATION
 CStateMonsterAttackMoveToHomePointAbstract::CStateMonsterAttackMoveToHomePoint(_Object *obj, bool ignore_enemies_while_hide) 
                              : inherited(obj), m_ignore_enemies_while_hide(ignore_enemies_while_hide)
 {
-	add_state	(eStateAttack_HomePoint_Hide,			xr_new<CStateMonsterMoveToPointEx<_Object> >	(obj));
-	add_state	(eStateAttack_HomePoint_LookOpenPlace,	xr_new<CStateMonsterLookToPoint<_Object> >		(obj));
-	add_state	(eStateAttack_HomePoint_Camp,			xr_new<CStateMonsterCustomAction<_Object> >		(obj));
+	add_state	(eStateAttack_HomePoint_Hide,			new CStateMonsterMoveToPointEx<_Object> (obj));
+	add_state	(eStateAttack_HomePoint_LookOpenPlace,	new CStateMonsterLookToPoint<_Object> (obj));
+	add_state	(eStateAttack_HomePoint_Camp,			new CStateMonsterCustomAction<_Object> (obj));
 }
 
 //////////////////////////////////////////////////////////////////////////

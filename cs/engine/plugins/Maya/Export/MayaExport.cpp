@@ -29,7 +29,7 @@ CSurface* CEditableObject::CreateSurface(LPCSTR m_name, SXRShaderData& d)
 {
 	CSurface* S			= FindSurfaceByName(m_name);
 	if (!S){
-		S				= xr_new<CSurface>();
+		S				= new CSurface();
 		S->SetName		(m_name);
 		if (!ParseMAMaterial(S,d)){ xr_delete(S); return 0; }
 		m_Surfaces.push_back(S);
@@ -293,7 +293,7 @@ MStatus CXRayObjectExport::ExportPart(CEditableObject* O, MDagPath& mdagPath, MO
 		}
 	}
 
-	CEditableMesh* MESH = xr_new<CEditableMesh>(O);
+	CEditableMesh* MESH = new CEditableMesh(O);
 	MESH->SetName(mdagPathNodeName.asChar());
 	O->AppendMesh(MESH);
 
@@ -315,7 +315,7 @@ MStatus CXRayObjectExport::ExportPart(CEditableObject* O, MDagPath& mdagPath, MO
 		VMapVec& _vmaps	= MESH->m_VMaps;
 		_vmaps.resize	(1);
 		st_VMap*& VM	= _vmaps.back();
-		VM				= xr_new<st_VMap>("Texture",vmtUV,false);
+		VM				= new st_VMap("Texture",vmtUV,false);
 	}
 
 	// write faces
@@ -485,7 +485,7 @@ LPCSTR CXRayObjectExport::getMaterialName(MDagPath & mdagPath, int cid, int obje
     MStatus stat;
 	
     int i, length;
-	MIntArray * currentMaterials = xr_new<MIntArray>();
+	MIntArray * currentMaterials = new MIntArray();
 	MStringArray mArray;
 
 

@@ -21,14 +21,14 @@ CUITrackBar::CUITrackBar()
 	m_b_is_float(true),
 	m_b_invert(false)
 {	
-	m_pFrameLine					= xr_new<CUIFrameLineWnd>();	
+	m_pFrameLine					= new CUIFrameLineWnd();	
 	AttachChild						(m_pFrameLine);	
 	m_pFrameLine->SetAutoDelete		(true);
-	m_pFrameLine_d					= xr_new<CUIFrameLineWnd>(); 
+	m_pFrameLine_d					= new CUIFrameLineWnd(); 
 	m_pFrameLine_d->SetVisible		(false);
 	AttachChild						(m_pFrameLine_d); 
 	m_pFrameLine_d->SetAutoDelete	(true);
-	m_pSlider						= xr_new<CUI3tButton>();			
+	m_pSlider						= new CUI3tButton();			
 	AttachChild						(m_pSlider);		
 	m_pSlider->SetAutoDelete		(true);
 //.	m_pSlider->SetOwner				(this);

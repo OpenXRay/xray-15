@@ -52,7 +52,7 @@ namespace lc_net{
 	//template < execution_types etype >
 	//tnet_execution_base< etype >	*factory::create( const execution_types etype )
 	//{
-	//	return xr_new< tnet_execution< etype > > ();
+	//	return new tnet_execution< etype > ();
 	//}
 	
 	template<typename execution > 
@@ -63,7 +63,7 @@ namespace lc_net{
 
 		virtual	net_execution* create( u32 _net_id )
 		{
-			return xr_new<execution>(_net_id);
+			return new execution(_net_id);
 		}
 		virtual	u32 type() { return execution::class_type; }
 	};
@@ -73,7 +73,7 @@ namespace lc_net{
 	template<typename execution>
 	static void	register_type()
 	{
-		execution_factory.register_type(  xr_new< execution_type_creator<execution> >() );
+		execution_factory.register_type(  new execution_type_creator<execution> () );
 	}
 
 

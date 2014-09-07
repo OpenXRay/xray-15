@@ -16,10 +16,10 @@ CUIScrollBar::CUIScrollBar()
 	m_b_enabled			= true;
 	m_mouse_state		= 0;
 
-	m_DecButton			= xr_new<CUI3tButton>();	m_DecButton->SetAutoDelete(true); AttachChild(m_DecButton);
-	m_IncButton			= xr_new<CUI3tButton>();	m_IncButton->SetAutoDelete(true); AttachChild(m_IncButton);
-	m_ScrollBox			= xr_new<CUIScrollBox>();	m_ScrollBox->SetAutoDelete(true); AttachChild(m_ScrollBox);
-	m_StaticBackground	= xr_new<CUIStaticItem>();
+	m_DecButton			= new CUI3tButton();	m_DecButton->SetAutoDelete(true); AttachChild(m_DecButton);
+	m_IncButton			= new CUI3tButton();	m_IncButton->SetAutoDelete(true); AttachChild(m_IncButton);
+	m_ScrollBox			= new CUIScrollBox();	m_ScrollBox->SetAutoDelete(true); AttachChild(m_ScrollBox);
+	m_StaticBackground	= new CUIStaticItem();
 }
 
 CUIScrollBar::~CUIScrollBar(void)

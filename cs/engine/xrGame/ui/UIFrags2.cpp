@@ -6,7 +6,7 @@
 #include "UIStatic.h"
 
 CUIFrags2::CUIFrags2(){	
-	m_pStats2 = xr_new<CUIStats>();  AttachChild(m_pStats2);
+	m_pStats2 = new CUIStats();  AttachChild(m_pStats2);
 }
 
 CUIFrags2::~CUIFrags2(){

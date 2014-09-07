@@ -1,52 +1,29 @@
-template <typename TObject, typename ...Args>
-IC TObject* xr_new(Args&&... args)
-{
-#ifdef DEBUG_MEMORY_NAME
-    TObject* ptr = (TObject*)Memory.mem_alloc(sizeof(TObject), typeid(TObject).name());
-#else
-    TObject* ptr = (TObject*)Memory.mem_alloc(sizeof(TObject));
-#endif
-    return new(ptr) TObject(std::forward<Args>(args)...);
-}
-
-template <bool _is_pm, typename T>
-struct xr_special_free
+template <typename T>
+struct xr_special_delete
 {
     IC void operator()(T*& ptr)
     {
-        void* _real_ptr = dynamic_cast<void*>(ptr);
-        ptr->~T();
-        Memory.mem_free(_real_ptr);
+        delete ptr;
     }
 };
 
 template <typename T>
-struct xr_special_free<false, T>
-{
-    IC void operator()(T*& ptr)
-    {
-        ptr->~T();
-        Memory.mem_free(ptr);
-    }
-};
-
-template <class T>
 IC void xr_delete(T*& ptr)
 {
     if (ptr)
     {
-        xr_special_free<is_polymorphic<T>::result, T>()(ptr);
-        ptr = NULL;
+        xr_special_delete<T>()(ptr);
+        ptr = nullptr;
     }
 }
 
-template <class T>
+template <typename T>
 IC void xr_delete(T* const& ptr)
 {
     if (ptr)
     {
-        xr_special_free<is_polymorphic<T>::result, T>(ptr);
-        const_cast<T*&>(ptr) = NULL;
+        xr_special_delete<T>()(ptr);
+        const_cast<T*&>(ptr) = nullptr;
     }
 }
 

@@ -13,9 +13,9 @@
 
 CUI::CUI(CHUDManager* p)
 {
-	UIMainIngameWnd					= xr_new<CUIMainIngameWnd>	();
+	UIMainIngameWnd					= new CUIMainIngameWnd();
 	UIMainIngameWnd->Init			();
-	m_pMessagesWnd					= xr_new<CUIMessagesWindow>();
+	m_pMessagesWnd					= new CUIMessagesWindow();
 
 	m_Parent						= p;
 	pUIGame							= NULL;

@@ -257,7 +257,7 @@ void CBuild::MergeLM()
 				
 				//  Analyze resuls
 				clMsg("%3d / %3d - [%d,%d]",best.size(),selected.size(),brect.SizeX(),brect.SizeY());
-				CDeflector*	pDEFL = xr_new<CDeflector>();
+				CDeflector*	pDEFL = new CDeflector();
 				pDEFL->lm.bHasAlpha = FALSE;
 				pDEFL->lm.dwWidth   = lmap_size;
 				pDEFL->lm.dwHeight  = lmap_size;

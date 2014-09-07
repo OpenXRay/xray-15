@@ -518,7 +518,7 @@ BOOL CActor::net_Spawn		(CSE_Abstract* DC)
 
 	VERIFY(m_pActorEffector == NULL);
 
-	m_pActorEffector			= xr_new<CActorCameraManager>();
+	m_pActorEffector			= new CActorCameraManager();
 
 	// motions
 	m_bAnimTorsoPlayed			= false;
@@ -619,7 +619,7 @@ BOOL CActor::net_Spawn		(CSE_Abstract* DC)
 		if (!pStatGraph)
 		{
 			static g_Y = 0;
-			pStatGraph = xr_new<CStatGraph>();
+			pStatGraph = new CStatGraph();
 			pStatGraph->SetRect(0, g_Y, Device.dwWidth, 100, 0xff000000, 0xff000000);
 			g_Y += 110;
 			if (g_Y > 700) g_Y = 100;
@@ -675,7 +675,7 @@ BOOL CActor::net_Spawn		(CSE_Abstract* DC)
 		Level().MapManager().AddMapLocation("actor_location",ID());
 		Level().MapManager().AddMapLocation("actor_location_p",ID());
 
-		m_statistic_manager = xr_new<CActorStatisticMgr>();
+		m_statistic_manager = new CActorStatisticMgr();
 	}
 
 

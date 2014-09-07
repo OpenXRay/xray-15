@@ -259,9 +259,13 @@ void CBaseMonster::HitSignal(float amount, Fvector& vLocalDir, CObject* who, s16
 void CBaseMonster::SetAttackEffector() 
 {
 	CActor *pA = smart_cast<CActor *>(Level().CurrentEntity());
-	if (pA) {
-		Actor()->Cameras().AddCamEffector(xr_new<CMonsterEffectorHit>(db().m_attack_effector.ce_time,db().m_attack_effector.ce_amplitude,db().m_attack_effector.ce_period_number,db().m_attack_effector.ce_power));
-		Actor()->Cameras().AddPPEffector(xr_new<CMonsterEffector>(db().m_attack_effector.ppi, db().m_attack_effector.time, db().m_attack_effector.time_attack, db().m_attack_effector.time_release));
+	if (pA)
+    {
+        auto& effector = db().m_attack_effector;
+		Actor()->Cameras().AddCamEffector(new CMonsterEffectorHit(
+            effector.ce_time, effector.ce_amplitude, effector.ce_period_number, effector.ce_power));
+		Actor()->Cameras().AddPPEffector(new CMonsterEffector(
+            effector.ppi, effector.time, effector.time_attack, effector.time_release));
 	}
 }
 

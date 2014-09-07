@@ -78,7 +78,7 @@ BOOL CTheoraSurface::Update(u32 _time)
 BOOL CTheoraSurface::Load(const char* fname)
 {
 	VERIFY				(FALSE==ready);
-	m_rgb				= xr_new<CTheoraStream>();
+	m_rgb				= new CTheoraStream();
 	BOOL res			= m_rgb->Load(fname);
 	if (res){
 		string_path		alpha,ext;
@@ -90,7 +90,7 @@ BOOL CTheoraSurface::Load(const char* fname)
 		}
 		strconcat		(sizeof(alpha),alpha,alpha,"#alpha",ext);
 		if (FS.exist(alpha)){
-			m_alpha		= xr_new<CTheoraStream>	();
+			m_alpha		= new CTheoraStream();
 			if (!m_alpha->Load(alpha))	res = FALSE;
 		}
 	}

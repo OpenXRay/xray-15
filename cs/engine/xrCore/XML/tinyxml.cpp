@@ -720,7 +720,7 @@ void TiXmlElement::SetAttribute( const char * cname, const char * cvalue )
 		return;
 	}
 
-	TiXmlAttribute* attrib = xr_new<TiXmlAttribute>( cname, cvalue );
+	TiXmlAttribute* attrib = new TiXmlAttribute( cname, cvalue );
 	if ( attrib )
 	{
 		attributeSet.Add( attrib );
@@ -743,7 +743,7 @@ void TiXmlElement::SetAttribute( const xr_string& name, const xr_string& _value 
 		return;
 	}
 
-	TiXmlAttribute* attrib = xr_new<TiXmlAttribute>( name, _value );
+	TiXmlAttribute* attrib = new TiXmlAttribute( name, _value );
 	if ( attrib )
 	{
 		attributeSet.Add( attrib );
@@ -848,7 +848,7 @@ bool TiXmlElement::Accept( TiXmlVisitor* visitor ) const
 
 TiXmlNode* TiXmlElement::Clone() const
 {
-	TiXmlElement* clone = xr_new<TiXmlElement>( Value() );
+	TiXmlElement* clone = new TiXmlElement( Value() );
 	if ( !clone )
 		return 0;
 
@@ -1122,7 +1122,7 @@ void TiXmlDocument::CopyTo( TiXmlDocument* target ) const
 
 TiXmlNode* TiXmlDocument::Clone() const
 {
-	TiXmlDocument* clone = xr_new<TiXmlDocument>();
+	TiXmlDocument* clone = new TiXmlDocument();
 	if ( !clone )
 		return 0;
 
@@ -1307,7 +1307,7 @@ bool TiXmlComment::Accept( TiXmlVisitor* visitor ) const
 
 TiXmlNode* TiXmlComment::Clone() const
 {
-	TiXmlComment* clone = xr_new<TiXmlComment>();
+	TiXmlComment* clone = new TiXmlComment();
 
 	if ( !clone )
 		return 0;
@@ -1354,7 +1354,7 @@ bool TiXmlText::Accept( TiXmlVisitor* visitor ) const
 TiXmlNode* TiXmlText::Clone() const
 {	
 	TiXmlText* clone = 0;
-	clone = xr_new<TiXmlText>( "" );
+	clone = new TiXmlText( "" );
 
 	if ( !clone )
 		return 0;
@@ -1442,7 +1442,7 @@ bool TiXmlDeclaration::Accept( TiXmlVisitor* visitor ) const
 
 TiXmlNode* TiXmlDeclaration::Clone() const
 {	
-	TiXmlDeclaration* clone = xr_new<TiXmlDeclaration>();
+	TiXmlDeclaration* clone = new TiXmlDeclaration();
 
 	if ( !clone )
 		return 0;
@@ -1474,7 +1474,7 @@ bool TiXmlUnknown::Accept( TiXmlVisitor* visitor ) const
 
 TiXmlNode* TiXmlUnknown::Clone() const
 {
-	TiXmlUnknown* clone = xr_new<TiXmlUnknown>();
+	TiXmlUnknown* clone = new TiXmlUnknown();
 
 	if ( !clone )
 		return 0;

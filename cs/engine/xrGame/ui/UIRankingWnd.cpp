@@ -80,7 +80,7 @@ void CUIRankingWnd::Init()
 	m_background		= UIHelper::CreateFrameLine( xml, "background", this );
 	m_center_background	= UIHelper::CreateStatic( xml, "center_background", this );
 
-	m_actor_ch_info = xr_new<CUICharacterInfo>();
+	m_actor_ch_info = new CUICharacterInfo();
 	m_actor_ch_info->SetAutoDelete( true );
 	AttachChild( m_actor_ch_info );
 	m_actor_ch_info->InitCharacterInfo( &xml, "actor_ch_info" );
@@ -124,13 +124,13 @@ void CUIRankingWnd::Init()
 
 	for ( u8 i = 0; i < m_stat_count; ++i )
 	{
-		m_stat_caption[i]		= xr_new<CUIStatic>();
+		m_stat_caption[i]		= new CUIStatic();
 		AttachChild				( m_stat_caption[i] );
 		m_stat_caption[i]->SetAutoDelete( true );
 		CUIXmlInit::InitStatic	( xml, "stat", i, m_stat_caption[i] );
 		m_stat_caption[i]->AdjustWidthToText();
 
-		m_stat_info[i]			= xr_new<CUIStatic>();
+		m_stat_info[i]			= new CUIStatic();
 		AttachChild				( m_stat_info[i] );
 		m_stat_info[i]->SetAutoDelete( true );
 		CUIXmlInit::InitStatic	( xml, "stat", i, m_stat_info[i] );
@@ -149,7 +149,7 @@ void CUIRankingWnd::Init()
 	m_center_caption->SetText( buf );
 
 	// pSettings->[pda_rank_communities] and XML <faction_list>
-	m_factions_list = xr_new<CUIScrollView>();
+	m_factions_list = new CUIScrollView();
 	m_factions_list->SetAutoDelete( true );
 	AttachChild( m_factions_list );
 	CUIXmlInit::InitScrollView( xml, "fraction_list", 0, m_factions_list );
@@ -181,7 +181,7 @@ void CUIRankingWnd::Init()
 
 void CUIRankingWnd::add_faction( CUIXml& xml, shared_str const& faction_id )
 {
-	CUIRankFaction* faction = xr_new<CUIRankFaction>( faction_id );
+	CUIRankFaction* faction = new CUIRankFaction( faction_id );
 	faction->init_from_xml( xml );
 	faction->SetWindowName( "fraction_item" );
 	m_factions_list->AddWindow( faction, true );

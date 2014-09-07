@@ -53,14 +53,14 @@ void CUIOutfitInfo2::InitFromXml(CUIXml& xml_doc)
 	string256					_buff;
 	CUIXmlInit::InitWindow		(xml_doc, _base, 0, this);
 
-	m_listWnd					= xr_new<CUIScrollView>(); m_listWnd->SetAutoDelete(true);
+	m_listWnd					= new CUIScrollView(); m_listWnd->SetAutoDelete(true);
 	AttachChild					(m_listWnd);
 	strconcat					(sizeof(_buff),_buff, _base, ":scroll_view");
 	CUIXmlInit::InitScrollView	(xml_doc, _buff, 0, m_listWnd);
 
 	for(u32 i=ALife::eHitTypeBurn; i<= ALife::eHitTypeFireWound; ++i)
 	{
-		m_items[i]				= xr_new<CUIStatic>();
+		m_items[i]				= new CUIStatic();
 		CUIStatic* _s			= m_items[i];
 		_s->SetAutoDelete		(false);
 		strconcat				(sizeof(_buff),_buff, _base, ":static_", _imm_names[i]);

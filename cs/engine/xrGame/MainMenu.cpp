@@ -51,7 +51,7 @@ extern bool b_shniaganeed_pp;
 
 CMainMenu*	MainMenu()	{return (CMainMenu*)g_pGamePersistent->m_pMainMenu; };
 //----------------------------------------------------------------------------------
-#define INIT_MSGBOX(_box, _template)	{ _box = xr_new<CUIMessageBoxEx>(); _box->InitMessageBox(_template);}
+#define INIT_MSGBOX(_box, _template)	{ _box = new CUIMessageBoxEx(); _box->InitMessageBox(_template);}
 //----------------------------------------------------------------------------------
 
 CMainMenu::CMainMenu	()
@@ -81,8 +81,8 @@ CMainMenu::CMainMenu	()
 
 	if(!g_dedicated_server)
 	{
-		g_btnHint						= xr_new<CUIButtonHint>();
-		m_pGameSpyFull					= xr_new<CGameSpy_Full>();
+		g_btnHint						= new CUIButtonHint();
+		m_pGameSpyFull					= new CGameSpy_Full();
 		
 		for (u32 i=0; i<u32(ErrMax); i++)
 		{

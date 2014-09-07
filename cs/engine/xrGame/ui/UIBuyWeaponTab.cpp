@@ -28,14 +28,14 @@
 // 
 // 	for (int i = 0; i < tabsCount; ++i)
 // 	{
-// 		CUITabButtonMP *newButton	= xr_new<CUITabButtonMP>();
+// 		CUITabButtonMP *newButton	= new CUITabButtonMP();
 // 		CUIXmlInit::Init3tButton	(*xml, "button", i, newButton);
 // 		newButton->m_btn_id			= xml->ReadAttrib("button",i,"id");
 // 		R_ASSERT					(newButton->m_btn_id.size());
 // 		AddItem						(newButton);
 // 	}
 // 
-// 	CUITabButtonMP *stubButton		= xr_new<CUITabButtonMP>();
+// 	CUITabButtonMP *stubButton		= new CUITabButtonMP();
 // 	stubButton->m_btn_id			= "stub";
 // 	AddItem							(stubButton);
 // 	m_sStubId						= stubButton->m_btn_id;

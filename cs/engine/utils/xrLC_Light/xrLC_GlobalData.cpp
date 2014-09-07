@@ -35,7 +35,7 @@ twrite_models		*write_models		= 0;
 void	create_global_data()
 {
 	VERIFY( !inlc_global_data() );
-	data = xr_new<xrLC_GlobalData>();
+	data = new xrLC_GlobalData();
 }
 void	destroy_global_data()
 {
@@ -48,7 +48,7 @@ void	destroy_global_data()
 void xrLC_GlobalData	::create_write_faces()
 {
 	VERIFY(!write_faces);
-	write_faces = xr_new< twrite_faces	>( &_g_faces );
+	write_faces = new twrite_faces( &_g_faces );
 }
 void xrLC_GlobalData::destroy_write_faces()
 {
@@ -58,7 +58,7 @@ void xrLC_GlobalData::destroy_write_faces()
 void xrLC_GlobalData	::create_read_faces()
 {
 	VERIFY(!read_faces);
-	read_faces = xr_new< tread_faces	>( &_g_faces );
+	read_faces = new tread_faces( &_g_faces );
 }
 void xrLC_GlobalData::destroy_read_faces()
 {
@@ -86,7 +86,7 @@ void	xrLC_GlobalData	::destroy_rcmodel	()
 void	xrLC_GlobalData	::create_rcmodel	(CDB::CollectorPacked& CL)
 {
 	VERIFY(!_RCAST_Model);
-	_RCAST_Model				= xr_new<CDB::MODEL> ();
+	_RCAST_Model				= new CDB::MODEL();
 	_RCAST_Model->build		(CL.getV(),(int)CL.getVS(),CL.getT(),(int)CL.getTS());
 }
 
@@ -114,7 +114,7 @@ void		xrLC_GlobalData	::				initialize		()
 //void			xrLC_GlobalData	::				cdb_read_create	() 
 //{
 //	VERIFY(!_RCAST_Model);
-//	_RCAST_Model = xr_new<CDB::MODEL> ();
+//	_RCAST_Model = new CDB::MODEL();
 //	_RCAST_Model->build( &*verts.begin(), (int)verts.size(), &*tris.begin(), (int)tris.size() );
 //}
 
@@ -169,7 +169,7 @@ void read( INetReader	&r, CDB::MODEL* &m )
 		read( r, tris[i] );
 
 	VERIFY(!m);
-	m = xr_new<CDB::MODEL> ();
+	m = new CDB::MODEL();
 	m->build( &*verts.begin(), (int)verts.size(), &*tris.begin(), (int)tris.size() );
 	verts.clear();
 	tris.clear();
@@ -205,19 +205,19 @@ void		xrLC_GlobalData	::read			( INetReader	&r )
 	//	CMemoryWriter					_err_invalid;
 
 
-	read_lightmaps= xr_new< tread_lightmaps >( &_g_lightmaps );
+	read_lightmaps= new tread_lightmaps( &_g_lightmaps );
 	read_lightmaps->read( r );
 
-	read_vertices = xr_new< tread_vertices	>( &_g_vertices );
+	read_vertices = new tread_vertices( &_g_vertices );
 	read_vertices->read( r );
 
-	read_faces = xr_new< tread_faces	>( &_g_faces );
+	read_faces = new tread_faces( &_g_faces );
 	read_faces->read( r );
 
-	read_deflectors = xr_new< tread_deflectors	>( &_g_deflectors );
+	read_deflectors = new tread_deflectors( &_g_deflectors );
 	read_deflectors->read( r );
 
-	read_models =  xr_new< tread_models	>( &_mu_models );
+	read_models = new tread_models( &_mu_models );
 	read_models->read( r );
 	
 	::read( r, _RCAST_Model );
@@ -259,19 +259,19 @@ void		xrLC_GlobalData	::				write			( IWriter	&w ) const
 	//	CMemoryWriter					_err_invalid;
 
 
-	write_lightmaps= xr_new< twrite_lightmaps >( &_g_lightmaps );
+	write_lightmaps= new twrite_lightmaps( &_g_lightmaps );
 	write_lightmaps->write( w );
 
-	write_vertices = xr_new< twrite_vertices	>( &(_g_vertices) );
+	write_vertices = new twrite_vertices( &(_g_vertices) );
 	write_vertices->write( w );
 
-	write_faces = xr_new< twrite_faces	>( &_g_faces );
+	write_faces = new twrite_faces( &_g_faces );
 	write_faces->write( w );
 
-	write_deflectors = xr_new< twrite_deflectors	>( &_g_deflectors );
+	write_deflectors = new twrite_deflectors( &_g_deflectors );
 	write_deflectors->write( w );
 
-	write_models =  xr_new< twrite_models	>( &_mu_models );
+	write_models = new twrite_models( &_mu_models );
 	write_models ->write( w );
 
 	::write( w, *_RCAST_Model);

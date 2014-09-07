@@ -87,7 +87,7 @@ void CPolterFlame::create_flame(const CObject *target_object)
 	Fvector position;
 	if (!get_valid_flame_position(target_object, position)) return;
 
-	SFlameElement *element			= xr_new<SFlameElement>();
+	SFlameElement *element			= new SFlameElement();
 	
 	element->position				= position;
 	element->target_object			= target_object;
@@ -162,7 +162,7 @@ void CPolterFlame::update_schedule()
 					::Sound->play_at_pos(m_scan_sound, 0, Actor()->Position());
 
 					// постпроцесс
-					Actor()->Cameras().AddPPEffector(xr_new<CMonsterEffector>(m_scan_effector_info, m_scan_effector_time, m_scan_effector_time_attack, m_scan_effector_time_release));
+					Actor()->Cameras().AddPPEffector(new CMonsterEffector(m_scan_effector_info, m_scan_effector_time, m_scan_effector_time_attack, m_scan_effector_time_release));
 				}
 				
 			}

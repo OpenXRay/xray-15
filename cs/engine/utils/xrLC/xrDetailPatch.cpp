@@ -103,7 +103,7 @@ void CBuild::LightPatches()
 		}
 
 		// Convert to OGF
-		OGF_Patch* pOGF = xr_new<OGF_Patch> (one_subd);
+		OGF_Patch* pOGF = new OGF_Patch(one_subd);
 		pOGF->treeID	= g_tree.size();
 		pOGF->Sector	= materials[one_subd[0].dwMaterial].sector;
 		pOGF->CalcBounds();

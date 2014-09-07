@@ -53,68 +53,68 @@ void CUICarBodyWnd::Init()
 
 	xml_init.InitWindow			(uiXml, "main", 0, this);
 
-	m_pUIStaticTop				= xr_new<CUIStatic>(); m_pUIStaticTop->SetAutoDelete(true);
+	m_pUIStaticTop				= new CUIStatic(); m_pUIStaticTop->SetAutoDelete(true);
 	AttachChild					(m_pUIStaticTop);
 	xml_init.InitStatic			(uiXml, "top_background", 0, m_pUIStaticTop);
 
 
-	m_pUIStaticBottom			= xr_new<CUIStatic>(); m_pUIStaticBottom->SetAutoDelete(true);
+	m_pUIStaticBottom			= new CUIStatic(); m_pUIStaticBottom->SetAutoDelete(true);
 	AttachChild					(m_pUIStaticBottom);
 	xml_init.InitStatic			(uiXml, "bottom_background", 0, m_pUIStaticBottom);
 
-	m_pUIOurIcon				= xr_new<CUIStatic>(); m_pUIOurIcon->SetAutoDelete(true);
+	m_pUIOurIcon				= new CUIStatic(); m_pUIOurIcon->SetAutoDelete(true);
 	AttachChild					(m_pUIOurIcon);
 	xml_init.InitStatic			(uiXml, "static_icon", 0, m_pUIOurIcon);
 
-	m_pUIOthersIcon				= xr_new<CUIStatic>(); m_pUIOthersIcon->SetAutoDelete(true);
+	m_pUIOthersIcon				= new CUIStatic(); m_pUIOthersIcon->SetAutoDelete(true);
 	AttachChild					(m_pUIOthersIcon);
 	xml_init.InitStatic			(uiXml, "static_icon", 1, m_pUIOthersIcon);
 
 
-	m_pUICharacterInfoLeft		= xr_new<CUICharacterInfo>(); m_pUICharacterInfoLeft->SetAutoDelete(true);
+	m_pUICharacterInfoLeft		= new CUICharacterInfo(); m_pUICharacterInfoLeft->SetAutoDelete(true);
 	m_pUIOurIcon->AttachChild	(m_pUICharacterInfoLeft);
 	m_pUICharacterInfoLeft->InitCharacterInfo(Fvector2().set(0,0), m_pUIOurIcon->GetWndSize(), "trade_character.xml");
 
 
-	m_pUICharacterInfoRight			= xr_new<CUICharacterInfo>(); m_pUICharacterInfoRight->SetAutoDelete(true);
+	m_pUICharacterInfoRight			= new CUICharacterInfo(); m_pUICharacterInfoRight->SetAutoDelete(true);
 	m_pUIOthersIcon->AttachChild	(m_pUICharacterInfoRight);
 	m_pUICharacterInfoRight->InitCharacterInfo(Fvector2().set(0,0), m_pUIOthersIcon->GetWndSize(), "trade_character.xml");
 
-	m_pUIOurBagWnd					= xr_new<CUIStatic>(); m_pUIOurBagWnd->SetAutoDelete(true);
+	m_pUIOurBagWnd					= new CUIStatic(); m_pUIOurBagWnd->SetAutoDelete(true);
 	AttachChild						(m_pUIOurBagWnd);
 	xml_init.InitStatic				(uiXml, "our_bag_static", 0, m_pUIOurBagWnd);
 
 
-	m_pUIOthersBagWnd				= xr_new<CUIStatic>(); m_pUIOthersBagWnd->SetAutoDelete(true);
+	m_pUIOthersBagWnd				= new CUIStatic(); m_pUIOthersBagWnd->SetAutoDelete(true);
 	AttachChild						(m_pUIOthersBagWnd);
 	xml_init.InitStatic				(uiXml, "others_bag_static", 0, m_pUIOthersBagWnd);
 
-	m_pUIOurBagList					= xr_new<CUIDragDropListEx>(); m_pUIOurBagList->SetAutoDelete(true);
+	m_pUIOurBagList					= new CUIDragDropListEx(); m_pUIOurBagList->SetAutoDelete(true);
 	m_pUIOurBagWnd->AttachChild		(m_pUIOurBagList);	
 	xml_init.InitDragDropListEx		(uiXml, "dragdrop_list_our", 0, m_pUIOurBagList);
 
-	m_pUIOthersBagList				= xr_new<CUIDragDropListEx>(); m_pUIOthersBagList->SetAutoDelete(true);
+	m_pUIOthersBagList				= new CUIDragDropListEx(); m_pUIOthersBagList->SetAutoDelete(true);
 	m_pUIOthersBagWnd->AttachChild	(m_pUIOthersBagList);	
 	xml_init.InitDragDropListEx		(uiXml, "dragdrop_list_other", 0, m_pUIOthersBagList);
 
 
 	//информация о предмете
-	m_pUIDescWnd					= xr_new<CUIFrameWindow>(); m_pUIDescWnd->SetAutoDelete(true);
+	m_pUIDescWnd					= new CUIFrameWindow(); m_pUIDescWnd->SetAutoDelete(true);
 	AttachChild						(m_pUIDescWnd);
 	xml_init.InitFrameWindow		(uiXml, "frame_window", 0, m_pUIDescWnd);
 
-	m_pUIStaticDesc					= xr_new<CUIStatic>(); m_pUIStaticDesc->SetAutoDelete(true);
+	m_pUIStaticDesc					= new CUIStatic(); m_pUIStaticDesc->SetAutoDelete(true);
 	m_pUIDescWnd->AttachChild		(m_pUIStaticDesc);
 	xml_init.InitStatic				(uiXml, "descr_static", 0, m_pUIStaticDesc);
 
-	m_pUIItemInfo					= xr_new<CUIItemInfo>(); m_pUIItemInfo->SetAutoDelete(true);
+	m_pUIItemInfo					= new CUIItemInfo(); m_pUIItemInfo->SetAutoDelete(true);
 	m_pUIDescWnd->AttachChild		(m_pUIItemInfo);
 	m_pUIItemInfo->InitItemInfo		(Fvector2().set(0,0), m_pUIDescWnd->GetWndSize(), "carbody_item.xml");
 
 
 	xml_init.InitAutoStatic			(uiXml, "auto_static", this);
 
-	m_pUIPropertiesBox				= xr_new<CUIPropertiesBox>(); m_pUIPropertiesBox->SetAutoDelete(true);
+	m_pUIPropertiesBox				= new CUIPropertiesBox(); m_pUIPropertiesBox->SetAutoDelete(true);
 	AttachChild						(m_pUIPropertiesBox);
 	m_pUIPropertiesBox->InitPropertiesBox(Fvector2().set(0,0), Fvector2().set(300,300) );
 	m_pUIPropertiesBox->Hide		();
@@ -122,7 +122,7 @@ void CUICarBodyWnd::Init()
 	SetCurrentItem					(NULL);
 	m_pUIStaticDesc->SetText		(NULL);
 
-	m_pUITakeAll					= xr_new<CUI3tButton>(); m_pUITakeAll->SetAutoDelete(true);
+	m_pUITakeAll					= new CUI3tButton(); m_pUITakeAll->SetAutoDelete(true);
 	AttachChild						(m_pUITakeAll);
 	xml_init.Init3tButton				(uiXml, "take_all_btn", 0, m_pUITakeAll);
 
@@ -185,7 +185,7 @@ void CUICarBodyWnd::InitCarBody(CInventoryOwner* pOur, CInventoryOwner* pOthers)
 	UpdateLists										();
 
 	if(!monster){
-		CInfoPortionWrapper	*known_info_registry	= xr_new<CInfoPortionWrapper>();
+		CInfoPortionWrapper	*known_info_registry	= new CInfoPortionWrapper();
 		known_info_registry->registry().init		(other_id);
 		KNOWN_INFO_VECTOR& known_info				= known_info_registry->registry().objects();
 

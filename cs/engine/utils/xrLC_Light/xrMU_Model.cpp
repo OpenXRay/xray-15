@@ -214,7 +214,7 @@ u32	xrMU_Model::find( const _face *f ) const
 
 xrMU_Model * xrMU_Model::read_create()
 {
-	return xr_new<xrMU_Model>();
+	return new xrMU_Model();
 }
 
 
@@ -226,8 +226,8 @@ xrMU_Model * xrMU_Model::read_create()
 
 void		xrMU_Model::			reading_open		()
 {
-	read_faces		= xr_new<tread_faces>(&m_faces);
-	read_vertices	= xr_new<tread_vertices>(&m_vertices);
+	read_faces		= new tread_faces(&m_faces);
+	read_vertices	= new tread_vertices(&m_vertices);
 }
 void		xrMU_Model::			reading_close		()
 {
@@ -237,8 +237,8 @@ void		xrMU_Model::			reading_close		()
 }
 void		xrMU_Model::			writting_open		()const
 {
-	write_faces			= xr_new<twrite_faces>(&m_faces);
-	write_vertices		= xr_new<twrite_vertices>(&m_vertices);
+	write_faces			= new twrite_faces(&m_faces);
+	write_vertices		= new twrite_vertices(&m_vertices);
 }
 void		xrMU_Model::			writting_close		()const
 {

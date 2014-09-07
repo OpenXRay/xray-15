@@ -174,7 +174,7 @@ LPCSTR log_name			()
 void InitLog()
 {
 	R_ASSERT			(LogFile==NULL);
-	LogFile				= xr_new< xr_vector<shared_str> >();
+	LogFile				= new xr_vector<shared_str> ();
 }
 
 void CreateLog			(BOOL nl)

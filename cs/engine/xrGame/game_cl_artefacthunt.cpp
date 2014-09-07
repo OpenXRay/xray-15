@@ -51,9 +51,9 @@ game_cl_ArtefactHunt::game_cl_ArtefactHunt()
 
 void game_cl_ArtefactHunt::Init ()
 {
-//	pInventoryMenu	= xr_new<CUIInventoryWnd>();	
-//	pPdaMenu = xr_new<CUIPdaWnd>();
-//	pMapDesc = xr_new<CUIMapDesc>();
+//	pInventoryMenu	= new CUIInventoryWnd();	
+//	pPdaMenu = new CUIPdaWnd();
+//	pMapDesc = new CUIMapDesc();
 
 	LoadTeamData(TEAM1_MENU);
 	LoadTeamData(TEAM2_MENU);
@@ -281,13 +281,13 @@ CUIGameCustom* game_cl_ArtefactHunt::createGameUI()
 	m_game_ui->SetClGame(this);
 	m_game_ui->Init();
 
-//	pUITeamSelectWnd	= xr_new<CUISpawnWnd>	();
+//	pUITeamSelectWnd	= new CUISpawnWnd();
 	//----------------------------------------------------------------
-//	pInventoryMenu = xr_new<CUIInventoryWnd>();
+//	pInventoryMenu = new CUIInventoryWnd();
 	//-----------------------------------------------------------	
-//	pPdaMenu = xr_new<CUIPdaWnd>();
+//	pPdaMenu = new CUIPdaWnd();
 	//-----------------------------------------------------------
-//	pMapDesc = xr_new<CUIMapDesc>();
+//	pMapDesc = new CUIMapDesc();
 	//-----------------------------------------------------------
 	LoadMessagesMenu(MESSAGE_MENUS);
 	//-----------------------------------------------------------

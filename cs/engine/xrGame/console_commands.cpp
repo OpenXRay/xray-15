@@ -352,7 +352,7 @@ public:
 		string_path		fn;
 		FS.update_path	(fn, "$game_saves$", fn_);
 
-		g_pGameLevel->Cameras().AddCamEffector(xr_new<CDemoRecord> (fn));
+		g_pGameLevel->Cameras().AddCamEffector(new CDemoRecord(fn));
 	}
 };
 
@@ -407,7 +407,7 @@ public:
 			  }
 			  strconcat			(sizeof(fn),fn, args, ".xrdemo");
 			  FS.update_path	(fn, "$game_saves$", fn);
-			  g_pGameLevel->Cameras().AddCamEffector(xr_new<CDemoPlay> (fn, 1.0f, loops));
+			  g_pGameLevel->Cameras().AddCamEffector(new CDemoPlay(fn, 1.0f, loops));
 		  }
 	  }
 };
@@ -878,7 +878,7 @@ class CCC_DebugFonts : public IConsole_Command {
 public:
 	CCC_DebugFonts (LPCSTR N) : IConsole_Command(N) {bEmptyArgsHandled = true; }
 	virtual void Execute				(LPCSTR args) {
-		HUD().GetUI()->StartStopMenu( xr_new<CUIDebugFonts>(), true);		
+		HUD().GetUI()->StartStopMenu( new CUIDebugFonts(), true);		
 	}
 };
 

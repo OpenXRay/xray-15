@@ -184,7 +184,7 @@ void CSoundPlayer::play				(u32 internal_type, u32 max_start_time, u32 min_start
 	(CSoundParams&)sound_single	= (CSoundParams&)sound;
 	sound_single.m_bone_id		= smart_cast<IKinematics*>(m_object->Visual())->LL_BoneID(sound.m_bone_name);
 
-	sound_single.m_sound		= xr_new<ref_sound>();
+	sound_single.m_sound		= new ref_sound();
 	/**
 	sound_single.m_sound->clone	(
 		*(*I).second.second->m_sounds[

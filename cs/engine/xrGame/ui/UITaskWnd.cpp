@@ -41,7 +41,7 @@ void CUITaskWnd::Init()
 	m_background					= UIHelper::CreateFrameLine( xml, "background", this );
 	m_task_split					= UIHelper::CreateFrameLine( xml, "task_split", this );
 
-	m_pMapWnd						= xr_new<CUIMapWnd>(); 
+	m_pMapWnd						= new CUIMapWnd(); 
 	m_pMapWnd->SetAutoDelete		(false);
 	m_pMapWnd->hint_wnd				= hint_wnd;
 	m_pMapWnd->Init					(PDA_TASK_XML,"map_wnd");
@@ -50,13 +50,13 @@ void CUITaskWnd::Init()
 	m_center_background				= UIHelper::CreateStatic( xml, "center_background", this );
 //	m_right_bottom_background		= UIHelper::CreateStatic( xml, "right_bottom_background", this );
 
-	m_pStoryLineTaskItem			= xr_new<CUITaskItem>();
+	m_pStoryLineTaskItem			= new CUITaskItem();
 	m_pStoryLineTaskItem->Init		(xml,"storyline_task_item");
 	AttachChild						(m_pStoryLineTaskItem);
 	m_pStoryLineTaskItem->SetAutoDelete(true);
 	AddCallback						(m_pStoryLineTaskItem->WindowName(), WINDOW_LBUTTON_DB_CLICK,   CUIWndCallback::void_function(this,&CUITaskWnd::OnTask1DbClicked));
 	
-	m_pSecondaryTaskItem			= xr_new<CUITaskItem>();
+	m_pSecondaryTaskItem			= new CUITaskItem();
 	m_pSecondaryTaskItem->Init		(xml,"secondary_task_item");
 	AttachChild						(m_pSecondaryTaskItem);
 	m_pSecondaryTaskItem->SetAutoDelete(true);
@@ -81,7 +81,7 @@ void CUITaskWnd::Init()
 
 	m_second_task_index		= UIHelper::CreateStatic( xml, "second_task_index", this );
 
-	m_second_task_wnd					= xr_new<UISecondTaskWnd>(); 
+	m_second_task_wnd					= new UISecondTaskWnd(); 
 	m_second_task_wnd->SetAutoDelete	(true);
 	m_second_task_wnd->hint_wnd			= hint_wnd;
 	m_second_task_wnd->init_from_xml	(xml, "second_task_wnd");
@@ -90,7 +90,7 @@ void CUITaskWnd::Init()
 	m_second_task_wnd->Show				(false);
 	m_second_task_wnd_show				= false;
 
-	m_map_legend_wnd					= xr_new<UIMapLegend>(); 
+	m_map_legend_wnd					= new UIMapLegend(); 
 	m_map_legend_wnd->SetAutoDelete		(true);
 	m_map_legend_wnd->init_from_xml		(xml, "map_legend_wnd");
 	m_pMapWnd->AttachChild				(m_map_legend_wnd);

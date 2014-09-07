@@ -27,10 +27,10 @@ UIUpgrade::UIUpgrade( CUIInventoryUpgradeWnd* parent_wnd )
 	VERIFY( parent_wnd );
 	m_parent_wnd = parent_wnd;
 
-	m_item   = xr_new<CUIStatic>();	m_item->SetAutoDelete(   true );	AttachChild( m_item   );
-	m_color  = xr_new<CUIStatic>();	m_color->SetAutoDelete(  true );	AttachChild( m_color  );
-	m_border = xr_new<CUIStatic>();	m_border->SetAutoDelete( true );	AttachChild( m_border );
-	m_ink    = xr_new<CUIStatic>();	m_ink->SetAutoDelete(    true );	AttachChild( m_ink    );
+	m_item   = new CUIStatic();	m_item->SetAutoDelete(   true );	AttachChild( m_item   );
+	m_color  = new CUIStatic();	m_color->SetAutoDelete(  true );	AttachChild( m_color  );
+	m_border = new CUIStatic();	m_border->SetAutoDelete( true );	AttachChild( m_border );
+	m_ink    = new CUIStatic();	m_ink->SetAutoDelete(    true );	AttachChild( m_ink    );
 
 	m_upgrade_id = NULL;
 	Reset();

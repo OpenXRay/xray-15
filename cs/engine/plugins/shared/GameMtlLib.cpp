@@ -71,7 +71,7 @@ void CGameMtlLibrary::Load()
     if (OBJ) {
         u32				count;
         for (IReader* O = OBJ->open_chunk_iterator(count); O; O = OBJ->open_chunk_iterator(count,O)) {
-        	SGameMtl*	M = xr_new<SGameMtl> ();
+        	SGameMtl*	M = new SGameMtl();
 	        M->Load		(*O);
         	materials.push_back(M);
         }
@@ -82,7 +82,7 @@ void CGameMtlLibrary::Load()
     if (OBJ){
         u32				count;
         for (IReader* O = OBJ->open_chunk_iterator(count); O; O = OBJ->open_chunk_iterator(count,O)) {
-        	SGameMtlPair* M	= xr_new<SGameMtlPair> (this);
+        	SGameMtlPair* M	= new SGameMtlPair(this);
 	        M->Load		(*O);
         	material_pairs.push_back(M);
         }

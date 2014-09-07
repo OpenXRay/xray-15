@@ -20,14 +20,14 @@
 TEMPLATE_SPECIALIZATION
 CStateBurerAttackAbstract::CStateBurerAttack(_Object *obj) : inherited(obj)
 {
-	add_state(eStateBurerAttack_Tele,		xr_new<CStateBurerAttackTele<_Object> >		(obj));
-	add_state(eStateBurerAttack_Gravi,		xr_new<CStateBurerAttackGravi<_Object> >	(obj));
-	add_state(eStateBurerAttack_Melee,		xr_new<CStateBurerAttackMelee<_Object> >	(obj));
+	add_state(eStateBurerAttack_Tele,		new CStateBurerAttackTele<_Object> (obj));
+	add_state(eStateBurerAttack_Gravi,		new CStateBurerAttackGravi<_Object> (obj));
+	add_state(eStateBurerAttack_Melee,		new CStateBurerAttackMelee<_Object> (obj));
 	
-	add_state(eStateBurerAttack_FaceEnemy,	xr_new<CStateMonsterLookToPoint<_Object> >	(obj));
-	add_state(eStateBurerAttack_RunAround,	xr_new<CStateBurerAttackRunAround<_Object> >(obj));
+	add_state(eStateBurerAttack_FaceEnemy,	new CStateMonsterLookToPoint<_Object> (obj));
+	add_state(eStateBurerAttack_RunAround,	new CStateBurerAttackRunAround<_Object> (obj));
 
-	add_state(eStateCustomMoveToRestrictor,	xr_new<CStateMonsterMoveToRestrictor<_Object> >(obj));
+	add_state(eStateCustomMoveToRestrictor,	new CStateMonsterMoveToRestrictor<_Object> (obj));
 }
 
 TEMPLATE_SPECIALIZATION

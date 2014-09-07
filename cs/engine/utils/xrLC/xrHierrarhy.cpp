@@ -22,7 +22,7 @@ void CBuild::BuildHierrarhy()
 		for (int I=0; I<iSize; I++)
 		{
 			if (g_tree[I]->bConnected) continue;
-			OGF_Node* pNode = xr_new<OGF_Node> (iLevel);
+			OGF_Node* pNode = new OGF_Node(iLevel);
 			pNode->AddChield(I);
 
 			// Find best object to connect with

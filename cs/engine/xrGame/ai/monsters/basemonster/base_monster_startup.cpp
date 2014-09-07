@@ -46,9 +46,9 @@ void CBaseMonster::Load(LPCSTR section)
 	// load parameters from ".ltx" file
 	inherited::Load					(section);
 
-	m_corpse_cover_evaluator		= xr_new<CMonsterCorpseCoverEvaluator>	(&movement().restrictions());
-	m_enemy_cover_evaluator			= xr_new<CCoverEvaluatorFarFromEnemy>	(&movement().restrictions());
-	m_cover_evaluator_close_point	= xr_new<CCoverEvaluatorCloseToEnemy>	(&movement().restrictions());
+	m_corpse_cover_evaluator		= new CMonsterCorpseCoverEvaluator(&movement().restrictions());
+	m_enemy_cover_evaluator			= new CCoverEvaluatorFarFromEnemy(&movement().restrictions());
+	m_cover_evaluator_close_point	= new CCoverEvaluatorCloseToEnemy(&movement().restrictions());
 
 	MeleeChecker.load				(section);
 	Morale.load						(section);
@@ -93,12 +93,12 @@ void CBaseMonster::Load(LPCSTR section)
 	
 	if ( (separate_factor > 0.0001f) && (separate_range > 0.01f) )
 	{
-		m_steer_manager = xr_new<steering_behaviour::manager>();
+		m_steer_manager = new steering_behaviour::manager();
 
-		m_grouping_behaviour = xr_new<squad_grouping_behaviour>
-			(this, Fvector3().set(0.f, 0.f, 0.f), Fvector3().set(0.f, separate_factor, 0.f), separate_range);
+		m_grouping_behaviour = new squad_grouping_behaviour(this,
+            Fvector3().set(0.f, 0.f, 0.f), Fvector3().set(0.f, separate_factor, 0.f), separate_range);
 
-		get_steer_manager()->add( xr_new<steering_behaviour::grouping>(m_grouping_behaviour) );
+		get_steer_manager()->add( new steering_behaviour::grouping(m_grouping_behaviour) );
 	}
 }
 

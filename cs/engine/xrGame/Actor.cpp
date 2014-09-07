@@ -96,10 +96,10 @@ Flags32			psActorFlags={/*AF_DYNAMIC_MUSIC|*/AF_GODMODE_RT};
 
 CActor::CActor() : CEntityAlive()
 {
-	encyclopedia_registry	= xr_new<CEncyclopediaRegistryWrapper	>();
-	game_news_registry		= xr_new<CGameNewsRegistryWrapper		>();
+	encyclopedia_registry	= new CEncyclopediaRegistryWrapper();
+	game_news_registry		= new CGameNewsRegistryWrapper();
 	// Cameras
-	cameras[eacFirstEye]	= xr_new<CCameraFirstEye>				(this);
+	cameras[eacFirstEye]	= new CCameraFirstEye(this);
 	cameras[eacFirstEye]->Load("actor_firsteye_cam");
 
 	if(strstr(Core.Params,"-psp"))
@@ -109,14 +109,14 @@ CActor::CActor() : CEntityAlive()
 
 	if( psActorFlags.test(AF_PSP) )
 	{
-		cameras[eacLookAt]		= xr_new<CCameraLook2>				(this);
+		cameras[eacLookAt]		= new CCameraLook2(this);
 		cameras[eacLookAt]->Load("actor_look_cam_psp");
 	}else
 	{
-		cameras[eacLookAt]		= xr_new<CCameraLook>				(this);
+		cameras[eacLookAt]		= new CCameraLook(this);
 		cameras[eacLookAt]->Load("actor_look_cam");
 	}
-	cameras[eacFreeLook]	= xr_new<CCameraLook>					(this);
+	cameras[eacFreeLook]	= new CCameraLook(this);
 	cameras[eacFreeLook]->Load("actor_free_cam");
 
 	cam_active				= eacFirstEye;
@@ -182,21 +182,21 @@ CActor::CActor() : CEntityAlive()
 	m_pUsableObject			= NULL;
 
 
-	m_anims					= xr_new<SActorMotions>();
-	m_vehicle_anims			= xr_new<SActorVehicleAnims>();
+	m_anims					= new SActorMotions();
+	m_vehicle_anims			= new SActorVehicleAnims();
 	m_entity_condition		= NULL;
 	m_iLastHitterID			= u16(-1);
 	m_iLastHittingWeaponID	= u16(-1);
 	m_statistic_manager		= NULL;
 	//-----------------------------------------------------------------------------------
-	m_memory				= g_dedicated_server ? 0 : xr_new<CActorMemory>(this);
+	m_memory				= g_dedicated_server ? 0 : new CActorMemory(this);
 	m_bOutBorder			= false;
 	m_hit_probability		= 1.f;
 	m_feel_touch_characters = 0;
 	//-----------------------------------------------------------------------------------
 	m_dwILastUpdateTime		= 0;
 
-	m_location_manager		= xr_new<CLocationManager>(this);
+	m_location_manager		= new CLocationManager(this);
 	m_block_sprint_counter	= 0;
 }
 
@@ -496,7 +496,7 @@ void	CActor::Hit							(SHit* pHDS)
 			{
 				S.set_volume(10.0f);
 				if(!m_sndShockEffector){
-					m_sndShockEffector = xr_new<SndShockEffector>();
+					m_sndShockEffector = new SndShockEffector();
 					m_sndShockEffector->Start(this, float(S.get_length_sec()*1000.0f), HDS.damage() );
 				}
 			}
@@ -812,7 +812,7 @@ void CActor::g_Physics			(Fvector& _accel, float jump, float dt)
 
 	if (Local() && g_Alive()) {
 		if (character_physics_support()->movement()->gcontact_Was)
-			Cameras().AddCamEffector		(xr_new<CEffectorFall> (character_physics_support()->movement()->gcontact_Power));
+			Cameras().AddCamEffector		(new CEffectorFall(character_physics_support()->movement()->gcontact_Power));
 		if (!fis_zero(character_physics_support()->movement()->gcontact_HealthLost))	{
 			const ICollisionDamageInfo* di=character_physics_support()->movement()->CollisionDamageInfo();
 			Fvector hdir;di->HitDir(hdir);
@@ -1144,7 +1144,7 @@ void CActor::shedule_Update	(u32 DT)
 	//эффектор включаемый при ходьбе
 	if (!pCamBobbing)
 	{
-		pCamBobbing = xr_new<CEffectorBobbing>	();
+		pCamBobbing = new CEffectorBobbing();
 		Cameras().AddCamEffector			(pCamBobbing);
 	}
 	pCamBobbing->SetState						(mstate_real, conditions().IsLimping(), IsZoomAimingMode());
@@ -1799,7 +1799,7 @@ CPHDestroyable*	CActor::ph_destroyable	()
 CEntityConditionSimple *CActor::create_entity_condition	(CEntityConditionSimple* ec)
 {
 	if(!ec)
-		m_entity_condition		= xr_new<CActorCondition>(this);
+		m_entity_condition		= new CActorCondition(this);
 	else
 		m_entity_condition		= smart_cast<CActorCondition*>(ec);
 	
@@ -1808,7 +1808,7 @@ CEntityConditionSimple *CActor::create_entity_condition	(CEntityConditionSimple*
 
 DLL_Pure *CActor::_construct			()
 {
-	m_pPhysics_support				=	xr_new<CCharacterPhysicsSupport>(CCharacterPhysicsSupport::etActor,this);
+	m_pPhysics_support				= new CCharacterPhysicsSupport(CCharacterPhysicsSupport::etActor,this);
 	CEntityAlive::_construct		();
 	CInventoryOwner::_construct		();
 	CStepManager::_construct		();

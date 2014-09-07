@@ -193,7 +193,7 @@ void CControllerPsyHit::death_glide_start()
 
 	target_pos.mad		(src_pos,dir,dist-4.8f);
 	
-	Actor()->Cameras().AddCamEffector(xr_new<CControllerPsyHitCamEffector>(eCEControllerPsyHit, src_pos,target_pos, m_man->animation().motion_time(m_stage[1], m_object->Visual())));
+	Actor()->Cameras().AddCamEffector(new CControllerPsyHitCamEffector(eCEControllerPsyHit, src_pos,target_pos, m_man->animation().motion_time(m_stage[1], m_object->Visual())));
 	smart_cast<CController *>(m_object)->draw_fire_particles();
 
 	dir.sub(src_pos,target_pos);

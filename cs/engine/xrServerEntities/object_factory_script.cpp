@@ -30,16 +30,11 @@ void CObjectFactory::register_script_class	(LPCSTR client_class, LPCSTR server_c
 		return;
 	}
 	
-	add							(
-		xr_new<CObjectItemScript>(
-#ifndef NO_XR_GAME
-			client,
-#endif
-			server,
-			TEXT2CLSID(clsid),
-			script_clsid
-		)
-	);
+	add(new CObjectItemScript(
+    #ifndef NO_XR_GAME
+        client,
+    #endif
+        server, TEXT2CLSID(clsid), script_clsid));
 }
 
 void CObjectFactory::register_script_class			(LPCSTR unknown_class, LPCSTR clsid, LPCSTR script_clsid)
@@ -49,16 +44,11 @@ void CObjectFactory::register_script_class			(LPCSTR unknown_class, LPCSTR clsid
 		ai().script_engine().script_log	(eLuaMessageTypeError,"Cannot register class %s",unknown_class);
 		return;
 	}
-	add							(
-		xr_new<CObjectItemScript>(
-#ifndef NO_XR_GAME
-			creator,
-#endif
-			creator,
-			TEXT2CLSID(clsid),
-			script_clsid
-		)
-	);
+	add(new CObjectItemScript(
+    #ifndef NO_XR_GAME
+        creator,
+    #endif
+        creator, TEXT2CLSID(clsid), script_clsid));
 }
 
 #ifndef NO_XR_GAME

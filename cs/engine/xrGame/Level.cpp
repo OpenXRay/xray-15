@@ -81,7 +81,7 @@ CLevel::CLevel():IPureClient	(Device.GetTimerGlobal())
 	Server						= NULL;
 
 	game						= NULL;
-	game_events					= xr_new<NET_Queue_Event>();
+	game_events					= new NET_Queue_Event();
 
 	game_configured				= FALSE;
 	m_bGameConfigStarted		= FALSE;
@@ -94,12 +94,12 @@ CLevel::CLevel():IPureClient	(Device.GetTimerGlobal())
 
 	eEntitySpawn				= Engine.Event.Handler_Attach	("LEVEL:spawn",this);
 
-	m_pBulletManager			= xr_new<CBulletManager>();
+	m_pBulletManager			= new CBulletManager();
 
 	if(!g_dedicated_server)
 	{
-		m_map_manager				= xr_new<CMapManager>();
-		m_game_task_manager			= xr_new<CGameTaskManager>();
+		m_map_manager				= new CMapManager();
+		m_game_task_manager			= new CGameTaskManager();
 	}else
 	{
 		m_map_manager				= NULL;
@@ -114,18 +114,18 @@ CLevel::CLevel():IPureClient	(Device.GetTimerGlobal())
 	m_dwLastNetUpdateTime		= 0;
 
 	physics_step_time_callback	= (PhysicsStepTimeCallback*) &PhisStepsCallback;
-	m_seniority_hierarchy_holder= xr_new<CSeniorityHierarchyHolder>();
+	m_seniority_hierarchy_holder= new CSeniorityHierarchyHolder();
 
 	if(!g_dedicated_server)
 	{
-		m_level_sound_manager		= xr_new<CLevelSoundManager>();
-		m_space_restriction_manager = xr_new<CSpaceRestrictionManager>();
-		m_client_spawn_manager		= xr_new<CClientSpawnManager>();
-		m_autosave_manager			= xr_new<CAutosaveManager>();
+		m_level_sound_manager		= new CLevelSoundManager();
+		m_space_restriction_manager = new CSpaceRestrictionManager();
+		m_client_spawn_manager		= new CClientSpawnManager();
+		m_autosave_manager			= new CAutosaveManager();
 
 	#ifdef DEBUG
-		m_debug_renderer			= xr_new<CDebugRenderer>();
-		m_level_debug				= xr_new<CLevelDebug>();
+		m_debug_renderer			= new CDebugRenderer();
+		m_level_debug				= new CLevelDebug();
 	#endif
 
 	}else
@@ -142,8 +142,8 @@ CLevel::CLevel():IPureClient	(Device.GetTimerGlobal())
 
 
 	
-	m_ph_commander				= xr_new<CPHCommander>();
-	m_ph_commander_scripts		= xr_new<CPHCommander>();
+	m_ph_commander				= new CPHCommander();
+	m_ph_commander_scripts		= new CPHCommander();
 
 #ifdef DEBUG
 	m_bSynchronization			= false;
@@ -174,7 +174,7 @@ CLevel::CLevel():IPureClient	(Device.GetTimerGlobal())
 	m_msg_filter = NULL;
 
 	R_ASSERT				(NULL==g_player_hud);
-	g_player_hud			= xr_new<player_hud>();
+	g_player_hud			= new player_hud();
 	g_player_hud->load_default();
 	
 	hud_zones_list = NULL;
@@ -690,7 +690,7 @@ void CLevel::OnFrame	()
 #ifdef DEBUG
 				if (!pStatGraphR)
 				{
-					pStatGraphR = xr_new<CStatGraph>();
+					pStatGraphR = new CStatGraph();
 					pStatGraphR->SetRect(50, 700, 300, 68, 0xff000000, 0xff000000);
 					//m_stat_graph->SetGrid(0, 0.0f, 10, 1.0f, 0xff808080, 0xffffffff);
 					pStatGraphR->SetMinMax(0.0f, 65536.0f, 1000);
@@ -908,7 +908,7 @@ void CLevel::OnEvent(EVENT E, u64 P1, u64 /**P2/**/)
 		string_path RealName;
 		strcpy_s		(RealName,name);
 		strcat			(RealName,".xrdemo");
-		Cameras().AddCamEffector(xr_new<CDemoPlay> (RealName,1.3f,0));
+		Cameras().AddCamEffector(new CDemoPlay(RealName,1.3f,0));
 	} else if (E==eChangeTrack && P1) {
 		// int id = atoi((char*)P1);
 		// Environment->Music_Play(id);
@@ -1231,7 +1231,7 @@ IC bool	IsGameTypeSingle()
 
 CZoneList* CLevel::create_hud_zones_list()
 {
-	hud_zones_list = xr_new<CZoneList>();
+	hud_zones_list = new CZoneList();
 	hud_zones_list->clear();
 	return hud_zones_list;
 }

@@ -88,7 +88,7 @@ void CFontManager::InitializeFont(CGameFont*& F, LPCSTR section, u32 flags)
 	R_ASSERT(font_tex_name);
 
 	if(!F)
-		F = xr_new<CGameFont> ("font", font_tex_name, flags);
+		F = new CGameFont("font", font_tex_name, flags);
 	else
 		F->Initialize("font",font_tex_name);
 
@@ -127,7 +127,7 @@ void CFontManager::OnDeviceReset()
 }
 
 //--------------------------------------------------------------------
-CHUDManager::CHUDManager() : m_Renderable(true), pUI(NULL), m_pHUDTarget(xr_new<CHUDTarget>())
+CHUDManager::CHUDManager() : m_Renderable(true), pUI(NULL), m_pHUDTarget(new CHUDTarget())
 { 
 	OnDisconnected();
 }
@@ -147,7 +147,7 @@ void CHUDManager::Load()
 		pUI->Load			( pUI->UIGame() );
 		return;
 	}
-	pUI					= xr_new<CUI> (this);
+	pUI					= new CUI(this);
 	pUI->Load			(NULL);
 	OnDisconnected		();
 }
@@ -341,7 +341,7 @@ void CHUDManager::OnScreenRatioChanged()
 	xr_delete							(pWpnScopeXml);
 	xr_delete							(pUI->UIMainIngameWnd);
 
-	pUI->UIMainIngameWnd				= xr_new<CUIMainIngameWnd>	();
+	pUI->UIMainIngameWnd				= new CUIMainIngameWnd();
 	pUI->UIMainIngameWnd->Init			();
 	pUI->UnLoad							();
 	pUI->Load							(pUI->UIGame());

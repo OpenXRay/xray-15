@@ -301,7 +301,7 @@ void line_edit_control::create_key_state( u32 const dik, key_state state )
 	{
 		xr_delete( m_actions[dik] );
 	}
-	m_actions[dik] = xr_new<text_editor::key_state_base>( state );
+	m_actions[dik] = new text_editor::key_state_base( state );
 }
 
 void line_edit_control::create_char_pair( u32 const dik, char c, char c_shift, bool translate )
@@ -311,7 +311,7 @@ void line_edit_control::create_char_pair( u32 const dik, char c, char c_shift, b
 		xr_delete( m_actions[dik] );
 	}
 
-	m_actions[dik] = xr_new<text_editor::type_pair>( dik, c, c_shift, translate );
+	m_actions[dik] = new text_editor::type_pair( dik, c, c_shift, translate );
 }
 
 void line_edit_control::assign_action( u32 const dik, Base* const action )
@@ -325,7 +325,7 @@ void line_edit_control::assign_action( u32 const dik, Base* const action )
 
 void line_edit_control::assign_callback( u32 const dik, key_state state, Callback const& callback )
 {
-	assign_action( dik, xr_new<text_editor::callback_base>( callback, state ) );
+	assign_action( dik, new text_editor::callback_base( callback, state ) );
 }
 
 void line_edit_control::insert_character( char c )

@@ -82,7 +82,7 @@ void CUICharacterInfo::InitCharacterInfo(Fvector2 pos, Fvector2 size, CUIXml* xm
 
 	if (xml_doc->NavigateToNode("biography_list", 0))
 	{
-		pUIBio = xr_new<CUIScrollView>();
+		pUIBio = new CUIScrollView();
 		pUIBio->SetAutoDelete(true);
 		CUIXmlInit::InitScrollView( *xml_doc, "biography_list", 0, pUIBio );
 		AttachChild(pUIBio);
@@ -93,7 +93,7 @@ void CUICharacterInfo::Init_StrInfoItem( CUIXml& xml_doc, LPCSTR item_str, UIIte
 {
 	if ( xml_doc.NavigateToNode( item_str, 0 ) )
 	{
-		CUIStatic*	pItem = m_icons[type] = xr_new<CUIStatic>();
+		CUIStatic*	pItem = m_icons[type] = new CUIStatic();
 		CUIXmlInit::InitStatic( xml_doc, item_str, 0, pItem );
 		AttachChild( pItem );
 		pItem->SetAutoDelete( true );
@@ -104,7 +104,7 @@ void CUICharacterInfo::Init_IconInfoItem( CUIXml& xml_doc, LPCSTR item_str, UIIt
 {
 	if ( xml_doc.NavigateToNode( item_str, 0 ) )
 	{
-		CUIStatic*	pItem = m_icons[type] = xr_new<CUIStatic>();
+		CUIStatic*	pItem = m_icons[type] = new CUIStatic();
 		CUIXmlInit::InitStatic( xml_doc, item_str, 0, pItem );
 		
 		pItem->ClipperOn();
@@ -156,7 +156,7 @@ void CUICharacterInfo::InitCharacter(u16 id)
 		pUIBio->Clear();
 		if (chInfo.Bio().size())
 		{
-			CUIStatic* pItem				= xr_new<CUIStatic>();
+			CUIStatic* pItem				= new CUIStatic();
 			pItem->SetWidth					(pUIBio->GetDesiredChildWidth());
 			pItem->SetText					(chInfo.Bio().c_str());
 			pItem->AdjustHeightToText		();

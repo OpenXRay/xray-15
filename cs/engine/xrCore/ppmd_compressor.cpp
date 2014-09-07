@@ -51,7 +51,7 @@ void ppmd_initialize		()
 		u8				*buffer = (u8*)xr_malloc(buffer_size);
 		reader->r		(buffer,buffer_size);
 		FS.r_close		(reader);
-		trained_model	= xr_new<stream>(buffer,buffer_size);
+		trained_model	= new stream(buffer,buffer_size);
 	}
 
 	initialized		= true;

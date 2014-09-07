@@ -926,8 +926,8 @@ void	CPHMovementControl::AllocateCharacterObject(CharacterType type)
 {
 	switch(type)
 	{
-	case actor:			m_character = xr_new<CPHActorCharacter>	()							;	break;
-	case ai:			m_character = xr_new<CPHAICharacter>	()							;	break;
+	case actor:			m_character = new CPHActorCharacter()							;	break;
+	case ai:			m_character = new CPHAICharacter()							;	break;
 	}
 	eCharacterType=type;
 	m_character->SetMas(fMass);
@@ -951,7 +951,7 @@ if( !object||
 	)
 	return;
 
-m_capture=xr_new<CPHCapture>(m_character,
+m_capture= new CPHCapture(m_character,
 							 object,
 							 cb
 							 );
@@ -968,7 +968,7 @@ void	CPHMovementControl::PHCaptureObject(CPhysicsShellHolder* object,u16 element
 		)
 		return;
 
-	m_capture=xr_new<CPHCapture>(m_character,
+	m_capture= new CPHCapture(m_character,
 		object,
 		element
 		);

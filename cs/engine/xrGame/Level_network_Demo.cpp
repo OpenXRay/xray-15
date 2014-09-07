@@ -211,7 +211,7 @@ message_filter*	 CLevel::GetMessageFilter()
 {
 	if (m_msg_filter)
 		return m_msg_filter;
-	m_msg_filter = xr_new<message_filter>();
+	m_msg_filter = new message_filter();
 	return m_msg_filter;
 }
 /*

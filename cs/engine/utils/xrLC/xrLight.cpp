@@ -93,7 +93,7 @@ for(u32 dit = 0; dit<lc_global_data()->g_deflectors().size(); dit++)
 		CThreadManager	threads;
 		const	u32	thNUM	= 6;
 		CTimer	start_time;	start_time.Start();				
-		for				(int L=0; L<thNUM; L++)	threads.start(xr_new<CLMThread> (L));
+		for				(int L=0; L<thNUM; L++)	threads.start(new CLMThread(L));
 		threads.wait	(500);
 		clMsg			("%f seconds",start_time.GetElapsed_sec());
 }
@@ -288,14 +288,14 @@ public:
 #define NUM_THREADS			4
 void CBuild::LightVertex	()
 {
-	g_trans				= xr_new<mapVert>	();
+	g_trans				= new mapVert();
 
 	// Start threads, wait, continue --- perform all the work
 	Status				("Calculating...");
 	CThreadManager		Threads;
 	VLT.init			();
 	CTimer	start_time;	start_time.Start();				
-	for (u32 thID=0; thID<NUM_THREADS; thID++)	Threads.start(xr_new<CVertexLightThread>(thID));
+	for (u32 thID=0; thID<NUM_THREADS; thID++)	Threads.start(new CVertexLightThread(thID));
 	Threads.wait		();
 	clMsg				("%f seconds",start_time.GetElapsed_sec());
 

@@ -59,7 +59,7 @@ void __cdecl SaveObjectMotion(GlobalFunc *global)
 		if (sel_obj_cnt==1){
 			string_path					name;
 			_splitpath					(buf, 0, 0, name, 0);
-			m_Motion					= xr_new<COMotion>();
+			m_Motion					= new COMotion();
 			m_Motion->SetName			(name);
 			m_Motion->ParseObjectMotion	(sel_object);
 			m_Motion->SetParam			(g_intinfo->previewStart, g_intinfo->previewEnd, (float)g_lwsi->framesPerSecond);

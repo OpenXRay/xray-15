@@ -15,7 +15,7 @@ ENGINE_API	IGame_Level*	g_pGameLevel	= NULL;
 
 IGame_Level::IGame_Level	()
 {
-	m_pCameras					= xr_new<CCameraManager>(true);
+	m_pCameras					= new CCameraManager(true);
 	g_pGameLevel				= this;
 	pLevel						= NULL;
 	bReady						= false;
@@ -64,7 +64,7 @@ BOOL IGame_Level::Load			(u32 dwNum)
 	string_path					temp;
 	if (!FS.exist(temp, "$level$", "level.ltx"))
 		Debug.fatal	(DEBUG_INFO,"Can't find level configuration file '%s'.",temp);
-	pLevel						= xr_new<CInifile>	( temp );
+	pLevel						= new CInifile( temp );
 	
 	// Open
 	g_pGamePersistent->LoadTitle	("st_opening_stream");

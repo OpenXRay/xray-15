@@ -41,44 +41,44 @@ void CUIEventsWnd::Init				()
 	xml_init.InitWindow				(uiXml, "main_wnd", 0, this);
 
 
-	m_UILeftFrame					= xr_new<CUIFrameWindow>(); m_UILeftFrame->SetAutoDelete(true);
+	m_UILeftFrame					= new CUIFrameWindow(); m_UILeftFrame->SetAutoDelete(true);
 	AttachChild						(m_UILeftFrame);
 	xml_init.InitFrameWindow		(uiXml, "main_wnd:left_frame", 0, m_UILeftFrame);
 
 
-	m_UILeftHeader					= xr_new<CUIFrameLineWnd>(); m_UILeftHeader->SetAutoDelete(true);
+	m_UILeftHeader					= new CUIFrameLineWnd(); m_UILeftHeader->SetAutoDelete(true);
 	m_UILeftFrame->AttachChild		(m_UILeftHeader);
 	xml_init.InitFrameLine			(uiXml, "main_wnd:left_frame:left_frame_header", 0, m_UILeftHeader);
 
 //.	xml_init.InitAutoStaticGroup	(uiXml, "main_wnd:left_frame",m_UILeftFrame);
 
-	m_UIAnimation					= xr_new<CUIAnimatedStatic>(); m_UIAnimation->SetAutoDelete(true);
+	m_UIAnimation					= new CUIAnimatedStatic(); m_UIAnimation->SetAutoDelete(true);
 	xml_init.InitAnimatedStatic		(uiXml, "main_wnd:left_frame:left_frame_header:anim_static", 0, m_UIAnimation);
 	m_UILeftHeader->AttachChild		(m_UIAnimation);
 
-	m_UIRightWnd					= xr_new<CUIWindow>(); m_UIRightWnd->SetAutoDelete(true);
+	m_UIRightWnd					= new CUIWindow(); m_UIRightWnd->SetAutoDelete(true);
 	AttachChild						(m_UIRightWnd);
 	xml_init.InitWindow				(uiXml, "main_wnd:right_frame", 0, m_UIRightWnd);
 
-	m_UIMapWnd						= xr_new<CUIMapWnd>(); m_UIMapWnd->SetAutoDelete(false);
+	m_UIMapWnd						= new CUIMapWnd(); m_UIMapWnd->SetAutoDelete(false);
 	m_UIMapWnd->Init				("pda_events.xml","main_wnd:right_frame:map_wnd");
 
-	m_UITaskInfoWnd					= xr_new<CUITaskDescrWnd>(); m_UITaskInfoWnd->SetAutoDelete(false);
+	m_UITaskInfoWnd					= new CUITaskDescrWnd(); m_UITaskInfoWnd->SetAutoDelete(false);
 	m_UITaskInfoWnd->Init			(&uiXml,"main_wnd:right_frame:task_descr_view");
 	
 
-	m_ListWnd						= xr_new<CUIScrollView>(); m_ListWnd->SetAutoDelete(true);
+	m_ListWnd						= new CUIScrollView(); m_ListWnd->SetAutoDelete(true);
 	m_UILeftFrame->AttachChild		(m_ListWnd);
 	xml_init.InitScrollView			(uiXml, "main_wnd:left_frame:list", 0, m_ListWnd);
 
-	m_TaskFilter					= xr_new<CUITabControl>(); m_TaskFilter->SetAutoDelete(true);
+	m_TaskFilter					= new CUITabControl(); m_TaskFilter->SetAutoDelete(true);
 	m_UILeftFrame->AttachChild		(m_TaskFilter);
 	xml_init.InitTabControl			(uiXml, "main_wnd:left_frame:filter_tab", 0, m_TaskFilter);
 	m_TaskFilter->SetWindowName		("filter_tab");
 	Register						(m_TaskFilter);
     AddCallback						("filter_tab",TAB_CHANGED,CUIWndCallback::void_function(this,&CUIEventsWnd::OnFilterChanged));
 /*
-    m_primary_or_all_filter_btn		= xr_new<CUI3tButton>(); m_primary_or_all_filter_btn->SetAutoDelete(true);
+    m_primary_or_all_filter_btn		= new CUI3tButton(); m_primary_or_all_filter_btn->SetAutoDelete(true);
 	m_UILeftFrame->AttachChild		(m_primary_or_all_filter_btn);
 	xml_init.Init3tButton			(uiXml, "main_wnd:left_frame:primary_or_all", 0, m_primary_or_all_filter_btn);
 
@@ -146,7 +146,7 @@ void CUIEventsWnd::ReloadList(bool bClearOnly)
 		if(task->m_Objectives[0].TaskState()==eTaskUserDefined)
 		{
 			VERIFY				(task->m_Objectives.size()==1);
-			pTaskItem			= xr_new<CUIUserTaskItem>(this);
+			pTaskItem			= new CUIUserTaskItem(this);
 			pTaskItem->SetGameTask			(task, 0);
 			m_ListWnd->AddWindow			(pTaskItem,true);
 		}else
@@ -154,9 +154,9 @@ void CUIEventsWnd::ReloadList(bool bClearOnly)
 		for (u16 i = 0; i < task->m_Objectives.size(); ++i)
 		{
 			if(i==0){
-				pTaskItem					= xr_new<CUITaskRootItem>(this);
+				pTaskItem					= new CUITaskRootItem(this);
 			}else{
-				pTaskItem					= xr_new<CUITaskSubItem>(this);
+				pTaskItem					= new CUITaskSubItem(this);
 			}
 			pTaskItem->SetGameTask			(task, i);
 			m_ListWnd->AddWindow			(pTaskItem,true);

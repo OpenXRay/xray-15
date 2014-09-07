@@ -17,11 +17,11 @@ CUIButtonHint::CUIButtonHint	()
 	uiXml.Load					(CONFIG_PATH, UI_PATH, "hint_item.xml");
 	xml_init.InitWindow			(uiXml,"button_hint",0,this);
 	
-	m_border					= xr_new<CUIFrameLineWnd>();m_border->SetAutoDelete(true);
+	m_border					= new CUIFrameLineWnd();m_border->SetAutoDelete(true);
 	AttachChild					(m_border);
 	xml_init.InitFrameLine		(uiXml,"button_hint:frame_line",0,m_border);
 
-	m_text						= xr_new<CUIStatic>();m_text->SetAutoDelete(true);
+	m_text						= new CUIStatic();m_text->SetAutoDelete(true);
 	AttachChild					(m_text);
 	xml_init.InitStatic			(uiXml,"button_hint:description",0,m_text);
 

@@ -26,12 +26,12 @@ CUIGameCustom::CUIGameCustom()
 	shedule.t_min			= 5;
 	shedule.t_max			= 20;
 	shedule_register		();
-	m_pgameCaptions			= xr_new<CUICaption>();
-	m_msgs_xml				= xr_new<CUIXml>();
+	m_pgameCaptions			= new CUICaption();
+	m_msgs_xml				= new CUIXml();
 	m_msgs_xml->Load		(CONFIG_PATH, UI_PATH, "ui_custom_msgs.xml");
 
-	m_ActorMenu		= xr_new<CUIActorMenu>		();
-	m_PdaMenu		= xr_new<CUIPdaWnd>			();
+	m_ActorMenu		= new CUIActorMenu();
+	m_PdaMenu		= new CUIPdaWnd();
 }
 
 CUIGameCustom::~CUIGameCustom()
@@ -157,7 +157,7 @@ SDrawStaticStruct* CUIGameCustom::AddCustomStatic			(LPCSTR id, bool bSingleInst
 	m_custom_statics.push_back		(SDrawStaticStruct());
 	SDrawStaticStruct& sss			= m_custom_statics.back();
 
-	sss.m_static					= xr_new<CUIStatic>();
+	sss.m_static					= new CUIStatic();
 	sss.m_name						= id;
 	xml_init.InitStatic				(*m_msgs_xml, id, 0, sss.m_static);
 	float ttl						= m_msgs_xml->ReadAttribFlt(id, 0, "ttl", -1);

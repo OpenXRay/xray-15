@@ -57,7 +57,7 @@ CGameSpy_Browser::CGameSpy_Browser(HMODULE hGameSpyDLL)
 
 void	CGameSpy_Browser::InitInternalData(HMODULE hGameSpyDLL)
 {
-	m_pQR2	= xr_new<CGameSpy_QR2>(hGameSpyDLL);
+	m_pQR2	= new CGameSpy_QR2(hGameSpyDLL);
 	m_pQR2->RegisterAdditionalKeys();
 
 	m_bAbleToConnectToMasterServer = true;
@@ -205,7 +205,7 @@ void			CGameSpy_Browser::RefreshList_Full(bool Local, const char* FilterStr)
 		m_refresh_lock.Leave();
 		if (m_bAbleToConnectToMasterServer)
 		{
-			RefreshData*	pRData = xr_new<RefreshData>();
+			RefreshData*	pRData = new RefreshData();
 			strcpy_s(pRData->FilterStr, FilterStr);
 			pRData->pGSBrowser = this;
 

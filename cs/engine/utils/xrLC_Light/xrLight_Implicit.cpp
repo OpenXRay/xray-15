@@ -169,7 +169,7 @@ void ImplicitLighting()
 	if (g_params().m_quality==ebqDraft) return;
 
 	Implicit		calculator;
-	ImplicitHash	= xr_new<IHASH>	();
+	ImplicitHash	= new IHASH();
 	
 	// Sorting
 	Status("Sorting faces...");
@@ -222,7 +222,7 @@ void ImplicitLighting()
 		CThreadManager			tmanager;
 		u32	stride				= defl.Height()/NUM_THREADS;
 		for (u32 thID=0; thID<NUM_THREADS; thID++)
-			tmanager.start		(xr_new<ImplicitThread> (thID,&defl,thID*stride,thID*stride+stride));
+			tmanager.start		(new ImplicitThread(thID,&defl,thID*stride,thID*stride+stride));
 		tmanager.wait			();
 
 		// Expand

@@ -18,7 +18,7 @@ LPCSTR GameTypeToString			(EGameIDs gt, bool bShort);
 
 game_cl_GameState::game_cl_GameState()
 {
-	m_WeaponUsageStatistic		= xr_new<WeaponUsageStatistic>();
+	m_WeaponUsageStatistic		= new WeaponUsageStatistic();
 
 	local_player				= 0;
 	m_game_type_name			= 0;

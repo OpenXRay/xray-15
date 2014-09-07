@@ -104,7 +104,7 @@ CPhysicsShell	* create_camera_shell(  )
 	CPhysicsElement* roote = shell->get_ElementByStoreOrder( 0 );
 	Fobb obb; obb.m_halfsize.set(0.5f,0.5f,0.5f); obb.m_rotate.identity();obb.m_translate.set(0,0,0);
 	//roote->add_Box(obb);
-	CODEGeom* character_test_geom = smart_cast<CODEGeom*>(xr_new<CBoxGeom>(obb));
+	CODEGeom* character_test_geom = smart_cast<CODEGeom*>(new CBoxGeom(obb));
 	character_test_geom->build( Fvector().set( 0, 0, 0 ) );//roote->mass_Center()
 	character_test_geom->set_body( roote->get_body() );
 	character_test_geom->set_ref_object(smart_cast<CPhysicsShellHolder*>(actor));

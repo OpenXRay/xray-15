@@ -34,39 +34,39 @@ void CUIActorInfoWnd::Init()
 	xml_init.InitWindow						(uiXml, "main_wnd", 0, this);
 
 	// Декоративное оформление
-	UICharIconFrame							= xr_new<CUIFrameWindow>();	UICharIconFrame->SetAutoDelete	(true);
+	UICharIconFrame							= new CUIFrameWindow();	UICharIconFrame->SetAutoDelete	(true);
 	xml_init.InitFrameWindow				(uiXml, "chicon_frame_window", 0, UICharIconFrame);
 	AttachChild								(UICharIconFrame);
 
-	UICharIconHeader						= xr_new<CUIFrameLineWnd>();	UICharIconHeader->SetAutoDelete	(true);
+	UICharIconHeader						= new CUIFrameLineWnd();	UICharIconHeader->SetAutoDelete	(true);
 	xml_init.InitFrameLine					(uiXml, "chicon_frame_line", 0, UICharIconHeader);
 	UICharIconFrame->AttachChild			(UICharIconHeader);
 
-	UIAnimatedIcon							= xr_new<CUIAnimatedStatic>();	UIAnimatedIcon->SetAutoDelete	(true);
+	UIAnimatedIcon							= new CUIAnimatedStatic();	UIAnimatedIcon->SetAutoDelete	(true);
 	xml_init.InitAnimatedStatic				(uiXml, "a_static", 0, UIAnimatedIcon);
 	UICharIconHeader->AttachChild			(UIAnimatedIcon);
 
-	UIInfoFrame								= xr_new<CUIFrameWindow>(); UIInfoFrame->SetAutoDelete	(true);
+	UIInfoFrame								= new CUIFrameWindow(); UIInfoFrame->SetAutoDelete	(true);
 	xml_init.InitFrameWindow				(uiXml, "info_frame_window", 0, UIInfoFrame);
 	AttachChild								(UIInfoFrame);
 	
-	UIInfoHeader							= xr_new<CUIFrameLineWnd>();UIInfoHeader ->SetAutoDelete(true);
+	UIInfoHeader							= new CUIFrameLineWnd();UIInfoHeader ->SetAutoDelete(true);
 	xml_init.InitFrameLine					(uiXml, "info_frame_line", 0, UIInfoHeader);
 	UIInfoFrame->AttachChild				(UIInfoHeader);
 
-	UIDetailList							= xr_new<CUIScrollView>();UIDetailList->SetAutoDelete(true);
+	UIDetailList							= new CUIScrollView();UIDetailList->SetAutoDelete(true);
 	UIInfoFrame->AttachChild				(UIDetailList);
 	xml_init.InitScrollView					(uiXml, "detail_list", 0, UIDetailList);
 
-	UIMasterList							= xr_new<CUIScrollView>();UIMasterList->SetAutoDelete(true);
+	UIMasterList							= new CUIScrollView();UIMasterList->SetAutoDelete(true);
 	UICharIconFrame->AttachChild			(UIMasterList);
 	xml_init.InitScrollView					(uiXml, "master_list", 0, UIMasterList);
 
-	UICharacterWindow						= xr_new<CUIWindow>();UICharacterWindow->SetAutoDelete(true);
+	UICharacterWindow						= new CUIWindow();UICharacterWindow->SetAutoDelete(true);
 	UICharIconFrame->AttachChild			(UICharacterWindow);
 	xml_init.InitWindow						(uiXml, "character_info", 0, UICharacterWindow);
 
-	UICharacterInfo							= xr_new<CUICharacterInfo>(); UICharacterInfo->SetAutoDelete(true);
+	UICharacterInfo							= new CUICharacterInfo(); UICharacterInfo->SetAutoDelete(true);
 	UICharacterWindow->AttachChild			(UICharacterInfo);
 	UICharacterInfo->InitCharacterInfo		(Fvector2().set(0,0),UICharacterWindow->GetWndSize(), ACTOR_CHARACTER_XML);
 
@@ -112,7 +112,7 @@ void CUIActorInfoWnd::FillPointsInfo			()
 
 void CUIActorInfoWnd::FillMasterPart(CUIXml* xml, const shared_str& key_name)
 {
-	CUIActorStaticticHeader* itm		= xr_new<CUIActorStaticticHeader>(this);
+	CUIActorStaticticHeader* itm		= new CUIActorStaticticHeader(this);
 	string128							buff;
 	strconcat							(sizeof(buff), buff, "actor_stats_wnd:master_part_", key_name.c_str() );
 	itm->Init							(xml, buff, 0);
@@ -162,7 +162,7 @@ void CUIActorInfoWnd::FillPointsDetail(const shared_str& id)
 	string64 buff;
 	for(;it!=it_e;++it,++_cntr)
 	{
-		CUIActorStaticticDetail* itm		= xr_new<CUIActorStaticticDetail>();
+		CUIActorStaticticDetail* itm		= new CUIActorStaticticDetail();
 		itm->Init							(&uiXml, path, 0);
 
 		sprintf_s							(buff,"%d.",_cntr);
@@ -215,7 +215,7 @@ void	CUIActorInfoWnd::FillReputationDetails(CUIXml* xml, LPCSTR path)
 	string64 buff;
 	for(int i=0;i<cnt;++i)
 	{
-		CUIActorStaticticDetail* itm		= xr_new<CUIActorStaticticDetail>();
+		CUIActorStaticticDetail* itm		= new CUIActorStaticticDetail();
 		itm->Init							(xml, path, 0);
 		comm.set							(xml->Read(_list_node,"r",i,"unknown_community"));
 		itm->m_text1->SetTextST				(*(comm.id()));
@@ -249,11 +249,11 @@ void CUIActorStaticticHeader::Init	(CUIXml* xml, LPCSTR path, int idx_in_xml)
 
 	xml->SetLocalRoot					(xml->NavigateToNode(path,idx_in_xml));
 
-	m_text1								= xr_new<CUIStatic>(); m_text1->SetAutoDelete(true);
+	m_text1								= new CUIStatic(); m_text1->SetAutoDelete(true);
 	AttachChild							(m_text1);
 	xml_init.InitStatic					(*xml, "text_1", 0, m_text1);
 
-	m_text2								= xr_new<CUIStatic>(); m_text2->SetAutoDelete(true);
+	m_text2								= new CUIStatic(); m_text2->SetAutoDelete(true);
 	AttachChild							(m_text2);
 	xml_init.InitStatic					(*xml, "text_2", 0, m_text2);
 
@@ -295,19 +295,19 @@ void CUIActorStaticticDetail::Init		(CUIXml* xml, LPCSTR path, int idx)
 
 	xml->SetLocalRoot					(xml->NavigateToNode(path,idx));
 
-	m_text0								= xr_new<CUIStatic>(); m_text0->SetAutoDelete(true);
+	m_text0								= new CUIStatic(); m_text0->SetAutoDelete(true);
 	AttachChild							(m_text0);
 	xml_init.InitStatic					(*xml, "text_0", 0, m_text0);
 
-	m_text1								= xr_new<CUIStatic>(); m_text1->SetAutoDelete(true);
+	m_text1								= new CUIStatic(); m_text1->SetAutoDelete(true);
 	AttachChild							(m_text1);
 	xml_init.InitStatic					(*xml, "text_1", 0, m_text1);
 
-	m_text2								= xr_new<CUIStatic>(); m_text2->SetAutoDelete(true);
+	m_text2								= new CUIStatic(); m_text2->SetAutoDelete(true);
 	AttachChild							(m_text2);
 	xml_init.InitStatic					(*xml, "text_2", 0, m_text2);
 	
-	m_text3								= xr_new<CUIStatic>(); m_text3->SetAutoDelete(true);
+	m_text3								= new CUIStatic(); m_text3->SetAutoDelete(true);
 	AttachChild							(m_text3);
 	xml_init.InitStatic					(*xml, "text_3", 0, m_text3);
 

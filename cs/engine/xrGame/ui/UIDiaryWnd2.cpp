@@ -51,31 +51,31 @@ void CUIDiaryWnd::Init()
 
 	xml_init.InitWindow				(uiXml, "main_wnd", 0, this);
 
-	m_UILeftFrame					= xr_new<CUIFrameWindow>(); m_UILeftFrame->SetAutoDelete(true);
+	m_UILeftFrame					= new CUIFrameWindow(); m_UILeftFrame->SetAutoDelete(true);
 	xml_init.InitFrameWindow		(uiXml,"main_wnd:left_frame",0,m_UILeftFrame);
 	AttachChild						(m_UILeftFrame);
 	
-	m_UILeftHeader					= xr_new<CUIFrameLineWnd>(); m_UILeftHeader->SetAutoDelete(true);
+	m_UILeftHeader					= new CUIFrameLineWnd(); m_UILeftHeader->SetAutoDelete(true);
 	xml_init.InitFrameLine			(uiXml, "main_wnd:left_frame:left_frame_header", 0, m_UILeftHeader);
 	m_UILeftFrame->AttachChild		(m_UILeftHeader);
 
-	m_FilterTab						= xr_new<CUITabControl>();m_FilterTab->SetAutoDelete(true);
+	m_FilterTab						= new CUITabControl();m_FilterTab->SetAutoDelete(true);
 	m_UILeftHeader->AttachChild		(m_FilterTab);
 	xml_init.InitTabControl			(uiXml, "main_wnd:left_frame:left_frame_header:filter_tab", 0, m_FilterTab);
 	m_FilterTab->SetWindowName		("filter_tab");
 	Register						(m_FilterTab);
     AddCallback						("filter_tab",TAB_CHANGED,CUIWndCallback::void_function(this,&CUIDiaryWnd::OnFilterChanged));
 
-	m_UIAnimation					= xr_new<CUIAnimatedStatic>(); m_UIAnimation->SetAutoDelete(true);
+	m_UIAnimation					= new CUIAnimatedStatic(); m_UIAnimation->SetAutoDelete(true);
 	xml_init.InitAnimatedStatic		(uiXml, "main_wnd:left_frame:left_frame_header:anim_static", 0, m_UIAnimation);
 	m_UILeftHeader->AttachChild		(m_UIAnimation);
 
 
-	m_UILeftWnd						= xr_new<CUIWindow>(); m_UILeftWnd->SetAutoDelete(true);
+	m_UILeftWnd						= new CUIWindow(); m_UILeftWnd->SetAutoDelete(true);
 	xml_init.InitWindow				(uiXml, "main_wnd:left_frame:work_area", 0, m_UILeftWnd);
 	m_UILeftFrame->AttachChild		(m_UILeftWnd);
 
-	m_SrcListWnd					= xr_new<CUIListWnd>(); m_SrcListWnd->SetAutoDelete(false);
+	m_SrcListWnd					= new CUIListWnd(); m_SrcListWnd->SetAutoDelete(false);
 	xml_init.InitListWnd			(uiXml, "main_wnd:left_frame:work_area:src_list", 0, m_SrcListWnd);
 	m_SrcListWnd->SetWindowName		("src_list");
 	Register						(m_SrcListWnd);
@@ -86,28 +86,28 @@ void CUIDiaryWnd::Init()
 	xml_init.InitFont				(uiXml, "main_wnd:left_frame:work_area:src_list:tree_root_font", 0, m_uTreeRootColor, m_pTreeRootFont);
 	R_ASSERT						(m_pTreeRootFont);
 
-	m_UIRightFrame					= xr_new<CUIFrameWindow>();		m_UIRightFrame->SetAutoDelete(true);
+	m_UIRightFrame					= new CUIFrameWindow();		m_UIRightFrame->SetAutoDelete(true);
 	xml_init.InitFrameWindow		(uiXml,"main_wnd:right_frame",0,m_UIRightFrame);
 	AttachChild						(m_UIRightFrame);
 
-	m_UIRightHeader					= xr_new<CUIFrameLineWnd>();	m_UIRightHeader->SetAutoDelete(true);
+	m_UIRightHeader					= new CUIFrameLineWnd();	m_UIRightHeader->SetAutoDelete(true);
 	xml_init.InitFrameLine			(uiXml, "main_wnd:right_frame:right_frame_header", 0, m_UIRightHeader);
 	m_UIRightFrame->AttachChild		(m_UIRightHeader);
 
-	m_UIRightWnd						= xr_new<CUIWindow>(); m_UIRightWnd->SetAutoDelete(true);
+	m_UIRightWnd						= new CUIWindow(); m_UIRightWnd->SetAutoDelete(true);
 	xml_init.InitWindow				(uiXml, "main_wnd:right_frame:work_area", 0, m_UIRightWnd);
 	m_UIRightFrame->AttachChild		(m_UIRightWnd);
 
-	m_UINewsWnd						= xr_new<CUINewsWnd>();m_UINewsWnd->SetAutoDelete(false);
+	m_UINewsWnd						= new CUINewsWnd();m_UINewsWnd->SetAutoDelete(false);
 	m_UINewsWnd->Init				();
 
-	m_DescrView						= xr_new<CUIScrollView>(); m_DescrView->SetAutoDelete(false);
+	m_DescrView						= new CUIScrollView(); m_DescrView->SetAutoDelete(false);
 	xml_init.InitScrollView			(uiXml, "main_wnd:right_frame:work_area:scroll_view", 0, m_DescrView);
 
-	m_updatedSectionImage			= xr_new<CUIStatic>();
+	m_updatedSectionImage			= new CUIStatic();
 	xml_init.InitStatic				(uiXml, "updated_section_static", 0, m_updatedSectionImage);
 
-	m_oldSectionImage				= xr_new<CUIStatic>();
+	m_oldSectionImage				= new CUIStatic();
 	xml_init.InitStatic				(uiXml, "old_section_static", 0, m_oldSectionImage);
 
 	RearrangeTabButtons				(m_FilterTab);//, m_sign_places);
@@ -188,7 +188,7 @@ void CUIDiaryWnd::LoadJournalTab			(ARTICLE_DATA::EArticleType _type)
 			{
 				m_ArticlesDB.resize(m_ArticlesDB.size() + 1);
 				CEncyclopediaArticle*& a = m_ArticlesDB.back();
-				a = xr_new<CEncyclopediaArticle>();
+				a = new CEncyclopediaArticle();
 				a->Load(it->article_id);
 
 				bool bReaded = false;
@@ -231,7 +231,7 @@ void CUIDiaryWnd::OnSrcListItemClicked	(CUIWindow* w,void* p)
 	m_DescrView->Clear	();
 	if (!pSelItem->IsRoot())
 	{
-		CUIEncyclopediaArticleWnd*	article_info = xr_new<CUIEncyclopediaArticleWnd>();
+		CUIEncyclopediaArticleWnd*	article_info = new CUIEncyclopediaArticleWnd();
 		article_info->Init			("encyclopedia_item.xml","encyclopedia_wnd:objective_item");
 		article_info->SetArticle	(m_ArticlesDB[pSelItem->GetValue()]);
 		m_DescrView->AddWindow		(article_info, true);

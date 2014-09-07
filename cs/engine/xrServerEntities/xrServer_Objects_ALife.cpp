@@ -128,7 +128,7 @@ struct SFillPropData{
         string_path				gm_name;
         FS.update_path			(gm_name,"$game_config$",GAME_CONFIG);
         R_ASSERT3				(FS.exist(gm_name),"Couldn't find file",gm_name);
-        Ini						= xr_new<CInifile>(gm_name);
+        Ini						= new CInifile(gm_name);
 #endif // XRGAME_EXPORTS
 
         // location type
@@ -616,7 +616,7 @@ void CSE_SmartCover::fill_visuals()
 		if (!I->is_enterable)
 			return;
 
-		CSE_Visual *visual			= xr_new<CSE_SmartVisual>();
+		CSE_Visual *visual			= new CSE_SmartVisual();
 		visual->set_visual			("actors\\stalker_neutral\\stalker_neutral_1");
 
 		if (I->animation_id.size() == 0) {

@@ -40,13 +40,13 @@ void CUIScrollView::InitScrollView			()
 {
 	if (!m_pad)
 	{
-        m_pad						= xr_new<CUIWindow>(); m_pad->SetAutoDelete(true);
+        m_pad						= new CUIWindow(); m_pad->SetAutoDelete(true);
 		AttachChild					(m_pad);
 	}
 	m_pad->SetWndPos				(Fvector2().set(0,0));
 	if (!m_VScrollBar)
 	{
-        m_VScrollBar				= xr_new<CUIScrollBar>();m_VScrollBar->SetAutoDelete(true);
+        m_VScrollBar				= new CUIScrollBar();m_VScrollBar->SetAutoDelete(true);
 		AttachChild					(m_VScrollBar);
 		Register					(m_VScrollBar);
 		AddCallback					("scroll_v",	SCROLLBAR_VSCROLL, CUIWndCallback::void_function (this, &CUIScrollView::OnScrollV) );

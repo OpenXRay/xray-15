@@ -50,7 +50,7 @@ BOOL APIENTRY DllMain(HANDLE hModule, u32 ul_reason_for_call, LPVOID lpReserved)
 
 			setup_luabind_allocator	();
 #ifdef DEBUG
-			g_profiler			= xr_new<CProfiler>();
+			g_profiler			= new CProfiler();
 #endif
 			break;
 		}

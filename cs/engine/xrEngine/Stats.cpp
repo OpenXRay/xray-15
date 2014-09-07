@@ -442,7 +442,7 @@ void CStats::OnDeviceCreate			()
 
 //	if (!strstr(Core.Params, "-dedicated"))
 #ifndef DEDICATED_SERVER
-	pFont	= xr_new<CGameFont>		("stat_font", CGameFont::fsDeviceIndependent);
+	pFont	= new CGameFont("stat_font", CGameFont::fsDeviceIndependent);
 #endif
 	
 	if(!pSettings->section_exist("evaluation")
