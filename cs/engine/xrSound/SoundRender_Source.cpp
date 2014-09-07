@@ -62,7 +62,7 @@ void CSoundRender_Source::i_decompress_fr(OggVorbis_File* ovf, char* _dest, u32 
 		if (ret == 0) break;
 		else if (ret < 0) 		// Error in bitstream
 		{
-		//
+		    // BUG: if ov_read returns negative value, this loop wont be leaved
 		}
 		else
 		{
