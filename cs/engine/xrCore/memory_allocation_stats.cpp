@@ -1,133 +1,113 @@
 #include "stdafx.h"
 
-#ifdef DEBUG_MEMORY_MANAGER
-#	pragma warning(push)
-#	pragma warning(disable:4995)
-#	include <malloc.h>
-#	pragma warning(pop)
+#ifndef DEBUG_MEMORY_MANAGER
+    #pragma warning(push)
+    #pragma warning(disable:4995)
+    #include <malloc.h>
+    #pragma warning(pop)
+    #include <boost/crc.hpp>
 
-#	include <boost/crc.hpp>
+    extern void BuildStackTrace();
+    extern char g_stackTrace[100][4096];
+    extern int g_stackTraceCount;
+    static bool g_mem_alloc_gather_stats = false;
+    static float g_mem_alloc_gather_stats_frequency = 0.f;
 
-	extern void BuildStackTrace		();
+    struct StatsItem
+    {
+        char* StackTrace;
+        uint Calls;
+    };
 
-	extern char			g_stackTrace[100][4096];
-	extern int			g_stackTraceCount;
+    static std::multimap<uint, StatsItem> stats;
 
-	static	bool		g_mem_alloc_gather_stats			= false;
-	static	float		g_mem_alloc_gather_stats_frequency	= 0.f;
+    void mem_alloc_gather_stats(const bool& value)
+    {
+        g_mem_alloc_gather_stats = value;
+    }
 
-	typedef std::pair<PSTR,u32>				STATS_PAIR;
-	typedef std::multimap<u32,STATS_PAIR>	STATS;
-	static 	STATS	stats;
+    void mem_alloc_gather_stats_frequency(const float& value)
+    {
+        g_mem_alloc_gather_stats_frequency = value;
+    }
 
-	void mem_alloc_gather_stats					(const bool &value)
-	{
-		g_mem_alloc_gather_stats			= value;
-	}
+    void mem_alloc_show_stats()
+    {
+        uint size = (uint)stats.size();
+        auto strings = (StatsItem*)_alloca(size*sizeof(StatsItem));
+        uint accumulator = 0, i = 0;
+        for (auto& pair : stats)
+        {
+            strings[i] = pair.second;
+            i++;
+            accumulator += pair.second.Calls;
+        }
+        struct predicate
+        {
+            static inline bool compare(const StatsItem& a, const StatsItem& b)
+            {
+                return a.Calls < b.Calls;
+            }
+        };
+        std::sort(strings, strings+size, predicate::compare);
+        for (i = 0; i < size; i++)
+        {
+            auto& item = strings[i];
+            Msg("%d(%d)-----------------%d[%d]:%5.2f%%------------------", 
+                i, size, item.Calls, accumulator, (item.Calls * 100) / float(accumulator));
+            Log(item.StackTrace);
+        }
+    }
 
-	void mem_alloc_gather_stats_frequency		(const float &value)
-	{
-		g_mem_alloc_gather_stats_frequency	= value;
-	}
+    void mem_alloc_clear_stats()
+    {
+        for (auto& item : stats)
+            free(item.second.StackTrace);
+        stats.clear();
+    }
 
-	void mem_alloc_show_stats	()
-	{
-		u32						size = (u32)stats.size();
-		STATS_PAIR				*strings = (STATS_PAIR*)_alloca(size*sizeof(STATS_PAIR));
-		STATS_PAIR				*e = strings + size;
-		STATS_PAIR				*i = strings;
-
-		u32						accumulator = 0;
-		STATS::const_iterator	I = stats.begin();
-		STATS::const_iterator	E = stats.end();
-		for ( ; I != E; ++I, ++i) {
-			*i					= (*I).second;
-			accumulator			+= (*I).second.second;
-		}
-
-		struct predicate {
-			static inline bool compare	(const STATS_PAIR &_0, const STATS_PAIR &_1)
-			{
-				return			(_0.second < _1.second);
-			}
-		};
-
-		std::sort				(strings,e,predicate::compare);
-
-		int						j = 0;
-		for (i = strings; i != e; ++i, ++j) {
-			Msg					("%d(%d)-----------------%d[%d]:%5.2f%%------------------",j,size,(*i).second,accumulator,((*i).second*100)/float(accumulator));
-			Log					((*i).first);
-		}
-	}
-
-	void mem_alloc_clear_stats	()
-	{
-		STATS::iterator			I = stats.begin();
-		STATS::iterator			E = stats.end();
-		for ( ; I != E; ++I)
-			free				((*I).second.first);
-
-		stats.clear				();
-	}
-
-	__declspec(noinline)
-	void save_stack_trace		()
-	{
-		if (!g_mem_alloc_gather_stats)
-			return;
-		
-		if (::Random.randF() >= g_mem_alloc_gather_stats_frequency)
-			return;
-
-//		OutputDebugStackTrace	("----------------------------------------------------");
-
-		BuildStackTrace		();
-
-		if (g_stackTraceCount <= 2)
-			return;
-
-		u32					accumulator = 0;
-		VERIFY				(g_stackTraceCount > 2);
-		int					*lengths = (int*)_alloca((g_stackTraceCount - 2)*sizeof(int));
-		{
-			int				*I = lengths;
-			for (int i=2; i<g_stackTraceCount; ++i, ++I) {
-				*I			= xr_strlen(g_stackTrace[i]);
-				accumulator	+= u32((*I)*sizeof(char) + 1);
-			}
-		}
-
-		PSTR				string = (PSTR)malloc(accumulator);
-		{
-			PSTR			J = string;
-			VERIFY			(g_stackTraceCount > 2);
-			int				*I = lengths;
-			for (int i=2; i<g_stackTraceCount; ++i, ++I, ++J) {
-				memcpy		(J,g_stackTrace[i],*I);
-				J			+= *I;
-				*J			= '\n';
-			}
-			*--J			= 0;
-		}
-
-		boost::crc_32_type	temp;
-		temp.process_block	(string,string + accumulator);
-		u32					crc = temp.checksum();
-
-		STATS::iterator		I = stats.find(crc);
-		STATS::iterator		E = stats.end();
-		for ( ; I != E; ++I) {
-			if ((*I).first != crc)
-				break;
-			
-			if (xr_strcmp((*I).second.first,string))
-				continue;
-
-			++((*I).second.second);
-			return;
-		}
-
-		stats.insert		(std::make_pair(crc,std::make_pair(string,1)));
-	}
+    __declspec(noinline) void save_stack_trace()
+    {
+        if (!g_mem_alloc_gather_stats)
+            return;
+        if (::Random.randF() >= g_mem_alloc_gather_stats_frequency)
+            return;
+        BuildStackTrace();
+        const int skipFrames = 2;
+        if (g_stackTraceCount <= skipFrames)
+            return;
+        int frameCount = g_stackTraceCount-skipFrames;
+        int totalSize = 0;
+        int* lengths = (int*)_alloca(frameCount*sizeof(int));
+        for (int i = 0; i < frameCount; i++)
+        {
+            lengths[i] = strlen(g_stackTrace[i+skipFrames]);
+            totalSize += lengths[i]+1;
+        }
+        char* stackTrace = (char*)malloc(totalSize);
+        {
+            auto ptr = stackTrace;
+            for (int i = 0; i < frameCount; i++)
+            {
+                memcpy(ptr, g_stackTrace[i], lengths[i]);
+                ptr += lengths[i];
+                *ptr = '\n';
+            }
+            *ptr = 0;
+        }
+        boost::crc_32_type temp;
+        temp.process_block(stackTrace, stackTrace+totalSize);
+        uint crc = temp.checksum();
+        for (auto it = stats.find(crc); it != stats.end(); it++)
+        {
+            auto& pair = *it;
+            if (pair.first != crc)
+                break;
+            if (strcmp(pair.second.StackTrace, stackTrace))
+                continue;
+            pair.second.Calls++;
+            return;
+        }
+        stats.insert({crc, {stackTrace, 1}});
+    }
 #endif // DEBUG

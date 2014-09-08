@@ -23,6 +23,7 @@
 
 #pragma warning (disable:4661)
 
+#include "Common.hpp"
 #include "xrCore.h"
 #include "xrCore_platform.h"
 #include "XML/xrXML.hpp"
