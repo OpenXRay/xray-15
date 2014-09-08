@@ -1,117 +1,242 @@
 #include "stdafx.h"
 #pragma hdrstop
 
-#ifndef _EDITOR
-
 #include "xrdebug.h"
-#include "resource.h"
-#include "dbghelp.h"
- 
+#include "os_clipboard.h"
+
 #include "dxerr.h"
 
+#pragma warning(push)
+#pragma warning(disable:4995)
+#include <malloc.h>
+#include <direct.h>
+#pragma warning(pop)
+
+extern bool shared_str_initialized;
+
 #ifdef __BORLANDC__
-	#include "d3d9.h"
-	#include "d3dx9.h"
-	#include "D3DX_Wrapper.h"
-	#pragma comment		(lib,"EToolsB.lib")
-	static BOOL			bException	= TRUE;
+    #	include "d3d9.h"
+    #	include "d3dx9.h"
+    #	include "D3DX_Wrapper.h"
+    #	pragma comment(lib,"EToolsB.lib")
+    #	define DEBUG_INVOKE	DebugBreak()
+        static BOOL			bException	= TRUE;
+    #   define USE_BUG_TRAP
 #else
-	static BOOL			bException	= FALSE;
+    #   define USE_BUG_TRAP
+    #	define DEBUG_INVOKE	__asm int 3
+        static BOOL			bException	= FALSE;
 #endif
 
-#ifdef _M_AMD64
-#define DEBUG_INVOKE	DebugBreak	()
-#else
-#define DEBUG_INVOKE	__asm		{ int 3 }
-#ifndef __BORLANDC__
-	#pragma comment			(lib,"dxerr.lib")
+#ifndef USE_BUG_TRAP
+#	include <exception>
+#endif // #ifndef USE_BUG_TRAP
+
+#ifndef _M_AMD64
+#	ifndef __BORLANDC__
+#		pragma comment(lib,"dxerr.lib")
+#	endif
 #endif
-#endif
+
+#include <dbghelp.h>						// MiniDump flags
+
+#ifdef USE_BUG_TRAP
+#	include <bugtrap.h>						// for BugTrap functionality
+    #ifndef __BORLANDC__
+        #	pragma comment(lib,"BugTrap.lib")		// Link to ANSI DLL
+    #else
+        #	pragma comment(lib,"BugTrapB.lib")		// Link to ANSI DLL
+    #endif
+#endif // USE_BUG_TRAP
+
+#include <new.h>							// for _set_new_mode
+#include <signal.h>							// for signals
+
+#ifdef DEBUG
+#	define USE_OWN_ERROR_MESSAGE_WINDOW
+#else // DEBUG
+#	define USE_OWN_MINI_DUMP
+#endif // DEBUG
 
 XRCORE_API	xrDebug		Debug;
 
-// Dialog support
-static const char * dlgExpr		= NULL;
-static const char * dlgFile		= NULL;
-static char			dlgLine		[16];
+static bool	error_after_dialog = false;
 
-static INT_PTR CALLBACK DialogProc	( HWND hw, UINT msg, WPARAM wp, LPARAM lp )
+extern void BuildStackTrace();
+extern char g_stackTrace[100][4096];
+extern int	g_stackTraceCount;
+
+void LogStackTrace	(LPCSTR header)
 {
-	switch( msg ){
-	case WM_INITDIALOG:
-		{
-			if (dlgFile)
-			{
-				SetWindowText(GetDlgItem(hw,IDC_DESC),dlgExpr);
-				SetWindowText(GetDlgItem(hw,IDC_FILE),dlgFile);
-				SetWindowText(GetDlgItem(hw,IDC_LINE),dlgLine);
-			} else {
-				SetWindowText(GetDlgItem(hw,IDC_DESC),dlgExpr);
-				SetWindowText(GetDlgItem(hw,IDC_FILE),"");
-				SetWindowText(GetDlgItem(hw,IDC_LINE),"");
-			}
-		}
-		break;
-	case WM_DESTROY:
-		break;
-	case WM_CLOSE:
-		EndDialog	(hw, IDC_STOP);
-		break;
-	case WM_COMMAND:
-		if( LOWORD(wp)==IDC_STOP ) {
-			EndDialog(hw, IDC_STOP);
-		}
-		if( LOWORD(wp)==IDC_DEBUG) {
-			EndDialog(hw, IDC_DEBUG);
-		}
-		break;
-	default:
-		return FALSE;
-	}
-	return TRUE;
+	if (!shared_str_initialized)
+		return;
+
+	BuildStackTrace	();		
+
+	Msg				("%s",header);
+
+	for (int i=1; i<g_stackTraceCount; ++i)
+		Msg			("%s",g_stackTrace[i]);
 }
 
-void xrDebug::backend(const char* reason, const char* expression, const char *argument0, const char *argument1, const char* file, int line, const char *function, bool &ignore_always)
+void xrDebug::gather_info		(const char *expression, const char *description, const char *argument0, const char *argument1, const char *file, int line, const char *function, LPSTR assertion_info)
 {
-	static	xrCriticalSection	CS;
+	LPSTR				buffer = assertion_info;
+	LPCSTR				endline = "\n";
+	LPCSTR				prefix = "[error]";
+	bool				extended_description = (description && !argument0 && strchr(description,'\n'));
+	for (int i=0; i<2; ++i) {
+		if (!i)
+			buffer		+= sprintf(buffer,"%sFATAL ERROR%s%s",endline,endline,endline);
+		buffer			+= sprintf(buffer,"%sExpression    : %s%s",prefix,expression,endline);
+		buffer			+= sprintf(buffer,"%sFunction      : %s%s",prefix,function,endline);
+		buffer			+= sprintf(buffer,"%sFile          : %s%s",prefix,file,endline);
+		buffer			+= sprintf(buffer,"%sLine          : %d%s",prefix,line,endline);
+		
+		if (extended_description) {
+			buffer		+= sprintf(buffer,"%s%s%s",endline,description,endline);
+			if (argument0) {
+				if (argument1) {
+					buffer	+= sprintf(buffer,"%s%s",argument0,endline);
+					buffer	+= sprintf(buffer,"%s%s",argument1,endline);
+				}
+				else
+					buffer	+= sprintf(buffer,"%s%s",argument0,endline);
+			}
+		}
+		else {
+			buffer		+= sprintf(buffer,"%sDescription   : %s%s",prefix,description,endline);
+			if (argument0) {
+				if (argument1) {
+					buffer	+= sprintf(buffer,"%sArgument 0    : %s%s",prefix,argument0,endline);
+					buffer	+= sprintf(buffer,"%sArgument 1    : %s%s",prefix,argument1,endline);
+				}
+				else
+					buffer	+= sprintf(buffer,"%sArguments     : %s%s",prefix,argument0,endline);
+			}
+		}
+
+		buffer			+= sprintf(buffer,"%s",endline);
+		if (!i) {
+			if (shared_str_initialized) {
+				Msg		("%s",assertion_info);
+				FlushLog();
+			}
+			buffer		= assertion_info;
+			endline		= "\r\n";
+			prefix		= "";
+		}
+	}
+
+#ifdef USE_MEMORY_MONITOR
+	memory_monitor::flush_each_time	(true);
+	memory_monitor::flush_each_time	(false);
+#endif // USE_MEMORY_MONITOR
+
+	if (!IsDebuggerPresent() && !strstr(GetCommandLine(),"-no_call_stack_assert")) {
+		if (shared_str_initialized)
+			Msg			("stack trace:\n");
+
+#ifdef USE_OWN_ERROR_MESSAGE_WINDOW
+		buffer			+= sprintf(buffer,"stack trace:%s%s",endline,endline);
+#endif // USE_OWN_ERROR_MESSAGE_WINDOW
+
+		BuildStackTrace	();		
+
+		for (int i=2; i<g_stackTraceCount; ++i) {
+			if (shared_str_initialized)
+				Msg		("%s",g_stackTrace[i]);
+
+#ifdef USE_OWN_ERROR_MESSAGE_WINDOW
+			buffer		+= sprintf(buffer,"%s%s",g_stackTrace[i],endline);
+#endif // USE_OWN_ERROR_MESSAGE_WINDOW
+		}
+
+		if (shared_str_initialized)
+			FlushLog	();
+
+		os_clipboard::copy_to_clipboard	(assertion_info);
+	}
+}
+
+void xrDebug::do_exit	(const std::string &message)
+{
+	FlushLog			();
+	MessageBox			(NULL,message.c_str(),"Error",MB_OK|MB_ICONERROR|MB_SYSTEMMODAL);
+	TerminateProcess	(GetCurrentProcess(),1);
+}
+
+void xrDebug::backend	(const char *expression, const char *description, const char *argument0, const char *argument1, const char *file, int line, const char *function, bool &ignore_always)
+{
+	static xrCriticalSection CS
+#ifdef PROFILE_CRITICAL_SECTIONS
+	(MUTEX_PROFILE_ID(xrDebug::backend))
+#endif // PROFILE_CRITICAL_SECTIONS
+	;
 
 	CS.Enter			();
 
-	// Log
-	string1024			tmp;
-	sprintf				(tmp,"***STOP*** file '%s', line %d.\n***Reason***: %s\n %s",file,line,reason,expression);
-	Msg					(tmp);
-	FlushLog			();
-	if (handler)		handler	();
+	error_after_dialog	= true;
 
-	// Call the dialog
-	dlgExpr				= reason;
-    sprintf             ()
-	dlgFile				= file;
-	sprintf				(dlgLine,"%d",line);
-	INT_PTR res			= -1;
+	string4096			assertion_info;
+
+	gather_info			(expression, description, argument0, argument1, file, line, function, assertion_info);
+
+#ifdef USE_OWN_ERROR_MESSAGE_WINDOW
+	LPCSTR				endline = "\r\n";
+	LPSTR				buffer = assertion_info + xr_strlen(assertion_info);
+	buffer				+= sprintf(buffer,"%sPress CANCEL to abort execution%s",endline,endline);
+	buffer				+= sprintf(buffer,"Press TRY AGAIN to continue execution%s",endline);
+	buffer				+= sprintf(buffer,"Press CONTINUE to continue execution and ignore all the errors of this type%s%s",endline,endline);
+#endif // USE_OWN_ERROR_MESSAGE_WINDOW
+
+	if (handler)
+		handler			();
+
+	if (get_on_dialog())
+		get_on_dialog()	(true);
+
 #ifdef XRCORE_STATIC
-	MessageBox			(NULL,tmp,"X-Ray error",MB_OK|MB_ICONERROR|MB_SYSTEMMODAL);
+	MessageBox			(NULL,assertion_info,"X-Ray error",MB_OK|MB_ICONERROR|MB_SYSTEMMODAL);
 #else
-	res	= DialogBox
-		(
-		GetModuleHandle(MODULE_NAME),
-		MAKEINTRESOURCE(IDD_STOP),
-		NULL,
-		DialogProc 
-		);
+#	ifdef USE_OWN_ERROR_MESSAGE_WINDOW
+		int					result = 
+			MessageBox(
+				GetTopWindow(NULL),
+				assertion_info,
+				"Fatal Error",
+				MB_CANCELTRYCONTINUE|MB_ICONERROR|MB_SYSTEMMODAL
+			);
+
+		switch (result) {
+			case IDCANCEL : {
+#		ifdef USE_BUG_TRAP
+				BT_SetUserMessage	(assertion_info);
+#		endif // USE_BUG_TRAP
+				DEBUG_INVOKE;
+				break;
+			}
+			case IDTRYAGAIN : {
+				error_after_dialog	= false;
+				break;
+			}
+			case IDCONTINUE : {
+				error_after_dialog	= false;
+				ignore_always	= true;
+				break;
+			}
+			default : NODEFAULT;
+		}
+#	else // USE_OWN_ERROR_MESSAGE_WINDOW
+#		ifdef USE_BUG_TRAP
+			BT_SetUserMessage	(assertion_info);
+#		endif // USE_BUG_TRAP
+		DEBUG_INVOKE;
+#	endif // USE_OWN_ERROR_MESSAGE_WINDOW
 #endif
-	switch (res) 
-	{
-	case -1:
-	case IDC_STOP:
-		if (bException)		TerminateProcess(GetCurrentProcess(),3);
-		else				RaiseException	(0, 0, 0, NULL);
-		break;
-	case IDC_DEBUG:
- 		DEBUG_INVOKE;
-		break;
-	}
+
+	if (get_on_dialog())
+		get_on_dialog()	(false);
 
 	CS.Leave			();
 }
@@ -123,7 +248,7 @@ LPCSTR xrDebug::error2string	(long code)
 
 #ifdef _M_AMD64
 #else
-	result				= DXGetErrorDescription9	(code);
+	result				= DXGetErrorDescription	(code);
 #endif
 	if (0==result) 
 	{
@@ -135,17 +260,22 @@ LPCSTR xrDebug::error2string	(long code)
 
 void xrDebug::error		(long hr, const char* expr, const char *file, int line, const char *function, bool &ignore_always)
 {
-	backend		(error2string(hr),expr,0,0,file,line,function,ignore_always);
+    backend(expr, error2string(hr), 0, 0, file, line, function, ignore_always);
 }
 
-void xrDebug::error		(long hr, const char* expr, const char *e2, const char *file, int line, const char *function, bool &ignore_always)
+void xrDebug::error		(long hr, const char* expr, const char* e2, const char *file, int line, const char *function, bool &ignore_always)
 {
-	backend		(error2string(hr),expr,e2,0,file,line,function,ignore_always);
+    backend(expr, error2string(hr), e2, 0, file, line, function, ignore_always);
 }
 
 void xrDebug::fail		(const char *e1, const char *file, int line, const char *function, bool &ignore_always)
 {
-	backend		("assertion failed",e1,0,0,file,line,function,ignore_always);
+    backend(e1, "assertion failed", 0, 0, file, line, function, ignore_always);
+}
+
+void xrDebug::fail		(const char *e1, const std::string &e2, const char *file, int line, const char *function, bool &ignore_always)
+{
+	backend		(e1,e2.c_str(),0,0,file,line,function,ignore_always);
 }
 
 void xrDebug::fail		(const char *e1, const char *e2, const char *file, int line, const char *function, bool &ignore_always)
@@ -174,38 +304,155 @@ void __cdecl xrDebug::fatal(const char *file, int line, const char *function, co
 
 	bool		ignore_always = true;
 
-	backend		("fatal error","<no expression>",buffer,0,file,line,function,ignore_always);
-}
-void xrDebug::do_exit	(const std::string &message)
-{
-	FlushLog			();
-    MessageBox			(NULL,message.c_str(),"Error",MB_OK|MB_ICONERROR|MB_SYSTEMMODAL);
-    TerminateProcess	(GetCurrentProcess(),1);
+    backend("<no expression>", "fatal error", buffer, 0, file, line, function, ignore_always);
 }
 
-int __cdecl _out_of_memory	(size_t size)
+int out_of_memory_handler	(size_t size)
 {
+	Memory.mem_compact		();
+    u32						process_heap 	= Memory.mem_usage();
+	int						eco_strings		= (int)g_pStringContainer->stat_economy			();
+	int						eco_smem		= (int)g_pSharedMemoryContainer->stat_economy	();
+	Msg						("* [x-ray]: process heap[%d K]",process_heap/1024);
+	Msg						("* [x-ray]: economy: strings[%d K], smem[%d K]",eco_strings/1024,eco_smem);
 	Debug.fatal				(DEBUG_INFO,"Out of memory. Memory request: %d K",size/1024);
 	return					1;
 }
-void __cdecl _terminate		()
+
+extern LPCSTR log_name();
+
+XRCORE_API string_path g_bug_report_file;
+
+void CALLBACK PreErrorHandler	(INT_PTR)
 {
-	FATAL					("Unexpected application termination");
+#ifdef USE_BUG_TRAP
+	if (!xr_FS || !FS.m_Flags.test(CLocatorAPI::flReady))
+		return;
+
+	string_path				log_folder;
+
+	__try {
+		FS.update_path		(log_folder,"$logs$","");
+		if ((log_folder[0] != '\\') && (log_folder[1] != ':')) {
+			string256		current_folder;
+			_getcwd			(current_folder,sizeof(current_folder));
+			
+			string256		relative_path;
+			strcpy_s		(relative_path,log_folder);
+			strconcat		(sizeof(log_folder),log_folder,current_folder,"\\",relative_path);
+		}
+	}
+	__except(EXCEPTION_EXECUTE_HANDLER) {
+		strcpy_s				(log_folder,"logs");
+	}
+
+	string_path				temp;
+	strconcat				(sizeof(temp), temp, log_folder, log_name());
+	BT_AddLogFile			(temp);
+
+	if (*g_bug_report_file)
+		BT_AddLogFile		(g_bug_report_file);
+
+	BT_SaveSnapshot			( 0 );
+#endif // USE_BUG_TRAP
 }
 
-// based on dbghelp.h
+#ifdef USE_BUG_TRAP
+void SetupExceptionHandler	(const bool &dedicated)
+{
+	BT_InstallSehFilter		();
+#if 1//ndef USE_OWN_ERROR_MESSAGE_WINDOW
+	if (!dedicated && !strstr(GetCommandLine(),"-silent_error_mode"))
+		BT_SetActivityType	(BTA_SHOWUI);
+	else
+		BT_SetActivityType	(BTA_SAVEREPORT);
+#else // USE_OWN_ERROR_MESSAGE_WINDOW
+	BT_SetActivityType		(BTA_SAVEREPORT);
+#endif // USE_OWN_ERROR_MESSAGE_WINDOW
+
+	BT_SetDialogMessage				(
+		BTDM_INTRO2,
+		"\
+This is X-Ray Engine v1.5 crash reporting client. \
+To help the development process, \
+please Submit Bug or save report and email it manually (button More...).\
+\r\nMany thanks in advance and sorry for the inconvenience."
+	);
+
+	BT_SetPreErrHandler		(PreErrorHandler,0);
+	BT_SetAppName			("XRay Engine");
+	BT_SetReportFormat		(BTRF_TEXT);
+	BT_SetFlags				(/**/BTF_DETAILEDMODE | /**BTF_EDIETMAIL | /**/BTF_ATTACHREPORT /**| BTF_LISTPROCESSES /**| BTF_SHOWADVANCEDUI /**| BTF_SCREENCAPTURE/**/);
+
+	u32 const minidump_flags	=
+#ifndef MASTER_GOLD
+		(
+			MiniDumpWithDataSegs |
+//			MiniDumpWithFullMemory |
+//			MiniDumpWithHandleData |
+//			MiniDumpFilterMemory |
+//			MiniDumpScanMemory |
+//			MiniDumpWithUnloadedModules |
+#	ifndef _EDITOR
+			MiniDumpWithIndirectlyReferencedMemory |
+#	endif // _EDITOR
+//			MiniDumpFilterModulePaths |
+//			MiniDumpWithProcessThreadData |
+//			MiniDumpWithPrivateReadWriteMemory |
+//			MiniDumpWithoutOptionalData |
+//			MiniDumpWithFullMemoryInfo |
+//			MiniDumpWithThreadInfo |
+//			MiniDumpWithCodeSegs |
+			0
+		);
+#else // #ifndef MASTER_GOLD
+		!dedicated ?
+		MiniDumpNoDump :
+		(
+			MiniDumpWithDataSegs |
+//			MiniDumpWithFullMemory |
+//			MiniDumpWithHandleData |
+//			MiniDumpFilterMemory |
+//			MiniDumpScanMemory |
+//			MiniDumpWithUnloadedModules |
+#	ifndef _EDITOR
+			MiniDumpWithIndirectlyReferencedMemory |
+#	endif // _EDITOR
+//			MiniDumpFilterModulePaths |
+//			MiniDumpWithProcessThreadData |
+//			MiniDumpWithPrivateReadWriteMemory |
+//			MiniDumpWithoutOptionalData |
+//			MiniDumpWithFullMemoryInfo |
+//			MiniDumpWithThreadInfo |
+//			MiniDumpWithCodeSegs |
+			0
+		);
+#endif // #ifndef MASTER_GOLD
+
+	BT_SetDumpType			(minidump_flags);
+	BT_SetSupportEMail		("cs-crash-report@stalker-game.com");
+//	BT_SetSupportServer		("localhost", 9999);
+//	BT_SetSupportURL		("www.gsc-game.com");
+}
+#endif // USE_BUG_TRAP
+
+#if 1
+extern void BuildStackTrace(struct _EXCEPTION_POINTERS *pExceptionInfo);
+typedef LONG WINAPI UnhandledExceptionFilterType(struct _EXCEPTION_POINTERS *pExceptionInfo);
+typedef LONG ( __stdcall *PFNCHFILTFN ) ( EXCEPTION_POINTERS * pExPtrs ) ;
+extern "C" BOOL __stdcall SetCrashHandlerFilter ( PFNCHFILTFN pFn );
+
+static UnhandledExceptionFilterType	*previous_filter = 0;
+
+#ifdef USE_OWN_MINI_DUMP
 typedef BOOL (WINAPI *MINIDUMPWRITEDUMP)(HANDLE hProcess, DWORD dwPid, HANDLE hFile, MINIDUMP_TYPE DumpType,
 										 CONST PMINIDUMP_EXCEPTION_INFORMATION ExceptionParam,
 										 CONST PMINIDUMP_USER_STREAM_INFORMATION UserStreamParam,
 										 CONST PMINIDUMP_CALLBACK_INFORMATION CallbackParam
 										 );
 
-
-LONG WINAPI UnhandledFilter	( struct _EXCEPTION_POINTERS *pExceptionInfo )
+void save_mini_dump			(_EXCEPTION_POINTERS *pExceptionInfo)
 {
-	LONG retval		= EXCEPTION_CONTINUE_SEARCH;
-	bException		= TRUE;
-
 	// firstly see if dbghelp.dll is around and has the function we need
 	// look next to the EXE first, as the one in System32 might be old 
 	// (e.g. Windows 2000)
@@ -217,7 +464,7 @@ LONG WINAPI UnhandledFilter	( struct _EXCEPTION_POINTERS *pExceptionInfo )
 		char *pSlash = strchr( szDbgHelpPath, '\\' );
 		if (pSlash)
 		{
-			strcpy_s	(pSlash+1, "DBGHELP.DLL" );
+			strcpy_s	(pSlash+1, sizeof(szDbgHelpPath)-(pSlash - szDbgHelpPath), "DBGHELP.DLL" );
 			hDll = ::LoadLibrary( szDbgHelpPath );
 		}
 	}
@@ -239,15 +486,24 @@ LONG WINAPI UnhandledFilter	( struct _EXCEPTION_POINTERS *pExceptionInfo )
 			string_path	szScratch;
 			string64	t_stemp;
 
-			// work out a good place for the dump file
 			timestamp	(t_stemp);
-			strcpy_s		( szDumpPath, "logs\\"				);
-			strcat		( szDumpPath, Core.ApplicationName	);
+			strcpy_s		( szDumpPath, Core.ApplicationName);
 			strcat		( szDumpPath, "_"					);
 			strcat		( szDumpPath, Core.UserName			);
 			strcat		( szDumpPath, "_"					);
 			strcat		( szDumpPath, t_stemp				);
 			strcat		( szDumpPath, ".mdmp"				);
+
+			__try {
+				if (FS.path_exist("$logs$"))
+					FS.update_path	(szDumpPath,"$logs$",szDumpPath);
+			}
+            __except( EXCEPTION_EXECUTE_HANDLER ) {
+				string_path	temp;
+				strcpy_s		(temp,szDumpPath);
+				strcpy_s		(szDumpPath,"logs/");
+				strcat		(szDumpPath,temp);
+            }
 
 			// create the file
 			HANDLE hFile = ::CreateFile( szDumpPath, GENERIC_WRITE, FILE_SHARE_WRITE, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL );
@@ -273,7 +529,7 @@ LONG WINAPI UnhandledFilter	( struct _EXCEPTION_POINTERS *pExceptionInfo )
 				{
 					sprintf( szScratch, "Saved dump file to '%s'", szDumpPath );
 					szResult = szScratch;
-					retval = EXCEPTION_EXECUTE_HANDLER;
+//					retval = EXCEPTION_EXECUTE_HANDLER;
 				}
 				else
 				{
@@ -297,27 +553,117 @@ LONG WINAPI UnhandledFilter	( struct _EXCEPTION_POINTERS *pExceptionInfo )
 	{
 		szResult = "DBGHELP.DLL not found";
 	}
-
-	string1024		reason;
-	sprintf			(reason,"*** Internal Error ***\n%s",szResult);
-    bool ref		= false;
-	Debug.backend	(reason,0,0,0,0,0,0,ref);
-
-	return retval;
 }
+#endif // USE_OWN_MINI_DUMP
+
+void format_message	(LPSTR buffer, const u32 &buffer_size)
+{
+    LPVOID		message;
+    DWORD		error_code = GetLastError(); 
+
+	if (!error_code) {
+		*buffer	= 0;
+		return;
+	}
+
+    FormatMessage(
+        FORMAT_MESSAGE_ALLOCATE_BUFFER | 
+        FORMAT_MESSAGE_FROM_SYSTEM,
+        NULL,
+        error_code,
+        MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+        (LPSTR)&message,
+        0,
+		NULL
+	);
+
+	sprintf		(buffer,"[error][%8d]    : %s",error_code,message);
+    LocalFree	(message);
+}
+
+LONG WINAPI UnhandledFilter	(_EXCEPTION_POINTERS *pExceptionInfo)
+{
+	string256				error_message;
+	format_message			(error_message,sizeof(error_message));
+
+	if (!error_after_dialog && !strstr(GetCommandLine(),"-no_call_stack_assert")) {
+		CONTEXT				save = *pExceptionInfo->ContextRecord;
+		BuildStackTrace		(pExceptionInfo);
+		*pExceptionInfo->ContextRecord = save;
+
+		if (shared_str_initialized)
+			Msg				("stack trace:\n");
+
+		if (!IsDebuggerPresent())
+		{
+			os_clipboard::copy_to_clipboard	("stack trace:\r\n\r\n");
+		}
+
+		string4096			buffer;
+		for (int i=0; i<g_stackTraceCount; ++i) {
+			if (shared_str_initialized)
+				Msg			("%s",g_stackTrace[i]);
+			sprintf			(buffer,"%s\r\n",g_stackTrace[i]);
+#ifdef DEBUG
+			if (!IsDebuggerPresent())
+				os_clipboard::update_clipboard(buffer);
+#endif // #ifdef DEBUG
+		}
+
+		if (*error_message) {
+			if (shared_str_initialized)
+				Msg			("\n%s",error_message);
+
+			strcat			(error_message,"\r\n");
+#ifdef DEBUG
+			if (!IsDebuggerPresent())
+				os_clipboard::update_clipboard(buffer);
+#endif // #ifdef DEBUG
+		}
+	}
+
+	if (shared_str_initialized)
+		FlushLog			();
+
+#ifndef USE_OWN_ERROR_MESSAGE_WINDOW
+#	ifdef USE_OWN_MINI_DUMP
+		save_mini_dump		(pExceptionInfo);
+#	endif // USE_OWN_MINI_DUMP
+#else // USE_OWN_ERROR_MESSAGE_WINDOW
+	if (!error_after_dialog) {
+		if (Debug.get_on_dialog())
+			Debug.get_on_dialog()	(true);
+
+		MessageBox			(NULL,"Fatal error occured\n\nPress OK to abort program execution","Fatal error",MB_OK|MB_ICONERROR|MB_SYSTEMMODAL);
+	}
+#endif // USE_OWN_ERROR_MESSAGE_WINDOW
+
+	if (!previous_filter) {
+#ifdef USE_OWN_ERROR_MESSAGE_WINDOW
+		if (Debug.get_on_dialog())
+			Debug.get_on_dialog()	(false);
+#endif // USE_OWN_ERROR_MESSAGE_WINDOW
+
+		return				(EXCEPTION_CONTINUE_SEARCH) ;
+	}
+
+	previous_filter			(pExceptionInfo);
+
+#ifdef USE_OWN_ERROR_MESSAGE_WINDOW
+	if (Debug.get_on_dialog())
+		Debug.get_on_dialog()		(false);
+#endif // USE_OWN_ERROR_MESSAGE_WINDOW
+
+	return					(EXCEPTION_CONTINUE_SEARCH) ;
+}
+#endif
 
 //////////////////////////////////////////////////////////////////////
 #ifdef M_BORLAND
-//	typedef void ( _RTLENTRY *___new_handler) ();
-namespace std{
-	extern new_handler _RTLENTRY _EXPFUNC set_new_handler( new_handler new_p );
-};
+	namespace std{
+		extern new_handler _RTLENTRY _EXPFUNC set_new_handler( new_handler new_p );
+	};
 
-//    typedef int	(__stdcall * _PNH)( size_t );
-//    _CRTIMP int	__cdecl _set_new_mode( int );
-//    _PNH	__cdecl set_new_handler( _PNH );
-//	typedef void (new * new_handler)();
-//	new_handler set_new_handler(new_handler my_handler);
 	static void __cdecl def_new_handler() 
     {
 		FATAL		("Out of memory.");
@@ -325,25 +671,226 @@ namespace std{
 
     void	xrDebug::_initialize		(const bool &dedicated)
     {
-//        std::set_new_mode 				(1);					// gen exception if can't allocate memory
-        std::set_new_handler			(def_new_handler  );	// exception-handler for 'out of memory' condition
-        ::SetUnhandledExceptionFilter	( UnhandledFilter );	// exception handler to all "unhandled" exceptions
+		handler							= 0;
+		m_on_dialog						= 0;
+        std::set_new_handler			(def_new_handler);	// exception-handler for 'out of memory' condition
+//		::SetUnhandledExceptionFilter	(UnhandledFilter);	// exception handler to all "unhandled" exceptions
     }
 #else
     typedef int		(__cdecl * _PNH)( size_t );
     _CRTIMP int		__cdecl _set_new_mode( int );
     _CRTIMP _PNH	__cdecl _set_new_handler( _PNH );
 
+#ifndef USE_BUG_TRAP
+	void _terminate		()
+	{
+		if (strstr(GetCommandLine(),"-silent_error_mode"))
+			exit				(-1);
+
+		string4096				assertion_info;
+		
+		Debug.gather_info			(
+		//gather_info				(
+			"<no expression>",
+			"Unexpected application termination",
+			0,
+			0,
+	#ifdef ANONYMOUS_BUILD
+			"",
+			0,
+	#else
+			__FILE__,
+			__LINE__,
+	#endif
+	#ifndef _EDITOR
+			__FUNCTION__,
+	#else // _EDITOR
+			"",
+	#endif // _EDITOR
+			assertion_info
+		);
+		
+		LPCSTR					endline = "\r\n";
+		LPSTR					buffer = assertion_info + xr_strlen(assertion_info);
+		buffer					+= sprintf(buffer,"Press OK to abort execution%s",endline);
+
+		MessageBox				(
+			GetTopWindow(NULL),
+			assertion_info,
+			"Fatal Error",
+			MB_OK|MB_ICONERROR|MB_SYSTEMMODAL
+		);
+		
+		exit					(-1);
+	//	FATAL					("Unexpected application termination");
+	}
+#endif // USE_BUG_TRAP
+
+	static void handler_base				(LPCSTR reason_string)
+	{
+		bool							ignore_always = false;
+		Debug.backend					(
+			"<no expression>",
+			reason_string,
+			0,
+			0,
+			DEBUG_INFO,
+			ignore_always
+		);
+	}
+
+	static void invalid_parameter_handler	(
+			const wchar_t *expression,
+			const wchar_t *function,
+			const wchar_t *file,
+			unsigned int line,
+			uintptr_t reserved
+		)
+	{
+		bool							ignore_always = false;
+
+		string4096						expression_;
+		string4096						function_;
+		string4096						file_;
+		size_t							converted_chars = 0;
+//		errno_t							err = 
+		if (expression)
+			wcstombs_s	(
+				&converted_chars, 
+				expression_,
+				sizeof(expression_),
+				expression,
+				(wcslen(expression) + 1)*2*sizeof(char)
+			);
+		else
+			strcpy_s					(expression_,"");
+
+		if (function)
+			wcstombs_s	(
+				&converted_chars, 
+				function_,
+				sizeof(function_),
+				function,
+				(wcslen(function) + 1)*2*sizeof(char)
+			);
+		else
+			strcpy_s					(function_,__FUNCTION__);
+
+		if (file)
+			wcstombs_s	(
+				&converted_chars, 
+				file_,
+				sizeof(file_),
+				file,
+				(wcslen(file) + 1)*2*sizeof(char)
+			);
+		else {
+			line						= __LINE__;
+			strcpy_s					(file_,__FILE__);
+		}
+
+		Debug.backend					(
+            expression_,
+            "invalid parameter",
+			0,
+			0,
+			file_,
+			line,
+			function_,
+			ignore_always
+		);
+	}
+
+	static void pure_call_handler			()
+	{
+		handler_base					("pure virtual function call");
+	}
+
+#ifdef CS_USE_EXCEPTIONS
+	static void unexpected_handler			()
+	{
+		handler_base					("unexpected program termination");
+	}
+#endif // CS_USE_EXCEPTIONS
+
+	static void abort_handler				(int signal)
+	{
+		handler_base					("application is aborting");
+	}
+
+	static void floating_point_handler		(int signal)
+	{
+		handler_base					("floating point error");
+	}
+
+	static void illegal_instruction_handler	(int signal)
+	{
+		handler_base					("illegal instruction");
+	}
+
+//	static void storage_access_handler		(int signal)
+//	{
+//		handler_base					("illegal storage access");
+//	}
+
+	static void termination_handler			(int signal)
+	{
+		handler_base					("termination with exit code 3");
+	}
+
+	void debug_on_thread_spawn			()
+	{
+#ifdef USE_BUG_TRAP
+		BT_SetTerminate					();
+#else // USE_BUG_TRAP
+//		std::set_terminate				(_terminate);
+#endif // USE_BUG_TRAP
+
+		_set_abort_behavior				(0,_WRITE_ABORT_MSG | _CALL_REPORTFAULT);
+		signal							(SIGABRT,		abort_handler);
+		signal							(SIGABRT_COMPAT,abort_handler);
+		signal							(SIGFPE,		floating_point_handler);
+		signal							(SIGILL,		illegal_instruction_handler);
+		signal							(SIGINT,		0);
+//		signal							(SIGSEGV,		storage_access_handler);
+		signal							(SIGTERM,		termination_handler);
+
+		_set_invalid_parameter_handler	(&invalid_parameter_handler);
+
+		_set_new_mode					(1);
+		_set_new_handler				(&out_of_memory_handler);
+//		std::set_new_handler			(&std_out_of_memory_handler);
+
+		_set_purecall_handler			(&pure_call_handler);
+
+#if 0// should be if we use exceptions
+		std::set_unexpected				(_terminate);
+#endif
+	}
+
     void	xrDebug::_initialize		(const bool &dedicated)
     {
-		handler							= 0;
-        _set_new_mode					(1);					// gen exception if can't allocate memory
-        _set_new_handler				(_out_of_memory	);		// exception-handler for 'out of memory' condition
-		std::set_terminate				(_terminate);
-		std::set_unexpected				(_terminate);
-        ::SetUnhandledExceptionFilter	( UnhandledFilter );	// exception handler to all "unhandled" exceptions
-    }
+		*g_bug_report_file				= 0;
 
-#endif
+		debug_on_thread_spawn			();
 
+
+#ifdef USE_BUG_TRAP
+		SetupExceptionHandler			(dedicated);
+#endif // USE_BUG_TRAP
+		previous_filter					= ::SetUnhandledExceptionFilter(UnhandledFilter);	// exception handler to all "unhandled" exceptions
+
+#if 0
+		struct foo {static void	recurs	(const u32 &count)
+		{
+			if (!count)
+				return;
+
+			_alloca			(4096);
+			recurs			(count - 1);
+		}};
+		foo::recurs			(u32(-1));
+		std::terminate		();
+#endif // 0
+	}
 #endif
