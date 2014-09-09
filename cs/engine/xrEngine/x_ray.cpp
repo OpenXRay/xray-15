@@ -374,7 +374,7 @@ static BOOL CALLBACK LogoWndProc(HWND hw, UINT msg, WPARAM wp, LPARAM lp)
 
 int APIENTRY WinMain_impl(HINSTANCE hInstance, HINSTANCE hPrevInstance, char* lpCmdLine, int nCmdShow)
 {
-    Debug._initialize(g_dedicated_server);
+    xrDebug::Initialize(g_dedicated_server);
     if (!IsDebuggerPresent())
     {
         // Starting with Windows Vista, the LFH is enabled by default but this call does not cause an error.

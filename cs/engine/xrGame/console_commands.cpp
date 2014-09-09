@@ -361,7 +361,7 @@ class CCC_DemoRecordSetPos : public CCC_Vector3
 	static Fvector p;
 public:
 
-	CCC_DemoRecordSetPos(LPCSTR N) : CCC_Vector3( N, &p, Fvector().set( -FLT_MAX, -FLT_MAX, -FLT_MAX ),Fvector().set( FLT_MAX, FLT_MAX, FLT_MAX ) ) {};
+	CCC_DemoRecordSetPos(LPCSTR N) : CCC_Vector3( N, &p, Fvector().set( -flt_max, -flt_max, -flt_max ),Fvector().set( flt_max, flt_max, flt_max ) ) {};
 	virtual void Execute(LPCSTR args) {
 		#ifndef	DEBUG
 		if (GameID() != eGameIDSingle) 

@@ -17,10 +17,7 @@
 XRCORE_API		xrCore	Core;
 static const char* BuildDate;
 static u32 BuildId;
-
 static u32	init_counter	= 0;
-
-extern char g_application_path[256];
 
 //. extern xr_vector<shared_str>*	LogFile;
 
@@ -81,9 +78,6 @@ void xrCore::_initialize	(LPCSTR _ApplicationName, LogCallback cb, BOOL init_fs,
         GetModuleFileName(GetModuleHandle(MODULE_NAME),fn,sizeof(fn));
         _splitpath		(fn,dr,di,0,0);
         strconcat		(sizeof(ApplicationPath),ApplicationPath,dr,di);
-#ifndef _EDITOR
-		strcpy_s		(g_application_path,sizeof(g_application_path),ApplicationPath);
-#endif
 
 #ifdef _EDITOR
 		// working path
@@ -117,7 +111,7 @@ void xrCore::_initialize	(LPCSTR _ApplicationName, LogCallback cb, BOOL init_fs,
 		InitLog				();
 		_initialize_cpu		();
 
-//		Debug._initialize	();
+//		xrDebug::Initialize	();
 
 		rtc_initialize		();
 

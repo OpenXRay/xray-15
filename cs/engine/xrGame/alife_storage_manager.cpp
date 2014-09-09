@@ -23,8 +23,6 @@
 #include "xrEngine/IGame_Persistent.h"
 #include "autosave_manager.h"
 
-XRCORE_API string_path g_bug_report_file;
-
 using namespace ALife;
 
 extern string_path g_last_saved_game;
@@ -138,7 +136,7 @@ bool CALifeStorageManager::load	(LPCSTR save_name)
 	FS.update_path				(file_name,"$game_saves$",m_save_name);
 
 	strcpy_s					(g_last_saved_game, save_name);
-	strcpy_s					(g_bug_report_file, file_name);
+    xrDebug::SetBugReportFile(file_name);
 
 	IReader						*stream;
 	stream						= FS.r_open(file_name);

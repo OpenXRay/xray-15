@@ -56,7 +56,7 @@ void	CBlender_Compile::_cpp_Compile	(ShaderElement* _SH)
 		base		=	BT->oT_Name;
 		if (id>=0)	
 		{
-			if (id>=int(lst.size()))	Debug.fatal(DEBUG_INFO,"Not enought textures for shader. Base texture: '%s'.",*lst[0]);
+			if (id>=int(lst.size()))	xrDebug::Fatal(DEBUG_INFO,"Not enought textures for shader. Base texture: '%s'.",*lst[0]);
 			base	=	*lst [id];
 		}
 //.		if (!dxRenderDeviceRender::Instance().Resources->_GetDetailTexture(base,detail_texture,detail_scaler))	bDetail	= FALSE;
@@ -74,7 +74,7 @@ void	CBlender_Compile::_cpp_Compile	(ShaderElement* _SH)
 			base		=	BT->oT_Name;
 			if (id>=0)	
 			{
-				if (id>=int(lst.size()))	Debug.fatal(DEBUG_INFO,"Not enought textures for shader. Base texture: '%s'.",*lst[0]);
+				if (id>=int(lst.size()))	xrDebug::Fatal(DEBUG_INFO,"Not enought textures for shader. Base texture: '%s'.",*lst[0]);
 				base	=	*lst [id];
 			}
 		}
@@ -303,7 +303,7 @@ void	CBlender_Compile::Stage_Texture	(LPCSTR name, u32 ,	u32	 fmin, u32 fmip, u3
 	int id		=	ParseName(name);
 	LPCSTR N	=	name;
 	if (id>=0)	{
-		if (id>=int(lst.size()))	Debug.fatal(DEBUG_INFO,"Not enought textures for shader. Base texture: '%s'.",*lst[0]);
+		if (id>=int(lst.size()))	xrDebug::Fatal(DEBUG_INFO,"Not enought textures for shader. Base texture: '%s'.",*lst[0]);
 		N = *lst [id];
 	}
 	passTextures.push_back	(mk_pair( Stage(),ref_texture( DEV->_CreateTexture(N))));

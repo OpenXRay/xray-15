@@ -85,7 +85,7 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     
 		switch(ul_reason_for_call) {
 		case DLL_PROCESS_ATTACH:
-			Debug._initialize	(false);
+			xrDebug::Initialize(false);
 			Core._initialize	("xrLC_Light",0,FALSE);
 			//FPU::m64r	();
 			break;

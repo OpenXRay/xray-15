@@ -275,12 +275,10 @@ void _initialize_cpu_thread	()
 #define _MM_SET_FLUSH_ZERO_MODE(mode) _mm_setcsr((_mm_getcsr() & ~_MM_FLUSH_ZERO_MASK) | (mode))
 #define _MM_SET_DENORMALS_ZERO_MODE(mode) _mm_setcsr((_mm_getcsr() & ~_MM_DENORMALS_ZERO_MASK) | (mode))
 static	BOOL	_denormals_are_zero_supported	= TRUE;
-extern void __cdecl _terminate		();
-void debug_on_thread_spawn	();
 
 void _initialize_cpu_thread	()
 {
-	debug_on_thread_spawn	();
+    xrDebug::OnThreadSpawn();
 #ifndef XRCORE_STATIC
 	// fpu & sse 
 	FPU::m24r	();

@@ -182,7 +182,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
                      LPSTR     lpCmdLine,
                      int       nCmdShow)
 {
-	Debug._initialize		(false);
+	xrDebug::Initialize(false);
 	Core._initialize		("xrai",0);
 
 	buffer_vector_test		();

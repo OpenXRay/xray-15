@@ -13,8 +13,13 @@ using int8 = signed char;
 using byte = unsigned char;
 using uint8 = unsigned char;
 
+#ifdef WIN64
+    using intptr = int64;
+#else
+    using intptr = int32;
+#endif
+
 //
 
 #define xrEXPORT __declspec(dllexport)
 #define xrIMPORT __declspec(dllimport)
-

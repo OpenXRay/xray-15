@@ -86,7 +86,7 @@ void LuaLog(LPCSTR caMessage)
 }
 void LuaError(lua_State* L)
 {
-	Debug.fatal(DEBUG_INFO,"LUA error: %s",lua_tostring(L,-1));
+	xrDebug::Fatal(DEBUG_INFO,"LUA error: %s",lua_tostring(L,-1));
 }
 
 #ifndef PURE_ALLOC

@@ -126,7 +126,7 @@ float	CIKLimbsController::StaticObjectShift			( const SCalculateData cd[max_size
 bool	CIKLimbsController::PredictObjectShift			(  const SCalculateData cd[max_size] )
 {
 	
-	float predict_time = FLT_MAX;
+	float predict_time = flt_max;
 	float predict_shift = 0.f;
 	bool ret = false;
 	const u16 sz =(u16)_bone_chains.size();
@@ -155,7 +155,7 @@ bool	CIKLimbsController::PredictObjectShift			(  const SCalculateData cd[max_siz
 		if( leg_length_limit> 0.f )
 			_object_shift.set_up_shift_limit( -leg_length_limit );
 		else
-			_object_shift.set_up_shift_limit( FLT_MAX );
+			_object_shift.set_up_shift_limit( flt_max );
 		*/
 	}
 	

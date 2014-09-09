@@ -231,7 +231,7 @@ void	CInifile::Load(IReader* F, LPCSTR path)
 				//store previous section
 				RootIt I		= std::lower_bound(DATA.begin(),DATA.end(),*Current->Name,sect_pred);
 				if ((I!=DATA.end())&&((*I)->Name==Current->Name))
-					Debug.fatal(DEBUG_INFO,"Duplicate section '%s' found.",*Current->Name);
+                    xrDebug::Fatal(DEBUG_INFO, "Duplicate section '%s' found.", *Current->Name);
 				DATA.insert		(I,Current);
 			}
 			Current				= new Sect();
@@ -329,7 +329,7 @@ void	CInifile::Load(IReader* F, LPCSTR path)
 	{
 		RootIt I		= std::lower_bound(DATA.begin(),DATA.end(),*Current->Name,sect_pred);
 		if ((I!=DATA.end())&&((*I)->Name==Current->Name))
-			Debug.fatal(DEBUG_INFO,"Duplicate section '%s' found.",*Current->Name);
+            xrDebug::Fatal(DEBUG_INFO, "Duplicate section '%s' found.", *Current->Name);
 		DATA.insert		(I,Current);
 	}
 }
@@ -440,7 +440,7 @@ CInifile::Sect& CInifile::r_section( LPCSTR S )
 	char	section[256]; strcpy_s(section,sizeof(section),S); strlwr(section);
 	RootIt I = std::lower_bound(DATA.begin(),DATA.end(),section,sect_pred);
 	if (!(I!=DATA.end() && xr_strcmp(*(*I)->Name,section)==0))
-		Debug.fatal(DEBUG_INFO,"Can't open section '%s'",S);
+        xrDebug::Fatal(DEBUG_INFO, "Can't open section '%s'", S);
 	return	**I;
 }
 
@@ -450,7 +450,7 @@ LPCSTR	CInifile::r_string(LPCSTR S, LPCSTR L)
 	SectCIt	A = std::lower_bound(I.Data.begin(),I.Data.end(),L,item_pred);
 	if (A!=I.Data.end() && xr_strcmp(*A->first,L)==0)	return *A->second;
 	else
-		Debug.fatal(DEBUG_INFO,"Can't find variable %s in [%s]",L,S);
+        xrDebug::Fatal(DEBUG_INFO, "Can't find variable %s in [%s]", L, S);
 	return 0;
 }
 

@@ -188,7 +188,7 @@ void CBuild::xrPhase_TangentBasis()
 		NVMeshMender::DontWeightNormalsByFaceSize	// weigh vertex normals by the triangle's size
 		))
 	{
-		Debug.fatal	(DEBUG_INFO,"NVMeshMender failed (%s)",mender.GetLastError().c_str());
+		xrDebug::Fatal	(DEBUG_INFO,"NVMeshMender failed (%s)",mender.GetLastError().c_str());
 	}
 
 	// ************************************* Bind declarators

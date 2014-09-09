@@ -24,7 +24,7 @@ namespace extrapolation
 	class point
 	{
 		public:
-					point		(): m_time( -FLT_MAX )			{ }
+					point		(): m_time( -flt_max )			{ }
 	IC const pose&	pose 		()	const						{ return p; }
 	IC		 float	time 		()	const						{ return m_time; }
 	IC		 point&	set			( const extrapolation::pose &p_, float time )	{ p = p_; m_time = time; return *this; }

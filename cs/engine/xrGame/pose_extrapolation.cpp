@@ -50,7 +50,7 @@ void	points::extrapolate ( Fmatrix &m, float time ) const
 }
 
 pose::pose	( ):
-p( Fvector().set( -FLT_MAX, -FLT_MAX, -FLT_MAX ) ),
+p( Fvector().set( -flt_max, -flt_max, -flt_max ) ),
 r( Fquaternion().set( 0, 0, 0, 0 ) )
 {
 	

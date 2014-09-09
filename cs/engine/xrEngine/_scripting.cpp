@@ -4,7 +4,7 @@
 namespace boost {
 //	void  throw_exception(const std::exception &A)
 //	{
-//		Debug.fatal(DEBUG_INFO,"Boost exception raised");
+//		xrDebug::Fatal(DEBUG_INFO,"Boost exception raised");
 //	}
 };
 

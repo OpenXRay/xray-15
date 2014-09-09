@@ -1,59 +1,79 @@
-#ifndef xrDebugH
-#define xrDebugH
 #pragma once
+#include "_types.h"
 
-typedef	void		crashhandler		(void);
-typedef	void		on_dialog			(bool before);
-
-class XRCORE_API	xrDebug
+class XRCORE_API xrDebug
 {
 private:
-	crashhandler*	handler	;
-	on_dialog*		m_on_dialog;
+    struct StackTraceInfo
+    {
+        static const int Capacity = 100;
+        static const int LineCapacity = 256;
+        static char Frames[Capacity*LineCapacity];
+        static int Count;
 
+        static IC char* GetFrame(int i) { return Frames + i*LineCapacity; }
+    };
+    static StackTraceInfo StackTrace;
+    typedef	void OnCrashHandler();
+    typedef	void OnDialogHandler(bool);
+    typedef LONG WINAPI UnhandledExceptionFilterType(EXCEPTION_POINTERS* exPtrs);
+    static UnhandledExceptionFilterType* PrevFilter;
+    static OnCrashHandler* OnCrash;
+    static OnDialogHandler* OnDialog;
+    static string_path BugReportFile;
+    static bool	ErrorAfterDialog;
+    
 public:
-	void			_initialize			(const bool &dedicated);
-	void			_destroy			();
-	
-public:
-	crashhandler*	get_crashhandler	()							{ return handler;	};
-	void			set_crashhandler	(crashhandler* _handler)	{ handler=_handler;	};
+    xrDebug() = delete;
+	static void Initialize(const bool& dedicated);
+    static void Destroy();
+    static void OnThreadSpawn();
+    static OnCrashHandler* GetCrashHandler() { return OnCrash; }
+    static void SetCrashHandler(OnCrashHandler* handler) { OnCrash = handler; }
+    static OnDialogHandler* GetDialogHandler() { return OnDialog; }
+    static void SetDialogHandler(OnDialogHandler* handler) { OnDialog = handler; }
+    static const char* ErrorToString(long code);
+    static void SetBugReportFile(const char* fileName);
+    static void LogStackTrace(const char* header);
+    static int BuildStackTrace(char* buffer, int capacity, int lineCapacity);
+    static void GatherInfo(const char* expression, const char* description, const char* arg0, const char* arg1,
+        const char* file, int line, const char* function, char* assertionInfo);
+    static void Fail(const char* e1, const char* file, int line, const char* function, bool& ignoreAlways);
+    static void Fail(const char* e1, const std::string& e2, const char* file, int line, const char* function,
+        bool& ignoreAlways);
+    static void Fail(const char* e1, const char* e2, const char* file, int line, const char* function,
+        bool& ignoreAlways);
+    static void Fail(const char* e1, const char* e2, const char* e3, const char* file, int line, const char* function,
+        bool& ignoreAlways);
+    static void Fail(const char* e1, const char* e2, const char* e3, const char* e4, const char* file, int line,
+        const char* function, bool &ignoreAlways);
+    static void Error(long code, const char* e1, const char* file, int line, const char* function,
+        bool& ignoreAlways);
+    static void Error(long code, const char* e1, const char* e2, const char* file, int line, const char* function,
+        bool& ignoreAlways);
+    static void Fatal(const char* file, int line, const char* function, const char* format, ...);
+    static void Backend(const char* reason, const char* expression, const char* arg0, const char* arg1,
+        const char* file, int line, const char* function, bool& ignoreAlways);
+    static void DoExit(const std::string& message);
 
-	on_dialog*		get_on_dialog		()							{ return m_on_dialog;	}
-	void			set_on_dialog		(on_dialog* on_dialog)		{ m_on_dialog = on_dialog;	}
-
-	LPCSTR			error2string		(long  code	);
-
-	void			gather_info			(const char *expression, const char *description, const char *argument0, const char *argument1, const char *file, int line, const char *function, LPSTR assertion_info);
-	void			fail				(const char *e1, const char *file, int line, const char *function, bool &ignore_always);
-	void			fail				(const char *e1, const std::string &e2, const char *file, int line, const char *function, bool &ignore_always);
-	void			fail				(const char *e1, const char *e2, const char *file, int line, const char *function, bool &ignore_always);
-	void			fail				(const char *e1, const char *e2, const char *e3, const char *file, int line, const char *function, bool &ignore_always);
-	void			fail				(const char *e1, const char *e2, const char *e3, const char *e4, const char *file, int line, const char *function, bool &ignore_always);
-	void			error				(long  code, const char* e1, const char *file, int line, const char *function, bool &ignore_always);
-	void			error				(long  code, const char* e1, const char* e2, const char *file, int line, const char *function, bool &ignore_always);
-	void _cdecl		fatal				(const char *file, int line, const char *function, const char* F,...);
-	void			backend				(const char* reason, const char* expression, const char *argument0, const char *argument1, const char* file, int line, const char *function, bool &ignore_always);
-	void			do_exit				(const std::string &message);
+private:
+    static void FormatLastError(char* buffer, const size_t& bufferSize);
+    static int BuildStackTrace(EXCEPTION_POINTERS* exPtrs, char* buffer, int capacity, int lineCapacity);
+    static void SetupExceptionHandler(const bool& dedicated);
+    static LONG WINAPI UnhandledFilter(EXCEPTION_POINTERS* exPtrs);
+    static void WINAPI PreErrorHandler(INT_PTR);
+    static void SaveMiniDump(EXCEPTION_POINTERS* exPtrs);
 };
 
 // warning
 // this function can be used for debug purposes only
-IC	std::string __cdecl	make_string		(LPCSTR format,...)
+IC std::string __cdecl make_string(LPCSTR format, ...)
 {
-	va_list		args;
-	va_start	(args,format);
-
-	char		temp[4096];
-	vsprintf	(temp,format,args);
-
-	return		std::string(temp);
+    va_list args;
+    va_start(args, format);
+    string4096 temp;
+    vsprintf(temp, format, args);
+    return std::string(temp);
 }
 
-extern XRCORE_API	xrDebug		Debug;
-
-XRCORE_API void LogStackTrace	(LPCSTR header);
-
 #include "xrDebug_macros.h"
-
-#endif // xrDebugH

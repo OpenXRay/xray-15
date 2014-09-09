@@ -7,9 +7,6 @@
     #pragma warning(pop)
     #include <boost/crc.hpp>
 
-    extern void BuildStackTrace();
-    extern char g_stackTrace[100][4096];
-    extern int g_stackTraceCount;
     static bool g_mem_alloc_gather_stats = false;
     static float g_mem_alloc_gather_stats_frequency = 0.f;
 
@@ -66,22 +63,35 @@
         stats.clear();
     }
 
+    static struct StackTraceInfo
+    {
+        static const int Capacity = 100;
+        static const int LineCapacity = 256;
+        static char Frames[Capacity*LineCapacity];
+        static int Count;
+
+        static IC char* GetFrame(int i) { return Frames + i*LineCapacity; }
+    } StackTrace;
+
+    char StackTraceInfo::Frames[Capacity*LineCapacity];
+    int StackTraceInfo::Count;
+
     __declspec(noinline) void save_stack_trace()
     {
         if (!g_mem_alloc_gather_stats)
             return;
         if (::Random.randF() >= g_mem_alloc_gather_stats_frequency)
             return;
-        BuildStackTrace();
+        StackTrace.Count = xrDebug::BuildStackTrace(StackTrace.Frames, StackTrace.Capacity, StackTrace.LineCapacity);
         const int skipFrames = 2;
-        if (g_stackTraceCount <= skipFrames)
+        if (StackTrace.Count <= skipFrames)
             return;
-        int frameCount = g_stackTraceCount-skipFrames;
+        int frameCount = StackTrace.Count - skipFrames;
         int totalSize = 0;
         int* lengths = (int*)_alloca(frameCount*sizeof(int));
         for (int i = 0; i < frameCount; i++)
         {
-            lengths[i] = strlen(g_stackTrace[i+skipFrames]);
+            lengths[i] = strlen(StackTrace.GetFrame(i + skipFrames));
             totalSize += lengths[i]+1;
         }
         char* stackTrace = (char*)malloc(totalSize);
@@ -89,7 +99,7 @@
             auto ptr = stackTrace;
             for (int i = 0; i < frameCount; i++)
             {
-                memcpy(ptr, g_stackTrace[i], lengths[i]);
+                memcpy(ptr, StackTrace.GetFrame(i), lengths[i]);
                 ptr += lengths[i];
                 *ptr = '\n';
             }
