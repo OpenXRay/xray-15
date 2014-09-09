@@ -70,10 +70,11 @@ nitrocaster:
         on dedicated servers)
       - console (remove GUI and use separate administrative tool?)
       + remove topmost startup logo window
-	* remove BattlEye (it's not supported anymore) and all related stuff
+	+ remove BattlEye (it's not supported anymore) and all related stuff
+      - Linux support
   - xrCore
-    - get rid of old blackbox code
-    - refactor xrDebug
+    + get rid of old blackbox code
+    + refactor xrDebug
     - logger
       - don't keep log in std::vector, write to log file immediately
       - tweak CConsole to use new logger
