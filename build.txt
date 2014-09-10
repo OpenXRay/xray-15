@@ -1,4 +1,4 @@
-By default, all libraries are assumed to be in e:\dev
+By default, all libraries are assumed to be in the directory defined by XRAY_15X_LIBS environment variable.
 
 To build X-Ray Engine you'll need following libraries and SDKs:
   * nVidia OpenAutomate [https://developer.nvidia.com/openautomate]
