@@ -59,7 +59,6 @@ ENGINE_API string_path g_sLaunchWorkingFolder;
 static CTimer PhaseTimer;
 static bool IntroFinished = false;
 
-int doLauncher();
 void doBenchmark(const char* name);
 
 // Фунция для тупых требований THQ и тупых американских пользователей
@@ -459,12 +458,6 @@ int APIENTRY WinMain_impl(HINSTANCE hInstance, HINSTANCE hPrevInstance, char* lp
         g_SASH.Init(sashArgs);
         g_SASH.MainLoop();
         return 0;
-    }
-    if (strstr(lpCmdLine, "-launcher"))
-    {
-        int l_res = doLauncher();
-        if (l_res != 0)
-            return 0;
     }
 #ifndef DEDICATED_SERVER
     if (strstr(Core.Params, "-r2a"))
@@ -870,40 +863,6 @@ void CApplication::LoadAllArchives()
         Level_Scan();
         g_pGamePersistent->OnAssetsChanged();
     }
-}
-
-extern "C"
-{
-    typedef int __cdecl LauncherFunc(int);
-}
-
-HMODULE hLauncher = nullptr;
-LauncherFunc* pLauncher = nullptr;
-
-void InitLauncher()
-{
-    if (hLauncher)
-        return;
-    hLauncher = LoadLibrary("xrLauncher.dll");
-    if (0 == hLauncher)	R_CHK(GetLastError());
-    R_ASSERT2(hLauncher, "xrLauncher DLL raised exception during loading or there is no xrLauncher.dll at all");
-    pLauncher = (LauncherFunc*)GetProcAddress(hLauncher, "RunXRLauncher");
-    R_ASSERT2(pLauncher, "Cannot obtain RunXRLauncher function from xrLauncher.dll");
-};
-
-void FreeLauncher()
-{
-    if (hLauncher)
-    {
-        FreeLibrary(hLauncher);
-        hLauncher = nullptr;
-        pLauncher = nullptr;
-    }
-}
-
-int doLauncher()
-{
-    return 0;
 }
 
 void doBenchmark(const char* name)
