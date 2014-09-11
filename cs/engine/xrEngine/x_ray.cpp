@@ -527,15 +527,6 @@ LPCSTR _GetFontTexName(LPCSTR section)
     static char* textureNames[] = { "texture800", "texture", "texture1600" };
     int defaultIndex = 1; // default 1024x768
     int selectedIndex = defaultIndex;
-#if 0
-    u32 w = Device.dwWidth;
-    if (w <= 800)
-        idx = 0;
-    else if (w <= 1280)
-        idx = 1;
-    else
-        idx = 2;
-#else
     u32 h = Device.dwHeight;
     if (h <= 600)
         selectedIndex = 0;
@@ -543,7 +534,6 @@ LPCSTR _GetFontTexName(LPCSTR section)
         selectedIndex = 1;
     else
         selectedIndex = 2;
-#endif
     while (selectedIndex >= 0)
     {
         if (pSettings->line_exist(section, textureNames[selectedIndex]))
