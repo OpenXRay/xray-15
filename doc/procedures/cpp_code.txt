@@ -543,7 +543,7 @@ across compilers.
 
     // The XRay.hpp content comes here
 
-Files should terminate with a carriage return:
+Files should terminate with an empty line:
  BAD
     int main()
     {
