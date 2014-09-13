@@ -49,8 +49,8 @@ nitrocaster:
     + xrGameSpy: fix master server name (gamespy is down)
     - dedicated server
       * known multiple vulnerabilities
-	    + dirtysky
-	    + stalkazz (fixed by GSC!)
+        + dirtysky
+        + stalkazz (fixed by GSC!)
         + stalkerbof (fixed by GSC!)
         + stalkerboom    
   - render
@@ -70,8 +70,8 @@ nitrocaster:
         on dedicated servers)
       - console (remove GUI and use separate administrative tool?)
       + remove topmost startup logo window
-	+ remove BattlEye (it's not supported anymore) and all related stuff
       - Linux support
+	+ remove BattlEye (it's not supported anymore) and all related stuff
   - xrCore
     + get rid of old blackbox code
     + refactor xrDebug
