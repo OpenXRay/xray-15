@@ -698,7 +698,7 @@ Use strongly typed enums instead of plain C enums:
         Failed,
     };
     
-Enums should have values assigned:
+Enums that can be serialized should have values assigned:
  BAD
     enum class CmdStatus
     {
