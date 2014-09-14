@@ -808,29 +808,54 @@ code fragments, put a comment line.
 
 Module Foo in Engine/Bar/Foo.cpp & Foo.hpp.
 All files should follow this exact example.
-#include "Common.hpp" must be first in the *.cpp file to
-make sure the features configuration affect all the rest of the files.
+Unless using precompiled headers, #include "Common.hpp" must be first in
+the *.cpp file to make sure the features configuration affect all the rest of
+the files. If using precompiled headers, #include "Common.hpp" must be first
+in the precompiled header file (e.g. stdafx.hpp) and must not be included in
+*.cpp file.
 Header files must be self contained, i.e. they must be able to compile
 without relying on another include line to come before them.
 Therefore #include "Foo.hpp" must be immediately after to make sure Foo.hpp
 compiles standalone without any dependency on includes before it.
  GOOD
-Foo.hpp template
-------------------------------
-#pragma once
-#include "Common.hpp"
-... Put here minimal includes required by Foo.hpp ...
+    Foo.hpp template
+    ------------------------------
+    #pragma once
+    #include "Common.hpp"
+    ... Put here minimal includes required by Foo.hpp ...
+    
+    ... Put here your declarations ...
+    
+    Foo.cpp template
+    ------------------------------
+    #include "Common.hpp"
+    #include "Foo.hpp"
+    ... Put here minimal includes required by Foo.cpp ...
+    
+    ... Put here your code ...
 
-... Put here your declarations ...
-
-Foo.cpp template
-------------------------------
-#include "Common.hpp"
-#include "Foo.hpp"
-... Put here minimal includes required by Foo.cpp ...
-
-... Put here your code ...
-
+ GOOD (using precompiled headers)
+    stdafx.hpp template
+    ------------------------------
+    #pragma once
+    #include "Common.hpp"
+    ... Put here additional includes ...
+    
+    Foo.hpp template
+    ------------------------------
+    #pragma once
+    #include "Common.hpp"
+    ... Put here minimal includes required by Foo.hpp ...
+    
+    ... Put here your declarations ...
+    
+    Foo.cpp template
+    ------------------------------
+    #include "stdafx.hpp"
+    #include "Foo.hpp"
+    ... Put here minimal includes required by Foo.cpp ...
+    
+    ... Put here your code ...
 
 Use #include "Foo.hpp" for headers in the same directory as the source
 including them.
