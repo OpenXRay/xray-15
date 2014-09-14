@@ -31,6 +31,7 @@ typedef const char*			pcstr;
 
 // Type limits
 #define type_max(T)		(std::numeric_limits<T>::max())
+// XXX nitrocaster: std::numeric_limits<T>::lowest() should be used (testing is required before fix)
 #define type_min(T)		(-std::numeric_limits<T>::max())
 #define type_zero(T)	(std::numeric_limits<T>::min())
 #define type_epsilon(T)	(std::numeric_limits<T>::epsilon())
