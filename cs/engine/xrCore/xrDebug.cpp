@@ -54,7 +54,7 @@ extern bool shared_str_initialized;
 
 intptr __declspec(naked, noinline) __cdecl GetInstructionPtr()
 {
-#ifdef WIN64
+#ifdef _WIN64
     _asm mov rax, [rsp]
     _asm retn
 #else
