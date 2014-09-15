@@ -1,8 +1,5 @@
 #pragma once
 
-
-
-// Igor DEFINE_VECTOR(ref_shader, SHADER_VECTOR, SHADER_VECTOR_IT);
 class CWalmarkManager
 {
 private:

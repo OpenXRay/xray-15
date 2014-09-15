@@ -95,9 +95,6 @@ static char const * ModifyDownloadUrl(char* dest, u32 dest_size, char const * or
 	return dest;
 };
 
-
-
-
 bool g_bInformUserThatNoPatchFound = true;
 void __cdecl GS_ptPatchCallback ( PTBool available, PTBool mandatory, const char * versionName, int fileID, const char * downloadURL,  void * param )
 {

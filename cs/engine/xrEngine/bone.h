@@ -239,7 +239,8 @@ struct ECORE_API SJointIKData
 
 // refs
 class CBone;
-DEFINE_VECTOR		    (CBone*,BoneVec,BoneIt);
+using BoneVec = xr_vector<CBone*>;
+using BoneIt = BoneVec::iterator;
 
 class ECORE_API CBone
 {
@@ -369,8 +370,10 @@ public:
 	float				mass;
 	Fvector				center_of_mass;
 
-	DEFINE_VECTOR		(u16,FacesVec,FacesVecIt);
-	DEFINE_VECTOR		(FacesVec,ChildFacesVec,ChildFacesVecIt);
+	using FacesVec = xr_vector<u16>;
+	using FacesVecIt = FacesVec::iterator;
+	using ChildFacesVec = xr_vector<FacesVec>;
+	using ChildFacesVecIt = ChildFacesVec::iterator;
 	ChildFacesVec		child_faces;	// shared
 public:    
 	CBoneData		(u16 ID):SelfID(ID)	{VERIFY(SelfID!=BI_NONE);}

@@ -3,7 +3,8 @@
 
 
 #include "xrthread.h"
-DEFINE_VECTOR(u32,DWORDVec,DWORDIt);
+using DWORDVec = xr_vector<u32>;
+using DWORDIt = DWORDVec::iterator;
 class	LightThread : public CThread
 {
 	u32		Nstart, Nend;

@@ -78,10 +78,12 @@ private:
 	// карта комманд членов группы (обновляется со стороны squad manager)
 	MEMBER_COMMAND_MAP	m_commands;
 
-	DEFINE_VECTOR	(u32, NODES_VECTOR, NODES_VECTOR_IT);
+	using NODES_VECTOR = xr_vector<u32>;
+	using NODES_VECTOR_IT = NODES_VECTOR::iterator;
 	NODES_VECTOR	m_locked_covers;
 
-	DEFINE_VECTOR	(const CEntityAlive*, CORPSES_VECTOR, CORPSES_VECTOR_IT);
+	using CORPSES_VECTOR = xr_vector<const CEntityAlive*>;
+	using CORPSES_VECTOR_IT = CORPSES_VECTOR::iterator;
 	CORPSES_VECTOR	m_locked_corpses;
 
 public:
@@ -130,7 +132,8 @@ public:
 	//  Общие данные
 	//////////////////////////////////////////////////////////////////////////////////////
 	
-	DEFINE_VECTOR	(CEntity*, ENTITY_VEC,	ENTITY_VEC_IT);	
+	using ENTITY_VEC = xr_vector<CEntity*>;
+	using ENTITY_VEC_IT = ENTITY_VEC::iterator;	
 	ENTITY_VEC		m_temp_entities;
 	
 	///////////////////////////////////////////////////////////////////////////////////////

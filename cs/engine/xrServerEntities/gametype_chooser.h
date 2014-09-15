@@ -17,7 +17,8 @@ enum EGameIDs {
 
 class PropValue;
 class PropItem;
-DEFINE_VECTOR			(PropItem*,PropItemVec,PropItemIt);
+using PropItemVec = xr_vector<PropItem*>;
+using PropItemIt = PropItemVec::iterator;
 
 struct GameTypeChooser
 {
