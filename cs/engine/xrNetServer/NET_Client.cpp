@@ -220,7 +220,6 @@ IPureClient::_Recieve( const void* data, u32 data_size, u32 /*param*/ )
 		
 		if ( data_size == sizeof(MSYS_CONFIG) )
 		{
-			MSYS_CONFIG* msys_cfg = (MSYS_CONFIG*)data;
 			net_Connected = EnmConnectionCompleted;
 			return;
 		}
