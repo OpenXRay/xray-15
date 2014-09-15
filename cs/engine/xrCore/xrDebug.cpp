@@ -52,6 +52,8 @@ extern bool shared_str_initialized;
 #define USE_OWN_MINI_DUMP
 #endif
 
+using namespace XRay;
+
 intptr __declspec(naked, noinline) __cdecl GetInstructionPtr()
 {
 #ifdef _WIN64

@@ -1,5 +1,7 @@
 #pragma once
 
+namespace XRay
+{
 using uint = unsigned int;
 using uint32 = unsigned __int32;
 using int32 = __int32;
@@ -14,10 +16,11 @@ using byte = unsigned char;
 using uint8 = unsigned char;
 
 #ifdef WIN64
-    using intptr = int64;
+using intptr = int64;
 #else
-    using intptr = int32;
+using intptr = int32;
 #endif
+}
 
 #define XR_EXPORT __declspec(dllexport)
 #define XR_IMPORT __declspec(dllimport)

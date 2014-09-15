@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+using namespace XRay;
+
 #ifndef DEBUG_MEMORY_MANAGER
     #pragma warning(push)
     #pragma warning(disable:4995)
