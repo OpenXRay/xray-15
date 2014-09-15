@@ -54,7 +54,7 @@ nitrocaster:
         + stalkerbof (fixed by GSC!)
         + stalkerboom    
   - render
-    - if d3d compiler fails to compile some shader, it says
+    + if d3d compiler fails to compile some shader, it says
       "Your video card doesn't meet game requirements ..."
       even if GPU actually meets game requirements (vs/gs/ps levels)
       dx10ResourceManager_Resources.cpp
