@@ -4,7 +4,7 @@
 #include "xrCore.h"
 #include "Common.hpp"
 
-namespace xray
+namespace XRay
 {
 class XRCORE_API CPUID
 {
@@ -181,4 +181,4 @@ public:
     static double GetSpeed();
     static bool IsFeaturePresent(Feature feature);
 };
-} // namespace xray
+} // namespace XRay

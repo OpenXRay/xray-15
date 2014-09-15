@@ -6,7 +6,7 @@
 #include <xmmintrin.h>
 #pragma warning(pop)
 
-using namespace xray;
+using namespace XRay;
 
 // can you say "barebone"?
 #ifndef _MM_ALIGN16

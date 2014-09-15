@@ -197,7 +197,7 @@ namespace CPU
 bool g_initialize_cpu_called = false;
 
 #include "CPUID.hpp"
-using namespace xray;
+using namespace XRay;
 
 //------------------------------------------------------------------------------------
 void _initialize_cpu	(void) 

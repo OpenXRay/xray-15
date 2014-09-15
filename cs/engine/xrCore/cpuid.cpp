@@ -4,7 +4,7 @@
 #include <windows.h>
 #include <intrin.h>
 
-using namespace xray;
+using namespace XRay;
 
 #define add_feature_generic(feature, container, bit)  featuresGeneric.insert({feature, FeatureInfo(container, bit)})
 #define add_feature_intel(feature, container, bit)    featuresIntel.insert({feature, FeatureInfo(container, bit)})

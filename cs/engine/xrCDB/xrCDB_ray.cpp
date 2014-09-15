@@ -10,7 +10,7 @@
 
 using namespace		CDB;
 using namespace		Opcode;
-using namespace xray;
+using namespace XRay;
 
 // can you say "barebone"?
 #ifndef _MM_ALIGN16

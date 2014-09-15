@@ -99,7 +99,7 @@ void xrCore::_initialize	(LPCSTR _ApplicationName, LogCallback cb, BOOL init_fs,
 		GetComputerName		(CompName,&sz_comp);
 		
 		// Mathematics & PSI detection
-        if (!xray::CPUID::Detect())
+        if (!XRay::CPUID::Detect())
         {
             abort();
         }

@@ -6,7 +6,7 @@
 #include "CPUID.hpp"
 #include <malloc.h>
 
-using namespace xray;
+using namespace XRay;
 
 xrMemory	Memory;
 BOOL		mem_initialized	= FALSE;
