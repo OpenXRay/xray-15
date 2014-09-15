@@ -29,12 +29,18 @@ typedef const char*			pcstr;
 	#define FALSE			false
 #endif
 
+#pragma push_macro("min")
+#pragma push_macro("max")
+#undef min
+#undef max
 // Type limits
 #define type_max(T)		(std::numeric_limits<T>::max())
 // XXX nitrocaster: std::numeric_limits<T>::lowest() should be used (testing is required before fix)
 #define type_min(T)		(-std::numeric_limits<T>::max())
 #define type_zero(T)	(std::numeric_limits<T>::min())
 #define type_epsilon(T)	(std::numeric_limits<T>::epsilon())
+#pragma pop_macro("min")
+#pragma pop_macro("max")
 
 #define int_max			type_max(int)
 #define int_min			type_min(int)
