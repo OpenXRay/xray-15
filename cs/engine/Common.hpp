@@ -19,7 +19,5 @@ using uint8 = unsigned char;
     using intptr = int32;
 #endif
 
-//
-
-#define xrEXPORT __declspec(dllexport)
-#define xrIMPORT __declspec(dllimport)
+#define XR_EXPORT __declspec(dllexport)
+#define XR_IMPORT __declspec(dllimport)
