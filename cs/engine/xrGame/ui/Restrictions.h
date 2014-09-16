@@ -40,7 +40,8 @@ private:
 	
 	using group_items = xr_vector<shared_str>;
 	using group_items_it = group_items::iterator;
-	DEF_MAP(Groups, shared_str, group_items);
+    using Groups = xr_map<shared_str, group_items>;
+    using Groups_it = Groups::iterator;
 	Groups											m_goups;
 
 

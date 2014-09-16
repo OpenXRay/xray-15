@@ -130,7 +130,8 @@ protected:
 //	void				SetAmmoIcon						(const shared_str& seсt_name);
 
 	// first - иконка, second - анимация
-	DEF_MAP				(FlashingIcons, EFlashingIcons, CUIStatic*);
+    using FlashingIcons = xr_map<EFlashingIcons, CUIStatic*>;
+    using FlashingIcons_it = FlashingIcons::iterator;
 	FlashingIcons		m_FlashingIcons;
 
 //	CWeapon*			m_pWeapon;

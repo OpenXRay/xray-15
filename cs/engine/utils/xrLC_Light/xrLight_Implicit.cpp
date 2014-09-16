@@ -65,8 +65,8 @@ public:
 	}
 };
 
-
-DEF_MAP(Implicit,u32,ImplicitDeflector);
+using Implicit = xr_map<u32, ImplicitDeflector>;
+using Implicit_it = Implicit::iterator;
 
 typedef hash2D <Face*,384,384>		IHASH;
 static IHASH*						ImplicitHash;
