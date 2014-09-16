@@ -55,8 +55,8 @@ private:
 	using PathPairIt = PathMap::iterator;
 	PathMap						pathes;
 
-	DEFINE_SET_PRED				(file,files_set,files_it,file_pred);
-
+    using files_set = xr_set<file, file_pred>;
+    using files_it = files_set::iterator;
 	using FFVec = xr_vector<_finddata_t>;
 	using FFIt = FFVec::iterator;
 	FFVec						rec_files;
