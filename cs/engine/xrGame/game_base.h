@@ -67,7 +67,8 @@ struct	game_PlayerState
 	u32			DeathTime;
 	s16			money_delta;
 	u8			m_bCurrentVoteAgreed;
-	DEF_DEQUE	(OLD_GAME_ID, u16);
+	using OLD_GAME_ID = xr_deque<u16>;
+	using OLD_GAME_ID_it = OLD_GAME_ID::iterator;
 	OLD_GAME_ID	mOldIDs;
 	s32			money_added;
 	using MONEY_BONUS = xr_vector<Bonus_Money_Struct>;

@@ -52,7 +52,8 @@ struct cl_TeamStruct
 	float				Indicator_r2;
 };
 
-DEF_DEQUE(CL_TEAM_DATA_LIST, cl_TeamStruct);
+using CL_TEAM_DATA_LIST = xr_deque<cl_TeamStruct>;
+using CL_TEAM_DATA_LIST_it = CL_TEAM_DATA_LIST::iterator;
 
 struct cl_Message_Sound
 {

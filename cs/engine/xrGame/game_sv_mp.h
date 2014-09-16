@@ -34,7 +34,8 @@ class game_sv_mp :public game_sv_GameState
 
 protected:
 	//список трупов для удаления
-	DEF_DEQUE(CORPSE_LIST, u16);
+	using CORPSE_LIST = xr_deque<u16>;
+	using CORPSE_LIST_it = CORPSE_LIST::iterator;
 
 	CORPSE_LIST						m_CorpseList;
 

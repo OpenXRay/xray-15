@@ -49,7 +49,8 @@ protected:
 		shared_str	map_name;
 		shared_str	map_ver;
 	};
-	DEF_DEQUE(MAP_ROTATION_LIST,	SMapRot);
+	using MAP_ROTATION_LIST = xr_deque<SMapRot>;
+	using MAP_ROTATION_LIST_it = MAP_ROTATION_LIST::iterator;
 	bool							m_bMapRotation;
 	bool							m_bMapNeedRotation;
 	bool							m_bMapSwitched;
