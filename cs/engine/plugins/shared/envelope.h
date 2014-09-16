@@ -103,8 +103,7 @@ struct st_Key{
 };
 #pragma pack( pop )
 
-using KeyVec = xr_vector<st_Key*>;
-using KeyIt = KeyVec::iterator;
+DEFINE_VECTOR(st_Key*,KeyVec,KeyIt);
 
 // refs
 class CExporter;

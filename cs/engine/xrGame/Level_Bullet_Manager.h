@@ -107,10 +107,8 @@ private:
 	collide::rq_results		m_rq_results;
 
 private:
-	using SoundVec = xr_vector<ref_sound>;
-	using SoundVecIt = SoundVec::iterator;
-	using BulletVec = xr_vector<SBullet>;
-	using BulletVecIt = BulletVec::iterator;
+	DEFINE_VECTOR						(ref_sound,SoundVec,SoundVecIt);
+	DEFINE_VECTOR						(SBullet,BulletVec,BulletVecIt);
 	friend	CLevel;
 
 	enum EventType {

@@ -27,8 +27,7 @@ public:
     {
     	BOOL			ignore_color;
     };
-    using FlareVec = xr_vector<SFlare>;
-    using FlareIt = FlareVec::iterator;
+    DEFINE_VECTOR		(SFlare,FlareVec,FlareIt);
     FlareVec			m_Flares;
 
 	enum {
@@ -59,8 +58,7 @@ public:
 	void 				OnDeviceCreate	();
 	void 				OnDeviceDestroy	();
 };
-using LensFlareDescVec = xr_vector<CLensFlareDescriptor*>;
-using LensFlareDescIt = LensFlareDescVec::iterator; 
+DEFINE_VECTOR(CLensFlareDescriptor*,LensFlareDescVec,LensFlareDescIt); 
 
 
 class ENGINE_API CLensFlare

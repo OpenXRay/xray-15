@@ -17,8 +17,7 @@ public:
 
 	ref_shader*	dxGenerateWallmark();
 private:
-	using ShaderVec = xr_vector<ref_shader>;
-	using ShaderIt = ShaderVec::iterator;
+	DEFINE_VECTOR(ref_shader,ShaderVec,ShaderIt);
 
 	ShaderVec	m_CollideMarks;
 };

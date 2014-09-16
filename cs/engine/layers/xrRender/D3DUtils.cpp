@@ -84,8 +84,7 @@ static const WORD identboxindiceswire[identboxindexwirecount] = {
 
 #define SIGN(x) ((x<0)?-1:1)
 
-using FLvertexVec = xr_vector<FVF::L>;
-using FLvertexIt = FLvertexVec::iterator;
+DEFINE_VECTOR(FVF::L,FLvertexVec,FLvertexIt)
 
 static FLvertexVec 	m_GridPoints;
 

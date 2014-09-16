@@ -59,8 +59,7 @@ public:
 	bool			is_any							(CPHReqComparerV* v)										;
 };
 
-using PHCALL_STORAGE = xr_vector<CPHCall*>;
-using PHCALL_I = PHCALL_STORAGE::iterator;
+DEFINE_VECTOR(CPHCall*,PHCALL_STORAGE,PHCALL_I);
 class CPHCommander
 {
 	

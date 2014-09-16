@@ -42,8 +42,7 @@ protected:
 			style = s;
 		};
 	};
-	using SubGraphVec = xr_vector<SSubGraph>;
-	using SubGraphVecIt = SubGraphVec::iterator;
+	DEFINE_VECTOR	(SSubGraph,SubGraphVec,SubGraphVecIt);
 	SubGraphVec		subgraphs;
 	
 	float			mn, mx;

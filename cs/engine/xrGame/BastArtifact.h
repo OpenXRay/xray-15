@@ -12,8 +12,7 @@
 struct SGameMtl;
 struct	dContact;
 
-using ALIVE_LIST = xr_vector<CEntityAlive*>;
-using ALIVE_LIST_it = ALIVE_LIST::iterator;
+DEFINE_VECTOR (CEntityAlive*, ALIVE_LIST, ALIVE_LIST_it);
 
 
 class CBastArtefact : public CArtefact,

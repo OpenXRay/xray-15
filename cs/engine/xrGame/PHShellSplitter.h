@@ -27,8 +27,7 @@ private:
 	CPHShellSplitter			()														;
 };
 
-using SPLITTER_STORAGE = xr_vector<CPHShellSplitter>;
-using SPLITTER_I = SPLITTER_STORAGE::iterator;
+DEFINE_VECTOR(CPHShellSplitter,SPLITTER_STORAGE,SPLITTER_I)
 typedef		xr_vector<CPHShellSplitter>::reverse_iterator	SPLITTER_RI;
 
 

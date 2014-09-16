@@ -320,8 +320,7 @@ MStatus CXRayObjectExport::ExportPart(CEditableObject* O, MDagPath& mdagPath, MO
 
 	// write faces
 	{
-		using FaceVec = xr_vector<st_Face>;
-		using FaceIt = FaceVec::iterator;
+		DEFINE_VECTOR(st_Face,FaceVec,FaceIt);
 
 		VMapVec& _vmaps			= MESH->m_VMaps;
 		SurfFaces& _surf_faces	= MESH->m_SurfFaces;

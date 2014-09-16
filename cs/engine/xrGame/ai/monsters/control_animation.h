@@ -48,8 +48,7 @@ class CControlAnimation : public CControl_ComPure<SControlAnimationData> {
 		bool	handled;
 	};
 
-	using ANIMATION_EVENT_VEC = xr_vector<SAnimationEvent>;
-	using ANIMATION_EVENT_VEC_IT = ANIMATION_EVENT_VEC::iterator;
+	DEFINE_VECTOR			(SAnimationEvent, ANIMATION_EVENT_VEC, ANIMATION_EVENT_VEC_IT);
 	DEFINE_MAP				(MotionID, ANIMATION_EVENT_VEC, ANIMATION_EVENT_MAP, ANIMATION_EVENT_MAP_IT);
 	ANIMATION_EVENT_MAP		m_anim_events;
 

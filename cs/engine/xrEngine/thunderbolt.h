@@ -57,8 +57,7 @@ public:
 
 struct SThunderboltCollection
 {
-	using DescVec = xr_vector<SThunderboltDesc*>;
-	using DescIt = DescVec::iterator;
+	DEFINE_VECTOR(SThunderboltDesc*,DescVec,DescIt);
 	DescVec			  			palette;
 	shared_str					section;
 public:
@@ -74,8 +73,7 @@ class ENGINE_API CEffect_Thunderbolt
 {
 	friend class dxThunderboltRender;
 protected:
-	using CollectionVec = xr_vector<SThunderboltCollection*>;
-	using CollectionVecIt = CollectionVec::iterator;
+	DEFINE_VECTOR(SThunderboltCollection*,CollectionVec,CollectionVecIt);
 	CollectionVec				collection;
 	SThunderboltDesc*			current;
 private:

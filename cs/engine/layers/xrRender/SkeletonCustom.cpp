@@ -543,8 +543,7 @@ void CKinematics::EnumBoneVertices	(SEnumVerticesCallback &C, u16 bone_id)
 }
 #include "cl_intersect.h"
 
-using OBBVec = xr_vector<Fobb>;
-using OBBVecIt = OBBVec::iterator;
+DEFINE_VECTOR(Fobb,OBBVec,OBBVecIt);
 
 bool	CKinematics::	PickBone			(const Fmatrix &parent_xform, IKinematics::pick_result &r, float dist, const Fvector& start, const Fvector& dir, u16 bone_id)
 {
@@ -576,8 +575,7 @@ void CKinematics::AddWallmark(const Fmatrix* parent_xform, const Fvector3& start
 	float dist				= flt_max;
 	BOOL picked				= FALSE;
 
-	using OBBVec = xr_vector<Fobb>;
-	using OBBVecIt = OBBVec::iterator;
+	DEFINE_VECTOR			(Fobb,OBBVec,OBBVecIt);
 	OBBVec					cache_obb;
 	cache_obb.resize		(LL_BoneCount());
 	IKinematics::pick_result r;r.normal = normal; r.dist = dist;

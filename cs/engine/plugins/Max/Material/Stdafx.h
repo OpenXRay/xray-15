@@ -62,8 +62,7 @@ typedef TMsgDlgBtn TMsgDlgButtons[mbHelp];
 #include <string>
 
 #define AnsiString string
-using AStringVec = xr_vector<AnsiString>;
-using AStringIt = AStringVec::iterator;
+DEFINE_VECTOR(AnsiString,AStringVec,AStringIt);
 
 //#include "clsid.h"
 //#include "Engine.h"

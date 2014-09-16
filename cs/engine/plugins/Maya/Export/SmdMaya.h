@@ -19,12 +19,9 @@ struct lstr {
 typedef xr_map<char *, int, struct lstr> NameIntMap;
 typedef xr_map<int, int> PtLookupMap;
 
-using SmdBoneVec = xr_vector<SmdBone*>;
-using SmdBoneIt = SmdBoneVec::iterator;
-using SmdTriVec = xr_vector<SmdTriangle*>;
-using SmdTriIt = SmdTriVec::iterator;
-using SmdVertVec = xr_vector<SmdVertex*>;
-using SmdVertIt = SmdVertVec::iterator;
+DEFINE_VECTOR(SmdBone*,		SmdBoneVec,	SmdBoneIt);
+DEFINE_VECTOR(SmdTriangle*,	SmdTriVec,	SmdTriIt);
+DEFINE_VECTOR(SmdVertex*,	SmdVertVec,	SmdVertIt);
 
 class CXRaySkinExport: public MPxFileTranslator
 {

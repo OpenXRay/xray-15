@@ -95,8 +95,7 @@ class CUISequenceSimpleItem: public CUISequenceItem
 		virtual void		Start				();
 		virtual void		Stop				();
 	};
-	using SubItemVec = xr_vector<SSubItem>;
-	using SubItemVecIt = SubItemVec::iterator;
+	DEFINE_VECTOR			(SSubItem,SubItemVec,SubItemVecIt);
 	SubItemVec				m_subitems;
 	struct SActionItem{
 		EGameActions			m_action;

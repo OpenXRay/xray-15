@@ -151,8 +151,7 @@ struct ECORE_API SJointIKData
 
 // refs
 class CBone;
-using BoneVec = xr_vector<CBone*>;
-using BoneIt = BoneVec::iterator;
+DEFINE_VECTOR		    (CBone*,BoneVec,BoneIt);
 
 class ECORE_API CBone
 {

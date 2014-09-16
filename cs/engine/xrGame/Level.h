@@ -178,8 +178,7 @@ public:
 public:
 	//////////////////////////////////////////////	
 	// static particles
-	using POVec = xr_vector<CParticlesObject*>;
-	using POIt = POVec::iterator;
+	DEFINE_VECTOR				(CParticlesObject*,POVec,POIt);
 	POVec						m_StaticParticles;
 
 	game_cl_GameState			*game;

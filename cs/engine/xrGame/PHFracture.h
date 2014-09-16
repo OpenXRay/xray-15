@@ -10,8 +10,7 @@
 class CPHFracture;
 class CPHElement;
 
-using CFEEDBACK_STORAGE = xr_vector<dJointFeedback>;
-using CFEEDBACK_I = CFEEDBACK_STORAGE::iterator;
+DEFINE_VECTOR(dJointFeedback,CFEEDBACK_STORAGE,CFEEDBACK_I)
 
 IC	void sub_diapasones(u16 &from1,u16 &to1,const u16 &from0,const u16 &to0);
 
@@ -68,13 +67,11 @@ public:
 	void			MassUnsplitFromFirstToSecond(const dMass& m);
 };
 
-using FRACTURE_STORAGE = xr_vector<CPHFracture>;
-using FRACTURE_I = FRACTURE_STORAGE::iterator;
+DEFINE_VECTOR(CPHFracture,FRACTURE_STORAGE,FRACTURE_I)
 typedef std::pair<CPHElement*,CShellSplitInfo>	element_fracture;
 typedef		xr_vector<element_fracture>::reverse_iterator	ELEMENT_PAIR_RI;
 typedef		xr_vector<CPHFracture>::reverse_iterator	FRACTURE_RI;
-using ELEMENT_PAIR_VECTOR = xr_vector<element_fracture>;
-using ELEMENT_PAIR_I = ELEMENT_PAIR_VECTOR::iterator;
+DEFINE_VECTOR(element_fracture,ELEMENT_PAIR_VECTOR,ELEMENT_PAIR_I)
 
 class CPHFracturesHolder 			//stored in CPHElement
 {

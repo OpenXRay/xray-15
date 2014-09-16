@@ -142,8 +142,7 @@ void CUIKickPlayer::OnBtnCancel()
 
 IC bool	DM_Compare_Players(game_PlayerState* v1, game_PlayerState* v2);
 
-using ItemVec = xr_vector<game_PlayerState*>;
-using ItemIt = ItemVec::iterator;
+DEFINE_VECTOR	(game_PlayerState*,ItemVec,ItemIt);
 /*
 LPCSTR _names[] = {
 	"1.andy",

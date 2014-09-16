@@ -257,8 +257,7 @@ protected:
 	void					UpdateBlowoutLight			();
 
 	//список партиклов для объетов внутри зоны
-	using OBJECT_INFO_VEC = xr_vector<SZoneObjectInfo>;
-	using OBJECT_INFO_VEC_IT = OBJECT_INFO_VEC::iterator;
+	DEFINE_VECTOR(SZoneObjectInfo,OBJECT_INFO_VEC,OBJECT_INFO_VEC_IT);
 	OBJECT_INFO_VEC			m_ObjectInfoMap;
 
 	void					CreateHit					(	u16 id_to, 

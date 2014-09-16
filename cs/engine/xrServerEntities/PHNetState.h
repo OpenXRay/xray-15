@@ -36,8 +36,7 @@ template<typename src>
 	void								read				(		src&		P,const Fvector& min,const Fvector& max);
 };
 
-using PHNETSTATE_VECTOR = xr_vector<SPHNetState>;
-using PHNETSTATE_I = PHNETSTATE_VECTOR::iterator;
+DEFINE_VECTOR(SPHNetState,PHNETSTATE_VECTOR,PHNETSTATE_I);
 
 struct SPHBonesData 
 {

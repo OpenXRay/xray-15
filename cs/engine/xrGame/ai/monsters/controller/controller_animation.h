@@ -74,8 +74,7 @@ private:
 		ELegsActionType	legs_motion;
 	};
 	
-	using PATH_ROTATIONS_VEC = xr_vector<SPathRotations>;
-	using PATH_ROTATIONS_VEC_IT = PATH_ROTATIONS_VEC::iterator;
+	DEFINE_VECTOR		(SPathRotations,	PATH_ROTATIONS_VEC, PATH_ROTATIONS_VEC_IT);
 	DEFINE_MAP			(ELegsActionType,	PATH_ROTATIONS_VEC, PATH_ROTATIONS_MAP, PATH_ROTATIONS_MAP_IT);
 	PATH_ROTATIONS_MAP	m_path_rotations;
 

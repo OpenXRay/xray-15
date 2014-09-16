@@ -76,10 +76,8 @@ typedef struct tagSDynamicGraphVertex {
 	CGameGraph::CEdge			*tpaEdges;
 } SDynamicGraphVertex;
 
-using GRAPH_VERTEX_VECTOR = xr_vector<SDynamicGraphVertex>;
-using GRAPH_VERTEX_IT = GRAPH_VERTEX_VECTOR::iterator;
-using GRAPH_EDGE_VECTOR = xr_vector<CGameGraph::CEdge>;
-using GRAPH_EDGE_IT = GRAPH_EDGE_VECTOR::iterator;
+DEFINE_VECTOR(SDynamicGraphVertex,		GRAPH_VERTEX_VECTOR,	GRAPH_VERTEX_IT);
+DEFINE_VECTOR(CGameGraph::CEdge,	GRAPH_EDGE_VECTOR,		GRAPH_EDGE_IT);
 
 class CLevelGameGraph {
 public:

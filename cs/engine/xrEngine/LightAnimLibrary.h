@@ -37,8 +37,7 @@ public:
     int		 	    LastKeyFrame		(){return Keys.rbegin()->first;}
     u32*			GetKey				(int frame){KeyPairIt it=Keys.find(frame); return (it!=Keys.end())?&(it->second):0;}
 };
-using LAItemVec = xr_vector<CLAItem*>;
-using LAItemIt = LAItemVec::iterator;
+DEFINE_VECTOR(CLAItem*,LAItemVec,LAItemIt);
 
 class ENGINE_API ELightAnimLibrary{
 public:

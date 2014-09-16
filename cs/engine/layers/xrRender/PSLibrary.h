@@ -8,12 +8,10 @@
 
 namespace PS {
 	class CPEDef;
-	using PEDVec = xr_vector<CPEDef*>;
-	using PEDIt = PEDVec::iterator;
+	DEFINE_VECTOR(CPEDef*,PEDVec,PEDIt);
 
 	class CPGDef;
-	using PGDVec = xr_vector<CPGDef*>;
-	using PGDIt = PGDVec::iterator;
+	DEFINE_VECTOR(CPGDef*,PGDVec,PGDIt);
 } // namespace PS
 
 class ECORE_API CPSLibrary : public particles_systems::library_interface {

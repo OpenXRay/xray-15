@@ -23,8 +23,7 @@ struct SLocationKey : public IPureSerializeObject<IReader,IWriter>,public IPureD
 	virtual void destroy							();
 };
 
-using Locations = xr_vector<SLocationKey>;
-using Locations_it = Locations::iterator;
+DEFINE_VECTOR (SLocationKey, Locations, Locations_it);
 
 struct CMapLocationRegistry : public CALifeAbstractRegistry<u16, Locations> {
 	virtual void save(IWriter &stream);

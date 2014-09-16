@@ -33,8 +33,7 @@ void CPortal::OnRender	()
 	if (psDeviceFlags.is(rsOcclusionDraw)){
 		VERIFY				(poly.size());
 		// draw rect
-		using LVec = xr_vector<FVF::L>;
-		using LVecIt = LVec::iterator;
+		DEFINE_VECTOR		(FVF::L,LVec,LVecIt);
 		static LVec	V;		V.resize(poly.size()+2);
 		Fvector C			= {0,0,0};
 		for (u32 k=0; k<poly.size(); k++){ C.add(poly[k]); V[k+1].set(poly[k],0x800000FF);}

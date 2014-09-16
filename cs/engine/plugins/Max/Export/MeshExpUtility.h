@@ -24,8 +24,7 @@ public:
 	~ExportItem(){};
 };
 
-using ExportItemVec = xr_vector<ExportItem>;
-using ExportItemIt = ExportItemVec::iterator;
+DEFINE_VECTOR(ExportItem,ExportItemVec,ExportItemIt);
 class MeshExpUtility : public UtilityObj {
 public:
 

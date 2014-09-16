@@ -30,8 +30,7 @@ struct ECORE_API st_WB{
 			st_WB	(u16 b, float w):bone(b),weight(w){;}
 	void	set		(u16 b, float w){bone=b;weight=w;}
 };
-using WBVec = xr_vector<st_WB>;
-using WBIt = WBVec::iterator;
+DEFINE_VECTOR(st_WB,WBVec,WBIt);
 struct ECORE_API st_VertexWB:public WBVec{
 protected:
 	static bool compare_by_weight(const st_WB& a, const st_WB& b)
@@ -65,8 +64,7 @@ public:
 //		sort_by_bone	(); // need only for export (before add vertex sort_by_bone)
 	}
 };
-using VWBVec = xr_vector<st_VertexWB>;
-using VWBIt = VWBVec::iterator;
+DEFINE_VECTOR(st_VertexWB,VWBVec,VWBIt);
 
 struct ECORE_API st_VMapPt{
 	int				vmap_index;	// ссылка на мапу
@@ -119,8 +117,7 @@ struct st_VMapPtLst{
 	u8				count;
 	st_VMapPt*		pts;
 };
-using VMRefsVec = xr_vector<st_VMapPtLst>;
-using VMRefsIt = VMRefsVec::iterator;
+DEFINE_VECTOR		(st_VMapPtLst,VMRefsVec,VMRefsIt);
 
 struct ECORE_API st_SVert{
 	Fvector			offs;
@@ -174,10 +171,8 @@ struct ECORE_API st_MeshOptions{
 };
 #pragma pack( pop )
 
-using AdjVec = xr_vector<IntVec>;
-using AdjIt = AdjVec::iterator;
-using VMapVec = xr_vector<st_VMap*>;
-using VMapIt = VMapVec::iterator;
+DEFINE_VECTOR		(IntVec,AdjVec,AdjIt);
+DEFINE_VECTOR		(st_VMap*,VMapVec,VMapIt);
 DEFINE_MAP			(CSurface*,IntVec,SurfFaces,SurfFacesPairIt);
 
 //refs
@@ -192,8 +187,7 @@ class CSector;
         ref_geom 	pGeom;
 		st_RenderBuffer	(u32 sv, u32 nv):dwStartVertex(sv),dwNumVertex(nv),pGeom(0){;}
 	};
-	using RBVector = xr_vector<st_RenderBuffer>;
-	using RBVecIt = RBVector::iterator;
+	DEFINE_VECTOR(st_RenderBuffer,RBVector,RBVecIt);
 	DEFINE_MAP(CSurface*,RBVector,RBMap,RBMapPairIt);
 #endif
 

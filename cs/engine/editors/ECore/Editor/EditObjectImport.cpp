@@ -264,8 +264,7 @@ bool CEditableObject::Import_LWO(const char* fn, bool bNeedOptimize)
 							MESH->m_VMRefs.push_back(st_VMapPtLst());
 							st_VMapPtLst&	m_vm_lst = MESH->m_VMRefs.back();
 
-                            using VMapPtVec = xr_vector<st_VMapPt>;
-                            using VMapPtIt = VMapPtVec::iterator;
+                            DEFINE_VECTOR	(st_VMapPt,VMapPtVec,VMapPtIt);
                             VMapPtVec		vm_lst;
 
 							Mpv.vmref 		= MESH->m_VMRefs.size()-1;

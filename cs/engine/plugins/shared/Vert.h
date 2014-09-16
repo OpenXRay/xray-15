@@ -7,8 +7,7 @@ struct SVertexData{
 	float		weight;
 	SVertexData	(u32 b, float w):bone(b),weight(w){;}
 };
-using VDVec = xr_vector<SVertexData>;
-using VDIt = VDVec::iterator;
+DEFINE_VECTOR(SVertexData,VDVec,VDIt);
 
 class CVertexDef
 {
@@ -23,8 +22,7 @@ public:
 		data.push_back(SVertexData(bone,weight));
 	}
 };
-using VertexDefVec = xr_vector<CVertexDef*>;
-using VertexDefIt = VertexDefVec::iterator;
+DEFINE_VECTOR(CVertexDef*,VertexDefVec,VertexDefIt);
 
 struct st_VERT {
 	Fvector			P;
@@ -61,6 +59,5 @@ public:
 	}
 };
 
-using ExpVertVec = xr_vector<st_VERT*>;
-using ExpVertIt = ExpVertVec::iterator;
+DEFINE_VECTOR(st_VERT*,ExpVertVec,ExpVertIt);
 

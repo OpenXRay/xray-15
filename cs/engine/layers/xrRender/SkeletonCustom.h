@@ -42,8 +42,7 @@ public:
 		u16				bone_id	[3][2];
 		float			weight	[3];
 	};
-	using WMFacesVec = xr_vector<WMFace>;
-	using WMFacesVecIt = WMFacesVec::iterator;
+	DEFINE_VECTOR		(WMFace,WMFacesVec,WMFacesVecIt);
 	WMFacesVec			m_Faces;		// 16 
 public:
 	Fsphere				m_Bounds;		// 16		world space
@@ -71,8 +70,7 @@ public:
 	IC const Fvector3&	ContactPoint		(){return m_ContactPoint;}
 	IC ref_shader		Shader				(){return m_Shader;}
 };
-using SkeletonWMVec = xr_vector<intrusive_ptr<CSkeletonWallmark>>;
-using SkeletonWMVecIt = SkeletonWMVec::iterator;
+DEFINE_VECTOR(intrusive_ptr<CSkeletonWallmark>,SkeletonWMVec,SkeletonWMVecIt);
 
 // sanity check
 #ifdef DEBUG

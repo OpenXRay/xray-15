@@ -6,8 +6,7 @@
 class CTelekinesis : public CPHUpdateObject {
 
 protected:
-	using TELE_OBJECTS = xr_vector<CTelekineticObject*>;
-	using TELE_OBJECTS_IT = TELE_OBJECTS::iterator;
+	DEFINE_VECTOR(CTelekineticObject*,TELE_OBJECTS,TELE_OBJECTS_IT);
 	TELE_OBJECTS			objects;
 	xr_vector<CObject*>		m_nearest;
 	bool					active;

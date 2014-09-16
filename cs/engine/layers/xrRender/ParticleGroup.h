@@ -35,8 +35,7 @@ namespace PS
             BOOL			Equal				(const SEffect&);
 #endif
 		};
-		using EffectVec = xr_vector<SEffect*>;
-		using EffectIt = EffectVec::iterator;
+		DEFINE_VECTOR(SEffect*,EffectVec,EffectIt);
 		EffectVec			m_Effects;
 #ifdef _EDITOR
 // change Equal if variables changed 
@@ -71,8 +70,7 @@ namespace PS
 		float				m_CurrentTime;
 		Fvector				m_InitialPosition;
 	public:
-    	using VisualVec = xr_vector<dxRender_Visual*>;
-    	using VisualVecIt = VisualVec::iterator;
+    	DEFINE_VECTOR(dxRender_Visual*,VisualVec,VisualVecIt);
     	struct SItem		{
         	dxRender_Visual*	_effect;
             VisualVec		_children_related;
@@ -105,8 +103,7 @@ namespace PS
             void			Play			();
             void			Stop			(BOOL def_stop);
         };
-        using SItemVec = xr_vector<SItem>;
-        using SItemVecIt = SItemVec::iterator;
+        DEFINE_VECTOR(SItem,SItemVec,SItemVecIt)
 		SItemVec			items;
 	public:
 		enum{
