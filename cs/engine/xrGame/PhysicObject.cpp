@@ -434,7 +434,8 @@ bool					CPhysicObject::	set_collision_hit_callback	(SCollisionHitCallback *cc)
 
 //////////////////////////////////////////////////////////////////////////
 /*
-DEFINE_MAP_PRED	(LPCSTR,	CPhysicsJoint*,	JOINT_P_MAP,	JOINT_P_PAIR_IT,	pred_str);
+using JOINT_P_MAP = xr_map<LPCSTR, CPhysicsJoint*, pred_str>;
+using JOINT_P_PAIR_IT = JOINT_P_MAP::iterator;
 
 JOINT_P_MAP			*l_tpJointMap = new JOINT_P_MAP();
 

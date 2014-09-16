@@ -219,7 +219,8 @@ public:
 	using EnvAmbVecIt = EnvAmbVec::iterator;
 	using EnvVec = xr_vector<CEnvDescriptor*>;
 	using EnvIt = EnvVec::iterator;
-	DEFINE_MAP_PRED			(shared_str,EnvVec,EnvsMap,EnvsMapIt,str_pred);
+	using EnvsMap = xr_map<shared_str, EnvVec, str_pred>;
+	using EnvsMapIt = EnvsMap::iterator;
 private:
 	// clouds
 	FvectorVec				CloudsVerts;

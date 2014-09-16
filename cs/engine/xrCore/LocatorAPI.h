@@ -51,7 +51,8 @@ private:
 		IC bool operator()	(const file& x, const file& y) const
 		{	return xr_strcmp(x.name,y.name)<0;	}
 	};
-	DEFINE_MAP_PRED				(LPCSTR,FS_Path*,PathMap,PathPairIt,pred_str);
+	using PathMap = xr_map<LPCSTR, FS_Path*, pred_str>;
+	using PathPairIt = PathMap::iterator;
 	PathMap						pathes;
 
 	DEFINE_SET_PRED				(file,files_set,files_it,file_pred);

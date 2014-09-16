@@ -27,18 +27,29 @@ private:
 		R_constant_setup*	cs;
 	};
 public:
-	DEFINE_MAP_PRED(const char*,IBlender*,		map_Blender,	map_BlenderIt,		str_pred);
-	DEFINE_MAP_PRED(const char*,CTexture*,		map_Texture,	map_TextureIt,		str_pred);
-	DEFINE_MAP_PRED(const char*,CMatrix*,		map_Matrix,		map_MatrixIt,		str_pred);
-	DEFINE_MAP_PRED(const char*,CConstant*,		map_Constant,	map_ConstantIt,		str_pred);
-	DEFINE_MAP_PRED(const char*,CRT*,			map_RT,			map_RTIt,			str_pred);
-	//	DX10 cut DEFINE_MAP_PRED(const char*,CRTC*,			map_RTC,		map_RTCIt,			str_pred);
-	DEFINE_MAP_PRED(const char*,SVS*,			map_VS,			map_VSIt,			str_pred);
+	using map_Blender = xr_map<const char*, IBlender*, str_pred>;
+	using map_BlenderIt = map_Blender::iterator;
+	using map_Texture = xr_map<const char*, CTexture*, str_pred>;
+	using map_TextureIt = map_Texture::iterator;
+	using map_Matrix = xr_map<const char*, CMatrix*, str_pred>;
+	using map_MatrixIt = map_Matrix::iterator;
+	using map_Constant = xr_map<const char*, CConstant*, str_pred>;
+	using map_ConstantIt = map_Constant::iterator;
+	using map_RT = xr_map<const char*, CRT*, str_pred>;
+	using map_RTIt = map_RT::iterator;
+	// DX10 cut
+    // using map_RTC = xr_map<const char*, CRTC*, str_pred>;
+    // using map_RTCIt = map_RTC::iterator;
+	using map_VS = xr_map<const char*, SVS*, str_pred>;
+	using map_VSIt = map_VS::iterator;
 #ifdef	USE_DX10
-	DEFINE_MAP_PRED(const char*,SGS*,			map_GS,			map_GSIt,			str_pred);
+	using map_GS = xr_map<const char*, SGS*, str_pred>;
+	using map_GSIt = map_GS::iterator;
 #endif	//	USE_DX10
-	DEFINE_MAP_PRED(const char*,SPS*,			map_PS,			map_PSIt,			str_pred);
-	DEFINE_MAP_PRED(const char*,texture_detail,	map_TD,			map_TDIt,			str_pred);
+	using map_PS = xr_map<const char*, SPS*, str_pred>;
+	using map_PSIt = map_PS::iterator;
+	using map_TD = xr_map<const char*, texture_detail, str_pred>;
+	using map_TDIt = map_TD::iterator;
 private:
 	// data
 	map_Blender											m_blenders;

@@ -63,7 +63,8 @@ u32 dwfGetIDByLevelName(CInifile *Ini, LPCSTR caLevelName)
 
 using GRAPH_P_MAP = xr_map<u32, ::CLevelGameGraph*>;
 using GRAPH_P_PAIR_IT = GRAPH_P_MAP::iterator;
-DEFINE_MAP_PRED	(LPSTR,					SConnectionVertex,		VERTEX_MAP,				VERTEX_PAIR_IT,	CCompareVertexPredicate);
+using VERTEX_MAP = xr_map<LPSTR, SConnectionVertex, CCompareVertexPredicate>;
+using VERTEX_PAIR_IT = VERTEX_MAP::iterator;
 
 typedef struct tagSDynamicGraphVertex {
 	Fvector						tLocalPoint;
