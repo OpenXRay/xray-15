@@ -8,7 +8,8 @@
 #define DEFAULT_ITEM_HEIGHT 30
 
 
-DEF_LIST (LIST_ITEM_LIST, CUIListItem*);
+using LIST_ITEM_LIST = xr_list<CUIListItem*>;
+using LIST_ITEM_LIST_it = LIST_ITEM_LIST::iterator;
 class CUIScrollBar;
 class CUIFrameLineWnd;
 
