@@ -394,7 +394,8 @@ using ANIM_ITEM_VECTOR = xr_vector<SAnimItem*>;
 using ANIM_ITEM_VECTOR_IT = ANIM_ITEM_VECTOR::iterator;
 using TRANSITION_ANIM_VECTOR = xr_vector<STransition>;
 using TRANSITION_ANIM_VECTOR_IT = TRANSITION_ANIM_VECTOR::iterator;
-DEFINE_MAP		(EAction,			SMotionItem,			MOTION_ITEM_MAP,			MOTION_ITEM_MAP_IT);
+using MOTION_ITEM_MAP = xr_map<EAction, SMotionItem>;
+using MOTION_ITEM_MAP_IT = MOTION_ITEM_MAP::iterator;
 using SEQ_VECTOR = xr_vector<EMotionAnim>;
 using SEQ_VECTOR_IT = SEQ_VECTOR::iterator;
 using ATTACK_ANIM = xr_vector<SAttackAnimation>;
@@ -402,8 +403,10 @@ using ATTACK_ANIM_IT = ATTACK_ANIM::iterator;
 using REPLACED_ANIM = xr_vector<SReplacedAnim>;
 using REPLACED_ANIM_IT = REPLACED_ANIM::iterator;
 
-DEFINE_MAP		(u16,				t_fx_index,				FX_MAP_U16,					FX_MAP_U16_IT);	
-DEFINE_MAP		(shared_str,			t_fx_index,				FX_MAP_STRING,				FX_MAP_STRING_IT);
+using FX_MAP_U16 = xr_map<u16, t_fx_index>;
+using FX_MAP_U16_IT = FX_MAP_U16::iterator;	
+using FX_MAP_STRING = xr_map<shared_str, t_fx_index>;
+using FX_MAP_STRING_IT = FX_MAP_STRING::iterator;
 
 
 using VELOCITY_CHAIN_VEC = xr_vector<SEQ_VECTOR>;
@@ -466,7 +469,8 @@ struct SMonsterEnemy {
 
 class CEntityAlive;
 
-DEFINE_MAP(const CEntityAlive *,SMonsterEnemy,ENEMIES_MAP, ENEMIES_MAP_IT);
+using ENEMIES_MAP = xr_map<const CEntityAlive*, SMonsterEnemy>;
+using ENEMIES_MAP_IT = ENEMIES_MAP::iterator;
 
 struct SMonsterCorpse {
 	Fvector position;
@@ -474,7 +478,8 @@ struct SMonsterCorpse {
 	TTime	time;
 };
 
-DEFINE_MAP(const CEntityAlive *,SMonsterCorpse,CORPSE_MAP, CORPSE_MAP_IT);
+using CORPSE_MAP = xr_map<const CEntityAlive*, SMonsterCorpse>;
+using CORPSE_MAP_IT = CORPSE_MAP::iterator;
 
 
 
@@ -501,7 +506,8 @@ enum EDangerType {
 	eNone
 };
 
-DEFINE_MAP(MotionID, shared_str, ANIM_TO_MOTION_MAP, ANIM_TO_MOTION_MAP_IT);
+using ANIM_TO_MOTION_MAP = xr_map<MotionID, shared_str>;
+using ANIM_TO_MOTION_MAP_IT = ANIM_TO_MOTION_MAP::iterator;
 
 
 

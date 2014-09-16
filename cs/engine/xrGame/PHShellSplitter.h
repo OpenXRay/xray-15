@@ -9,7 +9,8 @@ class CPHShellSplitter;
 class CPHShell;
 class CODEGeom;
 typedef std::pair<u16,CODEGeom*>	id_geom;
-DEFINE_MAP(u16,CODEGeom*,GEOM_MAP,GEOM_MAP_I)
+using GEOM_MAP = xr_map<u16, CODEGeom*>;
+using GEOM_MAP_I = GEOM_MAP::iterator;
 
 class CPHShellSplitter 
 {

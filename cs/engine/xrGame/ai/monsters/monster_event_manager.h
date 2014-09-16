@@ -19,7 +19,8 @@ class CMonsterEventManager {
 
 	using EVENT_VECTOR = xr_vector<event_struc>;
 	using EVENT_VECTOR_IT = EVENT_VECTOR::iterator;
-	DEFINE_MAP		(EEventType,		EVENT_VECTOR, EVENT_MAP, EVENT_MAP_IT);
+	using EVENT_MAP = xr_map<EEventType, EVENT_VECTOR>;
+	using EVENT_MAP_IT = EVENT_MAP::iterator;
 
 	EVENT_MAP		m_event_storage;
 public:

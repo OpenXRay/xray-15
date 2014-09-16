@@ -66,11 +66,13 @@ struct SSquadCommand
 class CMonsterSquad 
 {
 public:
-	DEFINE_MAP		(const CEntity*, SSquadCommand,	MEMBER_COMMAND_MAP, MEMBER_COMMAND_MAP_IT);
+	using MEMBER_COMMAND_MAP = xr_map<const CEntity*, SSquadCommand>;
+	using MEMBER_COMMAND_MAP_IT = MEMBER_COMMAND_MAP::iterator;
 
 private:
 	CEntity				*leader;
-	DEFINE_MAP		(CEntity*, SMemberGoal,		MEMBER_GOAL_MAP,	MEMBER_GOAL_MAP_IT);
+	using MEMBER_GOAL_MAP = xr_map<CEntity*, SMemberGoal>;
+	using MEMBER_GOAL_MAP_IT = MEMBER_GOAL_MAP::iterator;
 
 	// карта целей членов группы (обновляется со стороны объекта)
 	MEMBER_GOAL_MAP		m_goals;
@@ -140,7 +142,8 @@ public:
 	//  Атака группой монстров
 	//////////////////////////////////////////////////////////////////////////////////////
 	
-	DEFINE_MAP		(const CEntity*, ENTITY_VEC,	ENEMY_MAP, ENEMY_MAP_IT);
+	using ENEMY_MAP = xr_map<const CEntity*, ENTITY_VEC>;
+	using ENEMY_MAP_IT = ENEMY_MAP::iterator;
 	
 	ENEMY_MAP		m_enemy_map;
 

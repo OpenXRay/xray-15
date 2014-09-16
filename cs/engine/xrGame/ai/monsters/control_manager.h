@@ -20,11 +20,13 @@ class CControl_Manager {
 
 	using CONTROLLERS_VECTOR = xr_vector<CControl_Com*>;
 	using CONTROLLERS_VECTOR_IT = CONTROLLERS_VECTOR::iterator;
-	DEFINE_MAP				(ControlCom::EEventType, CONTROLLERS_VECTOR, LISTENERS_MAP, LISTENERS_MAP_IT);	
+	using LISTENERS_MAP = xr_map<ControlCom::EEventType, CONTROLLERS_VECTOR>;
+	using LISTENERS_MAP_IT = LISTENERS_MAP::iterator;	
 	LISTENERS_MAP			m_listeners;
 
 	// contains all available controllers
-	DEFINE_MAP				(ControlCom::EControlType, CControl_Com*, CONTROLLERS_MAP, CONTROLLERS_MAP_IT);
+	using CONTROLLERS_MAP = xr_map<ControlCom::EControlType, CControl_Com*>;
+	using CONTROLLERS_MAP_IT = CONTROLLERS_MAP::iterator;
 	CONTROLLERS_MAP			m_control_elems;
 	CONTROLLERS_MAP			m_base_elems;
 	

@@ -143,7 +143,8 @@ using MotionVec = xr_vector<CMotion>;
 using MotionVecIt = MotionVec::iterator;
 using BoneMotionsVec = xr_vector<MotionVec*>;
 using BoneMotionsVecIt = BoneMotionsVec::iterator;
-DEFINE_MAP				(shared_str,MotionVec,BoneMotionMap,BoneMotionMapIt);
+using BoneMotionMap = xr_map<shared_str, MotionVec>;
+using BoneMotionMapIt = BoneMotionMap::iterator;
 
 // partition
 class 	ENGINE_API	CPartDef
@@ -197,7 +198,8 @@ struct 	ENGINE_API	motions_value
 
 class 	ENGINE_API	motions_container
 {
-	DEFINE_MAP			(shared_str,motions_value*,SharedMotionsMap,SharedMotionsMapIt);
+	using SharedMotionsMap = xr_map<shared_str, motions_value*>;
+	using SharedMotionsMapIt = SharedMotionsMap::iterator;
 	SharedMotionsMap	container;
 public:
 						motions_container	();

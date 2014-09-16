@@ -196,7 +196,8 @@ public:
     
 private:
 	// preload sounds registry
-	DEFINE_MAP					(shared_str,ref_sound,SoundRegistryMap,SoundRegistryMapIt);
+	using SoundRegistryMap = xr_map<shared_str, ref_sound>;
+	using SoundRegistryMapIt = SoundRegistryMap::iterator;
 	SoundRegistryMap			sound_registry;
 
 public:
