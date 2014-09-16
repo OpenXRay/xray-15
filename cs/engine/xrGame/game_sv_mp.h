@@ -38,7 +38,8 @@ protected:
 
 	CORPSE_LIST						m_CorpseList;
 
-	DEF_VECTOR(RANKS_LIST, Rank_Struct);
+	using RANKS_LIST = xr_vector<Rank_Struct>;
+	using RANKS_LIST_it = RANKS_LIST::iterator;
 
 	RANKS_LIST						m_aRanks;
 	bool							m_bRankUp_Allowed;

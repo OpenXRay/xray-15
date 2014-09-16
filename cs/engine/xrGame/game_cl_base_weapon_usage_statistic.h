@@ -22,7 +22,8 @@ struct BulletData
 	BulletData		(shared_str FName, shared_str WName, SBullet* pBullet);
 };
 
-DEF_VECTOR		(ABULLETS, BulletData);
+using ABULLETS = xr_vector<BulletData>;
+using ABULLETS_it = ABULLETS::iterator;
 
 struct victims_table
 {
@@ -79,7 +80,8 @@ struct HitData
 	void				WriteLtx					(CInifile& ini, LPCSTR sect, LPCSTR perfix);
 };
 
-DEF_VECTOR	(HITS_VEC, HitData);
+using HITS_VEC = xr_vector<HitData>;
+using HITS_VEC_it = HITS_VEC::iterator;
 
 #define MAX_BASKET		34
 struct Weapon_Statistic
@@ -115,7 +117,8 @@ struct Weapon_Statistic
 	void				WriteLtx					(CInifile& ini, LPCSTR sect);
 };
 
-DEF_VECTOR		(WEAPON_STATS, Weapon_Statistic);
+using WEAPON_STATS = xr_vector<Weapon_Statistic>;
+using WEAPON_STATS_it = WEAPON_STATS::iterator;
 
 struct Player_Statistic
 {
@@ -156,7 +159,8 @@ struct Player_Statistic
 	u32			create_bone_table(bone_table & bone_table);				//retutns size in bytes of table
 };
 
-DEF_VECTOR	(PLAYERS_STATS, Player_Statistic);
+using PLAYERS_STATS = xr_vector<Player_Statistic>;
+using PLAYERS_STATS_it = PLAYERS_STATS::iterator;
 
 struct Bullet_Check_Request
 {
@@ -168,7 +172,8 @@ struct Bullet_Check_Request
 	Bullet_Check_Request(u32 ID, s16 BID) : BulletID(ID), BoneID(BID), Result(false), Processed(false) {};
 };
 
-DEF_VECTOR(BChR, Bullet_Check_Request);
+using BChR = xr_vector<Bullet_Check_Request>;
+using BChR_it = BChR::iterator;
 
 struct Bullet_Check_Array
 {
@@ -184,7 +189,8 @@ struct Bullet_Check_Array
 	~Bullet_Check_Array () {Requests.clear_and_free();};
 };	
 
-DEF_VECTOR(BChA, Bullet_Check_Array);
+using BChA = xr_vector<Bullet_Check_Array>;
+using BChA_it = BChA::iterator;
 
 struct WeaponUsageStatistic {
 

@@ -137,7 +137,8 @@ private:
 	u32							m_dwNumSteps;
 	bool						m_bIn_CrPr;
 
-	DEF_VECTOR					(OBJECTS_LIST, CGameObject*);
+    using OBJECTS_LIST = xr_vector<CGameObject*>;
+    using OBJECTS_LIST_it = OBJECTS_LIST::iterator;
 
 	OBJECTS_LIST				pObjects4CrPr;
 	OBJECTS_LIST				pActors4CrPr;
