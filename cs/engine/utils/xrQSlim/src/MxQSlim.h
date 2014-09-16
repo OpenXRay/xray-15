@@ -57,7 +57,8 @@ private:
 
     //
     // Temporary variables used by methods
-	DEFINE_VECTOR(MxQSlimEdge*,EdgeVec,EdgeVecIt);
+	using EdgeVec = xr_vector<MxQSlimEdge*>;
+	using EdgeVecIt = EdgeVec::iterator;
 	EdgeVec				edges;
 	MxVertexList		star, star2;
     MxPairContraction	conx_tmp;

@@ -61,11 +61,12 @@
 	#define ShaderVec 	shared_str
 //	#define ShaderVec 	shared_str
 #else
-	DEFINE_VECTOR(ref_sound,SoundVec,SoundIt);
-	DEFINE_VECTOR(shared_str,PSVec,PSIt);
+	using SoundVec = xr_vector<ref_sound>;
+	using SoundIt = SoundVec::iterator;
+	using PSVec = xr_vector<shared_str>;
+	using PSIt = PSVec::iterator;
 #include "../Include/xrRender/WallMarkArray.h"
 #include "../Include/xrRender/RenderFactory.h"
-//	DEFINE_VECTOR(ref_shader,ShaderVec,ShaderIt);
 #endif
 
 struct MTL_EXPORT_API SGameMtl
@@ -144,7 +145,8 @@ public:
     void 				FillProp		(PropItemVec& values, ListItem* owner);
 #endif
 };
-DEFINE_VECTOR(SGameMtl*,GameMtlVec,GameMtlIt);
+using GameMtlVec = xr_vector<SGameMtl*>;
+using GameMtlIt = GameMtlVec::iterator;
 
 struct MTL_EXPORT_API SGameMtlPair{
 	friend class CGameMtlLibrary;
@@ -223,7 +225,8 @@ public:
 #endif
 };
 
-DEFINE_VECTOR(SGameMtlPair*,GameMtlPairVec,GameMtlPairIt);
+using GameMtlPairVec = xr_vector<SGameMtlPair*>;
+using GameMtlPairIt = GameMtlPairVec::iterator;
 
 class MTL_EXPORT_API CGameMtlLibrary{
 	int					material_index;

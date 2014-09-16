@@ -26,7 +26,6 @@ extern	CObject			*trace_object							;
 #ifdef DRAW_CONTACTS
 
 
-//DEFINE_VECTOR(SPHContactDBGDraw,CONTACT_VECTOR,CONTACT_I);
 //extern CONTACT_VECTOR Contacts0;
 //extern CONTACT_VECTOR Contacts1;
 #endif
@@ -94,7 +93,6 @@ enum
 	dbg_track_obj_blends_state			= 1<< 9,
 	dbg_track_obj_blends_dump			= 1<< 10
 };
-//DEFINE_VECTOR( SPHObjDBGDraw, PHOBJ_DBG_V, PHOBJ_DBG_I );
 //extern PHOBJ_DBG_V	dbg_draw_objects0;
 //extern PHOBJ_DBG_V	dbg_draw_objects1;
 class CPHObject;
@@ -105,7 +103,8 @@ struct SPHDBGDrawAbsract
 	virtual void				render				( )						=0;
 	virtual						~SPHDBGDrawAbsract	( )						{ };
 };
-DEFINE_VECTOR( SPHDBGDrawAbsract*, PHABS_DBG_V, PHABS_DBG_I )					;
+using PHABS_DBG_V = xr_vector<SPHDBGDrawAbsract*>;
+using PHABS_DBG_I  = PHABS_DBG_V::iterator;
 extern PHABS_DBG_V	dbg_draw_abstruct0;
 extern PHABS_DBG_V	dbg_draw_abstruct1;
 void DBG_DrawStatBeforeFrameStep( );

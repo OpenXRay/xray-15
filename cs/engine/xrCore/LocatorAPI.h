@@ -40,7 +40,8 @@ public:
 		void					open();
 		void					close();
 	};
-    DEFINE_VECTOR				(archive,archives_vec,archives_it);
+    using archives_vec = xr_vector<archive>;
+    using archives_it = archives_vec::iterator;
     archives_vec				m_archives;
 	void						LoadArchive		(archive& A, LPCSTR entrypoint=NULL);
 
@@ -55,7 +56,8 @@ private:
 
 	DEFINE_SET_PRED				(file,files_set,files_it,file_pred);
 
-	DEFINE_VECTOR				(_finddata_t,FFVec,FFIt);
+	using FFVec = xr_vector<_finddata_t>;
+	using FFIt = FFVec::iterator;
 	FFVec						rec_files;
 
     int							m_iLockRescan	; 

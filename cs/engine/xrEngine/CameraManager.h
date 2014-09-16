@@ -102,8 +102,10 @@ struct ENGINE_API SPPInfo {
 	void		validate(LPCSTR str);
 };
 
-DEFINE_VECTOR				(CEffectorCam*,EffectorCamVec,EffectorCamIt);
-DEFINE_VECTOR				(CEffectorPP*,EffectorPPVec,EffectorPPIt);
+using EffectorCamVec = xr_vector<CEffectorCam*>;
+using EffectorCamIt = EffectorCamVec::iterator;
+using EffectorPPVec = xr_vector<CEffectorPP*>;
+using EffectorPPIt = EffectorPPVec::iterator;
 
 struct SCamEffectorInfo;
 class ENGINE_API CCameraManager
