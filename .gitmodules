@@ -1,0 +1,3 @@
+[submodule "XRay-CS-Libs"]
+	path = cs/XRay-CS-Libs
+	url = https://github.com/STALKER2010/XRay-CS-Libs.git
