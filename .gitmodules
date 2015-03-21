@@ -1,3 +1,12 @@
-[submodule "XRay-CS-Libs"]
-	path = cs/XRay-CS-Libs
-	url = https://github.com/STALKER2010/XRay-CS-Libs.git
+[submodule "cs/3rd party/zlib"]
+	path = cs/3rd party/zlib
+	url = https://github.com/madler/zlib.git
+[submodule "cs/3rd party/jpeg"]
+	path = cs/3rd party/jpeg
+	url = https://github.com/winlibs/libjpeg.git
+[submodule "cs/3rd party/BugTrap"]
+	path = cs/3rd party/BugTrap
+	url = https://github.com/nitrocaster/BugTrap.git
+[submodule "cs/3rd party/OpenAutomate"]
+	path = cs/3rd party/OpenAutomate
+	url = https://github.com/Armada651/OpenAutomate.git
