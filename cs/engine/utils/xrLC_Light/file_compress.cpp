@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include <zlib/include/zlib.h>
+#include <zlib/zlib.h>
 #pragma comment(lib, "zlib.lib")
 void compress( LPCSTR f_in, LPCSTR f_out );
 void decompress( LPCSTR f_in, LPCSTR f_out );
