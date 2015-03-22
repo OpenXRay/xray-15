@@ -276,7 +276,10 @@
       <Project>{ebf9b543-0830-4866-9b48-dc0740e87e8a}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\3rd party\zlib\zlib.vcxproj">
+    <ProjectReference Include="..\..\..\3rd party\jpeg.vcxproj">
+      <Project>{019dbd2a-273d-4ba4-bf86-b5efe2ed76b1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\3rd party\zlib.vcxproj">
       <Project>{745dec58-ebb3-47a9-a9b8-4c6627c01bf8}</Project>
     </ProjectReference>
   </ItemGroup>

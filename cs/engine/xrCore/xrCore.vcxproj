@@ -400,6 +400,11 @@
   <ItemGroup>
     <ResourceCompile Include="xrCore.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\3rd party\BugTrap.vcxproj">
+      <Project>{e8cf1ada-264a-4127-86c2-fd7057d3792c}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
