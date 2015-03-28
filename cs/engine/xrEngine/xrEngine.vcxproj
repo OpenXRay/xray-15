@@ -776,6 +776,9 @@
       <Project>{ccca7859-eb86-493e-9b53-c4235f45b3c5}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\..\3rd party\oalib.vcxproj">
+      <Project>{61d4856f-fa82-4f02-bb88-909ddfb1fe74}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
