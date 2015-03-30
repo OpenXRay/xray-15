@@ -531,8 +531,8 @@ Fvector CControlJump::predict_position(CObject *obj, const Fvector &pos)
 	
 //#ifdef DEBUG
 //	DBG().level_info(this).clear	();
-//	DBG().level_info(this).add_item	(pos, 0.35f, D3DCOLOR_XRGB(0,0,255));
-//	DBG().level_info(this).add_item	(prediction_pos, 0.35f, D3DCOLOR_XRGB(255,0,0));
+//	DBG().level_info(this).add_item	(pos, 0.35f, color_xrgb(0,0,255));
+//	DBG().level_info(this).add_item	(prediction_pos, 0.35f, color_xrgb(255,0,0));
 //#endif
 //
 //	return prediction_pos;
