@@ -3,6 +3,50 @@
 class CRender	:	public IRender_interface
 {
 public:
+	struct		_options	{
+		u32		bug : 1;
+
+		u32		ssao_blur_on : 1;
+		u32		ssao_opt_data : 1;
+		u32		ssao_half_data : 1;
+		u32		ssao_hbao : 1;
+		u32		ssao_hdao : 1;
+
+		u32		smapsize : 16;
+		u32		depth16 : 1;
+		u32		mrt : 1;
+		u32		mrtmixdepth : 1;
+		u32		fp16_filter : 1;
+		u32		fp16_blend : 1;
+		u32		albedo_wo : 1;						// work-around albedo on less capable HW
+		u32		HW_smap : 1;
+		u32		HW_smap_PCF : 1;
+		u32		HW_smap_FETCH4 : 1;
+
+		u32		HW_smap_FORMAT : 32;
+
+		u32		nvstencil : 1;
+		u32		nvdbt : 1;
+
+		u32		nullrt : 1;
+
+		u32		distortion : 1;
+		u32		distortion_enabled : 1;
+		u32		mblur : 1;
+
+		u32		sunfilter : 1;
+		u32		sunstatic : 1;
+		u32		sjitter : 1;
+		u32		noshadows : 1;
+		u32		Tshadows : 1;						// transluent shadows
+		u32		disasm : 1;
+		u32		advancedpp : 1;	//	advanced post process (DOF, SSAO, volumetrics, etc.)
+
+		u32		forcegloss : 1;
+		u32		forceskinw : 1;
+		float	forcegloss_v;
+	}			o;
+public:
 	// feature level
 	virtual	GenerationLevel			get_generation() { return IRender_interface::GENERATION_R2; };
 
@@ -10,7 +54,7 @@ public:
 	virtual DWORD					get_dx_level() { return 0x00000000; };
 
 	// Loading / Unloading
-	virtual	void					create() {};
+	virtual	void					create();
 	virtual	void					destroy() {};
 	virtual	void					reset_begin() {};
 	virtual	void					reset_end() {};
