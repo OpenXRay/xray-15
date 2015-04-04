@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Kernel">
+      <UniqueIdentifier>{ee1c7ac7-c85c-4277-83d0-d08467b83aa7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{53cb24d7-0c59-4f77-bcca-6f082e40124a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\memory">
+      <UniqueIdentifier>{146e9dbb-6558-447e-92f5-28b6b851e62e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Details">
+      <UniqueIdentifier>{9cc9c9a1-1877-43a6-8427-7268cdf2e452}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stripifier">
+      <UniqueIdentifier>{98f38829-c41a-4b5d-9261-eeb56b2e9c63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lights">
+      <UniqueIdentifier>{28ef8faa-512f-49f3-bd32-6abdcc33b954}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Glows">
+      <UniqueIdentifier>{c206756c-2f74-4863-9105-7aacea283cf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wallmarks">
+      <UniqueIdentifier>{385843e2-837b-4156-a1b1-cf2f305b90d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shading templates">
+      <UniqueIdentifier>{2f186d78-3d83-4191-9c61-ca76bc3e9621}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shading templates\R1">
+      <UniqueIdentifier>{93ebf16f-5dcf-4b86-a40f-842f37bc4ad0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shading templates\3dFluid">
+      <UniqueIdentifier>{48beb695-f694-46fd-8d5e-e29250e8a39c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shading templates\DX10 Rain">
+      <UniqueIdentifier>{c46a290c-60b9-481f-8a58-3d6a2f20cf12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Models">
+      <UniqueIdentifier>{dabaf9b9-b4fd-4612-a8fe-651a62eab2dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Models\Visuals">
+      <UniqueIdentifier>{d4f10188-c7e9-4c6e-a6d8-dcb17fd04d2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Visibility">
+      <UniqueIdentifier>{0ef1902c-7d1e-4870-ad88-f4e93770c6ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Visibility\Sector/Portal">
+      <UniqueIdentifier>{eb458550-7ea0-42ac-a827-a9efee72a598}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Visibility\HOM Occlusion">
+      <UniqueIdentifier>{66a1a300-6848-42d9-ab20-8a9a1a1bc3fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core_Target">
+      <UniqueIdentifier>{20490ee5-e59b-47de-85f7-3970591693e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Refactored">
+      <UniqueIdentifier>{54677349-00b3-44ea-b629-d1e7b1f8f1b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Refactored\HW">
+      <UniqueIdentifier>{c95775fa-0e1f-4062-8f37-4aa12b3ed2c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Refactored\Backend">
+      <UniqueIdentifier>{c95b8208-76b1-41f4-99c2-cb71f80a098b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Refactored\Execution &amp; 3D">
+      <UniqueIdentifier>{551e4dd9-d957-4bb8-96d9-c37e86f15778}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Refactored\Execution &amp; 3D\Shaders">
+      <UniqueIdentifier>{fccd0ac1-680a-4c70-b6ef-c8ad88018450}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Refactored\Execution &amp; 3D\Shaders\Resources">
+      <UniqueIdentifier>{ce4ab461-378b-41c2-8db7-60befef3631b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Refactored\Execution &amp; 3D\Shaders\Resources\dx10_R_shader">
+      <UniqueIdentifier>{7f4d92ab-696d-4ac0-be7c-e8c79b0c969a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Refactored\Execution &amp; 3D\Shaders\ShaderManager">
+      <UniqueIdentifier>{389b4dc4-629d-42d1-a5a2-a951c2e5751a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Refactored\Execution &amp; 3D\Shaders\Blender">
+      <UniqueIdentifier>{993ff56e-261b-4bbc-bae1-6bd7fdf4cd12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Refactored\Execution &amp; 3D\DebugDraw">
+      <UniqueIdentifier>{dbe2a983-4b32-43e9-b23b-9c73c8d5e0d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Refactored\Execution &amp; 3D\Visuals">
+      <UniqueIdentifier>{a474bbac-154c-4438-9cf3-17c51b65153f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Refactored\Execution &amp; 3D\Visuals\Skeleton">
+      <UniqueIdentifier>{b7d8c5f1-8720-41b7-86b8-52c2b18b6973}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Refactored\Execution &amp; 3D\Gamma">
+      <UniqueIdentifier>{51f32eeb-a8a5-455d-ab60-4c08dcb67d4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Refactored\Interfaces">
+      <UniqueIdentifier>{a8ac7cee-eb6c-496d-9aa2-5437e02bae08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dx9 to dx10 Utils">
+      <UniqueIdentifier>{718c18ae-b020-4ef6-aa6f-e77db06a9ba1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StateManager">
+      <UniqueIdentifier>{a4f1e023-aa94-4b42-bde6-33618fe2aa71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{1d86ec37-ed03-4b4a-ad08-d1136281e738}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3DFluid">
+      <UniqueIdentifier>{1e85b88d-02df-4201-a824-ce99fe50f29f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{8c65afaf-80f3-4696-9919-73c851754961}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface implementations">
+      <UniqueIdentifier>{25f1ea9c-d5c1-4075-923e-951b0fa6e6a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface implementations\RenderFactory">
+      <UniqueIdentifier>{24815e1d-3066-4fd1-97c0-7b32d3364fd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface implementations\LensFlare">
+      <UniqueIdentifier>{fc30762e-c5ad-4274-8a8d-46e99881455e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface implementations\FactoryPtr">
+      <UniqueIdentifier>{4b7685a7-0fdc-4a10-9bdf-1f9b57f8a01e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface implementations\ApplicationRender">
+      <UniqueIdentifier>{0c371c34-8b52-45e5-8c4c-f582d12be245}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface implementations\RainRender">
+      <UniqueIdentifier>{1f7c26c8-fca2-4170-b9bf-367a5d89d4a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface implementations\ThunderboltRender">
+      <UniqueIdentifier>{ba78afbf-110a-482f-b44e-da7b1bd7da04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface implementations\EnvironmentRender">
+      <UniqueIdentifier>{b5b51ab2-f315-499d-aec0-4054c51b45b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface implementations\RenderDeviceRender">
+      <UniqueIdentifier>{219d4613-57a6-4929-9730-bf813f130ac9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface implementations\ConsoleRender">
+      <UniqueIdentifier>{ff98203c-286a-491e-b114-680b278e8c53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface implementations\ObjectSpaceRender">
+      <UniqueIdentifier>{3b54aaa6-3ffb-4e31-b34b-eadea13eed14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface implementations\FontRender">
+      <UniqueIdentifier>{c7742606-2801-4837-803f-f2761f664603}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface implementations\WallMarkArray">
+      <UniqueIdentifier>{17958c5c-650a-4b55-9aee-f52d8239deb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface implementations\StatGraphRender">
+      <UniqueIdentifier>{d37cd508-f760-4ce5-96aa-7951619d63c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface implementations\ThunderboltDescRender">
+      <UniqueIdentifier>{5e0e07b7-fbaa-4814-af4b-6873f02a4430}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface implementations\StatsRender">
+      <UniqueIdentifier>{b253cb14-0c8c-4aa7-9341-c56fe542ce84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface implementations\Debug">
+      <UniqueIdentifier>{2b5eb554-65e1-43bb-9086-68c3d460b1de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface implementations\Debug\DebugRender">
+      <UniqueIdentifier>{2d3299ef-3c81-42e4-a4a7-864cb311777e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface implementations\UI">
+      <UniqueIdentifier>{78baea28-4b83-4c9d-9a86-d5d29b7d1ff7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface implementations\UI\UIRender">
+      <UniqueIdentifier>{3ef93fac-90de-479d-95ab-12589c8fc6c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface implementations\UI\UIShader">
+      <UniqueIdentifier>{8a886ec3-491c-4017-859d-ca1fe9e4a8f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface implementations\UI\UISequenceVideoItem">
+      <UniqueIdentifier>{06d9c749-eea7-49a1-bd52-6a2884c2b0cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface implementations\MSAARender">
+      <UniqueIdentifier>{96eff257-a076-4325-ad62-ab5e7f57e2c1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="xrRender_GL.cpp">
+      <Filter>Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\xrRender_console.cpp">
+      <Filter>Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="r4.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRender\xrRender_console.h">
+      <Filter>Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="r4.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

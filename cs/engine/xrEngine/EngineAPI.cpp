@@ -48,7 +48,17 @@ void CEngineAPI::Initialize(void)
 
 #ifndef DEDICATED_SERVER
 	LPCSTR			r2_name	= "xrRender_R2.dll";
-	LPCSTR			r3_name	= "xrRender_R3.dll";
+	LPCSTR			r3_name = "xrRender_R3.dll";
+	LPCSTR			gl_name = "xrRender_GL.dll";
+
+	if (psDeviceFlags.test(rsGL))
+	{
+		// try to initialize GL
+		Log("Loading DLL:", gl_name);
+		hRender = LoadLibrary(gl_name);
+		if (0 == hRender)	R_CHK(GetLastError());
+		R_ASSERT(hRender);
+	}
 
 	if (psDeviceFlags.test(rsR3))
 	{
@@ -140,9 +150,11 @@ void CEngineAPI::CreateRendererList()
 	bool bSupports_r2 = false;
 	bool bSupports_r2_5 = false;
 	bool bSupports_r3 = false;
+	bool bSupports_gl = false;
 
 	LPCSTR			r2_name	= "xrRender_R2.dll";
-	LPCSTR			r3_name	= "xrRender_R3.dll";
+	LPCSTR			r3_name = "xrRender_R3.dll";
+	LPCSTR			gl_name = "xrRender_GL.dll";
 
 	if (strstr(Core.Params,"-perfhud_hack"))
 	{
@@ -179,6 +191,12 @@ void CEngineAPI::CreateRendererList()
 			FreeLibrary(hRender);
 		}
 	}
+
+	// try to initialize GL
+	Log("Loading DLL:", gl_name);
+	hRender = LoadLibrary(gl_name);
+	if (hRender)
+		bSupports_gl = true;
 
 	hRender = 0;
 
@@ -219,6 +237,10 @@ void CEngineAPI::CreateRendererList()
 		if (bBreakLoop) break;
 		_tmp.back()					= xr_strdup(val);
 	}
+
+	if (bSupports_gl)
+		_tmp.push_back("renderer_gl");
+
 	u32 _cnt								= _tmp.size()+1;
 	vid_quality_token						= xr_alloc<xr_token>(_cnt);
 
