@@ -126,6 +126,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "oalib", "3rd party\oalib.vc
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xrRender_GL", "engine\layers\xrRenderPC_GL\xrRender_GL.vcxproj", "{2C5AF8C8-96A6-45B2-860B-5E9C9911DDD6}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glew", "3rd party\glew.vcxproj", "{664E6F0D-6784-4760-9565-D54F8EB1EDF4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug_Dedicated|Win32 = Debug_Dedicated|Win32
@@ -658,6 +660,18 @@ Global
 		{2C5AF8C8-96A6-45B2-860B-5E9C9911DDD6}.Release_Dedicated|Win32.Build.0 = Release|Win32
 		{2C5AF8C8-96A6-45B2-860B-5E9C9911DDD6}.Release|Win32.ActiveCfg = Release|Win32
 		{2C5AF8C8-96A6-45B2-860B-5E9C9911DDD6}.Release|Win32.Build.0 = Release|Win32
+		{664E6F0D-6784-4760-9565-D54F8EB1EDF4}.Debug_Dedicated|Win32.ActiveCfg = Debug|Win32
+		{664E6F0D-6784-4760-9565-D54F8EB1EDF4}.Debug_Dedicated|Win32.Build.0 = Debug|Win32
+		{664E6F0D-6784-4760-9565-D54F8EB1EDF4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{664E6F0D-6784-4760-9565-D54F8EB1EDF4}.Debug|Win32.Build.0 = Debug|Win32
+		{664E6F0D-6784-4760-9565-D54F8EB1EDF4}.Mixed_Dedicated|Win32.ActiveCfg = Release|Win32
+		{664E6F0D-6784-4760-9565-D54F8EB1EDF4}.Mixed_Dedicated|Win32.Build.0 = Release|Win32
+		{664E6F0D-6784-4760-9565-D54F8EB1EDF4}.Mixed|Win32.ActiveCfg = Release|Win32
+		{664E6F0D-6784-4760-9565-D54F8EB1EDF4}.Mixed|Win32.Build.0 = Release|Win32
+		{664E6F0D-6784-4760-9565-D54F8EB1EDF4}.Release_Dedicated|Win32.ActiveCfg = Release|Win32
+		{664E6F0D-6784-4760-9565-D54F8EB1EDF4}.Release_Dedicated|Win32.Build.0 = Release|Win32
+		{664E6F0D-6784-4760-9565-D54F8EB1EDF4}.Release|Win32.ActiveCfg = Release|Win32
+		{664E6F0D-6784-4760-9565-D54F8EB1EDF4}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -708,6 +722,7 @@ Global
 		{019DBD2A-273D-4BA4-BF86-B5EFE2ED76B1} = {2BFC806B-CE92-4EA4-8FE8-5F2EA54BA348}
 		{E8CF1ADA-264A-4127-86C2-FD7057D3792C} = {2BFC806B-CE92-4EA4-8FE8-5F2EA54BA348}
 		{61D4856F-FA82-4F02-BB88-909DDFB1FE74} = {2BFC806B-CE92-4EA4-8FE8-5F2EA54BA348}
+		{664E6F0D-6784-4760-9565-D54F8EB1EDF4} = {2BFC806B-CE92-4EA4-8FE8-5F2EA54BA348}
 	EndGlobalSection
 	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
 		DPCodeReviewSolutionGUID = {00000000-0000-0000-0000-000000000000}

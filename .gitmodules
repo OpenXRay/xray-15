@@ -10,3 +10,6 @@
 [submodule "cs/3rd party/OpenAutomate"]
 	path = cs/3rd party/OpenAutomate
 	url = https://github.com/Armada651/OpenAutomate.git
+[submodule "cs/3rd party/glew"]
+	path = cs/3rd party/glew
+	url = https://github.com/Armada651/glew
