@@ -2,6 +2,7 @@
 #pragma		hdrstop
 
 #include	"xrRender_console.h"
+#include "../../xrEngine/IGame_Persistent.h"
 
 u32			ps_Preset				=	2	;
 xr_token							qpreset_token							[ ]={
@@ -216,6 +217,8 @@ class CCC_tf_Aniso		: public CCC_Integer
 {
 public:
 	void	apply	()	{
+#ifndef USE_OGL
+		// TODO: OGL: implement anisotropic filtering
 		if (0==HW.pDevice)	return	;
 		int	val = *value;	clamp(val,1,16);
 #ifdef	USE_DX10
@@ -224,6 +227,7 @@ public:
 		for (u32 i=0; i<HW.Caps.raster.dwStages; i++)
 			CHK_DX(HW.pDevice->SetSamplerState( i, D3DSAMP_MAXANISOTROPY, val	));
 #endif	//	USE_DX10
+#endif	//	USE_OGL
 	}
 	CCC_tf_Aniso(LPCSTR N, int*	v) : CCC_Integer(N, v, 1, 16)		{ };
 	virtual void Execute	(LPCSTR args)
@@ -241,6 +245,8 @@ class CCC_tf_MipBias: public CCC_Float
 {
 public:
 	void	apply	()	{
+#ifndef USE_OGL
+		// TODO: OGL: Implement mip bias control
 		if (0==HW.pDevice)	return	;
 
 #ifdef	USE_DX10
@@ -250,6 +256,7 @@ public:
 		for (u32 i=0; i<HW.Caps.raster.dwStages; i++)
 			CHK_DX(HW.pDevice->SetSamplerState( i, D3DSAMP_MIPMAPLODBIAS, *((LPDWORD) value)));
 #endif	//	USE_DX10
+#endif	//	USE_OGL
 	}
 
 	CCC_tf_MipBias(LPCSTR N, float*	v) : CCC_Float(N, v, -0.5f, +0.5f)	{ };
@@ -307,7 +314,10 @@ class CCC_RestoreQuadIBData : public IConsole_Command
 public:
 	CCC_RestoreQuadIBData(LPCSTR N) : IConsole_Command(N)  { };
 	virtual void Execute(LPCSTR args) {
+#ifndef USE_OGL
+		// TODO: OGL: Implement QuadIBData restoration
 		RCache.RestoreQuadIBData();
+#endif	//	USE_OGL
 	}
 };
 
@@ -316,7 +326,10 @@ class CCC_ModelPoolStat : public IConsole_Command
 public:
 	CCC_ModelPoolStat(LPCSTR N) : IConsole_Command(N)  { bEmptyArgsHandled = TRUE; };
 	virtual void Execute(LPCSTR args) {
+#ifndef USE_OGL
+		// TODO: OGL: Implement model pool statistics
 		RImplementation.Models->dump();
+#endif	//	USE_OGL
 	}
 };
 //-----------------------------------------------------------------------
@@ -344,18 +357,23 @@ public:
 };
 
 #if RENDER!=R_R1
-#include "r__pixel_calculator.h"
+#ifndef USE_OGL
+	#include "r__pixel_calculator.h"
+#endif	//	USE_OGL
 class CCC_BuildSSA : public IConsole_Command
 {
 public:
 	CCC_BuildSSA(LPCSTR N) : IConsole_Command(N)  { bEmptyArgsHandled = TRUE; };
 	virtual void Execute(LPCSTR args) 
 	{
+#ifndef USE_OGL
+		// TODO: OGL: Implement pixel calculator
 #ifndef	USE_DX10
 		//	TODO: DX10: Implement pixel calculator
 		r_pixel_calculator	c;
 		c.run				();
 #endif	//	USE_DX10
+#endif	//	USE_OGL
 	}
 };
 #endif
@@ -497,7 +515,10 @@ class CCC_DumpResources : public IConsole_Command
 public:
 	CCC_DumpResources(LPCSTR N) : IConsole_Command(N) { bEmptyArgsHandled = TRUE; };
 	virtual void Execute(LPCSTR args) {
+#ifndef USE_OGL
+		// TODO: OGL: Implement model resource dumping
 		RImplementation.Models->dump();
+#endif	//	USE_OGL
 	}
 };
 
@@ -524,12 +545,18 @@ void		xrRender_initconsole	()
 {
 	CMD3(CCC_Preset,	"_preset",				&ps_Preset,	qpreset_token	);
 
+#ifndef USE_OGL
+	// TODO: OGL: Implement skeleton update
 	CMD4(CCC_Integer,	"rs_skeleton_update",	&psSkeletonUpdate,	2,		128	);
+#endif	//	USE_OGL
 #ifdef	DEBUG
 	CMD1(CCC_DumpResources,		"dump_resources");
 #endif	//	 DEBUG
 
+#ifndef USE_OGL
+	// TODO: OGL: Implement dtex range
 	CMD4(CCC_Float,		"r__dtex_range",		&r__dtex_range,		5,		175	);
+#endif	//	USE_OGL
 
 // Common
 	CMD1(CCC_Screenshot,"screenshot"			);
@@ -640,7 +667,10 @@ void		xrRender_initconsole	()
 	CMD4(CCC_Float,		"r2_sun_tsm_bias",		&ps_r2_sun_tsm_bias,		-0.5,	+0.5	);
 	CMD4(CCC_Float,		"r2_sun_near",			&ps_r2_sun_near,			1.f,	50.f	);
 #if RENDER!=R_R1
+#ifndef USE_OGL
+	// TODO: Implement dynamic sun
 	CMD4(CCC_Float,		"r2_sun_far",			&OLES_SUN_LIMIT_27_01_07,	51.f,	180.f	);
+#endif	//	USE_OGL
 #endif
 	CMD4(CCC_Float,		"r2_sun_near_border",	&ps_r2_sun_near_border,		.5f,	1.0f	);
 	CMD4(CCC_Float,		"r2_sun_depth_far_scale",&ps_r2_sun_depth_far_scale,0.5,	1.5		);
