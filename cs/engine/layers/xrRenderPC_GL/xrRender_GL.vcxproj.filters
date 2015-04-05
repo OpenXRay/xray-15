@@ -195,6 +195,9 @@
     <ClCompile Include="r4.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="glRenderFactory.cpp">
+      <Filter>Interface implementations\RenderFactory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -205,6 +208,12 @@
     </ClInclude>
     <ClInclude Include="r4.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\xrRender\RenderFactory.h">
+      <Filter>Interface implementations\RenderFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="glRenderFactory.h">
+      <Filter>Interface implementations\RenderFactory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

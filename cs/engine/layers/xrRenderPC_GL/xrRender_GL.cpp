@@ -1,7 +1,7 @@
 // xrRender_GL.cpp : Defines the entry point for the DLL application.
 //
 #include "stdafx.h"
-#include "../xrRender/glRenderFactory.h"
+#include "glRenderFactory.h"
 #include "../xrRender/glUIRender.h"
 #include "../xrRender/glDebugRender.h"
 
