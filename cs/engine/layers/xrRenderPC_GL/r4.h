@@ -143,7 +143,7 @@ public:
 	CRender();
 	virtual ~CRender();
 protected:
-	virtual	void					ScreenshotImpl(ScreenshotMode mode, LPCSTR name, CMemoryWriter* memory_writer);
+	virtual	void					ScreenshotImpl(ScreenshotMode mode, LPCSTR name, CMemoryWriter* memory_writer) { };
 };
 
 extern CRender						RImplementation;
