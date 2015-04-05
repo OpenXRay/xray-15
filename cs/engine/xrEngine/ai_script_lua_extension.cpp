@@ -11,6 +11,10 @@
 #include "ai_script_lua_extension.h"
 #include "ai_script_space.h"
 
+#ifdef XRRENDER_GL_EXPORTS
+#define ENGINE_BUILD
+#endif	//	XRRENDER_R2_EXPORTS
+
 #ifdef XRRENDER_R3_EXPORTS
 #define ENGINE_BUILD
 #endif	//	XRRENDER_R2_EXPORTS
