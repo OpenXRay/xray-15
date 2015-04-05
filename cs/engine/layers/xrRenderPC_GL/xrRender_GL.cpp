@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "glRenderFactory.h"
 #include "glUIRender.h"
-#include "../xrRender/glDebugRender.h"
+#include "glDebugRender.h"
 
 #pragma comment(lib,"xrEngine.lib")
 

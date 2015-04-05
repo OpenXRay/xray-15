@@ -202,6 +202,7 @@
       <Filter>Interface implementations\RenderFactory</Filter>
     </ClCompile>
     <ClCompile Include="glUIRender.cpp" />
+    <ClCompile Include="glDebugRender.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -229,5 +230,9 @@
       <Filter>Interface implementations\UI\UIRender</Filter>
     </ClInclude>
     <ClInclude Include="glUIRender.h" />
+    <ClInclude Include="..\..\include\xrRender\DebugRender.h">
+      <Filter>Interface implementations\Debug\DebugRender</Filter>
+    </ClInclude>
+    <ClInclude Include="glDebugRender.h" />
   </ItemGroup>
 </Project>
