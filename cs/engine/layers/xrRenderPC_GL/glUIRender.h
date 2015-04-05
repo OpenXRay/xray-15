@@ -35,7 +35,7 @@ public:
 	virtual void StartPrimitive(u32 iMaxVerts, ePrimitiveType primType, ePointType pointType) { };
 	virtual void FlushPrimitive() { };
 
-	virtual LPCSTR	UpdateShaderName(LPCSTR tex_name, LPCSTR sh_name) { };
+	virtual LPCSTR	UpdateShaderName(LPCSTR tex_name, LPCSTR sh_name) { return ""; };
 
 	virtual void	CacheSetXformWorld(const Fmatrix& M) { };
 	virtual void	CacheSetCullMode(CullMode) { };

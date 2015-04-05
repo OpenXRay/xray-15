@@ -50,7 +50,7 @@ public:
 	// feature level
 	virtual	GenerationLevel			get_generation() { return IRender_interface::GENERATION_R2; };
 
-	virtual bool					is_sun_static() {};
+	virtual bool					is_sun_static() { return o.sunstatic; };
 	virtual DWORD					get_dx_level() { return 0x00000000; };
 
 	// Loading / Unloading
@@ -73,22 +73,22 @@ public:
 		DWORD                           Flags,
 		void*							ppShader,
 		void*							ppErrorMsgs,
-		void*							ppConstantTable) {};
+		void*							ppConstantTable) { return E_NOTIMPL; };
 
 	// Information
 	virtual	void					Statistics(CGameFont* F)							{};
 
-	virtual LPCSTR					getShaderPath() {};
-	virtual IRender_Sector*			getSector(int id) {};
-	virtual IRenderVisual*			getVisual(int id) {};
-	virtual IRender_Sector*			detectSector(const Fvector& P) {};
-	virtual IRender_Target*			getTarget() {};
+	virtual LPCSTR					getShaderPath() { return ""; };
+	virtual IRender_Sector*			getSector(int id) { return nullptr; };
+	virtual IRenderVisual*			getVisual(int id) { return nullptr; };
+	virtual IRender_Sector*			detectSector(const Fvector& P) { return nullptr; };
+	virtual IRender_Target*			getTarget() { return nullptr; };
 
 	// Main 
 	IC		void					set_Frustum(CFrustum*	O)							{ VERIFY(O);	View = O; }
 	virtual void					set_Transform(Fmatrix*	M) {};
 	virtual void					set_HUD(BOOL 		V) {};
-	virtual BOOL					get_HUD() {};
+	virtual BOOL					get_HUD() { return false; };
 	virtual void					set_Invisible(BOOL 		V) {};
 	virtual void					flush() {};
 	virtual void					set_Object(IRenderable*		O) {};
@@ -100,29 +100,29 @@ public:
 	virtual void					clear_static_wallmarks() {};
 	virtual void					add_SkeletonWallmark(const Fmatrix* xf, IKinematics* obj, IWallMarkArray *pArray, const Fvector& start, const Fvector& dir, float size) {};
 
-	virtual IRender_ObjectSpecific*	ros_create(IRenderable* parent) {};
+	virtual IRender_ObjectSpecific*	ros_create(IRenderable* parent) { return nullptr; };
 	virtual void					ros_destroy(IRender_ObjectSpecific* &) {};
 
 	// Lighting/glowing
-	virtual IRender_Light*			light_create() {};
+	virtual IRender_Light*			light_create() { return nullptr; };
 	virtual void					light_destroy(IRender_Light* p_)							{ };
-	virtual IRender_Glow*			glow_create() {};
+	virtual IRender_Glow*			glow_create() { return nullptr; };
 	virtual void					glow_destroy(IRender_Glow* p_)							{ };
 
 	// Models
-	virtual IRenderVisual*			model_CreateParticles(LPCSTR name) {};
-	virtual IRenderVisual*			model_Create(LPCSTR name, IReader*	data = 0) {};
-	virtual IRenderVisual*			model_CreateChild(LPCSTR name, IReader*	data) {};
-	virtual IRenderVisual*			model_Duplicate(IRenderVisual*	V) {};
+	virtual IRenderVisual*			model_CreateParticles(LPCSTR name) { return nullptr; };
+	virtual IRenderVisual*			model_Create(LPCSTR name, IReader*	data = 0) { return nullptr; };
+	virtual IRenderVisual*			model_CreateChild(LPCSTR name, IReader*	data) { return nullptr; };
+	virtual IRenderVisual*			model_Duplicate(IRenderVisual*	V) { return nullptr; };
 	virtual void					model_Delete(IRenderVisual* &	V, BOOL bDiscard = FALSE) {};
 	virtual void					model_Logging(BOOL bEnable) {};
 	virtual void					models_Prefetch() {};
 	virtual void					models_Clear(BOOL b_complete) {};
 
 	// Occlusion culling
-	virtual BOOL					occ_visible(vis_data&	V) {};
-	virtual BOOL					occ_visible(Fbox&		B) {};
-	virtual BOOL					occ_visible(sPoly&		P) {};
+	virtual BOOL					occ_visible(vis_data&	V) { return false; };
+	virtual BOOL					occ_visible(Fbox&		B) { return false; };
+	virtual BOOL					occ_visible(sPoly&		P) { return false; };
 
 	// Main
 	virtual void					Calculate() {};
@@ -137,7 +137,7 @@ public:
 	virtual void					rmNear() {};
 	virtual void					rmFar() {};
 	virtual void					rmNormal() {};
-	virtual u32						memory_usage() {};
+	virtual u32						memory_usage() { return 0; };
 
 	// Constructor/destructor
 	CRender();
