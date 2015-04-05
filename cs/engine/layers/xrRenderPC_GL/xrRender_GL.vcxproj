@@ -199,6 +199,7 @@
   <ItemGroup>
     <ClCompile Include="..\xrRender\xrRender_console.cpp" />
     <ClCompile Include="glRenderFactory.cpp" />
+    <ClCompile Include="glUIRender.cpp" />
     <ClCompile Include="GLUtils.cpp" />
     <ClCompile Include="r4.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -224,8 +225,10 @@
   <ItemGroup>
     <ClInclude Include="..\..\include\xrRender\DrawUtils.h" />
     <ClInclude Include="..\..\include\xrRender\RenderFactory.h" />
+    <ClInclude Include="..\..\include\xrRender\UIRender.h" />
     <ClInclude Include="..\xrRender\xrRender_console.h" />
     <ClInclude Include="glRenderFactory.h" />
+    <ClInclude Include="glUIRender.h" />
     <ClInclude Include="GLUtils.h" />
     <ClInclude Include="r4.h" />
     <ClInclude Include="stdafx.h" />

@@ -201,6 +201,7 @@
     <ClCompile Include="glRenderFactory.cpp">
       <Filter>Interface implementations\RenderFactory</Filter>
     </ClCompile>
+    <ClCompile Include="glUIRender.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -224,5 +225,9 @@
     <ClInclude Include="glRenderFactory.h">
       <Filter>Interface implementations\RenderFactory</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\xrRender\UIRender.h">
+      <Filter>Interface implementations\UI\UIRender</Filter>
+    </ClInclude>
+    <ClInclude Include="glUIRender.h" />
   </ItemGroup>
 </Project>
