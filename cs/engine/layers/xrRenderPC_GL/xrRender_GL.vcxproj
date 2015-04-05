@@ -199,6 +199,7 @@
   <ItemGroup>
     <ClCompile Include="..\xrRender\xrRender_console.cpp" />
     <ClCompile Include="glRenderFactory.cpp" />
+    <ClCompile Include="GLUtils.cpp" />
     <ClCompile Include="r4.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -221,9 +222,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\xrRender\DrawUtils.h" />
     <ClInclude Include="..\..\include\xrRender\RenderFactory.h" />
     <ClInclude Include="..\xrRender\xrRender_console.h" />
     <ClInclude Include="glRenderFactory.h" />
+    <ClInclude Include="GLUtils.h" />
     <ClInclude Include="r4.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
