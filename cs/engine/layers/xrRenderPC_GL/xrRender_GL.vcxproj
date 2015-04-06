@@ -197,8 +197,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\xrRender\PSLibrary.cpp" />
     <ClCompile Include="..\xrRender\xrRender_console.cpp" />
     <ClCompile Include="glDebugRender.cpp" />
+    <ClCompile Include="glEnvironmentRender.cpp" />
     <ClCompile Include="glRenderDeviceRender.cpp" />
     <ClCompile Include="glRenderFactory.cpp" />
     <ClCompile Include="glUIRender.cpp" />
@@ -227,11 +229,14 @@
   <ItemGroup>
     <ClInclude Include="..\..\include\xrRender\DebugRender.h" />
     <ClInclude Include="..\..\include\xrRender\DrawUtils.h" />
+    <ClInclude Include="..\..\include\xrRender\EnvironmentRender.h" />
     <ClInclude Include="..\..\include\xrRender\RenderDeviceRender.h" />
     <ClInclude Include="..\..\include\xrRender\RenderFactory.h" />
     <ClInclude Include="..\..\include\xrRender\UIRender.h" />
+    <ClInclude Include="..\xrRender\PSLibrary.h" />
     <ClInclude Include="..\xrRender\xrRender_console.h" />
     <ClInclude Include="glDebugRender.h" />
+    <ClInclude Include="glEnvironmentRender.h" />
     <ClInclude Include="glRenderDeviceRender.h" />
     <ClInclude Include="glRenderFactory.h" />
     <ClInclude Include="glUIRender.h" />

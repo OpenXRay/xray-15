@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../xrRender/PSLibrary.h"
+
 class CRender	:	public IRender_interface
 {
 public:
@@ -46,6 +48,8 @@ public:
 		u32		forceskinw : 1;
 		float	forcegloss_v;
 	}			o;
+public:
+	CPSLibrary						PSLibrary;
 public:
 	// feature level
 	virtual	GenerationLevel			get_generation() { return IRender_interface::GENERATION_R2; };

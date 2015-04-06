@@ -210,6 +210,12 @@
     <ClCompile Include="glUIRender.cpp">
       <Filter>Interface implementations\UI\UIRender</Filter>
     </ClCompile>
+    <ClCompile Include="..\xrRender\PSLibrary.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="glEnvironmentRender.cpp">
+      <Filter>Interface implementations\EnvironmentRender</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -250,6 +256,15 @@
     </ClInclude>
     <ClInclude Include="glUIRender.h">
       <Filter>Interface implementations\UI\UIRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\xrRender\EnvironmentRender.h">
+      <Filter>Interface implementations\EnvironmentRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRender\PSLibrary.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="glEnvironmentRender.h">
+      <Filter>Interface implementations\EnvironmentRender</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

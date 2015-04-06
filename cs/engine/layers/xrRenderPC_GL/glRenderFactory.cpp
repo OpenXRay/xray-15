@@ -11,7 +11,7 @@
 	//#include "glThunderboltDescRender.h"
 	//#include "glRainRender.h"
 	//#include "glLensFlareRender.h"
-	//#include "glEnvironmentRender.h"
+	#include "glEnvironmentRender.h"
 
 	#include "glRenderDeviceRender.h"
 	//#include "glObjectSpaceRender.h"
@@ -66,7 +66,7 @@ glRenderFactory RenderFactoryImpl;
 	RENDER_FACTORY_UNIMPLEMENT(ThunderboltDescRender)
 	RENDER_FACTORY_UNIMPLEMENT(RainRender)
 	RENDER_FACTORY_UNIMPLEMENT(LensFlareRender)
-	RENDER_FACTORY_UNIMPLEMENT(EnvironmentRender)
+	RENDER_FACTORY_IMPLEMENT(EnvironmentRender)
 	RENDER_FACTORY_UNIMPLEMENT(EnvDescriptorMixerRender)
 	RENDER_FACTORY_UNIMPLEMENT(EnvDescriptorRender)
 	RENDER_FACTORY_UNIMPLEMENT(FlareRender)
