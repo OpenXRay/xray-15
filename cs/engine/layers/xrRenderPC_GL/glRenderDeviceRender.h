@@ -6,6 +6,8 @@ class glRenderDeviceRender :
 	public IRenderDeviceRender
 {
 public:
+	static glRenderDeviceRender& Instance() { return *((glRenderDeviceRender*)(&*Device.m_pRender)); }
+
 	glRenderDeviceRender();
 
 	virtual void	Copy(IRenderDeviceRender &_in) { };
