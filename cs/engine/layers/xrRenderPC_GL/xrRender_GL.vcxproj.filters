@@ -203,6 +203,7 @@
     </ClCompile>
     <ClCompile Include="glUIRender.cpp" />
     <ClCompile Include="glDebugRender.cpp" />
+    <ClCompile Include="glRenderDeviceRender.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -234,5 +235,9 @@
       <Filter>Interface implementations\Debug\DebugRender</Filter>
     </ClInclude>
     <ClInclude Include="glDebugRender.h" />
+    <ClInclude Include="..\..\include\xrRender\RenderDeviceRender.h">
+      <Filter>Interface implementations\RenderDeviceRender</Filter>
+    </ClInclude>
+    <ClInclude Include="glRenderDeviceRender.h" />
   </ItemGroup>
 </Project>

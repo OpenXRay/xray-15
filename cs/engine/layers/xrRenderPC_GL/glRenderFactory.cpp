@@ -13,7 +13,7 @@
 	//#include "glLensFlareRender.h"
 	//#include "glEnvironmentRender.h"
 
-	//#include "glRenderDeviceRender.h"
+	#include "glRenderDeviceRender.h"
 	//#include "glObjectSpaceRender.h"
 #endif // _EDITOR
 
@@ -52,7 +52,7 @@ glRenderFactory RenderFactoryImpl;
 	RENDER_FACTORY_UNIMPLEMENT(UIShader)
 	RENDER_FACTORY_UNIMPLEMENT(StatGraphRender)
 	RENDER_FACTORY_UNIMPLEMENT(ConsoleRender)
-	RENDER_FACTORY_UNIMPLEMENT(RenderDeviceRender)
+	RENDER_FACTORY_IMPLEMENT(RenderDeviceRender)
 #	ifdef DEBUG
 		RENDER_FACTORY_UNIMPLEMENT(ObjectSpaceRender)
 #	endif // DEBUG
