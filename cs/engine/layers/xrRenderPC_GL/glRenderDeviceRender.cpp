@@ -3,17 +3,21 @@
 
 
 glRenderDeviceRender::glRenderDeviceRender()
+	: m_hWnd(NULL)
+	, m_hDC(NULL)
+	, m_hRC(NULL)
 {
 }
 
 bool glRenderDeviceRender::Create(HWND hWnd, u32 &dwWidth, u32 &dwHeight, float &fWidth_2, float &fHeight_2, bool move_window)
 {
-	if (hWnd == NULL)
+	m_hWnd = hWnd;
+	if (m_hWnd == NULL)
 		return false;
 
 	RECT rClient = { 0 };
 
-	if (!GetClientRect(hWnd, &rClient))
+	if (!GetClientRect(m_hWnd, &rClient))
 		return false;
 
 	dwWidth = (rClient.right - rClient.left);
@@ -78,4 +82,26 @@ bool glRenderDeviceRender::Create(HWND hWnd, u32 &dwWidth, u32 &dwHeight, float 
 	// NOTE: This assumes the thread calling Create() is the only
 	// thread that will use the context.
 	return wglMakeCurrent(m_hDC, m_hRC);
+}
+
+void glRenderDeviceRender::DestroyHW()
+{
+	if (m_hRC)
+	{
+		if (!wglMakeCurrent(nullptr, nullptr))
+			Msg("Could not release drawing context.");
+
+		if (!wglDeleteContext(m_hRC))
+			Msg("Could not delete context.");
+
+		m_hRC = nullptr;
+	}
+
+	if (m_hDC)
+	{
+		if (!ReleaseDC(m_hWnd, m_hDC))
+			Msg("Could not release device context.");
+
+		m_hDC = nullptr;
+	}
 }
