@@ -7,7 +7,6 @@ class glRenderDeviceRender :
 {
 public:
 	glRenderDeviceRender();
-	~glRenderDeviceRender();
 
 	virtual void	Copy(IRenderDeviceRender &_in) { };
 
@@ -25,7 +24,7 @@ public:
 	//	Init
 	virtual void	SetupStates() { };
 	virtual void	OnDeviceCreate(LPCSTR shName) { };
-	virtual void	Create(HWND hWnd, u32 &dwWidth, u32 &dwHeight, float &fWidth_2, float &fHeight_2, bool move_window) { };
+	virtual bool	Create(HWND hWnd, u32 &dwWidth, u32 &dwHeight, float &fWidth_2, float &fHeight_2, bool move_window);
 	virtual void	SetupGPU(BOOL bForceGPU_SW, BOOL bForceGPU_NonPure, BOOL bForceGPU_REF) { };
 	//	Overdraw
 	virtual void	overdrawBegin() { };
@@ -52,4 +51,8 @@ public:
 	virtual void	ClearTarget() { };
 	virtual void	SetCacheXform(Fmatrix &mView, Fmatrix &mProject) { };
 	virtual void	OnAssetsChanged() { };
+
+private:
+	HDC				m_hDC;
+	HGLRC			m_hRC;
 };

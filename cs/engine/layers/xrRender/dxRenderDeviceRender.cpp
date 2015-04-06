@@ -149,7 +149,7 @@ void dxRenderDeviceRender::OnDeviceCreate(LPCSTR shName)
 //#endif
 }
 
-void dxRenderDeviceRender::Create( HWND hWnd, u32 &dwWidth, u32 &dwHeight, float &fWidth_2, float &fHeight_2, bool move_window)
+bool dxRenderDeviceRender::Create( HWND hWnd, u32 &dwWidth, u32 &dwHeight, float &fWidth_2, float &fHeight_2, bool move_window)
 {
 	HW.CreateDevice		(hWnd, move_window);
 #ifdef	USE_DX10
@@ -162,6 +162,8 @@ void dxRenderDeviceRender::Create( HWND hWnd, u32 &dwWidth, u32 &dwHeight, float
 	fWidth_2			= float(dwWidth/2)			;
 	fHeight_2			= float(dwHeight/2)			;
 	Resources			= new CResourceManager();
+
+	return true;
 }
 
 void dxRenderDeviceRender::SetupGPU( BOOL bForceGPU_SW, BOOL bForceGPU_NonPure, BOOL bForceGPU_REF)

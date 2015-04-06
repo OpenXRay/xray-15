@@ -171,7 +171,7 @@ PROTECT_API void CRenderDevice::Create	()
 
 	fFOV				= 90.f;
 	fASPECT				= 1.f;
-	m_pRender->Create	(
+	bool bRet = m_pRender->Create	(
 		m_hWnd,
 		dwWidth,
 		dwHeight,
@@ -182,6 +182,15 @@ PROTECT_API void CRenderDevice::Create	()
 #endif // #ifdef INGAME_EDITOR
 		true
 	);
+
+	if (!bRet)
+	{
+		// Fatal error! Cannot create rendering device AT STARTUP !!!
+		Msg("Failed to initialize graphics hardware.\nPlease try to restart the game.");
+		FlushLog();
+		MessageBox(NULL, "Failed to initialize graphics hardware.\nPlease try to restart the game.", "Error!", MB_OK | MB_ICONERROR);
+		TerminateProcess(GetCurrentProcess(), 0);
+	}
 
 	string_path			fname; 
 	FS.update_path		(fname,"$game_data$","shaders.xr");
