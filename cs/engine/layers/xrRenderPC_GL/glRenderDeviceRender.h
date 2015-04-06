@@ -41,7 +41,7 @@ public:
 	virtual void	ResourcesDumpMemoryUsage() { };
 
 	//	HWSupport
-	virtual bool	HWSupportsShaderYUV2RGB() { };
+	virtual bool	HWSupportsShaderYUV2RGB() { return false; };
 
 	//	Device state
 	virtual DeviceState GetDeviceState() { return dsOK; };
