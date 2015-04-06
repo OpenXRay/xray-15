@@ -201,9 +201,15 @@
     <ClCompile Include="glRenderFactory.cpp">
       <Filter>Interface implementations\RenderFactory</Filter>
     </ClCompile>
-    <ClCompile Include="glUIRender.cpp" />
-    <ClCompile Include="glDebugRender.cpp" />
-    <ClCompile Include="glRenderDeviceRender.cpp" />
+    <ClCompile Include="glRenderDeviceRender.cpp">
+      <Filter>Interface implementations\RenderDeviceRender</Filter>
+    </ClCompile>
+    <ClCompile Include="glDebugRender.cpp">
+      <Filter>Interface implementations\Debug\DebugRender</Filter>
+    </ClCompile>
+    <ClCompile Include="glUIRender.cpp">
+      <Filter>Interface implementations\UI\UIRender</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -230,14 +236,20 @@
     <ClInclude Include="..\..\include\xrRender\UIRender.h">
       <Filter>Interface implementations\UI\UIRender</Filter>
     </ClInclude>
-    <ClInclude Include="glUIRender.h" />
     <ClInclude Include="..\..\include\xrRender\DebugRender.h">
       <Filter>Interface implementations\Debug\DebugRender</Filter>
     </ClInclude>
-    <ClInclude Include="glDebugRender.h" />
     <ClInclude Include="..\..\include\xrRender\RenderDeviceRender.h">
       <Filter>Interface implementations\RenderDeviceRender</Filter>
     </ClInclude>
-    <ClInclude Include="glRenderDeviceRender.h" />
+    <ClInclude Include="glRenderDeviceRender.h">
+      <Filter>Interface implementations\RenderDeviceRender</Filter>
+    </ClInclude>
+    <ClInclude Include="glDebugRender.h">
+      <Filter>Interface implementations\Debug\DebugRender</Filter>
+    </ClInclude>
+    <ClInclude Include="glUIRender.h">
+      <Filter>Interface implementations\UI\UIRender</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
