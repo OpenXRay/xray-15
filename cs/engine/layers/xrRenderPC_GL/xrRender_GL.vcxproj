@@ -199,8 +199,10 @@
   <ItemGroup>
     <ClCompile Include="..\xrRender\PSLibrary.cpp" />
     <ClCompile Include="..\xrRender\xrRender_console.cpp" />
+    <ClCompile Include="FBasicVisual.cpp" />
     <ClCompile Include="glDebugRender.cpp" />
     <ClCompile Include="glEnvironmentRender.cpp" />
+    <ClCompile Include="glParticleCustom.cpp" />
     <ClCompile Include="glRenderDeviceRender.cpp" />
     <ClCompile Include="glRenderFactory.cpp" />
     <ClCompile Include="glUIRender.cpp" />
@@ -235,8 +237,10 @@
     <ClInclude Include="..\..\include\xrRender\UIRender.h" />
     <ClInclude Include="..\xrRender\PSLibrary.h" />
     <ClInclude Include="..\xrRender\xrRender_console.h" />
+    <ClInclude Include="FBasicVisual.h" />
     <ClInclude Include="glDebugRender.h" />
     <ClInclude Include="glEnvironmentRender.h" />
+    <ClInclude Include="glParticleCustom.h" />
     <ClInclude Include="glRenderDeviceRender.h" />
     <ClInclude Include="glRenderFactory.h" />
     <ClInclude Include="glUIRender.h" />

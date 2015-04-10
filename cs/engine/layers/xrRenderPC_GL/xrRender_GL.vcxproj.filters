@@ -216,6 +216,12 @@
     <ClCompile Include="glEnvironmentRender.cpp">
       <Filter>Interface implementations\EnvironmentRender</Filter>
     </ClCompile>
+    <ClCompile Include="glParticleCustom.cpp">
+      <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="FBasicVisual.cpp">
+      <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -265,6 +271,12 @@
     </ClInclude>
     <ClInclude Include="glEnvironmentRender.h">
       <Filter>Interface implementations\EnvironmentRender</Filter>
+    </ClInclude>
+    <ClInclude Include="glParticleCustom.h">
+      <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="FBasicVisual.h">
+      <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

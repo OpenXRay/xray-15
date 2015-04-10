@@ -5,6 +5,10 @@
 
 #include "ParticleEffectDef.h"
 
+#ifdef USE_OGL
+#	include "FBasicVisual.h"
+#	include "glParticleCustom.h"
+#else // USE_OGL
 #ifdef _EDITOR
 #	include "../../Layers/xrRender/FBasicVisual.h"
 #	include "../../Layers/xrRender/dxParticleCustom.h"
@@ -12,10 +16,15 @@
 #	include "../xrRender/FBasicVisual.h"
 #	include "../xrRender/dxParticleCustom.h"
 #endif // _EDITOR
+#endif // USE_OGL
 
 namespace PS
 {
-	class ECORE_API CParticleEffect: public dxParticleCustom
+#ifdef USE_OGL
+	class ECORE_API CParticleEffect : public glParticleCustom
+#else // USE_OGL
+	class ECORE_API CParticleEffect : public dxParticleCustom
+#endif // USE_OGL
 	{
 		friend class CPEDef;
 	protected:

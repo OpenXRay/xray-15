@@ -13,7 +13,7 @@ namespace PAPI
     using PAVec = xr_vector<ParticleAction*>;
     using PAVecIt = PAVec::iterator;
 }
-struct EParticleAction;        
+struct EParticleAction;
 
 namespace PS
 {
