@@ -73,9 +73,6 @@
     <Filter Include="Refactored\Execution &amp; 3D\Shaders\Resources">
       <UniqueIdentifier>{ce4ab461-378b-41c2-8db7-60befef3631b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Refactored\Execution &amp; 3D\Shaders\Resources\dx10_R_shader">
-      <UniqueIdentifier>{7f4d92ab-696d-4ac0-be7c-e8c79b0c969a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Refactored\Execution &amp; 3D\Shaders\ShaderManager">
       <UniqueIdentifier>{389b4dc4-629d-42d1-a5a2-a951c2e5751a}</UniqueIdentifier>
     </Filter>
@@ -219,7 +216,10 @@
     <ClCompile Include="glParticleCustom.cpp">
       <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="FBasicVisual.cpp">
+    <ClCompile Include="glRenderVisual.cpp">
+      <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\FBasicVisual.cpp">
       <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
     </ClCompile>
   </ItemGroup>
@@ -275,7 +275,10 @@
     <ClInclude Include="glParticleCustom.h">
       <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="FBasicVisual.h">
+    <ClInclude Include="glRenderVisual.h">
+      <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRender\FBasicVisual.h">
       <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
     </ClInclude>
   </ItemGroup>

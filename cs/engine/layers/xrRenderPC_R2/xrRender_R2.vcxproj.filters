@@ -627,6 +627,9 @@
     <ClInclude Include="$(SolutionDir)engine\layers\xrRender\uber_deffer.h">
       <Filter>Shading templates</Filter>
     </ClInclude>
+    <ClInclude Include="..\xrRender\dxRenderVisual.h">
+      <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -1123,6 +1126,9 @@
     </ClCompile>
     <ClCompile Include="$(SolutionDir)engine\layers\xrRender\uber_deffer.cpp">
       <Filter>Shading templates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\dxRenderVisual.cpp">
+      <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

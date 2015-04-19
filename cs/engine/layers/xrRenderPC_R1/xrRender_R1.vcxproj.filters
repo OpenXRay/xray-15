@@ -597,6 +597,9 @@
     <ClInclude Include="$(SolutionDir)engine\layers\xrRender\dxWallMarkArray.h">
       <Filter>Interface implementations\WallMarkArray</Filter>
     </ClInclude>
+    <ClInclude Include="..\xrRender\dxRenderVisual.h">
+      <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -997,6 +1000,9 @@
     </ClCompile>
     <ClCompile Include="$(SolutionDir)engine\layers\xrRender\dxWallMarkArray.cpp">
       <Filter>Interface implementations\WallMarkArray</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\dxRenderVisual.cpp">
+      <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
