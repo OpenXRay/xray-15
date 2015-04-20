@@ -26,7 +26,11 @@ typedef	resptr_core<SInputSignature,resptr_base<SInputSignature> >	ref_input_sig
 //////////////////////////////////////////////////////////////////////////
 struct ECORE_API SVS : public xr_resource_named							
 {
+#ifdef USE_OGL
+	GLuint								vs;
+#else
 	ID3DVertexShader*					vs;
+#endif // USE_OGL
 	R_constant_table					constants;
 #ifdef	USE_DX10
 	ref_input_sign						signature;
@@ -39,7 +43,12 @@ typedef	resptr_core<SVS,resptr_base<SVS> >	ref_vs;
 //////////////////////////////////////////////////////////////////////////
 struct ECORE_API SPS : public xr_resource_named
 {
+#ifdef USE_OGL
+	GLuint								ps;
+#else
 	ID3DPixelShader*					ps;
+#endif // USE_OGL
+
 	R_constant_table					constants;
 	~SPS			();
 };
@@ -59,15 +68,21 @@ typedef	resptr_core<SGS,resptr_base<SGS> > ref_gs;
 //////////////////////////////////////////////////////////////////////////
 struct ECORE_API SState : public xr_resource_flagged
 {
+#ifndef	USE_OGL
 	ID3DState*							state;
+#endif // USE_OGL
 	SimulatorStates						state_code;
 	~SState			();
 };
-typedef	resptr_core<SState,resptr_base<SState> >	ref_state;
+typedef	resptr_core<SState, resptr_base<SState> >	ref_state;
 
 //////////////////////////////////////////////////////////////////////////
 struct ECORE_API SDeclaration : public xr_resource_flagged
 {
+#ifdef USE_OGL
+	GLuint								dcl;
+#else
+
 #ifdef	USE_DX10
 	//	Maps input signature to input layout
 	xr_map<ID3DBlob*, ID3D10InputLayout*>	vs_to_layout;
@@ -79,9 +94,11 @@ struct ECORE_API SDeclaration : public xr_resource_flagged
 
 	//	Use this for DirectX10 to cache DX9 declaration for comparison purpose only
 	xr_vector<D3DVERTEXELEMENT9>		dcl_code;
+
+#endif // USE_OGL
 	~SDeclaration	();
 };
-typedef	resptr_core<SDeclaration,resptr_base<SDeclaration> >	ref_declaration;
+typedef	resptr_core<SDeclaration, resptr_base<SDeclaration> >	ref_declaration;
 
 #pragma pack(pop)
 #endif //sh_atomicH

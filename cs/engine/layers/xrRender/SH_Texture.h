@@ -10,6 +10,7 @@ class  CTheoraSurface;
 class  ECORE_API CTexture : public xr_resource_named
 {
 public:
+#ifndef	USE_OGL
 	//	Since DX10 allows up to 128 unique textures, 
 	//	distance between enum values should be at leas 128
 	enum ResourceShaderType	//	Don't change this since it's hardware-dependent
@@ -18,6 +19,7 @@ public:
 		rstVertex = D3DVERTEXTEXTURESAMPLER0,
 		rstGeometry = rstVertex+256
 	};
+#endif // !USE_OGL
 
 public:
 	void	__stdcall					apply_load		(u32	stage);
@@ -32,12 +34,17 @@ public:
 	void								Unload			(void);
 //	void								Apply			(u32 dwStage);
 
+#ifdef USE_OGL
+	void								surface_set(GLuint surf);
+	GLuint								surface_get();
+#else
 	void								surface_set		(ID3DBaseTexture* surf );
 	ID3DBaseTexture*					surface_get 	();
+#endif // USE_OGL
 
 	IC BOOL								isUser			()		{ return flags.bUser;					}
-	IC u32								get_Width		()		{ desc_enshure(); return desc.Width;	}
-	IC u32								get_Height		()		{ desc_enshure(); return desc.Height;	}
+	IC u32								get_Width		()		{ desc_enshure(); return m_width;	}
+	IC u32								get_Height		()		{ desc_enshure(); return m_height;	}
 
 	void								video_Sync		(u32 _time){m_play_time=_time;}
 	void								video_Play		(BOOL looped, u32 _time=0xFFFFFFFF);
@@ -84,13 +91,26 @@ public:	//	Public class members (must be encapsulated furthur)
 	};
 
 private:
+	u32									m_width;
+	u32									m_height;
+#ifdef USE_OGL
+	GLuint								pSurface;
+	// Sequence data
+	xr_vector<GLuint>					seqDATA;
+#else
 	ID3DBaseTexture*					pSurface;
 	// Sequence data
 	xr_vector<ID3DBaseTexture*>			seqDATA;
+#endif // USE_OGL
 
 	// Description
+#ifdef USE_OGL
+	GLuint								desc_cache;
+	GLenum								desc;
+#else
 	ID3DBaseTexture*					desc_cache;
 	D3D_TEXTURE2D_DESC					desc;
+#endif // USE_OGL
 
 #ifdef	USE_DX10
 	ID3D10ShaderResourceView*			m_pSRView;

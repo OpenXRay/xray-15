@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../../Include/xrRender/ParticleCustom.h"
-#include "FBasicVisual.h"
+#include "../xrRender/FBasicVisual.h"
 
 class glParticleCustom :
 	public glRender_Visual, public IParticleCustom

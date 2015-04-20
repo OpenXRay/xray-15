@@ -4,7 +4,11 @@
 #include "sh_atomic.h"
 #include "ResourceManager.h"
 
-#include "dxRenderDeviceRender.h"
+#ifdef USE_OGL
+#	include "glRenderDeviceRender.h"
+#else
+#	include "dxRenderDeviceRender.h"
+#endif // USE_OGL
 
 // Atomic
 //SVS::~SVS								()			{	_RELEASE(vs);		dxRenderDeviceRender::Instance().Resources->_DeleteVS			(this);	}
@@ -31,13 +35,22 @@ SVS::~SVS()
 	//_RELEASE(signature);
 	//	Now it is release automatically
 #endif	//	USE_DX10
+#ifdef USE_OGL
+	glDeleteProgram(vs);
+	vs = NULL;
+#else
 	_RELEASE(vs);
+#endif // USE_OGL
 }
 
 
 ///////////////////////////////////////////////////////////////////////
 //	SPS
+#ifdef USE_OGL
+SPS::~SPS								()			{	glDeleteProgram(ps);	ps = NULL;		DEV->_DeletePS			(this);	}
+#else
 SPS::~SPS								()			{	_RELEASE(ps);		DEV->_DeletePS			(this);	}
+#endif // USE_OGL
 
 #ifdef	USE_DX10
 ///////////////////////////////////////////////////////////////////////
@@ -52,7 +65,11 @@ SInputSignature::~SInputSignature		()			{	_RELEASE(signature); DEV->_DeleteInput
 
 ///////////////////////////////////////////////////////////////////////
 //	SState
+#ifdef USE_OGL
+SState::~SState							()			{	DEV->_DeleteState		(this);	}
+#else
 SState::~SState							()			{	_RELEASE(state);	DEV->_DeleteState		(this);	}
+#endif // USE_OGL
 
 ///////////////////////////////////////////////////////////////////////
 //	SDeclaration
@@ -69,6 +86,10 @@ SDeclaration::~SDeclaration()
 	}
 #else	//	USE_DX10
 	//	Release vertex layout
+#ifdef USE_OGL
+	glDeleteBuffers(1, &dcl);
+#else
 	_RELEASE(dcl);
+#endif // USE_OGL
 #endif	//	USE_DX10
 }

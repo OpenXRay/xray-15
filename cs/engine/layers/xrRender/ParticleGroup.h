@@ -69,23 +69,27 @@ namespace PS
 #endif
 	};
 
-	class ECORE_API CParticleGroup: public dxParticleCustom
+#ifdef USE_OGL
+	class ECORE_API CParticleGroup : public glParticleCustom
+#else
+	class ECORE_API CParticleGroup : public dxParticleCustom
+#endif
 	{
 		const CPGDef*		m_Def;
 		float				m_CurrentTime;
 		Fvector				m_InitialPosition;
 	public:
-    	using VisualVec = xr_vector<dxRender_Visual*>;
+		using VisualVec = xr_vector<IRenderVisual*>;
     	using VisualVecIt = VisualVec::iterator;
     	struct SItem		{
-        	dxRender_Visual*	_effect;
+        	IRenderVisual*	_effect;
             VisualVec		_children_related;
             VisualVec		_children_free;
         public:
-        	void			Set				(dxRender_Visual* e);
+        	void			Set				(IRenderVisual* e);
             void			Clear			();
 
-            IC u32			GetVisuals		(xr_vector<dxRender_Visual*>& visuals)
+            IC u32			GetVisuals		(xr_vector<IRenderVisual*>& visuals)
             {
             	visuals.reserve				(_children_related.size()+_children_free.size()+1);
                 if (_effect)				visuals.push_back(_effect);
@@ -123,7 +127,7 @@ namespace PS
 		virtual				~CParticleGroup	();
 		virtual void	 	OnFrame			(u32 dt);
 
-		virtual void		Copy			(dxRender_Visual* pFrom) {FATAL("Can't duplicate particle system - NOT IMPLEMENTED");}
+		virtual void		Copy			(IRenderVisual* pFrom) {FATAL("Can't duplicate particle system - NOT IMPLEMENTED");}
 
 		virtual void 		OnDeviceCreate	();
 		virtual void 		OnDeviceDestroy	();

@@ -28,6 +28,8 @@
 
 #include "../../xrEngine/psystem.h"
 
+#include "../xrRender/Shader.h"
+
 #include "../../xrEngine/vis_common.h"
 #include "../../xrEngine/render.h"
 #include "../../xrEngine/igame_level.h"

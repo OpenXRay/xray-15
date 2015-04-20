@@ -41,7 +41,11 @@ public:
 	void					set_SAMP(u32 a, u32 b, u32 c);
 	BOOL					equal	(SimulatorStates& S);
 	void					clear	();
+#ifdef USE_OGL
+	GLuint					record	();
+#else
 	IDirect3DStateBlock9*	record	();
+#endif // USE_OGL
 #ifdef	USE_DX10
 	void	UpdateState( dx10State &state) const;
 	void	UpdateDesc( D3D10_RASTERIZER_DESC &desc ) const;

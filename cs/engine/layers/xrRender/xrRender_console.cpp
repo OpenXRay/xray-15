@@ -227,7 +227,7 @@ public:
 		for (u32 i=0; i<HW.Caps.raster.dwStages; i++)
 			CHK_DX(HW.pDevice->SetSamplerState( i, D3DSAMP_MAXANISOTROPY, val	));
 #endif	//	USE_DX10
-#endif	//	USE_OGL
+#endif // USE_OGL
 	}
 	CCC_tf_Aniso(LPCSTR N, int*	v) : CCC_Integer(N, v, 1, 16)		{ };
 	virtual void Execute	(LPCSTR args)
@@ -256,7 +256,7 @@ public:
 		for (u32 i=0; i<HW.Caps.raster.dwStages; i++)
 			CHK_DX(HW.pDevice->SetSamplerState( i, D3DSAMP_MIPMAPLODBIAS, *((LPDWORD) value)));
 #endif	//	USE_DX10
-#endif	//	USE_OGL
+#endif // USE_OGL
 	}
 
 	CCC_tf_MipBias(LPCSTR N, float*	v) : CCC_Float(N, v, -0.5f, +0.5f)	{ };
@@ -317,7 +317,7 @@ public:
 #ifndef USE_OGL
 		// TODO: OGL: Implement QuadIBData restoration
 		RCache.RestoreQuadIBData();
-#endif	//	USE_OGL
+#endif // USE_OGL
 	}
 };
 
@@ -329,7 +329,7 @@ public:
 #ifndef USE_OGL
 		// TODO: OGL: Implement model pool statistics
 		RImplementation.Models->dump();
-#endif	//	USE_OGL
+#endif // USE_OGL
 	}
 };
 //-----------------------------------------------------------------------
@@ -359,7 +359,7 @@ public:
 #if RENDER!=R_R1
 #ifndef USE_OGL
 	#include "r__pixel_calculator.h"
-#endif	//	USE_OGL
+#endif // USE_OGL
 class CCC_BuildSSA : public IConsole_Command
 {
 public:
@@ -373,7 +373,7 @@ public:
 		r_pixel_calculator	c;
 		c.run				();
 #endif	//	USE_DX10
-#endif	//	USE_OGL
+#endif // USE_OGL
 	}
 };
 #endif
@@ -518,7 +518,7 @@ public:
 #ifndef USE_OGL
 		// TODO: OGL: Implement model resource dumping
 		RImplementation.Models->dump();
-#endif	//	USE_OGL
+#endif // USE_OGL
 	}
 };
 
@@ -548,7 +548,7 @@ void		xrRender_initconsole	()
 #ifndef USE_OGL
 	// TODO: OGL: Implement skeleton update
 	CMD4(CCC_Integer,	"rs_skeleton_update",	&psSkeletonUpdate,	2,		128	);
-#endif	//	USE_OGL
+#endif // USE_OGL
 #ifdef	DEBUG
 	CMD1(CCC_DumpResources,		"dump_resources");
 #endif	//	 DEBUG
@@ -556,7 +556,7 @@ void		xrRender_initconsole	()
 #ifndef USE_OGL
 	// TODO: OGL: Implement dtex range
 	CMD4(CCC_Float,		"r__dtex_range",		&r__dtex_range,		5,		175	);
-#endif	//	USE_OGL
+#endif // USE_OGL
 
 // Common
 	CMD1(CCC_Screenshot,"screenshot"			);
@@ -670,7 +670,7 @@ void		xrRender_initconsole	()
 #ifndef USE_OGL
 	// TODO: Implement dynamic sun
 	CMD4(CCC_Float,		"r2_sun_far",			&OLES_SUN_LIMIT_27_01_07,	51.f,	180.f	);
-#endif	//	USE_OGL
+#endif // USE_OGL
 #endif
 	CMD4(CCC_Float,		"r2_sun_near_border",	&ps_r2_sun_near_border,		.5f,	1.0f	);
 	CMD4(CCC_Float,		"r2_sun_depth_far_scale",&ps_r2_sun_depth_far_scale,0.5,	1.5		);
