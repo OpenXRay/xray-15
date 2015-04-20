@@ -2,6 +2,14 @@
 
 #include "..\..\Include\xrRender\RenderDeviceRender.h"
 
+#ifndef _EDITOR
+	#define DEV glRenderDeviceRender::Instance().Resources
+#else
+	#define DEV Device.Resources
+#endif
+
+class CResourceManager;
+
 class glRenderDeviceRender :
 	public IRenderDeviceRender
 {
@@ -53,6 +61,9 @@ public:
 	virtual void	ClearTarget() { };
 	virtual void	SetCacheXform(Fmatrix &mView, Fmatrix &mProject) { };
 	virtual void	OnAssetsChanged() { };
+
+public:
+	CResourceManager*	Resources;
 
 private:
 	HWND			m_hWnd;

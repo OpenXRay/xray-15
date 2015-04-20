@@ -204,7 +204,7 @@ u32 CParticleEffect::ParticlesCount()
 //------------------------------------------------------------------------------
 // Render
 //------------------------------------------------------------------------------
-void CParticleEffect::Copy(dxRender_Visual* )
+void CParticleEffect::Copy(IRenderVisual* )
 {
 	FATAL	("Can't duplicate particle system - NOT IMPLEMENTED");
 }

@@ -140,7 +140,11 @@ public:
 	void							_DeleteInputSignature(const SInputSignature* pSignature);
 #endif	//	USE_DX10
 
+#ifdef USE_OGL
+	CRT*							_CreateRT			(LPCSTR Name, u32 w, u32 h,	GLenum f, u32 SampleCount = 1 );
+#else
 	CRT*							_CreateRT			(LPCSTR Name, u32 w, u32 h,	D3DFORMAT f, u32 SampleCount = 1 );
+#endif // USE_OGL
 	void							_DeleteRT			(const CRT*	RT	);
 
 	//	DX10 cut CRTC*							_CreateRTC			(LPCSTR Name, u32 size,	D3DFORMAT f);
@@ -167,7 +171,11 @@ public:
 	SState*							_CreateState		(SimulatorStates& Code);
 	void							_DeleteState		(const SState* SB);
 
+#ifdef USE_OGL
+	SDeclaration*					_CreateDecl			(GLuint dcl);
+#else
 	SDeclaration*					_CreateDecl			(D3DVERTEXELEMENT9* dcl);
+#endif // USE_OGL
 	void							_DeleteDecl			(const SDeclaration* dcl);
 
 	STextureList*					_CreateTextureList	(STextureList& L);
@@ -203,8 +211,12 @@ public:
 	void			Delete					(const Shader*		S	);
 	void			RegisterConstantSetup	(LPCSTR name,		R_constant_setup* s)	{	v_constant_setup.push_back(mk_pair(shared_str(name),s));	}
 
+#ifdef USE_OGL
+	SGeometry*		CreateGeom				(GLuint VAO, GLuint vb, GLuint ib);
+#else
 	SGeometry*		CreateGeom				(D3DVERTEXELEMENT9* decl, ID3DVertexBuffer* vb, ID3DIndexBuffer* ib);
 	SGeometry*		CreateGeom				(u32 FVF				, ID3DVertexBuffer* vb, ID3DIndexBuffer* ib);
+#endif // USE_OGL
 	void			DeleteGeom				(const SGeometry* VS		);
 	void			DeferredLoad			(BOOL E)					{ bDeferredLoad=E;	}
 	void			DeferredUpload			();
