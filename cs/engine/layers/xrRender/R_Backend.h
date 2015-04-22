@@ -10,16 +10,35 @@
 #define PGO(a)
 #endif
 
-#include "r_DStreams.h"
+#ifndef USE_OGL
+#	include "r_DStreams.h"
+#endif // !USE_OGL
+
 #include "r_constants_cache.h"
 #include "r_backend_xform.h"
 #include "r_backend_hemi.h"
 #include "r_backend_tree.h"
 #include "fvf.h"
 
+#ifdef USE_OGL
+const	u32		CULL_CCW	= GL_CCW;
+const	u32		CULL_CW		= GL_CW;
+const	u32		CULL_NONE	= 0;
+
+const	u32		COLORWRITEENABLE_RED	= 0x1;
+const	u32		COLORWRITEENABLE_GREEN	= 0x2;
+const	u32		COLORWRITEENABLE_BLUE	= 0x4;
+const	u32		COLORWRITEENABLE_ALPHA	= 0x8;
+#else
 const	u32		CULL_CCW			= D3DCULL_CCW;
 const	u32		CULL_CW				= D3DCULL_CW;
 const	u32		CULL_NONE			= D3DCULL_NONE;
+
+const	u32		COLORWRITEENABLE_RED	= D3DCOLORWRITEENABLE_RED;
+const	u32		COLORWRITEENABLE_GREEN	= D3DCOLORWRITEENABLE_GREEN;
+const	u32		COLORWRITEENABLE_BLUE	= D3DCOLORWRITEENABLE_BLUE;
+const	u32		COLORWRITEENABLE_ALPHA	= D3DCOLORWRITEENABLE_ALPHA;
+#endif // USE_OGL
 
 ///		detailed statistic
 struct	R_statistics_element	{
@@ -70,10 +89,17 @@ public:
 
 public:            
 	// Dynamic geometry streams
+#ifdef USE_OGL
+	GLuint							Vertex;
+	GLuint							Index;
+	GLuint							QuadIB;
+	GLuint							old_QuadIB;
+#else
 	_VertexStream					Vertex;
 	_IndexStream					Index;
 	ID3DIndexBuffer*				QuadIB;
 	ID3DIndexBuffer*				old_QuadIB;
+#endif // USE_OGL
 	R_xforms						xforms;
 	R_hemi							hemi;
 	R_tree							tree;
@@ -90,17 +116,27 @@ public:
 #endif
 private:
 	// Render-targets
+#ifdef USE_OGL
+	GLuint							pRT[4];
+	GLuint							pZB;
+#else
 	ID3DRenderTargetView*			pRT[4];
 	ID3DDepthStencilView*			pZB;
+#endif // USE_OGL
 
 	// Vertices/Indices/etc
-#ifdef	USE_DX10
+#if defined(USE_DX10) || defined(USE_OGL)
 	SDeclaration*					decl;
-#else	//	USE_DX10
+#else	//	USE_DX10 || USE_OGL
 	IDirect3DVertexDeclaration9*	decl;
-#endif	//	USE_DX10
-	ID3DVertexBuffer*			vb;
-	ID3DIndexBuffer*			ib;
+#endif	//	USE_DX10 || USE_OGL
+#ifdef USE_OGL
+	GLuint							vb;
+	GLuint							ib;
+#else
+	ID3DVertexBuffer*				vb;
+	ID3DIndexBuffer*				ib;
+#endif // USE_OGL
 	u32								vb_stride;
 
 	// Pixel/Vertex constants
@@ -108,12 +144,17 @@ private:
 	R_constant_table*				ctable;
 
 	// Shaders/State
+#ifdef USE_OGL
+	GLuint							ps;
+	GLuint							vs;
+#else
 	ID3DState*						state;
 	ID3DPixelShader*				ps;
 	ID3DVertexShader*				vs;
 #ifdef	USE_DX10
 	ID3DGeometryShader*				gs;
 #endif	//	USE_DX10
+#endif // USE_OGL
 
 #ifdef DEBUG
 	LPCSTR							ps_name;
@@ -205,10 +246,17 @@ public:
 	IC	const Fmatrix&				get_xform_view		();
 	IC	const Fmatrix&				get_xform_project	();
 
-	IC	void						set_RT				(ID3DRenderTargetView* RT, u32 ID=0);
-	IC	void						set_ZB				(ID3DDepthStencilView* ZB);
-	IC	ID3DRenderTargetView*		get_RT				(u32 ID=0);
-	IC	ID3DDepthStencilView*		get_ZB				();
+#ifdef USE_OGL
+	IC	void						set_RT(GLuint RT, u32 ID = 0);
+	IC	void						set_ZB(GLuint ZB);
+	IC	GLuint						get_RT(u32 ID = 0);
+	IC	GLuint						get_ZB();
+#else
+	IC	void						set_RT(ID3DRenderTargetView* RT, u32 ID = 0);
+	IC	void						set_ZB(ID3DDepthStencilView* ZB);
+	IC	ID3DRenderTargetView*		get_RT(u32 ID = 0);
+	IC	ID3DDepthStencilView*		get_ZB();
+#endif // USE_OGL
 
 	IC	void						set_Constants		(R_constant_table* C);
 	IC	void						set_Constants		(ref_ctable& C)						{ set_Constants(&*C);			}
@@ -227,16 +275,22 @@ public:
 	IC	void						set_Shader			(Shader* S, u32 pass=0);
 	IC	void						set_Shader			(ref_shader& S, u32 pass=0)			{ set_Shader(&*S,pass);			}
 
+#ifndef USE_OGL
 	ICF	void						set_States			(ID3DState* _state);
-	ICF	void						set_States			(ref_state& _state)					{ set_States(_state->state);	}
+	ICF	void						set_States(ref_state& _state)					{ set_States(_state->state); }
+#endif // !USE_OGL
 
-#ifdef	USE_DX10
+#if defined(USE_DX10) || defined(USE_OGL)
 	ICF  void						set_Format			(SDeclaration* _decl);
-#else	//	USE_DX10
+#else	//	USE_DX10 || USE_OGL
 	ICF  void						set_Format			(IDirect3DVertexDeclaration9* _decl);
-#endif	//	USE_DX10
+#endif	//	USE_DX10 || USE_OGL
 
-	ICF void						set_PS				(ID3DPixelShader* _ps, LPCSTR _n=0);
+#ifdef USE_OGL
+	ICF void						set_PS				(GLuint _ps, LPCSTR _n=0);
+#else
+	ICF void						set_PS				(ID3DPixelShader* _ps, LPCSTR _n = 0);
+#endif // USE_OGL
 	ICF void						set_PS				(ref_ps& _ps)						{ set_PS(_ps->ps,_ps->cName.c_str());				}
 
 #ifdef	USE_DX10
@@ -249,20 +303,33 @@ public:
 	ICF void						set_VS				(SVS* _vs);
 protected:	//	In DX10 we need input shader signature which is stored in ref_vs
 #endif	//	USE_DX10
+#ifdef USE_OGL
+	ICF void						set_VS				(GLuint _vs, LPCSTR _n=0);
+#else
 	ICF void						set_VS				(ID3DVertexShader* _vs, LPCSTR _n=0);
+#endif // USE_OGL
 #ifdef	USE_DX10
 public:
 #endif	//	USE_DX10
 
-	ICF	void						set_Vertices		(ID3DVertexBuffer* _vb, u32 _vb_stride);
-	ICF	void						set_Indices			(ID3DIndexBuffer* _ib);
+#ifdef USE_OGL
+	ICF	void						set_Vertices(GLuint _vb, u32 _vb_stride);
+	ICF	void						set_Indices(GLuint _ib);
+#else
+	ICF	void						set_Vertices(ID3DVertexBuffer* _vb, u32 _vb_stride);
+	ICF	void						set_Indices(ID3DIndexBuffer* _ib);
+#endif // USE_OGL
 	ICF void						set_Geometry		(SGeometry* _geom);
 	ICF void						set_Geometry		(ref_geom& _geom)					{	set_Geometry(&*_geom);		}
+#ifdef USE_OGL
+	IC  void						set_Stencil			(u32 _enable, u32 _func=GL_ALWAYS, u32 _ref=0x00, u32 _mask=0x00, u32 _writemask=0x00, u32 _fail=GL_KEEP, u32 _pass=GL_KEEP, u32 _zfail=GL_KEEP);
+#else
 	IC  void						set_Stencil			(u32 _enable, u32 _func=D3DCMP_ALWAYS, u32 _ref=0x00, u32 _mask=0x00, u32 _writemask=0x00, u32 _fail=D3DSTENCILOP_KEEP, u32 _pass=D3DSTENCILOP_KEEP, u32 _zfail=D3DSTENCILOP_KEEP);
+#endif // USE_OGL
 	IC  void						set_Z				(u32 _enable);
 	IC  void						set_ZFunc			(u32 _func);
 	IC  void						set_AlphaRef		(u32 _value);
-	IC  void						set_ColorWriteEnable(u32 _mask = D3DCOLORWRITEENABLE_RED | D3DCOLORWRITEENABLE_GREEN | D3DCOLORWRITEENABLE_BLUE | D3DCOLORWRITEENABLE_ALPHA);
+	IC  void						set_ColorWriteEnable(u32 _mask = COLORWRITEENABLE_RED | COLORWRITEENABLE_GREEN | COLORWRITEENABLE_BLUE | COLORWRITEENABLE_ALPHA);
 	IC  void						set_CullMode		(u32 _mode);
 	IC  u32							get_CullMode		(){return cull_mode;}
 	void							set_ClipPlanes		(u32 _enable, Fplane*	_planes=NULL, u32 count=0);
@@ -310,8 +377,13 @@ public:
 	ICF	void						set_c				(shared_str& n, int A)												{ if(ctable)	set_c	(&*ctable->get(n),A);		}
 #endif	//	USE_DX10
 
+#ifdef USE_OGL
+	ICF	void						Render				(GLenum T, u32 baseV, u32 startV, u32 countV, u32 startI, u32 PC);
+	ICF	void						Render				(GLenum T, u32 startV, u32 PC);
+#else
 	ICF	void						Render				(D3DPRIMITIVETYPE T, u32 baseV, u32 startV, u32 countV, u32 startI, u32 PC);
 	ICF	void						Render				(D3DPRIMITIVETYPE T, u32 startV, u32 PC);
+#endif // USE_OGL
 
 	// Device create / destroy / frame signaling
 	void							RestoreQuadIBData	();	// Igor: is used to test bug with rain, particles corruption
@@ -322,8 +394,14 @@ public:
 	void							OnDeviceDestroy		();
 
 	// Debug render
+#ifdef USE_OGL
+	void dbg_DP						(GLenum pt, ref_geom geom, u32 vBase, u32 pc);
+	void dbg_DIP					(GLenum pt, ref_geom geom, u32 baseV, u32 startV, u32 countV, u32 startI, u32 PC);
+#else
 	void dbg_DP						(D3DPRIMITIVETYPE pt, ref_geom geom, u32 vBase, u32 pc);
 	void dbg_DIP					(D3DPRIMITIVETYPE pt, ref_geom geom, u32 baseV, u32 startV, u32 countV, u32 startI, u32 PC);
+#endif // USE_OGL
+#ifndef USE_OGL
 #ifdef	USE_DX10
 	//	TODO: DX10: Implement this.
 	IC void	dbg_SetRS				(D3DRENDERSTATETYPE p1, u32 p2)
@@ -336,9 +414,15 @@ public:
 	IC void	dbg_SetSS				(u32 sampler, D3DSAMPLERSTATETYPE type, u32 value)
 	{ CHK_DX(HW.pDevice->SetSamplerState(sampler,type,value)); }
 #endif	//	USE_DX10
+#endif // !USE_OGL
 #ifdef DEBUG
+#ifdef USE_OGL
+	void dbg_Draw					(GLenum T, FVF::L* pVerts, int vcnt, u16* pIdx, int pcnt);
+	void dbg_Draw					(GLenum T, FVF::L* pVerts, int pcnt);
+#else
 	void dbg_Draw					(D3DPRIMITIVETYPE T, FVF::L* pVerts, int vcnt, u16* pIdx, int pcnt);
 	void dbg_Draw					(D3DPRIMITIVETYPE T, FVF::L* pVerts, int pcnt);
+#endif // USE_OGL
 	IC void dbg_DrawAABB			(Fvector& T, float sx, float sy, float sz, u32 C)						{	Fvector half_dim;	half_dim.set(sx,sy,sz); Fmatrix	TM;	TM.translate(T); dbg_DrawOBB(TM,half_dim,C);	}
 	void dbg_DrawOBB				(Fmatrix& T, Fvector& half_dim, u32 C);
 	IC void dbg_DrawTRI				(Fmatrix& T, Fvector* p, u32 C)											{	dbg_DrawTRI(T,p[0],p[1],p[2],C);	}
@@ -370,7 +454,11 @@ private:
 extern  ECORE_API CBackend			RCache;
 
 #ifndef _EDITOR
+#ifdef USE_OGL
+#	include "GLUtils.h"
+#else
 #	include "D3DUtils.h"
+#endif // USE_OGL
 #endif
 
 #endif

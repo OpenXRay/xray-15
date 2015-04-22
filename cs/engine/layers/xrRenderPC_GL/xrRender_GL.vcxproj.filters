@@ -243,6 +243,9 @@
     <ClCompile Include="..\xrRender\ParticleGroup.cpp">
       <Filter>Models\Visuals</Filter>
     </ClCompile>
+    <ClCompile Include="GL_Backend.cpp">
+      <Filter>Refactored\Backend</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -334,6 +337,12 @@
     </ClInclude>
     <ClInclude Include="..\xrRender\ParticleEffectDef.h">
       <Filter>Models\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRender\FVF.h">
+      <Filter>Refactored\Backend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRender\R_Backend.h">
+      <Filter>Refactored\Backend</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

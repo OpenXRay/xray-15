@@ -29,6 +29,7 @@
 #include "../../xrEngine/psystem.h"
 
 #include "../xrRender/Shader.h"
+#include "../xrRender/R_Backend.h"
 
 #include "../../xrEngine/vis_common.h"
 #include "../../xrEngine/render.h"

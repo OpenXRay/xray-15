@@ -10,16 +10,14 @@ class  CTheoraSurface;
 class  ECORE_API CTexture : public xr_resource_named
 {
 public:
-#ifndef	USE_OGL
 	//	Since DX10 allows up to 128 unique textures, 
 	//	distance between enum values should be at leas 128
 	enum ResourceShaderType	//	Don't change this since it's hardware-dependent
 	{
 		rstPixel = 0,	//	Default texture offset
-		rstVertex = D3DVERTEXTEXTURESAMPLER0,
+		rstVertex = rstPixel+257,
 		rstGeometry = rstVertex+256
 	};
-#endif // !USE_OGL
 
 public:
 	void	__stdcall					apply_load		(u32	stage);
