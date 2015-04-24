@@ -176,7 +176,7 @@ void CPGDef::Save2(CInifile& ini)
 //------------------------------------------------------------------------------
 // Particle Group item
 //------------------------------------------------------------------------------
-void CParticleGroup::SItem::Set(dxRender_Visual* e)
+void CParticleGroup::SItem::Set(IRenderVisual* e)
 {
 	_effect=e;
 }
@@ -186,9 +186,7 @@ void CParticleGroup::SItem::Clear()
     GetVisuals		(visuals);
     for (VisualVecIt it=visuals.begin(); it!=visuals.end(); it++)
 	{
-	    //::Render->model_Delete(*it);
-		IRenderVisual *pVisual = smart_cast<IRenderVisual*>(*it);
-		::Render->model_Delete(pVisual);
+		::Render->model_Delete(*it);
 		*it = 0;
 	}
 
@@ -220,7 +218,7 @@ void CParticleGroup::SItem::StartRelatedChild(CParticleEffect* emitter, LPCSTR e
 void CParticleGroup::SItem::StopRelatedChild(u32 idx)
 {
 	VERIFY(idx<_children_related.size());
-    dxRender_Visual*& V 			= _children_related[idx];
+    IRenderVisual*& V 			= _children_related[idx];
     ((CParticleEffect*)V)->Stop	(TRUE);
     _children_free.push_back	(V);
     _children_related[idx]		= _children_related.back();
