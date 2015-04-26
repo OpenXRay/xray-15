@@ -246,6 +246,9 @@
     <ClCompile Include="GL_Backend.cpp">
       <Filter>Refactored\Backend</Filter>
     </ClCompile>
+    <ClCompile Include="GL_DStreams.cpp">
+      <Filter>Refactored\Backend</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -342,6 +345,9 @@
       <Filter>Refactored\Backend</Filter>
     </ClInclude>
     <ClInclude Include="..\xrRender\R_Backend.h">
+      <Filter>Refactored\Backend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRender\R_DStreams.h">
       <Filter>Refactored\Backend</Filter>
     </ClInclude>
   </ItemGroup>

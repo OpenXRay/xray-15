@@ -10,10 +10,7 @@
 #define PGO(a)
 #endif
 
-#ifndef USE_OGL
-#	include "r_DStreams.h"
-#endif // !USE_OGL
-
+#include "r_DStreams.h"
 #include "r_constants_cache.h"
 #include "r_backend_xform.h"
 #include "r_backend_hemi.h"
@@ -103,14 +100,12 @@ public:
 
 public:            
 	// Dynamic geometry streams
+	_VertexStream					Vertex;
+	_IndexStream					Index;
 #ifdef USE_OGL
-	GLuint							Vertex;
-	GLuint							Index;
 	GLuint							QuadIB;
 	GLuint							old_QuadIB;
 #else
-	_VertexStream					Vertex;
-	_IndexStream					Index;
 	ID3DIndexBuffer*				QuadIB;
 	ID3DIndexBuffer*				old_QuadIB;
 #endif // USE_OGL

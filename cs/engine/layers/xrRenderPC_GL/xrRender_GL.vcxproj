@@ -216,6 +216,7 @@
     <ClCompile Include="glUIRender.cpp" />
     <ClCompile Include="GLUtils.cpp" />
     <ClCompile Include="GL_Backend.cpp" />
+    <ClCompile Include="GL_DStreams.cpp" />
     <ClCompile Include="r4.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -253,6 +254,7 @@
     <ClInclude Include="..\xrRender\ParticleGroup.h" />
     <ClInclude Include="..\xrRender\PSLibrary.h" />
     <ClInclude Include="..\xrRender\R_Backend.h" />
+    <ClInclude Include="..\xrRender\R_DStreams.h" />
     <ClInclude Include="..\xrRender\Shader.h" />
     <ClInclude Include="..\xrRender\SH_Atomic.h" />
     <ClInclude Include="..\xrRender\SH_Constant.h" />
