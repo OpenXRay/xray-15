@@ -5,6 +5,27 @@
 //-----------------------------------------------------------------------------
 #pragma pack(push,4)
 namespace FVF {
+#ifdef USE_OGL
+	enum {
+		F_L,
+		F_V,
+		F_LIT,
+		F_TL0uv,
+		F_TL,
+		F_TL2uv,
+		F_TL4uv
+	};
+#else
+	const u32 F_L = D3DFVF_XYZ | D3DFVF_DIFFUSE;
+	const u32 F_V = D3DFVF_XYZ | D3DFVF_TEX1;
+	const u32 F_LIT = D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX1;
+	const u32 F_TL0uv = D3DFVF_XYZRHW | D3DFVF_DIFFUSE;
+	const u32 F_TL = D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1;
+	const u32 F_TL2uv = D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX2;
+	const u32 F_TL4uv = D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX4;
+#endif // USE_OGL
+
+
 	struct L {
 		Fvector		p;
 		u32			color;
@@ -12,7 +33,6 @@ namespace FVF {
 		IC void		set(float x, float y, float z, u32 C) { p.set(x,y,z); color=C; }
 		IC void		set(const Fvector& _p, u32 C) { p.set(_p); color=C; }
 	};
-	const u32 F_L		= D3DFVF_XYZ | D3DFVF_DIFFUSE;
 
 	struct V {
 		Fvector		p;
@@ -21,7 +41,6 @@ namespace FVF {
 		IC void		set(float x, float y, float z, float u, float v)	{ p.set(x,y,z); t.set(u,v);}
 		IC void		set(const Fvector& _p,float u, float v)				{ p.set(_p);	t.set(u,v);}
 	};
-	const u32 F_V		= D3DFVF_XYZ | D3DFVF_TEX1;
 
 	struct LIT {
 		Fvector		p;
@@ -31,7 +50,6 @@ namespace FVF {
 		IC void		set(float x, float y, float z, u32 C, float u, float v) { p.set(x,y,z); color=C; t.set(u,v);}
 		IC void		set(const Fvector& _p, u32 C, float u, float v) { p.set(_p); color=C; t.set(u,v);}
 	};
-	const u32 F_LIT	= D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX1;
 
 	struct TL0uv {
 		Fvector4	p;
@@ -56,7 +74,6 @@ namespace FVF {
 			p.z	=  (matSet._13*v.x + matSet._23*v.y + matSet._33*v.z + matSet._43)/p.w;
 		};
 	};
-	const u32 F_TL0uv	= D3DFVF_XYZRHW | D3DFVF_DIFFUSE;
 
 	struct TL {
 		Fvector4	p;
@@ -84,7 +101,6 @@ namespace FVF {
 			p.z	=  (matSet._13*v.x + matSet._23*v.y + matSet._33*v.z + matSet._43)/p.w;
 		};
 	};
-	const u32 F_TL	= D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1;
 
 	struct TL2uv {
 		Fvector4	p;
@@ -114,7 +130,6 @@ namespace FVF {
 			p.z	=  (matSet._13*v.x + matSet._23*v.y + matSet._33*v.z + matSet._43)/p.w;
 		};
 	};
-	const u32 F_TL2uv	= D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX2;
 
 	struct TL4uv {
 		Fvector4	p;
@@ -133,7 +148,6 @@ namespace FVF {
 		IC void	set	(float x, float y, float z, float w, u32 c, float u, float v, float u2, float v2)
 		{	p.set	(x,y,z,w); color = c; uv[0].x=u; uv[0].y=v;	uv[1].x=u2; uv[1].y=v2;	};
 	};
-	const u32 F_TL4uv	= D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX4;
 };
 #pragma pack(pop)
 
