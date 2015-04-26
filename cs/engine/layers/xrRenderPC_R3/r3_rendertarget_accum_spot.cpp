@@ -545,17 +545,17 @@ void CRenderTarget::accum_volumetric(light* L)
 
 		RCache.set_Geometry(g_accum_volumetric);
 		//	Igor: no need to do it per sub-sample. Plain AA will go just fine.
-		RCache.Render(D3DPT_TRIANGLELIST,0,0,VOLUMETRIC_SLICES*4,0,VOLUMETRIC_SLICES*2);
+		RCache.Render(PT_TRIANGLELIST,0,0,VOLUMETRIC_SLICES*4,0,VOLUMETRIC_SLICES*2);
 		
 		/*
 		if( !RImplementation.o.dx10_msaa )
-			RCache.Render(D3DPT_TRIANGLELIST,0,0,iNumSlises*4,0,iNumSlises*2);
+			RCache.Render(PT_TRIANGLELIST,0,0,iNumSlises*4,0,iNumSlises*2);
 		else
 		{  
 			// per pixel
 			RCache.set_Element(shader->E[0]);
 			RCache.set_Stencil(TRUE,D3DCMP_EQUAL,dwLightMarkerID,0xff,0x00);	
-			RCache.Render(D3DPT_TRIANGLELIST,0,0,iNumSlises*4,0,iNumSlises*2);
+			RCache.Render(PT_TRIANGLELIST,0,0,iNumSlises*4,0,iNumSlises*2);
 
 			// per sample
 			if( RImplementation.o.dx10_msaa_opt )
@@ -563,7 +563,7 @@ void CRenderTarget::accum_volumetric(light* L)
 				// per sample
 				RCache.set_Element	(shader_msaa[0]->E[0]);
 				RCache.set_Stencil(TRUE,D3DCMP_EQUAL,dwLightMarkerID|0x80,0xff,0x00);		
-				RCache.Render(D3DPT_TRIANGLELIST,0,0,iNumSlises*4,0,iNumSlises*2);
+				RCache.Render(PT_TRIANGLELIST,0,0,iNumSlises*4,0,iNumSlises*2);
 			}
 			else
 			{
@@ -572,7 +572,7 @@ void CRenderTarget::accum_volumetric(light* L)
 					RCache.set_Element	      (shader_msaa[i]->E[0]);
 					StateManager.SetSampleMask ( u32(1) << i );
 					RCache.set_Stencil         (TRUE,D3DCMP_EQUAL,dwLightMarkerID|0x80,0xff,0x00);		
-					RCache.Render(D3DPT_TRIANGLELIST,0,0,iNumSlises*4,0,iNumSlises*2);
+					RCache.Render(PT_TRIANGLELIST,0,0,iNumSlises*4,0,iNumSlises*2);
 				}
 				StateManager.SetSampleMask( 0xffffffff );
 			}

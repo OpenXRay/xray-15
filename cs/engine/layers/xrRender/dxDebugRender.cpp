@@ -19,7 +19,7 @@ void dxDebugRender::Render()
 		return;
 
 	RCache.set_xform_world			(Fidentity);
-	RCache.dbg_Draw					(D3DPT_LINELIST,&*m_line_vertices.begin(),m_line_vertices.size(),&*m_line_indices.begin(),m_line_indices.size()/2);
+	RCache.dbg_Draw					(PT_LINELIST,&*m_line_vertices.begin(),m_line_vertices.size(),&*m_line_indices.begin(),m_line_indices.size()/2);
 	m_line_vertices.resize			(0);
 	m_line_indices.resize			(0);
 }

@@ -35,7 +35,7 @@ void dxConsoleRender::OnRender(bool bGame)
 	RCache.set_Element			(m_Shader->E[0]);
 	RCache.set_Geometry			(m_Geom);
 
-	RCache.Render				(D3DPT_TRIANGLELIST, vOffset, 0, 4, 0, 2);
+	RCache.Render				(PT_TRIANGLELIST, vOffset, 0, 4, 0, 2);
 #else	//	USE_DX10
 	CHK_DX	(HW.pDevice->Clear(1,&R,D3DCLEAR_TARGET,D3DCOLOR_XRGB(32,32,32),1,0));
 #endif	//	USE_DX10

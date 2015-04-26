@@ -106,6 +106,6 @@ void FLOD::Render		(float LOD)
 
 	// Draw IT
 	RCache.set_Geometry		(geom);
-	RCache.Render			(D3DPT_TRIANGLEFAN,vOffset,2);
+	RCache.Render			(PT_TRIANGLEFAN,vOffset,2);
 	*/
 }

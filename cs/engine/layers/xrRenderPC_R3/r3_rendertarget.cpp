@@ -138,7 +138,7 @@ void	CRenderTarget::u_stencil_optimize	(eStencilOptimizeMode eSOM)
 	}	
 
 	RCache.set_Geometry			(g_combine		);
-	RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
+	RCache.Render				(PT_TRIANGLELIST,Offset,0,4,0,2);
 	
 }
 
@@ -1056,7 +1056,7 @@ void CRenderTarget::reset_light_marker( bool bResetStencil)
 		RCache.Vertex.Unlock		(4,g_combine->vb_stride);
 		RCache.set_Element			(s_occq->E[2]	);
 		RCache.set_Geometry			(g_combine		);
-		RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
+		RCache.Render				(PT_TRIANGLELIST,Offset,0,4,0,2);
 	}
 }
 

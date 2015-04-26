@@ -123,7 +123,7 @@ void CPortalTraverser::fade_render	()
 	RCache.set_Shader				(f_shader);
 	RCache.set_Geometry				(f_geom);
 	RCache.set_CullMode				(CULL_NONE);
-	RCache.Render					(D3DPT_TRIANGLELIST,_offset,_pcount);
+	RCache.Render					(PT_TRIANGLELIST,_offset,_pcount);
 	RCache.set_CullMode				(CULL_CCW);
 
 	// cleanup
@@ -151,7 +151,7 @@ void CPortalTraverser::dbg_draw		()
 		verts[2].set(bb.max.x,bb.max.y,EPS,0xffffffff);
 		verts[3].set(bb.min.x,bb.max.y,EPS,0xffffffff);
 		verts[4].set(bb.min.x,bb.min.y,EPS,0xffffffff);
-		RCache.dbg_Draw		(D3DPT_LINESTRIP,verts,4);
+		RCache.dbg_Draw		(PT_LINESTRIP,verts,4);
 	}
 }
 #endif

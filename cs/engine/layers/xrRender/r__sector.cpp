@@ -45,7 +45,7 @@ void CPortal::OnRender	()
 		RCache.set_xform_world(Fidentity);
 		// draw solid
 		RCache.set_Shader	(dxRenderDeviceRender::Instance().m_SelectionShader);
-		RCache.dbg_Draw		(D3DPT_TRIANGLEFAN,&*V.begin(),V.size()-2);
+		RCache.dbg_Draw		(PT_TRIANGLEFAN,&*V.begin(),V.size()-2);
 
 		// draw wire
 		if (bDebug){
@@ -54,7 +54,7 @@ void CPortal::OnRender	()
 			Device.SetNearer(TRUE);
 		}
 		RCache.set_Shader	(dxRenderDeviceRender::Instance().m_WireShader);
-		RCache.dbg_Draw		(D3DPT_LINESTRIP,&*(V.begin()+1),V.size()-2);
+		RCache.dbg_Draw		(PT_LINESTRIP,&*(V.begin()+1),V.size()-2);
 		if (bDebug){
 			RImplementation.rmNormal();
 		}else{

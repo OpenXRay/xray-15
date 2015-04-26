@@ -219,16 +219,16 @@ void	CRenderTarget::phase_combine	()
 		RCache.set_c				("ssao_kernel_size",		fSSAOKernelSize	);
 
       if( !RImplementation.o.dx10_msaa )
-		   RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
+		   RCache.Render				(PT_TRIANGLELIST,Offset,0,4,0,2);
       else
       {
          RCache.set_Stencil( TRUE, D3DCMP_EQUAL, 0x01, 0x81, 0 );
-         RCache.Render		( D3DPT_TRIANGLELIST,Offset,0,4,0,2);
+         RCache.Render		( PT_TRIANGLELIST,Offset,0,4,0,2);
          if( RImplementation.o.dx10_msaa_opt )
          {
             RCache.set_Element( s_combine_msaa[0]->E[0]	);
             RCache.set_Stencil( TRUE, D3DCMP_EQUAL, 0x81, 0x81, 0 );
-            RCache.Render		( D3DPT_TRIANGLELIST,Offset,0,4,0,2);
+            RCache.Render		( PT_TRIANGLELIST,Offset,0,4,0,2);
          }
          else
          {
@@ -237,7 +237,7 @@ void	CRenderTarget::phase_combine	()
                RCache.set_Element		   ( s_combine_msaa[i]->E[0]	);
                StateManager.SetSampleMask ( u32(1) << i  );
                RCache.set_Stencil         ( TRUE, D3DCMP_EQUAL, 0x81, 0x81, 0 );
-               RCache.Render				   ( D3DPT_TRIANGLELIST,Offset,0,4,0,2);
+               RCache.Render				   ( PT_TRIANGLELIST,Offset,0,4,0,2);
             }
             StateManager.SetSampleMask( 0xffffffff );
          }
@@ -397,7 +397,7 @@ void	CRenderTarget::phase_combine	()
 		RCache.set_c				("dof_kernel",	vDofKernel.x, vDofKernel.y, ps_r2_dof_kernel_size, 0);
 		
 		RCache.set_Geometry			(g_aa_AA);
-		RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
+		RCache.Render				(PT_TRIANGLELIST,Offset,0,4,0,2);
 	}
 	RCache.set_Stencil		(FALSE);
 
@@ -494,7 +494,7 @@ void	CRenderTarget::phase_combine	()
 			// Draw COLOR
 			RCache.set_Shader			(s_combine_dbg_0);
 			RCache.set_Geometry			(g_combine);
-			RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
+			RCache.Render				(PT_TRIANGLELIST,Offset,0,4,0,2);
 		}
 
 		// Draw quater-screen quad textured with our accumulator
@@ -515,7 +515,7 @@ void	CRenderTarget::phase_combine	()
 			// Draw COLOR
 			RCache.set_Shader			(s_combine_dbg_1);
 			RCache.set_Geometry			(g_combine);
-			RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
+			RCache.Render				(PT_TRIANGLELIST,Offset,0,4,0,2);
 		}
 	}
 	*/
@@ -626,7 +626,7 @@ void CRenderTarget::phase_combine_volumetric()
 
 		RCache.set_c				("env_color",		envclr	);
 		RCache.set_c				("fog_color",		fogclr	);
-		RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
+		RCache.Render				(PT_TRIANGLELIST,Offset,0,4,0,2);
 	}
 	RCache.set_ColorWriteEnable();
 }

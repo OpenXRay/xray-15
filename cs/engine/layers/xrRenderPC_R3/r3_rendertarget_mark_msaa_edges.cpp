@@ -21,6 +21,6 @@ void CRenderTarget::mark_msaa_edges()
    StateManager.SetDepthFunc( D3DCMP_ALWAYS );
    StateManager.SetDepthEnable( FALSE );
    StateManager.SetCullMode( D3DCULL_NONE );
-	RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
+	RCache.Render				(PT_TRIANGLELIST,Offset,0,4,0,2);
    StateManager.SetColorWriteEnable( D3D10_COLOR_WRITE_ENABLE_ALL );
 }

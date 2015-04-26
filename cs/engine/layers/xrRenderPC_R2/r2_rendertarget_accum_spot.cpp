@@ -421,8 +421,8 @@ void CRenderTarget::accum_volumetric(light* L)
 		RCache.set_ColorWriteEnable(D3DCOLORWRITEENABLE_RED|D3DCOLORWRITEENABLE_GREEN|D3DCOLORWRITEENABLE_BLUE);
 
 		RCache.set_Geometry(g_accum_volumetric);
-		//RCache.Render(D3DPT_TRIANGLELIST,0,0,VOLUMETRIC_SLICES*4,0,VOLUMETRIC_SLICES*2);
-		RCache.Render(D3DPT_TRIANGLELIST,0,0,iNumSlises*4,0,iNumSlises*2);
+		//RCache.Render(PT_TRIANGLELIST,0,0,VOLUMETRIC_SLICES*4,0,VOLUMETRIC_SLICES*2);
+		RCache.Render(PT_TRIANGLELIST,0,0,iNumSlises*4,0,iNumSlises*2);
 
 		RCache.set_ColorWriteEnable();
 

@@ -98,7 +98,7 @@ ICF void CBackend::set_Indices(ID3DIndexBuffer* _ib)
 	}
 }
 
-ICF void CBackend::Render(D3DPRIMITIVETYPE T, u32 baseV, u32 startV, u32 countV, u32 startI, u32 PC)
+ICF void CBackend::Render(u32 T, u32 baseV, u32 startV, u32 countV, u32 startI, u32 PC)
 {
 	//Fix D3D ERROR
 	if (PC==0)
@@ -108,11 +108,11 @@ ICF void CBackend::Render(D3DPRIMITIVETYPE T, u32 baseV, u32 startV, u32 countV,
 	stat.verts			+= countV;
 	stat.polys			+= PC;
 	constants.flush		();
-	CHK_DX				(HW.pDevice->DrawIndexedPrimitive(T,baseV, startV, countV,startI,PC));
+	CHK_DX				(HW.pDevice->DrawIndexedPrimitive((D3DPRIMITIVETYPE)T,baseV, startV, countV,startI,PC));
 	PGO					(Msg("PGO:DIP:%dv/%df",countV,PC));
 }
 
-ICF void CBackend::Render(D3DPRIMITIVETYPE T, u32 startV, u32 PC)
+ICF void CBackend::Render(u32 T, u32 startV, u32 PC)
 {
 	//Fix D3D ERROR
 	if (PC==0)
@@ -122,7 +122,7 @@ ICF void CBackend::Render(D3DPRIMITIVETYPE T, u32 startV, u32 PC)
 	stat.verts			+= 3*PC;
 	stat.polys			+= PC;
 	constants.flush		();
-	CHK_DX				(HW.pDevice->DrawPrimitive(T, startV, PC));
+	CHK_DX				(HW.pDevice->DrawPrimitive((D3DPRIMITIVETYPE)T, startV, PC));
 	PGO					(Msg("PGO:DIP:%dv/%df",3*PC,PC));
 }
 

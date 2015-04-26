@@ -548,7 +548,7 @@ void CLensFlare::Render(BOOL bSun, BOOL bFlares, BOOL bGradient)
 		{
 			u32						vBase	= i*4+VS_Offset;
 			RCache.set_Shader		(_2render[i]);
-			RCache.Render			(D3DPT_TRIANGLELIST,vBase, 0,4,0,2);
+			RCache.Render			(PT_TRIANGLELIST,vBase, 0,4,0,2);
 	    }
 	}
 	*/

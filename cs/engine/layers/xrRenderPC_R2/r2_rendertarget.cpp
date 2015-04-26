@@ -57,7 +57,7 @@ void	CRenderTarget::u_stencil_optimize	(BOOL		common_stencil)
 	if (common_stencil)			RCache.set_Stencil	(TRUE,D3DCMP_LESSEQUAL,dwLightMarkerID,0xff,0x00);	// keep/keep/keep
 	RCache.set_Element			(s_occq->E[1]	);
 	RCache.set_Geometry			(g_combine		);
-	RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
+	RCache.Render				(PT_TRIANGLELIST,Offset,0,4,0,2);
 }
 
 // 2D texgen (texture adjustment matrix)
@@ -644,7 +644,7 @@ void CRenderTarget::reset_light_marker( bool bResetStencil)
 		//RCache.set_Stencil	(TRUE,D3DCMP_ALWAYS,dwLightMarkerID,0x00,0xFF, D3DSTENCILOP_ZERO, D3DSTENCILOP_ZERO, D3DSTENCILOP_ZERO);
 		RCache.set_Element			(s_occq->E[1]	);
 		RCache.set_Geometry			(g_combine		);
-		RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
+		RCache.Render				(PT_TRIANGLELIST,Offset,0,4,0,2);
 
 /*
 		u32		Offset;
@@ -662,7 +662,7 @@ void CRenderTarget::reset_light_marker( bool bResetStencil)
 		RCache.Vertex.Unlock		(4,g_combine->vb_stride);
 		RCache.set_Element			(s_occq->E[2]	);
 		RCache.set_Geometry			(g_combine		);
-		RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
+		RCache.Render				(PT_TRIANGLELIST,Offset,0,4,0,2);
 */
 	}
 }

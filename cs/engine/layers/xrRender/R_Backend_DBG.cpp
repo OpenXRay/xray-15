@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #pragma hdrstop
 
-void CBackend::dbg_DP(D3DPRIMITIVETYPE pt, ref_geom geom, u32 vBase, u32 pc)
+void CBackend::dbg_DP(u32 pt, ref_geom geom, u32 vBase, u32 pc)
 {
 	RCache.set_Geometry		(geom);
 	RCache.Render			(pt,vBase,pc);
 }
 
-void CBackend::dbg_DIP(D3DPRIMITIVETYPE pt, ref_geom geom, u32 baseV, u32 startV, u32 countV, u32 startI, u32 PC)
+void CBackend::dbg_DIP(u32 pt, ref_geom geom, u32 baseV, u32 startV, u32 countV, u32 startI, u32 PC)
 {
 	RCache.set_Geometry		(geom);
 	RCache.Render			(pt,baseV,startV,countV,startI,PC);
@@ -15,7 +15,7 @@ void CBackend::dbg_DIP(D3DPRIMITIVETYPE pt, ref_geom geom, u32 baseV, u32 startV
 
 #ifdef DEBUG
 
-void CBackend::dbg_Draw			(D3DPRIMITIVETYPE T, FVF::L* pVerts, int vcnt, u16* pIdx, int pcnt)
+void CBackend::dbg_Draw			(u32 T, FVF::L* pVerts, int vcnt, u16* pIdx, int pcnt)
 {
 	OnFrameEnd					();
 #ifdef	USE_DX10
@@ -23,13 +23,13 @@ void CBackend::dbg_Draw			(D3DPRIMITIVETYPE T, FVF::L* pVerts, int vcnt, u16* pI
 	//VERIFY(!"CBackend::dbg_Draw not implemented.");
 #else	//	USE_DX10
 	CHK_DX(HW.pDevice->SetFVF	(FVF::F_L));
-	CHK_DX(HW.pDevice->DrawIndexedPrimitiveUP(T, 0, vcnt, pcnt,
+	CHK_DX(HW.pDevice->DrawIndexedPrimitiveUP((D3DPRIMITIVETYPE)T, 0, vcnt, pcnt,
 		pIdx, D3DFMT_INDEX16,
 		pVerts, sizeof(FVF::L)
 		));
 #endif	//	USE_DX10
 }
-void CBackend::dbg_Draw			(D3DPRIMITIVETYPE T, FVF::L* pVerts, int pcnt)
+void CBackend::dbg_Draw			(u32 T, FVF::L* pVerts, int pcnt)
 {
 	OnFrameEnd					();
 #ifdef	USE_DX10
@@ -37,7 +37,7 @@ void CBackend::dbg_Draw			(D3DPRIMITIVETYPE T, FVF::L* pVerts, int pcnt)
 	//VERIFY(!"CBackend::dbg_Draw not implemented.");
 #else	//	USE_DX10
 	CHK_DX(HW.pDevice->SetFVF	(FVF::F_L));
-	CHK_DX(HW.pDevice->DrawPrimitiveUP(T, pcnt, pVerts, sizeof(FVF::L)	));
+	CHK_DX(HW.pDevice->DrawPrimitiveUP((D3DPRIMITIVETYPE)T, pcnt, pVerts, sizeof(FVF::L)	));
 #endif	//	USE_DX10
 }
 
@@ -63,7 +63,7 @@ void CBackend::dbg_DrawOBB		(Fmatrix& T, Fvector& half_dim, u32 C)
 		0,1,  1,2,  2,3,  3,0,  4,5,  5,6,  6,7,  7,4,  1,5,  2,6,  3,7,  0,4
 	};
 	set_xform_world	(mL2W_Transform);
-	dbg_Draw(D3DPT_LINELIST,aabb,8,aabb_id,12);
+	dbg_Draw(PT_LINELIST,aabb,8,aabb_id,12);
 }
 void CBackend::dbg_DrawTRI	(Fmatrix& T, Fvector& p1, Fvector& p2, Fvector& p3, u32 C)
 {
@@ -73,7 +73,7 @@ void CBackend::dbg_DrawTRI	(Fmatrix& T, Fvector& p1, Fvector& p2, Fvector& p3, u
 	tri[2].p = p3; tri[2].color = C;
 
 	set_xform_world	(T);
-	dbg_Draw(D3DPT_TRIANGLESTRIP,tri,1);
+	dbg_Draw(PT_TRIANGLESTRIP,tri,1);
 }
 void CBackend::dbg_DrawLINE(Fmatrix& T, Fvector& p1, Fvector& p2, u32 C)
 {
@@ -82,7 +82,7 @@ void CBackend::dbg_DrawLINE(Fmatrix& T, Fvector& p1, Fvector& p2, u32 C)
 	line[1].p = p2; line[1].color = C;
 
 	set_xform_world	(T);
-	dbg_Draw(D3DPT_LINELIST,line,1);
+	dbg_Draw(PT_LINELIST,line,1);
 }
 void CBackend::dbg_DrawEllipse(Fmatrix& T, u32 C)
 {
@@ -170,10 +170,10 @@ void CBackend::dbg_DrawEllipse(Fmatrix& T, u32 C)
 #ifdef	USE_DX10
 	//	TODO: DX10: implement
 	//VERIFY(!"CBackend::dbg_Draw not implemented.");
-	//dbg_Draw(D3DPT_TRIANGLELIST,verts,vcnt,gFaces,224);
+	//dbg_Draw(PT_TRIANGLELIST,verts,vcnt,gFaces,224);
 #else	//	USE_DX10
 	HW.pDevice->SetRenderState	(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
-	dbg_Draw(D3DPT_TRIANGLELIST,verts,vcnt,gFaces,224);
+	dbg_Draw(PT_TRIANGLELIST,verts,vcnt,gFaces,224);
 	HW.pDevice->SetRenderState	(D3DRS_FILLMODE, D3DFILL_SOLID);
 #endif	//	USE_DX10
 }

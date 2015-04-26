@@ -54,7 +54,7 @@ void CRenderTarget::accum_direct		(u32 sub_phase)
 		// if (stencil>=1 && aref_pass)	stencil = light_id
 		RCache.set_ColorWriteEnable	(FALSE		);
 		RCache.set_Stencil			(TRUE,D3DCMP_LESSEQUAL,dwLightMarkerID,0x01,0xff,D3DSTENCILOP_KEEP,D3DSTENCILOP_REPLACE,D3DSTENCILOP_KEEP);
-		RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
+		RCache.Render				(PT_TRIANGLELIST,Offset,0,4,0,2);
 	}
 
 	// recalculate d_Z, to perform depth-clipping
@@ -180,7 +180,7 @@ void CRenderTarget::accum_direct		(u32 sub_phase)
 
 		// setup stencil
 		RCache.set_Stencil			(TRUE,D3DCMP_LESSEQUAL,dwLightMarkerID,0xff,0x00);
-		RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
+		RCache.Render				(PT_TRIANGLELIST,Offset,0,4,0,2);
 
 		// Fetch4 : disable
 		if (RImplementation.o.HW_smap_FETCH4)	{
@@ -225,7 +225,7 @@ void CRenderTarget::accum_direct_blend	()
 		RCache.set_Geometry			(g_combine_2UV);
 		RCache.set_Element			(s_accum_mask->E[SE_MASK_ACCUM_2D]	);
 		RCache.set_Stencil			(TRUE,D3DCMP_LESSEQUAL,dwLightMarkerID,0xff,0x00);
-		RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2	);
+		RCache.Render				(PT_TRIANGLELIST,Offset,0,4,0,2	);
 	}
 	//dwLightMarkerID				+= 2;
 	increment_light_marker();
@@ -287,7 +287,7 @@ void CRenderTarget::accum_direct_f		(u32 sub_phase)
 		// if (stencil>=1 && aref_pass)	stencil = light_id
 		RCache.set_ColorWriteEnable	(FALSE		);
 		RCache.set_Stencil			(TRUE,D3DCMP_LESSEQUAL,dwLightMarkerID,0x01,0xff,D3DSTENCILOP_KEEP,D3DSTENCILOP_REPLACE,D3DSTENCILOP_KEEP);
-		RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
+		RCache.Render				(PT_TRIANGLELIST,Offset,0,4,0,2);
 	}
 
 	// recalculate d_Z, to perform depth-clipping
@@ -359,7 +359,7 @@ void CRenderTarget::accum_direct_f		(u32 sub_phase)
 
 		// setup stencil
 		RCache.set_Stencil			(TRUE,D3DCMP_LESSEQUAL,dwLightMarkerID,0xff,0x00);
-		RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
+		RCache.Render				(PT_TRIANGLELIST,Offset,0,4,0,2);
 
 		//	Igor: draw volumetric here
 		//accum_direct_volumetric	(sub_phase, Offset);
@@ -444,7 +444,7 @@ void CRenderTarget::accum_direct_lum	()
 
 		// setup stencil
 		RCache.set_Stencil			(TRUE,D3DCMP_LESSEQUAL,dwLightMarkerID,0xff,0x00);
-		RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
+		RCache.Render				(PT_TRIANGLELIST,Offset,0,4,0,2);
 }
 
 void CRenderTarget::accum_direct_volumetric	(u32 sub_phase, const u32 Offset, const Fmatrix &mShadow)
@@ -565,7 +565,7 @@ void CRenderTarget::accum_direct_volumetric	(u32 sub_phase, const u32 Offset, co
 
 		// setup stencil: we have to draw to both lit and unlit pixels
 		//RCache.set_Stencil			(TRUE,D3DCMP_LESSEQUAL,dwLightMarkerID,0xff,0x00);
-		RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
+		RCache.Render				(PT_TRIANGLELIST,Offset,0,4,0,2);
 
 		// Fetch4 : disable
 		if (RImplementation.o.HW_smap_FETCH4)	{
