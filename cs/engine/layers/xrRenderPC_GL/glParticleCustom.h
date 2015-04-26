@@ -7,6 +7,9 @@ class glParticleCustom :
 	public glRender_Visual, public IParticleCustom
 {
 public:
+	// geometry-format
+	ref_geom		geom;
+public:
 	glParticleCustom();
 	virtual ~glParticleCustom();
 

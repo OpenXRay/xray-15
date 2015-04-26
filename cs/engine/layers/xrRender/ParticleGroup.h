@@ -5,7 +5,7 @@
 #ifdef USE_OGL
 #	include "glParticleCustom.h"
 #else // USE_OGL
-#include "../xrRender/dxParticleCustom.h"
+#	include "../xrRender/dxParticleCustom.h"
 #endif // USE_OGL
 
 namespace PS
