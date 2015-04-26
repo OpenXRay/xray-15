@@ -122,6 +122,7 @@ public:
 	virtual void					model_Logging(BOOL bEnable) {};
 	virtual void					models_Prefetch() {};
 	virtual void					models_Clear(BOOL b_complete) {};
+	IRenderVisual*					model_CreatePE(LPCSTR name) { return nullptr; };
 
 	// Occlusion culling
 	virtual BOOL					occ_visible(vis_data&	V) { return false; };
