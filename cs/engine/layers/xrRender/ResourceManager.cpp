@@ -5,10 +5,6 @@
 #include "stdafx.h"
 #pragma hdrstop
 
-#pragma warning(disable:4995)
-#include <d3dx9.h>
-#pragma warning(default:4995)
-
 #include "ResourceManager.h"
 #include "tss.h"
 #include "blenders\blender.h"
@@ -416,9 +412,9 @@ void	CResourceManager::_DumpMemoryUsage		()
 void	CResourceManager::Evict()
 {
 	//	TODO: DX10: check if we really need this method
-#ifndef	USE_DX10
+#if	!defined(USE_DX10) && !defined(USE_OGL)
 	CHK_DX	(HW.pDevice->EvictManagedResources());
-#endif	//	USE_DX10
+#endif	// !USE_DX10 && !USE_OGL
 }
 /*
 BOOL	CResourceManager::_GetDetailTexture(LPCSTR Name,LPCSTR& T, R_constant_setup* &CS)

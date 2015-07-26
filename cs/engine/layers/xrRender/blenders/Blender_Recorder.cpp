@@ -9,7 +9,11 @@
 #include "Blender_Recorder.h"
 #include "Blender.h"
 
+#ifdef USE_OGL
+#include "..\glRenderDeviceRender.h"
+#else
 #include "..\dxRenderDeviceRender.h"
+#endif // !USE_OGL
 
 static int ParseName(LPCSTR N)
 {

@@ -14,8 +14,10 @@ void	CResourceManager::reset_begin			()
 	::Render->reset_begin		();
 
 	// destroy state-blocks
+#ifndef USE_OGL
 	for (u32 _it=0; _it<v_states.size(); _it++)
 		_RELEASE(v_states[_it]->state);
+#endif // !USE_OGL
 
 	// destroy RTs
 	for (map_RTIt rt_it=m_rtargets.begin(); rt_it!=m_rtargets.end(); rt_it++)
@@ -25,7 +27,11 @@ void	CResourceManager::reset_begin			()
 
 	// destroy DStreams
 	RCache.old_QuadIB			= RCache.QuadIB;
+#ifdef USE_OGL
+	glDeleteBuffers				(1, &RCache.QuadIB);
+#else
 	_RELEASE					(RCache.QuadIB);
+#endif // USE_OGL
 	RCache.Index.reset_begin	();
 	RCache.Vertex.reset_begin	();
 }
@@ -69,6 +75,7 @@ void	CResourceManager::reset_end				()
 //	DX10 cut 		for (u32 _it=0; _it<rt.size(); _it++)	rt[_it]->reset_end	();
 	}
 
+#ifndef USE_OGL
 	// create state-blocks
 	{
 		for (u32 _it=0; _it<v_states.size(); _it++)
@@ -78,6 +85,7 @@ void	CResourceManager::reset_end				()
 			v_states[_it]->state = v_states[_it]->state_code.record();
 #endif	//	USE_DX10
 	}
+#endif // !USE_OGL
 
 	// create everything, renderer may use
 	::Render->reset_end		();

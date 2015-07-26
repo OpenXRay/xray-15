@@ -12,7 +12,9 @@
 // refs
 struct		lua_State;
 
+#ifdef	USE_DX10
 class dx10ConstantBuffer;
+#endif	//	USE_DX10
 
 // defs
 class ECORE_API CResourceManager

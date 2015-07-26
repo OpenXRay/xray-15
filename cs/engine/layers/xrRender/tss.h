@@ -18,6 +18,18 @@ enum	XRDX10RENDERSTATETYPE
 };
 #endif	//	USE_DX10
 
+#ifdef USE_OGL
+// TODO: Remove obsolete class
+class  CSimulatorTSS
+{
+public:
+	IC void Set			(SimulatorStates& container, u32 S, u32 N, u32 V)	{}
+	IC void SetColor	(SimulatorStates& container, u32 S, u32 A1, u32 OP, u32 A2)	{}
+	IC void SetColor3	(SimulatorStates& container, u32 S, u32 A1, u32 OP, u32 A2, u32 A3)	{}
+	IC void SetAlpha	(SimulatorStates& container, u32 S, u32 A1, u32 OP, u32 A2)	{}
+	IC void SetAlpha3	(SimulatorStates& container, u32 S, u32 A1, u32 OP, u32 A2, u32 A3)	{}
+};
+#else
 class  CSimulatorTSS
 {
 public:
@@ -74,6 +86,7 @@ public:
 		Set				(container,S,D3DTSS_ALPHAARG0,A3);
 	}
 };
+#endif // !USE_OGL
 
 class  CSimulatorRS
 {

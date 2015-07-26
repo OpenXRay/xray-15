@@ -19,6 +19,9 @@
 #include <gl\glext.h>
 #include <gl\wglext.h>
 
+// TODO: Get rid of D3D types.
+#include <d3d9types.h>
+
 #define		R_R1	1
 #define		R_R2	2
 #define		R_R3	3
