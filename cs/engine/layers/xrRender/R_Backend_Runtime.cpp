@@ -223,9 +223,9 @@ void CBackend::set_Textures			(STextureList* _T)
 				}
 			}
 		} else 
-#ifdef	UDE_DX10
+#ifdef	USE_DX10
 		if (load_id < CTexture::rstGeometry)
-#endif	//	UDE_DX10
+#endif	//	USE_DX10
 		{
 			//	Set up pixel shader resources
 			VERIFY(load_id < CTexture::rstVertex+mtMaxVertexShaderTextures);
@@ -247,32 +247,31 @@ void CBackend::set_Textures			(STextureList* _T)
 				}
 			}
 		}
-	}
-#ifdef	UDE_DX10
-	else
-	{
-		//	Set up pixel shader resources
-		VERIFY(load_id < CTexture::rstGeometry+mtMaxGeometryShaderTextures);
-
-		// vertex only //d-map or vertex	
-		u32		load_id_remapped	= load_id - CTexture::rstGeometry;
-		if ((int)load_id_remapped>_last_gs)	_last_gs	=	load_id_remapped;
-		if (textures_gs[load_id_remapped]!=load_surf)	
+#ifdef	USE_DX10
+		else
 		{
-			textures_gs[load_id_remapped]	= load_surf;
-#ifdef DEBUG
-			stat.textures	++;
-#endif
-			if (load_surf)
+			//	Set up pixel shader resources
+			VERIFY(load_id < CTexture::rstGeometry + mtMaxGeometryShaderTextures);
+
+			// vertex only //d-map or vertex	
+			u32		load_id_remapped = load_id - CTexture::rstGeometry;
+			if ((int)load_id_remapped>_last_gs)	_last_gs = load_id_remapped;
+			if (textures_gs[load_id_remapped] != load_surf)
 			{
-				PGO					(Msg("PGO:tex%d:%s",load_id,load_surf->cName.c_str()));
-				load_surf->bind		(load_id);
-				//					load_surf->Apply	(load_id);
+				textures_gs[load_id_remapped] = load_surf;
+#ifdef DEBUG
+				stat.textures++;
+#endif
+				if (load_surf)
+				{
+					PGO(Msg("PGO:tex%d:%s", load_id, load_surf->cName.c_str()));
+					load_surf->bind(load_id);
+					//					load_surf->Apply	(load_id);
+				}
 			}
 		}
+#endif	//	USE_DX10
 	}
-	}
-#endif	//	UDE_DX10
 
 
 	// clear remaining stages (PS)
