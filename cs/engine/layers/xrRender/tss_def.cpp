@@ -3,6 +3,14 @@
 
 #include "tss_def.h"
 
+#ifdef USE_OGL
+GLuint SimulatorStates::record()
+{
+	//	TODO: OGL: Implement equivalent for SimulatorStates::record for OGL
+	//VERIFY(!"SimulatorStates::record not implemented!");
+	return 0;
+}
+#else
 IDirect3DStateBlock9* SimulatorStates::record	()
 {
 //	TODO: DX10: Implement equivalent for SimulatorStates::record for DX10
@@ -31,6 +39,7 @@ IDirect3DStateBlock9* SimulatorStates::record	()
 	return	SB;
 #endif	//	USE_DX10
 }
+#endif // USE_OGL
 
 void	SimulatorStates::set_RS	(u32 a, u32 b)
 {

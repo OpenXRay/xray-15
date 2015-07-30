@@ -251,7 +251,7 @@ public:
 
 #ifdef	USE_DX10
 		//	TODO: DX10: Implement mip bias control
-		//VERIFY(!"apply not implmemented.");
+		//VERIFY(!"apply not implemented.");
 #else	//	USE_DX10
 		for (u32 i=0; i<HW.Caps.raster.dwStages; i++)
 			CHK_DX(HW.pDevice->SetSamplerState( i, D3DSAMP_MIPMAPLODBIAS, *((LPDWORD) value)));

@@ -112,7 +112,7 @@ void	CBlender_Particle::Compile	(CBlender_Compile& C)
 		break;
 	};
 }
-#else
+#elif RENDER==R_R3
 
 void	CBlender_Particle::Compile	(CBlender_Compile& C)
 {
@@ -172,5 +172,13 @@ void	CBlender_Particle::Compile	(CBlender_Compile& C)
 	case 4: 	// deffer-EMAP
 		break;
 	};
+}
+#elif RENDER==R_GL
+
+void	CBlender_Particle::Compile(CBlender_Compile& C)
+{
+	// TODO: Implement this.
+	VERIFY(!"CBlender_Particle not implemented.");
+	C.r_End();
 }
 #endif

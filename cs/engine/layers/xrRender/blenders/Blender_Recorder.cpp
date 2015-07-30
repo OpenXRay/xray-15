@@ -10,7 +10,7 @@
 #include "Blender.h"
 
 #ifdef USE_OGL
-#include "..\glRenderDeviceRender.h"
+#include "glRenderDeviceRender.h"
 #else
 #include "..\dxRenderDeviceRender.h"
 #endif // !USE_OGL
@@ -163,9 +163,11 @@ void	CBlender_Compile::PassBegin		()
 
 void	CBlender_Compile::PassEnd			()
 {
+#ifndef USE_OGL
 	// Last Stage - disable
-	RS.SetTSS				(Stage(),D3DTSS_COLOROP,D3DTOP_DISABLE);
-	RS.SetTSS				(Stage(),D3DTSS_ALPHAOP,D3DTOP_DISABLE);
+	RS.SetTSS(Stage(), D3DTSS_COLOROP, D3DTOP_DISABLE);
+	RS.SetTSS(Stage(), D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+#endif // !USE_OGL
 
 	// Create pass
 	ref_state	state		= DEV->_CreateState		(RS.GetContainer());

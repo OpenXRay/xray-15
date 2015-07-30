@@ -152,7 +152,7 @@ void	CBlender_LmEbB::Compile(CBlender_Compile& C)
 	C.r_Sampler			("s_env",	oT2_Name,false,D3DTADDRESS_CLAMP);
 	C.r_End				();
 }
-#else
+#elif RENDER==R_R3
 //////////////////////////////////////////////////////////////////////////
 // R3
 //////////////////////////////////////////////////////////////////////////
@@ -173,5 +173,15 @@ void	CBlender_LmEbB::Compile(CBlender_Compile& C)
 	C.r_dx10Texture			("s_env",	oT2_Name);
 	//C.r_dx10Sampler			("smp_rtlinear");
 	C.r_End				();
+}
+#elif RENDER==R_GL
+//////////////////////////////////////////////////////////////////////////
+// GL
+//////////////////////////////////////////////////////////////////////////
+void	CBlender_LmEbB::Compile(CBlender_Compile& C)
+{
+	// TODO: Implement this.
+	VERIFY(!"CBlender_LmEbB not implemented.");
+	C.r_End();
 }
 #endif

@@ -1,11 +1,6 @@
 #include "stdafx.h"
 #pragma hdrstop
 
-#pragma warning(push)
-#pragma warning(disable:4995)
-#include <d3dx9.h>
-#pragma warning(pop)
-
 #include "ResourceManager.h"
 #include "blenders\Blender_Recorder.h"
 #include "blenders\Blender.h"
@@ -13,7 +8,11 @@
 #include "../../xrEngine/igame_persistent.h"
 #include "../../xrEngine/environment.h"
 
+#ifdef USE_OGL
+#include "glRenderDeviceRender.h"
+#else
 #include "dxRenderDeviceRender.h"
+#endif // USE_OGL
 
 // matrices
 #define	BIND_DECLARE(xf)	\

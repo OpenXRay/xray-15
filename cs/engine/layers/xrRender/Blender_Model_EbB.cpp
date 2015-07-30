@@ -171,7 +171,7 @@ void	CBlender_Model_EbB::Compile(CBlender_Compile& C)
 		}
 	}
 }
-#else
+#elif RENDER==R_R3
 #include "uber_deffer.h"
 void CBlender_Model_EbB::Compile( CBlender_Compile& C )
 {
@@ -229,5 +229,15 @@ void CBlender_Model_EbB::Compile( CBlender_Compile& C )
 			break;
 		}
 	}
+}
+#elif RENDER==R_GL
+//////////////////////////////////////////////////////////////////////////
+// GL
+//////////////////////////////////////////////////////////////////////////
+void	CBlender_Model_EbB::Compile(CBlender_Compile& C)
+{
+	// TODO: Implement this.
+	VERIFY(!"CBlender_Model_EbB not implemented.");
+	C.r_End();
 }
 #endif

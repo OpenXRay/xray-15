@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "../xrRender/R_Backend.h"
 
 CBackend			RCache;
 

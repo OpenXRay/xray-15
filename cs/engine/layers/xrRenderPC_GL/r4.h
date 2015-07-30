@@ -2,6 +2,8 @@
 
 #include "../xrRender/PSLibrary.h"
 
+#include "r2_types.h"
+
 class CRender	:	public IRender_interface
 {
 public:
@@ -103,6 +105,10 @@ public:
 	virtual void					add_StaticWallmark(IWallMarkArray *pArray, const Fvector& P, float s, CDB::TRI* T, Fvector* V) {};
 	virtual void					clear_static_wallmarks() {};
 	virtual void					add_SkeletonWallmark(const Fmatrix* xf, IKinematics* obj, IWallMarkArray *pArray, const Fvector& start, const Fvector& dir, float size) {};
+
+	//
+	virtual IBlender*				blender_create(CLASS_ID cls);
+	virtual void					blender_destroy(IBlender* &);
 
 	virtual IRender_ObjectSpecific*	ros_create(IRenderable* parent) { return nullptr; };
 	virtual void					ros_destroy(IRender_ObjectSpecific* &) {};

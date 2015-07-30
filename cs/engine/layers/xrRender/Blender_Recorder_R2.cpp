@@ -5,7 +5,11 @@
 #include "blenders\Blender_Recorder.h"
 #include "blenders\Blender.h"
 
+#ifdef USE_OGL
+#include "glRenderDeviceRender.h"
+#else
 #include "dxRenderDeviceRender.h"
+#endif // !USE_OGL
 
 void fix_texture_name(LPSTR fn);
 
@@ -36,11 +40,13 @@ void	CBlender_Compile::r_Pass		(LPCSTR _vs, LPCSTR _ps, bool bFog, BOOL bZtest, 
 	ctable.merge			(&vs->constants);
 	SetMapping				();
 
+#ifndef USE_OGL
 	// Last Stage - disable
-	if (0==stricmp(_ps,"null"))	{
-		RS.SetTSS				(0,D3DTSS_COLOROP,D3DTOP_DISABLE);
-		RS.SetTSS				(0,D3DTSS_ALPHAOP,D3DTOP_DISABLE);
+	if (0 == stricmp(_ps, "null"))	{
+		RS.SetTSS(0, D3DTSS_COLOROP, D3DTOP_DISABLE);
+		RS.SetTSS(0, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
 	}
+#endif // !USE_OGL
 }
 
 void	CBlender_Compile::r_Constant	(LPCSTR name, R_constant_setup* s)
@@ -58,10 +64,10 @@ void CBlender_Compile::r_ColorWriteEnable( bool cR, bool cG, bool cB, bool cA)
 	Mask |= cB ? D3DCOLORWRITEENABLE_BLUE : 0;
 	Mask |= cA ? D3DCOLORWRITEENABLE_ALPHA : 0;
 
-	RS.SetRS( D3DRS_COLORWRITEENABLE, Mask);
-	RS.SetRS( D3DRS_COLORWRITEENABLE1, Mask);
-	RS.SetRS( D3DRS_COLORWRITEENABLE2, Mask);
-	RS.SetRS( D3DRS_COLORWRITEENABLE3, Mask);
+	RS.SetRS(D3DRS_COLORWRITEENABLE, Mask);
+	RS.SetRS(D3DRS_COLORWRITEENABLE1, Mask);
+	RS.SetRS(D3DRS_COLORWRITEENABLE2, Mask);
+	RS.SetRS(D3DRS_COLORWRITEENABLE3, Mask);
 }
 
 #ifndef	USE_DX10
