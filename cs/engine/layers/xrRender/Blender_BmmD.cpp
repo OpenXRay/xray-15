@@ -256,7 +256,7 @@ void	CBlender_BmmD::Compile	(CBlender_Compile& C)
 void	CBlender_BmmD::Compile(CBlender_Compile& C)
 {
 	// TODO: Implement this.
-	VERIFY(!"CBlender_BmmD not implemented.");
+	VERIFY(!"CBlender_BmmD::Compile not implemented.");
 	C.r_End();
 }
 #endif

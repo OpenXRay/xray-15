@@ -252,7 +252,7 @@ void	CBlender_Tree::Compile	(CBlender_Compile& C)
 void	CBlender_Tree::Compile(CBlender_Compile& C)
 {
 	// TODO: Implement this.
-	VERIFY(!"CBlender_Tree not implemented.");
+	VERIFY(!"CBlender_Tree::Compile not implemented.");
 	C.r_End();
 }
 #endif

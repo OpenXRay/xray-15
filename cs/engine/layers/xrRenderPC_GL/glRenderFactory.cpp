@@ -41,7 +41,7 @@ glRenderFactory RenderFactoryImpl;
 #define RENDER_FACTORY_UNIMPLEMENT(Class) \
 	I##Class* glRenderFactory::Create##Class() \
 { \
-	return nullptr; \
+	VERIFY(!#Class" not implemented."); return nullptr; \
 } \
 	void glRenderFactory::Destroy##Class(I##Class *pObject)\
 { \

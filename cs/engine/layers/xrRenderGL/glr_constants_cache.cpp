@@ -5,5 +5,5 @@
 
 void R_constants::flush_cache()
 {
-	VERIFY(!"flush_cache not implemented.");
+	VERIFY(!"R_constants::flush_cache not implemented.");
 }

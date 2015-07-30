@@ -181,7 +181,7 @@ void	CBlender_LmEbB::Compile(CBlender_Compile& C)
 void	CBlender_LmEbB::Compile(CBlender_Compile& C)
 {
 	// TODO: Implement this.
-	VERIFY(!"CBlender_LmEbB not implemented.");
+	VERIFY(!"CBlender_LmEbB::Compile not implemented.");
 	C.r_End();
 }
 #endif

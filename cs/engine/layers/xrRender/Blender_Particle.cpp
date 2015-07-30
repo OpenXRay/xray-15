@@ -178,7 +178,7 @@ void	CBlender_Particle::Compile	(CBlender_Compile& C)
 void	CBlender_Particle::Compile(CBlender_Compile& C)
 {
 	// TODO: Implement this.
-	VERIFY(!"CBlender_Particle not implemented.");
+	VERIFY(!"CBlender_Particle::Compile not implemented.");
 	C.r_End();
 }
 #endif

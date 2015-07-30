@@ -72,15 +72,17 @@ void CTexture::apply_load	(u32 dwStage)	{
 	bind					(dwStage)			;
 };
 
-void CTexture::apply_theora	(u32 dwStage)
-{
+void CTexture::apply_theora	(u32 dwStage)	{
+	VERIFY(!"CTexture::apply_theora not implemented.");
 };
-void CTexture::apply_avi	(u32 dwStage)	
-{
+void CTexture::apply_avi	(u32 dwStage)	{
+	VERIFY(!"CTexture::apply_avi not implemented.");
 };
 void CTexture::apply_seq	(u32 dwStage)	{
+	VERIFY(!"CTexture::apply_seq not implemented.");
 };
 void CTexture::apply_normal	(u32 dwStage)	{
+	VERIFY(!"CTexture::apply_normal not implemented.");
 };
 
 void CTexture::Preload	()
@@ -91,14 +93,17 @@ void CTexture::Preload	()
 
 void CTexture::Load		()
 {
+	VERIFY(!"CTexture::Load not implemented.");
 }
 
 void CTexture::Unload	()
 {
+	VERIFY(!"CTexture::Unload not implemented.");
 }
 
 void CTexture::desc_update	()
 {
+	VERIFY(!"CTexture::desc_update not implemented.");
 }
 
 void CTexture::video_Play		(BOOL looped, u32 _time)	

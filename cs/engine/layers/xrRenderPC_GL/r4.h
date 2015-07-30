@@ -61,12 +61,12 @@ public:
 
 	// Loading / Unloading
 	virtual	void					create();
-	virtual	void					destroy() {};
-	virtual	void					reset_begin() {};
-	virtual	void					reset_end() {};
+	virtual	void					destroy() { VERIFY(!"CRender::destroy not implemented."); };
+	virtual	void					reset_begin() { VERIFY(!"CRender::reset_begin not implemented."); };
+	virtual	void					reset_end() { VERIFY(!"CRender::reset_end not implemented."); };
 
-	virtual	void					level_Load(IReader*) {};
-	virtual void					level_Unload() {};
+	virtual	void					level_Load(IReader*) { VERIFY(!"CRender::level_Load not implemented."); };
+	virtual void					level_Unload() { VERIFY(!"CRender::level_Unload not implemented."); };
 
 	virtual HRESULT					shader_compile(
 		LPCSTR							name,
@@ -79,82 +79,82 @@ public:
 		DWORD                           Flags,
 		void*							ppShader,
 		void*							ppErrorMsgs,
-		void*							ppConstantTable) { return E_NOTIMPL; };
+		void*							ppConstantTable) { VERIFY(!"CRender::shader_compile not implemented."); return E_NOTIMPL; };
 
 	// Information
-	virtual	void					Statistics(CGameFont* F)							{};
+	virtual	void					Statistics(CGameFont* F)							{ VERIFY(!"CRender::Statistics not implemented."); };
 
-	virtual LPCSTR					getShaderPath() { return ""; };
-	virtual IRender_Sector*			getSector(int id) { return nullptr; };
-	virtual IRenderVisual*			getVisual(int id) { return nullptr; };
-	virtual IRender_Sector*			detectSector(const Fvector& P) { return nullptr; };
-	virtual IRender_Target*			getTarget() { return nullptr; };
+	virtual LPCSTR					getShaderPath() { VERIFY(!"CRender::getShaderPath not implemented."); return ""; };
+	virtual IRender_Sector*			getSector(int id) { VERIFY(!"CRender::getSector not implemented."); return nullptr; };
+	virtual IRenderVisual*			getVisual(int id) { VERIFY(!"CRender::getVisual not implemented."); return nullptr; };
+	virtual IRender_Sector*			detectSector(const Fvector& P) { VERIFY(!"CRender::detectSector not implemented."); return nullptr; };
+	virtual IRender_Target*			getTarget() { VERIFY(!"CRender::getTarget not implemented."); return nullptr; };
 
 	// Main 
-	IC		void					set_Frustum(CFrustum*	O)							{ VERIFY(O);	View = O; }
-	virtual void					set_Transform(Fmatrix*	M) {};
-	virtual void					set_HUD(BOOL 		V) {};
-	virtual BOOL					get_HUD() { return false; };
-	virtual void					set_Invisible(BOOL 		V) {};
-	virtual void					flush() {};
-	virtual void					set_Object(IRenderable*		O) {};
-	virtual	void					add_Occluder(Fbox2&	bb_screenspace) {};	// mask screen region as oclluded (-1..1, -1..1)
-	virtual void					add_Visual(IRenderVisual*	V) {};	// add visual leaf	(no culling performed at all)
-	virtual void					add_Geometry(IRenderVisual*	V) {};	// add visual(s)	(all culling performed)
-	virtual void					add_StaticWallmark(const wm_shader& S, const Fvector& P, float s, CDB::TRI* T, Fvector* V) {};
-	virtual void					add_StaticWallmark(IWallMarkArray *pArray, const Fvector& P, float s, CDB::TRI* T, Fvector* V) {};
-	virtual void					clear_static_wallmarks() {};
-	virtual void					add_SkeletonWallmark(const Fmatrix* xf, IKinematics* obj, IWallMarkArray *pArray, const Fvector& start, const Fvector& dir, float size) {};
+	IC		void					set_Frustum(CFrustum*	O)							{ VERIFY(!"CRender::set_Frustum not implemented."); VERIFY(O);	View = O; }
+	virtual void					set_Transform(Fmatrix*	M) { VERIFY(!"CRender::set_Transform not implemented."); };
+	virtual void					set_HUD(BOOL 		V) { VERIFY(!"CRender::set_HUD not implemented."); };
+	virtual BOOL					get_HUD() { VERIFY(!"CRender::get_HUD not implemented."); return false; };
+	virtual void					set_Invisible(BOOL 		V) { VERIFY(!"CRender::set_Invisible not implemented."); };
+	virtual void					flush() { VERIFY(!"CRender::flush not implemented."); };
+	virtual void					set_Object(IRenderable*		O) { VERIFY(!"CRender::set_Object not implemented."); };
+	virtual	void					add_Occluder(Fbox2&	bb_screenspace) { VERIFY(!"CRender::add_Occluder not implemented."); };	// mask screen region as oclluded (-1..1, -1..1)
+	virtual void					add_Visual(IRenderVisual*	V) { VERIFY(!"CRender::add_Visual not implemented."); };	// add visual leaf	(no culling performed at all)
+	virtual void					add_Geometry(IRenderVisual*	V) { VERIFY(!"CRender::add_Geometry not implemented."); };	// add visual(s)	(all culling performed)
+	virtual void					add_StaticWallmark(const wm_shader& S, const Fvector& P, float s, CDB::TRI* T, Fvector* V) { VERIFY(!"CRender::add_StaticWallmark not implemented."); };
+	virtual void					add_StaticWallmark(IWallMarkArray *pArray, const Fvector& P, float s, CDB::TRI* T, Fvector* V) { VERIFY(!"CRender::add_StaticWallmark not implemented."); };
+	virtual void					clear_static_wallmarks() { VERIFY(!"CRender::clear_static_wallmarks not implemented."); };
+	virtual void					add_SkeletonWallmark(const Fmatrix* xf, IKinematics* obj, IWallMarkArray *pArray, const Fvector& start, const Fvector& dir, float size) { VERIFY(!"CRender::add_SkeletonWallmark not implemented."); };
 
 	//
 	virtual IBlender*				blender_create(CLASS_ID cls);
 	virtual void					blender_destroy(IBlender* &);
 
-	virtual IRender_ObjectSpecific*	ros_create(IRenderable* parent) { return nullptr; };
-	virtual void					ros_destroy(IRender_ObjectSpecific* &) {};
+	virtual IRender_ObjectSpecific*	ros_create(IRenderable* parent) { VERIFY(!"CRender::ros_create not implemented."); return nullptr; };
+	virtual void					ros_destroy(IRender_ObjectSpecific* &) { VERIFY(!"CRender::ros_destroy not implemented."); };
 
 	// Lighting/glowing
-	virtual IRender_Light*			light_create() { return nullptr; };
-	virtual void					light_destroy(IRender_Light* p_)							{ };
-	virtual IRender_Glow*			glow_create() { return nullptr; };
-	virtual void					glow_destroy(IRender_Glow* p_)							{ };
+	virtual IRender_Light*			light_create()						{ VERIFY(!"CRender::light_create not implemented."); return nullptr; };
+	virtual void					light_destroy(IRender_Light* p_)	{ VERIFY(!"CRender::light_destroy not implemented."); };
+	virtual IRender_Glow*			glow_create()						{ VERIFY(!"CRender::glow_create not implemented."); return nullptr; };
+	virtual void					glow_destroy(IRender_Glow* p_)		{ VERIFY(!"CRender::glow_destroy not implemented."); };
 
 	// Models
-	virtual IRenderVisual*			model_CreateParticles(LPCSTR name) { return nullptr; };
-	virtual IRenderVisual*			model_Create(LPCSTR name, IReader*	data = 0) { return nullptr; };
-	virtual IRenderVisual*			model_CreateChild(LPCSTR name, IReader*	data) { return nullptr; };
-	virtual IRenderVisual*			model_Duplicate(IRenderVisual*	V) { return nullptr; };
-	virtual void					model_Delete(IRenderVisual* &	V, BOOL bDiscard = FALSE) {};
-	virtual void					model_Logging(BOOL bEnable) {};
-	virtual void					models_Prefetch() {};
-	virtual void					models_Clear(BOOL b_complete) {};
-	IRenderVisual*					model_CreatePE(LPCSTR name) { return nullptr; };
+	virtual IRenderVisual*			model_CreateParticles(LPCSTR name) { VERIFY(!"CRender::model_CreateParticles not implemented."); return nullptr; };
+	virtual IRenderVisual*			model_Create(LPCSTR name, IReader*	data = 0) { VERIFY(!"CRender::model_Create not implemented."); return nullptr; };
+	virtual IRenderVisual*			model_CreateChild(LPCSTR name, IReader*	data) { VERIFY(!"CRender::model_CreateChild not implemented."); return nullptr; };
+	virtual IRenderVisual*			model_Duplicate(IRenderVisual*	V) { VERIFY(!"CRender::model_Duplicate not implemented."); return nullptr; };
+	virtual void					model_Delete(IRenderVisual* &	V, BOOL bDiscard = FALSE) { VERIFY(!"CRender::model_Delete not implemented."); };
+	virtual void					model_Logging(BOOL bEnable) { VERIFY(!"CRender::model_Logging not implemented."); };
+	virtual void					models_Prefetch() { VERIFY(!"CRender::models_Prefetch not implemented."); };
+	virtual void					models_Clear(BOOL b_complete) { VERIFY(!"CRender::models_Clear not implemented."); };
+	IRenderVisual*					model_CreatePE(LPCSTR name) { VERIFY(!"CRender::model_CreatePE not implemented."); return nullptr; };
 
 	// Occlusion culling
-	virtual BOOL					occ_visible(vis_data&	V) { return false; };
-	virtual BOOL					occ_visible(Fbox&		B) { return false; };
-	virtual BOOL					occ_visible(sPoly&		P) { return false; };
+	virtual BOOL					occ_visible(vis_data&	V) { VERIFY(!"CRender::occ_visible not implemented."); return false; };
+	virtual BOOL					occ_visible(Fbox&		B) { VERIFY(!"CRender::occ_visible not implemented."); return false; };
+	virtual BOOL					occ_visible(sPoly&		P) { VERIFY(!"CRender::occ_visible not implemented."); return false; };
 
 	// Main
 	virtual void					Calculate() {};
 	virtual void					Render() {};
 
-	virtual void					Screenshot(ScreenshotMode mode = SM_NORMAL, LPCSTR name = 0) {};
-	virtual	void					Screenshot(ScreenshotMode mode, CMemoryWriter& memory_writer) {};
-	virtual void					ScreenshotAsyncBegin() {};
-	virtual void					ScreenshotAsyncEnd(CMemoryWriter& memory_writer) {};
+	virtual void					Screenshot(ScreenshotMode mode = SM_NORMAL, LPCSTR name = 0) { VERIFY(!"CRender::Screenshot not implemented."); };
+	virtual	void					Screenshot(ScreenshotMode mode, CMemoryWriter& memory_writer) { VERIFY(!"CRender::Screenshot not implemented."); };
+	virtual void					ScreenshotAsyncBegin() { VERIFY(!"CRender::ScreenshotAsyncBegin not implemented."); };
+	virtual void					ScreenshotAsyncEnd(CMemoryWriter& memory_writer) { VERIFY(!"CRender::ScreenshotAsyncEnd not implemented."); };
 
 	// Render mode
-	virtual void					rmNear() {};
-	virtual void					rmFar() {};
-	virtual void					rmNormal() {};
-	virtual u32						memory_usage() { return 0; };
+	virtual void					rmNear() { VERIFY(!"CRender::rmNear not implemented."); };
+	virtual void					rmFar() { VERIFY(!"CRender::rmFar not implemented."); };
+	virtual void					rmNormal() { VERIFY(!"CRender::rmNormal not implemented."); };
+	virtual u32						memory_usage() { VERIFY(!"CRender::memory_usage not implemented."); return 0; };
 
 	// Constructor/destructor
 	CRender();
 	virtual ~CRender();
 protected:
-	virtual	void					ScreenshotImpl(ScreenshotMode mode, LPCSTR name, CMemoryWriter* memory_writer) { };
+	virtual	void					ScreenshotImpl(ScreenshotMode mode, LPCSTR name, CMemoryWriter* memory_writer) { VERIFY(!"CRender::ScreenshotImpl not implemented."); };
 };
 
 extern CRender						RImplementation;

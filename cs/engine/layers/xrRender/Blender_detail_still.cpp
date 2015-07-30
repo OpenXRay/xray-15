@@ -163,7 +163,7 @@ void	CBlender_Detail_Still::Compile	(CBlender_Compile& C)
 void	CBlender_Detail_Still::Compile(CBlender_Compile& C)
 {
 	// TODO: Implement this.
-	VERIFY(!"CBlender_Detail_Still not implemented.");
+	VERIFY(!"CBlender_Detail_Still::Compile not implemented.");
 	C.r_End();
 }
 #endif

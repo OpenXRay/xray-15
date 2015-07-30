@@ -4,4 +4,5 @@
 
 glEnvironmentRender::glEnvironmentRender()
 {
+	VERIFY(!"glEnvironmentRender not implemented.");
 }

@@ -98,7 +98,7 @@ void		CResourceManager::_DeletePass			(const SPass* P)
 SDeclaration*	CResourceManager::_CreateDecl	(GLuint dcl)
 {
 	// TODO: Implement this.
-	VERIFY(!"_CreateDecl not implemented.");
+	VERIFY(!"CResourceManager::_CreateDecl not implemented.");
 	return nullptr;
 }
 
@@ -113,7 +113,7 @@ void		CResourceManager::_DeleteDecl		(const SDeclaration* dcl)
 SVS*	CResourceManager::_CreateVS		(LPCSTR _name)
 {
 	// TODO: Implement this.
-	VERIFY(!"_CreateVS not implemented.");
+	VERIFY(!"CResourceManager::_CreateVS not implemented.");
 	return nullptr;
 }
 
@@ -133,7 +133,7 @@ void	CResourceManager::_DeleteVS			(const SVS* vs)
 SPS*	CResourceManager::_CreatePS			(LPCSTR name)
 {
 	// TODO: Implement this.
-	VERIFY(!"_CreatePS not implemented.");
+	VERIFY(!"CResourceManager::_CreatePS not implemented.");
 	return nullptr;
 }
 void	CResourceManager::_DeletePS			(const SPS* ps)
@@ -202,7 +202,7 @@ void	CResourceManager::DBG_VerifyGeoms	()
 SGeometry*	CResourceManager::CreateGeom	(GLuint decl, GLuint vb, GLuint ib)
 {
 	// TODO: Implement this.
-	VERIFY(!"CreateGeom not implemented.");
+	VERIFY(!"CResourceManager::CreateGeom not implemented.");
 	return nullptr;
 }
 

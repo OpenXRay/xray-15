@@ -237,7 +237,7 @@ void CBlender_Model_EbB::Compile( CBlender_Compile& C )
 void	CBlender_Model_EbB::Compile(CBlender_Compile& C)
 {
 	// TODO: Implement this.
-	VERIFY(!"CBlender_Model_EbB not implemented.");
+	VERIFY(!"CBlender_Model_EbB::Compile not implemented.");
 	C.r_End();
 }
 #endif

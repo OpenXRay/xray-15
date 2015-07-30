@@ -137,13 +137,13 @@ IC void CBackend::set_Geometry(SGeometry* _geom)
 IC void	CBackend::set_Scissor(Irect*	R)
 {
 	// TODO: Implement this
-	VERIFY(!"set_Scissor not implemented.");
+	VERIFY(!"CBackend::set_Scissor not implemented.");
 }
 
 IC void CBackend::set_Stencil(u32 _enable, u32 _func, u32 _ref, u32 _mask, u32 _writemask, u32 _fail, u32 _pass, u32 _zfail)
 {
 	// TODO: Implement this
-	VERIFY(!"set_Stencil not implemented.");
+	VERIFY(!"CBackend::set_Stencil not implemented.");
 }
 
 IC  void CBackend::set_Z(u32 _enable)
@@ -152,7 +152,7 @@ IC  void CBackend::set_Z(u32 _enable)
 	{
 		z_enable = _enable;
 		// TODO: Set depth state
-		VERIFY(!"set_Z not implemented.");
+		VERIFY(!"CBackend::set_Z not implemented.");
 	}
 }
 
@@ -162,7 +162,7 @@ IC  void CBackend::set_ZFunc(u32 _func)
 	{
 		z_func = _func;
 		// TODO: Set depth function
-		VERIFY(!"set_ZFunc not implemented.");
+		VERIFY(!"CBackend::set_ZFunc not implemented.");
 	}
 }
 
@@ -172,7 +172,7 @@ IC  void CBackend::set_AlphaRef(u32 _value)
 	{
 		alpha_ref = _value;
 		// TODO: Set alpha reference
-		VERIFY(!"set_AlphaRef not implemented.");
+		VERIFY(!"CBackend::set_AlphaRef not implemented.");
 	}
 }
 
@@ -181,7 +181,7 @@ IC void	CBackend::set_ColorWriteEnable(u32 _mask)
 	if (colorwrite_mask != _mask)		{
 		colorwrite_mask = _mask;
 		// TODO: Set color mask
-		VERIFY(!"set_ColorWriteEnable not implemented.");
+		VERIFY(!"CBackend::set_ColorWriteEnable not implemented.");
 	}
 }
 
@@ -190,7 +190,7 @@ ICF void	CBackend::set_CullMode(u32 _mode)
 	if (cull_mode != _mode)		{
 		cull_mode = _mode;
 		// TODO: Set cull mode
-		VERIFY(!"set_CullMode not implemented.");
+		VERIFY(!"CBackend::set_CullMode not implemented.");
 	}
 }
 
