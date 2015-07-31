@@ -21,10 +21,10 @@ public:
 	virtual void	Copy(IRenderDeviceRender &_in) { VERIFY(!"glRenderDeviceRender::Copy not implemented."); };
 
 	//	Gamma correction functions
-	virtual void	setGamma(float fGamma) { VERIFY(!"glRenderDeviceRender::setGamma not implemented."); };
-	virtual void	setBrightness(float fGamma) { VERIFY(!"glRenderDeviceRender::setBrightness not implemented."); };
-	virtual void	setContrast(float fGamma) { VERIFY(!"glRenderDeviceRender::setContrast not implemented."); };
-	virtual void	updateGamma() { VERIFY(!"glRenderDeviceRender::updateGamma not implemented."); };
+	virtual void	setGamma(float fGamma) { /* TODO: OGL: VERIFY(!"glRenderDeviceRender::setGamma not implemented."); */ };
+	virtual void	setBrightness(float fGamma) { /* TODO: OGL: VERIFY(!"glRenderDeviceRender::setBrightness not implemented."); */ };
+	virtual void	setContrast(float fGamma) { /* TODO: OGL: VERIFY(!"glRenderDeviceRender::setContrast not implemented."); */ };
+	virtual void	updateGamma() { /* TODO: OGL: VERIFY(!"glRenderDeviceRender::updateGamma not implemented."); */ };
 
 	//	Destroy
 	virtual void	OnDeviceDestroy(BOOL bKeepTextures) { VERIFY(!"glRenderDeviceRender::OnDeviceDestroy not implemented."); };
@@ -32,21 +32,21 @@ public:
 	virtual void	DestroyHW();
 	virtual void	Reset(HWND hWnd, u32 &dwWidth, u32 &dwHeight, float &fWidth_2, float &fHeight_2) { VERIFY(!"glRenderDeviceRender::Reset not implemented."); };
 	//	Init
-	virtual void	SetupStates() { VERIFY(!"glRenderDeviceRender::SetupStates not implemented."); };
-	virtual void	OnDeviceCreate(LPCSTR shName) { VERIFY(!"glRenderDeviceRender::OnDeviceCreate not implemented."); };
+	virtual void	SetupStates();
+	virtual void	OnDeviceCreate(LPCSTR shName);
 	virtual bool	Create(HWND hWnd, u32 &dwWidth, u32 &dwHeight, float &fWidth_2, float &fHeight_2, bool move_window);
-	virtual void	SetupGPU(BOOL bForceGPU_SW, BOOL bForceGPU_NonPure, BOOL bForceGPU_REF) { VERIFY(!"glRenderDeviceRender::SetupGPU not implemented."); };
+	virtual void	SetupGPU(BOOL bForceGPU_SW, BOOL bForceGPU_NonPure, BOOL bForceGPU_REF) { };
 	//	Overdraw
 	virtual void	overdrawBegin() { VERIFY(!"glRenderDeviceRender::overdrawBegin not implemented."); };
 	virtual void	overdrawEnd() { VERIFY(!"glRenderDeviceRender::overdrawEnd not implemented."); };
 
 	//	Resources control
-	virtual void	DeferredLoad(BOOL E) { VERIFY(!"glRenderDeviceRender::DeferredLoad not implemented."); };
-	virtual void	ResourcesDeferredUpload() { VERIFY(!"glRenderDeviceRender::ResourcesDeferredUpload not implemented."); };
-	virtual void	ResourcesGetMemoryUsage(u32& m_base, u32& c_base, u32& m_lmaps, u32& c_lmaps) { VERIFY(!"glRenderDeviceRender::ResourcesGetMemoryUsage not implemented."); };
-	virtual void	ResourcesDestroyNecessaryTextures() { VERIFY(!"glRenderDeviceRender::ResourcesDestroyNecessaryTextures not implemented."); };
-	virtual void	ResourcesStoreNecessaryTextures() { VERIFY(!"glRenderDeviceRender::ResourcesStoreNecessaryTextures not implemented."); };
-	virtual void	ResourcesDumpMemoryUsage() { VERIFY(!"glRenderDeviceRender::ResourcesDumpMemoryUsage not implemented."); };
+	virtual void	DeferredLoad(BOOL E);
+	virtual void	ResourcesDeferredUpload();
+	virtual void	ResourcesGetMemoryUsage(u32& m_base, u32& c_base, u32& m_lmaps, u32& c_lmaps);
+	virtual void	ResourcesDestroyNecessaryTextures();
+	virtual void	ResourcesStoreNecessaryTextures();
+	virtual void	ResourcesDumpMemoryUsage();
 
 	//	HWSupport
 	virtual bool	HWSupportsShaderYUV2RGB() { VERIFY(!"glRenderDeviceRender::HWSupportsShaderYUV2RGB not implemented."); return false; };
