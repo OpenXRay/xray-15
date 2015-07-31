@@ -261,6 +261,7 @@
     <ClCompile Include="glSH_Texture.cpp" />
     <ClCompile Include="glTexture.cpp" />
     <ClCompile Include="glUIRender.cpp" />
+    <ClCompile Include="glUIShader.cpp" />
     <ClCompile Include="GLUtils.cpp" />
     <ClCompile Include="GL_Backend.cpp" />
     <ClCompile Include="GL_Backend_Runtime.cpp" />
@@ -295,6 +296,7 @@
     <ClInclude Include="..\..\include\xrRender\RenderFactory.h" />
     <ClInclude Include="..\..\include\xrRender\RenderVisual.h" />
     <ClInclude Include="..\..\include\xrRender\UIRender.h" />
+    <ClInclude Include="..\..\include\xrRender\UIShader.h" />
     <ClInclude Include="..\xrRenderGL\glR_Backend_Runtime.h" />
     <ClInclude Include="..\xrRenderGL\glr_constants_cache.h" />
     <ClInclude Include="..\xrRenderPC_R2\blender_bloom_build.h" />
@@ -356,6 +358,7 @@
     <ClInclude Include="glRenderDeviceRender.h" />
     <ClInclude Include="glRenderFactory.h" />
     <ClInclude Include="glUIRender.h" />
+    <ClInclude Include="glUIShader.h" />
     <ClInclude Include="GLUtils.h" />
     <ClInclude Include="r2_types.h" />
     <ClInclude Include="r4.h" />

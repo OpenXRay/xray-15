@@ -22,7 +22,7 @@
 //#include "glWallMarkArray.h"
 //#include "glStatsRender.h"
 //#include "glUISequenceVideoItem.h"
-//#include "glUIShader.h"
+#include "glUIShader.h"
 
 glRenderFactory RenderFactoryImpl;
 
@@ -49,7 +49,7 @@ glRenderFactory RenderFactoryImpl;
 
 #ifndef _EDITOR
 	RENDER_FACTORY_UNIMPLEMENT(UISequenceVideoItem)
-	RENDER_FACTORY_UNIMPLEMENT(UIShader)
+	RENDER_FACTORY_IMPLEMENT(UIShader)
 	RENDER_FACTORY_UNIMPLEMENT(StatGraphRender)
 	RENDER_FACTORY_UNIMPLEMENT(ConsoleRender)
 	RENDER_FACTORY_IMPLEMENT(RenderDeviceRender)

@@ -390,6 +390,9 @@
     <ClCompile Include="..\..\xrEngine\ai_script_lua_debug.cpp">
       <Filter>Refactored\Execution &amp; 3D\Shaders\ShaderManager</Filter>
     </ClCompile>
+    <ClCompile Include="glUIShader.cpp">
+      <Filter>Interface implementations\UI\UIShader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -610,6 +613,12 @@
     </ClInclude>
     <ClInclude Include="..\xrRenderGL\glr_constants_cache.h">
       <Filter>Refactored\Execution &amp; 3D\Shaders\Resources\gl_R_shader</Filter>
+    </ClInclude>
+    <ClInclude Include="glUIShader.h">
+      <Filter>Interface implementations\UI\UIShader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\xrRender\UIShader.h">
+      <Filter>Interface implementations\UI\UIShader</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
