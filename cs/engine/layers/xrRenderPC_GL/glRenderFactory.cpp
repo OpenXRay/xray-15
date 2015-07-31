@@ -20,7 +20,7 @@
 //#include "glFontRender.h"
 //#include "glApplicationRender.h"
 //#include "glWallMarkArray.h"
-//#include "glStatsRender.h"
+#include "glStatsRender.h"
 //#include "glUISequenceVideoItem.h"
 #include "glUIShader.h"
 
@@ -58,7 +58,7 @@ glRenderFactory RenderFactoryImpl;
 #	endif // DEBUG
 	RENDER_FACTORY_UNIMPLEMENT(ApplicationRender)
 	RENDER_FACTORY_UNIMPLEMENT(WallMarkArray)
-	RENDER_FACTORY_UNIMPLEMENT(StatsRender)
+	RENDER_FACTORY_IMPLEMENT(StatsRender)
 #endif // _EDITOR
 
 #ifndef _EDITOR

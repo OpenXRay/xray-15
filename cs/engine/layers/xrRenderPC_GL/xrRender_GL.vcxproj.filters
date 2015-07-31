@@ -393,6 +393,9 @@
     <ClCompile Include="glUIShader.cpp">
       <Filter>Interface implementations\UI\UIShader</Filter>
     </ClCompile>
+    <ClCompile Include="glStatsRender.cpp">
+      <Filter>Interface implementations\StatsRender</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -619,6 +622,12 @@
     </ClInclude>
     <ClInclude Include="..\..\include\xrRender\UIShader.h">
       <Filter>Interface implementations\UI\UIShader</Filter>
+    </ClInclude>
+    <ClInclude Include="glStatsRender.h">
+      <Filter>Interface implementations\StatsRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\xrRender\StatsRender.h">
+      <Filter>Interface implementations\StatsRender</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

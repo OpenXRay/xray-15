@@ -259,6 +259,7 @@
     <ClCompile Include="glShader.cpp" />
     <ClCompile Include="glSH_RT.cpp" />
     <ClCompile Include="glSH_Texture.cpp" />
+    <ClCompile Include="glStatsRender.cpp" />
     <ClCompile Include="glTexture.cpp" />
     <ClCompile Include="glUIRender.cpp" />
     <ClCompile Include="glUIShader.cpp" />
@@ -295,6 +296,7 @@
     <ClInclude Include="..\..\include\xrRender\RenderDeviceRender.h" />
     <ClInclude Include="..\..\include\xrRender\RenderFactory.h" />
     <ClInclude Include="..\..\include\xrRender\RenderVisual.h" />
+    <ClInclude Include="..\..\include\xrRender\StatsRender.h" />
     <ClInclude Include="..\..\include\xrRender\UIRender.h" />
     <ClInclude Include="..\..\include\xrRender\UIShader.h" />
     <ClInclude Include="..\xrRenderGL\glR_Backend_Runtime.h" />
@@ -357,6 +359,7 @@
     <ClInclude Include="glParticleCustom.h" />
     <ClInclude Include="glRenderDeviceRender.h" />
     <ClInclude Include="glRenderFactory.h" />
+    <ClInclude Include="glStatsRender.h" />
     <ClInclude Include="glUIRender.h" />
     <ClInclude Include="glUIShader.h" />
     <ClInclude Include="GLUtils.h" />
