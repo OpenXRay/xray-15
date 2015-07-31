@@ -248,6 +248,7 @@
     <ClCompile Include="..\xrRender\tss_def.cpp" />
     <ClCompile Include="..\xrRender\uber_deffer.cpp" />
     <ClCompile Include="..\xrRender\xrRender_console.cpp" />
+    <ClCompile Include="glApplicationRender.cpp" />
     <ClCompile Include="glRenderVisual.cpp" />
     <ClCompile Include="glDebugRender.cpp" />
     <ClCompile Include="glEnvironmentRender.cpp" />
@@ -289,6 +290,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\xrRender\ApplicationRender.h" />
     <ClInclude Include="..\..\include\xrRender\DebugRender.h" />
     <ClInclude Include="..\..\include\xrRender\DrawUtils.h" />
     <ClInclude Include="..\..\include\xrRender\EnvironmentRender.h" />
@@ -353,6 +355,7 @@
     <ClInclude Include="..\xrRender\tss_def.h" />
     <ClInclude Include="..\xrRender\uber_deffer.h" />
     <ClInclude Include="..\xrRender\xrRender_console.h" />
+    <ClInclude Include="glApplicationRender.h" />
     <ClInclude Include="glRenderVisual.h" />
     <ClInclude Include="glDebugRender.h" />
     <ClInclude Include="glEnvironmentRender.h" />

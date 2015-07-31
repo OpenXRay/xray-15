@@ -396,6 +396,9 @@
     <ClCompile Include="glStatsRender.cpp">
       <Filter>Interface implementations\StatsRender</Filter>
     </ClCompile>
+    <ClCompile Include="glApplicationRender.cpp">
+      <Filter>Interface implementations\ApplicationRender</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -628,6 +631,12 @@
     </ClInclude>
     <ClInclude Include="..\..\include\xrRender\StatsRender.h">
       <Filter>Interface implementations\StatsRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\xrRender\ApplicationRender.h">
+      <Filter>Interface implementations\ApplicationRender</Filter>
+    </ClInclude>
+    <ClInclude Include="glApplicationRender.h">
+      <Filter>Interface implementations\ApplicationRender</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

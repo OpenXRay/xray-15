@@ -18,7 +18,7 @@
 #endif // _EDITOR
 
 //#include "glFontRender.h"
-//#include "glApplicationRender.h"
+#include "glApplicationRender.h"
 //#include "glWallMarkArray.h"
 #include "glStatsRender.h"
 //#include "glUISequenceVideoItem.h"
@@ -56,7 +56,7 @@ glRenderFactory RenderFactoryImpl;
 #	ifdef DEBUG
 		RENDER_FACTORY_UNIMPLEMENT(ObjectSpaceRender)
 #	endif // DEBUG
-	RENDER_FACTORY_UNIMPLEMENT(ApplicationRender)
+	RENDER_FACTORY_IMPLEMENT(ApplicationRender)
 	RENDER_FACTORY_UNIMPLEMENT(WallMarkArray)
 	RENDER_FACTORY_IMPLEMENT(StatsRender)
 #endif // _EDITOR

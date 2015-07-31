@@ -10,7 +10,8 @@ class ENGINE_API CApplication :
     public IEventReceiver
 {
 private:
-    friend class dxApplicationRender;
+	friend class dxApplicationRender;
+	friend class glApplicationRender;
     struct sLevelInfo
     {
         char* folder;
