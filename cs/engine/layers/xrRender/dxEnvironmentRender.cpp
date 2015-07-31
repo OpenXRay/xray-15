@@ -269,7 +269,7 @@ void dxEnvironmentRender::RenderSky(CEnvironment &env)
 	RCache.set_Shader			(sh_2sky);
 //	RCache.set_Textures			(&env.CurrentEnv->sky_r_textures);
 	RCache.set_Textures			(&mixRen.sky_r_textures);
-	RCache.Render				(PT_TRIANGLELIST,v_offset,0,12,i_offset,20);
+	RCache.Render				(D3DPT_TRIANGLELIST,v_offset,0,12,i_offset,20);
 
 	// Sun
 	::Render->rmNormal			();
@@ -312,7 +312,7 @@ void dxEnvironmentRender::RenderClouds(CEnvironment &env)
 	RCache.set_Shader			(clouds_sh);
 	dxEnvDescriptorMixerRender	&mixRen = *(dxEnvDescriptorMixerRender*)&*env.CurrentEnv->m_pDescriptorMixer;
 	RCache.set_Textures			(&mixRen.clouds_r_textures);
-	RCache.Render				(PT_TRIANGLELIST,v_offset,0,env.CloudsVerts.size(),i_offset,env.CloudsIndices.size()/3);
+	RCache.Render				(D3DPT_TRIANGLELIST,v_offset,0,env.CloudsVerts.size(),i_offset,env.CloudsIndices.size()/3);
 
 	::Render->rmNormal			();
 }

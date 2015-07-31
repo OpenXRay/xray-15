@@ -195,7 +195,7 @@ void dxApplicationRender::load_draw_internal(CApplication &owner)
 
 	RCache.set_Shader			(sh_progress);
 	RCache.set_Geometry			(ll_hGeom2);
-	RCache.Render				(PT_TRIANGLESTRIP, Offset, 2*v_cnt);
+	RCache.Render				(D3DPT_TRIANGLESTRIP, Offset, 2*v_cnt);
 
 
 	// Draw title
@@ -272,7 +272,7 @@ void dxApplicationRender::draw_face(ref_shader& sh, Frect& coords, Frect& tex_co
 
 	RCache.set_Shader			(sh);
 	RCache.set_Geometry			(ll_hGeom);
-	RCache.Render				(PT_TRIANGLELIST,Offset,0,4,0,2);
+	RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
 }
 
 u32 calc_progress_color(u32 idx, u32 total, int stage, int max_stage)

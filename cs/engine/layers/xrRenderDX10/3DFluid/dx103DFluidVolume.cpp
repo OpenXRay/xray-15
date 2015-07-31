@@ -158,7 +158,7 @@ void dx103DFluidVolume::Render( float LOD )		// LOD - Level Of Detail  [0.0f - m
 	RCache.Vertex.Unlock( dwCount, m_Geom->vb_stride );
 	RCache.set_Geometry( m_Geom );
 
-	//RCache.Render(PT_TRIANGLELIST,dwOffset,0,dwCount,0,dwCount/2);
+	//RCache.Render(D3DPT_TRIANGLELIST,dwOffset,0,dwCount,0,dwCount/2);
 
 	//	Render obstacles
 	const xr_vector<Fmatrix> &Obstacles = m_FluidData.GetObstaclesList();
@@ -166,7 +166,7 @@ void dx103DFluidVolume::Render( float LOD )		// LOD - Level Of Detail  [0.0f - m
 	for (int i=0; i<iObstNum; ++i)
 	{
 		RCache.set_xform_world( Obstacles[i] );
-		//RCache.Render(PT_TRIANGLELIST,dwOffset,0,dwCount,0,dwCount/2);
+		//RCache.Render(D3DPT_TRIANGLELIST,dwOffset,0,dwCount,0,dwCount/2);
 	}
 	
 //	FluidManager.Update( m_FluidData, 1.0f/30.0f);

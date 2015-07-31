@@ -97,7 +97,7 @@ void CStatGraph::OnRender()
 		dwCount 				= u32(pv_Tri-pv_Tri_start);
 		RCache.Vertex.Unlock	(dwCount,hGeomTri->vb_stride);
 		RCache.set_Geometry		(hGeomTri);
-		RCache.Render	   		(PT_TRIANGLELIST,dwOffsetTri,0, dwCount, 0, dwCount/2);
+		RCache.Render	   		(D3DPT_TRIANGLELIST,dwOffsetTri,0, dwCount, 0, dwCount/2);
 	};
 
 	if (LineElem)
@@ -117,7 +117,7 @@ void CStatGraph::OnRender()
 		dwCount 				= u32(pv_Line-pv_Line_start);
 		RCache.Vertex.Unlock	(dwCount,hGeomLine->vb_stride);
 		RCache.set_Geometry		(hGeomLine);
-		RCache.Render	   		(PT_LINELIST,dwOffsetLine,dwCount/2);
+		RCache.Render	   		(D3DPT_LINELIST,dwOffsetLine,dwCount/2);
 	};
 
 	if (!m_Markers.empty())
@@ -133,7 +133,7 @@ void CStatGraph::OnRender()
 		dwCount 				= u32(pv_Line-pv_Line_start);
 		RCache.Vertex.Unlock	(dwCount,hGeomLine->vb_stride);
 		RCache.set_Geometry		(hGeomLine);
-		RCache.Render	   		(PT_LINELIST,dwOffsetLine,dwCount/2);
+		RCache.Render	   		(D3DPT_LINELIST,dwOffsetLine,dwCount/2);
 	}
 	*/
 };
@@ -154,7 +154,7 @@ void CStatGraph::RenderBack	()
 	dwCount 				= u32(pv-pv_start);
 	RCache.Vertex.Unlock	(dwCount,hGeomTri->vb_stride);
 	RCache.set_Geometry		(hGeomTri);
-	RCache.Render	   		(PT_TRIANGLELIST,dwOffset,0, dwCount, 0, dwCount/2);	
+	RCache.Render	   		(D3DPT_TRIANGLELIST,dwOffset,0, dwCount, 0, dwCount/2);	
 
 	//draw rect
 	pv_start				= (FVF::TL0uv*)RCache.Vertex.Lock(5,hGeomLine->vb_stride,dwOffset);
@@ -169,7 +169,7 @@ void CStatGraph::RenderBack	()
 	dwCount 				= u32(pv-pv_start);
     RCache.Vertex.Unlock	(dwCount,hGeomLine->vb_stride);
     RCache.set_Geometry		(hGeomLine);
-    RCache.Render	   		(PT_LINESTRIP,dwOffset,4);
+    RCache.Render	   		(D3DPT_LINESTRIP,dwOffset,4);
 
 	// draw grid
 	float elem_factor	= float(rb.y-lt.y)/float(mx-mn);
@@ -215,7 +215,7 @@ void CStatGraph::RenderBack	()
 	dwCount 				= u32(pv-pv_start);
     RCache.Vertex.Unlock	(dwCount,hGeomLine->vb_stride);
     RCache.set_Geometry		(hGeomLine);
-    RCache.Render	   		(PT_LINELIST,dwOffset,dwCount/2);
+    RCache.Render	   		(D3DPT_LINELIST,dwOffset,dwCount/2);
 
 
 };

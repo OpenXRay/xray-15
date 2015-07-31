@@ -65,13 +65,13 @@ void CRenderTarget::accum_direct		(u32 sub_phase)
       if( ! RImplementation.o.dx10_msaa )
       {
    		RCache.set_Stencil		(TRUE,D3DCMP_LESSEQUAL,dwLightMarkerID,0x01,0xff,D3DSTENCILOP_KEEP,D3DSTENCILOP_REPLACE,D3DSTENCILOP_KEEP);
-	   	RCache.Render				(PT_TRIANGLELIST,Offset,0,4,0,2);
+	   	RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
       }
       else
       {
          // per pixel rendering // checked Holger
 		   RCache.set_Stencil		(TRUE,D3DCMP_EQUAL,dwLightMarkerID,0x81,0x7f,D3DSTENCILOP_KEEP,D3DSTENCILOP_REPLACE,D3DSTENCILOP_KEEP);
-		   RCache.Render				(PT_TRIANGLELIST,Offset,0,4,0,2);
+		   RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
    		
 		   // per sample rendering
          if( RImplementation.o.dx10_msaa_opt )
@@ -79,7 +79,7 @@ void CRenderTarget::accum_direct		(u32 sub_phase)
 		      RCache.set_Element		(s_accum_mask_msaa[0]->E[SE_MASK_DIRECT]);		// masker
 	         RCache.set_CullMode		(CULL_NONE	);
             RCache.set_Stencil		(TRUE,D3DCMP_EQUAL,dwLightMarkerID|0x80,0x81,0x7f,D3DSTENCILOP_KEEP,D3DSTENCILOP_REPLACE,D3DSTENCILOP_KEEP);
-            RCache.Render				(PT_TRIANGLELIST,Offset,0,4,0,2);
+            RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
          }
          else 
          {
@@ -89,7 +89,7 @@ void CRenderTarget::accum_direct		(u32 sub_phase)
 	            RCache.set_CullMode		   (CULL_NONE	);
                RCache.set_Stencil			(TRUE,D3DCMP_EQUAL,dwLightMarkerID|0x80,0x81,0x7f,D3DSTENCILOP_KEEP,D3DSTENCILOP_REPLACE,D3DSTENCILOP_KEEP);
                StateManager.SetSampleMask ( u32(1)<<i );
-               RCache.Render					(PT_TRIANGLELIST,Offset,0,4,0,2);
+               RCache.Render					(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
 		      }
           StateManager.SetSampleMask( 0xffffffff );
          }
@@ -238,13 +238,13 @@ void CRenderTarget::accum_direct		(u32 sub_phase)
       if( ! RImplementation.o.dx10_msaa )
       {
 		   RCache.set_Stencil	(TRUE,D3DCMP_LESSEQUAL,dwLightMarkerID,0xff,0x00);
-		   RCache.Render			(PT_TRIANGLELIST,Offset,0,4,0,2);
+		   RCache.Render			(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
       }
       else 
       {
          // per pixel
 		   RCache.set_Stencil	(TRUE,D3DCMP_EQUAL,dwLightMarkerID,0xff,0x00);
-		   RCache.Render			(PT_TRIANGLELIST,Offset,0,4,0,2);
+		   RCache.Render			(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
    		
          // per sample
          if( RImplementation.o.dx10_msaa_opt )
@@ -252,7 +252,7 @@ void CRenderTarget::accum_direct		(u32 sub_phase)
 		      RCache.set_Element	(s_accum_direct_msaa[0]->E[uiElementIndex]);
             RCache.set_Stencil	(TRUE,D3DCMP_EQUAL,dwLightMarkerID|0x80,0xff,0x00);
 	         RCache.set_CullMode	(CULL_NONE	);
-		      RCache.Render			(PT_TRIANGLELIST,Offset,0,4,0,2);
+		      RCache.Render			(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
          }
          else
          {
@@ -262,7 +262,7 @@ void CRenderTarget::accum_direct		(u32 sub_phase)
                RCache.set_Stencil	      (TRUE,D3DCMP_EQUAL,dwLightMarkerID|0x80,0xff,0x00);
 	            RCache.set_CullMode		   (CULL_NONE	);
                StateManager.SetSampleMask ( u32(1) << i  );
-               RCache.Render					(PT_TRIANGLELIST,Offset,0,4,0,2);
+               RCache.Render					(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
 		      }
 		      StateManager.SetSampleMask	( 0xffffffff );
          }
@@ -325,20 +325,20 @@ void CRenderTarget::accum_direct_blend	()
       if( ! RImplementation.o.dx10_msaa )
       {
 		   RCache.set_Stencil			(TRUE,D3DCMP_LESSEQUAL,dwLightMarkerID,0xff,0x00);
-		   RCache.Render					(PT_TRIANGLELIST,Offset,0,4,0,2	);
+		   RCache.Render					(D3DPT_TRIANGLELIST,Offset,0,4,0,2	);
       }
       else 
       {
 		   // per pixel
 		   RCache.set_Stencil			(TRUE,D3DCMP_EQUAL,dwLightMarkerID,0xff,0x00);
-		   RCache.Render					(PT_TRIANGLELIST,Offset,0,4,0,2	);
+		   RCache.Render					(D3DPT_TRIANGLELIST,Offset,0,4,0,2	);
    		
 		   // per sample
          if( RImplementation.o.dx10_msaa_opt )
          {
 		      RCache.set_Element			(s_accum_mask_msaa[0]->E[SE_MASK_ACCUM_2D]	);
             RCache.set_Stencil			(TRUE,D3DCMP_EQUAL,dwLightMarkerID|0x80,0xff,0x00);
-            RCache.Render					(PT_TRIANGLELIST,Offset,0,4,0,2	);
+            RCache.Render					(D3DPT_TRIANGLELIST,Offset,0,4,0,2	);
          }
          else // checked Holger
          {
@@ -347,7 +347,7 @@ void CRenderTarget::accum_direct_blend	()
 			      RCache.set_Element		   (s_accum_mask_msaa[i]->E[SE_MASK_ACCUM_2D]	);
                RCache.set_Stencil			(TRUE,D3DCMP_EQUAL,dwLightMarkerID|0x80,0xff,0x00);
                StateManager.SetSampleMask ( u32(1) << i );
-               RCache.Render					(PT_TRIANGLELIST,Offset,0,4,0,2	);
+               RCache.Render					(D3DPT_TRIANGLELIST,Offset,0,4,0,2	);
 		      }
 		      StateManager.SetSampleMask( 0xffffffff );
          }
@@ -423,13 +423,13 @@ void CRenderTarget::accum_direct_f		(u32 sub_phase)
       if( ! RImplementation.o.dx10_msaa )
       {
 		   RCache.set_Stencil	(TRUE,D3DCMP_LESSEQUAL,dwLightMarkerID,0x01,0xff,D3DSTENCILOP_KEEP,D3DSTENCILOP_REPLACE,D3DSTENCILOP_KEEP);
-		   RCache.Render			(PT_TRIANGLELIST,Offset,0,4,0,2);
+		   RCache.Render			(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
       }
       else 
       {
 		   // per pixel
 		   RCache.set_Stencil	(TRUE,D3DCMP_EQUAL,dwLightMarkerID,0x81,0x7f,D3DSTENCILOP_KEEP,D3DSTENCILOP_REPLACE,D3DSTENCILOP_KEEP);
-		   RCache.Render			(PT_TRIANGLELIST,Offset,0,4,0,2);
+		   RCache.Render			(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
    		
 		   // per sample
          if( RImplementation.o.dx10_msaa_opt )
@@ -437,7 +437,7 @@ void CRenderTarget::accum_direct_f		(u32 sub_phase)
 		      RCache.set_Element	(s_accum_mask_msaa[0]->E[SE_MASK_DIRECT]);		// masker
             RCache.set_Stencil	(TRUE,D3DCMP_LESS,dwLightMarkerID,0x81,0x7f,D3DSTENCILOP_KEEP,D3DSTENCILOP_REPLACE,D3DSTENCILOP_KEEP);
 	         RCache.set_CullMode	(CULL_NONE	);
-            RCache.Render			(PT_TRIANGLELIST,Offset,0,4,0,2);
+            RCache.Render			(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
          }
          else 
          {
@@ -447,7 +447,7 @@ void CRenderTarget::accum_direct_f		(u32 sub_phase)
                RCache.set_Stencil	      (TRUE,D3DCMP_LESS,dwLightMarkerID,0x81,0x7f,D3DSTENCILOP_KEEP,D3DSTENCILOP_REPLACE,D3DSTENCILOP_KEEP);
 	            RCache.set_CullMode	      (CULL_NONE	);
                StateManager.SetSampleMask ( u32(1) << i );
-               RCache.Render					(PT_TRIANGLELIST,Offset,0,4,0,2);
+               RCache.Render					(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
 		      }
 		      StateManager.SetSampleMask( 0xffffffff );
          }	
@@ -535,13 +535,13 @@ void CRenderTarget::accum_direct_f		(u32 sub_phase)
       {
 		   // setup stencil
 		   RCache.set_Stencil	(TRUE,D3DCMP_LESSEQUAL,dwLightMarkerID,0xff,0x00);
-		   RCache.Render			(PT_TRIANGLELIST,Offset,0,4,0,2);
+		   RCache.Render			(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
       }
       else
       {
 		   // per pixel
 		   RCache.set_Stencil	(TRUE,D3DCMP_EQUAL,dwLightMarkerID,0xff,0x00);
-		   RCache.Render			(PT_TRIANGLELIST,Offset,0,4,0,2);
+		   RCache.Render			(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
    		
          // per sample // checked Holger
          if( RImplementation.o.dx10_msaa_opt )
@@ -549,7 +549,7 @@ void CRenderTarget::accum_direct_f		(u32 sub_phase)
 		      RCache.set_Element	(s_accum_direct_msaa[0]->E[sub_phase]);
 	         RCache.set_CullMode	(CULL_NONE	);
             RCache.set_Stencil	(TRUE,D3DCMP_LESS,dwLightMarkerID|0x80,0xff,0x00);
-		      RCache.Render			(PT_TRIANGLELIST,Offset,0,4,0,2);
+		      RCache.Render			(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
          }
          else
          {
@@ -559,7 +559,7 @@ void CRenderTarget::accum_direct_f		(u32 sub_phase)
 	            RCache.set_CullMode	      (CULL_NONE	);
                RCache.set_Stencil	      (TRUE,D3DCMP_LESS,dwLightMarkerID|0x80,0xff,0x00);
                StateManager.SetSampleMask ( u32(1)<< i );
-			      RCache.Render				   (PT_TRIANGLELIST,Offset,0,4,0,2);			
+			      RCache.Render				   (D3DPT_TRIANGLELIST,Offset,0,4,0,2);			
 		      }
 		      StateManager.SetSampleMask( 0xffffffff );
          }
@@ -653,13 +653,13 @@ void CRenderTarget::accum_direct_lum	()
       {
 		   // setup stencil
 		   RCache.set_Stencil	(TRUE,D3DCMP_LESSEQUAL,dwLightMarkerID,0xff,0x00);
-	   	RCache.Render			(PT_TRIANGLELIST,Offset,0,4,0,2);
+	   	RCache.Render			(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
       }
       else	
       {
 		   // per pixel
 		   RCache.set_Stencil	(TRUE,D3DCMP_EQUAL,dwLightMarkerID,0xff,0x00);
-		   RCache.Render			(PT_TRIANGLELIST,Offset,0,4,0,2);
+		   RCache.Render			(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
    		
 		   // per sample
          if( RImplementation.o.dx10_msaa_opt )
@@ -667,7 +667,7 @@ void CRenderTarget::accum_direct_lum	()
 		      RCache.set_Element	(s_accum_direct_msaa[0]->E[SE_SUN_LUMINANCE]);
             RCache.set_Stencil	(TRUE,D3DCMP_EQUAL,dwLightMarkerID|0x80,0xff,0x00);
 	         RCache.set_CullMode	(CULL_NONE	);
-            RCache.Render			(PT_TRIANGLELIST,Offset,0,4,0,2);
+            RCache.Render			(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
          }
          else
          {
@@ -677,7 +677,7 @@ void CRenderTarget::accum_direct_lum	()
                StateManager.SetSampleMask ( u32(1) << i );
                RCache.set_Stencil	      (TRUE,D3DCMP_EQUAL,dwLightMarkerID|0x80,0xff,0x00);
 	            RCache.set_CullMode	      (CULL_NONE	);
-               RCache.Render				   (PT_TRIANGLELIST,Offset,0,4,0,2);	
+               RCache.Render				   (D3DPT_TRIANGLELIST,Offset,0,4,0,2);	
 	         }
 	         StateManager.SetSampleMask( 0xffffffff );
          }
@@ -810,12 +810,12 @@ void CRenderTarget::accum_direct_volumetric	(u32 sub_phase, const u32 Offset, co
 		// setup stencil: we have to draw to both lit and unlit pixels
 		//RCache.set_Stencil			(TRUE,D3DCMP_LESSEQUAL,dwLightMarkerID,0xff,0x00);
       //if( ! RImplementation.o.dx10_msaa )
-		   RCache.Render				(PT_TRIANGLELIST,Offset,0,4,0,2);
+		   RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
          /*
       else 
       {
 		   // per pixel
-		   RCache.Render			(PT_TRIANGLELIST,Offset,0,4,0,2);
+		   RCache.Render			(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
    		
 		   // per sample
          if( RImplementation.o.dx10_msaa_opt )
@@ -826,7 +826,7 @@ void CRenderTarget::accum_direct_volumetric	(u32 sub_phase, const u32 Offset, co
 				   RCache.set_ZFunc(D3DCMP_GREATER);
 				else
 				   RCache.set_ZFunc(D3DCMP_LESSEQUAL);
-            RCache.Render			(PT_TRIANGLELIST,Offset,0,4,0,2);
+            RCache.Render			(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
          }
          else
          {
@@ -839,7 +839,7 @@ void CRenderTarget::accum_direct_volumetric	(u32 sub_phase, const u32 Offset, co
 					   RCache.set_ZFunc(D3DCMP_GREATER);
 					else
 						RCache.set_ZFunc(D3DCMP_LESSEQUAL);
-               RCache.Render				   (PT_TRIANGLELIST,Offset,0,4,0,2);
+               RCache.Render				   (D3DPT_TRIANGLELIST,Offset,0,4,0,2);
 		      }
 		      StateManager.SetSampleMask( 0xffffffff );
          }

@@ -292,7 +292,7 @@ void	CEffect_Rain::Render	()
 		RCache.set_xform_world		(Fidentity);
 		RCache.set_Shader			(SH_Rain);
 		RCache.set_Geometry			(hGeom_Rain);
-		RCache.Render				(PT_TRIANGLELIST,vOffset,0,vCount,0,vCount/2);
+		RCache.Render				(D3DPT_TRIANGLELIST,vOffset,0,vCount,0,vCount/2);
 		HW.pDevice->SetRenderState	(D3DRS_CULLMODE,D3DCULL_CCW);
 	}
 	
@@ -344,7 +344,7 @@ void	CEffect_Rain::Render	()
 					RCache.Vertex.Unlock	(vCount_Lock,hGeom_Drops->vb_stride);
 					_IS.Unlock				(iCount_Lock);
 					RCache.set_Geometry		(hGeom_Drops);
-					RCache.Render			(PT_TRIANGLELIST,v_offset, 0,vCount_Lock,i_offset,dwNumPrimitives);
+					RCache.Render			(D3DPT_TRIANGLELIST,v_offset, 0,vCount_Lock,i_offset,dwNumPrimitives);
 					
 					v_ptr					= (IRender_DetailModel::fvfVertexOut*)			RCache.Vertex.Lock	(vCount_Lock, hGeom_Drops->vb_stride, v_offset);
 					i_ptr					= _IS.Lock										(iCount_Lock, i_offset);
@@ -364,7 +364,7 @@ void	CEffect_Rain::Render	()
 		_IS.Unlock						(iCount_Lock);
 		if (pcount)	{
 			RCache.set_Geometry		(hGeom_Drops);
-			RCache.Render			(PT_TRIANGLELIST,v_offset,0,vCount_Lock,i_offset,dwNumPrimitives);
+			RCache.Render			(D3DPT_TRIANGLELIST,v_offset,0,vCount_Lock,i_offset,dwNumPrimitives);
 		}
 	}
 	*/

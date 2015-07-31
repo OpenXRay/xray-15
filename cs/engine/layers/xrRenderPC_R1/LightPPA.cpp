@@ -121,7 +121,7 @@ void CLightR_Manager::render_point	()
 				if (actual>=triLock)
 				{
 					RCache.Vertex.Unlock		(actual*3,hGeom->vb_stride);
-					if (actual) RCache.Render	(PT_TRIANGLELIST,vOffset,actual);
+					if (actual) RCache.Render	(D3DPT_TRIANGLELIST,vOffset,actual);
 					actual						= 0;
 					triLock						= _min(256u,triCount-t);
 					VB							= (CLightR_Vertex*)RCache.Vertex.Lock(triLock*3,hGeom->vb_stride,vOffset);
@@ -130,7 +130,7 @@ void CLightR_Manager::render_point	()
 
 			// Unlock and render
 			RCache.Vertex.Unlock		(actual*3,hGeom->vb_stride);
-			if (actual) RCache.Render	(PT_TRIANGLELIST,vOffset,actual);
+			if (actual) RCache.Render	(D3DPT_TRIANGLELIST,vOffset,actual);
 		}
 		Device.Statistic->RenderDUMP_Lights.End	();
 	}

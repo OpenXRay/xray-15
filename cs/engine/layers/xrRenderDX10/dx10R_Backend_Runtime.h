@@ -140,17 +140,17 @@ ICF void CBackend::set_Indices(ID3DIndexBuffer* _ib)
 	}
 }
 
-IC D3D10_PRIMITIVE_TOPOLOGY TranslateTopology(u32 T)
+IC D3D10_PRIMITIVE_TOPOLOGY TranslateTopology(D3DPRIMITIVETYPE T)
 {
 	static	D3D10_PRIMITIVE_TOPOLOGY translateTable[] =
 	{
 		D3D10_PRIMITIVE_TOPOLOGY_UNDEFINED,		//	None
-		D3D10_PRIMITIVE_TOPOLOGY_POINTLIST,		//	PT_POINTLIST = 1,
-		D3D10_PRIMITIVE_TOPOLOGY_LINELIST,		//	PT_LINELIST = 2,
-		D3D10_PRIMITIVE_TOPOLOGY_LINESTRIP,		//	PT_LINESTRIP = 3,
-		D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST,	//	PT_TRIANGLELIST = 4,
-		D3D10_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP,	//	PT_TRIANGLESTRIP = 5,
-		D3D10_PRIMITIVE_TOPOLOGY_UNDEFINED,		//	PT_TRIANGLEFAN = 6,
+		D3D10_PRIMITIVE_TOPOLOGY_POINTLIST,		//	D3DPT_POINTLIST = 1,
+		D3D10_PRIMITIVE_TOPOLOGY_LINELIST,		//	D3DPT_LINELIST = 2,
+		D3D10_PRIMITIVE_TOPOLOGY_LINESTRIP,		//	D3DPT_LINESTRIP = 3,
+		D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST,	//	D3DPT_TRIANGLELIST = 4,
+		D3D10_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP,	//	D3DPT_TRIANGLESTRIP = 5,
+		D3D10_PRIMITIVE_TOPOLOGY_UNDEFINED,		//	D3DPT_TRIANGLEFAN = 6,
 	};
 
 	VERIFY(T<sizeof(translateTable)/sizeof(translateTable[0]));
@@ -163,19 +163,19 @@ IC D3D10_PRIMITIVE_TOPOLOGY TranslateTopology(u32 T)
 	return result;
 }
 
-IC u32 GetIndexCount(u32 T, u32 iPrimitiveCount)
+IC u32 GetIndexCount(D3DPRIMITIVETYPE T, u32 iPrimitiveCount)
 {
 	switch (T)
 	{
-	case PT_POINTLIST:
+	case D3DPT_POINTLIST:
 		return iPrimitiveCount;
-	case PT_LINELIST:
+	case D3DPT_LINELIST:
 		return iPrimitiveCount*2;
-	case PT_LINESTRIP:
+	case D3DPT_LINESTRIP:
 		return iPrimitiveCount+1;
-	case PT_TRIANGLELIST:
+	case D3DPT_TRIANGLELIST:
 		return iPrimitiveCount*3;
-	case PT_TRIANGLESTRIP:
+	case D3DPT_TRIANGLESTRIP:
 		return iPrimitiveCount+2;
 	default: NODEFAULT;
 #ifdef DEBUG
@@ -193,7 +193,7 @@ IC void CBackend::ApplyPrimitieTopology( D3D10_PRIMITIVE_TOPOLOGY Topology )
 	}
 }
 
-IC void CBackend::Render(u32 T, u32 baseV, u32 startV, u32 countV, u32 startI, u32 PC)
+IC void CBackend::Render(D3DPRIMITIVETYPE T, u32 baseV, u32 startV, u32 countV, u32 startI, u32 PC)
 {
 	//VERIFY(vs);
 	//HW.pDevice->VSSetShader(vs);
@@ -233,10 +233,10 @@ IC void CBackend::Render(u32 T, u32 baseV, u32 startV, u32 countV, u32 startI, u
 	PGO					(Msg("PGO:DIP:%dv/%df",countV,PC));
 }
 
-IC void CBackend::Render(u32 T, u32 startV, u32 PC)
+IC void CBackend::Render(D3DPRIMITIVETYPE T, u32 startV, u32 PC)
 {
 	//	TODO: DX10: Remove triangle fan usage from the engine
-	if (T == PT_TRIANGLEFAN)
+	if (T == D3DPT_TRIANGLEFAN)
 		return;
 
 	//VERIFY(vs);

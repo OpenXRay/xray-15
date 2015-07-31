@@ -139,5 +139,5 @@ void CRenderTarget::phase_pp		()
 	static	shared_str	s_brightness	= "c_brightness";
 	RCache.set_c		( s_brightness, p_brightness.x, p_brightness.y, p_brightness.z, 0 );
 	RCache.set_Geometry	(g_postprocess);
-	RCache.Render		(PT_TRIANGLELIST,Offset,0,4,0,2);
+	RCache.Render		(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
 }

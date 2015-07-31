@@ -295,7 +295,7 @@ void CEffect_Thunderbolt::Render()
         RCache.set_xform_world(Fidentity);
         RCache.set_Shader	(current->l_model->shader);
         RCache.set_Geometry	(hGeom_model);
-        RCache.Render		(PT_TRIANGLELIST,v_offset,0,vCount_Lock,i_offset,iCount_Lock/3);
+        RCache.Render		(D3DPT_TRIANGLELIST,v_offset,0,vCount_Lock,i_offset,iCount_Lock/3);
 		RCache.set_CullMode	(CULL_CCW);
 
         // gradient
@@ -328,9 +328,9 @@ void CEffect_Thunderbolt::Render()
         RCache.set_xform_world	(Fidentity);
         RCache.set_Geometry		(hGeom_gradient);
         RCache.set_Shader		(current->m_GradientTop.hShader);
-        RCache.Render			(PT_TRIANGLELIST,VS_Offset, 0,4,0,2);
+        RCache.Render			(D3DPT_TRIANGLELIST,VS_Offset, 0,4,0,2);
         RCache.set_Shader		(current->m_GradientCenter.hShader);
-        RCache.Render			(PT_TRIANGLELIST,VS_Offset+4, 0,4,0,2);
+        RCache.Render			(D3DPT_TRIANGLELIST,VS_Offset+4, 0,4,0,2);
 		*/
     }
 }

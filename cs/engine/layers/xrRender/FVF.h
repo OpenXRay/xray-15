@@ -2,7 +2,6 @@
 #define _FVF_H_
 #pragma once
 
-
 //-----------------------------------------------------------------------------
 #pragma pack(push,4)
 namespace FVF {
@@ -17,13 +16,13 @@ namespace FVF {
 		F_TL4uv
 	};
 #else
-	const u32 F_L		= D3DFVF_XYZ | D3DFVF_DIFFUSE;
-	const u32 F_V		= D3DFVF_XYZ | D3DFVF_TEX1;
-	const u32 F_LIT		= D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX1;
-	const u32 F_TL0uv	= D3DFVF_XYZRHW | D3DFVF_DIFFUSE;
-	const u32 F_TL		= D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1;
-	const u32 F_TL2uv	= D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX2;
-	const u32 F_TL4uv	= D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX4;
+	const u32 F_L = D3DFVF_XYZ | D3DFVF_DIFFUSE;
+	const u32 F_V = D3DFVF_XYZ | D3DFVF_TEX1;
+	const u32 F_LIT = D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX1;
+	const u32 F_TL0uv = D3DFVF_XYZRHW | D3DFVF_DIFFUSE;
+	const u32 F_TL = D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1;
+	const u32 F_TL2uv = D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX2;
+	const u32 F_TL4uv = D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX4;
 #endif // USE_OGL
 
 

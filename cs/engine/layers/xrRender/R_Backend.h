@@ -26,13 +26,6 @@ const	u32		COLORWRITEENABLE_RED	= 0x1;
 const	u32		COLORWRITEENABLE_GREEN	= 0x2;
 const	u32		COLORWRITEENABLE_BLUE	= 0x4;
 const	u32		COLORWRITEENABLE_ALPHA	= 0x8;
-
-const	u32		PT_POINTLIST		= GL_POINTS;
-const	u32		PT_LINELIST			= GL_LINES;
-const	u32		PT_LINESTRIP		= GL_LINE_STRIP;
-const	u32		PT_TRIANGLELIST		= GL_TRIANGLES;
-const	u32		PT_TRIANGLESTRIP	= GL_TRIANGLE_STRIP;
-const	u32		PT_TRIANGLEFAN		= GL_TRIANGLE_FAN;
 #else
 const	u32		CULL_CCW			= D3DCULL_CCW;
 const	u32		CULL_CW				= D3DCULL_CW;
@@ -42,13 +35,6 @@ const	u32		COLORWRITEENABLE_RED	= D3DCOLORWRITEENABLE_RED;
 const	u32		COLORWRITEENABLE_GREEN	= D3DCOLORWRITEENABLE_GREEN;
 const	u32		COLORWRITEENABLE_BLUE	= D3DCOLORWRITEENABLE_BLUE;
 const	u32		COLORWRITEENABLE_ALPHA	= D3DCOLORWRITEENABLE_ALPHA;
-
-const	u32		PT_POINTLIST		= D3DPT_POINTLIST;
-const	u32		PT_LINELIST			= D3DPT_LINELIST;
-const	u32		PT_LINESTRIP		= D3DPT_LINESTRIP;
-const	u32		PT_TRIANGLELIST		= D3DPT_TRIANGLELIST;
-const	u32		PT_TRIANGLESTRIP	= D3DPT_TRIANGLESTRIP;
-const	u32		PT_TRIANGLEFAN		= D3DPT_TRIANGLEFAN;
 #endif // USE_OGL
 
 ///		detailed statistic
@@ -386,8 +372,13 @@ public:
 	ICF	void						set_c				(shared_str& n, int A)												{ if(ctable)	set_c	(&*ctable->get(n),A);		}
 #endif	//	USE_DX10
 
-	ICF	void						Render				(u32 T, u32 baseV, u32 startV, u32 countV, u32 startI, u32 PC);
-	ICF	void						Render				(u32 T, u32 startV, u32 PC);
+#ifdef USE_OGL
+	ICF	void						Render				(GLenum T, u32 baseV, u32 startV, u32 countV, u32 startI, u32 PC);
+	ICF	void						Render				(GLenum T, u32 startV, u32 PC);
+#else
+	ICF	void						Render				(D3DPRIMITIVETYPE T, u32 baseV, u32 startV, u32 countV, u32 startI, u32 PC);
+	ICF	void						Render				(D3DPRIMITIVETYPE T, u32 startV, u32 PC);
+#endif // USE_OGL
 
 	// Device create / destroy / frame signaling
 	void							RestoreQuadIBData	();	// Igor: is used to test bug with rain, particles corruption
@@ -398,8 +389,13 @@ public:
 	void							OnDeviceDestroy		();
 
 	// Debug render
-	void dbg_DP						(u32 pt, ref_geom geom, u32 vBase, u32 pc);
-	void dbg_DIP					(u32 pt, ref_geom geom, u32 baseV, u32 startV, u32 countV, u32 startI, u32 PC);
+#ifdef USE_OGL
+	void dbg_DP						(GLenum pt, ref_geom geom, u32 vBase, u32 pc);
+	void dbg_DIP					(GLenum pt, ref_geom geom, u32 baseV, u32 startV, u32 countV, u32 startI, u32 PC);
+#else
+	void dbg_DP						(D3DPRIMITIVETYPE pt, ref_geom geom, u32 vBase, u32 pc);
+	void dbg_DIP					(D3DPRIMITIVETYPE pt, ref_geom geom, u32 baseV, u32 startV, u32 countV, u32 startI, u32 PC);
+#endif // USE_OGL
 #ifndef USE_OGL
 #ifdef	USE_DX10
 	//	TODO: DX10: Implement this.
@@ -419,8 +415,8 @@ public:
 	void dbg_Draw					(GLenum T, FVF::L* pVerts, int vcnt, u16* pIdx, int pcnt);
 	void dbg_Draw					(GLenum T, FVF::L* pVerts, int pcnt);
 #else
-	void dbg_Draw					(u32 T, FVF::L* pVerts, int vcnt, u16* pIdx, int pcnt);
-	void dbg_Draw					(u32 T, FVF::L* pVerts, int pcnt);
+	void dbg_Draw					(D3DPRIMITIVETYPE T, FVF::L* pVerts, int vcnt, u16* pIdx, int pcnt);
+	void dbg_Draw					(D3DPRIMITIVETYPE T, FVF::L* pVerts, int pcnt);
 #endif // USE_OGL
 	IC void dbg_DrawAABB			(Fvector& T, float sx, float sy, float sz, u32 C)						{	Fvector half_dim;	half_dim.set(sx,sy,sz); Fmatrix	TM;	TM.translate(T); dbg_DrawOBB(TM,half_dim,C);	}
 	void dbg_DrawOBB				(Fmatrix& T, Fvector& half_dim, u32 C);

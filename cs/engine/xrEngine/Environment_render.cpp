@@ -137,7 +137,7 @@ void CEnvironment::RenderSky		()
 	RCache.set_Geometry			(sh_2geom);
 	RCache.set_Shader			(sh_2sky);
 	RCache.set_Textures			(&CurrentEnv->sky_r_textures);
-	RCache.Render				(PT_TRIANGLELIST,v_offset,0,12,i_offset,20);
+	RCache.Render				(D3DPT_TRIANGLELIST,v_offset,0,12,i_offset,20);
 
 	// Sun
 	::Render->rmNormal			();
@@ -189,7 +189,7 @@ void CEnvironment::RenderClouds			()
 	RCache.set_Geometry			(clouds_geom);
 	RCache.set_Shader			(clouds_sh);
 	RCache.set_Textures			(&CurrentEnv->clouds_r_textures);
-	RCache.Render				(PT_TRIANGLELIST,v_offset,0,CloudsVerts.size(),i_offset,CloudsIndices.size()/3);
+	RCache.Render				(D3DPT_TRIANGLELIST,v_offset,0,CloudsVerts.size(),i_offset,CloudsIndices.size()/3);
 
 	::Render->rmNormal			();
 	*/

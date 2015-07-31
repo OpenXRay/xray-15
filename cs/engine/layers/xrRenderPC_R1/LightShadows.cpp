@@ -344,7 +344,7 @@ void CLightShadows::calculate	()
 		RCache.set_ZB				(RImplementation.Target->pTempZB	);
 		RCache.set_Shader			(sh_BlurTR	);
 		RCache.set_Geometry			(geom_Blur	);
-		RCache.Render				(PT_TRIANGLELIST,Offset,0,4,0,2);
+		RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
 	}
 	
 	// Finita la comedia
@@ -529,7 +529,7 @@ void CLightShadows::render	()
 			if (batch==batch_size)	{
 				// Flush
 				RCache.Vertex.Unlock	(batch*3,geom_World->vb_stride);
-				RCache.Render			(PT_TRIANGLELIST,Offset,batch);
+				RCache.Render			(D3DPT_TRIANGLELIST,Offset,batch);
 
 				pv						= (FVF::LIT*) RCache.Vertex.Lock(batch_size*3,geom_World->vb_stride,Offset);
 				batch					= 0;
@@ -541,7 +541,7 @@ void CLightShadows::render	()
 	// Flush if nessesary
 	RCache.Vertex.Unlock	(batch*3,geom_World->vb_stride);
 	if (batch)				{
-		RCache.Render			(PT_TRIANGLELIST,Offset,batch);
+		RCache.Render			(D3DPT_TRIANGLELIST,Offset,batch);
 	}
 	
 	// Clear all shadows and free old entries in the cache

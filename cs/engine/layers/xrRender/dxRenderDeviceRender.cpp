@@ -230,7 +230,7 @@ void dxRenderDeviceRender::overdrawEnd()
 		pv[3].set(float(Device.dwWidth),	float(0),			c,0,0);
 
 		CHK_DX(HW.pDevice->SetRenderState	( D3DRS_STENCILREF,		I	));
-		CHK_DX(HW.pDevice->DrawPrimitiveUP	( (D3DPRIMITIVETYPE)PT_TRIANGLESTRIP,	2,	pv, sizeof(FVF::TL) ));
+		CHK_DX(HW.pDevice->DrawPrimitiveUP	( D3DPT_TRIANGLESTRIP,	2,	pv, sizeof(FVF::TL) ));
 	}
 	CHK_DX(HW.pDevice->SetRenderState( D3DRS_STENCILENABLE,		FALSE ));
 #endif	//	USE_DX10

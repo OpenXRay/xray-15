@@ -73,17 +73,17 @@ void CRenderTarget::phase_ssao	()
 
 
 	if( !RImplementation.o.dx10_msaa )
-		RCache.Render				(PT_TRIANGLELIST,Offset,0,4,0,2);
+		RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
 	else
 	{
-		RCache.Render				(PT_TRIANGLELIST,Offset,0,4,0,2);
+		RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
 		/*RCache.set_Stencil( TRUE, D3DCMP_EQUAL, 0x01, 0x81, 0 );
-		RCache.Render		( PT_TRIANGLELIST,Offset,0,4,0,2);
+		RCache.Render		( D3DPT_TRIANGLELIST,Offset,0,4,0,2);
 		if( RImplementation.o.dx10_msaa_opt )
 		{
 			RCache.set_Element( s_ssao_msaa[0]->E[0]	);
 			RCache.set_Stencil( TRUE, D3DCMP_EQUAL, 0x81, 0x81, 0 );
-			RCache.Render	  ( PT_TRIANGLELIST,Offset,0,4,0,2);
+			RCache.Render	  ( D3DPT_TRIANGLELIST,Offset,0,4,0,2);
 		}
 		else
 		{
@@ -92,7 +92,7 @@ void CRenderTarget::phase_ssao	()
 				RCache.set_Element			( s_ssao_msaa[i]->E[0]	);
 				StateManager.SetSampleMask	( u32(1) << i  );
 				RCache.set_Stencil			( TRUE, D3DCMP_EQUAL, 0x81, 0x81, 0 );
-				RCache.Render				( PT_TRIANGLELIST,Offset,0,4,0,2);
+				RCache.Render				( D3DPT_TRIANGLELIST,Offset,0,4,0,2);
 			}
 			StateManager.SetSampleMask( 0xffffffff );
 		}*/
@@ -154,7 +154,7 @@ void CRenderTarget::phase_downsamp	()
 		RCache.set_Geometry			(g_combine		);
 		RCache.set_c				("m_v2w",			m_v2w	);
 
-		RCache.Render				(PT_TRIANGLELIST,Offset,0,4,0,2);
+		RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
 	}
 
 	if (RImplementation.o.ssao_half_data)

@@ -49,7 +49,7 @@ void dxUIRender::FlushTriList()
 	std::ptrdiff_t p_cnt		= (pv-start_pv)/3;							
 	RCache.Vertex.Unlock		(u32(pv-start_pv),hGeom_fan.stride());
 	RCache.set_Geometry			(hGeom_fan);
-	if (p_cnt!=0)RCache.Render	(PT_TRIANGLELIST,vOffset,u32(p_cnt));
+	if (p_cnt!=0)RCache.Render	(D3DPT_TRIANGLELIST,vOffset,u32(p_cnt));
 
 	PrimitiveType = ptNone;
 }
@@ -73,7 +73,7 @@ void dxUIRender::FlushTriFan()
 	std::ptrdiff_t p_cnt		= pv-start_pv;
 	RCache.Vertex.Unlock		(u32(p_cnt),hGeom_fan.stride());
 	RCache.set_Geometry	 		(hGeom_fan);
-	if (p_cnt>2) RCache.Render	(PT_TRIANGLEFAN,vOffset,u32(p_cnt-2));
+	if (p_cnt>2) RCache.Render	(D3DPT_TRIANGLEFAN,vOffset,u32(p_cnt-2));
 
 	PrimitiveType = ptNone;
 }
@@ -110,7 +110,7 @@ void dxUIRender::FlushLineStrip()
 	std::ptrdiff_t p_cnt		= pv-start_pv;
 	RCache.Vertex.Unlock		(u32(p_cnt),hGeom_fan.stride());
 	RCache.set_Geometry	 		(hGeom_fan);
-	if (p_cnt>1) RCache.Render	(PT_LINESTRIP,vOffset,u32(p_cnt-1));
+	if (p_cnt>1) RCache.Render	(D3DPT_LINESTRIP,vOffset,u32(p_cnt-1));
 
 	PrimitiveType = ptNone;
 }
@@ -132,7 +132,7 @@ void dxUIRender::FlushLineList()
 	std::ptrdiff_t p_cnt		= pv-start_pv;
 	RCache.Vertex.Unlock		(u32(p_cnt),hGeom_fan.stride());
 	RCache.set_Geometry	 		(hGeom_fan);
-	if (p_cnt>1) RCache.Render	(PT_LINELIST,vOffset,u32(p_cnt)/2);
+	if (p_cnt>1) RCache.Render	(D3DPT_LINELIST,vOffset,u32(p_cnt)/2);
 
 	PrimitiveType = ptNone;
 }
@@ -223,7 +223,7 @@ void dxUIRender::StartPrimitive(u32 iMaxVerts, ePrimitiveType primType, ePointTy
 void dxUIRender::FlushPrimitive()
 {
 	u32 primCount					= 0;
-	u32 d3dPrimType					= 0;
+	_D3DPRIMITIVETYPE d3dPrimType	= D3DPT_FORCE_DWORD;
 	std::ptrdiff_t p_cnt			= 0;
 
 	switch(m_PointType)
@@ -251,19 +251,19 @@ void dxUIRender::FlushPrimitive()
 	{
 	case ptTriStrip:
 		primCount = (u32)(p_cnt-2);
-		d3dPrimType = PT_TRIANGLESTRIP;
+		d3dPrimType = D3DPT_TRIANGLESTRIP;
 		break;
 	case ptTriList:
 		primCount = (u32)(p_cnt/3);
-		d3dPrimType = PT_TRIANGLELIST;
+		d3dPrimType = D3DPT_TRIANGLELIST;
 		break;
 	case ptLineStrip:
 		primCount = (u32)(p_cnt-1);
-		d3dPrimType = PT_LINESTRIP;
+		d3dPrimType = D3DPT_LINESTRIP;
 		break;
 	case ptLineList:
 		primCount = (u32)(p_cnt/2);
-		d3dPrimType = PT_LINELIST;
+		d3dPrimType = D3DPT_LINELIST;
 		break;
 	default:
 		NODEFAULT;
