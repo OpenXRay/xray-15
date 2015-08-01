@@ -1,0 +1,46 @@
+#include "common.h"
+
+in vec4 oC;
+in vec3 oTC0;
+in vec3 oTC1;
+
+out vec4 low;
+out vec4 high;
+
+uniform samplerCube     s_sky0;
+uniform samplerCube     s_sky1;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Pixel
+#if 1
+void         main               (void)
+{
+        vec3         	s0  	= texture        (s_sky0,oTC0);
+        vec3         	s1      = texture        (s_sky1,oTC1);
+        vec3        	sky     = oC*lerp        (s0,s1,oC.w);
+				sky		= sky*0.33;
+        // final tone-mapping
+#ifdef        USE_VTF
+        low             =		sky.xyzz		;
+        high        	=		low/def_hdr		;
+#else
+        float    scale   = texture(s_tonemap,vec2(.5f,.5f)).x;
+        tonemap        	(low, high, sky, scale*2.0 );
+#endif
+        return        	o;
+}
+#else
+void         main               (void)
+{
+        vec3         	s0  	= texture        (s_sky0,oTC0);
+        vec3         	s1      = texture        (s_sky1,oTC1);
+        vec3        	sky     = oC*lerp        (s0,s1,oC.w);
+
+        // final tone-mapping
+        _out        	o;
+        float    scale   = 1 + texture(s_tonemap,vec2(.5f,.5f)).x;
+				sky		= sky*scale*2.0f		;
+        low         	= sky.xyzz				;
+        high        	= low/def_hdr			;
+}
+#endif
