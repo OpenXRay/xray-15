@@ -42,6 +42,7 @@ void CBackend::CreateQuadIB()
 // Device dependance
 void CBackend::OnDeviceCreate()
 {
+	LoadShaderIncludes();
 	CreateQuadIB();
 
 	// streams
@@ -56,4 +57,35 @@ void CBackend::OnDeviceDestroy()
 {
 	// Quad
 	glDeleteBuffers(1, &QuadIB);
+}
+
+void CBackend::LoadShaderIncludes()
+{
+	// Open file list
+	typedef xr_vector<LPSTR>		file_list_type;
+	string_path						dirname;
+	strconcat(sizeof(dirname), dirname, ::Render->getShaderPath(), "shared\\");
+	file_list_type*					file_list = FS.file_list_open("$game_shaders$", dirname);
+	VERIFY(file_list);
+
+	file_list_type::const_iterator	i = file_list->begin();
+	file_list_type::const_iterator	e = file_list->end();
+	for (; i != e; ++i) {
+		// Open file
+		string_path					cname;
+		strconcat(sizeof(cname), cname, ::Render->getShaderPath(), "shared\\", *i);
+		FS.update_path(cname, "$game_shaders$", cname);
+
+		// Prefix root path
+		string_path					glname;
+		strconcat(sizeof(glname), glname, "/", *i);
+
+		// Load the include file
+		IReader*		R = FS.r_open(cname);
+		R_ASSERT2(R, cname);
+		CHK_GL(glNamedStringARB(GL_SHADER_INCLUDE_ARB, xr_strlen(glname), glname, R->length(), (GLchar*)R->pointer()));
+		FS.r_close(R);
+	}
+
+	FS.file_list_close(file_list);
 }

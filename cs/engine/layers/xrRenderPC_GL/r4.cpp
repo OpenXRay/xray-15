@@ -115,7 +115,7 @@ HRESULT	CRender::shader_compile(
 	// header
 	{
 		defines[def_it].Define = "#version 330 core\n";
-		//defines[def_it].Name = "#extension GL_ARB_shading_language_include : require\n";
+		defines[def_it].Name = "#extension GL_ARB_shading_language_include : require\n";
 		def_it++;
 	}
 
@@ -313,17 +313,19 @@ HRESULT	CRender::shader_compile(
 	}
 
 	// The last string is the source data.
-	char* _srcData = new char[SrcDataLen + 1];
+	char* _srcData = xr_alloc<char>(SrcDataLen + 1);
 	memcpy(_srcData, pSrcData, SrcDataLen);
 	_srcData[SrcDataLen] = '\0';
 	defines[def_it].Define = _srcData;
 
 	// Compile the shader.
+	char* include_path[] = { "/" };
 	GLuint _shader = *(GLuint*)_ppShader;
 	R_ASSERT(_shader);
-	glShaderSource(_shader, def_it * 4 + 1, (const char**)&defines, nullptr);
-	glCompileShader(_shader);
-	delete _srcData;
+	CHK_GL(glShaderSource(_shader, def_it * 4 + 1, (const char**)&defines, nullptr));
+	CHK_GL(glCompileShaderIncludeARB(_shader, 1, include_path, NULL));
+	//CHK_GL(glCompileShader(_shader));
+	xr_free(_srcData);
 
 	// Get the compilation result.
 	GLint _result;

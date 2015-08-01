@@ -1,3 +1,5 @@
+#include "common.h"
+
 in  vec3 P;
 out vec4 C;
 
