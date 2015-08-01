@@ -31,9 +31,9 @@ void	resptrcode_shader::create(IBlender* B, LPCSTR s_shader, LPCSTR s_textures, 
 }
 
 //////////////////////////////////////////////////////////////////////////
-void	resptrcode_geom::create(GLuint VAO, GLuint vb, GLuint ib)
+void	resptrcode_geom::create(u32 FVF, GLuint vb, GLuint ib)
 {
-	_set(DEV->CreateGeom(VAO, vb, ib));
+	_set(DEV->CreateGeom(FVF, vb, ib));
 }
 
 //////////////////////////////////////////////////////////////////////

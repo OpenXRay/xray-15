@@ -80,7 +80,8 @@ typedef	resptr_core<SState, resptr_base<SState> >	ref_state;
 struct ECORE_API SDeclaration : public xr_resource_flagged
 {
 #ifdef USE_OGL
-	GLuint								dcl;
+	u32									FVF;
+	GLuint								vao;
 #else
 
 #ifdef	USE_DX10

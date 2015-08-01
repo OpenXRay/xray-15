@@ -39,6 +39,28 @@ BOOL	reclaim		(xr_vector<T*>& vec, const T* ptr)
 }
 
 
+u32 get_vertex_size(u32 FVF)
+{
+	switch (FVF)
+	{
+	case FVF::F_L:
+		return sizeof(FVF::L);
+	case FVF::F_V:
+		return sizeof(FVF::V);
+	case FVF::F_LIT:
+		return sizeof(FVF::LIT);
+	case FVF::F_TL0uv:
+		return sizeof(FVF::TL0uv);
+	case FVF::F_TL:
+		return sizeof(FVF::TL);
+	case FVF::F_TL2uv:
+		return sizeof(FVF::TL2uv);
+	case FVF::F_TL4uv:
+		return sizeof(FVF::TL4uv);
+	}
+}
+
+
 //--------------------------------------------------------------------------------------------------------------
 SState*		CResourceManager::_CreateState		(SimulatorStates& state_code)
 {
@@ -95,11 +117,16 @@ void		CResourceManager::_DeletePass			(const SPass* P)
 }
 
 //--------------------------------------------------------------------------------------------------------------
-SDeclaration*	CResourceManager::_CreateDecl	(GLuint dcl)
+SDeclaration*	CResourceManager::_CreateDecl	(u32 FVF)
 {
-	// TODO: Implement this.
-	VERIFY(!"CResourceManager::_CreateDecl not implemented.");
-	return nullptr;
+	// Because we don't use ARB_vertex_attrib_binding we can't re-use
+	// declarations like DirectX does.
+	SDeclaration* D = new SDeclaration();
+	glGenVertexArrays(1, &D->vao);
+	D->FVF = FVF;
+	D->dwFlags |= xr_resource_flagged::RF_REGISTERED;
+	v_declarations.push_back(D);
+	return D;
 }
 
 void		CResourceManager::_DeleteDecl		(const SDeclaration* dcl)
@@ -320,11 +347,96 @@ void	CResourceManager::DBG_VerifyGeoms	()
 {
 }
 
-SGeometry*	CResourceManager::CreateGeom	(GLuint decl, GLuint vb, GLuint ib)
+SGeometry*	CResourceManager::CreateGeom	(u32 FVF, GLuint vb, GLuint ib)
 {
-	// TODO: Implement this.
-	VERIFY(!"CResourceManager::CreateGeom not implemented.");
-	return nullptr;
+	R_ASSERT(vb);
+
+	u32 vb_stride = get_vertex_size(FVF);
+
+	// ***** first pass - search already loaded shader
+	for (u32 it = 0; it<v_geoms.size(); it++)
+	{
+		SGeometry& G = *(v_geoms[it]);
+		if ((G.dcl->FVF == FVF) && (G.vb == vb) && (G.ib == ib) && (G.vb_stride == vb_stride))	return v_geoms[it];
+	}
+
+	SDeclaration* dcl = _CreateDecl(FVF);
+	glBindVertexArray(dcl->vao);
+	glBindBuffer(GL_ARRAY_BUFFER, vb);
+
+	switch (FVF)
+	{
+		case FVF::F_L:
+			CHK_GL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, vb_stride, 0));
+			glEnableVertexAttribArray(0);
+			CHK_GL(glVertexAttribPointer(1, GL_BGRA, GL_UNSIGNED_BYTE, GL_FALSE, vb_stride, (void*)sizeof(Fvector)));
+			glEnableVertexAttribArray(1);
+			break;
+		case FVF::F_V:
+			CHK_GL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, vb_stride, 0));
+			glEnableVertexAttribArray(0);
+			CHK_GL(glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, vb_stride, (void*)sizeof(Fvector)));
+			glEnableVertexAttribArray(1);
+			break;
+		case FVF::F_LIT:
+			CHK_GL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, vb_stride, 0));
+			glEnableVertexAttribArray(0);
+			CHK_GL(glVertexAttribPointer(1, GL_BGRA, GL_UNSIGNED_BYTE, GL_FALSE, vb_stride, (void*)sizeof(Fvector)));
+			glEnableVertexAttribArray(1);
+			CHK_GL(glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, vb_stride, (void*)(sizeof(Fvector) + sizeof(u32))));
+			glEnableVertexAttribArray(2);
+			break;
+		case FVF::F_TL0uv:
+			CHK_GL(glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(FVF::TL0uv), 0));
+			glEnableVertexAttribArray(0);
+			CHK_GL(glVertexAttribPointer(1, GL_BGRA, GL_UNSIGNED_BYTE, GL_FALSE, sizeof(FVF::TL0uv), (void*)sizeof(Fvector4)));
+			glEnableVertexAttribArray(1);
+			break;
+		case FVF::F_TL:
+			CHK_GL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, vb_stride, 0));
+			glEnableVertexAttribArray(0);
+			CHK_GL(glVertexAttribPointer(1, GL_BGRA, GL_UNSIGNED_BYTE, GL_FALSE, vb_stride, (void*)sizeof(Fvector4)));
+			glEnableVertexAttribArray(1);
+			CHK_GL(glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, vb_stride, (void*)(sizeof(Fvector4) + sizeof(u32))));
+			glEnableVertexAttribArray(2);
+			break;
+		case FVF::F_TL2uv:
+			CHK_GL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, vb_stride, 0));
+			glEnableVertexAttribArray(0);
+			CHK_GL(glVertexAttribPointer(1, GL_BGRA, GL_UNSIGNED_BYTE, GL_FALSE, vb_stride, (void*)sizeof(Fvector4)));
+			glEnableVertexAttribArray(1);
+			CHK_GL(glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, vb_stride, (void*)(sizeof(Fvector4) + sizeof(u32))));
+			glEnableVertexAttribArray(2);
+			CHK_GL(glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, vb_stride, (void*)(sizeof(Fvector4) + sizeof(u32) + sizeof(Fvector2))));
+			glEnableVertexAttribArray(3);
+			break;
+		case FVF::F_TL4uv:
+			CHK_GL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, vb_stride, 0));
+			glEnableVertexAttribArray(0);
+			CHK_GL(glVertexAttribPointer(1, GL_BGRA, GL_UNSIGNED_BYTE, GL_FALSE, vb_stride, (void*)sizeof(Fvector4)));
+			glEnableVertexAttribArray(1);
+			CHK_GL(glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, vb_stride, (void*)(sizeof(Fvector4) + sizeof(u32))));
+			glEnableVertexAttribArray(2);
+			CHK_GL(glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, vb_stride, (void*)(sizeof(Fvector4) + sizeof(u32) + sizeof(Fvector2))));
+			glEnableVertexAttribArray(3);
+			CHK_GL(glVertexAttribPointer(4, 2, GL_FLOAT, GL_FALSE, vb_stride, (void*)(sizeof(Fvector4) + sizeof(u32) + 2 * sizeof(Fvector2))));
+			glEnableVertexAttribArray(4);
+			CHK_GL(glVertexAttribPointer(5, 2, GL_FLOAT, GL_FALSE, vb_stride, (void*)(sizeof(Fvector4) + sizeof(u32) + 3 * sizeof(Fvector2))));
+			glEnableVertexAttribArray(5);
+			break;
+	}
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
+
+	SGeometry *Geom = new SGeometry();
+	Geom->dwFlags |= xr_resource_flagged::RF_REGISTERED;
+	Geom->dcl = dcl;
+	Geom->vb = vb;
+	Geom->vb_stride = vb_stride;
+	Geom->ib = ib;
+	v_geoms.push_back(Geom);
+	return Geom;
 }
 
 void		CResourceManager::DeleteGeom		(const SGeometry* Geom)

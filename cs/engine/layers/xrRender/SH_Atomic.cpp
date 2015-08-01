@@ -87,7 +87,7 @@ SDeclaration::~SDeclaration()
 #else	//	USE_DX10
 	//	Release vertex layout
 #ifdef USE_OGL
-	glDeleteBuffers(1, &dcl);
+	glDeleteBuffers(1, &vao);
 #else
 	_RELEASE(dcl);
 #endif // USE_OGL

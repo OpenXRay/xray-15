@@ -174,7 +174,7 @@ public:
 	void							_DeleteState		(const SState* SB);
 
 #ifdef USE_OGL
-	SDeclaration*					_CreateDecl			(GLuint dcl);
+	SDeclaration*					_CreateDecl			(u32 FVF);
 #else
 	SDeclaration*					_CreateDecl			(D3DVERTEXELEMENT9* dcl);
 #endif // USE_OGL
