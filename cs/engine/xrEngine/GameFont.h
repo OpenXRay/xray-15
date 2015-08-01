@@ -12,6 +12,7 @@ class ENGINE_API CGameFont
 #endif
 {
 	friend class dxFontRender;
+	friend class glFontRender;
 public:
 	enum EAligment{
 		alLeft				= 0,

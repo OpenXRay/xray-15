@@ -249,6 +249,7 @@
     <ClCompile Include="..\xrRender\uber_deffer.cpp" />
     <ClCompile Include="..\xrRender\xrRender_console.cpp" />
     <ClCompile Include="glApplicationRender.cpp" />
+    <ClCompile Include="glFontRender.cpp" />
     <ClCompile Include="glRenderVisual.cpp" />
     <ClCompile Include="glDebugRender.cpp" />
     <ClCompile Include="glEnvironmentRender.cpp" />
@@ -294,6 +295,7 @@
     <ClInclude Include="..\..\include\xrRender\DebugRender.h" />
     <ClInclude Include="..\..\include\xrRender\DrawUtils.h" />
     <ClInclude Include="..\..\include\xrRender\EnvironmentRender.h" />
+    <ClInclude Include="..\..\include\xrRender\FontRender.h" />
     <ClInclude Include="..\..\include\xrRender\ParticleCustom.h" />
     <ClInclude Include="..\..\include\xrRender\RenderDeviceRender.h" />
     <ClInclude Include="..\..\include\xrRender\RenderFactory.h" />
@@ -356,6 +358,7 @@
     <ClInclude Include="..\xrRender\uber_deffer.h" />
     <ClInclude Include="..\xrRender\xrRender_console.h" />
     <ClInclude Include="glApplicationRender.h" />
+    <ClInclude Include="glFontRender.h" />
     <ClInclude Include="glRenderVisual.h" />
     <ClInclude Include="glDebugRender.h" />
     <ClInclude Include="glEnvironmentRender.h" />

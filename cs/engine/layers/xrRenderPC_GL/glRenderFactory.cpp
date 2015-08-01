@@ -17,7 +17,7 @@
 	//#include "glObjectSpaceRender.h"
 #endif // _EDITOR
 
-//#include "glFontRender.h"
+#include "glFontRender.h"
 #include "glApplicationRender.h"
 //#include "glWallMarkArray.h"
 #include "glStatsRender.h"
@@ -71,4 +71,4 @@ glRenderFactory RenderFactoryImpl;
 	RENDER_FACTORY_UNIMPLEMENT(EnvDescriptorRender)
 	RENDER_FACTORY_UNIMPLEMENT(FlareRender)
 #endif
-RENDER_FACTORY_UNIMPLEMENT(FontRender)
+RENDER_FACTORY_IMPLEMENT(FontRender)

@@ -399,6 +399,9 @@
     <ClCompile Include="glApplicationRender.cpp">
       <Filter>Interface implementations\ApplicationRender</Filter>
     </ClCompile>
+    <ClCompile Include="glFontRender.cpp">
+      <Filter>Interface implementations\FontRender</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -637,6 +640,12 @@
     </ClInclude>
     <ClInclude Include="glApplicationRender.h">
       <Filter>Interface implementations\ApplicationRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\xrRender\FontRender.h">
+      <Filter>Interface implementations\FontRender</Filter>
+    </ClInclude>
+    <ClInclude Include="glFontRender.h">
+      <Filter>Interface implementations\FontRender</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
