@@ -181,6 +181,7 @@ SVS*	CResourceManager::_CreateVS		(LPCSTR _name)
 
 		// vertex
 		R_ASSERT2(fs, cname);
+		_vs->vs = glCreateShader(GL_VERTEX_SHADER);
 		GLenum _result = ::Render->shader_compile(name, LPCSTR(fs->pointer()), fs->length(), NULL, NULL, NULL, NULL, 0, &_vs->vs, &pErrorBuf, NULL);
 		FS.r_close(fs);
 
