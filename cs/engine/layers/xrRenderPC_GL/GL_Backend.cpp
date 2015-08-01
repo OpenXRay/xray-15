@@ -44,6 +44,10 @@ void CBackend::OnDeviceCreate()
 {
 	CreateQuadIB();
 
+	// streams
+	Vertex.Create();
+	Index.Create();
+
 	// invalidate caching
 	Invalidate();
 }

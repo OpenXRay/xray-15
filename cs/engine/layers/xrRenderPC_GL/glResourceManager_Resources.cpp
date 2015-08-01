@@ -369,7 +369,7 @@ SGeometry*	CResourceManager::CreateGeom	(u32 FVF, GLuint vb, GLuint ib)
 		case FVF::F_L:
 			CHK_GL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, vb_stride, 0));
 			glEnableVertexAttribArray(0);
-			CHK_GL(glVertexAttribPointer(1, GL_BGRA, GL_UNSIGNED_BYTE, GL_FALSE, vb_stride, (void*)sizeof(Fvector)));
+			CHK_GL(glVertexAttribPointer(1, GL_BGRA, GL_UNSIGNED_BYTE, GL_TRUE, vb_stride, (void*)sizeof(Fvector)));
 			glEnableVertexAttribArray(1);
 			break;
 		case FVF::F_V:
@@ -381,21 +381,21 @@ SGeometry*	CResourceManager::CreateGeom	(u32 FVF, GLuint vb, GLuint ib)
 		case FVF::F_LIT:
 			CHK_GL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, vb_stride, 0));
 			glEnableVertexAttribArray(0);
-			CHK_GL(glVertexAttribPointer(1, GL_BGRA, GL_UNSIGNED_BYTE, GL_FALSE, vb_stride, (void*)sizeof(Fvector)));
+			CHK_GL(glVertexAttribPointer(1, GL_BGRA, GL_UNSIGNED_BYTE, GL_TRUE, vb_stride, (void*)sizeof(Fvector)));
 			glEnableVertexAttribArray(1);
 			CHK_GL(glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, vb_stride, (void*)(sizeof(Fvector) + sizeof(u32))));
 			glEnableVertexAttribArray(2);
 			break;
 		case FVF::F_TL0uv:
-			CHK_GL(glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(FVF::TL0uv), 0));
+			CHK_GL(glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, vb_stride, 0));
 			glEnableVertexAttribArray(0);
-			CHK_GL(glVertexAttribPointer(1, GL_BGRA, GL_UNSIGNED_BYTE, GL_FALSE, sizeof(FVF::TL0uv), (void*)sizeof(Fvector4)));
+			CHK_GL(glVertexAttribPointer(1, GL_BGRA, GL_UNSIGNED_BYTE, GL_TRUE, vb_stride, (void*)sizeof(Fvector4)));
 			glEnableVertexAttribArray(1);
 			break;
 		case FVF::F_TL:
 			CHK_GL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, vb_stride, 0));
 			glEnableVertexAttribArray(0);
-			CHK_GL(glVertexAttribPointer(1, GL_BGRA, GL_UNSIGNED_BYTE, GL_FALSE, vb_stride, (void*)sizeof(Fvector4)));
+			CHK_GL(glVertexAttribPointer(1, GL_BGRA, GL_UNSIGNED_BYTE, GL_TRUE, vb_stride, (void*)sizeof(Fvector4)));
 			glEnableVertexAttribArray(1);
 			CHK_GL(glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, vb_stride, (void*)(sizeof(Fvector4) + sizeof(u32))));
 			glEnableVertexAttribArray(2);
@@ -403,7 +403,7 @@ SGeometry*	CResourceManager::CreateGeom	(u32 FVF, GLuint vb, GLuint ib)
 		case FVF::F_TL2uv:
 			CHK_GL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, vb_stride, 0));
 			glEnableVertexAttribArray(0);
-			CHK_GL(glVertexAttribPointer(1, GL_BGRA, GL_UNSIGNED_BYTE, GL_FALSE, vb_stride, (void*)sizeof(Fvector4)));
+			CHK_GL(glVertexAttribPointer(1, GL_BGRA, GL_UNSIGNED_BYTE, GL_TRUE, vb_stride, (void*)sizeof(Fvector4)));
 			glEnableVertexAttribArray(1);
 			CHK_GL(glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, vb_stride, (void*)(sizeof(Fvector4) + sizeof(u32))));
 			glEnableVertexAttribArray(2);
@@ -413,7 +413,7 @@ SGeometry*	CResourceManager::CreateGeom	(u32 FVF, GLuint vb, GLuint ib)
 		case FVF::F_TL4uv:
 			CHK_GL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, vb_stride, 0));
 			glEnableVertexAttribArray(0);
-			CHK_GL(glVertexAttribPointer(1, GL_BGRA, GL_UNSIGNED_BYTE, GL_FALSE, vb_stride, (void*)sizeof(Fvector4)));
+			CHK_GL(glVertexAttribPointer(1, GL_BGRA, GL_UNSIGNED_BYTE, GL_TRUE, vb_stride, (void*)sizeof(Fvector4)));
 			glEnableVertexAttribArray(1);
 			CHK_GL(glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, vb_stride, (void*)(sizeof(Fvector4) + sizeof(u32))));
 			glEnableVertexAttribArray(2);

@@ -17,6 +17,7 @@ IC void CBackend::set_RT(GLuint RT, u32 ID)
 		stat.target_rt++;
 		pRT[ID] = RT;
 		// TODO: Set render target
+		VERIFY(!"CBackend::set_RT not implemented");
 	}
 }
 
@@ -28,6 +29,7 @@ IC void	CBackend::set_ZB(GLuint ZB)
 		stat.target_zb++;
 		pZB = ZB;
 		// TODO: Set Z buffer
+		VERIFY(!"CBackend::set_ZB not implemented");
 	}
 }
 
@@ -41,6 +43,7 @@ ICF void CBackend::set_Format(SDeclaration* _decl)
 #endif
 		decl = _decl;
 		// TODO: Set vertex format
+		VERIFY(!"CBackend::set_Format not implemented");
 	}
 }
 
@@ -52,6 +55,7 @@ ICF void CBackend::set_PS(GLuint _ps, LPCSTR _n)
 		stat.ps++;
 		ps = _ps;
 		// TODO: Set pixel shader
+		VERIFY(!"CBackend::set_PS not implemented");
 #ifdef DEBUG
 		ps_name = _n;
 #endif
@@ -66,6 +70,7 @@ ICF void CBackend::set_VS(GLuint _vs, LPCSTR _n)
 		stat.vs++;
 		vs = _vs;
 		// TODO: Set vertex shader
+		VERIFY(!"CBackend::set_VS not implemented");
 #ifdef DEBUG
 		vs_name = _n;
 #endif
@@ -83,6 +88,7 @@ ICF void CBackend::set_Vertices(GLuint _vb, u32 _vb_stride)
 		vb = _vb;
 		vb_stride = _vb_stride;
 		// TODO: Set vertex buffer
+		VERIFY(!"CBackend::set_Vertices not implemented");
 	}
 }
 
@@ -96,6 +102,7 @@ ICF void CBackend::set_Indices(GLuint _ib)
 #endif
 		ib = _ib;
 		// TODO: Set index buffer
+		VERIFY(!"CBackend::set_Indices not implemented");
 	}
 }
 
@@ -110,6 +117,7 @@ ICF void CBackend::Render(u32 T, u32 baseV, u32 startV, u32 countV, u32 startI, 
 	stat.polys += PC;
 	constants.flush();
 	// TODO: Draw vertices
+	VERIFY(!"CBackend::Render not implemented");
 	PGO(Msg("PGO:DIP:%dv/%df", countV, PC));
 }
 
@@ -124,14 +132,14 @@ ICF void CBackend::Render(u32 T, u32 startV, u32 PC)
 	stat.polys += PC;
 	constants.flush();
 	// TODO: Draw vertices
+	VERIFY(!"CBackend::Render not implemented");
 	PGO(Msg("PGO:DIP:%dv/%df", 3 * PC, PC));
 }
 
 IC void CBackend::set_Geometry(SGeometry* _geom)
 {
-	set_Format(&*_geom->dcl);
-	set_Vertices(_geom->vb, _geom->vb_stride);
-	set_Indices(_geom->ib);
+	// TODO: Implement this
+	VERIFY(!"CBackend::set_Geometry not implemented.");
 }
 
 IC void	CBackend::set_Scissor(Irect*	R)
