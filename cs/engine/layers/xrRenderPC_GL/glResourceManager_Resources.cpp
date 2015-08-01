@@ -41,23 +41,37 @@ BOOL	reclaim		(xr_vector<T*>& vec, const T* ptr)
 
 u32 get_vertex_size(u32 FVF)
 {
-	switch (FVF)
+	u32 offset = 0;
+
+	// Position attribute
+	if (FVF & D3DFVF_XYZRHW)
+		offset += sizeof(Fvector4);
+	else if (FVF & D3DFVF_XYZ)
+		offset += sizeof(Fvector);
+
+	// Diffuse color attribute
+	if (FVF & D3DFVF_DIFFUSE)
+		offset += sizeof(u32);
+
+	// Specular color attribute
+	if (FVF & D3DFVF_SPECULAR)
+		offset += sizeof(u32);
+
+	// Texture coordinates
+	for (u32 i = 0; i < (FVF & D3DFVF_TEXCOUNT_MASK) >> D3DFVF_TEXCOUNT_SHIFT; i++)
 	{
-	case FVF::F_L:
-		return sizeof(FVF::L);
-	case FVF::F_V:
-		return sizeof(FVF::V);
-	case FVF::F_LIT:
-		return sizeof(FVF::LIT);
-	case FVF::F_TL0uv:
-		return sizeof(FVF::TL0uv);
-	case FVF::F_TL:
-		return sizeof(FVF::TL);
-	case FVF::F_TL2uv:
-		return sizeof(FVF::TL2uv);
-	case FVF::F_TL4uv:
-		return sizeof(FVF::TL4uv);
+		u32 size = 2;
+		if (FVF & D3DFVF_TEXCOORDSIZE1(i))
+			size = 1;
+		if (FVF & D3DFVF_TEXCOORDSIZE3(i))
+			size = 3;
+		if (FVF & D3DFVF_TEXCOORDSIZE4(i))
+			size = 4;
+
+		offset += size * sizeof(float);
 	}
+
+	return offset;
 }
 
 
@@ -365,66 +379,57 @@ SGeometry*	CResourceManager::CreateGeom	(u32 FVF, GLuint vb, GLuint ib)
 	glBindVertexArray(dcl->vao);
 	glBindBuffer(GL_ARRAY_BUFFER, vb);
 
-	switch (FVF)
+	u32 attrib = 0, offset = 0;
+
+	// Position attribute
+	if (FVF & D3DFVF_XYZRHW)
 	{
-		case FVF::F_L:
-			CHK_GL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, vb_stride, 0));
-			glEnableVertexAttribArray(0);
-			CHK_GL(glVertexAttribPointer(1, GL_BGRA, GL_UNSIGNED_BYTE, GL_TRUE, vb_stride, (void*)sizeof(Fvector)));
-			glEnableVertexAttribArray(1);
-			break;
-		case FVF::F_V:
-			CHK_GL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, vb_stride, 0));
-			glEnableVertexAttribArray(0);
-			CHK_GL(glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, vb_stride, (void*)sizeof(Fvector)));
-			glEnableVertexAttribArray(1);
-			break;
-		case FVF::F_LIT:
-			CHK_GL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, vb_stride, 0));
-			glEnableVertexAttribArray(0);
-			CHK_GL(glVertexAttribPointer(1, GL_BGRA, GL_UNSIGNED_BYTE, GL_TRUE, vb_stride, (void*)sizeof(Fvector)));
-			glEnableVertexAttribArray(1);
-			CHK_GL(glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, vb_stride, (void*)(sizeof(Fvector) + sizeof(u32))));
-			glEnableVertexAttribArray(2);
-			break;
-		case FVF::F_TL0uv:
-			CHK_GL(glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, vb_stride, 0));
-			glEnableVertexAttribArray(0);
-			CHK_GL(glVertexAttribPointer(1, GL_BGRA, GL_UNSIGNED_BYTE, GL_TRUE, vb_stride, (void*)sizeof(Fvector4)));
-			glEnableVertexAttribArray(1);
-			break;
-		case FVF::F_TL:
-			CHK_GL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, vb_stride, 0));
-			glEnableVertexAttribArray(0);
-			CHK_GL(glVertexAttribPointer(1, GL_BGRA, GL_UNSIGNED_BYTE, GL_TRUE, vb_stride, (void*)sizeof(Fvector4)));
-			glEnableVertexAttribArray(1);
-			CHK_GL(glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, vb_stride, (void*)(sizeof(Fvector4) + sizeof(u32))));
-			glEnableVertexAttribArray(2);
-			break;
-		case FVF::F_TL2uv:
-			CHK_GL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, vb_stride, 0));
-			glEnableVertexAttribArray(0);
-			CHK_GL(glVertexAttribPointer(1, GL_BGRA, GL_UNSIGNED_BYTE, GL_TRUE, vb_stride, (void*)sizeof(Fvector4)));
-			glEnableVertexAttribArray(1);
-			CHK_GL(glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, vb_stride, (void*)(sizeof(Fvector4) + sizeof(u32))));
-			glEnableVertexAttribArray(2);
-			CHK_GL(glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, vb_stride, (void*)(sizeof(Fvector4) + sizeof(u32) + sizeof(Fvector2))));
-			glEnableVertexAttribArray(3);
-			break;
-		case FVF::F_TL4uv:
-			CHK_GL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, vb_stride, 0));
-			glEnableVertexAttribArray(0);
-			CHK_GL(glVertexAttribPointer(1, GL_BGRA, GL_UNSIGNED_BYTE, GL_TRUE, vb_stride, (void*)sizeof(Fvector4)));
-			glEnableVertexAttribArray(1);
-			CHK_GL(glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, vb_stride, (void*)(sizeof(Fvector4) + sizeof(u32))));
-			glEnableVertexAttribArray(2);
-			CHK_GL(glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, vb_stride, (void*)(sizeof(Fvector4) + sizeof(u32) + sizeof(Fvector2))));
-			glEnableVertexAttribArray(3);
-			CHK_GL(glVertexAttribPointer(4, 2, GL_FLOAT, GL_FALSE, vb_stride, (void*)(sizeof(Fvector4) + sizeof(u32) + 2 * sizeof(Fvector2))));
-			glEnableVertexAttribArray(4);
-			CHK_GL(glVertexAttribPointer(5, 2, GL_FLOAT, GL_FALSE, vb_stride, (void*)(sizeof(Fvector4) + sizeof(u32) + 3 * sizeof(Fvector2))));
-			glEnableVertexAttribArray(5);
-			break;
+		CHK_GL(glVertexAttribPointer(attrib, 4, GL_FLOAT, GL_FALSE, vb_stride, (void*)offset));
+		glEnableVertexAttribArray(attrib);
+		offset += sizeof(Fvector4);
+		attrib++;
+	}
+	else if (FVF & D3DFVF_XYZ)
+	{
+		CHK_GL(glVertexAttribPointer(attrib, 3, GL_FLOAT, GL_FALSE, vb_stride, (void*)offset));
+		glEnableVertexAttribArray(attrib);
+		offset += sizeof(Fvector);
+		attrib++;
+	}
+
+	// Diffuse color attribute
+	if (FVF & D3DFVF_DIFFUSE)
+	{
+		CHK_GL(glVertexAttribPointer(attrib, GL_BGRA, GL_UNSIGNED_BYTE, GL_TRUE, vb_stride, (void*)offset));
+		glEnableVertexAttribArray(attrib);
+		offset += sizeof(u32);
+		attrib++;
+	}
+
+	// Specular color attribute
+	if (FVF & D3DFVF_SPECULAR)
+	{
+		CHK_GL(glVertexAttribPointer(attrib, GL_BGRA, GL_UNSIGNED_BYTE, GL_TRUE, vb_stride, (void*)offset));
+		glEnableVertexAttribArray(attrib);
+		offset += sizeof(u32);
+		attrib++;
+	}
+
+	// Texture coordinates
+	for (u32 i = 0; i < (FVF & D3DFVF_TEXCOUNT_MASK) >> D3DFVF_TEXCOUNT_SHIFT; i++)
+	{
+		u32 size = 2;
+		if (FVF & D3DFVF_TEXCOORDSIZE1(i))
+			size = 1;
+		if (FVF & D3DFVF_TEXCOORDSIZE3(i))
+			size = 3;
+		if (FVF & D3DFVF_TEXCOORDSIZE4(i))
+			size = 4;
+
+		CHK_GL(glVertexAttribPointer(attrib, size, GL_FLOAT, GL_FALSE, vb_stride, (void*)offset));
+		glEnableVertexAttribArray(attrib);
+		offset += size * sizeof(float);
+		attrib++;
 	}
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
