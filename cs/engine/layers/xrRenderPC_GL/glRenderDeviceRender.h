@@ -53,7 +53,7 @@ public:
 
 	//	Device state
 	virtual DeviceState GetDeviceState() { VERIFY(!"glRenderDeviceRender::GetDeviceState not implemented."); return dsOK; };
-	virtual BOOL	GetForceGPU_REF() { VERIFY(!"glRenderDeviceRender::GetForceGPU_REF not implemented."); return false; };
+	virtual BOOL	GetForceGPU_REF() { return false; };
 	virtual u32		GetCacheStatPolys() { VERIFY(!"glRenderDeviceRender::GetCacheStatPolys not implemented."); return 0; };
 	virtual void	Begin() { VERIFY(!"glRenderDeviceRender::Begin not implemented."); };
 	virtual void	Clear() { VERIFY(!"glRenderDeviceRender::Clear not implemented."); };
