@@ -112,9 +112,61 @@ void		CResourceManager::_DeleteDecl		(const SDeclaration* dcl)
 //--------------------------------------------------------------------------------------------------------------
 SVS*	CResourceManager::_CreateVS		(LPCSTR _name)
 {
-	// TODO: Implement this.
-	VERIFY(!"CResourceManager::_CreateVS not implemented.");
-	return nullptr;
+	string_path			name;
+	strcpy_s(name, _name);
+	if (0 == ::Render->m_skinning)	strcat(name, "_0");
+	if (1 == ::Render->m_skinning)	strcat(name, "_1");
+	if (2 == ::Render->m_skinning)	strcat(name, "_2");
+	if (3 == ::Render->m_skinning)	strcat(name, "_3");
+	if (4 == ::Render->m_skinning)	strcat(name, "_4");
+	LPSTR N = LPSTR(name);
+	map_VS::iterator I = m_vs.find(N);
+	if (I != m_vs.end())	return I->second;
+	else
+	{
+		SVS*	_vs = new SVS();
+		_vs->dwFlags |= xr_resource_flagged::RF_REGISTERED;
+		m_vs.insert(mk_pair(_vs->set_name(name), _vs));
+		//_vs->vs				= NULL;
+		//_vs->signature		= NULL;
+		if (0 == stricmp(_name, "null"))	{
+			return _vs;
+		}
+
+		GLchar*					pErrorBuf = NULL;
+		string_path					cname;
+		strconcat(sizeof(cname), cname, ::Render->getShaderPath(), _name, ".vs");
+		FS.update_path(cname, "$game_shaders$", cname);
+		//		LPCSTR						target		= NULL;
+
+		IReader*					fs = FS.r_open(cname);
+		//	TODO: OGL: HACK: Implement all shaders. Remove this for PS
+		if (!fs)
+		{
+			string1024			tmp;
+			sprintf(tmp, "OGL: %s is missing. Replace with stub_default.vs", cname);
+			Msg(tmp);
+			strconcat(sizeof(cname), cname, ::Render->getShaderPath(), "stub_default", ".vs");
+			FS.update_path(cname, "$game_shaders$", cname);
+			fs = FS.r_open(cname);
+		}
+		R_ASSERT3(fs, "shader file doesnt exist", cname);
+
+		// vertex
+		R_ASSERT2(fs, cname);
+		GLenum _result = ::Render->shader_compile(name, LPCSTR(fs->pointer()), fs->length(), NULL, NULL, NULL, NULL, 0, &_vs->vs, &pErrorBuf, NULL);
+		FS.r_close(fs);
+
+		if (_result == GL_FALSE)
+		{
+			VERIFY(pErrorBuf);
+			Log("! VS: ", _name);
+			Log("! error: ", pErrorBuf);
+		}
+		delete pErrorBuf;
+		R_ASSERT(_result);
+		return		_vs;
+	}
 }
 
 void	CResourceManager::_DeleteVS			(const SVS* vs)
@@ -130,11 +182,80 @@ void	CResourceManager::_DeleteVS			(const SVS* vs)
 }
 
 //--------------------------------------------------------------------------------------------------------------
-SPS*	CResourceManager::_CreatePS			(LPCSTR name)
+SPS*	CResourceManager::_CreatePS			(LPCSTR _name)
 {
-	// TODO: Implement this.
-	VERIFY(!"CResourceManager::_CreatePS not implemented.");
-	return nullptr;
+	string_path			name;
+	strcpy_s(name, _name);
+	if (0 == ::Render->m_MSAASample)	strcat(name, "_0");
+	if (1 == ::Render->m_MSAASample)	strcat(name, "_1");
+	if (2 == ::Render->m_MSAASample)	strcat(name, "_2");
+	if (3 == ::Render->m_MSAASample)	strcat(name, "_3");
+	if (4 == ::Render->m_MSAASample)	strcat(name, "_4");
+	if (5 == ::Render->m_MSAASample)	strcat(name, "_5");
+	if (6 == ::Render->m_MSAASample)	strcat(name, "_6");
+	if (7 == ::Render->m_MSAASample)	strcat(name, "_7");
+	LPSTR N = LPSTR(name);
+	map_PS::iterator I = m_ps.find(N);
+	if (I != m_ps.end())	return		I->second;
+	else
+	{
+		SPS*	_ps = new SPS();
+		_ps->dwFlags |= xr_resource_flagged::RF_REGISTERED;
+		m_ps.insert(mk_pair(_ps->set_name(name), _ps));
+		if (0 == stricmp(_name, "null"))	{
+			_ps->ps = NULL;
+			return _ps;
+		}
+
+		// Open file
+		string_path					cname;
+		strconcat(sizeof(cname), cname, ::Render->getShaderPath(), _name, ".ps");
+		FS.update_path(cname, "$game_shaders$", cname);
+
+		// duplicate and zero-terminate
+		IReader*		R = FS.r_open(cname);
+		//	TODO: DX10: HACK: Implement all shaders. Remove this for PS
+		if (!R)
+		{
+			string1024			tmp;
+			//	TODO: HACK: Test failure
+			//Memory.mem_compact();
+			sprintf(tmp, "OGL: %s is missing. Replace with stub_default.ps", cname);
+			Msg(tmp);
+			strconcat(sizeof(cname), cname, ::Render->getShaderPath(), "stub_default", ".ps");
+			FS.update_path(cname, "$game_shaders$", cname);
+			R = FS.r_open(cname);
+		}
+		R_ASSERT2(R, cname);
+		u32				size = R->length();
+		char*			data = xr_alloc<char>(size + 1);
+		CopyMemory(data, R->pointer(), size);
+		data[size] = 0;
+		FS.r_close(R);
+
+		// Compile
+		GLchar* pErrorBuf = NULL;
+		_ps->ps = glCreateShader(GL_FRAGMENT_SHADER);
+		GLenum _result = ::Render->shader_compile(name, data, size, NULL, NULL, NULL, NULL, 0, &_ps->ps, &pErrorBuf, NULL);
+		xr_free(data);
+
+		if (_result == GL_FALSE)
+		{
+			VERIFY(pErrorBuf);
+			Log("! PS: ", _name);
+			Msg("error is %s", pErrorBuf);
+		}
+		delete pErrorBuf;
+
+		if (_result == GL_FALSE)
+			Msg("Can't compile shader %s", _name);
+
+		CHECK_OR_EXIT(
+			_result != GL_FALSE,
+			make_string("Your video card doesn't meet game requirements\n\nPixel Shaders v1.1 or higher required")
+			);
+		return			_ps;
+	}
 }
 void	CResourceManager::_DeletePS			(const SPS* ps)
 {

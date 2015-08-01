@@ -36,7 +36,7 @@ SVS::~SVS()
 	//	Now it is release automatically
 #endif	//	USE_DX10
 #ifdef USE_OGL
-	glDeleteProgram(vs);
+	glDeleteShader(vs);
 	vs = NULL;
 #else
 	_RELEASE(vs);
@@ -47,7 +47,7 @@ SVS::~SVS()
 ///////////////////////////////////////////////////////////////////////
 //	SPS
 #ifdef USE_OGL
-SPS::~SPS								()			{	glDeleteProgram(ps);	ps = NULL;		DEV->_DeletePS			(this);	}
+SPS::~SPS								()			{	 glDeleteShader(ps);	ps = NULL;		DEV->_DeletePS			(this);	}
 #else
 SPS::~SPS								()			{	_RELEASE(ps);		DEV->_DeletePS			(this);	}
 #endif // USE_OGL

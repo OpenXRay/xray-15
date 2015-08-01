@@ -79,7 +79,7 @@ public:
 		DWORD                           Flags,
 		void*							ppShader,
 		void*							ppErrorMsgs,
-		void*							ppConstantTable) { VERIFY(!"CRender::shader_compile not implemented."); return E_NOTIMPL; };
+		void*							ppConstantTable);
 
 	// Information
 	virtual	void					Statistics(CGameFont* F)							{ VERIFY(!"CRender::Statistics not implemented."); };
