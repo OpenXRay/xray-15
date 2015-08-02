@@ -312,7 +312,7 @@ void CBackend::set_Textures			(STextureList* _T)
 		SRVSManager.SetVSResource(_last_vs, pRes);
 #else	//	USE_DX10
 #ifdef	USE_OGL
-		CHK_GL							(glActiveTexture(GL_TEXTURE16 + _last_vs));
+		CHK_GL							(glActiveTexture(GL_TEXTURE0 + CTexture::rstVertex + _last_vs));
 		CHK_GL							(glBindTexture(GL_TEXTURE_2D, 0));
 #else
 		CHK_DX							(HW.pDevice->SetTexture(_last_vs+CTexture::rstVertex,NULL));
