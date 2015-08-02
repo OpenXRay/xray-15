@@ -337,7 +337,7 @@ HRESULT	CRender::shader_compile(
 		GLint _length;
 		GLchar** _pErrorMsgs = (GLchar**)_ppErrorMsgs;
 		glGetShaderiv(_shader, GL_INFO_LOG_LENGTH, &_length);
-		*_pErrorMsgs = new GLchar[_length];
+		*_pErrorMsgs = xr_alloc<GLchar>(_length);
 		glGetShaderInfoLog(_shader, _length, nullptr, *_pErrorMsgs);
 	}
 

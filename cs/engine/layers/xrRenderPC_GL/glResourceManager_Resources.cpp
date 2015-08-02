@@ -205,8 +205,8 @@ SVS*	CResourceManager::_CreateVS		(LPCSTR _name)
 			Log("! VS: ", _name);
 			Log("! error: ", pErrorBuf);
 		}
-		delete pErrorBuf;
-		R_ASSERT(_result);
+		R_ASSERT2(_result, pErrorBuf);
+		xr_free(pErrorBuf);
 		return		_vs;
 	}
 }
@@ -287,7 +287,8 @@ SPS*	CResourceManager::_CreatePS			(LPCSTR _name)
 			Log("! PS: ", _name);
 			Msg("error is %s", pErrorBuf);
 		}
-		delete pErrorBuf;
+		R_ASSERT2(_result, pErrorBuf);
+		xr_free(pErrorBuf);
 
 		if (_result == GL_FALSE)
 			Msg("Can't compile shader %s", _name);
