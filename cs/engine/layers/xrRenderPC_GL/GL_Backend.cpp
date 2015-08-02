@@ -63,22 +63,23 @@ void CBackend::LoadShaderIncludes()
 {
 	// Open file list
 	typedef xr_vector<LPSTR>		file_list_type;
-	string_path						dirname;
-	strconcat(sizeof(dirname), dirname, ::Render->getShaderPath(), "shared\\");
-	file_list_type*					file_list = FS.file_list_open("$game_shaders$", dirname);
+	file_list_type*					file_list = FS.file_list_open("$game_shaders$", ::Render->getShaderPath());
 	VERIFY(file_list);
 
 	file_list_type::const_iterator	i = file_list->begin();
 	file_list_type::const_iterator	e = file_list->end();
 	for (; i != e; ++i) {
 		// Open file
-		string_path					cname;
-		strconcat(sizeof(cname), cname, ::Render->getShaderPath(), "shared\\", *i);
+		string_path					cname, fn;
+		strcpy_s(fn, *i);
+		if (0 == strext(fn) || 0 != xr_strcmp(strext(fn), ".h"))	continue;
+		strconcat(sizeof(cname), cname, ::Render->getShaderPath(), fn);
 		FS.update_path(cname, "$game_shaders$", cname);
 
-		// Prefix root path
+		// Convert to OGL path
 		string_path					glname;
-		strconcat(sizeof(glname), glname, "/", *i);
+		while (char* sep = strchr(fn, '\\')) *sep = '/';
+		strconcat(sizeof(glname), glname, "/", fn);
 
 		// Load the include file
 		IReader*		R = FS.r_open(cname);
