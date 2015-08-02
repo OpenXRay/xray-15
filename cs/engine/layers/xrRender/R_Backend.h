@@ -389,13 +389,8 @@ public:
 	void							OnDeviceDestroy		();
 
 	// Debug render
-#ifdef USE_OGL
-	void dbg_DP						(GLenum pt, ref_geom geom, u32 vBase, u32 pc);
-	void dbg_DIP					(GLenum pt, ref_geom geom, u32 baseV, u32 startV, u32 countV, u32 startI, u32 PC);
-#else
 	void dbg_DP						(D3DPRIMITIVETYPE pt, ref_geom geom, u32 vBase, u32 pc);
 	void dbg_DIP					(D3DPRIMITIVETYPE pt, ref_geom geom, u32 baseV, u32 startV, u32 countV, u32 startI, u32 PC);
-#endif // USE_OGL
 #ifndef USE_OGL
 #ifdef	USE_DX10
 	//	TODO: DX10: Implement this.
@@ -411,13 +406,9 @@ public:
 #endif	//	USE_DX10
 #endif // !USE_OGL
 #ifdef DEBUG
-#ifdef USE_OGL
-	void dbg_Draw					(GLenum T, FVF::L* pVerts, int vcnt, u16* pIdx, int pcnt);
-	void dbg_Draw					(GLenum T, FVF::L* pVerts, int pcnt);
-#else
+
 	void dbg_Draw					(D3DPRIMITIVETYPE T, FVF::L* pVerts, int vcnt, u16* pIdx, int pcnt);
 	void dbg_Draw					(D3DPRIMITIVETYPE T, FVF::L* pVerts, int pcnt);
-#endif // USE_OGL
 	IC void dbg_DrawAABB			(Fvector& T, float sx, float sy, float sz, u32 C)						{	Fvector half_dim;	half_dim.set(sx,sy,sz); Fmatrix	TM;	TM.translate(T); dbg_DrawOBB(TM,half_dim,C);	}
 	void dbg_DrawOBB				(Fmatrix& T, Fvector& half_dim, u32 C);
 	IC void dbg_DrawTRI				(Fmatrix& T, Fvector* p, u32 C)											{	dbg_DrawTRI(T,p[0],p[1],p[2],C);	}

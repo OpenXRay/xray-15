@@ -240,9 +240,6 @@
     <ClCompile Include="..\xrRender\ParticleGroup.cpp">
       <Filter>Models\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="GL_Backend.cpp">
-      <Filter>Refactored\Backend</Filter>
-    </ClCompile>
     <ClCompile Include="GL_DStreams.cpp">
       <Filter>Refactored\Backend</Filter>
     </ClCompile>
@@ -378,9 +375,6 @@
     <ClCompile Include="..\xrRender\uber_deffer.cpp">
       <Filter>Shading templates</Filter>
     </ClCompile>
-    <ClCompile Include="GL_Backend_Runtime.cpp">
-      <Filter>Refactored\Backend</Filter>
-    </ClCompile>
     <ClCompile Include="..\xrRenderGL\glr_constants_cache.cpp">
       <Filter>Refactored\Execution &amp; 3D\Shaders\Resources\gl_R_shader</Filter>
     </ClCompile>
@@ -416,6 +410,15 @@
     </ClCompile>
     <ClCompile Include="glRainRender.cpp">
       <Filter>Interface implementations\RainRender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\R_Backend_DBG.cpp">
+      <Filter>Refactored\Backend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\R_Backend.cpp">
+      <Filter>Refactored\Backend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\R_Backend_Runtime.cpp">
+      <Filter>Refactored\Backend</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

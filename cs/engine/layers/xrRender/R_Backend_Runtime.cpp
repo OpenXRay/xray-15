@@ -1,11 +1,6 @@
 #include "stdafx.h"
 #pragma hdrstop
 
-#pragma warning(push)
-#pragma warning(disable:4995)
-#include <d3dx9.h>
-#pragma warning(pop)
-
 #include "../../xrEngine/frustum.h"
 
 #ifdef	USE_DX10
@@ -20,10 +15,12 @@ void CBackend::OnFrameEnd	()
 	if (!g_dedicated_server)
 #endif    
 	{
-#ifdef	USE_DX10
+#if defined(USE_DX10) || defined(USE_OGL)
+#ifndef USE_OGL
 		HW.pDevice->ClearState();
+#endif // !USE_OGL
 		Invalidate			();
-#else	//	USE_DX10
+#else	//	USE_DX10 || USE_OGL
 
 		for (u32 stage=0; stage<HW.Caps.raster.dwStages; stage++)
 			CHK_DX(HW.pDevice->SetTexture(0,0));
@@ -32,7 +29,7 @@ void CBackend::OnFrameEnd	()
 		CHK_DX				(HW.pDevice->SetVertexShader	(0));
 		CHK_DX				(HW.pDevice->SetPixelShader		(0));
 		Invalidate			();
-#endif	//	USE_DX10
+#endif	//	USE_DX10 || USE_OGL
 	}
 //#endif
 }
@@ -73,10 +70,14 @@ void CBackend::Invalidate	()
 	ib							= NULL;
 	vb_stride					= 0;
 
+#ifndef USE_OGL
 	state						= NULL;
+#endif // !USE_OGL
 	ps							= NULL;
 	vs							= NULL;
-DX10_ONLY(gs					= NULL);
+#ifdef USE_DX10
+	gs							= NULL;
+#endif // USE_DX10
 	ctable						= NULL;
 
 	T							= NULL;
@@ -131,12 +132,12 @@ DX10_ONLY(gs					= NULL);
 
 void	CBackend::set_ClipPlanes	(u32 _enable, Fplane*	_planes /*=NULL */, u32 count/* =0*/)
 {
-#ifdef	USE_DX10
+#if defined(USE_DX10) || defined(USE_OGL)
 	//	TODO: DX10: Implement in the corresponding vertex shaders
 	//	Use this to set up location, were shader setup code will get data
 	//VERIFY(!"CBackend::set_ClipPlanes not implemented!");
 	return;
-#else	//	USE_DX10
+#else	//	USE_DX10 || USE_OGL
 	if (0==HW.Caps.geometry.dwClipPlanes)	return;
 	if (!_enable)	{
 		CHK_DX	(HW.pDevice->SetRenderState(D3DRS_CLIPPLANEENABLE,FALSE));
@@ -161,21 +162,23 @@ void	CBackend::set_ClipPlanes	(u32 _enable, Fplane*	_planes /*=NULL */, u32 coun
 	// Enable them
 	u32		e_mask	= (1<<count)-1;
 	CHK_DX	(HW.pDevice->SetRenderState(D3DRS_CLIPPLANEENABLE,e_mask));
-#endif	//	USE_DX10
+#endif	//	USE_DX10 || USE_OGL
 }
 
 #ifndef DEDICATED_SREVER
 void	CBackend::set_ClipPlanes	(u32 _enable, Fmatrix*	_xform  /*=NULL */, u32 fmask/* =0xff */)
 {
+#ifndef USE_OGL
 	if (0==HW.Caps.geometry.dwClipPlanes)	return;
+#endif // !USE_OGL
 	if (!_enable)	{
-#ifdef	USE_DX10
+#if defined(USE_DX10) || defined(USE_OGL)
 		//	TODO: DX10: Implement in the corresponding vertex shaders
 		//	Use this to set up location, were shader setup code will get data
 		//VERIFY(!"CBackend::set_ClipPlanes not implemented!");
-#else	//	USE_DX10
+#else	//	USE_DX10 || USE_OGL
 		CHK_DX	(HW.pDevice->SetRenderState(D3DRS_CLIPPLANEENABLE,FALSE));
-#endif	//	USE_DX10
+#endif	//	USE_DX10 || USE_OGL
 		return;
 	}
 	VERIFY		(_xform && fmask);
@@ -287,7 +290,12 @@ void CBackend::set_Textures			(STextureList* _T)
 		//HW.pDevice->PSSetShaderResources(_last_ps, 1, &pRes);
 		SRVSManager.SetPSResource(_last_ps, pRes);
 #else	//	USE_DX10
+#ifdef	USE_OGL
+		CHK_GL							(glActiveTexture(GL_TEXTURE0 + _last_ps));
+		CHK_GL							(glBindTexture(GL_TEXTURE_2D, 0));
+#else
 		CHK_DX							(HW.pDevice->SetTexture(_last_ps,NULL));
+#endif	//	USE_OGL
 #endif	//	USE_DX10
 	}
 	// clear remaining stages (VS)
@@ -303,7 +311,12 @@ void CBackend::set_Textures			(STextureList* _T)
 		//HW.pDevice->VSSetShaderResources(_last_vs, 1, &pRes);
 		SRVSManager.SetVSResource(_last_vs, pRes);
 #else	//	USE_DX10
+#ifdef	USE_OGL
+		CHK_GL							(glActiveTexture(GL_TEXTURE16 + _last_vs));
+		CHK_GL							(glBindTexture(GL_TEXTURE_2D, 0));
+#else
 		CHK_DX							(HW.pDevice->SetTexture(_last_vs+CTexture::rstVertex,NULL));
+#endif	//	USE_OGL
 #endif	//	USE_DX10
 	}
 
@@ -316,10 +329,15 @@ void CBackend::set_Textures			(STextureList* _T)
 
 		textures_gs[_last_gs]			= 0;
 
+#ifdef	USE_OGL
+		CHK_GL							(glActiveTexture(GL_TEXTURE20 + _last_gs));
+		CHK_GL							(glBindTexture(GL_TEXTURE_2D, 0));
+#else
 		//	TODO: DX10: Optimise: set all resources at once
 		ID3D10ShaderResourceView	*pRes = 0;
 		//HW.pDevice->GSSetShaderResources(_last_gs, 1, &pRes);
 		SRVSManager.SetGSResource(_last_gs, pRes);
+#endif	//	USE_OGL
 	}
 #endif	//	USE_DX10
 }

@@ -271,8 +271,6 @@
     <ClCompile Include="glUIShader.cpp" />
     <ClCompile Include="GLUtils.cpp" />
     <ClCompile Include="glWallMarkArray.cpp" />
-    <ClCompile Include="GL_Backend.cpp" />
-    <ClCompile Include="GL_Backend_Runtime.cpp" />
     <ClCompile Include="GL_DStreams.cpp" />
     <ClCompile Include="r4.cpp" />
     <ClCompile Include="stdafx.cpp">
