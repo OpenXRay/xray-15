@@ -234,8 +234,11 @@
     <ClCompile Include="..\xrRender\DetailManager_Decompress.cpp" />
     <ClCompile Include="..\xrRender\DetailManager_soft.cpp" />
     <ClCompile Include="..\xrRender\DetailModel.cpp" />
+    <ClCompile Include="..\xrRender\dxParticleCustom.cpp" />
+    <ClCompile Include="..\xrRender\dxRenderVisual.cpp" />
     <ClCompile Include="..\xrRender\ETextureParams.cpp" />
     <ClCompile Include="..\xrRender\FBasicVisual.cpp" />
+    <ClCompile Include="..\xrRender\FHierrarhyVisual.cpp" />
     <ClCompile Include="..\xrRender\HOM.cpp" />
     <ClCompile Include="..\xrRender\occRasterizer.cpp" />
     <ClCompile Include="..\xrRender\occRasterizer_core.cpp" />
@@ -264,10 +267,8 @@
     <ClCompile Include="glLensFlareRender.cpp" />
     <ClCompile Include="glFontRender.cpp" />
     <ClCompile Include="glRainRender.cpp" />
-    <ClCompile Include="glRenderVisual.cpp" />
     <ClCompile Include="glDebugRender.cpp" />
     <ClCompile Include="glEnvironmentRender.cpp" />
-    <ClCompile Include="glParticleCustom.cpp" />
     <ClCompile Include="glRenderDeviceRender.cpp" />
     <ClCompile Include="glRenderFactory.cpp" />
     <ClCompile Include="glResourceManager_Resources.cpp" />
@@ -352,8 +353,11 @@
     <ClInclude Include="..\xrRender\Blender_tree.h" />
     <ClInclude Include="..\xrRender\DetailManager.h" />
     <ClInclude Include="..\xrRender\DetailModel.h" />
+    <ClInclude Include="..\xrRender\dxParticleCustom.h" />
+    <ClInclude Include="..\xrRender\dxRenderVisual.h" />
     <ClInclude Include="..\xrRender\ETextureParams.h" />
     <ClInclude Include="..\xrRender\FBasicVisual.h" />
+    <ClInclude Include="..\xrRender\FHierrarhyVisual.h" />
     <ClInclude Include="..\xrRender\FVF.h" />
     <ClInclude Include="..\xrRender\HOM.h" />
     <ClInclude Include="..\xrRender\occRasterizer.h" />
@@ -385,10 +389,8 @@
     <ClInclude Include="glLensFlareRender.h" />
     <ClInclude Include="glFontRender.h" />
     <ClInclude Include="glRainRender.h" />
-    <ClInclude Include="glRenderVisual.h" />
     <ClInclude Include="glDebugRender.h" />
     <ClInclude Include="glEnvironmentRender.h" />
-    <ClInclude Include="glParticleCustom.h" />
     <ClInclude Include="glRenderDeviceRender.h" />
     <ClInclude Include="glRenderFactory.h" />
     <ClInclude Include="glStatsRender.h" />

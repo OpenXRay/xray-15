@@ -4,11 +4,7 @@
 
 #include "../../xrEngine/vis_common.h"
 
-#ifdef USE_OGL
-#include "glRenderVisual.h"
-#else
 #include "dxRenderVisual.h"
-#endif // USE_OGL
 
 struct					IRender_Mesh	
 {

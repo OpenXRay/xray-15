@@ -91,6 +91,7 @@ public:
 	virtual	void					Statistics(CGameFont* F)							{ VERIFY(!"CRender::Statistics not implemented."); };
 
 	virtual LPCSTR					getShaderPath()									{ return "gl\\"; }
+	virtual ref_shader				getShader(int id) { VERIFY(!"CRender::getShader not implemented."); return nullptr; };
 	virtual IRender_Sector*			getSector(int id) { VERIFY(!"CRender::getSector not implemented."); return nullptr; };
 	virtual IRenderVisual*			getVisual(int id) { VERIFY(!"CRender::getVisual not implemented."); return nullptr; };
 	virtual IRender_Sector*			detectSector(const Fvector& P) { VERIFY(!"CRender::detectSector not implemented."); return nullptr; };

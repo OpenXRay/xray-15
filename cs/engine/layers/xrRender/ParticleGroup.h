@@ -2,11 +2,7 @@
 #ifndef ParticleGroupH
 #define ParticleGroupH
 
-#ifdef USE_OGL
-#	include "glParticleCustom.h"
-#else // USE_OGL
-#	include "../xrRender/dxParticleCustom.h"
-#endif // USE_OGL
+#include "../xrRender/dxParticleCustom.h"
 
 namespace PS
 {
@@ -69,11 +65,7 @@ namespace PS
 #endif
 	};
 
-#ifdef USE_OGL
-	class ECORE_API CParticleGroup : public glParticleCustom
-#else
 	class ECORE_API CParticleGroup : public dxParticleCustom
-#endif
 	{
 		const CPGDef*		m_Def;
 		float				m_CurrentTime;

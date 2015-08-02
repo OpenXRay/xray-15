@@ -207,12 +207,6 @@
     <ClCompile Include="glEnvironmentRender.cpp">
       <Filter>Interface implementations\EnvironmentRender</Filter>
     </ClCompile>
-    <ClCompile Include="glParticleCustom.cpp">
-      <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
-    </ClCompile>
-    <ClCompile Include="glRenderVisual.cpp">
-      <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
-    </ClCompile>
     <ClCompile Include="..\xrRender\FBasicVisual.cpp">
       <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
     </ClCompile>
@@ -444,6 +438,15 @@
     <ClCompile Include="..\xrRender\R_Backend_Runtime.cpp">
       <Filter>Refactored\Backend</Filter>
     </ClCompile>
+    <ClCompile Include="..\xrRender\dxRenderVisual.cpp">
+      <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\dxParticleCustom.cpp">
+      <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\FHierrarhyVisual.cpp">
+      <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -493,12 +496,6 @@
     </ClInclude>
     <ClInclude Include="glEnvironmentRender.h">
       <Filter>Interface implementations\EnvironmentRender</Filter>
-    </ClInclude>
-    <ClInclude Include="glParticleCustom.h">
-      <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
-    </ClInclude>
-    <ClInclude Include="glRenderVisual.h">
-      <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
     </ClInclude>
     <ClInclude Include="..\xrRender\FBasicVisual.h">
       <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
@@ -730,6 +727,15 @@
     </ClInclude>
     <ClInclude Include="..\xrRender\occRasterizer.h">
       <Filter>Visibility\HOM Occlusion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRender\dxRenderVisual.h">
+      <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRender\dxParticleCustom.h">
+      <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRender\FHierrarhyVisual.h">
+      <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
