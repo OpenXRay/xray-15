@@ -5,6 +5,7 @@
 class glUIShader :
 	public IUIShader
 {
+	friend class glWallMarkArray;
 public:
 	virtual void Copy(IUIShader &_in);
 	virtual void create(LPCSTR sh, LPCSTR tex = 0);

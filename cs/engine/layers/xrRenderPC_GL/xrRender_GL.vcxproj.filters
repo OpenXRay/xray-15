@@ -402,6 +402,9 @@
     <ClCompile Include="glFontRender.cpp">
       <Filter>Interface implementations\FontRender</Filter>
     </ClCompile>
+    <ClCompile Include="glWallMarkArray.cpp">
+      <Filter>Interface implementations\WallMarkArray</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -646,6 +649,12 @@
     </ClInclude>
     <ClInclude Include="glFontRender.h">
       <Filter>Interface implementations\FontRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\xrRender\WallMarkArray.h">
+      <Filter>Interface implementations\WallMarkArray</Filter>
+    </ClInclude>
+    <ClInclude Include="glWallMarkArray.h">
+      <Filter>Interface implementations\WallMarkArray</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

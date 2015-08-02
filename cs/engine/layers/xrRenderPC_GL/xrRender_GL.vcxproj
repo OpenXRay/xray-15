@@ -266,6 +266,7 @@
     <ClCompile Include="glUIRender.cpp" />
     <ClCompile Include="glUIShader.cpp" />
     <ClCompile Include="GLUtils.cpp" />
+    <ClCompile Include="glWallMarkArray.cpp" />
     <ClCompile Include="GL_Backend.cpp" />
     <ClCompile Include="GL_Backend_Runtime.cpp" />
     <ClCompile Include="GL_DStreams.cpp" />
@@ -303,6 +304,7 @@
     <ClInclude Include="..\..\include\xrRender\StatsRender.h" />
     <ClInclude Include="..\..\include\xrRender\UIRender.h" />
     <ClInclude Include="..\..\include\xrRender\UIShader.h" />
+    <ClInclude Include="..\..\include\xrRender\WallMarkArray.h" />
     <ClInclude Include="..\xrRenderGL\glR_Backend_Runtime.h" />
     <ClInclude Include="..\xrRenderGL\glr_constants_cache.h" />
     <ClInclude Include="..\xrRenderPC_R2\blender_bloom_build.h" />
@@ -369,6 +371,7 @@
     <ClInclude Include="glUIRender.h" />
     <ClInclude Include="glUIShader.h" />
     <ClInclude Include="GLUtils.h" />
+    <ClInclude Include="glWallMarkArray.h" />
     <ClInclude Include="r2_types.h" />
     <ClInclude Include="r4.h" />
     <ClInclude Include="stdafx.h" />
