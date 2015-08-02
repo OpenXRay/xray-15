@@ -66,6 +66,7 @@ using LensFlareDescIt = LensFlareDescVec::iterator;
 class ENGINE_API CLensFlare
 {
 	friend class dxLensFlareRender;
+	friend class glLensFlareRender;
 public:
 	enum
 	{

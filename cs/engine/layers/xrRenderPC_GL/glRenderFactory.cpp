@@ -3,14 +3,14 @@
 
 //#include "glStatGraphRender.h"
 #ifndef _EDITOR
-	//#include "glLensFlareRender.h"
+	#include "glLensFlareRender.h"
 #endif
 //#include "glConsoleRender.h"
 #ifndef _EDITOR
-	//#include "glThunderboltRender.h"
-	//#include "glThunderboltDescRender.h"
-	//#include "glRainRender.h"
-	//#include "glLensFlareRender.h"
+	#include "glThunderboltRender.h"
+	#include "glThunderboltDescRender.h"
+	#include "glRainRender.h"
+	#include "glLensFlareRender.h"
 	#include "glEnvironmentRender.h"
 
 	#include "glRenderDeviceRender.h"
@@ -62,13 +62,13 @@ glRenderFactory RenderFactoryImpl;
 #endif // _EDITOR
 
 #ifndef _EDITOR
-	RENDER_FACTORY_UNIMPLEMENT(ThunderboltRender)
-	RENDER_FACTORY_UNIMPLEMENT(ThunderboltDescRender)
-	RENDER_FACTORY_UNIMPLEMENT(RainRender)
-	RENDER_FACTORY_UNIMPLEMENT(LensFlareRender)
+	RENDER_FACTORY_IMPLEMENT(ThunderboltRender)
+	RENDER_FACTORY_IMPLEMENT(ThunderboltDescRender)
+	RENDER_FACTORY_IMPLEMENT(RainRender)
+	RENDER_FACTORY_IMPLEMENT(LensFlareRender)
 	RENDER_FACTORY_IMPLEMENT(EnvironmentRender)
 	RENDER_FACTORY_IMPLEMENT(EnvDescriptorMixerRender)
 	RENDER_FACTORY_IMPLEMENT(EnvDescriptorRender)
-	RENDER_FACTORY_UNIMPLEMENT(FlareRender)
+	RENDER_FACTORY_IMPLEMENT(FlareRender)
 #endif
 RENDER_FACTORY_IMPLEMENT(FontRender)

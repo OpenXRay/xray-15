@@ -17,6 +17,7 @@ class ENGINE_API IRender_DetailModel;
 class ENGINE_API CEffect_Rain
 {
 	friend class dxRainRender;
+	friend class glRainRender;
 private:
 	struct	Item
 	{

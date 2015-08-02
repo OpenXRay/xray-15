@@ -2,6 +2,8 @@
 
 #include "../xrRender/PSLibrary.h"
 
+#include "../xrRender/detailmanager.h"
+
 #include "r2_types.h"
 
 class CRender	:	public IRender_interface
@@ -121,10 +123,12 @@ public:
 
 	// Models
 	virtual IRenderVisual*			model_CreateParticles(LPCSTR name) { VERIFY(!"CRender::model_CreateParticles not implemented."); return nullptr; };
+	virtual IRender_DetailModel*	model_CreateDM(IReader* F) { VERIFY(!"CRender::model_CreateDM not implemented."); return nullptr; };
 	virtual IRenderVisual*			model_Create(LPCSTR name, IReader*	data = 0) { VERIFY(!"CRender::model_Create not implemented."); return nullptr; };
 	virtual IRenderVisual*			model_CreateChild(LPCSTR name, IReader*	data) { VERIFY(!"CRender::model_CreateChild not implemented."); return nullptr; };
 	virtual IRenderVisual*			model_Duplicate(IRenderVisual*	V) { VERIFY(!"CRender::model_Duplicate not implemented."); return nullptr; };
 	virtual void					model_Delete(IRenderVisual* &	V, BOOL bDiscard = FALSE) { VERIFY(!"CRender::model_Delete not implemented."); };
+	virtual void 					model_Delete(IRender_DetailModel* & F) { VERIFY(!"CRender::model_Delete not implemented."); };
 	virtual void					model_Logging(BOOL bEnable) { VERIFY(!"CRender::model_Logging not implemented."); };
 	virtual void					models_Prefetch() { VERIFY(!"CRender::models_Prefetch not implemented."); };
 	virtual void					models_Clear(BOOL b_complete) { VERIFY(!"CRender::models_Clear not implemented."); };

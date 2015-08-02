@@ -73,6 +73,7 @@ public:
 class ENGINE_API CEffect_Thunderbolt
 {
 	friend class dxThunderboltRender;
+	friend class glThunderboltRender;
 protected:
 	using CollectionVec = xr_vector<SThunderboltCollection*>;
 	using CollectionVecIt = CollectionVec::iterator;

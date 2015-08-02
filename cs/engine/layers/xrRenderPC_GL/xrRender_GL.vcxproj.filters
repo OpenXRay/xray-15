@@ -405,6 +405,18 @@
     <ClCompile Include="glWallMarkArray.cpp">
       <Filter>Interface implementations\WallMarkArray</Filter>
     </ClCompile>
+    <ClCompile Include="glThunderboltRender.cpp">
+      <Filter>Interface implementations\ThunderboltRender</Filter>
+    </ClCompile>
+    <ClCompile Include="glThunderboltDescRender.cpp">
+      <Filter>Interface implementations\ThunderboltDescRender</Filter>
+    </ClCompile>
+    <ClCompile Include="glLensFlareRender.cpp">
+      <Filter>Interface implementations\LensFlare</Filter>
+    </ClCompile>
+    <ClCompile Include="glRainRender.cpp">
+      <Filter>Interface implementations\RainRender</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -655,6 +667,30 @@
     </ClInclude>
     <ClInclude Include="glWallMarkArray.h">
       <Filter>Interface implementations\WallMarkArray</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\xrRender\ThunderboltRender.h">
+      <Filter>Interface implementations\ThunderboltRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\xrRender\ThunderboltDescRender.h">
+      <Filter>Interface implementations\ThunderboltDescRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\xrRender\LensFlareRender.h">
+      <Filter>Interface implementations\LensFlare</Filter>
+    </ClInclude>
+    <ClInclude Include="glThunderboltRender.h">
+      <Filter>Interface implementations\ThunderboltRender</Filter>
+    </ClInclude>
+    <ClInclude Include="glThunderboltDescRender.h">
+      <Filter>Interface implementations\ThunderboltDescRender</Filter>
+    </ClInclude>
+    <ClInclude Include="glLensFlareRender.h">
+      <Filter>Interface implementations\LensFlare</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\xrRender\RainRender.h">
+      <Filter>Interface implementations\RainRender</Filter>
+    </ClInclude>
+    <ClInclude Include="glRainRender.h">
+      <Filter>Interface implementations\RainRender</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

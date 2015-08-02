@@ -249,7 +249,9 @@
     <ClCompile Include="..\xrRender\uber_deffer.cpp" />
     <ClCompile Include="..\xrRender\xrRender_console.cpp" />
     <ClCompile Include="glApplicationRender.cpp" />
+    <ClCompile Include="glLensFlareRender.cpp" />
     <ClCompile Include="glFontRender.cpp" />
+    <ClCompile Include="glRainRender.cpp" />
     <ClCompile Include="glRenderVisual.cpp" />
     <ClCompile Include="glDebugRender.cpp" />
     <ClCompile Include="glEnvironmentRender.cpp" />
@@ -263,6 +265,8 @@
     <ClCompile Include="glSH_Texture.cpp" />
     <ClCompile Include="glStatsRender.cpp" />
     <ClCompile Include="glTexture.cpp" />
+    <ClCompile Include="glThunderboltDescRender.cpp" />
+    <ClCompile Include="glThunderboltRender.cpp" />
     <ClCompile Include="glUIRender.cpp" />
     <ClCompile Include="glUIShader.cpp" />
     <ClCompile Include="GLUtils.cpp" />
@@ -297,11 +301,15 @@
     <ClInclude Include="..\..\include\xrRender\DrawUtils.h" />
     <ClInclude Include="..\..\include\xrRender\EnvironmentRender.h" />
     <ClInclude Include="..\..\include\xrRender\FontRender.h" />
+    <ClInclude Include="..\..\include\xrRender\LensFlareRender.h" />
     <ClInclude Include="..\..\include\xrRender\ParticleCustom.h" />
+    <ClInclude Include="..\..\include\xrRender\RainRender.h" />
     <ClInclude Include="..\..\include\xrRender\RenderDeviceRender.h" />
     <ClInclude Include="..\..\include\xrRender\RenderFactory.h" />
     <ClInclude Include="..\..\include\xrRender\RenderVisual.h" />
     <ClInclude Include="..\..\include\xrRender\StatsRender.h" />
+    <ClInclude Include="..\..\include\xrRender\ThunderboltDescRender.h" />
+    <ClInclude Include="..\..\include\xrRender\ThunderboltRender.h" />
     <ClInclude Include="..\..\include\xrRender\UIRender.h" />
     <ClInclude Include="..\..\include\xrRender\UIShader.h" />
     <ClInclude Include="..\..\include\xrRender\WallMarkArray.h" />
@@ -360,7 +368,9 @@
     <ClInclude Include="..\xrRender\uber_deffer.h" />
     <ClInclude Include="..\xrRender\xrRender_console.h" />
     <ClInclude Include="glApplicationRender.h" />
+    <ClInclude Include="glLensFlareRender.h" />
     <ClInclude Include="glFontRender.h" />
+    <ClInclude Include="glRainRender.h" />
     <ClInclude Include="glRenderVisual.h" />
     <ClInclude Include="glDebugRender.h" />
     <ClInclude Include="glEnvironmentRender.h" />
@@ -368,6 +378,8 @@
     <ClInclude Include="glRenderDeviceRender.h" />
     <ClInclude Include="glRenderFactory.h" />
     <ClInclude Include="glStatsRender.h" />
+    <ClInclude Include="glThunderboltDescRender.h" />
+    <ClInclude Include="glThunderboltRender.h" />
     <ClInclude Include="glUIRender.h" />
     <ClInclude Include="glUIShader.h" />
     <ClInclude Include="GLUtils.h" />
