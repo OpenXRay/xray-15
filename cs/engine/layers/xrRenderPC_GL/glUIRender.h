@@ -6,39 +6,54 @@ class glUIRender :
 	public IUIRender
 {
 public:
-	glUIRender();
-	~glUIRender();
+	glUIRender() : PrimitiveType(ptNone), m_PointType(pttNone) { ; }
 
-	virtual void CreateUIGeom() { VERIFY(!"glUIRender::CreateUIGeom not implemented."); };
-	virtual void DestroyUIGeom() { VERIFY(!"glUIRender::DestroyUIGeom not implemented."); };
+	virtual void CreateUIGeom();
+	virtual void DestroyUIGeom();
 
-	virtual void SetShader(IUIShader &shader) { VERIFY(!"glUIRender::SetShader not implemented."); };
-	virtual void SetAlphaRef(int aref) { VERIFY(!"glUIRender::SetAlphaRef not implemented."); };
-	//.	virtual void StartTriList(u32 iMaxVerts) { };
-	//.	virtual void FlushTriList() { };
-	//.	virtual void StartTriFan(u32 iMaxVerts) { };
-	//.	virtual void FlushTriFan() { };
+	virtual void SetShader(IUIShader &shader);
+	virtual void SetAlphaRef(int aref);
+	//.	virtual void StartTriList(u32 iMaxVerts);
+	//.	virtual void FlushTriList();
+	//.	virtual void StartTriFan(u32 iMaxVerts);
+	//.	virtual void FlushTriFan();
+	//virtual void StartTriStrip(u32 iMaxVerts);
+	//virtual void FlushTriStrip();
+	//.	virtual void StartLineStrip(u32 iMaxVerts);
+	//.	virtual void FlushLineStrip();
+	//.	virtual void StartLineList(u32 iMaxVerts);
+	//.	virtual void FlushLineList();
+	virtual void SetScissor(Irect* rect = NULL);
+	virtual void GetActiveTextureResolution(Fvector2 &res);
 
-	//virtual void StartTriStrip(u32 iMaxVerts) { };
-	//virtual void FlushTriStrip() { };
-	//.	virtual void StartLineStrip(u32 iMaxVerts) { };
-	//.	virtual void FlushLineStrip() { };
-	//.	virtual void StartLineList(u32 iMaxVerts) { };
-	//.	virtual void FlushLineList() { };
-	virtual void SetScissor(Irect* rect = NULL) { VERIFY(!"glUIRender::SetScissor not implemented."); };
-	virtual void GetActiveTextureResolution(Fvector2 &res) { VERIFY(!"glUIRender::GetActiveTextureResolution not implemented."); };
+	//.	virtual void PushPoint(float x, float y, u32 c, float u, float v);
+	//	virtual void PushPoint(int x, int y, u32 c, float u, float v);
+	virtual void PushPoint(float x, float y, float z, u32 C, float u, float v);
 
-	//.	virtual void PushPoint(float x, float y, u32 c, float u, float v) { };
-	//.	virtual void PushPoint(int x, int y, u32 c, float u, float v) { };
-	virtual void PushPoint(float x, float y, float z, u32 C, float u, float v) { VERIFY(!"glUIRender::PushPoint not implemented."); };
+	virtual void StartPrimitive(u32 iMaxVerts, ePrimitiveType primType, ePointType pointType);
+	virtual void FlushPrimitive();
 
-	virtual void StartPrimitive(u32 iMaxVerts, ePrimitiveType primType, ePointType pointType) { VERIFY(!"glUIRender::StartPrimitive not implemented."); };
-	virtual void FlushPrimitive() { VERIFY(!"glUIRender::FlushPrimitive not implemented."); };
+	virtual LPCSTR	UpdateShaderName(LPCSTR tex_name, LPCSTR sh_name);
 
-	virtual LPCSTR	UpdateShaderName(LPCSTR tex_name, LPCSTR sh_name) { VERIFY(!"glUIRender::UpdateShaderName not implemented."); return ""; };
+	virtual void	CacheSetXformWorld(const Fmatrix& M);
+	virtual void	CacheSetCullMode(CullMode);
 
-	virtual void	CacheSetXformWorld(const Fmatrix& M) { VERIFY(!"glUIRender::CacheSetXformWorld not implemented."); };
-	virtual void	CacheSetCullMode(CullMode) { VERIFY(!"glUIRender::CacheSetCullMode not implemented."); };
+private:
+	ref_geom		hGeom_TL;
+	ref_geom		hGeom_LIT;
+
+	ePrimitiveType	PrimitiveType;
+	ePointType		m_PointType;
+
+	//	Vertex buffer attributes
+	u32				m_iMaxVerts;
+	u32				vOffset;
+
+	FVF::TL*		TL_start_pv;
+	FVF::TL*		TL_pv;
+
+	FVF::LIT*		LIT_start_pv;
+	FVF::LIT*		LIT_pv;
 };
 
 extern glUIRender	UIRenderImpl;
