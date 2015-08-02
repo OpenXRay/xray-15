@@ -1,46 +1,67 @@
 #include "common.h"
 
-in vec4 oC;
-in vec3 oTC0;
-in vec3 oTC1;
+//
+// Structure definitions
+//
 
-out vec4 low;
-out vec4 high;
+struct _out {
+    vec4 low;
+    vec4 high;
+};
 
-uniform samplerCube     s_sky0;
-uniform samplerCube     s_sky1;
+struct v2p {
+    vec4 factor;
+    vec3 tc0;
+    vec3 tc1;
+};
 
-//////////////////////////////////////////////////////////////////////////////////////////
-// Pixel
-#if 1
-void         main               (void)
-{
-        vec3         	s0  	= texture        (s_sky0,oTC0);
-        vec3         	s1      = texture        (s_sky1,oTC1);
-        vec3        	sky     = oC*lerp        (s0,s1,oC.w);
-				sky		= sky*0.33;
-        // final tone-mapping
-#ifdef        USE_VTF
-        low             =		sky.xyzz		;
-        high        	=		low/def_hdr		;
-#else
-        float    scale   = texture(s_tonemap,vec2(.5f,.5f)).x;
-        tonemap        	(low, high, sky, scale*2.0 );
-#endif
-        return        	o;
+
+//
+// Global variable definitions
+//
+
+uniform samplerCube s_sky0;
+uniform samplerCube s_sky1;
+
+//
+// Function declarations
+//
+
+_out xlat_main( in v2p I );
+
+//
+// Function definitions
+//
+
+_out xlat_main( in v2p I ) {
+    vec3 s0;
+    vec3 s1;
+    vec3 sky;
+    float scale;
+    _out o;
+
+    s0 = vec3( textureCube( s_sky0, I.tc0));
+    s1 = vec3( textureCube( s_sky1, I.tc1));
+    sky = (vec3( I.factor) * mix( s0, s1, vec3( I.factor.w )));
+    sky = (sky * 0.330000);
+    scale = texture2D( s_tonemap, vec2( 0.500000, 0.500000)).x ;
+    tonemap( o.low, o.high, sky, (scale * 2.00000));
+    return o;
 }
-#else
-void         main               (void)
-{
-        vec3         	s0  	= texture        (s_sky0,oTC0);
-        vec3         	s1      = texture        (s_sky1,oTC1);
-        vec3        	sky     = oC*lerp        (s0,s1,oC.w);
 
-        // final tone-mapping
-        _out        	o;
-        float    scale   = 1 + texture(s_tonemap,vec2(.5f,.5f)).x;
-				sky		= sky*scale*2.0f		;
-        low         	= sky.xyzz				;
-        high        	= low/def_hdr			;
+
+//
+// Translator's entry point
+//
+void main() {
+    _out xlat_retVal;
+    v2p xlat_temp_I;
+    xlat_temp_I.factor = vec4( gl_Color);
+    xlat_temp_I.tc0 = vec3( gl_TexCoord[0]);
+    xlat_temp_I.tc1 = vec3( gl_TexCoord[1]);
+
+    xlat_retVal = xlat_main( xlat_temp_I);
+
+    gl_FragData[0] = vec4( xlat_retVal.low);
+    gl_FragData[1] = vec4( xlat_retVal.high);
 }
-#endif

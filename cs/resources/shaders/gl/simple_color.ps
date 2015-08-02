@@ -1,10 +1,28 @@
 #include "common.h"
 
-in  vec4 C;
-out vec4 color;
- 
-void main(void)
-{
-    // Pass through our original color with full opacity.
-    color = C;
+//
+// Function declarations
+//
+
+vec4 xlat_main( in vec4 C );
+
+//
+// Function definitions
+//
+
+vec4 xlat_main( in vec4 C ) {
+
+    return C;
+}
+
+
+//
+// Translator's entry point
+//
+void main() {
+    vec4 xlat_retVal;
+
+    xlat_retVal = xlat_main( vec4(gl_Color));
+
+    gl_FragData[0] = vec4( xlat_retVal);
 }

@@ -114,7 +114,7 @@ HRESULT	CRender::shader_compile(
 
 	// header
 	{
-		defines[def_it].Define = "#version 330 core\n";
+		defines[def_it].Define = "#version 130\n";
 		defines[def_it].Name = "#extension GL_ARB_shading_language_include : require\n";
 		def_it++;
 	}
