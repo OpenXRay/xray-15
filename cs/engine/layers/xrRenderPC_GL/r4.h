@@ -2,6 +2,7 @@
 
 #include "../xrRender/PSLibrary.h"
 
+#include "../xrRender/hom.h"
 #include "../xrRender/detailmanager.h"
 
 #include "r2_types.h"
@@ -54,6 +55,9 @@ public:
 	}			o;
 public:
 	CPSLibrary						PSLibrary;
+	CHOM							HOM;
+	CDetailManager*					Details;
+
 public:
 	// feature level
 	virtual	GenerationLevel			get_generation() { return IRender_interface::GENERATION_R2; };
@@ -123,7 +127,7 @@ public:
 
 	// Models
 	virtual IRenderVisual*			model_CreateParticles(LPCSTR name) { VERIFY(!"CRender::model_CreateParticles not implemented."); return nullptr; };
-	virtual IRender_DetailModel*	model_CreateDM(IReader* F) { VERIFY(!"CRender::model_CreateDM not implemented."); return nullptr; };
+	virtual IRender_DetailModel*	model_CreateDM(IReader* F);
 	virtual IRenderVisual*			model_Create(LPCSTR name, IReader*	data = 0) { VERIFY(!"CRender::model_Create not implemented."); return nullptr; };
 	virtual IRenderVisual*			model_CreateChild(LPCSTR name, IReader*	data) { VERIFY(!"CRender::model_CreateChild not implemented."); return nullptr; };
 	virtual IRenderVisual*			model_Duplicate(IRenderVisual*	V) { VERIFY(!"CRender::model_Duplicate not implemented."); return nullptr; };

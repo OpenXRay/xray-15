@@ -88,9 +88,6 @@
     <Filter Include="Refactored\Interfaces">
       <UniqueIdentifier>{a8ac7cee-eb6c-496d-9aa2-5437e02bae08}</UniqueIdentifier>
     </Filter>
-    <Filter Include="dx9 to dx10 Utils">
-      <UniqueIdentifier>{718c18ae-b020-4ef6-aa6f-e77db06a9ba1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="StateManager">
       <UniqueIdentifier>{a4f1e023-aa94-4b42-bde6-33618fe2aa71}</UniqueIdentifier>
     </Filter>
@@ -411,6 +408,33 @@
     <ClCompile Include="glRainRender.cpp">
       <Filter>Interface implementations\RainRender</Filter>
     </ClCompile>
+    <ClCompile Include="..\xrRender\DetailManager.cpp">
+      <Filter>Details</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\DetailManager_CACHE.cpp">
+      <Filter>Details</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\DetailManager_Decompress.cpp">
+      <Filter>Details</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\DetailManager_soft.cpp">
+      <Filter>Details</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\DetailModel.cpp">
+      <Filter>Details</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRenderGL\glDetailManager_VS.cpp">
+      <Filter>Details</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\HOM.cpp">
+      <Filter>Visibility\HOM Occlusion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\occRasterizer_core.cpp">
+      <Filter>Visibility\HOM Occlusion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\occRasterizer.cpp">
+      <Filter>Visibility\HOM Occlusion</Filter>
+    </ClCompile>
     <ClCompile Include="..\xrRender\R_Backend_DBG.cpp">
       <Filter>Refactored\Backend</Filter>
     </ClCompile>
@@ -694,6 +718,18 @@
     </ClInclude>
     <ClInclude Include="glRainRender.h">
       <Filter>Interface implementations\RainRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRender\DetailManager.h">
+      <Filter>Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRender\DetailModel.h">
+      <Filter>Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRender\HOM.h">
+      <Filter>Visibility\HOM Occlusion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRender\occRasterizer.h">
+      <Filter>Visibility\HOM Occlusion</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

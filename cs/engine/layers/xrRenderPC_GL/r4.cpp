@@ -6,6 +6,15 @@ CRender										RImplementation;
 extern ENGINE_API BOOL r2_sun_static;
 extern ENGINE_API BOOL r2_advanced_pp;	//	advanced post process and effects
 
+
+CRender::CRender()
+{
+}
+
+CRender::~CRender()
+{
+}
+
 void					CRender::create()
 {
 	//Device.seqFrame.Add(this, REG_PRIORITY_HIGH + 0x12345678);
@@ -344,10 +353,9 @@ HRESULT	CRender::shader_compile(
 	return		_result;
 }
 
-CRender::CRender()
+IRender_DetailModel*	CRender::model_CreateDM(IReader*	F)
 {
-}
-
-CRender::~CRender()
-{
+	CDetail*	D = new CDetail();
+	D->Load(F);
+	return D;
 }

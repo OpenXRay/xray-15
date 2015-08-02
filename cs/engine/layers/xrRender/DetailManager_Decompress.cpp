@@ -246,9 +246,11 @@ Device.Statistic->TEST0.End		();
 			Bounds.merge					(ItemBB);
 
 #ifndef _EDITOR
+#ifndef USE_OGL
 #ifdef		DEBUG
 			if(det_render_debug)
 				draw_obb(  mXform, color_rgba		(255,0,0,255) );//Fmatrix().mul_43( mXform, Fmatrix().scale(5,5,5) )
+#endif
 #endif
 #endif
 

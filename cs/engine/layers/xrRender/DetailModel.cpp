@@ -110,11 +110,15 @@ void CDetail::Load		(IReader* S)
 	bv_bb.getsphere		(bv_sphere.P,bv_sphere.R);
 
 #ifndef _EDITOR
+#ifndef USE_OGL
 	Optimize	();
+#endif
 #endif
 }
 
 #ifndef _EDITOR
+// TODO: OGL: Optimize model if necessary
+#ifndef USE_OGL
 #include "xrstripify.h"
 
 void CDetail::Optimize	()
@@ -142,4 +146,5 @@ void CDetail::Optimize	()
 			vertices[i]=verts[vec_permute[i]];
 	}
 }
+#endif
 #endif
