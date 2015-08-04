@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "r4.h"
+#include "rgl.h"
 
 CRender										RImplementation;
 

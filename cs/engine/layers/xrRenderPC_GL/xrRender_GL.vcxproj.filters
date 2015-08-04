@@ -183,9 +183,6 @@
     <ClCompile Include="..\xrRender\xrRender_console.cpp">
       <Filter>Kernel</Filter>
     </ClCompile>
-    <ClCompile Include="r4.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="GLUtils.cpp">
       <Filter>Refactored\Execution &amp; 3D\DebugDraw</Filter>
     </ClCompile>
@@ -447,6 +444,9 @@
     <ClCompile Include="..\xrRender\FHierrarhyVisual.cpp">
       <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
     </ClCompile>
+    <ClCompile Include="rgl.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -454,9 +454,6 @@
     </ClInclude>
     <ClInclude Include="..\xrRender\xrRender_console.h">
       <Filter>Kernel</Filter>
-    </ClInclude>
-    <ClInclude Include="r4.h">
-      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\xrRender\DrawUtils.h">
       <Filter>Refactored\Execution &amp; 3D\DebugDraw</Filter>
@@ -736,6 +733,9 @@
     </ClInclude>
     <ClInclude Include="..\xrRender\FHierrarhyVisual.h">
       <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="rgl.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

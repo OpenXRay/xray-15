@@ -22,10 +22,10 @@
 // TODO: Get rid of D3D types.
 #include <d3d9types.h>
 
+#define		R_GL	-1
 #define		R_R1	1
 #define		R_R2	2
 #define		R_R3	3
-#define		R_GL	4
 #define		RENDER	R_GL
 
 
@@ -44,7 +44,7 @@
 #include "../xrRender/blenders\blender.h"
 #include "../xrRender/blenders\blender_clsid.h"
 #include "../xrRender/xrRender_console.h"
-#include "r4.h"
+#include "rgl.h"
 
 IC	void	jitter(CBlender_Compile& C)
 {

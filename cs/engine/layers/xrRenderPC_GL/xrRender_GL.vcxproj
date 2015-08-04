@@ -285,7 +285,7 @@
     <ClCompile Include="GLUtils.cpp" />
     <ClCompile Include="glWallMarkArray.cpp" />
     <ClCompile Include="GL_DStreams.cpp" />
-    <ClCompile Include="r4.cpp" />
+    <ClCompile Include="rgl.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">Create</PrecompiledHeader>
@@ -401,7 +401,7 @@
     <ClInclude Include="GLUtils.h" />
     <ClInclude Include="glWallMarkArray.h" />
     <ClInclude Include="r2_types.h" />
-    <ClInclude Include="r4.h" />
+    <ClInclude Include="rgl.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

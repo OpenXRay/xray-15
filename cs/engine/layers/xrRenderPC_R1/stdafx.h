@@ -27,10 +27,10 @@
 #include "../xrRender/R_Backend.h"
 #include "../xrRender/R_Backend_Runtime.h"
 
+#define		R_GL	-1
 #define		R_R1	1
 #define		R_R2	2
 #define		R_R3	3
-#define		R_GL	4
 #define		RENDER	R_R1
 
 #include "../xrRender/resourcemanager.h"
