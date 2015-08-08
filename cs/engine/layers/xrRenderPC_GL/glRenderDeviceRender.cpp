@@ -190,3 +190,10 @@ void glRenderDeviceRender::SetCacheXform(Fmatrix &mView, Fmatrix &mProject)
 	RCache.set_xform_view(mView);
 	RCache.set_xform_project(mProject);
 }
+
+void glRenderDeviceRender::Begin()
+{
+	RCache.OnFrameBegin();
+	RCache.set_CullMode(CULL_CW);
+	RCache.set_CullMode(CULL_CCW);
+}
