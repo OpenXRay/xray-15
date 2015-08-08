@@ -184,3 +184,9 @@ void glRenderDeviceRender::ClearTarget()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 }
+
+void glRenderDeviceRender::SetCacheXform(Fmatrix &mView, Fmatrix &mProject)
+{
+	RCache.set_xform_view(mView);
+	RCache.set_xform_project(mProject);
+}

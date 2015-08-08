@@ -52,14 +52,14 @@ public:
 	virtual bool	HWSupportsShaderYUV2RGB() { VERIFY(!"glRenderDeviceRender::HWSupportsShaderYUV2RGB not implemented."); return false; };
 
 	//	Device state
-	virtual DeviceState GetDeviceState() { VERIFY(!"glRenderDeviceRender::GetDeviceState not implemented."); return dsOK; };
+	virtual DeviceState GetDeviceState() { return dsOK; };
 	virtual BOOL	GetForceGPU_REF() { return false; };
 	virtual u32		GetCacheStatPolys() { VERIFY(!"glRenderDeviceRender::GetCacheStatPolys not implemented."); return 0; };
 	virtual void	Begin() { VERIFY(!"glRenderDeviceRender::Begin not implemented."); };
 	virtual void	Clear() { VERIFY(!"glRenderDeviceRender::Clear not implemented."); };
 	virtual void	End() { VERIFY(!"glRenderDeviceRender::End not implemented."); };
 	virtual void	ClearTarget();
-	virtual void	SetCacheXform(Fmatrix &mView, Fmatrix &mProject) { VERIFY(!"glRenderDeviceRender::SetCacheXform not implemented."); };
+	virtual void	SetCacheXform(Fmatrix &mView, Fmatrix &mProject);
 	virtual void	OnAssetsChanged() { VERIFY(!"glRenderDeviceRender::OnAssetsChanged not implemented."); };
 
 public:
