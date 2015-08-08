@@ -231,6 +231,7 @@ void xrDebug::Backend(const char* expression, const char* description, const cha
     switch (result)
     {
     case IDCANCEL:
+    default:
     #ifdef USE_BUG_TRAP
         BT_SetUserMessage(assertionInfo);
     #endif
@@ -243,8 +244,6 @@ void xrDebug::Backend(const char* expression, const char* description, const cha
         ErrorAfterDialog = false;
         ignoreAlways = true;
         break;
-    default:
-        NODEFAULT;
 	}
 #else // !USE_OWN_ERROR_MESSAGE_WINDOW
 #ifdef USE_BUG_TRAP
