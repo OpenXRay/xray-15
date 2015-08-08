@@ -13,3 +13,6 @@
 [submodule "cs/3rd party/glew"]
 	path = cs/3rd party/glew
 	url = https://github.com/Armada651/glew
+[submodule "cs/3rd party/gli"]
+	path = cs/3rd party/gli
+	url = https://github.com/g-truc/gli.git
