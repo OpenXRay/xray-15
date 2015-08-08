@@ -450,6 +450,7 @@
     <ClCompile Include="r2_R_calculate.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="glUISequenceVideoItem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -740,5 +741,9 @@
     <ClInclude Include="rgl.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\xrRender\UISequenceVideoItem.h">
+      <Filter>Interface implementations\UI\UISequenceVideoItem</Filter>
+    </ClInclude>
+    <ClInclude Include="glUISequenceVideoItem.h" />
   </ItemGroup>
 </Project>
