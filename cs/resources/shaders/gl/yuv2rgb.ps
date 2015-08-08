@@ -1,0 +1,44 @@
+#include "common.h"
+
+//
+// Function declarations
+//
+
+vec4 main_ps_2_0( in vec2 uv );
+
+//
+// Function definitions
+//
+
+vec4 main_ps_2_0( in vec2 uv ) {
+    vec3 YUV;
+    float Y;
+    float U;
+    float V;
+    float c = 1.16406;
+    vec3 _Y;
+    vec3 _U;
+    vec3 _V;
+    vec3 _S = vec3( -0.869610, 0.530760, -1.07860);
+
+    YUV = vec3( texture2D( s_base, uv));
+    Y = YUV.x ;
+    U = YUV.y ;
+    V = YUV.z ;
+    _Y = (vec3( c, c, c) * Y);
+    _U = (vec3( 0.000000, -0.390625, 2.01562) * U);
+    _V = (vec3( 1.59765, -0.812500, 0.000000) * V);
+    return vec4( (((_Y + _U) + _V) + _S), 1.00000);
+}
+
+
+//
+// Translator's entry point
+//
+void main() {
+    vec4 xlat_retVal;
+
+    xlat_retVal = main_ps_2_0( vec2(gl_TexCoord[0]));
+
+    gl_FragData[0] = vec4( xlat_retVal);
+}
