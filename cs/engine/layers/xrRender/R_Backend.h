@@ -17,25 +17,9 @@
 #include "r_backend_tree.h"
 #include "fvf.h"
 
-#ifdef USE_OGL
-const	u32		CULL_CCW	= GL_CCW;
-const	u32		CULL_CW		= GL_CW;
-const	u32		CULL_NONE	= 0;
-
-const	u32		COLORWRITEENABLE_RED	= 0x1;
-const	u32		COLORWRITEENABLE_GREEN	= 0x2;
-const	u32		COLORWRITEENABLE_BLUE	= 0x4;
-const	u32		COLORWRITEENABLE_ALPHA	= 0x8;
-#else
 const	u32		CULL_CCW			= D3DCULL_CCW;
 const	u32		CULL_CW				= D3DCULL_CW;
 const	u32		CULL_NONE			= D3DCULL_NONE;
-
-const	u32		COLORWRITEENABLE_RED	= D3DCOLORWRITEENABLE_RED;
-const	u32		COLORWRITEENABLE_GREEN	= D3DCOLORWRITEENABLE_GREEN;
-const	u32		COLORWRITEENABLE_BLUE	= D3DCOLORWRITEENABLE_BLUE;
-const	u32		COLORWRITEENABLE_ALPHA	= D3DCOLORWRITEENABLE_ALPHA;
-#endif // USE_OGL
 
 ///		detailed statistic
 struct	R_statistics_element	{
@@ -316,15 +300,11 @@ public:
 #endif // USE_OGL
 	ICF void						set_Geometry		(SGeometry* _geom);
 	ICF void						set_Geometry		(ref_geom& _geom)					{	set_Geometry(&*_geom);		}
-#ifdef USE_OGL
-	IC  void						set_Stencil			(u32 _enable, u32 _func=GL_ALWAYS, u32 _ref=0x00, u32 _mask=0x00, u32 _writemask=0x00, u32 _fail=GL_KEEP, u32 _pass=GL_KEEP, u32 _zfail=GL_KEEP);
-#else
 	IC  void						set_Stencil			(u32 _enable, u32 _func=D3DCMP_ALWAYS, u32 _ref=0x00, u32 _mask=0x00, u32 _writemask=0x00, u32 _fail=D3DSTENCILOP_KEEP, u32 _pass=D3DSTENCILOP_KEEP, u32 _zfail=D3DSTENCILOP_KEEP);
-#endif // USE_OGL
 	IC  void						set_Z				(u32 _enable);
 	IC  void						set_ZFunc			(u32 _func);
 	IC  void						set_AlphaRef		(u32 _value);
-	IC  void						set_ColorWriteEnable(u32 _mask = COLORWRITEENABLE_RED | COLORWRITEENABLE_GREEN | COLORWRITEENABLE_BLUE | COLORWRITEENABLE_ALPHA);
+	IC  void						set_ColorWriteEnable(u32 _mask = D3DCOLORWRITEENABLE_RED | D3DCOLORWRITEENABLE_GREEN | D3DCOLORWRITEENABLE_BLUE | D3DCOLORWRITEENABLE_ALPHA);
 	IC  void						set_CullMode		(u32 _mode);
 	IC  u32							get_CullMode		(){return cull_mode;}
 	void							set_ClipPlanes		(u32 _enable, Fplane*	_planes=NULL, u32 count=0);

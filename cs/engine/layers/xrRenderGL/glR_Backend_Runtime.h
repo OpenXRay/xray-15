@@ -2,6 +2,8 @@
 #define	glR_Backend_Runtime_included
 #pragma once
 
+#include "../xrRenderGL/glStateUtils.h"
+
 IC void		CBackend::set_xform(u32 ID, const Fmatrix& M)
 {
 	stat.xforms++;
@@ -150,8 +152,16 @@ IC void	CBackend::set_Scissor(Irect*	R)
 
 IC void CBackend::set_Stencil(u32 _enable, u32 _func, u32 _ref, u32 _mask, u32 _writemask, u32 _fail, u32 _pass, u32 _zfail)
 {
-	// TODO: Implement this
-	VERIFY(!"CBackend::set_Stencil not implemented.");
+	if (_enable)
+		glEnable(GL_STENCIL_TEST);
+	else
+		glDisable(GL_STENCIL_TEST);
+
+	CHK_GL(glStencilFunc(glStateUtils::ConvertCmpFunction(_func), _ref, _mask));
+	CHK_GL(glStencilMask(_writemask));
+	CHK_GL(glStencilOp(glStateUtils::ConvertStencilOp(_fail),
+		glStateUtils::ConvertStencilOp(_zfail),
+		glStateUtils::ConvertStencilOp(_pass)));
 }
 
 IC  void CBackend::set_Z(u32 _enable)
@@ -197,8 +207,13 @@ ICF void	CBackend::set_CullMode(u32 _mode)
 {
 	if (cull_mode != _mode)		{
 		cull_mode = _mode;
-		// TODO: Set cull mode
-		VERIFY(!"CBackend::set_CullMode not implemented.");
+		if (_mode == D3DCULL_NONE) {
+			glDisable(GL_CULL_FACE);
+		}
+		else {
+			glEnable(GL_CULL_FACE);
+			CHK_GL(glCullFace(glStateUtils::ConvertCullMode(_mode)));
+		}
 	}
 }
 
