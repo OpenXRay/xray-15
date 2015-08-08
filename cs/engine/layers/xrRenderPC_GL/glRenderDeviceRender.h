@@ -58,7 +58,7 @@ public:
 	virtual void	Begin() { VERIFY(!"glRenderDeviceRender::Begin not implemented."); };
 	virtual void	Clear() { VERIFY(!"glRenderDeviceRender::Clear not implemented."); };
 	virtual void	End() { VERIFY(!"glRenderDeviceRender::End not implemented."); };
-	virtual void	ClearTarget() { VERIFY(!"glRenderDeviceRender::ClearTarget not implemented."); };
+	virtual void	ClearTarget();
 	virtual void	SetCacheXform(Fmatrix &mView, Fmatrix &mProject) { VERIFY(!"glRenderDeviceRender::SetCacheXform not implemented."); };
 	virtual void	OnAssetsChanged() { VERIFY(!"glRenderDeviceRender::OnAssetsChanged not implemented."); };
 
