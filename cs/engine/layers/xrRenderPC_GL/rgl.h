@@ -2,10 +2,11 @@
 
 #include "../xrRender/PSLibrary.h"
 
+#include "r2_types.h"
+
 #include "../xrRender/hom.h"
 #include "../xrRender/detailmanager.h"
 
-#include "r2_types.h"
 
 class CRender	:	public IRender_interface
 {
@@ -145,8 +146,8 @@ public:
 	virtual BOOL					occ_visible(sPoly&		P) { VERIFY(!"CRender::occ_visible not implemented."); return false; };
 
 	// Main
-	virtual void					Calculate() {};
-	virtual void					Render() {};
+	virtual void					Calculate();
+	virtual void					Render() { VERIFY(!"CRender::Render not implemented."); };
 
 	virtual void					Screenshot(ScreenshotMode mode = SM_NORMAL, LPCSTR name = 0) { VERIFY(!"CRender::Screenshot not implemented."); };
 	virtual	void					Screenshot(ScreenshotMode mode, CMemoryWriter& memory_writer) { VERIFY(!"CRender::Screenshot not implemented."); };

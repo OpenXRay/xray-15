@@ -285,6 +285,7 @@
     <ClCompile Include="GLUtils.cpp" />
     <ClCompile Include="glWallMarkArray.cpp" />
     <ClCompile Include="GL_DStreams.cpp" />
+    <ClCompile Include="r2_R_calculate.cpp" />
     <ClCompile Include="rgl.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

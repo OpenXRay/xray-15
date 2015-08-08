@@ -40,7 +40,6 @@
 #include "../../xrEngine/vis_common.h"
 #include "../../xrEngine/render.h"
 #include "../../xrEngine/igame_level.h"
-#include "../../xrEngine/IGame_Persistent.h"
 #include "../xrRender/blenders\blender.h"
 #include "../xrRender/blenders\blender_clsid.h"
 #include "../xrRender/xrRender_console.h"

@@ -447,6 +447,9 @@
     <ClCompile Include="rgl.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="r2_R_calculate.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
