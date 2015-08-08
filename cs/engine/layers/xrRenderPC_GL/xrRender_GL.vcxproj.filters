@@ -172,6 +172,9 @@
     <Filter Include="Refactored\Execution &amp; 3D\Shaders\Resources\gl_R_shader">
       <UniqueIdentifier>{b78c2548-3b66-4839-8a06-b767341298c7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="dx9 to gl Utils">
+      <UniqueIdentifier>{04c686d7-5f48-4735-9157-6b854b4eef34}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -451,6 +454,9 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="glUISequenceVideoItem.cpp" />
+    <ClCompile Include="..\xrRenderGL\glStateUtils.cpp">
+      <Filter>dx9 to gl Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -745,5 +751,8 @@
       <Filter>Interface implementations\UI\UISequenceVideoItem</Filter>
     </ClInclude>
     <ClInclude Include="glUISequenceVideoItem.h" />
+    <ClInclude Include="..\xrRenderGL\glStateUtils.h">
+      <Filter>dx9 to gl Utils</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

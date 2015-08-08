@@ -201,6 +201,7 @@
     <ClCompile Include="..\..\xrEngine\ai_script_lua_extension.cpp" />
     <ClCompile Include="..\xrRenderGL\glDetailManager_VS.cpp" />
     <ClCompile Include="..\xrRenderGL\glr_constants_cache.cpp" />
+    <ClCompile Include="..\xrRenderGL\glStateUtils.cpp" />
     <ClCompile Include="..\xrRenderPC_R2\blender_bloom_build.cpp" />
     <ClCompile Include="..\xrRenderPC_R2\blender_combine.cpp" />
     <ClCompile Include="..\xrRenderPC_R2\blender_deffer_aref.cpp" />
@@ -329,6 +330,7 @@
     <ClInclude Include="..\..\include\xrRender\WallMarkArray.h" />
     <ClInclude Include="..\xrRenderGL\glR_Backend_Runtime.h" />
     <ClInclude Include="..\xrRenderGL\glr_constants_cache.h" />
+    <ClInclude Include="..\xrRenderGL\glStateUtils.h" />
     <ClInclude Include="..\xrRenderPC_R2\blender_bloom_build.h" />
     <ClInclude Include="..\xrRenderPC_R2\blender_combine.h" />
     <ClInclude Include="..\xrRenderPC_R2\blender_deffer_aref.h" />
