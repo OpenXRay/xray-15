@@ -146,8 +146,16 @@ IC void CBackend::set_Geometry(SGeometry* _geom)
 
 IC void	CBackend::set_Scissor(Irect*	R)
 {
-	// TODO: Implement this
-	VERIFY(!"CBackend::set_Scissor not implemented.");
+	if (R)
+	{
+		CHK_GL(glEnable(GL_SCISSOR_TEST));
+		CHK_GL(glScissor(R->left, R->top, R->width(), R->height()));
+	}
+	else
+	{
+		CHK_GL(glDisable(GL_SCISSOR_TEST));
+		CHK_GL(glScissor(0, 0, 0, 0));
+	}
 }
 
 IC void CBackend::set_Stencil(u32 _enable, u32 _func, u32 _ref, u32 _mask, u32 _writemask, u32 _fail, u32 _pass, u32 _zfail)
