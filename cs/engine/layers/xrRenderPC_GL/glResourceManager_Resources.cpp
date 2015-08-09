@@ -377,8 +377,9 @@ SGeometry*	CResourceManager::CreateGeom	(u32 FVF, GLuint vb, GLuint ib)
 	}
 
 	SDeclaration* dcl = _CreateDecl(FVF);
-	glBindVertexArray(dcl->vao);
-	glBindBuffer(GL_ARRAY_BUFFER, vb);
+	CHK_GL(glBindVertexArray(dcl->vao));
+	CHK_GL(glBindBuffer(GL_ARRAY_BUFFER, vb));
+	CHK_GL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ib));
 
 	u32 attrib = 0, offset = 0;
 
@@ -386,14 +387,14 @@ SGeometry*	CResourceManager::CreateGeom	(u32 FVF, GLuint vb, GLuint ib)
 	if (FVF & D3DFVF_XYZRHW)
 	{
 		CHK_GL(glVertexAttribPointer(attrib, 4, GL_FLOAT, GL_FALSE, vb_stride, (void*)offset));
-		glEnableVertexAttribArray(attrib);
+		CHK_GL(glEnableVertexAttribArray(attrib));
 		offset += sizeof(Fvector4);
 		attrib++;
 	}
 	else if (FVF & D3DFVF_XYZ)
 	{
 		CHK_GL(glVertexAttribPointer(attrib, 3, GL_FLOAT, GL_FALSE, vb_stride, (void*)offset));
-		glEnableVertexAttribArray(attrib);
+		CHK_GL(glEnableVertexAttribArray(attrib));
 		offset += sizeof(Fvector);
 		attrib++;
 	}
@@ -402,7 +403,7 @@ SGeometry*	CResourceManager::CreateGeom	(u32 FVF, GLuint vb, GLuint ib)
 	if (FVF & D3DFVF_DIFFUSE)
 	{
 		CHK_GL(glVertexAttribPointer(attrib, GL_BGRA, GL_UNSIGNED_BYTE, GL_TRUE, vb_stride, (void*)offset));
-		glEnableVertexAttribArray(attrib);
+		CHK_GL(glEnableVertexAttribArray(attrib));
 		offset += sizeof(u32);
 		attrib++;
 	}
@@ -411,7 +412,7 @@ SGeometry*	CResourceManager::CreateGeom	(u32 FVF, GLuint vb, GLuint ib)
 	if (FVF & D3DFVF_SPECULAR)
 	{
 		CHK_GL(glVertexAttribPointer(attrib, GL_BGRA, GL_UNSIGNED_BYTE, GL_TRUE, vb_stride, (void*)offset));
-		glEnableVertexAttribArray(attrib);
+		CHK_GL(glEnableVertexAttribArray(attrib));
 		offset += sizeof(u32);
 		attrib++;
 	}
@@ -428,13 +429,14 @@ SGeometry*	CResourceManager::CreateGeom	(u32 FVF, GLuint vb, GLuint ib)
 			size = 4;
 
 		CHK_GL(glVertexAttribPointer(attrib, size, GL_FLOAT, GL_FALSE, vb_stride, (void*)offset));
-		glEnableVertexAttribArray(attrib);
+		CHK_GL(glEnableVertexAttribArray(attrib));
 		offset += size * sizeof(float);
 		attrib++;
 	}
 
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
+	CHK_GL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
+	CHK_GL(glBindBuffer(GL_ARRAY_BUFFER, 0));
+	CHK_GL(glBindVertexArray(0));
 
 	SGeometry *Geom = new SGeometry();
 	Geom->dwFlags |= xr_resource_flagged::RF_REGISTERED;

@@ -44,8 +44,7 @@ ICF void CBackend::set_Format(SDeclaration* _decl)
 		stat.decl++;
 #endif
 		decl = _decl;
-		// TODO: Set vertex format
-		VERIFY(!"CBackend::set_Format not implemented");
+		CHK_GL(glBindVertexArray(_decl->vao));
 	}
 }
 
@@ -89,8 +88,7 @@ ICF void CBackend::set_Vertices(GLuint _vb, u32 _vb_stride)
 #endif
 		vb = _vb;
 		vb_stride = _vb_stride;
-		// TODO: Set vertex buffer
-		VERIFY(!"CBackend::set_Vertices not implemented");
+		CHK_GL(glBindBuffer(GL_ARRAY_BUFFER, vb));
 	}
 }
 
@@ -103,8 +101,7 @@ ICF void CBackend::set_Indices(GLuint _ib)
 		stat.ib++;
 #endif
 		ib = _ib;
-		// TODO: Set index buffer
-		VERIFY(!"CBackend::set_Indices not implemented");
+		CHK_GL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ib));
 	}
 }
 
@@ -140,8 +137,10 @@ ICF void CBackend::Render(u32 T, u32 startV, u32 PC)
 
 IC void CBackend::set_Geometry(SGeometry* _geom)
 {
-	// TODO: Implement this
-	VERIFY(!"CBackend::set_Geometry not implemented.");
+	set_Format(&*_geom->dcl);
+
+	set_Vertices(_geom->vb, _geom->vb_stride);
+	set_Indices(_geom->ib);
 }
 
 IC void	CBackend::set_Scissor(Irect*	R)
