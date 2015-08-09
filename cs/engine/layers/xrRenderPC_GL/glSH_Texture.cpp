@@ -67,7 +67,7 @@ void CTexture::PostLoad	()
 }
 
 void CTexture::apply_load	(u32 dwStage)	{
-	glActiveTexture(dwStage);
+	CHK_GL(glActiveTexture(GL_TEXTURE0 + dwStage));
 	if (!flags.bLoaded)		Load			()	;
 	else					PostLoad		()	;
 	bind					(dwStage)			;
@@ -162,7 +162,7 @@ void CTexture::Load		()
 
 			glGenTextures(1, &pTexture);
 			glBindTexture(GL_TEXTURE_2D, pTexture);
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _w, _h, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+			CHK_GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _w, _h, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr));
 
 			pSurface = pTexture;
 			if (glGetError() != GL_NO_ERROR)
@@ -188,7 +188,7 @@ void CTexture::Load		()
 			GLuint	pTexture = 0;
 			glGenTextures(1, &pTexture);
 			glBindTexture(GL_TEXTURE_2D, pTexture);
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, pAVI->m_dwWidth, pAVI->m_dwHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+			CHK_GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, pAVI->m_dwWidth, pAVI->m_dwHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr));
 
 			pSurface = pTexture;
 			if (glGetError() != GL_NO_ERROR)
@@ -260,12 +260,12 @@ void CTexture::Unload	()
 
 	flags.bLoaded = FALSE;
 	if (!seqDATA.empty())	{
-		glDeleteTextures(seqDATA.size(), seqDATA.data());
+		CHK_GL(glDeleteTextures(seqDATA.size(), seqDATA.data()));
 		seqDATA.clear();
 		pSurface = 0;
 	}
 
-	glDeleteTextures(1, &pSurface);
+	CHK_GL(glDeleteTextures(1, &pSurface));
 
 	xr_delete(pAVI);
 	xr_delete(pTheora);

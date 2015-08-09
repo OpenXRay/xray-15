@@ -64,8 +64,9 @@ void CDetailManager::hw_Load_Geom()
 
 	// Fill VB
 	{
+		vertHW* pV;
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, hw_VB);
-		vertHW* pV = (vertHW*)glMapBuffer(GL_ELEMENT_ARRAY_BUFFER, dwUsage);
+		CHK_GL(pV = (vertHW*)glMapBuffer(GL_ELEMENT_ARRAY_BUFFER, dwUsage));
 
 		for (o = 0; o<objects.size(); o++)
 		{
