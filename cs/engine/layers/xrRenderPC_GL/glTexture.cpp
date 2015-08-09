@@ -64,7 +64,7 @@ u32 calc_texture_size(int lod, u32 mip_cnt, u32 orig_size)
 	return iFloor(res);
 }
 
-GLuint	CRender::texture_load(LPCSTR fRName, u32& ret_msize)
+GLuint	CRender::texture_load(LPCSTR fRName, u32& ret_msize, GLenum& ret_desc)
 {
 	GLuint					pTexture = 0;
 	string_path				fn;
@@ -144,6 +144,7 @@ _DDS:
 
 			// OK
 			ret_msize = calc_texture_size(img_loaded_lod, mip_cnt, img_size);
+			ret_desc = GL_TEXTURE_CUBE_MAP;
 			return					pTexture;
 		}
 	_DDS_2D:
@@ -181,6 +182,7 @@ _DDS:
 			// OK
 			img_loaded_lod = get_texture_load_lod(fn);
 			ret_msize = calc_texture_size(img_loaded_lod, mip_cnt, img_size);
+			ret_desc = GL_TEXTURE_2D;
 			return					pTexture;
 		}
 	}

@@ -100,13 +100,15 @@ public:	//	Public class members (must be encapsulated furthur)
 	};
 
 private:
-	u32									m_width;
-	u32									m_height;
 #ifdef USE_OGL
+	GLint								m_width;
+	GLint								m_height;
 	GLuint								pSurface;
 	// Sequence data
 	xr_vector<GLuint>					seqDATA;
 #else
+	u32									m_width;
+	u32									m_height;
 	ID3DBaseTexture*					pSurface;
 	// Sequence data
 	xr_vector<ID3DBaseTexture*>			seqDATA;

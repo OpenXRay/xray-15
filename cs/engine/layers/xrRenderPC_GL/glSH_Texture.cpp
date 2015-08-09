@@ -74,7 +74,7 @@ void CTexture::apply_load	(u32 dwStage)	{
 };
 
 void CTexture::apply_theora(u32 dwStage)	{
-	CHK_GL(glBindTexture(GL_TEXTURE_2D, pSurface));
+	CHK_GL(glBindTexture(desc, pSurface));
 
 	if (pTheora->Update(m_play_time!=0xFFFFFFFF?m_play_time:Device.dwTimeContinual)) {
 		u32 width	= pTheora->Width(true);
@@ -83,22 +83,22 @@ void CTexture::apply_theora(u32 dwStage)	{
 
 		int _pos = 0;
 		pTheora->DecompressFrame(pBits, pTheora->Width(false) - width, _pos);
-		CHK_GL(glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width, height,
+		CHK_GL(glTexSubImage2D(desc, 0, 0, 0, width, height,
 			GL_RGBA, GL_UNSIGNED_BYTE, pBits));
 	}
 };
 void CTexture::apply_avi(u32 dwStage)	{
-	CHK_GL(glBindTexture(GL_TEXTURE_2D, pSurface));
+	CHK_GL(glBindTexture(desc, pSurface));
 
 	if (pAVI->NeedUpdate())		{
 		// AVI
 		BYTE* ptr; pAVI->GetFrame(&ptr);
-		CHK_GL(glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, pAVI->m_dwWidth, pAVI->m_dwHeight,
+		CHK_GL(glTexSubImage2D(desc, 0, 0, 0, pAVI->m_dwWidth, pAVI->m_dwHeight,
 			GL_RGBA, GL_UNSIGNED_BYTE, ptr));
 	}
 };
 void CTexture::apply_seq(u32 dwStage)	{
-	CHK_GL(glBindTexture(GL_TEXTURE_2D, pSurface));
+	CHK_GL(glBindTexture(desc, pSurface));
 
 	// SEQ
 	u32	frame		= Device.dwTimeContinual/seqMSPF; //Device.dwTimeGlobal
@@ -113,7 +113,7 @@ void CTexture::apply_seq(u32 dwStage)	{
 	}
 };
 void CTexture::apply_normal	(u32 dwStage)	{
-	CHK_GL(glBindTexture(GL_TEXTURE_2D, pSurface));
+	CHK_GL(glBindTexture(desc, pSurface));
 };
 
 void CTexture::Preload	()
@@ -125,6 +125,7 @@ void CTexture::Preload	()
 void CTexture::Load		()
 {
 	flags.bLoaded = true;
+	desc = GL_TEXTURE_2D;
 	desc_cache = 0;
 	if (pSurface)					return;
 
@@ -222,7 +223,7 @@ void CTexture::Load		()
 			{
 				// Load another texture
 				u32	mem = 0;
-				pSurface = ::RImplementation.texture_load(buffer, mem);
+				pSurface = ::RImplementation.texture_load(buffer, mem, desc);
 				if (pSurface)
 				{
 					// pSurface->SetPriority	(PRIORITY_LOW);
@@ -237,7 +238,7 @@ void CTexture::Load		()
 	else {
 		// Normal texture
 		u32	mem = 0;
-		pSurface = ::RImplementation.texture_load(*cName, mem);
+		pSurface = ::RImplementation.texture_load(*cName, mem, desc);
 
 		// Calc memory usage and preload into vid-mem
 		if (pSurface) {
@@ -275,7 +276,14 @@ void CTexture::Unload	()
 
 void CTexture::desc_update	()
 {
-	VERIFY(!"CTexture::desc_update not implemented.");
+	desc_cache = pSurface;
+	if (pSurface && (GL_TEXTURE_2D == desc))
+	{
+		glBindTexture(desc, pSurface);
+		glGetTexLevelParameteriv(desc, 0, GL_TEXTURE_WIDTH, &m_width);
+		glGetTexLevelParameteriv(desc, 0, GL_TEXTURE_HEIGHT, &m_height);
+		glBindTexture(desc, 0);
+	}
 }
 
 void CTexture::video_Play		(BOOL looped, u32 _time)	
