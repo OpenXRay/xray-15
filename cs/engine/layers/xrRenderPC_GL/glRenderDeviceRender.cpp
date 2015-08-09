@@ -1,6 +1,12 @@
 #include "stdafx.h"
 #include "glRenderDeviceRender.h"
 
+#include <stdio.h>
+
+void OnDebugCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam)
+{
+	OutputDebugString(message);
+}
 
 glRenderDeviceRender::glRenderDeviceRender()
 	: m_hWnd(NULL)
@@ -113,6 +119,11 @@ bool glRenderDeviceRender::Create(HWND hWnd, u32 &dwWidth, u32 &dwHeight, float 
 		Msg("Could not initialize glew.");
 		return false;
 	}
+
+#if 0
+	CHK_GL(glEnable(GL_DEBUG_OUTPUT));
+	CHK_GL(glDebugMessageCallback((GLDEBUGPROC)OnDebugCallback, nullptr));
+#endif
 
 	Resources = new CResourceManager();
 
