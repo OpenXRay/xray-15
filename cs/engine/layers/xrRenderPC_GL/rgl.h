@@ -75,7 +75,7 @@ public:
 	virtual	void					level_Load(IReader*) { VERIFY(!"CRender::level_Load not implemented."); };
 	virtual void					level_Unload() { VERIFY(!"CRender::level_Unload not implemented."); };
 
-	virtual GLuint					texture_load(LPCSTR	fname, u32& msize) { VERIFY(!"CRender::texture_load not implemented."); return 0; }
+	virtual GLuint					texture_load(LPCSTR	fname, u32& msize);
 	virtual HRESULT					shader_compile(
 		LPCSTR							name,
 		LPCSTR                          pSrcData,
