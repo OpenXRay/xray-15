@@ -105,33 +105,73 @@ ICF void CBackend::set_Indices(GLuint _ib)
 	}
 }
 
-ICF void CBackend::Render(u32 T, u32 baseV, u32 startV, u32 countV, u32 startI, u32 PC)
+IC GLenum TranslateTopology(D3DPRIMITIVETYPE T)
 {
-	//Fix D3D ERROR
-	if (PC == 0)
-		return;
+	static GLenum translateTable[] =
+	{
+		NULL,					//	None
+		GL_POINTS,				//	D3DPT_POINTLIST = 1,
+		GL_LINES,				//	D3DPT_LINELIST = 2,
+		GL_LINE_STRIP,			//	D3DPT_LINESTRIP = 3,
+		GL_TRIANGLES,			//	D3DPT_TRIANGLELIST = 4,
+		GL_TRIANGLE_STRIP,		//	D3DPT_TRIANGLESTRIP = 5,
+		GL_TRIANGLE_FAN,		//	D3DPT_TRIANGLEFAN = 6,
+	};
+
+	VERIFY(T<sizeof(translateTable) / sizeof(translateTable[0]));
+	VERIFY(T >= 0);
+
+	GLenum	result = translateTable[T];
+
+	VERIFY(result != NULL);
+
+	return result;
+}
+
+IC u32 GetIndexCount(D3DPRIMITIVETYPE T, u32 iPrimitiveCount)
+{
+	switch (T)
+	{
+	case D3DPT_POINTLIST:
+		return iPrimitiveCount;
+	case D3DPT_LINELIST:
+		return iPrimitiveCount * 2;
+	case D3DPT_LINESTRIP:
+		return iPrimitiveCount + 1;
+	case D3DPT_TRIANGLELIST:
+		return iPrimitiveCount * 3;
+	case D3DPT_TRIANGLESTRIP:
+		return iPrimitiveCount + 2;
+	default: NODEFAULT;
+#ifdef DEBUG
+		return 0;
+#endif // #ifdef DEBUG
+	}
+}
+
+ICF void CBackend::Render(D3DPRIMITIVETYPE T, u32 baseV, u32 startV, u32 countV, u32 startI, u32 PC)
+{
+	GLenum Topology = TranslateTopology(T);
+	u32	iIndexCount = GetIndexCount(T, PC);
 
 	stat.calls++;
 	stat.verts += countV;
 	stat.polys += PC;
 	constants.flush();
-	// TODO: Draw vertices
-	VERIFY(!"CBackend::Render not implemented");
+	CHK_GL(glDrawElementsBaseVertex(Topology, PC, GL_UNSIGNED_SHORT, (void*)startI, baseV));
 	PGO(Msg("PGO:DIP:%dv/%df", countV, PC));
 }
 
-ICF void CBackend::Render(u32 T, u32 startV, u32 PC)
+ICF void CBackend::Render(D3DPRIMITIVETYPE T, u32 startV, u32 PC)
 {
-	//Fix D3D ERROR
-	if (PC == 0)
-		return;
+	GLenum Topology = TranslateTopology(T);
+	u32	iIndexCount = GetIndexCount(T, PC);
 
 	stat.calls++;
 	stat.verts += 3 * PC;
 	stat.polys += PC;
 	constants.flush();
-	// TODO: Draw vertices
-	VERIFY(!"CBackend::Render not implemented");
+	CHK_GL(glDrawArrays(Topology, startV, PC));
 	PGO(Msg("PGO:DIP:%dv/%df", 3 * PC, PC));
 }
 

@@ -352,13 +352,8 @@ public:
 	ICF	void						set_c				(shared_str& n, int A)												{ if(ctable)	set_c	(&*ctable->get(n),A);		}
 #endif	//	USE_DX10
 
-#ifdef USE_OGL
-	ICF	void						Render				(GLenum T, u32 baseV, u32 startV, u32 countV, u32 startI, u32 PC);
-	ICF	void						Render				(GLenum T, u32 startV, u32 PC);
-#else
 	ICF	void						Render				(D3DPRIMITIVETYPE T, u32 baseV, u32 startV, u32 countV, u32 startI, u32 PC);
 	ICF	void						Render				(D3DPRIMITIVETYPE T, u32 startV, u32 PC);
-#endif // USE_OGL
 
 	// Device create / destroy / frame signaling
 	void							RestoreQuadIBData	();	// Igor: is used to test bug with rain, particles corruption
