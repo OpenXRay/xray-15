@@ -98,6 +98,10 @@ struct	  ECORE_API		SPass			: public xr_resource_flagged									{
 	ref_matrix_list						M;
 #endif
 
+#ifdef USE_OGL
+	GLuint								program;
+#endif // USE_OGL
+
 						~SPass			();
 #ifdef	USE_DX10
 	BOOL				equal			(ref_state& _state, ref_ps& _ps, ref_vs& _vs, ref_gs& _gs, ref_ctable& _ctable, ref_texture_list& _T, ref_matrix_list& _M, ref_constant_list& _C);

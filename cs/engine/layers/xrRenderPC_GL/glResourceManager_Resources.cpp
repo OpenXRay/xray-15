@@ -107,17 +107,43 @@ SPass*		CResourceManager::_CreatePass			(ref_state& _state, ref_ps& _ps, ref_vs&
 		if (v_passes[it]->equal(_state,_ps,_vs,_ctable,_T,_M,_C))
 			return v_passes[it];
 
-	SPass*	P					= new SPass();
-	P->dwFlags					|=	xr_resource_flagged::RF_REGISTERED;
+#ifdef USE_OGL
+	// Now that we're creating the pass we can link the program
+	GLuint _program = 0;
+	if (_vs->vs && _ps->ps) {
+		_program = glCreateProgram();
+		CHK_GL(glAttachShader(_program, _vs->vs));
+		CHK_GL(glAttachShader(_program, _ps->ps));
+		CHK_GL(glLinkProgram(_program));
+
+		// Check if the linking succeeded
+		GLint _result;
+		CHK_GL(glGetProgramiv(_program, GL_LINK_STATUS, &_result));
+		if (_result == FALSE)
+		{
+			GLint _length;
+			glGetProgramiv(_program, GL_INFO_LOG_LENGTH, &_length);
+			GLchar* pErrorBuf = xr_alloc<GLchar>(_length);
+			glGetShaderInfoLog(_program, _length, nullptr, pErrorBuf);
+			Log("! Pass error: ", pErrorBuf);
+			R_ASSERT2(_result, pErrorBuf);
+			xr_free(pErrorBuf);
+		}
+	}
+#endif // USE_OGL
+
+	SPass*	P				= new SPass();
+	P->dwFlags				|=	xr_resource_flagged::RF_REGISTERED;
 	P->state					=	_state;
-	P->ps						=	_ps;
-	P->vs						=	_vs;
+	P->ps					=	_ps;
+	P->vs					=	_vs;
 	P->constants				=	_ctable;
 	P->T						=	_T;
 #ifdef _EDITOR
 	P->M						=	_M;
 #endif
 	P->C						=	_C;
+	P->program				=   _program;
 
 	v_passes.push_back			(P);
 	return v_passes.back();

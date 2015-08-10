@@ -109,11 +109,13 @@ IC void CBackend::set_Matrices			(SMatrixList*	_M)
 IC void CBackend::set_Element			(ShaderElement* S, u32	pass)
 {
 	SPass&	P		= *(S->passes[pass]);
-#ifndef USE_OGL
-	set_States(P.state);
-#endif // !USE_OGL
+#ifdef USE_OGL
+	CHK_GL			(glUseProgram(P.program));
+#else
+	set_States		(P.state);
 	set_PS			(P.ps);
 	set_VS			(P.vs);
+#endif // USE_OGL
 #ifdef	USE_DX10
 	set_GS			(P.gs);
 #endif	//	USE_DX10
