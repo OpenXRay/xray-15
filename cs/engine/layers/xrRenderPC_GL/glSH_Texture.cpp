@@ -67,11 +67,10 @@ void CTexture::PostLoad	()
 }
 
 void CTexture::apply_load	(u32 dwStage)	{
-	CHK_GL(glActiveTexture(GL_TEXTURE1 + dwStage));
+	CHK_GL(glActiveTexture(GL_TEXTURE0 + dwStage));
 	if (!flags.bLoaded)		Load			()	;
 	else					PostLoad		()	;
 	bind					(dwStage)			;
-	CHK_GL(glActiveTexture(GL_TEXTURE0));
 };
 
 void CTexture::apply_theora(u32 dwStage)	{

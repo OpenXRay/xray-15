@@ -291,9 +291,8 @@ void CBackend::set_Textures			(STextureList* _T)
 		SRVSManager.SetPSResource(_last_ps, pRes);
 #else	//	USE_DX10
 #ifdef	USE_OGL
-		CHK_GL							(glActiveTexture(GL_TEXTURE1 + _last_ps));
+		CHK_GL							(glActiveTexture(GL_TEXTURE0 + _last_ps));
 		CHK_GL							(glBindTexture(GL_TEXTURE_2D, 0));
-		CHK_GL							(glActiveTexture(GL_TEXTURE0));
 #else
 		CHK_DX							(HW.pDevice->SetTexture(_last_ps,NULL));
 #endif	//	USE_OGL
@@ -313,9 +312,8 @@ void CBackend::set_Textures			(STextureList* _T)
 		SRVSManager.SetVSResource(_last_vs, pRes);
 #else	//	USE_DX10
 #ifdef	USE_OGL
-		CHK_GL							(glActiveTexture(GL_TEXTURE1 + CTexture::rstVertex + _last_vs));
+		CHK_GL							(glActiveTexture(GL_TEXTURE0 + CTexture::rstVertex + _last_vs));
 		CHK_GL							(glBindTexture(GL_TEXTURE_2D, 0));
-		CHK_GL							(glActiveTexture(GL_TEXTURE0));
 #else
 		CHK_DX							(HW.pDevice->SetTexture(_last_vs+CTexture::rstVertex,NULL));
 #endif	//	USE_OGL
@@ -332,9 +330,8 @@ void CBackend::set_Textures			(STextureList* _T)
 		textures_gs[_last_gs]			= 0;
 
 #ifdef	USE_OGL
-		CHK_GL							(glActiveTexture(GL_TEXTURE1 + CTexture::rstGeometry + _last_gs));
+		CHK_GL							(glActiveTexture(GL_TEXTURE20 + _last_gs));
 		CHK_GL							(glBindTexture(GL_TEXTURE_2D, 0));
-		CHK_GL							(glActiveTexture(GL_TEXTURE0));
 #else
 		//	TODO: DX10: Optimise: set all resources at once
 		ID3D10ShaderResourceView	*pRes = 0;

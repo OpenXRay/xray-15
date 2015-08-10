@@ -11,12 +11,12 @@ class  ECORE_API CTexture : public xr_resource_named
 {
 public:
 #ifdef USE_OGL
-	//	Since OGL at least 16 unique textures per stage,
+	//	Since OGL allows up to 16 unique textures per stage,
 	//	distance between enum values should be at least 16
 	enum ResourceShaderType	//	Don't change this since it's hardware-dependent
 	{
 		rstPixel = 0,	//	Default texture offset
-		rstVertex = rstPixel + 17,
+		rstVertex = rstPixel + 16,
 		rstGeometry = rstVertex + 16
 	};
 #else
