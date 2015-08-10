@@ -453,9 +453,11 @@
     <ClCompile Include="r2_R_calculate.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="glUISequenceVideoItem.cpp" />
     <ClCompile Include="..\xrRenderGL\glStateUtils.cpp">
       <Filter>dx9 to gl Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="glUISequenceVideoItem.cpp">
+      <Filter>Interface implementations\UI\UISequenceVideoItem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -750,9 +752,11 @@
     <ClInclude Include="..\..\include\xrRender\UISequenceVideoItem.h">
       <Filter>Interface implementations\UI\UISequenceVideoItem</Filter>
     </ClInclude>
-    <ClInclude Include="glUISequenceVideoItem.h" />
     <ClInclude Include="..\xrRenderGL\glStateUtils.h">
       <Filter>dx9 to gl Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="glUISequenceVideoItem.h">
+      <Filter>Interface implementations\UI\UISequenceVideoItem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

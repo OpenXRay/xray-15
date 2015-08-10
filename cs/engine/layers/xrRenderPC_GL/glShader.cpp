@@ -12,13 +12,13 @@
 
 
 //
-STextureList::~STextureList()			{ DEV->_DeleteTextureList(this); }
+STextureList::~STextureList()		{ DEV->_DeleteTextureList(this); }
 SMatrixList::~SMatrixList()			{ DEV->_DeleteMatrixList(this); }
-SConstantList::~SConstantList()			{ DEV->_DeleteConstantList(this); }
-SPass::~SPass()			{ DEV->_DeletePass(this); }
-ShaderElement::~ShaderElement()			{ DEV->_DeleteElement(this); }
-SGeometry::~SGeometry()			{ DEV->DeleteGeom(this); }
-Shader::~Shader()			{ DEV->Delete(this); }
+SConstantList::~SConstantList()		{ DEV->_DeleteConstantList(this); }
+SPass::~SPass()						{ DEV->_DeletePass(this); }
+ShaderElement::~ShaderElement()		{ DEV->_DeleteElement(this); }
+SGeometry::~SGeometry()				{ DEV->DeleteGeom(this); }
+Shader::~Shader()					{ DEV->Delete(this); }
 
 //////////////////////////////////////////////////////////////////////////					 
 void	resptrcode_shader::create(LPCSTR s_shader, LPCSTR s_textures, LPCSTR s_constants, LPCSTR s_matrices)
@@ -41,9 +41,9 @@ void	resptrcode_geom::create(u32 FVF, GLuint vb, GLuint ib)
 //////////////////////////////////////////////////////////////////////
 BOOL	SPass::equal(ref_state& _state, ref_ps& _ps, ref_vs& _vs, ref_ctable& _ctable, ref_texture_list& _T, ref_matrix_list& _M, ref_constant_list& _C)
 {
-	if (state != _state)		return FALSE;
-	if (ps != _ps)			return FALSE;
-	if (vs != _vs)			return FALSE;
+	if (state != _state)			return FALSE;
+	if (ps != _ps)					return FALSE;
+	if (vs != _vs)					return FALSE;
 	if (constants != _ctable)		return FALSE;	// is this nessesary??? (ps+vs already combines)
 
 	if (T != _T)					return FALSE;

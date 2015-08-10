@@ -256,7 +256,7 @@ public:
 
 #ifndef USE_OGL
 	ICF	void						set_States			(ID3DState* _state);
-	ICF	void						set_States(ref_state& _state)					{ set_States(_state->state); }
+	ICF	void						set_States			(ref_state& _state)					{ set_States(_state->state); }
 #endif // !USE_OGL
 
 #if defined(USE_DX10) || defined(USE_OGL)
