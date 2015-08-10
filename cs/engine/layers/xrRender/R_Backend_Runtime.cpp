@@ -276,7 +276,7 @@ void CBackend::set_Textures			(STextureList* _T)
 #endif	//	USE_DX10
 	}
 
-
+	// TODO: OGL: Do we actually need to clear the remaining stages?
 	// clear remaining stages (PS)
 	for (++_last_ps; _last_ps<mtMaxPixelShaderTextures; _last_ps++)
 	{
@@ -293,6 +293,7 @@ void CBackend::set_Textures			(STextureList* _T)
 #ifdef	USE_OGL
 		CHK_GL							(glActiveTexture(GL_TEXTURE0 + _last_ps));
 		CHK_GL							(glBindTexture(GL_TEXTURE_2D, 0));
+		CHK_GL							(glBindTexture(GL_TEXTURE_CUBE_MAP, 0));
 #else
 		CHK_DX							(HW.pDevice->SetTexture(_last_ps,NULL));
 #endif	//	USE_OGL
@@ -314,6 +315,7 @@ void CBackend::set_Textures			(STextureList* _T)
 #ifdef	USE_OGL
 		CHK_GL							(glActiveTexture(GL_TEXTURE0 + CTexture::rstVertex + _last_vs));
 		CHK_GL							(glBindTexture(GL_TEXTURE_2D, 0));
+		CHK_GL							(glBindTexture(GL_TEXTURE_CUBE_MAP, 0));
 #else
 		CHK_DX							(HW.pDevice->SetTexture(_last_vs+CTexture::rstVertex,NULL));
 #endif	//	USE_OGL
@@ -332,6 +334,7 @@ void CBackend::set_Textures			(STextureList* _T)
 #ifdef	USE_OGL
 		CHK_GL							(glActiveTexture(GL_TEXTURE0 + CTexture::rstGeometry + _last_gs));
 		CHK_GL							(glBindTexture(GL_TEXTURE_2D, 0));
+		CHK_GL							(glBindTexture(GL_TEXTURE_CUBE_MAP, 0));
 #else
 		//	TODO: DX10: Optimise: set all resources at once
 		ID3D10ShaderResourceView	*pRes = 0;
