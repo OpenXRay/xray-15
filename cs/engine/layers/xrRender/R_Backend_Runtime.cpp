@@ -330,7 +330,7 @@ void CBackend::set_Textures			(STextureList* _T)
 		textures_gs[_last_gs]			= 0;
 
 #ifdef	USE_OGL
-		CHK_GL							(glActiveTexture(GL_TEXTURE20 + _last_gs));
+		CHK_GL							(glActiveTexture(GL_TEXTURE0 + CTexture::rstGeometry + _last_gs));
 		CHK_GL							(glBindTexture(GL_TEXTURE_2D, 0));
 #else
 		//	TODO: DX10: Optimise: set all resources at once
