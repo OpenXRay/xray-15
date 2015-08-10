@@ -3,9 +3,10 @@
 
 #include <stdio.h>
 
-void OnDebugCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam)
+void glRenderDeviceRender::OnDebugCallback(GLenum source, GLenum type, GLuint id, GLenum severity,
+	GLsizei length, const GLchar* message, const void* userParam)
 {
-	OutputDebugString(message);
+	Log(message, id);
 }
 
 glRenderDeviceRender::glRenderDeviceRender()
