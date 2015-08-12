@@ -173,8 +173,14 @@ void	CBlender_Compile::PassEnd			()
 	ref_state	state		= DEV->_CreateState		(RS.GetContainer());
 	ref_ps		ps			= DEV->_CreatePS			(pass_ps);
 	ref_vs		vs			= DEV->_CreateVS			(pass_vs);
+#ifdef USE_OGL
+	// In OGL we only parse the constants when we create the shader program.
+	ref_program	program		= DEV->_CreateProgram	(vs, ps);
+	ctable.merge			(&program->constants);
+#else
 	ctable.merge			(&ps->constants);
 	ctable.merge			(&vs->constants);
+#endif // !USE_OGL
 #ifdef	USE_DX10
 	ref_gs		gs			= DEV->_CreateGS			(pass_gs);
 	ctable.merge			(&gs->constants);
@@ -184,11 +190,15 @@ void	CBlender_Compile::PassEnd			()
 	ref_texture_list	T 	= DEV->_CreateTextureList	(passTextures);
 	ref_matrix_list		M	= DEV->_CreateMatrixList	(passMatrices);
 	ref_constant_list	C	= DEV->_CreateConstantList	(passConstants);
+#ifdef USE_OGL
+	ref_pass	_pass_		= DEV->_CreatePass			(state,program,ct,T,M,C);
+#else
 #ifdef	USE_DX10
 	ref_pass	_pass_		= DEV->_CreatePass			(state,ps,vs,gs,ct,T,M,C);
 #else	//	USE_DX10
 	ref_pass	_pass_		= DEV->_CreatePass			(state,ps,vs,ct,T,M,C);
 #endif	//	USE_DX10
+#endif // USE_OGL
 	SH->passes.push_back	(_pass_);
 }
 

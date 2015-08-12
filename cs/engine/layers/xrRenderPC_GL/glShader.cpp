@@ -39,11 +39,10 @@ void	resptrcode_geom::create(u32 FVF, GLuint vb, GLuint ib)
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
-BOOL	SPass::equal(ref_state& _state, ref_ps& _ps, ref_vs& _vs, ref_ctable& _ctable, ref_texture_list& _T, ref_matrix_list& _M, ref_constant_list& _C)
+BOOL	SPass::equal(ref_state& _state, ref_program& _program, ref_ctable& _ctable, ref_texture_list& _T, ref_matrix_list& _M, ref_constant_list& _C)
 {
 	if (state != _state)			return FALSE;
-	if (ps != _ps)					return FALSE;
-	if (vs != _vs)					return FALSE;
+	if (program != _program)		return FALSE;
 	if (constants != _ctable)		return FALSE;	// is this nessesary??? (ps+vs already combines)
 
 	if (T != _T)					return FALSE;

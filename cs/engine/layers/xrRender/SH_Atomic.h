@@ -30,8 +30,8 @@ struct ECORE_API SVS : public xr_resource_named
 	GLuint								vs;
 #else
 	ID3DVertexShader*					vs;
-#endif // USE_OGL
 	R_constant_table					constants;
+#endif // USE_OGL
 #ifdef	USE_DX10
 	ref_input_sign						signature;
 #endif	//	USE_DX10
@@ -47,9 +47,9 @@ struct ECORE_API SPS : public xr_resource_named
 	GLuint								ps;
 #else
 	ID3DPixelShader*					ps;
+	R_constant_table					constants;
 #endif // USE_OGL
 
-	R_constant_table					constants;
 	~SPS			();
 };
 typedef	resptr_core<SPS,resptr_base<SPS> > ref_ps;
@@ -64,6 +64,20 @@ struct ECORE_API SGS : public xr_resource_named
 };
 typedef	resptr_core<SGS,resptr_base<SGS> > ref_gs;
 #endif	//	USE_DX10
+
+#ifdef USE_OGL
+//////////////////////////////////////////////////////////////////////////
+struct ECORE_API SProgram : public xr_resource_named
+{
+	ref_vs								vs;
+	ref_ps								ps;
+	GLuint								program;
+	R_constant_table					constants;
+
+	~SProgram			();
+};
+typedef	resptr_core<SProgram, resptr_base<SProgram> > ref_program;
+#endif // USE_OGL
 
 //////////////////////////////////////////////////////////////////////////
 struct ECORE_API SState : public xr_resource_flagged

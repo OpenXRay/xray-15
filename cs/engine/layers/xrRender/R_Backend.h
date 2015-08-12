@@ -126,6 +126,7 @@ private:
 #ifdef USE_OGL
 	GLuint							ps;
 	GLuint							vs;
+	GLuint							program;
 #else
 	ID3DState*						state;
 	ID3DPixelShader*				ps;
@@ -181,6 +182,9 @@ public:
 		u32								calls;
 		u32								vs;
 		u32								ps;
+#ifdef USE_OGL
+		u32								program;
+#endif // USE_OGL
 #ifdef	DEBUG
 		u32								decl;
 		u32								vb;
@@ -287,6 +291,12 @@ protected:	//	In DX10 we need input shader signature which is stored in ref_vs
 #else
 	ICF void						set_VS				(ID3DVertexShader* _vs, LPCSTR _n=0);
 #endif // USE_OGL
+
+#ifdef USE_OGL
+	ICF void						set_Program			(GLuint _program);
+	ICF void						set_Program			(ref_program& _program)				{ set_Program(_program->program); }
+#endif // USE_OGL
+
 #ifdef	USE_DX10
 public:
 #endif	//	USE_DX10

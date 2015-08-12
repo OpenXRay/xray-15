@@ -110,7 +110,7 @@ IC void CBackend::set_Element			(ShaderElement* S, u32	pass)
 {
 	SPass&	P		= *(S->passes[pass]);
 #ifdef USE_OGL
-	CHK_GL			(glUseProgram(P.program));
+	set_Program		(P.program);
 #else
 	set_States		(P.state);
 	set_PS			(P.ps);

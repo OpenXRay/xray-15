@@ -50,6 +50,10 @@ public:
 #endif	//	USE_DX10
 	using map_PS = xr_map<const char*, SPS*, str_pred>;
 	using map_PSIt = map_PS::iterator;
+#ifdef USE_OGL
+	using map_Program = xr_map<const char*, SProgram*, str_pred>;
+	using map_ProgramIt = map_Program::iterator;
+#endif // USE_OGL
 	using map_TD = xr_map<const char*, texture_detail, str_pred>;
 	using map_TDIt = map_TD::iterator;
 private:
@@ -65,6 +69,9 @@ private:
 #ifdef	USE_DX10
 	map_GS												m_gs;
 #endif	//	USE_DX10
+#ifdef USE_OGL
+	map_Program											m_program;
+#endif // USE_OGL
 	map_TD												m_td;
 
 	xr_vector<SState*>									v_states;
@@ -161,12 +168,15 @@ public:
 
 	SVS*							_CreateVS			(LPCSTR Name);
 	void							_DeleteVS			(const SVS*	VS	);
-
+#ifdef USE_OGL
+	SPass*							_CreatePass			(ref_state& _state, ref_program& _program, ref_ctable& _ctable, ref_texture_list& _T, ref_matrix_list& _M, ref_constant_list& _C);
+#else
 #ifdef	USE_DX10
 	SPass*							_CreatePass			(ref_state& _state, ref_ps& _ps, ref_vs& _vs, ref_gs& _gs, ref_ctable& _ctable, ref_texture_list& _T, ref_matrix_list& _M, ref_constant_list& _C);
 #else	//	USE_DX10
 	SPass*							_CreatePass			(ref_state& _state, ref_ps& _ps, ref_vs& _vs, ref_ctable& _ctable, ref_texture_list& _T, ref_matrix_list& _M, ref_constant_list& _C);
 #endif	//	USE_DX10
+#endif // USE_OGL
 	void							_DeletePass			(const SPass* P	);
 
 	// Shader compiling / optimizing
@@ -191,6 +201,12 @@ public:
 
 	ShaderElement*					_CreateElement		(ShaderElement& L);
 	void							_DeleteElement		(const ShaderElement* L);
+
+#ifdef USE_OGL
+	SProgram*						_CreateProgram		(ref_vs& _vs, ref_ps& _ps);
+	void							_DeleteProgram		(const SProgram* P);
+#endif // USE_OGL
+
 
 	Shader*							_cpp_Create			(LPCSTR		s_shader,	LPCSTR s_textures=0,	LPCSTR s_constants=0,	LPCSTR s_matrices=0);
 	Shader*							_cpp_Create			(IBlender*	B,			LPCSTR s_shader=0,		LPCSTR s_textures=0,	LPCSTR s_constants=0, LPCSTR s_matrices=0);

@@ -36,8 +36,14 @@ void	CBlender_Compile::r_Pass		(LPCSTR _vs, LPCSTR _ps, bool bFog, BOOL bZtest, 
 	SGS* gs					= DEV->_CreateGS			("null");
 	dest.gs					= gs;
 #endif	//	USE_DX10
+#ifdef USE_OGL
+	SProgram* program		= DEV->_CreateProgram	(dest.vs, dest.ps);
+	dest.program			= program;
+	ctable.merge			(&program->constants);
+#else
 	ctable.merge			(&ps->constants);
 	ctable.merge			(&vs->constants);
+#endif // USE_OGL
 	SetMapping				();
 
 #ifndef USE_OGL
@@ -175,7 +181,11 @@ void	CBlender_Compile::r_End			()
 	SH->passes.push_back	(DEV->_CreatePass(dest.state,dest.ps,dest.vs,dest.constants,dest.T,dest.M,dest.C));
 #else
 	ref_matrix_list			temp(0);
+#ifdef USE_OGL
+	SH->passes.push_back	(DEV->_CreatePass(dest.state,dest.program,dest.constants,dest.T,temp,dest.C));
+#else
 	SH->passes.push_back	(DEV->_CreatePass(dest.state,dest.ps,dest.vs,dest.constants,dest.T,temp,dest.C));
+#endif // USE_OGL
 #endif
 }
 #endif	//	USE_DX10

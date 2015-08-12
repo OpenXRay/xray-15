@@ -290,4 +290,15 @@ IC void CBackend::set_Constants(R_constant_table* C)
 	}
 }
 
+ICF void CBackend::set_Program(GLuint _program)
+{
+	if (program != _program)
+	{
+		PGO(Msg("PGO:Program:%x", _program));
+		stat.program++;
+		program = _program;
+		CHK_GL(glUseProgram(program));
+	}
+}
+
 #endif	//	glR_Backend_Runtime_included

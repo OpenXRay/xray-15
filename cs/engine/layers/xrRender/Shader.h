@@ -99,15 +99,19 @@ struct	  ECORE_API		SPass			: public xr_resource_flagged									{
 #endif
 
 #ifdef USE_OGL
-	GLuint								program;
+	ref_program							program;
 #endif // USE_OGL
 
 						~SPass			();
+#ifdef USE_OGL
+	BOOL				equal			(ref_state& _state, ref_program& _program, ref_ctable& _ctable, ref_texture_list& _T, ref_matrix_list& _M, ref_constant_list& _C);
+#else
 #ifdef	USE_DX10
 	BOOL				equal			(ref_state& _state, ref_ps& _ps, ref_vs& _vs, ref_gs& _gs, ref_ctable& _ctable, ref_texture_list& _T, ref_matrix_list& _M, ref_constant_list& _C);
 #else	//	USE_DX10
 	BOOL				equal			(ref_state& _state, ref_ps& _ps, ref_vs& _vs, ref_ctable& _ctable, ref_texture_list& _T, ref_matrix_list& _M, ref_constant_list& _C);
 #endif	USE_DX10
+#endif // USE_OGL
 };
 typedef	resptr_core<SPass,resptr_base<SPass> >												ref_pass;
 

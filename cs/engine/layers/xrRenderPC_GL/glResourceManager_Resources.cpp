@@ -101,49 +101,28 @@ void		CResourceManager::_DeleteState		(const SState* state)
 }
 
 //--------------------------------------------------------------------------------------------------------------
-SPass*		CResourceManager::_CreatePass			(ref_state& _state, ref_ps& _ps, ref_vs& _vs, ref_ctable& _ctable, ref_texture_list& _T, ref_matrix_list& _M, ref_constant_list& _C)
+SPass*		CResourceManager::_CreatePass			(ref_state& _state, ref_program& _program, ref_ctable& _ctable, ref_texture_list& _T, ref_matrix_list& _M, ref_constant_list& _C)
 {
 	for (u32 it=0; it<v_passes.size(); it++)
-		if (v_passes[it]->equal(_state,_ps,_vs,_ctable,_T,_M,_C))
+		if (v_passes[it]->equal(_state,_program,_ctable,_T,_M,_C))
 			return v_passes[it];
-
-#ifdef USE_OGL
-	// Now that we're creating the pass we can link the program
-	GLuint _program = 0;
-	if (_vs->vs && _ps->ps) {
-		_program = glCreateProgram();
-		CHK_GL(glAttachShader(_program, _vs->vs));
-		CHK_GL(glAttachShader(_program, _ps->ps));
-		CHK_GL(glLinkProgram(_program));
-
-		// Check if the linking succeeded
-		GLint _result;
-		CHK_GL(glGetProgramiv(_program, GL_LINK_STATUS, &_result));
-		if (_result == FALSE)
-		{
-			GLint _length;
-			glGetProgramiv(_program, GL_INFO_LOG_LENGTH, &_length);
-			GLchar* pErrorBuf = xr_alloc<GLchar>(_length);
-			glGetShaderInfoLog(_program, _length, nullptr, pErrorBuf);
-			Log("! Pass error: ", pErrorBuf);
-			R_ASSERT2(_result, pErrorBuf);
-			xr_free(pErrorBuf);
-		}
-	}
-#endif // USE_OGL
 
 	SPass*	P				= new SPass();
 	P->dwFlags				|=	xr_resource_flagged::RF_REGISTERED;
 	P->state					=	_state;
+
+#ifdef USE_OGL
+	P->program				=	_program;
+#else
 	P->ps					=	_ps;
 	P->vs					=	_vs;
+#endif // USE_OGL
 	P->constants				=	_ctable;
 	P->T						=	_T;
 #ifdef _EDITOR
 	P->M						=	_M;
 #endif
 	P->C						=	_C;
-	P->program				=   _program;
 
 	v_passes.push_back			(P);
 	return v_passes.back();
@@ -678,3 +657,60 @@ void			CResourceManager::_DeleteConstantList(const SConstantList* L )
 	Msg	("! ERROR: Failed to find compiled list of r1-constant-defs");
 }
 
+//--------------------------------------------------------------------------------------------------------------
+SProgram*		CResourceManager::_CreateProgram(ref_vs& _vs, ref_ps& _ps)
+{
+	string_path			name;
+	strconcat(sizeof(name), name, *_vs->cName, ";", *_ps->cName);
+	LPSTR N = LPSTR(name);
+	map_Program::iterator I = m_program.find(N);
+	if (I != m_program.end())	return I->second;
+	else
+	{
+		// Now that we're creating the pass we can link the program
+		SProgram* _program = new SProgram();
+		_program->dwFlags |= xr_resource_flagged::RF_REGISTERED;
+		m_program.insert(mk_pair(N, _program));
+		if (!_vs->vs || !_ps->ps)	{
+			_program->program = NULL;
+			return _program;
+		}
+		_program->program = glCreateProgram();
+		CHK_GL(glAttachShader(_program->program, _vs->vs));
+		CHK_GL(glAttachShader(_program->program, _ps->ps));
+		CHK_GL(glLinkProgram(_program->program));
+
+		// Check if the linking succeeded
+		GLint _result;
+		CHK_GL(glGetProgramiv(_program->program, GL_LINK_STATUS, &_result));
+		if (_result == GL_TRUE)
+		{
+			//	Let constant table parse its data
+			VERIFY(!"OGL: Constant table parsing not implemented.");
+		}
+		else
+		{
+			GLint _length;
+			glGetProgramiv(_program->program, GL_INFO_LOG_LENGTH, &_length);
+			GLchar* pErrorBuf = xr_alloc<GLchar>(_length);
+			glGetShaderInfoLog(_program->program, _length, nullptr, pErrorBuf);
+			Log("! Pass error: ", pErrorBuf);
+			R_ASSERT2(_result, pErrorBuf);
+			xr_free(pErrorBuf);
+		}
+	}
+}
+
+void	CResourceManager::_DeleteProgram(const SProgram* program)
+{
+	if (0 == (program->dwFlags&xr_resource_flagged::RF_REGISTERED))	return;
+	string_path			name;
+	strconcat(sizeof(name), name, *program->vs->cName, ";", *program->ps->cName);
+	LPSTR N = LPSTR(name);
+	map_Program::iterator I = m_program.find(N);
+	if (I != m_program.end())	{
+		m_program.erase(I);
+		return;
+	}
+	Msg("! ERROR: Failed to find compiled shader program with vs '%s' and ps '%s'", *program->vs->cName, *program->ps->cName);
+}
