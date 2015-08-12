@@ -214,6 +214,11 @@ void CBackend::DestroyConstantBuffers()
 #ifdef USE_OGL
 void CBackend::LoadShaderIncludes()
 {
+	CHECK_OR_EXIT(
+		glewIsSupported("GL_ARB_shading_language_include"),
+		make_string("Your video card doesn't meet game requirements\n\nOpenGL version 3.2 or higher required")
+		);
+
 	// Open file list
 	typedef xr_vector<LPSTR>		file_list_type;
 	file_list_type*					file_list = FS.file_list_open("$game_shaders$", ::Render->getShaderPath());
