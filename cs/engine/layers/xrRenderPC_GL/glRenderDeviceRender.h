@@ -72,6 +72,6 @@ private:
 	HDC				m_hDC;
 	HGLRC			m_hRC;
 
-	static void glRenderDeviceRender::OnDebugCallback(GLenum source, GLenum type, GLuint id, GLenum severity,
+	static void CALLBACK glRenderDeviceRender::OnDebugCallback(GLenum source, GLenum type, GLuint id, GLenum severity,
 		GLsizei length, const GLchar* message, const void* userParam);
 };

@@ -3,10 +3,11 @@
 
 #include <stdio.h>
 
-void glRenderDeviceRender::OnDebugCallback(GLenum source, GLenum type, GLuint id, GLenum severity,
+void CALLBACK glRenderDeviceRender::OnDebugCallback(GLenum source, GLenum type, GLuint id, GLenum severity,
 	GLsizei length, const GLchar* message, const void* userParam)
 {
-	Log(message, id);
+	if (severity != GL_DEBUG_SEVERITY_NOTIFICATION)
+		Log(message, id);
 }
 
 glRenderDeviceRender::glRenderDeviceRender()
@@ -121,10 +122,10 @@ bool glRenderDeviceRender::Create(HWND hWnd, u32 &dwWidth, u32 &dwHeight, float 
 		return false;
 	}
 
-#if 0
+#ifdef DEBUG
 	CHK_GL(glEnable(GL_DEBUG_OUTPUT));
 	CHK_GL(glDebugMessageCallback((GLDEBUGPROC)OnDebugCallback, nullptr));
-#endif
+#endif // DEBUG
 
 	Resources = new CResourceManager();
 
