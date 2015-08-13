@@ -671,12 +671,14 @@ SProgram*		CResourceManager::_CreateProgram(ref_vs& _vs, ref_ps& _ps)
 		SProgram* _program = new SProgram();
 		_program->dwFlags |= xr_resource_flagged::RF_REGISTERED;
 		m_program.insert(mk_pair(_program->set_name(N), _program));
-		if (!_vs->vs || !_ps->ps)	{
+		if (!_ps->ps)	{
 			_program->program = NULL;
 			return _program;
 		}
 		_program->program = glCreateProgram();
-		CHK_GL(glAttachShader(_program->program, _vs->vs));
+		// TODO: OGL: Implement a default vertex shader
+		if (_vs->vs)
+			CHK_GL(glAttachShader(_program->program, _vs->vs));
 		CHK_GL(glAttachShader(_program->program, _ps->ps));
 		CHK_GL(glLinkProgram(_program->program));
 

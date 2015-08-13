@@ -87,6 +87,7 @@ u32		CBlender_Compile::i_Sampler		(LPCSTR _name)
 
 	// Find index
 	ref_constant C			= ctable.get(name);
+	VERIFY(C);
 	if (!C)					return	u32(-1);
 
 	R_ASSERT				(C->type == RC_sampler);
