@@ -661,7 +661,7 @@ void			CResourceManager::_DeleteConstantList(const SConstantList* L )
 SProgram*		CResourceManager::_CreateProgram(ref_vs& _vs, ref_ps& _ps)
 {
 	string_path			name;
-	strconcat(sizeof(name), name, *_vs->cName, ";", *_ps->cName);
+	strconcat(sizeof(name), name, *_vs->cName, ":", *_ps->cName);
 	LPSTR N = LPSTR(name);
 	map_Program::iterator I = m_program.find(N);
 	if (I != m_program.end())	return I->second;
@@ -704,16 +704,14 @@ SProgram*		CResourceManager::_CreateProgram(ref_vs& _vs, ref_ps& _ps)
 	}
 }
 
-void	CResourceManager::_DeleteProgram(const SProgram* program)
+void	CResourceManager::_DeleteProgram(const SProgram* P)
 {
-	if (0 == (program->dwFlags&xr_resource_flagged::RF_REGISTERED))	return;
-	string_path			name;
-	strconcat(sizeof(name), name, *program->vs->cName, ";", *program->ps->cName);
-	LPSTR N = LPSTR(name);
-	map_Program::iterator I = m_program.find(N);
-	if (I != m_program.end())	{
+	if (0==(P->dwFlags&xr_resource_flagged::RF_REGISTERED))	return;
+	LPSTR N				= LPSTR		(*P->cName);
+	map_Program::iterator I	= m_program.find	(N);
+	if (I!=m_program.end())	{
 		m_program.erase(I);
 		return;
 	}
-	Msg("! ERROR: Failed to find compiled shader program with vs '%s' and ps '%s'", *program->vs->cName, *program->ps->cName);
+	Msg	("! ERROR: Failed to find linked shader program '%s'",*P->cName);
 }
