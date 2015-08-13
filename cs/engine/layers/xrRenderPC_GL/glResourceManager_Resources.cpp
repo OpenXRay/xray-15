@@ -685,8 +685,8 @@ SProgram*		CResourceManager::_CreateProgram(ref_vs& _vs, ref_ps& _ps)
 		CHK_GL(glGetProgramiv(_program->program, GL_LINK_STATUS, &_result));
 		if (_result == GL_TRUE)
 		{
-			//	Let constant table parse its data
-			VERIFY(!"OGL: Constant table parsing not implemented.");
+			// Let constant table parse its data without differentiating between stages
+			_program->constants.parse(&_program->program, RC_dest_pixel | RC_dest_vertex);
 		}
 		else
 		{

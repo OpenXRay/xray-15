@@ -274,6 +274,7 @@
     <ClCompile Include="glRenderFactory.cpp" />
     <ClCompile Include="glResourceManager_Resources.cpp" />
     <ClCompile Include="glResourceManager_Scripting.cpp" />
+    <ClCompile Include="glr_constants.cpp" />
     <ClCompile Include="glShader.cpp" />
     <ClCompile Include="glSH_RT.cpp" />
     <ClCompile Include="glSH_Texture.cpp" />

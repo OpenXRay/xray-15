@@ -459,6 +459,9 @@
     <ClCompile Include="glUISequenceVideoItem.cpp">
       <Filter>Interface implementations\UI\UISequenceVideoItem</Filter>
     </ClCompile>
+    <ClCompile Include="glr_constants.cpp">
+      <Filter>Refactored\Execution &amp; 3D\Shaders\Resources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
