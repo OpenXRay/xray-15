@@ -332,7 +332,7 @@ void CBackend::set_Textures			(STextureList* _T)
 		textures_gs[_last_gs]			= 0;
 
 #ifdef	USE_OGL
-		CHK_GL							(glActiveTexture(GL_TEXTURE0 + CTexture::rstGeometry + _last_gs));
+		CHK_GL							(glActiveTexture(GL_TEXTURE20 + _last_gs));
 		CHK_GL							(glBindTexture(GL_TEXTURE_2D, 0));
 		CHK_GL							(glBindTexture(GL_TEXTURE_CUBE_MAP, 0));
 #else

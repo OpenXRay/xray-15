@@ -125,17 +125,18 @@ _DDS:
 			dwHeight = Texture.dimensions().y;
 			fmt = GL.translate(Texture.format());
 
-			glCreateTextures(GL_TEXTURE_CUBE_MAP, 1, &pTexture);
-			CHK_GL(glTextureStorage2D(pTexture, mip_cnt, fmt.Internal, dwWidth, dwHeight));
+			glGenTextures(1, &pTexture);
+			glBindTexture(GL_TEXTURE_CUBE_MAP, pTexture);
+			CHK_GL(glTexStorage2D(GL_TEXTURE_CUBE_MAP, mip_cnt, fmt.Internal, dwWidth, dwHeight));
 			for (size_t i = 0; i < mip_cnt; i++)
 			{
 				if (gli::is_compressed(Texture.format()))
 				{
-					CHK_GL(glCompressedTextureSubImage2D(pTexture, i, 0, 0, dwWidth, dwHeight,
+					CHK_GL(glCompressedTexSubImage2D(GL_TEXTURE_CUBE_MAP, i, 0, 0, dwWidth, dwHeight,
 						fmt.External, Texture[i].size(), Texture[i].data()));
 				}
 				else {
-					CHK_GL(glTextureSubImage2D(pTexture, i, 0, 0, dwWidth, dwHeight,
+					CHK_GL(glTexSubImage2D(GL_TEXTURE_CUBE_MAP, i, 0, 0, dwWidth, dwHeight,
 						fmt.External, Texture[i].size(), Texture[i].data()));
 				}
 			}
@@ -161,17 +162,18 @@ _DDS:
 			dwHeight = Texture.dimensions().y;
 			fmt = GL.translate(Texture.format());
 
-			glCreateTextures(GL_TEXTURE_2D, 1, &pTexture);
-			CHK_GL(glTextureStorage2D(pTexture, mip_cnt, fmt.Internal, dwWidth, dwHeight));
+			glGenTextures(1, &pTexture);
+			glBindTexture(GL_TEXTURE_2D, pTexture);
+			CHK_GL(glTexStorage2D(GL_TEXTURE_2D, mip_cnt, fmt.Internal, dwWidth, dwHeight));
 			for (size_t i = 0; i < mip_cnt; i++)
 			{
 				if (gli::is_compressed(Texture.format()))
 				{
-					CHK_GL(glCompressedTextureSubImage2D(pTexture, i, 0, 0, dwWidth, dwHeight,
+					CHK_GL(glCompressedTexSubImage2D(GL_TEXTURE_2D, i, 0, 0, dwWidth, dwHeight,
 						fmt.External, Texture[i].size(), Texture[i].data()));
 				}
 				else {
-					CHK_GL(glTextureSubImage2D(pTexture, i, 0, 0, dwWidth, dwHeight,
+					CHK_GL(glTexSubImage2D(GL_TEXTURE_2D, i, 0, 0, dwWidth, dwHeight,
 						fmt.External, Texture[i].size(), Texture[i].data()));
 				}
 			}
