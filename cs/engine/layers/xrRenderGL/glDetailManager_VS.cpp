@@ -51,7 +51,7 @@ void CDetailManager::hw_Load_Geom()
 	Msg("* [DETAILS] %d v(%d), %d p", dwVerts, vSize, dwIndices / 3);
 
 	// Determine POOL & USAGE
-	u32 dwUsage = GL_WRITE_ONLY;
+	u32 dwUsage = GL_STATIC_DRAW;
 
 	// Create VB/IB
 	glGenBuffers(1, &hw_VB);
