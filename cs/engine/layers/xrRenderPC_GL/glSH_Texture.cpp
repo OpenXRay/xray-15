@@ -77,13 +77,13 @@ void CTexture::apply_theora(u32 dwStage)	{
 	CHK_GL(glBindTexture(desc, pSurface));
 
 	if (pTheora->Update(m_play_time!=0xFFFFFFFF?m_play_time:Device.dwTimeContinual)) {
-		u32 width	= pTheora->Width(true);
-		u32 height	= pTheora->Height(true);
+		m_width		= pTheora->Width(true);
+		m_height	= pTheora->Height(true);
 		u32* pBits	= xr_alloc<u32>(pTheora->Width(false)*pTheora->Height(false) * 4);
 
 		int _pos = 0;
-		pTheora->DecompressFrame(pBits, pTheora->Width(false) - width, _pos);
-		CHK_GL(glTexSubImage2D(desc, 0, 0, 0, width, height,
+		pTheora->DecompressFrame(pBits, pTheora->Width(false) - m_width, _pos);
+		CHK_GL(glTexSubImage2D(desc, 0, 0, 0, m_width, m_height,
 			GL_RGBA, GL_UNSIGNED_BYTE, pBits));
 	}
 };
@@ -92,14 +92,14 @@ void CTexture::apply_avi(u32 dwStage)	{
 
 	if (pAVI->NeedUpdate())		{
 		// AVI
+		m_width		= pAVI->m_dwWidth;
+		m_height	= pAVI->m_dwHeight;
 		BYTE* ptr; pAVI->GetFrame(&ptr);
-		CHK_GL(glTexSubImage2D(desc, 0, 0, 0, pAVI->m_dwWidth, pAVI->m_dwHeight,
+		CHK_GL(glTexSubImage2D(desc, 0, 0, 0, m_width, m_height,
 			GL_RGBA, GL_UNSIGNED_BYTE, ptr));
 	}
 };
 void CTexture::apply_seq(u32 dwStage)	{
-	CHK_GL(glBindTexture(desc, pSurface));
-
 	// SEQ
 	u32	frame		= Device.dwTimeContinual/seqMSPF; //Device.dwTimeGlobal
 	u32	frame_data	= seqDATA.size();
@@ -111,6 +111,9 @@ void CTexture::apply_seq(u32 dwStage)	{
 		u32	frame_id	= frame%frame_data;
 		pSurface 			= seqDATA[frame_id];
 	}
+	CHK_GL(glBindTexture(desc, pSurface));
+	CHK_GL(glGetTexLevelParameteriv(desc, 0, GL_TEXTURE_WIDTH, &m_width));
+	CHK_GL(glGetTexLevelParameteriv(desc, 0, GL_TEXTURE_HEIGHT, &m_height));
 };
 void CTexture::apply_normal	(u32 dwStage)	{
 	CHK_GL(glBindTexture(desc, pSurface));
@@ -158,12 +161,12 @@ void CTexture::Load		()
 
 			// Now create texture
 			GLuint	pTexture = 0;
-			u32 _w = pTheora->Width(false);
-			u32 _h = pTheora->Height(false);
+			m_width = pTheora->Width(false);
+			m_height = pTheora->Height(false);
 
 			glGenTextures(1, &pTexture);
 			glBindTexture(GL_TEXTURE_2D, pTexture);
-			CHK_GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _w, _h, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr));
+			CHK_GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width, m_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr));
 
 			pSurface = pTexture;
 			if (glGetError() != GL_NO_ERROR)
@@ -187,9 +190,12 @@ void CTexture::Load		()
 
 			// Now create texture
 			GLuint	pTexture = 0;
+			m_width = pAVI->m_dwWidth;
+			m_height = pAVI->m_dwHeight;
+
 			glGenTextures(1, &pTexture);
 			glBindTexture(GL_TEXTURE_2D, pTexture);
-			CHK_GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, pAVI->m_dwWidth, pAVI->m_dwHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr));
+			CHK_GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width, m_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr));
 
 			pSurface = pTexture;
 			if (glGetError() != GL_NO_ERROR)
@@ -226,6 +232,9 @@ void CTexture::Load		()
 				pSurface = ::RImplementation.texture_load(buffer, mem, desc);
 				if (pSurface)
 				{
+					CHK_GL(glBindTexture(desc, pSurface));
+					CHK_GL(glGetTexLevelParameteriv(desc, 0, GL_TEXTURE_WIDTH, &m_width));
+					CHK_GL(glGetTexLevelParameteriv(desc, 0, GL_TEXTURE_HEIGHT, &m_height));
 					// pSurface->SetPriority	(PRIORITY_LOW);
 					seqDATA.push_back(pSurface);
 					flags.MemoryUsage += mem;
@@ -242,6 +251,9 @@ void CTexture::Load		()
 
 		// Calc memory usage and preload into vid-mem
 		if (pSurface) {
+			CHK_GL(glBindTexture(desc, pSurface));
+			CHK_GL(glGetTexLevelParameteriv(desc, 0, GL_TEXTURE_WIDTH, &m_width));
+			CHK_GL(glGetTexLevelParameteriv(desc, 0, GL_TEXTURE_HEIGHT, &m_height));
 			// pSurface->SetPriority	(PRIORITY_NORMAL);
 			flags.MemoryUsage = mem;
 		}
@@ -274,16 +286,9 @@ void CTexture::Unload	()
 	bind = fastdelegate::FastDelegate1<u32>(this, &CTexture::apply_load);
 }
 
-void CTexture::desc_update	()
+void CTexture::desc_update()
 {
 	desc_cache = pSurface;
-	if (pSurface && (GL_TEXTURE_2D == desc))
-	{
-		glBindTexture(desc, pSurface);
-		glGetTexLevelParameteriv(desc, 0, GL_TEXTURE_WIDTH, &m_width);
-		glGetTexLevelParameteriv(desc, 0, GL_TEXTURE_HEIGHT, &m_height);
-		glBindTexture(desc, 0);
-	}
 }
 
 void CTexture::video_Play		(BOOL looped, u32 _time)	
