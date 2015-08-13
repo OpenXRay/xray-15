@@ -49,7 +49,7 @@ public:
 	virtual void	ResourcesDumpMemoryUsage();
 
 	//	HWSupport
-	virtual bool	HWSupportsShaderYUV2RGB() { VERIFY(!"glRenderDeviceRender::HWSupportsShaderYUV2RGB not implemented."); return false; };
+	virtual bool	HWSupportsShaderYUV2RGB() { return true; };
 
 	//	Device state
 	virtual DeviceState GetDeviceState() { return dsOK; };
@@ -57,7 +57,7 @@ public:
 	virtual u32		GetCacheStatPolys() { VERIFY(!"glRenderDeviceRender::GetCacheStatPolys not implemented."); return 0; };
 	virtual void	Begin();
 	virtual void	Clear() { VERIFY(!"glRenderDeviceRender::Clear not implemented."); };
-	virtual void	End() { VERIFY(!"glRenderDeviceRender::End not implemented."); };
+	virtual void	End();
 	virtual void	ClearTarget();
 	virtual void	SetCacheXform(Fmatrix &mView, Fmatrix &mProject);
 	virtual void	OnAssetsChanged() { VERIFY(!"glRenderDeviceRender::OnAssetsChanged not implemented."); };

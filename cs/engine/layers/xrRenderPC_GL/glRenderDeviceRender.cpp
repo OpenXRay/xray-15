@@ -209,3 +209,10 @@ void glRenderDeviceRender::Begin()
 	RCache.set_CullMode(CULL_CW);
 	RCache.set_CullMode(CULL_CCW);
 }
+
+void glRenderDeviceRender::End()
+{
+	RCache.OnFrameEnd();
+	Memory.dbg_check();
+	SwapBuffers(m_hDC);
+}
