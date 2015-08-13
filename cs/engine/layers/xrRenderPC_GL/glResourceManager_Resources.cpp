@@ -670,7 +670,7 @@ SProgram*		CResourceManager::_CreateProgram(ref_vs& _vs, ref_ps& _ps)
 		// Now that we're creating the pass we can link the program
 		SProgram* _program = new SProgram();
 		_program->dwFlags |= xr_resource_flagged::RF_REGISTERED;
-		m_program.insert(mk_pair(N, _program));
+		m_program.insert(mk_pair(_program->set_name(N), _program));
 		if (!_vs->vs || !_ps->ps)	{
 			_program->program = NULL;
 			return _program;
@@ -693,11 +693,12 @@ SProgram*		CResourceManager::_CreateProgram(ref_vs& _vs, ref_ps& _ps)
 			GLint _length;
 			glGetProgramiv(_program->program, GL_INFO_LOG_LENGTH, &_length);
 			GLchar* pErrorBuf = xr_alloc<GLchar>(_length);
-			glGetShaderInfoLog(_program->program, _length, nullptr, pErrorBuf);
+			glGetProgramInfoLog(_program->program, _length, nullptr, pErrorBuf);
 			Log("! Pass error: ", pErrorBuf);
 			R_ASSERT2(_result, pErrorBuf);
 			xr_free(pErrorBuf);
 		}
+		return _program;
 	}
 }
 
