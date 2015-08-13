@@ -85,6 +85,7 @@ void CTexture::apply_theora(u32 dwStage)	{
 		pTheora->DecompressFrame(pBits, pTheora->Width(false) - m_width, _pos);
 		CHK_GL(glTexSubImage2D(desc, 0, 0, 0, m_width, m_height,
 			GL_RGBA, GL_UNSIGNED_BYTE, pBits));
+		xr_free(pBits);
 	}
 };
 void CTexture::apply_avi(u32 dwStage)	{

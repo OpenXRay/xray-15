@@ -131,6 +131,7 @@ BOOL	R_constant_table::parse(void* _desc, u16 destination)
 			L.index				=	r_index;
 			L.cls				=	r_type;
 		}
+		xr_free(name);
 	}
 	std::sort(table.begin(), table.end(), p_sort);
 	return		TRUE;
