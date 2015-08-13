@@ -216,8 +216,12 @@ public:
 #ifdef	USE_DX10
 	IC	void						get_ConstantDirect	(shared_str& n, u32 DataSize, void** pVData, void** pGData, void** pPData);
 #else	USE_DX10
+#ifdef USE_OGL
+	IC	R_constant_array&			get_ConstantCache_Program	()			{ return constants.a_program;	}
+#else
 	IC	R_constant_array&			get_ConstantCache_Vertex	()			{ return constants.a_vertex;	}
 	IC	R_constant_array&			get_ConstantCache_Pixel		()			{ return constants.a_pixel;		}
+#endif // USE_OGL
 #endif	//	USE_DX10
 
 	// API

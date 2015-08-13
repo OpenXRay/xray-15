@@ -205,8 +205,12 @@ void R_constant_table::merge(R_constant_table* T)
 			C->name				=	src->name;
 			C->destination		=	src->destination;
 			C->type				=	src->type;
+#ifdef USE_OGL
+			C->program			=	src->program;
+#else
 			C->ps				=	src->ps;
 			C->vs				=	src->vs;
+#endif // USE_OGL
 			C->samp				=	src->samp;
 			table.push_back		(C);
 		} 
@@ -215,8 +219,13 @@ void R_constant_table::merge(R_constant_table* T)
 			VERIFY2(!(C->destination&src->destination&RC_dest_sampler), "Can't have samplers or textures with the same name for PS, VS and GS.");
 			C->destination		|=	src->destination;
 			VERIFY	(C->type	==	src->type);
+#ifdef USE_OGL
+			R_constant_load& sL	=	(src->destination&4)?src->samp:src->program;
+			R_constant_load& dL	=	(src->destination&4)?C->samp:C->program;
+#else
 			R_constant_load& sL	=	(src->destination&4)?src->samp:((src->destination&1)?src->ps:src->vs);
 			R_constant_load& dL	=	(src->destination&4)?C->samp:((src->destination&1)?C->ps:C->vs);
+#endif // USE_OGL
 			dL.index			=	sL.index;
 			dL.cls				=	sL.cls;
 		}

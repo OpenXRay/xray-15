@@ -120,14 +120,14 @@ BOOL	R_constant_table::parse(void* _desc, u16 destination)
 			C->name				=	name;
 			C->destination		=	destination;
 			C->type				=	type;
-			R_constant_load& L	=	(destination&1)?C->ps:C->vs;
+			R_constant_load& L	=	C->program;
 			L.index				=	r_index;
 			L.cls				=	r_type;
 			table.push_back		(C);
 		} else {
 			C->destination		|=	destination;
 			VERIFY	(C->type	==	type);
-			R_constant_load& L	=	(destination&1)?C->ps:C->vs;
+			R_constant_load& L	=	C->program;
 			L.index				=	r_index;
 			L.cls				=	r_type;
 		}
