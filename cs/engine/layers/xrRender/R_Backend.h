@@ -423,13 +423,6 @@ private:
 
 	bool					m_bChangedRTorZB;
 #endif	//	USE_DX10
-
-#ifdef USE_OGL
-private:
-	// OpenGL internal functionality
-	void	LoadShaderIncludes();
-#endif // USE_OGL
-
 };
 #pragma warning(pop)
 

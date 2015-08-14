@@ -161,9 +161,6 @@ void CBackend::OnDeviceCreate	()
 #ifdef	USE_DX10
 	//CreateConstantBuffers();
 #endif	//	USE_DX10
-#ifdef	USE_OGL
-	LoadShaderIncludes();
-#endif	//	USE_OGL
 
 	CreateQuadIB		();
 
@@ -210,42 +207,3 @@ void CBackend::DestroyConstantBuffers()
 }
 */
 #endif	//	USE_DX10
-
-#ifdef USE_OGL
-void CBackend::LoadShaderIncludes()
-{
-	CHECK_OR_EXIT(
-		glewIsSupported("GL_ARB_shading_language_include"),
-		make_string("Your video card doesn't meet game requirements\n\nOpenGL version 3.2 or higher required")
-		);
-
-	// Open file list
-	typedef xr_vector<LPSTR>		file_list_type;
-	file_list_type*					file_list = FS.file_list_open("$game_shaders$", ::Render->getShaderPath());
-	VERIFY(file_list);
-
-	file_list_type::const_iterator	i = file_list->begin();
-	file_list_type::const_iterator	e = file_list->end();
-	for (; i != e; ++i) {
-		// Open file
-		string_path					cname, fn;
-		strcpy_s(fn, *i);
-		if (0 == strext(fn) || 0 != xr_strcmp(strext(fn), ".h"))	continue;
-		strconcat(sizeof(cname), cname, ::Render->getShaderPath(), fn);
-		FS.update_path(cname, "$game_shaders$", cname);
-
-		// Convert to OGL path
-		string_path					glname;
-		while (char* sep = strchr(fn, '\\')) *sep = '/';
-		strconcat(sizeof(glname), glname, "/", fn);
-
-		// Load the include file
-		IReader*		R = FS.r_open(cname);
-		R_ASSERT2(R, cname);
-		CHK_GL(glNamedStringARB(GL_SHADER_INCLUDE_ARB, xr_strlen(glname), glname, R->length(), (GLchar*)R->pointer()));
-		FS.r_close(R);
-	}
-
-	FS.file_list_close(file_list);
-}
-#endif // USE_OGL

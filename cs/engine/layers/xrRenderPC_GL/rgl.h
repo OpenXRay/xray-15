@@ -59,6 +59,9 @@ public:
 	CHOM							HOM;
 	CDetailManager*					Details;
 
+private:
+	char*							LoadIncludes(LPCSTR pSrcData, UINT SrcDataLen, xr_vector<char*>& includes);
+
 public:
 	// feature level
 	virtual	GenerationLevel			get_generation() { return IRender_interface::GENERATION_R2; };

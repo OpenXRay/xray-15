@@ -96,6 +96,40 @@ void					CRender::create()
 	//::PortalTraverser.initialize();
 }
 
+char* CRender::LoadIncludes(LPCSTR pSrcData, UINT SrcDataLen, xr_vector<char*>& includes)
+{
+	char* srcData = xr_alloc<char>(SrcDataLen);
+	memcpy(srcData, pSrcData, SrcDataLen);
+	srcData[SrcDataLen] = '\0';
+
+	string_path fn, path;
+	char* str = srcData;
+	while (strstr(str, "#include") != nullptr)
+	{
+		// get filename
+		str = strstr(str, "#include");
+		str[0] = str[1] = '/';
+		str = strchr(str, '"') + 1; // Skip quotation
+		size_t len = strchr(str, '"') - str;
+		strncpy(fn, str, len);
+		fn[len] = '\0';
+
+		// create path
+		strconcat(sizeof(path), path, ::Render->getShaderPath(), fn);
+		FS.update_path(path, "$game_shaders$", path);
+		while (char* sep = strchr(path, '/')) *sep = '\\';
+
+		// open and read file
+		IReader* R = FS.r_open(path);
+		R_ASSERT2(R, path);
+		includes.push_back(LoadIncludes((char*)R->pointer(), R->length(), includes));
+		FS.r_close(R);
+	}
+
+	// remove include directives from source data
+	return srcData;
+}
+
 struct SHADER_MACRO {
 	char *Define = "#define ", *Name = "\n", *Definition = "\n", *EOL = "\n";
 };
@@ -113,6 +147,7 @@ HRESULT	CRender::shader_compile(
 	void*							_ppErrorMsgs,
 	void*							_ppConstantTable)
 {
+	xr_vector<char*>				includes;
 	SHADER_MACRO					defines[128];
 	int								def_it = 0;
 	char							c_smapsize[32];
@@ -120,13 +155,7 @@ HRESULT	CRender::shader_compile(
 	char							c_sun_shafts[32];
 	char							c_ssao[32];
 	char							c_sun_quality[32];
-
-	// header
-	{
-		defines[def_it].Define = "#version 130\n";
-		defines[def_it].Name = "#extension GL_ARB_shading_language_include : require\n";
-		def_it++;
-	}
+	const char*						srcData;
 
 	// TODO: OGL: Implement these parameters.
 	VERIFY(!_pDefines);
@@ -135,6 +164,9 @@ HRESULT	CRender::shader_compile(
 	VERIFY(!pTarget);
 	VERIFY(!Flags);
 	VERIFY(!_ppConstantTable);
+
+	// open included files
+	srcData = LoadIncludes(pSrcData, SrcDataLen, includes);
 
 	// options
 	{
@@ -321,26 +353,32 @@ HRESULT	CRender::shader_compile(
 		def_it++;
 	}
 
-	// The last string is the source data.
-	char* _srcData = xr_alloc<char>(SrcDataLen + 1);
-	memcpy(_srcData, pSrcData, SrcDataLen);
-	_srcData[SrcDataLen] = '\0';
-	defines[def_it].Define = _srcData;
+	// Compile sources list
+	size_t def_len = def_it * 4;
+	size_t sources_len = includes.size() + def_len + 2;
+	const char** sources = xr_alloc<const char*>(sources_len);
+	sources[0] = "#version 130\n";
+	memcpy(sources + 1, includes.data(), includes.size() * sizeof(char*));
+	memcpy(sources + includes.size() + 1, defines, def_len * sizeof(char*));
+	sources[sources_len - 1] = srcData;
 
-	// Compile the shader.
-	char* include_path[] = { "/" };
+	// Compile the shader
 	GLuint _shader = *(GLuint*)_ppShader;
 	R_ASSERT(_shader);
-	CHK_GL(glShaderSource(_shader, def_it * 4 + 1, (const char**)&defines, nullptr));
-	CHK_GL(glCompileShaderIncludeARB(_shader, 1, include_path, NULL));
-	//CHK_GL(glCompileShader(_shader));
-	xr_free(_srcData);
+	CHK_GL(glShaderSource(_shader, sources_len, sources, nullptr));
+	CHK_GL(glCompileShader(_shader));
 
-	// Get the compilation result.
+	// Free string resources
+	xr_free(sources);
+	xr_free(srcData);
+	for (xr_vector<char*>::iterator it = includes.begin(); it != includes.end(); it++)
+		xr_free(*it);
+
+	// Get the compilation result
 	GLint _result;
 	glGetShaderiv(_shader, GL_COMPILE_STATUS, &_result);
 
-	// Get the compilation log, if requested.
+	// Get the compilation log, if requested
 	if (_ppErrorMsgs)
 	{
 		GLint _length;
