@@ -1,0 +1,13 @@
+#include "common.h"
+
+in vec2 oTex0;
+in vec4 oColor;
+
+out vec4 color;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Pixel
+void main()
+{
+	color = texture2D(s_base, oTex0)*oColor;
+}

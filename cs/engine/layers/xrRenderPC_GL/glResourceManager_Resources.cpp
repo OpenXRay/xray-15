@@ -249,10 +249,6 @@ SPS*	CResourceManager::_CreatePS			(LPCSTR _name)
 		SPS*	_ps = new SPS();
 		_ps->dwFlags |= xr_resource_flagged::RF_REGISTERED;
 		m_ps.insert(mk_pair(_ps->set_name(name), _ps));
-		if (0 == stricmp(_name, "null"))	{
-			_ps->ps = NULL;
-			return _ps;
-		}
 
 		// Open file
 		string_path					cname;

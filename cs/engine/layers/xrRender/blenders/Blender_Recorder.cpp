@@ -186,7 +186,7 @@ void	CBlender_Compile::PassEnd			()
 	ctable.merge			(&gs->constants);
 #endif	//	USE_DX10
 	SetMapping				();
-	ref_ctable			ct	= DEV->_CreateConstantTable(ctable);
+	ref_ctable			ct	= DEV->_CreateConstantTable	(ctable);
 	ref_texture_list	T 	= DEV->_CreateTextureList	(passTextures);
 	ref_matrix_list		M	= DEV->_CreateMatrixList	(passMatrices);
 	ref_constant_list	C	= DEV->_CreateConstantList	(passConstants);
