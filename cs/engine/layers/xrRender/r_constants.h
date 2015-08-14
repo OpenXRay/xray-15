@@ -62,12 +62,21 @@ struct ECORE_API	R_constant_load
 {
 	u16						index;		// linear index (pixel)
 	u16						cls;		// element class
+#ifdef USE_OGL
+	GLuint					location;
 
+	R_constant_load() : index(u16(-1)), cls(u16(-1)), location(0) {};
+#else
 	R_constant_load() : index(u16(-1)), cls(u16(-1)) {};
+#endif // USE_OGL
 
 	IC BOOL					equal		(R_constant_load& C)
 	{
+#ifdef USE_OGL
+		return (index==C.index) && (cls == C.cls) && (location == C.location);
+#else
 		return (index==C.index) && (cls == C.cls);
+#endif // USE_OGL
 	}
 };
 
@@ -114,10 +123,17 @@ public:
 	virtual ~R_constant_setup () {}
 };
 
+#ifdef USE_OGL
+class cl_sampler : public R_constant_setup		{ virtual void setup(R_constant* C); };
+#endif // USE_OGL
+
 class	 ECORE_API			R_constant_table	: public xr_resource_flagged	{
 public:
 	typedef xr_vector<ref_constant>		c_table;
 	c_table					table;
+#ifdef USE_OGL
+	cl_sampler				sampler_binder;
+#endif // USE_OGL
 
 #ifdef	USE_DX10
 	typedef std::pair<u32,ref_cbuffer>	cb_table_record;

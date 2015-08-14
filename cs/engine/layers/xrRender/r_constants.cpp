@@ -212,6 +212,7 @@ void R_constant_table::merge(R_constant_table* T)
 			C->vs				=	src->vs;
 #endif // USE_OGL
 			C->samp				=	src->samp;
+			C->handler			=	src->handler;
 			table.push_back		(C);
 		} 
 		else 

@@ -3,6 +3,11 @@
 
 #include "../xrRender/r_constants.h"
 
+void cl_sampler::setup(R_constant* C)
+{
+	CHK_GL(glUniform1i(C->samp.location, C->samp.index));
+}
+
 IC bool	p_sort(ref_constant C1, ref_constant C2)
 {
 	return xr_strcmp(C1->name, C2->name)<0;
@@ -38,9 +43,10 @@ BOOL	R_constant_table::parse(void* _desc, u16 destination)
 			GL_INT_VEC4 == type)
 			type = RC_int;
 
-		// Rindex,Rcount
+		// Rindex,Rcount,Rlocation
 		u16		r_index = i;
 		u16		r_type = u16(-1);
+		GLuint	r_location = glGetUniformLocation(program, name);
 
 		// TypeInfo + class
 		BOOL bSkip = FALSE;
@@ -92,17 +98,21 @@ BOOL	R_constant_table::parse(void* _desc, u16 destination)
 					C->name = name;
 					C->destination = RC_dest_sampler;
 					C->type = RC_sampler;
+					C->handler = &sampler_binder;
 					R_constant_load& L = C->samp;
 					L.index = r_index;
 					L.cls = RC_sampler;
+					L.location = r_location;
 					table.push_back(C);
 				}
 				else {
 					R_ASSERT(C->destination == RC_dest_sampler);
 					R_ASSERT(C->type == RC_sampler);
+					R_ASSERT(C->handler == &sampler_binder);
 					R_constant_load& L = C->samp;
 					R_ASSERT(L.index == r_index);
 					R_ASSERT(L.cls == RC_sampler);
+					R_ASSERT(L.location == r_location);
 				}
 			}
 			bSkip = TRUE;
@@ -123,6 +133,7 @@ BOOL	R_constant_table::parse(void* _desc, u16 destination)
 			R_constant_load& L	=	C->program;
 			L.index				=	r_index;
 			L.cls				=	r_type;
+			L.location			=	r_location;
 			table.push_back		(C);
 		} else {
 			C->destination		|=	destination;
@@ -130,6 +141,7 @@ BOOL	R_constant_table::parse(void* _desc, u16 destination)
 			R_constant_load& L	=	C->program;
 			L.index				=	r_index;
 			L.cls				=	r_type;
+			L.location			=	r_location;
 		}
 	}
 	std::sort(table.begin(), table.end(), p_sort);
