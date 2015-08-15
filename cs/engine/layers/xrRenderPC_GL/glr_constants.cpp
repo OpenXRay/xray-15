@@ -29,18 +29,19 @@ BOOL	R_constant_table::parse(void* _desc, u16 destination)
 
 	for (GLint i = 0; i < uniformCount; i++) {
 		GLint size;
-		GLenum type;
-		CHK_GL(glGetActiveUniform(program, i, maxLength, NULL, &size, &type, name));
+		GLenum reg;
+		CHK_GL(glGetActiveUniform(program, i, maxLength, NULL, &size, &reg, name));
 
-		if (GL_BOOL == type ||
-			GL_BOOL_VEC2 == type ||
-			GL_BOOL_VEC3 == type ||
-			GL_BOOL_VEC4 == type)
+		u16		type = RC_float;
+		if (GL_BOOL == reg ||
+			GL_BOOL_VEC2 == reg ||
+			GL_BOOL_VEC3 == reg ||
+			GL_BOOL_VEC4 == reg)
 			type = RC_bool;
-		if (GL_INT == type ||
-			GL_INT_VEC2 == type ||
-			GL_INT_VEC3 == type ||
-			GL_INT_VEC4 == type)
+		if (GL_INT == reg ||
+			GL_INT_VEC2 == reg ||
+			GL_INT_VEC3 == reg ||
+			GL_INT_VEC4 == reg)
 			type = RC_int;
 
 		// Rindex,Rcount,Rlocation
@@ -50,7 +51,7 @@ BOOL	R_constant_table::parse(void* _desc, u16 destination)
 
 		// TypeInfo + class
 		BOOL bSkip = FALSE;
-		switch (type)
+		switch (reg)
 		{
 		case GL_FLOAT:
 		case GL_BOOL:
