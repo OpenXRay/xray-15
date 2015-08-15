@@ -158,7 +158,7 @@ ICF void CBackend::Render(D3DPRIMITIVETYPE T, u32 baseV, u32 startV, u32 countV,
 	stat.verts += countV;
 	stat.polys += PC;
 	constants.flush();
-	CHK_GL(glDrawElementsBaseVertex(Topology, PC, GL_UNSIGNED_SHORT, (void*)startI, baseV));
+	CHK_GL(glDrawElementsBaseVertex(Topology, iIndexCount, GL_UNSIGNED_SHORT, (void*)startI, baseV));
 	PGO(Msg("PGO:DIP:%dv/%df", countV, PC));
 }
 
@@ -168,11 +168,11 @@ ICF void CBackend::Render(D3DPRIMITIVETYPE T, u32 startV, u32 PC)
 	u32	iIndexCount = GetIndexCount(T, PC);
 
 	stat.calls++;
-	stat.verts += 3 * PC;
+	stat.verts += iIndexCount;
 	stat.polys += PC;
 	constants.flush();
-	CHK_GL(glDrawArrays(Topology, startV, PC));
-	PGO(Msg("PGO:DIP:%dv/%df", 3 * PC, PC));
+	CHK_GL(glDrawArrays(Topology, startV, iIndexCount));
+	PGO(Msg("PGO:DIP:%dv/%df", iIndexCount, PC));
 }
 
 IC void CBackend::set_Geometry(SGeometry* _geom)
