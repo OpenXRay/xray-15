@@ -77,14 +77,14 @@ void CTexture::apply_theora(u32 dwStage)	{
 	CHK_GL(glBindTexture(desc, pSurface));
 
 	if (pTheora->Update(m_play_time!=0xFFFFFFFF?m_play_time:Device.dwTimeContinual)) {
-		m_width		= pTheora->Width(true);
-		m_height	= pTheora->Height(true);
-		u32* pBits	= xr_alloc<u32>(pTheora->Width(false)*pTheora->Height(false) * 4);
+		m_width		= pTheora->Width(false);
+		m_height	= pTheora->Height(false);
+		u32* pBits	= xr_alloc<u32>(m_width*m_height*4);
 
 		int _pos = 0;
-		pTheora->DecompressFrame(pBits, pTheora->Width(false) - m_width, _pos);
+		pTheora->DecompressFrame(pBits, m_width - pTheora->Width(true), _pos);
 		CHK_GL(glTexSubImage2D(desc, 0, 0, 0, m_width, m_height,
-			GL_RGBA, GL_UNSIGNED_BYTE, pBits));
+			GL_BGRA, GL_UNSIGNED_BYTE, pBits));
 		xr_free(pBits);
 	}
 };
@@ -167,7 +167,7 @@ void CTexture::Load		()
 
 			glGenTextures(1, &pTexture);
 			glBindTexture(GL_TEXTURE_2D, pTexture);
-			CHK_GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width, m_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr));
+			CHK_GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width, m_height, 0, GL_BGRA, GL_UNSIGNED_BYTE, nullptr));
 
 			pSurface = pTexture;
 			if (glGetError() != GL_NO_ERROR)
