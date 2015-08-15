@@ -357,7 +357,7 @@ HRESULT	CRender::shader_compile(
 	size_t def_len = def_it * 4;
 	size_t sources_len = includes.size() + def_len + 2;
 	const char** sources = xr_alloc<const char*>(sources_len);
-	sources[0] = "#version 130\n";
+	sources[0] = "#version 330\n";
 	memcpy(sources + 1, includes.data(), includes.size() * sizeof(char*));
 	memcpy(sources + includes.size() + 1, defines, def_len * sizeof(char*));
 	sources[sources_len - 1] = srcData;

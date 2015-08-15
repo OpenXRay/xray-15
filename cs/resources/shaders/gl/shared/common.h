@@ -24,7 +24,7 @@
 #define lerp        mix
 #define frac        fract
 #define saturate(a) clamp(a, 0.0, 1.0)
-#define tex2D       texture
+#define tex2D       texture2D
 
 //
 uniform half3x4	        m_W;

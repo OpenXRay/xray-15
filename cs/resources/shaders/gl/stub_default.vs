@@ -1,17 +1,17 @@
 #include "common.h"
 
-in vec3 pos;
-in vec2 iTex0;
-in vec4 oColor;
+layout(location = 0) in vec4 iPos;
+layout(location = 1) in vec4 iColor;
+layout(location = 2) in vec2 iTex0;
 
-out vec2 oTex0;
-out vec4 oColor;
+out vec4 vColor;
+out vec2 vTex0;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // Vertex
 void main ()
 {
-	gl_Position = m_WVP * pos;
-	oTex0 = iTex0;
-	oColor = iColor.bgra;	//	swizzle vertex colour
+	gl_Position = m_WVP * iPos;
+	vTex0 = iTex0;
+	vColor = iColor.bgra;	//	swizzle vertex colour
 }
