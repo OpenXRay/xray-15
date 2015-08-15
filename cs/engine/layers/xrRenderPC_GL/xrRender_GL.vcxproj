@@ -200,7 +200,6 @@
     <ClCompile Include="..\..\xrEngine\ai_script_lua_debug.cpp" />
     <ClCompile Include="..\..\xrEngine\ai_script_lua_extension.cpp" />
     <ClCompile Include="..\xrRenderGL\glDetailManager_VS.cpp" />
-    <ClCompile Include="..\xrRenderGL\glr_constants_cache.cpp" />
     <ClCompile Include="..\xrRenderGL\glStateUtils.cpp" />
     <ClCompile Include="..\xrRenderPC_R2\blender_bloom_build.cpp" />
     <ClCompile Include="..\xrRenderPC_R2\blender_combine.cpp" />

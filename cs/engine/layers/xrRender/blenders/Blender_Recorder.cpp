@@ -176,7 +176,7 @@ void	CBlender_Compile::PassEnd			()
 #ifdef USE_OGL
 	// In OGL we only parse the constants when we create the shader program.
 	ref_program	program		= DEV->_CreateProgram	(vs, ps);
-	ctable.merge			(&program->constants);
+	ctable					= program->constants;
 #else
 	ctable.merge			(&ps->constants);
 	ctable.merge			(&vs->constants);
