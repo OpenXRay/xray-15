@@ -175,9 +175,6 @@ SVS*	CResourceManager::_CreateVS		(LPCSTR _name)
 		m_vs.insert(mk_pair(_vs->set_name(name), _vs));
 		//_vs->vs				= NULL;
 		//_vs->signature		= NULL;
-		if (0 == stricmp(_name, "null"))	{
-			return _vs;
-		}
 
 		GLchar*					pErrorBuf = NULL;
 		string_path					cname;
@@ -667,14 +664,13 @@ SProgram*		CResourceManager::_CreateProgram(ref_vs& _vs, ref_ps& _ps)
 		SProgram* _program = new SProgram();
 		_program->dwFlags |= xr_resource_flagged::RF_REGISTERED;
 		m_program.insert(mk_pair(_program->set_name(N), _program));
-		if (!_ps->ps)	{
+		VERIFY(_vs->vs && _ps->ps);
+		if (!_ps->ps || !_vs->vs)	{
 			_program->program = NULL;
 			return _program;
 		}
 		_program->program = glCreateProgram();
-		// TODO: OGL: Implement a default vertex shader
-		if (_vs->vs)
-			CHK_GL(glAttachShader(_program->program, _vs->vs));
+		CHK_GL(glAttachShader(_program->program, _vs->vs));
 		CHK_GL(glAttachShader(_program->program, _ps->ps));
 		CHK_GL(glLinkProgram(_program->program));
 
