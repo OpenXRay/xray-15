@@ -324,7 +324,7 @@ void CHW::CreateDevice( HWND m_hWnd, bool move_window )
 
 	UINT createDeviceFlags = 0;
 #ifdef DEBUG
-	//createDeviceFlags |= D3D10_CREATE_DEVICE_DEBUG;
+	createDeviceFlags |= D3D10_CREATE_DEVICE_DEBUG;
 #endif
    HRESULT R;
 	// Create the device
