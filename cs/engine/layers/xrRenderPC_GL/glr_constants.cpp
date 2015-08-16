@@ -27,6 +27,7 @@ BOOL	R_constant_table::parse(void* _desc, u16 destination)
 	GLint uniformCount;
 	CHK_GL(glGetProgramiv(program, GL_ACTIVE_UNIFORMS, &uniformCount));
 
+	u16		r_stage = 0;
 	for (GLint i = 0; i < uniformCount; i++) {
 		GLint size;
 		GLenum reg;
@@ -93,6 +94,7 @@ BOOL	R_constant_table::parse(void* _desc, u16 destination)
 			{
 				// ***Register sampler***
 				// We have determined all valuable info, search if constant already created
+				// Assign an unused stage as the index
 				ref_constant	C = get(name);
 				if (!C)	{
 					C = new R_constant();//.g_constant_allocator.create();
@@ -101,7 +103,7 @@ BOOL	R_constant_table::parse(void* _desc, u16 destination)
 					C->type = RC_sampler;
 					C->handler = &sampler_binder;
 					R_constant_load& L = C->samp;
-					L.index = r_index;
+					L.index = r_stage++;
 					L.cls = RC_sampler;
 					L.location = r_location;
 					table.push_back(C);
@@ -111,7 +113,7 @@ BOOL	R_constant_table::parse(void* _desc, u16 destination)
 					R_ASSERT(C->type == RC_sampler);
 					R_ASSERT(C->handler == &sampler_binder);
 					R_constant_load& L = C->samp;
-					R_ASSERT(L.index == r_index);
+					R_ASSERT(L.index == r_stage);
 					R_ASSERT(L.cls == RC_sampler);
 					R_ASSERT(L.location == r_location);
 				}
