@@ -51,7 +51,7 @@ void* _VertexStream::Lock(u32 vl_Count, u32 Stride, u32& vOffset)
 
 	// Vertex-local info
 	u32 vl_mSize = mSize / Stride;
-	u32 vl_mPosition = mPosition / Stride + 1;
+	u32 vl_mPosition = mPosition / Stride;
 
 	// Check if there is need to flush and perform lock
 	void* pData = nullptr;
@@ -68,7 +68,7 @@ void* _VertexStream::Lock(u32 vl_Count, u32 Stride, u32& vOffset)
 	else {
 		// APPEND-LOCK
 		mPosition = vl_mPosition*Stride;
-		vOffset = vl_mPosition;
+		vOffset = vl_mPosition + 1;
 
 		CHK_GL(pData = glMapBufferRange(GL_ARRAY_BUFFER, mPosition, bytes_need, LOCKFLAGS_APPEND));
 	}
