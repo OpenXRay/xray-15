@@ -68,7 +68,7 @@ void* _VertexStream::Lock(u32 vl_Count, u32 Stride, u32& vOffset)
 	else {
 		// APPEND-LOCK
 		mPosition = vl_mPosition*Stride;
-		vOffset = vl_mPosition + 1;
+		vOffset = vl_mPosition;
 
 		CHK_GL(pData = glMapBufferRange(GL_ARRAY_BUFFER, mPosition, bytes_need, LOCKFLAGS_APPEND));
 	}
