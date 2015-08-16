@@ -46,29 +46,14 @@ struct	R_statistics			{
 class  ECORE_API CBackend
 {
 public:
-#ifdef	USE_DX10
-	enum	MaxTextures
-	{
-		//	Actually these values are 128
-		mtMaxPixelShaderTextures = 16,
-		mtMaxVertexShaderTextures = 4,
-		mtMaxGeometryShaderTextures = 16
-	};
+#ifdef USE_DX10
 	enum
 	{
-		MaxCBuffers	= 14
-	};
-#else	//	USE_DX10
-	enum	MaxTextures
-	{
-		mtMaxPixelShaderTextures = 16,
-		mtMaxVertexShaderTextures = 4,
+		MaxCBuffers = 14
 	};
 #endif	//	USE_DX10
-	
 
-
-public:            
+public:
 	// Dynamic geometry streams
 	_VertexStream					Vertex;
 	_IndexStream					Index;
@@ -163,11 +148,11 @@ private:
 	SConstantList*					C;
 
 	// Lists-expanded
-	CTexture*						textures_ps	[mtMaxPixelShaderTextures];	// stages
+	CTexture*						textures_ps	[CTexture::mtMaxPixelShaderTextures];	// stages
 	//CTexture*						textures_vs	[5	];	// dmap + 4 vs
-	CTexture*						textures_vs	[mtMaxVertexShaderTextures];	// 4 vs
+	CTexture*						textures_vs	[CTexture::mtMaxVertexShaderTextures];	// 4 vs
 #ifdef	USE_DX10
-	CTexture*						textures_gs	[mtMaxGeometryShaderTextures];	// 4 vs
+	CTexture*						textures_gs	[CTexture::mtMaxGeometryShaderTextures];	// 4 vs
 #endif	//	USE_DX10
 #ifdef _EDITOR
 	CMatrix*						matrices	[8	];	// matrices are supported only for FFP

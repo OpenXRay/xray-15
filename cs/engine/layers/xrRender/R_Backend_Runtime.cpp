@@ -120,11 +120,11 @@ void CBackend::Invalidate	()
 	SSManager.ResetDeviceState();
 	SRVSManager.ResetDeviceState();
 
-	for (u32 gs_it =0; gs_it < mtMaxGeometryShaderTextures;)	textures_gs	[gs_it++]	= 0;
+	for (u32 gs_it =0; gs_it < CTexture::mtMaxGeometryShaderTextures;)	textures_gs	[gs_it++]	= 0;
 #endif	//	USE_DX10
 
-	for (u32 ps_it =0; ps_it < mtMaxPixelShaderTextures;)	textures_ps	[ps_it++]	= 0;
-	for (u32 vs_it =0; vs_it < mtMaxVertexShaderTextures;)	textures_vs	[vs_it++]	= 0;
+	for (u32 ps_it =0; ps_it < CTexture::mtMaxPixelShaderTextures;)	textures_ps	[ps_it++]	= 0;
+	for (u32 vs_it =0; vs_it < CTexture::mtMaxVertexShaderTextures;)	textures_vs	[vs_it++]	= 0;
 #ifdef _EDITOR
 	for (u32 m_it =0; m_it< 8;)		matrices	[m_it++]	= 0;
 #endif
@@ -209,7 +209,7 @@ void CBackend::set_Textures			(STextureList* _T)
 		if (load_id < CTexture::rstVertex)
 		{
 			//	Set up pixel shader resources
-			VERIFY(load_id<mtMaxPixelShaderTextures);
+			VERIFY(load_id<CTexture::mtMaxPixelShaderTextures);
 			// ordinary pixel surface
 			if ((int)load_id>_last_ps)		_last_ps	=	load_id;
 			if (textures_ps[load_id]!=load_surf)	
@@ -231,7 +231,7 @@ void CBackend::set_Textures			(STextureList* _T)
 #endif	//	USE_DX10
 		{
 			//	Set up pixel shader resources
-			VERIFY(load_id < CTexture::rstVertex+mtMaxVertexShaderTextures);
+			VERIFY(load_id < CTexture::rstVertex+CTexture::mtMaxVertexShaderTextures);
 
 			// vertex only //d-map or vertex	
 			u32		load_id_remapped	= load_id - CTexture::rstVertex;
@@ -254,7 +254,7 @@ void CBackend::set_Textures			(STextureList* _T)
 		else
 		{
 			//	Set up pixel shader resources
-			VERIFY(load_id < CTexture::rstGeometry + mtMaxGeometryShaderTextures);
+			VERIFY(load_id < CTexture::rstGeometry + CTexture::mtMaxGeometryShaderTextures);
 
 			// vertex only //d-map or vertex	
 			u32		load_id_remapped = load_id - CTexture::rstGeometry;
@@ -278,7 +278,7 @@ void CBackend::set_Textures			(STextureList* _T)
 
 	// TODO: OGL: Do we actually need to clear the remaining stages?
 	// clear remaining stages (PS)
-	for (++_last_ps; _last_ps<mtMaxPixelShaderTextures; _last_ps++)
+	for (++_last_ps; _last_ps<CTexture::mtMaxPixelShaderTextures; _last_ps++)
 	{
 		if (!textures_ps[_last_ps])
 			continue;
@@ -300,7 +300,7 @@ void CBackend::set_Textures			(STextureList* _T)
 #endif	//	USE_DX10
 	}
 	// clear remaining stages (VS)
-	for (++_last_vs; _last_vs<mtMaxVertexShaderTextures; _last_vs++)		
+	for (++_last_vs; _last_vs<CTexture::mtMaxVertexShaderTextures; _last_vs++)
 	{
 		if (!textures_vs[_last_vs])
 			continue;
@@ -324,7 +324,7 @@ void CBackend::set_Textures			(STextureList* _T)
 
 #ifdef	USE_DX10
 	// clear remaining stages (VS)
-	for (++_last_gs; _last_gs<mtMaxGeometryShaderTextures; _last_gs++)
+	for (++_last_gs; _last_gs<CTexture::mtMaxGeometryShaderTextures; _last_gs++)
 	{
 		if (!textures_gs[_last_gs])
 			continue;
