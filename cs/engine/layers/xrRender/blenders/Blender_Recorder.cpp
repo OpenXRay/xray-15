@@ -153,6 +153,7 @@ void	CBlender_Compile::SetParams		(int iPriority, bool bStrictB2F)
 void	CBlender_Compile::PassBegin		()
 {
 	RS.Invalidate			();
+	ctable.clear			();
 	passTextures.clear		();
 	passMatrices.clear		();
 	passConstants.clear		();
@@ -176,7 +177,7 @@ void	CBlender_Compile::PassEnd			()
 #ifdef USE_OGL
 	// In OGL we only parse the constants when we create the shader program.
 	ref_program	program		= DEV->_CreateProgram	(vs, ps);
-	ctable					= program->constants;
+	ctable.merge			(&program->constants);
 #else
 	ctable.merge			(&ps->constants);
 	ctable.merge			(&vs->constants);
@@ -188,7 +189,7 @@ void	CBlender_Compile::PassEnd			()
 	SetMapping				();
 	ref_ctable			ct	= DEV->_CreateConstantTable	(ctable);
 	ref_texture_list	T 	= DEV->_CreateTextureList	(passTextures);
-	ref_matrix_list		M	= DEV->_CreateMatrixList	(passMatrices);
+	ref_matrix_list		M	= DEV->_CreateMatrixList		(passMatrices);
 	ref_constant_list	C	= DEV->_CreateConstantList	(passConstants);
 #ifdef USE_OGL
 	ref_pass	_pass_		= DEV->_CreatePass			(state,program,ct,T,M,C);
