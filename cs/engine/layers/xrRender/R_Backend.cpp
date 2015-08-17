@@ -36,7 +36,6 @@ void CBackend::CreateQuadIB()
 	glGenBuffers(1, &QuadIB);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, QuadIB);
 	CHK_GL(glBufferData(GL_ELEMENT_ARRAY_BUFFER, dwIdxCount * 2, Indices, dwUsage));
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
 #else

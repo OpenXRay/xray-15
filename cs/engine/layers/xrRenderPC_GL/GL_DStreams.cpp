@@ -23,7 +23,6 @@ void _VertexStream::Create()
 
 	glBindBuffer(GL_ARRAY_BUFFER, pVB);
 	CHK_GL(glBufferData(GL_ARRAY_BUFFER, mSize, nullptr, GL_DYNAMIC_DRAW));
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	mPosition = 0;
 	mDiscardID = 0;
@@ -73,7 +72,6 @@ void* _VertexStream::Lock(u32 vl_Count, u32 Stride, u32& vOffset)
 		CHK_GL(pData = glMapBufferRange(GL_ARRAY_BUFFER, mPosition, bytes_need, LOCKFLAGS_APPEND));
 	}
 	VERIFY(pData);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	return pData;
 }
@@ -91,7 +89,6 @@ void	_VertexStream::Unlock(u32 Count, u32 Stride)
 
 	glBindBuffer(GL_ARRAY_BUFFER, pVB);
 	glUnmapBuffer(GL_ARRAY_BUFFER);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 void	_VertexStream::reset_begin()
@@ -131,9 +128,8 @@ void	_IndexStream::Create()
 	glGenBuffers(1, &pIB);
 	R_ASSERT(pIB);
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER_ARB, pIB);
-	CHK_GL(glBufferData(GL_ELEMENT_ARRAY_BUFFER_ARB, mSize, nullptr, GL_DYNAMIC_DRAW));
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER_ARB, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, pIB);
+	CHK_GL(glBufferData(GL_ELEMENT_ARRAY_BUFFER, mSize, nullptr, GL_DYNAMIC_DRAW));
 
 	mPosition = 0;
 	mDiscardID = 0;
@@ -167,9 +163,8 @@ u16*	_IndexStream::Lock(u32 Count, u32& vOffset)
 		mDiscardID++;
 	}
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER_ARB, pIB);
-	CHK_GL(pLockedData = glMapBufferRange(GL_ELEMENT_ARRAY_BUFFER_ARB, mPosition * 2, Count * 2, flags));
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER_ARB, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, pIB);
+	CHK_GL(pLockedData = glMapBufferRange(GL_ELEMENT_ARRAY_BUFFER, mPosition * 2, Count * 2, flags));
 	VERIFY(pLockedData);
 
 	vOffset = mPosition;
@@ -183,9 +178,8 @@ void	_IndexStream::Unlock(u32 RealCount)
 	mPosition += RealCount;
 	VERIFY(pIB);
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER_ARB, pIB);
-	glUnmapBuffer(GL_ELEMENT_ARRAY_BUFFER_ARB);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER_ARB, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, pIB);
+	glUnmapBuffer(GL_ELEMENT_ARRAY_BUFFER);
 }
 
 void	_IndexStream::reset_begin()

@@ -90,7 +90,6 @@ void CDetailManager::hw_Load_Geom()
 		}
 
 		glUnmapBuffer(GL_ELEMENT_ARRAY_BUFFER);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	}
 
 	// Fill IB
@@ -111,7 +110,6 @@ void CDetailManager::hw_Load_Geom()
 		}
 
 		glUnmapBuffer(GL_ELEMENT_ARRAY_BUFFER);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	}
 
 	// Declare geometry

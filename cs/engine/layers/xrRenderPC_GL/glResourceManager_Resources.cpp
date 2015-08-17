@@ -433,9 +433,6 @@ SGeometry*	CResourceManager::CreateGeom	(u32 FVF, GLuint vb, GLuint ib)
 	}
 
 	VERIFY(vb_stride == offset);
-	CHK_GL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
-	CHK_GL(glBindBuffer(GL_ARRAY_BUFFER, 0));
-	CHK_GL(glBindVertexArray(0));
 
 	SGeometry *Geom = new SGeometry();
 	Geom->dwFlags |= xr_resource_flagged::RF_REGISTERED;
