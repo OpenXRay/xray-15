@@ -28,6 +28,7 @@ void resptrcode_texture::create(LPCSTR _name)
 CTexture::CTexture		()
 {
 	pSurface			= NULL;
+	pBuffer				= NULL;
 	pAVI				= NULL;
 	pTheora				= NULL;
 	desc_cache			= 0;
@@ -77,15 +78,23 @@ void CTexture::apply_theora(u32 dwStage)	{
 	CHK_GL(glBindTexture(desc, pSurface));
 
 	if (pTheora->Update(m_play_time!=0xFFFFFFFF?m_play_time:Device.dwTimeContinual)) {
-		m_width		= pTheora->Width(false);
-		m_height	= pTheora->Height(false);
-		u32* pBits	= xr_alloc<u32>(m_width*m_height*4);
+		u32* pBits;
+		u32 _w		= pTheora->Width(true);
+		u32 _h		= pTheora->Height(true);
 
+		// Clear and map buffer for writing
+		glBindBuffer(GL_PIXEL_UNPACK_BUFFER, pBuffer);
+		CHK_GL(glBufferData(GL_PIXEL_UNPACK_BUFFER, _w * _h * 4, 0, GL_STREAM_DRAW)); // Invalidate buffer
+		CHK_GL(pBits = (u32*)glMapBuffer(GL_PIXEL_UNPACK_BUFFER, GL_WRITE_ONLY));
+
+		// Write to the buffer and copy it to the texture
 		int _pos = 0;
-		pTheora->DecompressFrame(pBits, m_width - pTheora->Width(true), _pos);
-		CHK_GL(glTexSubImage2D(desc, 0, 0, 0, m_width, m_height,
-			GL_BGRA, GL_UNSIGNED_BYTE, pBits));
-		xr_free(pBits);
+		pTheora->DecompressFrame(pBits, 0, _pos);
+		CHK_GL(glUnmapBuffer(GL_PIXEL_UNPACK_BUFFER));
+		CHK_GL(glTexSubImage2D(desc, 0, 0, 0, _w, _h, GL_BGRA, GL_UNSIGNED_BYTE, 0));
+
+		// Unmap the buffer to restore normal texture functionality
+		glBindBuffer(GL_PIXEL_UNPACK_BUFFER, 0);
 	}
 };
 void CTexture::apply_avi(u32 dwStage)	{
@@ -93,8 +102,6 @@ void CTexture::apply_avi(u32 dwStage)	{
 
 	if (pAVI->NeedUpdate())		{
 		// AVI
-		m_width		= pAVI->m_dwWidth;
-		m_height	= pAVI->m_dwHeight;
 		BYTE* ptr; pAVI->GetFrame(&ptr);
 		CHK_GL(glTexSubImage2D(desc, 0, 0, 0, m_width, m_height,
 			GL_RGBA, GL_UNSIGNED_BYTE, ptr));
@@ -112,9 +119,8 @@ void CTexture::apply_seq(u32 dwStage)	{
 		u32	frame_id	= frame%frame_data;
 		pSurface 			= seqDATA[frame_id];
 	}
+
 	CHK_GL(glBindTexture(desc, pSurface));
-	CHK_GL(glGetTexLevelParameteriv(desc, 0, GL_TEXTURE_WIDTH, &m_width));
-	CHK_GL(glGetTexLevelParameteriv(desc, 0, GL_TEXTURE_HEIGHT, &m_height));
 };
 void CTexture::apply_normal	(u32 dwStage)	{
 	CHK_GL(glBindTexture(desc, pSurface));
@@ -152,24 +158,28 @@ void CTexture::Load		()
 		pTheora = new CTheoraSurface();
 		m_play_time = 0xFFFFFFFF;
 
-		if (!pTheora->Load(fn)) {
+		if (!pTheora->Load(fn))
+		{
 			xr_delete(pTheora);
 			FATAL("Can't open video stream");
 		}
-		else {
+		else
+		{
 			flags.MemoryUsage = pTheora->Width(true)*pTheora->Height(true) * 4;
 			pTheora->Play(TRUE, Device.dwTimeContinual);
 
 			// Now create texture
 			GLuint	pTexture = 0;
-			m_width = pTheora->Width(false);
-			m_height = pTheora->Height(false);
+			u32 _w = pTheora->Width(false);
+			u32 _h = pTheora->Height(false);
+
+			glGenBuffers(1, &pBuffer);
+			glBindBuffer(GL_PIXEL_UNPACK_BUFFER, pBuffer);
+			CHK_GL(glBufferData(GL_PIXEL_UNPACK_BUFFER, flags.MemoryUsage, 0, GL_STREAM_DRAW));
 
 			glGenTextures(1, &pTexture);
 			glBindTexture(GL_TEXTURE_2D, pTexture);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);
-			CHK_GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width, m_height, 0, GL_BGRA, GL_UNSIGNED_BYTE, nullptr));
+			CHK_GL(glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8, _w, _h));
 
 			pSurface = pTexture;
 			if (glGetError() != GL_NO_ERROR)
@@ -191,16 +201,16 @@ void CTexture::Load		()
 		else {
 			flags.MemoryUsage = pAVI->m_dwWidth*pAVI->m_dwHeight * 4;
 
-			// Now create texture
-			GLuint	pTexture = 0;
-			m_width = pAVI->m_dwWidth;
-			m_height = pAVI->m_dwHeight;
+			// Create pixel buffer object
+			glGenBuffers(1, &pBuffer);
+			glBindBuffer(GL_PIXEL_UNPACK_BUFFER, pBuffer);
+			CHK_GL(glBufferData(GL_PIXEL_UNPACK_BUFFER, flags.MemoryUsage, 0, GL_STREAM_DRAW));
 
+			// Now create texture to copy PBO into
+			GLuint	pTexture = 0;
 			glGenTextures(1, &pTexture);
 			glBindTexture(GL_TEXTURE_2D, pTexture);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);
-			CHK_GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width, m_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr));
+			CHK_GL(glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8, pAVI->m_dwWidth, pAVI->m_dwHeight));
 
 			pSurface = pTexture;
 			if (glGetError() != GL_NO_ERROR)
@@ -237,9 +247,6 @@ void CTexture::Load		()
 				pSurface = ::RImplementation.texture_load(buffer, mem, desc);
 				if (pSurface)
 				{
-					CHK_GL(glBindTexture(desc, pSurface));
-					CHK_GL(glGetTexLevelParameteriv(desc, 0, GL_TEXTURE_WIDTH, &m_width));
-					CHK_GL(glGetTexLevelParameteriv(desc, 0, GL_TEXTURE_HEIGHT, &m_height));
 					// pSurface->SetPriority	(PRIORITY_LOW);
 					seqDATA.push_back(pSurface);
 					flags.MemoryUsage += mem;
@@ -256,9 +263,6 @@ void CTexture::Load		()
 
 		// Calc memory usage and preload into vid-mem
 		if (pSurface) {
-			CHK_GL(glBindTexture(desc, pSurface));
-			CHK_GL(glGetTexLevelParameteriv(desc, 0, GL_TEXTURE_WIDTH, &m_width));
-			CHK_GL(glGetTexLevelParameteriv(desc, 0, GL_TEXTURE_HEIGHT, &m_height));
 			// pSurface->SetPriority	(PRIORITY_NORMAL);
 			flags.MemoryUsage = mem;
 		}
@@ -284,6 +288,7 @@ void CTexture::Unload	()
 	}
 
 	CHK_GL(glDeleteTextures(1, &pSurface));
+	CHK_GL(glDeleteBuffers(1, &pBuffer));
 
 	xr_delete(pAVI);
 	xr_delete(pTheora);
@@ -294,6 +299,12 @@ void CTexture::Unload	()
 void CTexture::desc_update()
 {
 	desc_cache = pSurface;
+	if (pSurface && (GL_TEXTURE_2D == desc))
+	{
+		glBindTexture(desc, pSurface);
+		CHK_GL(glGetTexLevelParameteriv(desc, 0, GL_TEXTURE_WIDTH, &m_width));
+		CHK_GL(glGetTexLevelParameteriv(desc, 0, GL_TEXTURE_HEIGHT, &m_height));
+	}
 }
 
 void CTexture::video_Play		(BOOL looped, u32 _time)	

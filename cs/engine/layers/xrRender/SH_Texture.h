@@ -121,6 +121,7 @@ private:
 	GLint								m_width;
 	GLint								m_height;
 	GLuint								pSurface;
+	GLuint								pBuffer;
 	// Sequence data
 	xr_vector<GLuint>					seqDATA;
 #else
