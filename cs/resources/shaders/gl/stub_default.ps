@@ -9,6 +9,5 @@ layout(location = 0) out vec4 oColor;
 // Pixel
 void main()
 {
-	vec4 c = texture2D(s_base, vec2(vTex0.x,vTex0.y))*vColor;
-	oColor = c;
+	oColor = texture2D(s_base, vTex0)*vColor;
 }
