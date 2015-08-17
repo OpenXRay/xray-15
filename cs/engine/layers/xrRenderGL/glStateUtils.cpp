@@ -11,9 +11,9 @@ GLenum ConvertCullMode(u32 Mode)
 	//case D3DCULL_NONE:
 	//	return ;
 	case D3DCULL_CW:
-		return GL_FRONT;
-	case D3DCULL_CCW:
 		return GL_BACK;
+	case D3DCULL_CCW:
+		return GL_FRONT;
 	default:
 		VERIFY(!"Unexpected cull mode!");
 		return GL_FRONT_AND_BACK;
