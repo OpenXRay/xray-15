@@ -426,7 +426,7 @@ SGeometry*	CResourceManager::CreateGeom	(u32 FVF, GLuint vb, GLuint ib)
 		if (FVF & D3DFVF_TEXCOORDSIZE4(i))
 			size = 4;
 
-		CHK_GL(glVertexAttribPointer(attrib, size, GL_FLOAT, GL_FALSE, vb_stride, (void*)offset));
+		CHK_GL(glVertexAttribPointer(attrib, size, GL_FLOAT, GL_TRUE, vb_stride, (void*)offset));
 		CHK_GL(glEnableVertexAttribArray(attrib));
 		offset += size * sizeof(float);
 		attrib++;
