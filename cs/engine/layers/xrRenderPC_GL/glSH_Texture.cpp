@@ -167,6 +167,8 @@ void CTexture::Load		()
 
 			glGenTextures(1, &pTexture);
 			glBindTexture(GL_TEXTURE_2D, pTexture);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);
 			CHK_GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width, m_height, 0, GL_BGRA, GL_UNSIGNED_BYTE, nullptr));
 
 			pSurface = pTexture;
@@ -196,6 +198,8 @@ void CTexture::Load		()
 
 			glGenTextures(1, &pTexture);
 			glBindTexture(GL_TEXTURE_2D, pTexture);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);
 			CHK_GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width, m_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr));
 
 			pSurface = pTexture;
