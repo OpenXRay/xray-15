@@ -112,6 +112,7 @@ private:
 	GLuint							ps;
 	GLuint							vs;
 	GLuint							program;
+	SState*							state;
 #else
 	ID3DState*						state;
 	ID3DPixelShader*				ps;
@@ -245,10 +246,13 @@ public:
 	IC	void						set_Shader			(Shader* S, u32 pass=0);
 	IC	void						set_Shader			(ref_shader& S, u32 pass=0)			{ set_Shader(&*S,pass);			}
 
-#ifndef USE_OGL
+#ifdef USE_OGL
+	ICF	void						set_States			(SState* _state);
+	ICF	void						set_States			(ref_state& _state)					{ set_States(&*_state); }
+#else
 	ICF	void						set_States			(ID3DState* _state);
 	ICF	void						set_States			(ref_state& _state)					{ set_States(_state->state); }
-#endif // !USE_OGL
+#endif // USE_OGL
 
 #if defined(USE_DX10) || defined(USE_OGL)
 	ICF  void						set_Format			(SDeclaration* _decl);

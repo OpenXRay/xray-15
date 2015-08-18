@@ -87,10 +87,11 @@ SState*		CResourceManager::_CreateState		(SimulatorStates& state_code)
 	}
 
 	// Create New
-	v_states.push_back				(new SState());
-	v_states.back()->dwFlags		|= xr_resource_flagged::RF_REGISTERED;
-	//v_states.back()->state			= state_code.record();
-	v_states.back()->state_code		= state_code;
+	SState*	S						= new SState();
+	v_states.push_back				(S);
+	state_code.record				(S->state);
+	S->dwFlags						|= xr_resource_flagged::RF_REGISTERED;
+	S->state_code					= state_code;
 	return v_states.back();
 }
 void		CResourceManager::_DeleteState		(const SState* state)

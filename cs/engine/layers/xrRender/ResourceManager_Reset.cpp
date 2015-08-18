@@ -14,8 +14,10 @@ void	CResourceManager::reset_begin			()
 	::Render->reset_begin		();
 
 	// destroy state-blocks
-#ifndef USE_OGL
-	for (u32 _it=0; _it<v_states.size(); _it++)
+	for (u32 _it = 0; _it<v_states.size(); _it++)
+#ifdef USE_OGL
+		glDeleteSamplers(CTexture::mtMaxCombinedShaderTextures, v_states[_it]->state);
+#else
 		_RELEASE(v_states[_it]->state);
 #endif // !USE_OGL
 
@@ -75,17 +77,17 @@ void	CResourceManager::reset_end				()
 //	DX10 cut 		for (u32 _it=0; _it<rt.size(); _it++)	rt[_it]->reset_end	();
 	}
 
-#ifndef USE_OGL
 	// create state-blocks
 	{
 		for (u32 _it=0; _it<v_states.size(); _it++)
-#ifdef	USE_DX10
+#if		defined(USE_OGL)
+			v_states[_it]->state_code.record(v_states[_it]->state);
+#elif	defined(USE_DX10)
 			v_states[_it]->state = ID3DState::Create(v_states[_it]->state_code);
 #else	//	USE_DX10
 			v_states[_it]->state = v_states[_it]->state_code.record();
-#endif	//	USE_DX10
+#endif
 	}
-#endif // !USE_OGL
 
 	// create everything, renderer may use
 	::Render->reset_end		();

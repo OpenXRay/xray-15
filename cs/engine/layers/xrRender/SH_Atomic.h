@@ -3,6 +3,7 @@
 #pragma once
 #include "../../xrCore/xr_resource.h"
 #include "tss_def.h"
+#include "sh_texture.h"
 
 #ifdef	USE_DX10
 #include "../xrRenderDX10/StateManager/dx10State.h"
@@ -82,7 +83,9 @@ typedef	resptr_core<SProgram, resptr_base<SProgram> > ref_program;
 //////////////////////////////////////////////////////////////////////////
 struct ECORE_API SState : public xr_resource_flagged
 {
-#ifndef	USE_OGL
+#ifdef	USE_OGL
+	GLuint								state[CTexture::mtMaxCombinedShaderTextures];
+#else
 	ID3DState*							state;
 #endif // USE_OGL
 	SimulatorStates						state_code;

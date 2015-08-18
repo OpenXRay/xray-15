@@ -17,13 +17,20 @@ public:
 		//	Actually these values are 128
 		mtMaxPixelShaderTextures = 16,
 		mtMaxVertexShaderTextures = 4,
-		mtMaxGeometryShaderTextures = 16
+		mtMaxGeometryShaderTextures = 16,
+		mtMaxCombinedShaderTextures =
+			mtMaxPixelShaderTextures +
+			mtMaxVertexShaderTextures +
+			mtMaxGeometryShaderTextures
 	};
 #else	//	USE_DX10
 	enum	MaxTextures
 	{
 		mtMaxPixelShaderTextures = 16,
 		mtMaxVertexShaderTextures = 4,
+		mtMaxCombinedShaderTextures =
+			mtMaxPixelShaderTextures +
+			mtMaxVertexShaderTextures
 	};
 #endif	//	USE_DX10
 

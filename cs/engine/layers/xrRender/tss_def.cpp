@@ -4,11 +4,15 @@
 #include "tss_def.h"
 
 #ifdef USE_OGL
-GLuint SimulatorStates::record()
+void SimulatorStates::apply()
 {
 	//	TODO: OGL: Implement equivalent for SimulatorStates::record for OGL
 	//VERIFY(!"SimulatorStates::record not implemented!");
 	return 0;
+}
+
+void SimulatorStates::record(GLuint samplerArray[CTexture::mtMaxCombinedShaderTextures])
+{
 }
 #else
 IDirect3DStateBlock9* SimulatorStates::record	()
@@ -61,6 +65,8 @@ void	SimulatorStates::set_RS	(u32 a, u32 b)
 
 void	SimulatorStates::set_TSS	(u32 a, u32 b, u32 c)
 {
+	VERIFY(!"OGL: Texture environment not supported.");
+
 	// Search duplicates
 	for (int t=0; t<int(States.size()); t++)
 	{

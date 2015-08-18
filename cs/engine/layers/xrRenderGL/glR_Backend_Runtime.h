@@ -4,6 +4,18 @@
 
 #include "../xrRenderGL/glStateUtils.h"
 
+ICF void	CBackend::set_States		(SState* _state)
+{
+	PGO				(Msg("PGO:state_block"));
+#ifdef DEBUG
+	stat.states		++;
+#endif
+	state			= _state;
+	state->state_code.apply();
+	for (size_t stage = 0; stage < CTexture::mtMaxCombinedShaderTextures; stage++)
+		glBindSampler(stage, state->state[stage]);
+}
+
 IC void		CBackend::set_xform(u32 ID, const Fmatrix& M)
 {
 	stat.xforms++;

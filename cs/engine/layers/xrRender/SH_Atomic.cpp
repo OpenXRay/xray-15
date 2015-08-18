@@ -72,7 +72,7 @@ SProgram::~SProgram						()			{ glDeleteProgram(program);		DEV->_DeleteProgram(t
 ///////////////////////////////////////////////////////////////////////
 //	SState
 #ifdef USE_OGL
-SState::~SState							()			{	DEV->_DeleteState		(this);	}
+SState::~SState							()			{	glDeleteSamplers(CTexture::mtMaxCombinedShaderTextures, state);	DEV->_DeleteState		(this);	}
 #else
 SState::~SState							()			{	_RELEASE(state);	DEV->_DeleteState		(this);	}
 #endif // USE_OGL
