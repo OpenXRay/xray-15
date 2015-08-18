@@ -138,7 +138,7 @@ GLenum ConvertBlendOp(u32 Op)
 
 GLenum	ConvertTextureAddressMode(u32 Mode)
 {
-	switch(Mode)
+	switch (Mode)
 	{
 	case D3DTADDRESS_WRAP:
 		return GL_REPEAT;
@@ -153,6 +153,35 @@ GLenum	ConvertTextureAddressMode(u32 Mode)
 	default:
 		VERIFY(!"ConvertTextureAddressMode can't convert argument!");
 		return GL_CLAMP_TO_EDGE;
+	}
+}
+
+GLenum  ConvertTextureFilter(u32 dxFilter, u32 glFilter, bool MipMap)
+{
+	const int FilterLinear = 0x01;
+	const int MipFilterLinear = 0x02;
+	const int MipFilterEnable = 0x100;
+
+	switch (dxFilter)
+	{
+		case D3DTEXF_NONE:
+			if (MipMap)
+				return (glFilter & ~MipFilterLinear) & ~MipFilterEnable;
+			VERIFY(!"D3DTEXF_NONE only supported with D3DSAMP_MIPFILTER");
+			break;
+		case D3DTEXF_POINT:
+			if (MipMap)
+				return (glFilter & ~MipFilterLinear) | MipFilterEnable;
+			else
+				return glFilter & ~FilterLinear;
+		case D3DTEXF_LINEAR:
+		case D3DTEXF_ANISOTROPIC:
+			if (MipMap)
+				return (glFilter | MipFilterLinear) | MipFilterEnable;
+			else
+				return glFilter | FilterLinear;
+		default:
+			VERIFY(!"ConvertTextureFilter can't convert argument!");
 	}
 }
 

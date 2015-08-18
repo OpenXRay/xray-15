@@ -37,6 +37,9 @@ private:
 	};
 private:
 	xr_vector<State>		States;
+#ifdef USE_OGL
+	;
+#endif // USE_OGL
 
 public:
 	void					set_RS	(u32 a, u32 b);
