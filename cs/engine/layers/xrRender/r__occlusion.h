@@ -17,7 +17,12 @@ class R_occlusion
 private:
 	struct	_Q	{
 		u32					order;
-		ID3DQuery*	Q;
+#ifdef USE_OGL
+		GLuint				Q;
+#else
+		ID3DQuery*			Q;
+#endif // USE_OGL
+
 	};
 
 	static const u32		iInvalidHandle = 0xFFFFFFFF;
@@ -27,11 +32,11 @@ private:
 	xr_vector<_Q>			used;		// id's are generated from this and it is cleared from back only
 	xr_vector<u32>			fids;		// free id's
 public:
-#ifdef	USE_DX10
+#if defined(USE_DX10) || defined(USE_OGL)
 	typedef	u64		occq_result;
-#else	//	USE_DX10
+#else	//	USE_DX10 || USE_OGL
 	typedef	u32		occq_result;
-#endif	//	USE_DX10
+#endif	//	USE_DX10 || USE_OGL
 public:
 	R_occlusion		();
 	~R_occlusion	();

@@ -1,5 +1,8 @@
 #pragma once
 
+#include "../xrRender/r__dsgraph_structure.h"
+#include "../xrRender/r__occlusion.h"
+
 #include "../xrRender/PSLibrary.h"
 
 #include "r2_types.h"
@@ -8,7 +11,7 @@
 #include "../xrRender/detailmanager.h"
 
 
-class CRender	:	public IRender_interface
+class CRender	:	public R_dsgraph_structure
 {
 public:
 	struct		_options	{
@@ -157,6 +160,7 @@ public:
 	virtual	void					Screenshot(ScreenshotMode mode, CMemoryWriter& memory_writer) { VERIFY(!"CRender::Screenshot not implemented."); };
 	virtual void					ScreenshotAsyncBegin() { VERIFY(!"CRender::ScreenshotAsyncBegin not implemented."); };
 	virtual void					ScreenshotAsyncEnd(CMemoryWriter& memory_writer) { VERIFY(!"CRender::ScreenshotAsyncEnd not implemented."); };
+	virtual void					OnFrame() { VERIFY(!"CRender::OnFrame not implemented."); };
 
 	// Render mode
 	virtual void					rmNear() { VERIFY(!"CRender::rmNear not implemented."); };

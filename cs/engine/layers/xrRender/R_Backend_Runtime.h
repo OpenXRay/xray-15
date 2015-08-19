@@ -66,18 +66,18 @@ IC	ID3DDepthStencilView* CBackend::get_ZB()
 }
 
 #ifndef USE_OGL
-ICF void	CBackend::set_States		(ID3DState* _state)
+ICF void	CBackend::set_States		(SState* _state)
 {
 //	DX10 Manages states using it's own algorithm. Don't mess with it.
 #ifndef	USE_DX10
-	if (state!=_state)
+	if (state!=_state->state)
 #endif	//	USE_DX10
 	{
 		PGO				(Msg("PGO:state_block"));
 #ifdef DEBUG
 		stat.states		++;
 #endif
-		state			= _state;
+		state			= _state->state;
 		state->Apply	();
 	}
 }
