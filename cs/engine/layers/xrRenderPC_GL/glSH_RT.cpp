@@ -23,10 +23,12 @@ CRT::~CRT			()
 
 void CRT::create	(LPCSTR Name, u32 w, u32 h,	GLenum f, u32 SampleCount )
 {
+	VERIFY(!"CRT::create not implemented");
 }
 
 void CRT::destroy		()
 {
+	VERIFY(!"CRT::destroy not implemented");
 }
 void CRT::reset_begin	()
 {
