@@ -70,4 +70,14 @@ public:
 	void			Update(void);
 };
 
+#ifdef USE_OGL
+class  CHW
+{
+public:
+	CHWCaps			Caps;
+};
+extern ECORE_API CHW		HW;
+#endif // USE_OGL
+
+
 #endif

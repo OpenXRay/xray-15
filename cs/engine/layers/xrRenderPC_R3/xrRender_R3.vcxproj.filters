@@ -204,16 +204,7 @@
     <ClInclude Include="DetailFormat.h">
       <Filter>Details</Filter>
     </ClInclude>
-    <ClInclude Include="light.h">
-      <Filter>Lights</Filter>
-    </ClInclude>
-    <ClInclude Include="light_gi.h">
-      <Filter>Lights</Filter>
-    </ClInclude>
     <ClInclude Include="Light_Render_Direct.h">
-      <Filter>Lights</Filter>
-    </ClInclude>
-    <ClInclude Include="light_smapvis.h">
       <Filter>Lights</Filter>
     </ClInclude>
     <ClInclude Include="SMAP_Allocator.h">
@@ -720,6 +711,15 @@
     <ClInclude Include="..\xrRender\dxRenderVisual.h">
       <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
     </ClInclude>
+    <ClInclude Include="..\xrRender\light_smapvis.h">
+      <Filter>Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRender\light_gi.h">
+      <Filter>Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRender\light.h">
+      <Filter>Lights</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -761,16 +761,10 @@
     <ClCompile Include="r3_R_sun_support.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="light_GI.cpp">
-      <Filter>Lights</Filter>
-    </ClCompile>
     <ClCompile Include="Light_Render_Direct.cpp">
       <Filter>Lights</Filter>
     </ClCompile>
     <ClCompile Include="Light_Render_Direct_ComputeXFS.cpp">
-      <Filter>Lights</Filter>
-    </ClCompile>
-    <ClCompile Include="light_smapvis.cpp">
       <Filter>Lights</Filter>
     </ClCompile>
     <ClCompile Include="light_vis.cpp">
@@ -1312,6 +1306,12 @@
     </ClCompile>
     <ClCompile Include="..\xrRender\dxRenderVisual.cpp">
       <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\light_smapvis.cpp">
+      <Filter>Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\light_GI.cpp">
+      <Filter>Lights</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

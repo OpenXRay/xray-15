@@ -3,11 +3,11 @@
 
 #include "../../xrEngine/ispatial.h"
 
-#if (RENDER==R_R2) || (RENDER==R_R3)
+#if (RENDER==R_R2) || (RENDER==R_R3) || (RENDER==R_GL)
 #	include "light_package.h"
 #	include "light_smapvis.h"
 #	include "light_GI.h"
-#endif //(RENDER==R_R2) || (RENDER==R_R3)
+#endif //(RENDER==R_R2) || (RENDER==R_R3) || (RENDER==R_GL)
 
 class	light		:	public IRender_Light, public ISpatial
 {
@@ -35,7 +35,7 @@ public:
 	float			m_volumetric_intensity;
 	float			m_volumetric_distance;
 
-#if (RENDER==R_R2) || (RENDER==R_R3)
+#if (RENDER==R_R2) || (RENDER==R_R3) || (RENDER==R_GL)
 	float			falloff;			// precalc to make light equal to zero at light range
 	float	        attenuation0;		// Constant attenuation		
 	float	        attenuation1;		// Linear attenuation		
@@ -128,7 +128,7 @@ public:
 	virtual IRender_Light*	dcast_Light		()	{ return this; }
 
 	vis_data&		get_homdata				();
-#if (RENDER==R_R2) || (RENDER==R_R3)
+#if (RENDER==R_R2) || (RENDER==R_R3) || (RENDER==R_GL)
 	void			gi_generate				();
 	void			xform_calc				();
 	void			vis_prepare				();

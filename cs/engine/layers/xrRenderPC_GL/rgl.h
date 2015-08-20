@@ -6,14 +6,29 @@
 #include "../xrRender/PSLibrary.h"
 
 #include "r2_types.h"
+#include "gl_rendertarget.h"
 
 #include "../xrRender/hom.h"
 #include "../xrRender/detailmanager.h"
+#include "../xrRender/modelpool.h"
+#include "../xrRender/wallmarksengine.h"
 
+#include "../xrRender/light_db.h"
+#include "../xrRender/SkeletonCustom.h"
+#include "../xrRender/LightTrack.h"
+
+#include "../../xrEngine/irenderable.h"
+#include "../../xrEngine/fmesh.h"
 
 class CRender	:	public R_dsgraph_structure
 {
 public:
+	enum
+	{
+		PHASE_NORMAL = 0,	// E[0]
+		PHASE_SMAP = 1,	// E[1]
+	};
+
 	struct		_options	{
 		u32		bug : 1;
 
@@ -57,13 +72,99 @@ public:
 		u32		forceskinw : 1;
 		float	forcegloss_v;
 	}			o;
+	struct		_stats		{
+		u32		l_total, l_visible;
+		u32		l_shadowed, l_unshadowed;
+		s32		s_used, s_merged, s_finalclip;
+		u32		o_queries, o_culled;
+		u32		ic_total, ic_culled;
+	}			stats;
 public:
-	CPSLibrary						PSLibrary;
+	// Sector detection and visibility
+	CSector*						pLastSector;
+	Fvector							vLastCameraPos;
+	u32								uLastLTRACK;
+	xr_vector<IRender_Portal*>		Portals;
+	xr_vector<IRender_Sector*>		Sectors;
+	xrXRC							Sectors_xrc;
+	CDB::MODEL*						rmPortals;
 	CHOM							HOM;
+	R_occlusion						HWOCC;
+
+	CPSLibrary						PSLibrary;
+
 	CDetailManager*					Details;
+
+	CRenderTarget*					Target;			// Render-target
+
+	CLight_DB						Lights;
+	xr_vector<light*>				Lights_LastFrame;
+	light_Package					LP_normal;
+	light_Package					LP_pending;
+
+	shared_str						c_sbase;
+	shared_str						c_lmaterial;
+	float							o_hemi;
+	float							o_hemi_cube[CROS_impl::NUM_FACES];
+	float							o_sun;
 
 private:
 	char*							LoadIncludes(LPCSTR pSrcData, UINT SrcDataLen, xr_vector<char*>& includes);
+
+public:
+	ShaderElement*					rimp_select_sh_static(dxRender_Visual	*pVisual, float cdist_sq);
+	ShaderElement*					rimp_select_sh_dynamic(dxRender_Visual	*pVisual, float cdist_sq);
+	D3DVERTEXELEMENT9*				getVB_Format(int id, BOOL	_alt = FALSE);
+	GLuint							getVB(int id, BOOL	_alt = FALSE);
+	GLuint							getIB(int id, BOOL	_alt = FALSE);
+	FSlideWindowItem*				getSWI(int id);
+	IRender_Portal*					getPortal(int id) { VERIFY(!"CRender::getPortal not implemented."); return nullptr; };
+	IRender_Sector*					getSectorActive();
+	IRender_Sector*					detectSector(const Fvector& P, Fvector& D);
+	int								translateSector(IRender_Sector* pSector) { VERIFY(!"CRender::translateSector not implemented."); return 0; };
+
+	// HW-occlusion culling
+	IC u32							occq_begin(u32&	ID)	{ return HWOCC.occq_begin(ID); }
+	IC void							occq_end(u32&	ID)	{ HWOCC.occq_end(ID); }
+	IC R_occlusion::occq_result		occq_get(u32&	ID)	{ return HWOCC.occq_get(ID); }
+
+	ICF void						apply_object(IRenderable*	O)
+	{
+		if (0 == O)					return;
+		if (0 == O->renderable_ROS())	return;
+		CROS_impl& LT = *((CROS_impl*)O->renderable_ROS());
+		LT.update_smooth(O);
+		o_hemi = 0.75f*LT.get_hemi();
+		//o_hemi						= 0.5f*LT.get_hemi			()	;
+		o_sun = 0.75f*LT.get_sun();
+		CopyMemory(o_hemi_cube, LT.get_hemi_cube(), CROS_impl::NUM_FACES*sizeof(float));
+	}
+	IC void							apply_lmaterial()
+	{
+		R_constant*		C = &*RCache.get_c(c_sbase);		// get sampler
+		if (0 == C)			return;
+		VERIFY(RC_dest_sampler == C->destination);
+		VERIFY(RC_sampler == C->type);
+		CTexture*		T = RCache.get_ActiveTexture(u32(C->samp.index));
+		VERIFY(T);
+		float	mtl = T->m_material;
+#ifdef	DEBUG
+		if (ps_r2_ls_flags.test(R2FLAG_GLOBALMATERIAL))	mtl = ps_r2_gmaterial;
+#endif
+		RCache.hemi.set_material(o_hemi, o_sun, 0, (mtl + .5f) / 4.f);
+		RCache.hemi.set_pos_faces(o_hemi_cube[CROS_impl::CUBE_FACE_POS_X],
+			o_hemi_cube[CROS_impl::CUBE_FACE_POS_Y],
+			o_hemi_cube[CROS_impl::CUBE_FACE_POS_Z]);
+		RCache.hemi.set_neg_faces(o_hemi_cube[CROS_impl::CUBE_FACE_NEG_X],
+			o_hemi_cube[CROS_impl::CUBE_FACE_NEG_Y],
+			o_hemi_cube[CROS_impl::CUBE_FACE_NEG_Z]);
+	}
+
+private:
+	BOOL							add_Dynamic(dxRender_Visual*pVisual, u32 planes);			// normal processing
+	void							add_Static(dxRender_Visual*pVisual, u32 planes);
+	void							add_leafs_Dynamic(dxRender_Visual*pVisual);					// if detected node's full visibility
+	void							add_leafs_Static(dxRender_Visual*pVisual);					// if detected node's full visibility
 
 public:
 	// feature level
@@ -119,6 +220,8 @@ public:
 	virtual void					add_StaticWallmark(const wm_shader& S, const Fvector& P, float s, CDB::TRI* T, Fvector* V) { VERIFY(!"CRender::add_StaticWallmark not implemented."); };
 	virtual void					add_StaticWallmark(IWallMarkArray *pArray, const Fvector& P, float s, CDB::TRI* T, Fvector* V) { VERIFY(!"CRender::add_StaticWallmark not implemented."); };
 	virtual void					clear_static_wallmarks() { VERIFY(!"CRender::clear_static_wallmarks not implemented."); };
+	virtual void					add_SkeletonWallmark(intrusive_ptr<CSkeletonWallmark> wm) { VERIFY(!"CRender::add_SkeletonWallmark not implemented."); };
+	virtual void					add_SkeletonWallmark(const Fmatrix* xf, CKinematics* obj, ref_shader& sh, const Fvector& start, const Fvector& dir, float size) { VERIFY(!"CRender::add_SkeletonWallmark not implemented."); };
 	virtual void					add_SkeletonWallmark(const Fmatrix* xf, IKinematics* obj, IWallMarkArray *pArray, const Fvector& start, const Fvector& dir, float size) { VERIFY(!"CRender::add_SkeletonWallmark not implemented."); };
 
 	//

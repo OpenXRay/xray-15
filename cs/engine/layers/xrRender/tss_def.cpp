@@ -125,7 +125,7 @@ void	SimulatorStates::set_RS	(u32 a, u32 b)
 
 void	SimulatorStates::set_TSS	(u32 a, u32 b, u32 c)
 {
-	VERIFY(!"OGL: Texture environment not supported.");
+	//VERIFY(!"OGL: Texture environment not supported.");
 
 	// Search duplicates
 	for (int t=0; t<int(States.size()); t++)

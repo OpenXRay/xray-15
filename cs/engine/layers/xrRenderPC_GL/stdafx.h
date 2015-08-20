@@ -31,6 +31,7 @@
 
 #include "../../xrEngine/psystem.h"
 
+#include "../xrRender/HWCaps.h"
 #include "../xrRender/Shader.h"
 #include "../xrRender/R_Backend.h"
 #include "../xrRender/R_Backend_Runtime.h"
@@ -39,6 +40,7 @@
 
 #include "../../xrEngine/vis_common.h"
 #include "../../xrEngine/render.h"
+#include "../../xrEngine/_d3d_extensions.h"
 #include "../../xrEngine/igame_level.h"
 #include "../xrRender/blenders\blender.h"
 #include "../xrRender/blenders\blender_clsid.h"

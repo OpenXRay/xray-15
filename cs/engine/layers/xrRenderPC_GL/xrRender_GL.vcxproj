@@ -76,7 +76,7 @@
       <Optimization>Disabled</Optimization>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <AdditionalIncludeDirectories>.\;$(SolutionDir)engine;$(SolutionDir)sdk\include;$(SolutionDir)3rd party;$(SolutionDir)3rd party\glew\include;$(SolutionDir)3rd party\gli;$(SolutionDir)3rd party\gli\external\glm;$(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>USE_OGL;WIN32;DEBUG;_WINDOWS;_USRDLL;XRRENDER_GL_EXPORTS;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>USE_OGL;NO_XR_VDECLARATOR;WIN32;DEBUG;_WINDOWS;_USRDLL;XRRENDER_GL_EXPORTS;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>Sync</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -119,7 +119,7 @@
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <AdditionalIncludeDirectories>.\;$(SolutionDir)engine;$(SolutionDir)sdk\include;$(SolutionDir)3rd party;$(SolutionDir)3rd party\glew\include;$(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>USE_OGL;WIN32;NDEBUG;_WINDOWS;_USRDLL;XRRENDER_GL_EXPORTS;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>USE_OGL;NO_XR_VDECLARATOR;WIN32;NDEBUG;_WINDOWS;_USRDLL;XRRENDER_GL_EXPORTS;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <ExceptionHandling />
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -165,7 +165,7 @@
       <OmitFramePointers>false</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <AdditionalIncludeDirectories>.\;$(SolutionDir)engine;$(SolutionDir)sdk\include;$(SolutionDir)3rd party;$(SolutionDir)3rd party\glew\include;$(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>USE_OGL;MIXED;WIN32;DEBUG;_WINDOWS;_USRDLL;XRRENDER_GL_EXPORTS;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>USE_OGL;NO_XR_VDECLARATOR;MIXED;WIN32;DEBUG;_WINDOWS;_USRDLL;XRRENDER_GL_EXPORTS;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <BufferSecurityCheck>true</BufferSecurityCheck>
@@ -218,6 +218,7 @@
     <ClCompile Include="..\xrRenderPC_R2\blender_luminance.cpp" />
     <ClCompile Include="..\xrRenderPC_R2\blender_ssao.cpp" />
     <ClCompile Include="..\xrRenderPC_R3\r2_blenders.cpp" />
+    <ClCompile Include="..\xrRender\Animation.cpp" />
     <ClCompile Include="..\xrRender\blenders\Blender.cpp" />
     <ClCompile Include="..\xrRender\blenders\Blender_Palette.cpp" />
     <ClCompile Include="..\xrRender\blenders\Blender_Recorder.cpp" />
@@ -243,6 +244,13 @@
     <ClCompile Include="..\xrRender\FBasicVisual.cpp" />
     <ClCompile Include="..\xrRender\FHierrarhyVisual.cpp" />
     <ClCompile Include="..\xrRender\HOM.cpp" />
+    <ClCompile Include="..\xrRender\HWCaps.cpp" />
+    <ClCompile Include="..\xrRender\light.cpp" />
+    <ClCompile Include="..\xrRender\LightTrack.cpp" />
+    <ClCompile Include="..\xrRender\Light_DB.cpp" />
+    <ClCompile Include="..\xrRender\light_GI.cpp" />
+    <ClCompile Include="..\xrRender\Light_Package.cpp" />
+    <ClCompile Include="..\xrRender\light_smapvis.cpp" />
     <ClCompile Include="..\xrRender\occRasterizer.cpp" />
     <ClCompile Include="..\xrRender\occRasterizer_core.cpp" />
     <ClCompile Include="..\xrRender\ParticleEffect.cpp" />
@@ -263,9 +271,16 @@
     <ClCompile Include="..\xrRender\r__dsgraph_render.cpp" />
     <ClCompile Include="..\xrRender\r__dsgraph_render_lods.cpp" />
     <ClCompile Include="..\xrRender\r__occlusion.cpp" />
+    <ClCompile Include="..\xrRender\r__sector.cpp" />
+    <ClCompile Include="..\xrRender\r__sector_traversal.cpp" />
     <ClCompile Include="..\xrRender\SH_Atomic.cpp" />
     <ClCompile Include="..\xrRender\SH_Constant.cpp" />
     <ClCompile Include="..\xrRender\SH_Matrix.cpp" />
+    <ClCompile Include="..\xrRender\SkeletonAnimated.cpp" />
+    <ClCompile Include="..\xrRender\SkeletonCustom.cpp" />
+    <ClCompile Include="..\xrRender\SkeletonRigid.cpp" />
+    <ClCompile Include="..\xrRender\SkeletonX.cpp" />
+    <ClCompile Include="..\xrRender\skinw.cpp" />
     <ClCompile Include="..\xrRender\TextureDescrManager.cpp" />
     <ClCompile Include="..\xrRender\tss_def.cpp" />
     <ClCompile Include="..\xrRender\uber_deffer.cpp" />
@@ -321,6 +336,8 @@
     <ClInclude Include="..\..\include\xrRender\DrawUtils.h" />
     <ClInclude Include="..\..\include\xrRender\EnvironmentRender.h" />
     <ClInclude Include="..\..\include\xrRender\FontRender.h" />
+    <ClInclude Include="..\..\include\xrRender\Kinematics.h" />
+    <ClInclude Include="..\..\include\xrRender\KinematicsAnimated.h" />
     <ClInclude Include="..\..\include\xrRender\LensFlareRender.h" />
     <ClInclude Include="..\..\include\xrRender\ParticleCustom.h" />
     <ClInclude Include="..\..\include\xrRender\RainRender.h" />
@@ -351,6 +368,7 @@
     <ClInclude Include="..\xrRenderPC_R2\blender_light_spot.h" />
     <ClInclude Include="..\xrRenderPC_R2\blender_luminance.h" />
     <ClInclude Include="..\xrRenderPC_R2\blender_ssao.h" />
+    <ClInclude Include="..\xrRender\Animation.h" />
     <ClInclude Include="..\xrRender\blenders\Blender.h" />
     <ClInclude Include="..\xrRender\blenders\Blender_CLSID.h" />
     <ClInclude Include="..\xrRender\blenders\Blender_Recorder.h" />
@@ -372,6 +390,13 @@
     <ClInclude Include="..\xrRender\FHierrarhyVisual.h" />
     <ClInclude Include="..\xrRender\FVF.h" />
     <ClInclude Include="..\xrRender\HOM.h" />
+    <ClInclude Include="..\xrRender\HWCaps.h" />
+    <ClInclude Include="..\xrRender\light.h" />
+    <ClInclude Include="..\xrRender\LightTrack.h" />
+    <ClInclude Include="..\xrRender\Light_DB.h" />
+    <ClInclude Include="..\xrRender\light_gi.h" />
+    <ClInclude Include="..\xrRender\Light_Package.h" />
+    <ClInclude Include="..\xrRender\light_smapvis.h" />
     <ClInclude Include="..\xrRender\occRasterizer.h" />
     <ClInclude Include="..\xrRender\ParticleEffect.h" />
     <ClInclude Include="..\xrRender\ParticleEffectDef.h" />
@@ -390,12 +415,17 @@
     <ClInclude Include="..\xrRender\r__dsgraph_structure.h" />
     <ClInclude Include="..\xrRender\r__dsgraph_types.h" />
     <ClInclude Include="..\xrRender\r__occlusion.h" />
+    <ClInclude Include="..\xrRender\r__sector.h" />
     <ClInclude Include="..\xrRender\Shader.h" />
     <ClInclude Include="..\xrRender\SH_Atomic.h" />
     <ClInclude Include="..\xrRender\SH_Constant.h" />
     <ClInclude Include="..\xrRender\SH_Matrix.h" />
     <ClInclude Include="..\xrRender\SH_RT.h" />
     <ClInclude Include="..\xrRender\SH_Texture.h" />
+    <ClInclude Include="..\xrRender\SkeletonAnimated.h" />
+    <ClInclude Include="..\xrRender\SkeletonCustom.h" />
+    <ClInclude Include="..\xrRender\SkeletonX.h" />
+    <ClInclude Include="..\xrRender\skinw.h" />
     <ClInclude Include="..\xrRender\TextureDescrManager.h" />
     <ClInclude Include="..\xrRender\tss.h" />
     <ClInclude Include="..\xrRender\tss_def.h" />

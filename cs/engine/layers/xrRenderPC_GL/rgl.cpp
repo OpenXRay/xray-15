@@ -1,11 +1,33 @@
 #include "stdafx.h"
 #include "rgl.h"
+#include "../xrRender/fbasicvisual.h"
 
 CRender										RImplementation;
 
 extern ENGINE_API BOOL r2_sun_static;
 extern ENGINE_API BOOL r2_advanced_pp;	//	advanced post process and effects
 
+float		r_dtex_range = 50.f;
+//////////////////////////////////////////////////////////////////////////
+ShaderElement*			CRender::rimp_select_sh_dynamic(dxRender_Visual	*pVisual, float cdist_sq)
+{
+	int		id = SE_R2_SHADOW;
+	if (CRender::PHASE_NORMAL == RImplementation.phase)
+	{
+		id = ((_sqrt(cdist_sq) - pVisual->vis.sphere.R)<r_dtex_range) ? SE_R2_NORMAL_HQ : SE_R2_NORMAL_LQ;
+	}
+	return pVisual->shader->E[id]._get();
+}
+//////////////////////////////////////////////////////////////////////////
+ShaderElement*			CRender::rimp_select_sh_static(dxRender_Visual	*pVisual, float cdist_sq)
+{
+	int		id = SE_R2_SHADOW;
+	if (CRender::PHASE_NORMAL == RImplementation.phase)
+	{
+		id = ((_sqrt(cdist_sq) - pVisual->vis.sphere.R)<r_dtex_range) ? SE_R2_NORMAL_HQ : SE_R2_NORMAL_LQ;
+	}
+	return pVisual->shader->E[id]._get();
+}
 
 CRender::CRender()
 {

@@ -158,6 +158,8 @@ void glRenderDeviceRender::DestroyHW()
 
 void glRenderDeviceRender::SetupStates()
 {
+	HW.Caps.Update();
+
 	//	TODO: OGL: Implement Resetting of render states into default mode
 	//VERIFY(!"glRenderDeviceRender::SetupStates not implemented.");
 }

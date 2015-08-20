@@ -2,17 +2,20 @@
 #pragma hdrstop
 
 #include "hwcaps.h"
-#include "hw.h"
 
 #ifndef _EDITOR
 	#include "NVAPI/nvapi.h"
 	#include "ATI/atimgpud.h"
 #endif
 
+#ifdef USE_OGL
+CHW			HW;
+#endif // USE_OGL
+
 namespace
 {
 
-#ifndef _EDITOR
+#if !defined(USE_OGL) && !defined(_EDITOR)
 u32 GetNVGpuNum()
 {
 	NvLogicalGpuHandle  logicalGPUs[NVAPI_MAX_LOGICAL_GPUS];
@@ -108,7 +111,7 @@ u32 GetGpuNum()
 #endif
 }
 
-#ifndef	USE_DX10
+#if !defined(USE_DX10) && !defined(USE_OGL)
 void CHWCaps::Update()
 {
 	D3DCAPS9					caps;
@@ -210,7 +213,7 @@ void CHWCaps::Update()
 
 	iGPUNum = GetGpuNum();
 }
-#else	//	USE_DX10
+#else	//	!USE_DX10 && !USE_OGL
 void CHWCaps::Update()
 {
 	// ***************** GEOMETRY
@@ -269,4 +272,4 @@ void CHWCaps::Update()
 
 	iGPUNum = GetGpuNum();
 }
-#endif	//	USE_DX10
+#endif	//	!USE_DX10 && !USE_OGL
