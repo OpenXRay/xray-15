@@ -252,13 +252,7 @@
     <ClCompile Include="..\xrRender\ETextureParams.cpp">
       <Filter>Refactored\Execution &amp; 3D\Shaders\ShaderManager</Filter>
     </ClCompile>
-    <ClCompile Include="glSH_Texture.cpp">
-      <Filter>Refactored\Execution &amp; 3D\Shaders\Resources</Filter>
-    </ClCompile>
     <ClCompile Include="..\xrRender\r_constants.cpp">
-      <Filter>Refactored\Execution &amp; 3D\Shaders\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="glSH_RT.cpp">
       <Filter>Refactored\Execution &amp; 3D\Shaders\Resources</Filter>
     </ClCompile>
     <ClCompile Include="glResourceManager_Resources.cpp">
@@ -470,6 +464,18 @@
     </ClCompile>
     <ClCompile Include="..\xrRender\r__occlusion.cpp">
       <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="gl_rendertarget.cpp">
+      <Filter>Core_Target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRenderGL\glTextureUtils.cpp">
+      <Filter>dx9 to gl Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRenderGL\glSH_RT.cpp">
+      <Filter>Refactored\Execution &amp; 3D\Shaders\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRenderGL\glSH_Texture.cpp">
+      <Filter>Refactored\Execution &amp; 3D\Shaders\Resources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -781,6 +787,12 @@
     </ClInclude>
     <ClInclude Include="..\xrRender\r__occlusion.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="gl_rendertarget.h">
+      <Filter>Core_Target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRenderGL\glTextureUtils.h">
+      <Filter>dx9 to gl Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

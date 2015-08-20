@@ -45,6 +45,13 @@ IC	const Fmatrix&	CBackend::get_xform_view	()	{ return xforms.get_V();	}
 IC	const Fmatrix&	CBackend::get_xform_project	()	{ return xforms.get_P();	}
 
 #ifdef USE_OGL
+IC	GLuint CBackend::get_FB()
+{
+	return pFB;
+}
+#endif // USE_OGL
+
+#ifdef USE_OGL
 IC	GLuint CBackend::get_RT(u32 ID)
 #else
 IC	ID3DRenderTargetView* CBackend::get_RT(u32 ID)
@@ -60,7 +67,6 @@ IC	GLuint CBackend::get_ZB()
 #else
 IC	ID3DDepthStencilView* CBackend::get_ZB()
 #endif // USE_OGL
-
 {
 	return pZB;
 }

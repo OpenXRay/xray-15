@@ -23,6 +23,16 @@ IC void		CBackend::set_xform(u32 ID, const Fmatrix& M)
 	//VERIFY(!"Implement CBackend::set_xform");
 }
 
+IC void	CBackend::set_FB(GLuint FB)
+{
+	if (FB != pFB)
+	{
+		PGO(Msg("PGO:set_FB"));
+		pFB = FB;
+		CHK_GL(glBindFramebuffer(GL_FRAMEBUFFER, pFB));
+	}
+}
+
 IC void CBackend::set_RT(GLuint RT, u32 ID)
 {
 	if (RT != pRT[ID])
@@ -30,8 +40,7 @@ IC void CBackend::set_RT(GLuint RT, u32 ID)
 		PGO(Msg("PGO:setRT"));
 		stat.target_rt++;
 		pRT[ID] = RT;
-		// TODO: Set render target
-		VERIFY(!"CBackend::set_RT not implemented");
+		CHK_GL(glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + ID, GL_TEXTURE_2D, RT, 0));
 	}
 }
 
@@ -42,8 +51,7 @@ IC void	CBackend::set_ZB(GLuint ZB)
 		PGO(Msg("PGO:setZB"));
 		stat.target_zb++;
 		pZB = ZB;
-		// TODO: Set Z buffer
-		VERIFY(!"CBackend::set_ZB not implemented");
+		CHK_GL(glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, ZB, 0));
 	}
 }
 
