@@ -18,7 +18,7 @@ void	CBlender_accum_spot::Compile(CBlender_Compile& C)
 	switch (C.iElement)
 	{
 	case SE_L_FILL:			// masking
-		C.r_Pass			("null", 			"copy",						false,	FALSE,	FALSE);
+		C.r_Pass			("stub_notransform", 			"copy",						false,	FALSE,	FALSE);
 		C.r_Sampler			("s_base",			C.L_textures[0]);
 		C.r_End				();
 		break;
