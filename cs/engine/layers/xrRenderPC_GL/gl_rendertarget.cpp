@@ -180,6 +180,8 @@ void	generate_jitter	(DWORD*	dest, u32 elem_count)
 
 CRenderTarget::CRenderTarget		()
 {
+	glGenFramebuffers(1, &pFB);
+
 	param_blur			= 0.f;
 	param_gray			= 0.f;
 	param_noise			= 0.f;
@@ -368,7 +370,7 @@ CRenderTarget::CRenderTarget		()
 			CHK_GL						(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 										(glClearColor(0.0f, 0.0f, 0.0f, 0.0f));
 		}
-		u_setrt						( Device.dwWidth,Device.dwHeight,NULL,NULL,NULL,NULL);
+		RCache.set_FB(0);
 	}
 
 	// COMBINE
@@ -542,8 +544,6 @@ CRenderTarget::CRenderTarget		()
 	s_menu.create						("distort");
 	g_menu.create						(FVF::F_TL,RCache.Vertex.Buffer(),RCache.QuadIB);
 
-	glGenFramebuffers					(1, &pFB);
-
 	// 
 	dwWidth		= Device.dwWidth;
 	dwHeight	= Device.dwHeight;
@@ -551,8 +551,6 @@ CRenderTarget::CRenderTarget		()
 
 CRenderTarget::~CRenderTarget	()
 {
-	glDeleteFramebuffers		(1, &pFB);
-
 	// Textures
 	t_material->surface_set		(NULL);
 
@@ -606,6 +604,8 @@ CRenderTarget::~CRenderTarget	()
 	xr_delete					(b_accum_direct			);
 	xr_delete					(b_accum_mask			);
 	xr_delete					(b_occq					);
+
+	glDeleteFramebuffers(1, &pFB);
 }
 
 void CRenderTarget::reset_light_marker( bool bResetStencil)
