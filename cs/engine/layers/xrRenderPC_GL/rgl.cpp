@@ -1,8 +1,10 @@
 #include "stdafx.h"
 #include "rgl.h"
+#include "glRenderDeviceRender.h"
 #include "../xrRender/fbasicvisual.h"
 
-CRender										RImplementation;
+CHW			HW;
+CRender		RImplementation;
 
 extern ENGINE_API BOOL r2_sun_static;
 extern ENGINE_API BOOL r2_advanced_pp;	//	advanced post process and effects
@@ -28,6 +30,46 @@ ShaderElement*			CRender::rimp_select_sh_static(dxRender_Visual	*pVisual, float 
 	}
 	return pVisual->shader->E[id]._get();
 }
+static class cl_parallax		: public R_constant_setup		{	virtual void setup	(R_constant* C)
+{
+	float			h			=	ps_r2_df_parallax_h;
+	RCache.set_c	(C,h,-h/2.f,1.f/r_dtex_range,1.f/r_dtex_range);
+}}	binder_parallax;
+
+static class cl_pos_decompress_params		: public R_constant_setup		{	virtual void setup	(R_constant* C)
+{
+	float VertTan =  -1.0f * tanf( deg2rad(Device.fFOV/2.0f ) );
+	float HorzTan =  - VertTan / Device.fASPECT;
+
+	RCache.set_c	( C, HorzTan, VertTan, ( 2.0f * HorzTan )/(float)Device.dwWidth, ( 2.0f * VertTan ) /(float)Device.dwHeight );
+
+}}	binder_pos_decompress_params;
+
+static class cl_pos_decompress_params2		: public R_constant_setup		{	virtual void setup	(R_constant* C)
+{
+	RCache.set_c	(C,(float)Device.dwWidth, (float)Device.dwHeight, 1.0f/(float)Device.dwWidth, 1.0f/(float)Device.dwHeight );
+
+}}	binder_pos_decompress_params2;
+
+static class cl_water_intensity : public R_constant_setup		
+{	
+	virtual void setup	(R_constant* C)
+	{
+		CEnvDescriptor&	E = *g_pGamePersistent->Environment().CurrentEnv;
+		float fValue = E.m_fWaterIntensity;
+		RCache.set_c	(C, fValue, fValue, fValue, 0);
+	}
+}	binder_water_intensity;
+
+static class cl_sun_shafts_intensity : public R_constant_setup		
+{	
+	virtual void setup	(R_constant* C)
+	{
+		CEnvDescriptor&	E = *g_pGamePersistent->Environment().CurrentEnv;
+		float fValue = E.m_fSunShaftsIntensity;
+		RCache.set_c	(C, fValue, fValue, fValue, 0);
+	}
+}	binder_sun_shafts_intensity;
 
 CRender::CRender()
 {
@@ -40,6 +82,10 @@ CRender::~CRender()
 void					CRender::create()
 {
 	//Device.seqFrame.Add(this, REG_PRIORITY_HIGH + 0x12345678);
+
+	glGenTextures(1, &HW.pBaseZB);
+	CHK_GL(glBindTexture(GL_TEXTURE_2D, HW.pBaseZB));
+	CHK_GL(glTexStorage2D(GL_TEXTURE_2D, 1, GL_DEPTH24_STENCIL8, Device.dwWidth, Device.dwHeight));
 
 	m_skinning = -1;
 	m_MSAASample = -1;
@@ -58,7 +104,7 @@ void					CRender::create()
 	o.HW_smap_PCF = o.HW_smap;
 	if (o.HW_smap)
 	{
-		o.HW_smap_FORMAT = GL_DEPTH_COMPONENT24;
+		o.HW_smap_FORMAT = D3DFMT_D24X8;
 		Msg("* HWDST/PCF supported and used");
 	}
 
@@ -114,8 +160,31 @@ void					CRender::create()
 	o.ssao_hdao = ps_r2_ls_flags_ext.test(R2FLAGEXT_SSAO_HDAO) && (ps_r_ssao != 0);
 	o.ssao_hbao = !o.ssao_hdao && ps_r2_ls_flags_ext.test(R2FLAGEXT_SSAO_HBAO) && (ps_r_ssao != 0);
 
+
+	// constants
+	glRenderDeviceRender::Instance().Resources->RegisterConstantSetup("parallax", &binder_parallax);
+	glRenderDeviceRender::Instance().Resources->RegisterConstantSetup("water_intensity", &binder_water_intensity);
+	glRenderDeviceRender::Instance().Resources->RegisterConstantSetup("sun_shafts_intensity", &binder_sun_shafts_intensity);
+	glRenderDeviceRender::Instance().Resources->RegisterConstantSetup("pos_decompression_params", &binder_pos_decompress_params);
+
+	c_lmaterial = "L_material";
+	c_sbase = "s_base";
+
+	Target = new CRenderTarget();	// Main target
+
+	// TODO: OGL: Implement model pool.
+	//Models = new CModelPool();
+	PSLibrary.OnCreate();
+	HWOCC.occq_create(occq_size);
+
+	//rmNormal					();
+	marker = 0;
+	//R_CHK						(HW.pDevice->CreateQuery(D3DQUERYTYPE_EVENT,&q_sync_point[0]));
+	//R_CHK						(HW.pDevice->CreateQuery(D3DQUERYTYPE_EVENT,&q_sync_point[1]));
+	ZeroMemory(q_sync_point, sizeof(q_sync_point));
+
 	xrRender_apply_tf();
-	//::PortalTraverser.initialize();
+	::PortalTraverser.initialize();
 }
 
 char* CRender::LoadIncludes(LPCSTR pSrcData, UINT SrcDataLen, xr_vector<char*>& includes)

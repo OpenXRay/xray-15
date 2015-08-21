@@ -8,10 +8,6 @@
 	#include "ATI/atimgpud.h"
 #endif
 
-#ifdef USE_OGL
-CHW			HW;
-#endif // USE_OGL
-
 namespace
 {
 

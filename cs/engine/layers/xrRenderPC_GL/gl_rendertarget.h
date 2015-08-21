@@ -183,28 +183,28 @@ public:
 	BOOL						u_DBT_enable			(float zMin, float zMax);
 	void						u_DBT_disable			();
 
-	void						phase_ssao				();
-	void						phase_downsamp			();
-	void						phase_scene_prepare		();
-	void						phase_scene_begin		();
-	void						phase_scene_end			();
-	void						phase_occq				();
-	void						phase_wallmarks			();
-	void						phase_smap_direct		(light* L,	u32 sub_phase);
-	void						phase_smap_direct_tsh	(light* L,	u32 sub_phase);
-	void						phase_smap_spot_clear	();
-	void						phase_smap_spot			(light* L);
-	void						phase_smap_spot_tsh		(light* L);
-	void						phase_accumulator		();
-	void						phase_vol_accumulator	();
-	void						shadow_direct			(light* L, u32 dls_phase);
+	void						phase_ssao				() { VERIFY(!"CRender::phase_ssao not implemented."); };
+	void						phase_downsamp			() { VERIFY(!"CRender::phase_downsamp not implemented."); };
+	void						phase_scene_prepare		() { VERIFY(!"CRender::phase_scene_prepare not implemented."); };
+	void						phase_scene_begin		() { VERIFY(!"CRender::phase_scene_begin not implemented."); };
+	void						phase_scene_end			() { VERIFY(!"CRender::phase_scene_end not implemented."); };
+	void						phase_occq				() { VERIFY(!"CRender::phase_occq not implemented."); };
+	void						phase_wallmarks			() { VERIFY(!"CRender::phase_wallmarks not implemented."); };
+	void						phase_smap_direct		(light* L,	u32 sub_phase) { VERIFY(!"CRender::phase_smap_direct not implemented."); };
+	void						phase_smap_direct_tsh	(light* L,	u32 sub_phase) { VERIFY(!"CRender::phase_smap_direct_tsh not implemented."); };
+	void						phase_smap_spot_clear	() { VERIFY(!"CRender::phase_smap_spot_clear not implemented."); };
+	void						phase_smap_spot			(light* L) { VERIFY(!"CRender::phase_smap_spot not implemented."); };
+	void						phase_smap_spot_tsh		(light* L) { VERIFY(!"CRender::phase_smap_spot_tsh not implemented."); };
+	void						phase_accumulator		() { VERIFY(!"CRender::phase_accumulator not implemented."); };
+	void						phase_vol_accumulator	() { VERIFY(!"CRender::phase_vol_accumulator not implemented."); };
+	void						shadow_direct			(light* L, u32 dls_phase) { VERIFY(!"CRender::shadow_direct not implemented."); };
 	
 	BOOL						enable_scissor			(light* L);		// true if intersects near plane
 	void						enable_dbt_bounds		(light* L);
 
-	void						disable_aniso			();
+	void						disable_aniso			() { VERIFY(!"CRender::disable_aniso not implemented."); };
 
-	void						draw_volume				(light* L);
+	void						draw_volume				(light* L) { VERIFY(!"CRender::draw_volume not implemented."); };
 	void						accum_direct			(u32	sub_phase);
 	void						accum_direct_f			(u32	sub_phase);
 	void						accum_direct_lum		();
@@ -217,7 +217,7 @@ public:
 	void						accum_volumetric		(light* L);
 	void						phase_bloom				();
 	void						phase_luminance			();
-	void						phase_combine			();
+	void						phase_combine			() { VERIFY(!"CRender::phase_combine not implemented."); };
 	void						phase_combine_volumetric();
 	void						phase_pp				();
 

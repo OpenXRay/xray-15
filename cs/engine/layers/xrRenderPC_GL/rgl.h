@@ -20,6 +20,14 @@
 #include "../../xrEngine/irenderable.h"
 #include "../../xrEngine/fmesh.h"
 
+class  CHW
+{
+public:
+	CHWCaps			Caps;
+	GLuint			pBaseZB;
+};
+extern ECORE_API CHW		HW;
+
 class CRender	:	public R_dsgraph_structure
 {
 public:
@@ -94,6 +102,7 @@ public:
 	CPSLibrary						PSLibrary;
 
 	CDetailManager*					Details;
+	CWallmarksEngine*				Wallmarks;
 
 	CRenderTarget*					Target;			// Render-target
 
@@ -102,11 +111,15 @@ public:
 	light_Package					LP_normal;
 	light_Package					LP_pending;
 
+	xr_vector<Fbox3, render_alloc<Fbox3> > main_coarse_structure;
+
 	shared_str						c_sbase;
 	shared_str						c_lmaterial;
 	float							o_hemi;
 	float							o_hemi_cube[CROS_impl::NUM_FACES];
 	float							o_sun;
+	GLsync							q_sync_point[CHWCaps::MAX_GPUS];
+	u32								q_sync_count;
 
 private:
 	char*							LoadIncludes(LPCSTR pSrcData, UINT SrcDataLen, xr_vector<char*>& includes);
@@ -165,6 +178,12 @@ private:
 	void							add_Static(dxRender_Visual*pVisual, u32 planes);
 	void							add_leafs_Dynamic(dxRender_Visual*pVisual);					// if detected node's full visibility
 	void							add_leafs_Static(dxRender_Visual*pVisual);					// if detected node's full visibility
+
+public:
+	IRender_Sector*					rimp_detectSector(Fvector& P, Fvector& D);
+	void							render_main(Fmatrix& mCombined, bool _fportals);
+	void							render_forward();
+	void							render_menu();
 
 public:
 	// feature level
@@ -257,7 +276,7 @@ public:
 
 	// Main
 	virtual void					Calculate();
-	virtual void					Render() { VERIFY(!"CRender::Render not implemented."); };
+	virtual void					Render();
 
 	virtual void					Screenshot(ScreenshotMode mode = SM_NORMAL, LPCSTR name = 0) { VERIFY(!"CRender::Screenshot not implemented."); };
 	virtual	void					Screenshot(ScreenshotMode mode, CMemoryWriter& memory_writer) { VERIFY(!"CRender::Screenshot not implemented."); };

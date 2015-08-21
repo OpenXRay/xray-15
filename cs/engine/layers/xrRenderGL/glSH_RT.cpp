@@ -59,7 +59,7 @@ void CRT::create	(LPCSTR Name, u32 w, u32 h,	D3DFORMAT f, u32 SampleCount )
 
 	glGenTextures(1, &pSurface);
 	CHK_GL(glBindTexture(GL_TEXTURE_2D, pSurface));
-	CHK_GL(glTextureStorage2D(GL_TEXTURE_2D, 1, usage, w, h));
+	CHK_GL(glTexStorage2D(GL_TEXTURE_2D, 1, usage, w, h));
 
 	pTexture	= DEV->_CreateTexture	(Name);
 	pTexture->surface_set(pSurface);

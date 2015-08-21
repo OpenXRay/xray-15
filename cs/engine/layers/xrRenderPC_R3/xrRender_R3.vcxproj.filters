@@ -767,9 +767,6 @@
     <ClCompile Include="Light_Render_Direct_ComputeXFS.cpp">
       <Filter>Lights</Filter>
     </ClCompile>
-    <ClCompile Include="light_vis.cpp">
-      <Filter>Lights</Filter>
-    </ClCompile>
     <ClCompile Include="blender_bloom_build.cpp">
       <Filter>Shading templates</Filter>
     </ClCompile>
@@ -1311,6 +1308,9 @@
       <Filter>Lights</Filter>
     </ClCompile>
     <ClCompile Include="..\xrRender\light_GI.cpp">
+      <Filter>Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\light_vis.cpp">
       <Filter>Lights</Filter>
     </ClCompile>
   </ItemGroup>

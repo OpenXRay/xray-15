@@ -522,6 +522,15 @@
     <ClCompile Include="..\xrRender\r__sector.cpp">
       <Filter>Visibility\Sector/Portal</Filter>
     </ClCompile>
+    <ClCompile Include="gl_R_render.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\WallmarksEngine.cpp">
+      <Filter>Wallmarks</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\light_vis.cpp">
+      <Filter>Lights</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -883,6 +892,9 @@
     </ClInclude>
     <ClInclude Include="..\xrRender\r__sector.h">
       <Filter>Visibility\Sector/Portal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRender\WallmarksEngine.h">
+      <Filter>Wallmarks</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

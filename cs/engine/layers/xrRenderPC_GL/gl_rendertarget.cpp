@@ -8,7 +8,7 @@ void	CRenderTarget::u_setrt			(const ref_rt& _1, const ref_rt& _2, const ref_rt&
 	dwWidth									= _1->dwWidth;
 	dwHeight								= _1->dwHeight;
 	RCache.set_FB							(pFB);
-	if (_1) RCache.set_RT(_1->pSurface,	0); else RCache.set_RT(NULL,0);
+	if (_1) RCache.set_RT(_1->pSurface,	0); else RCache.set_RT(NULL, 0);
 	if (_2) RCache.set_RT(_2->pSurface, 1); else RCache.set_RT(NULL, 1);
 	if (_3) RCache.set_RT(_3->pSurface, 2); else RCache.set_RT(NULL, 2);
 	RCache.set_ZB							(zb);

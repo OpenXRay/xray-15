@@ -492,6 +492,7 @@
     <ClCompile Include="..\xrRender\dxRenderVisual.cpp" />
     <ClCompile Include="..\xrRender\light_GI.cpp" />
     <ClCompile Include="..\xrRender\light_smapvis.cpp" />
+    <ClCompile Include="..\xrRender\light_vis.cpp" />
     <ClCompile Include="blender_bloom_build.cpp" />
     <ClCompile Include="blender_combine.cpp" />
     <ClCompile Include="blender_deffer_aref.cpp" />
@@ -507,7 +508,6 @@
     <ClCompile Include="blender_ssao.cpp" />
     <ClCompile Include="Light_Render_Direct.cpp" />
     <ClCompile Include="Light_Render_Direct_ComputeXFS.cpp" />
-    <ClCompile Include="light_vis.cpp" />
     <ClCompile Include="r2.cpp" />
     <ClCompile Include="r2_blenders.cpp" />
     <ClCompile Include="r2_loader.cpp" />

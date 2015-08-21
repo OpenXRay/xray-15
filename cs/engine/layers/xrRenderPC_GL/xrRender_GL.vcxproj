@@ -251,6 +251,7 @@
     <ClCompile Include="..\xrRender\light_GI.cpp" />
     <ClCompile Include="..\xrRender\Light_Package.cpp" />
     <ClCompile Include="..\xrRender\light_smapvis.cpp" />
+    <ClCompile Include="..\xrRender\light_vis.cpp" />
     <ClCompile Include="..\xrRender\occRasterizer.cpp" />
     <ClCompile Include="..\xrRender\occRasterizer_core.cpp" />
     <ClCompile Include="..\xrRender\ParticleEffect.cpp" />
@@ -284,6 +285,7 @@
     <ClCompile Include="..\xrRender\TextureDescrManager.cpp" />
     <ClCompile Include="..\xrRender\tss_def.cpp" />
     <ClCompile Include="..\xrRender\uber_deffer.cpp" />
+    <ClCompile Include="..\xrRender\WallmarksEngine.cpp" />
     <ClCompile Include="..\xrRender\xrRender_console.cpp" />
     <ClCompile Include="glApplicationRender.cpp" />
     <ClCompile Include="glLensFlareRender.cpp" />
@@ -307,6 +309,7 @@
     <ClCompile Include="GLUtils.cpp" />
     <ClCompile Include="glWallMarkArray.cpp" />
     <ClCompile Include="GL_DStreams.cpp" />
+    <ClCompile Include="gl_R_render.cpp" />
     <ClCompile Include="r2_R_calculate.cpp" />
     <ClCompile Include="gl_rendertarget.cpp" />
     <ClCompile Include="rgl.cpp" />
@@ -430,6 +433,7 @@
     <ClInclude Include="..\xrRender\tss.h" />
     <ClInclude Include="..\xrRender\tss_def.h" />
     <ClInclude Include="..\xrRender\uber_deffer.h" />
+    <ClInclude Include="..\xrRender\WallmarksEngine.h" />
     <ClInclude Include="..\xrRender\xrRender_console.h" />
     <ClInclude Include="glApplicationRender.h" />
     <ClInclude Include="glLensFlareRender.h" />
