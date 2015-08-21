@@ -1,0 +1,10 @@
+#include "common.h"
+
+layout(location = 0) in vec4 iPos;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Vertex
+void main ()
+{
+	gl_Position = m_WVP * iPos;
+}

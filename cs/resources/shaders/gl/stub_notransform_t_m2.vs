@@ -13,19 +13,17 @@ out vec4 vColor;
 // Vertex
 void main ()
 {
-	vec4 vHPos, iP = iPos;
+	vec4 OHPos, IP = iPos;
 
 	{
-		iP.xy += 0.5f;
-//		vHPos.x = iP.x/1024 * 2 - 1;
-//		vHPos.y = (iP.y/768 * 2 - 1)*-1;
-		vHPos.x = iP.x * screen_res.z * 2 - 1;
-		vHPos.y = (iP.y * screen_res.w * 2 - 1)*-1;
-		vHPos.zw = iP.zw;
+		IP.xy += 0.5f;
+//		OHPos.x = IP.x/1024 * 2 - 1;
+//		OHPos.y = (IP.y/768 * 2 - 1)*-1;
+		OHPos.x = IP.x * screen_res.z * 2 - 1;
+		OHPos.y = (IP.y * screen_res.w * 2 - 1)*-1;
+		OHPos.zw = IP.zw;
 	}
 
 	vTex0 = iTex0;
-	vColor = iColor.bgra;	//	swizzle vertex colour
-
-	gl_Position = vHPos;
+	vColor = float4(iColor.bgr*2, 1.0f);	//	swizzle vertex colour
 }

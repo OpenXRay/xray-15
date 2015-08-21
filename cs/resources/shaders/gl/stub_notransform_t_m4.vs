@@ -25,7 +25,7 @@ void main ()
 	}
 
 	vTex0 = iTex0;
-	vColor = iColor.bgra;	//	swizzle vertex colour
+	vColor = float4(iColor.bgr*4, 1.0f);	//	swizzle vertex colour
 
 	gl_Position = vHPos;
 }

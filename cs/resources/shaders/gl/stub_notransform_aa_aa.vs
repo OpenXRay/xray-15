@@ -3,11 +3,21 @@
 uniform half4		screen_res;		// Screen resolution (x-Width,y-Height, zw - 1/resolution)
 
 layout(location = 0) in vec4 iPos;
-layout(location = 1) in vec4 iColor;
-layout(location = 2) in vec2 iTex0;
+layout(location = 1) in vec2 iTex0;
+layout(location = 2) in vec2 iTex1;
+layout(location = 3) in vec2 iTex2;
+layout(location = 4) in vec2 iTex3;
+layout(location = 5) in vec2 iTex4;
+layout(location = 6) in vec4 iTex5;
+layout(location = 7) in vec4 iTex6;
 
 out vec2 vTex0;
-out vec4 vColor;
+out vec2 vTex1;
+out vec2 vTex2;
+out vec2 vTex3;
+out vec2 vTex4;
+out vec4 vTex5;
+out vec4 vTex6;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // Vertex
@@ -24,8 +34,14 @@ void main ()
 		vHPos.zw = iP.zw;
 	}
 
+
 	vTex0 = iTex0;
-	vColor = iColor.bgra;	//	swizzle vertex colour
+	vTex1 = iTex1;
+	vTex2 = iTex2;
+	vTex3 = iTex3;
+	vTex4 = iTex4;
+	vTex5 = iTex5;
+	vTex6 = iTex6;
 
 	gl_Position = vHPos;
 }
