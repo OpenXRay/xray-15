@@ -361,7 +361,7 @@ CRenderTarget::CRenderTarget		()
 		t_LUM_dest.create			(r2_RT_luminance_cur);
 
 		// create pool
-		for (u32 it=0; it<2; it++)	{
+		for (u32 it = 0; it<HW.Caps.iGPUNum * 2; it++)	{
 			string256					name;
 			sprintf						(name,"%s_%d",	r2_RT_luminance_pool,it	);
 			rt_LUM_pool[it].create		(name,	1,	1,	D3DFMT_R32F				);
@@ -406,16 +406,19 @@ CRenderTarget::CRenderTarget		()
 			t_material->surface_set		(t_material_surf);
 
 			// Fill it (addr: x=dot(L,N),y=dot(L,H))
-			const u32 SlicePitch = TEX_material_LdotN * 2;
-			const u32 RowPitch = TEX_material_LdotH * SlicePitch;
+			static const u32 RowPitch = TEX_material_LdotN * 2;
+			static const u32 SlicePitch = TEX_material_LdotH * RowPitch;
 			u16	pBits[TEX_material_LdotN*TEX_material_LdotH*TEX_material_Count];
-			for (u32 slice=0; slice<4; slice++)
+			for (u32 slice=0; slice<TEX_material_Count; slice++)
 			{
 				for (u32 y=0; y<TEX_material_LdotH; y++)
 				{
 					for (u32 x=0; x<TEX_material_LdotN; x++)
 					{
-						u16*	p	=	(u16*)		(LPBYTE (pBits) + slice*SlicePitch + y*RowPitch + x*2);
+						u16*	p	=	(u16*)		
+							(LPBYTE(pBits)
+							+ slice*SlicePitch 
+							+ y*RowPitch + x * 2);
 						float	ld	=	float(x)	/ float	(TEX_material_LdotN-1);
 						float	ls	=	float(y)	/ float	(TEX_material_LdotH-1) + EPS_S;
 						ls			*=	powf(ld,1/32.f);
@@ -453,7 +456,7 @@ CRenderTarget::CRenderTarget		()
 					}
 				}
 			}
-			glTexSubImage3D(GL_TEXTURE_3D, 1, 0, 0, 0, TEX_material_LdotN, TEX_material_LdotH, TEX_material_Count, GL_RG, GL_UNSIGNED_BYTE, pBits);
+			CHK_GL(glTexSubImage3D(GL_TEXTURE_3D, 0, 0, 0, 0, TEX_material_LdotN, TEX_material_LdotH, TEX_material_Count, GL_RG, GL_UNSIGNED_BYTE, pBits));
 			// #ifdef DEBUG
 			// R_CHK	(D3DXSaveTextureToFile	("x:\\r2_material.dds",D3DXIFF_DDS,t_material_surf,0));
 			// #endif
@@ -462,12 +465,16 @@ CRenderTarget::CRenderTarget		()
 		// Build noise table
 		if (1)
 		{
+			glGenTextures(TEX_jitter_count, t_noise_surf);
+
+			static const int sampleSize = 4;
+			u32	tempData[TEX_jitter_count][TEX_jitter*TEX_jitter];
+
 			// Surfaces
 			for (int it1=0; it1<TEX_jitter_count-1; it1++)
 			{
 				string_path					name;
 				sprintf						(name,"%s%d",r2_jitter,it1);
-				glGenTextures				(1, &t_noise_surf[it1]);
 				CHK_GL						(glBindTexture(GL_TEXTURE_2D, t_noise_surf[it1]));
 				CHK_GL						(glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8, TEX_jitter, TEX_jitter));
 				t_noise[it1]				= glRenderDeviceRender::Instance().Resources->_CreateTexture	(name);
@@ -475,8 +482,7 @@ CRenderTarget::CRenderTarget		()
 			}	
 
 			// Fill it,
-			static const u32 Pitch = TEX_jitter*4;
-			u32	pBits[TEX_jitter_count][TEX_jitter*TEX_jitter];
+			static const u32 Pitch = TEX_jitter*sampleSize;
 			for (u32 y=0; y<TEX_jitter; y++)
 			{
 				for (u32 x=0; x<TEX_jitter; x++)
@@ -485,7 +491,7 @@ CRenderTarget::CRenderTarget		()
 					generate_jitter	(data,TEX_jitter_count-1);
 					for (u32 it2=0; it2<TEX_jitter_count-1; it2++)
 					{
-						u32*	p	=	(u32*)	(LPBYTE (pBits[it2]) + y*Pitch + x*4);
+						u32*	p	=	(u32*)	(LPBYTE (tempData[it2]) + y*Pitch + x*4);
 								*p	=	data	[it2];
 					}
 				}
@@ -493,20 +499,22 @@ CRenderTarget::CRenderTarget		()
 			
 			for (int it3=0; it3<TEX_jitter_count-1; it3++)	{
 				CHK_GL						(glBindTexture(GL_TEXTURE_2D, t_noise_surf[it3]));
-				CHK_GL						(glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, TEX_jitter, TEX_jitter, GL_RGBA, GL_UNSIGNED_BYTE, pBits[it3]));
-			}		
+				CHK_GL						(glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, TEX_jitter, TEX_jitter, GL_RGBA, GL_UNSIGNED_BYTE, tempData[it3]));
+			}
+
+			float tempDataHBAO[TEX_jitter*TEX_jitter * 4];
 
 			// generate HBAO jitter texture (last)
 			int it = TEX_jitter_count - 1;
 			string_path					name;
 			sprintf						(name,"%s%d",r2_jitter,it);
-			glGenTextures				(1, &t_noise_surf[it]);
 			CHK_GL						(glBindTexture(GL_TEXTURE_2D, t_noise_surf[it]));
 			CHK_GL						(glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA32F, TEX_jitter, TEX_jitter));
 			t_noise[it]					= glRenderDeviceRender::Instance().Resources->_CreateTexture	(name);
 			t_noise[it]->surface_set	(t_noise_surf[it]);
 			
 			// Fill it,
+			static const int HBAOPitch = TEX_jitter*sampleSize*sizeof(float);
 			for (u32 y=0; y<TEX_jitter; y++)
 			{
 				for (u32 x=0; x<TEX_jitter; x++)
@@ -522,17 +530,20 @@ CRenderTarget::CRenderTarget		()
 					float dist = ::Random.randF(0.0f, 1.0f);
 					//float dest[4];
 					
-					float*	p	=	(float*)	(LPBYTE (pBits[it]) + y*Pitch + x*4*sizeof(float));
-					*p = (float)(_cos(angle));
-					*(p+1) = (float)(_sin(angle));
-					*(p+2) = (float)(dist);
-					*(p+3) = 0;
+					float *p = (float*)
+						(LPBYTE(tempDataHBAO)
+						+ y*HBAOPitch
+						+ x * 4 * sizeof(float));
+					*p = (float)(cos(angle));
+					*(p + 1) = (float)(sin(angle));
+					*(p + 2) = (float)(dist);
+					*(p + 3) = 0;
 					
 					//generate_hbao_jitter	(data,TEX_jitter*TEX_jitter);
 				}
 			}
 			CHK_GL	(glBindTexture(GL_TEXTURE_2D, t_noise_surf[it3]));
-			CHK_GL	(glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, TEX_jitter, TEX_jitter, GL_RGBA, GL_UNSIGNED_BYTE, pBits[it3]));
+			CHK_GL	(glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, TEX_jitter, TEX_jitter, GL_RGBA, GL_UNSIGNED_BYTE, tempDataHBAO));
 		}
 	}
 
