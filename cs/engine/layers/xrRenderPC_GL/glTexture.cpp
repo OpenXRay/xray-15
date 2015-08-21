@@ -137,7 +137,7 @@ _DDS:
 				}
 				else {
 					CHK_GL(glTexSubImage2D(GL_TEXTURE_CUBE_MAP, i, 0, 0, dwWidth, dwHeight,
-						fmt.External, Texture[i].size(), Texture[i].data()));
+						fmt.External, fmt.Type, Texture[i].data()));
 				}
 			}
 			FS.r_close(S);
@@ -174,7 +174,7 @@ _DDS:
 				}
 				else {
 					CHK_GL(glTexSubImage2D(GL_TEXTURE_2D, i, 0, 0, dwWidth, dwHeight,
-						fmt.External, Texture[i].size(), Texture[i].data()));
+						fmt.External, fmt.Type, Texture[i].data()));
 				}
 			}
 			FS.r_close(S);
