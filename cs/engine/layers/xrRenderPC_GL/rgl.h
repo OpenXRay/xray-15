@@ -223,7 +223,7 @@ public:
 	virtual IRender_Sector*			getSector(int id) { VERIFY(!"CRender::getSector not implemented."); return nullptr; };
 	virtual IRenderVisual*			getVisual(int id) { VERIFY(!"CRender::getVisual not implemented."); return nullptr; };
 	virtual IRender_Sector*			detectSector(const Fvector& P) { VERIFY(!"CRender::detectSector not implemented."); return nullptr; };
-	virtual IRender_Target*			getTarget() { VERIFY(!"CRender::getTarget not implemented."); return nullptr; };
+	virtual IRender_Target*			getTarget() { return Target; };
 
 	// Main 
 	IC		void					set_Frustum(CFrustum*	O)							{ VERIFY(!"CRender::set_Frustum not implemented."); VERIFY(O);	View = O; }

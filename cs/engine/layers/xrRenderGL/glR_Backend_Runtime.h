@@ -265,8 +265,11 @@ IC void	CBackend::set_ColorWriteEnable(u32 _mask)
 {
 	if (colorwrite_mask != _mask)		{
 		colorwrite_mask = _mask;
-		// TODO: Set color mask
-		VERIFY(!"CBackend::set_ColorWriteEnable not implemented.");
+		CHK_GL(glColorMask(
+			_mask & D3DCOLORWRITEENABLE_RED,
+			_mask & D3DCOLORWRITEENABLE_GREEN,
+			_mask & D3DCOLORWRITEENABLE_BLUE,
+			_mask & D3DCOLORWRITEENABLE_ALPHA));
 	}
 }
 
