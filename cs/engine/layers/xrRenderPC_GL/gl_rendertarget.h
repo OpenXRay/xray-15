@@ -162,15 +162,15 @@ private:
 public:
 								CRenderTarget			();
 								~CRenderTarget			();
-	void						accum_point_geom_create	() { VERIFY(!"CRender::accum_point_geom_create not implemented."); };
-	void						accum_point_geom_destroy() { VERIFY(!"CRender::accum_point_geom_destroy not implemented."); };
-	void						accum_omnip_geom_create	() { VERIFY(!"CRender::accum_omnip_geom_create not implemented."); };
-	void						accum_omnip_geom_destroy() { VERIFY(!"CRender::accum_omnip_geom_destroy not implemented."); };
-	void						accum_spot_geom_create	() { VERIFY(!"CRender::accum_spot_geom_create not implemented."); };
-	void						accum_spot_geom_destroy	() { VERIFY(!"CRender::accum_spot_geom_destroy not implemented."); };
+	void						accum_point_geom_create	();
+	void						accum_point_geom_destroy();
+	void						accum_omnip_geom_create	();
+	void						accum_omnip_geom_destroy();
+	void						accum_spot_geom_create	();
+	void						accum_spot_geom_destroy	();
 	//	Igor: used for volumetric lights
-	void						accum_volumetric_geom_create() { VERIFY(!"CRender::accum_volumetric_geom_create not implemented."); };
-	void						accum_volumetric_geom_destroy() { VERIFY(!"CRender::accum_volumetric_geom_destroy not implemented."); };
+	void						accum_volumetric_geom_create();
+	void						accum_volumetric_geom_destroy();
 
 	void						u_stencil_optimize		(BOOL		common_stencil=TRUE);
 	void						u_compute_texgen_screen	(Fmatrix&	dest);

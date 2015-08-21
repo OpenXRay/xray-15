@@ -204,6 +204,18 @@
     <ClCompile Include="..\xrRenderGL\glSH_Texture.cpp" />
     <ClCompile Include="..\xrRenderGL\glStateUtils.cpp" />
     <ClCompile Include="..\xrRenderGL\glTextureUtils.cpp" />
+    <ClCompile Include="..\xrRender\du_box.cpp" />
+    <ClCompile Include="..\xrRender\du_cone.cpp" />
+    <ClCompile Include="..\xrRender\du_cylinder.cpp" />
+    <ClCompile Include="..\xrRender\du_sphere.cpp" />
+    <ClCompile Include="..\xrRender\du_sphere_part.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
+    </ClCompile>
     <ClCompile Include="blender_bloom_build.cpp" />
     <ClCompile Include="blender_combine.cpp" />
     <ClCompile Include="blender_deffer_aref.cpp" />
@@ -217,6 +229,9 @@
     <ClCompile Include="blender_light_spot.cpp" />
     <ClCompile Include="blender_luminance.cpp" />
     <ClCompile Include="blender_ssao.cpp" />
+    <ClCompile Include="gl_rendertarget_accum_omnipart_geom.cpp" />
+    <ClCompile Include="gl_rendertarget_accum_point_geom.cpp" />
+    <ClCompile Include="gl_rendertarget_accum_spot_geom.cpp" />
     <ClCompile Include="r2_blenders.cpp" />
     <ClCompile Include="..\xrRender\Animation.cpp" />
     <ClCompile Include="..\xrRender\blenders\Blender.cpp" />
@@ -358,6 +373,11 @@
     <ClInclude Include="..\xrRenderGL\glr_constants_cache.h" />
     <ClInclude Include="..\xrRenderGL\glStateUtils.h" />
     <ClInclude Include="..\xrRenderGL\glTextureUtils.h" />
+    <ClInclude Include="..\xrRender\du_box.h" />
+    <ClInclude Include="..\xrRender\du_cone.h" />
+    <ClInclude Include="..\xrRender\du_cylinder.h" />
+    <ClInclude Include="..\xrRender\du_sphere.h" />
+    <ClInclude Include="..\xrRender\du_sphere_part.h" />
     <ClInclude Include="blender_bloom_build.h" />
     <ClInclude Include="blender_combine.h" />
     <ClInclude Include="blender_deffer_aref.h" />
