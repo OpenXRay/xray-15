@@ -1,5 +1,16 @@
 #include "stdafx.h"
 #include "../xrRender/resourcemanager.h"
+#include "blender_light_occq.h"
+#include "blender_light_mask.h"
+#include "blender_light_direct.h"
+#include "blender_light_point.h"
+#include "blender_light_spot.h"
+#include "blender_light_reflected.h"
+#include "blender_combine.h"
+#include "blender_bloom_build.h"
+#include "blender_luminance.h"
+#include "blender_ssao.h"
+
 #include "glRenderDeviceRender.h"
 
 void	CRenderTarget::u_setrt			(const ref_rt& _1, const ref_rt& _2, const ref_rt& _3, GLuint zb)
@@ -189,7 +200,7 @@ CRenderTarget::CRenderTarget		()
 	glRenderDeviceRender::Instance().Resources->Evict			();
 
 	// Blenders
-	/*b_occq							= new CBlender_light_occq();
+	b_occq							= new CBlender_light_occq();
 	b_accum_mask					= new CBlender_accum_direct_mask();
 	b_accum_direct					= new CBlender_accum_direct();
 	b_accum_point					= new CBlender_accum_point();
@@ -198,7 +209,7 @@ CRenderTarget::CRenderTarget		()
 	b_bloom							= new CBlender_bloom_build();
 	b_ssao							= new CBlender_SSAO();
 	b_luminance						= new CBlender_luminance();
-	b_combine						= new CBlender_combine();*/
+	b_combine						= new CBlender_combine();
 
 	//	NORMAL
 	{
