@@ -403,7 +403,7 @@ SGeometry*	CResourceManager::CreateGeom	(u32 FVF, GLuint vb, GLuint ib)
 	// Diffuse color attribute
 	if (FVF & D3DFVF_DIFFUSE)
 	{
-		CHK_GL(glVertexAttribPointer(attrib, GL_BGRA, GL_UNSIGNED_BYTE, GL_TRUE, vb_stride, (void*)offset));
+		CHK_GL(glVertexAttribPointer(attrib, 4, GL_UNSIGNED_BYTE, GL_TRUE, vb_stride, (void*)offset));
 		CHK_GL(glEnableVertexAttribArray(attrib));
 		offset += sizeof(u32);
 		attrib++;
@@ -412,7 +412,7 @@ SGeometry*	CResourceManager::CreateGeom	(u32 FVF, GLuint vb, GLuint ib)
 	// Specular color attribute
 	if (FVF & D3DFVF_SPECULAR)
 	{
-		CHK_GL(glVertexAttribPointer(attrib, GL_BGRA, GL_UNSIGNED_BYTE, GL_TRUE, vb_stride, (void*)offset));
+		CHK_GL(glVertexAttribPointer(attrib, 4, GL_UNSIGNED_BYTE, GL_TRUE, vb_stride, (void*)offset));
 		CHK_GL(glEnableVertexAttribArray(attrib));
 		offset += sizeof(u32);
 		attrib++;
