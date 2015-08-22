@@ -71,23 +71,26 @@ IC	ID3DDepthStencilView* CBackend::get_ZB()
 	return pZB;
 }
 
-#ifndef USE_OGL
 ICF void	CBackend::set_States		(SState* _state)
 {
 //	DX10 Manages states using it's own algorithm. Don't mess with it.
-#ifndef	USE_DX10
+#if !defined(USE_DX10) && !defined(USE_OGL)
 	if (state!=_state->state)
-#endif	//	USE_DX10
+#endif	//	!USE_DX10 && !USE_OGL
 	{
 		PGO				(Msg("PGO:state_block"));
 #ifdef DEBUG
 		stat.states		++;
 #endif
-		state			= _state->state;
-		state->Apply	();
+#ifdef USE_OGL
+		state = _state;
+		state->state.Apply();
+#else
+		state = _state->state;
+		state->Apply();
+#endif // USE_OGL
 	}
 }
-#endif // !USE_OGL
 
 #ifdef _EDITOR
 IC void CBackend::set_Matrices			(SMatrixList*	_M)
@@ -115,10 +118,10 @@ IC void CBackend::set_Matrices			(SMatrixList*	_M)
 IC void CBackend::set_Element			(ShaderElement* S, u32	pass)
 {
 	SPass&	P		= *(S->passes[pass]);
+	set_States		(P.state);
 #ifdef USE_OGL
 	set_Program		(P.program);
 #else
-	set_States		(P.state);
 	set_PS			(P.ps);
 	set_VS			(P.vs);
 #endif // USE_OGL

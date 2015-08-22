@@ -555,6 +555,9 @@
     <ClCompile Include="..\xrRender\du_sphere_part.cpp">
       <Filter>Refactored\Execution &amp; 3D\DebugDraw</Filter>
     </ClCompile>
+    <ClCompile Include="..\xrRenderGL\glState.cpp">
+      <Filter>dx9 to gl Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -934,6 +937,9 @@
     </ClInclude>
     <ClInclude Include="..\xrRender\du_sphere.h">
       <Filter>Refactored\Execution &amp; 3D\DebugDraw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRenderGL\glState.h">
+      <Filter>dx9 to gl Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

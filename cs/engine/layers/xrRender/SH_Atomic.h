@@ -9,6 +9,10 @@
 #include "../xrRenderDX10/StateManager/dx10State.h"
 #endif	//	USE_DX10
 
+#ifdef USE_OGL
+#include "../xrRenderGL/glState.h"
+#endif // USE_OGL
+
 #pragma pack(push,4)
 
 
@@ -84,7 +88,7 @@ typedef	resptr_core<SProgram, resptr_base<SProgram> > ref_program;
 struct ECORE_API SState : public xr_resource_flagged
 {
 #ifdef	USE_OGL
-	GLuint								state[CTexture::mtMaxCombinedShaderTextures];
+	glState								state;
 #else
 	ID3DState*							state;
 #endif // USE_OGL

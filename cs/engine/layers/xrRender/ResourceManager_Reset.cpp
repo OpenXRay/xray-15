@@ -16,10 +16,10 @@ void	CResourceManager::reset_begin			()
 	// destroy state-blocks
 	for (u32 _it = 0; _it<v_states.size(); _it++)
 #ifdef USE_OGL
-		glDeleteSamplers(CTexture::mtMaxCombinedShaderTextures, v_states[_it]->state);
+		v_states[_it]->state.Release();
 #else
 		_RELEASE(v_states[_it]->state);
-#endif // !USE_OGL
+#endif // USE_OGL
 
 	// destroy RTs
 	for (map_RTIt rt_it=m_rtargets.begin(); rt_it!=m_rtargets.end(); rt_it++)

@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "sh_texture.h"
+#include "../xrRenderGL/glState.h"
 
 class	 SimulatorStates
 {
@@ -37,9 +37,6 @@ private:
 	};
 private:
 	xr_vector<State>		States;
-#ifdef USE_OGL
-	;
-#endif // USE_OGL
 
 public:
 	void					set_RS	(u32 a, u32 b);
@@ -48,8 +45,7 @@ public:
 	BOOL					equal	(SimulatorStates& S);
 	void					clear	();
 #ifdef USE_OGL
-	void					apply	();
-	void					record	(GLuint samplerArray[CTexture::mtMaxCombinedShaderTextures]);
+	void					record	(glState &state);
 #else
 	IDirect3DStateBlock9*	record	();
 #endif // USE_OGL
@@ -60,10 +56,5 @@ public:
 	void	UpdateDesc( D3D10_BLEND_DESC &desc ) const;
 	void	UpdateDesc( D3D10_SAMPLER_DESC descArray[D3D10_COMMONSHADER_SAMPLER_SLOT_COUNT], bool SamplerUsed[D3D10_COMMONSHADER_SAMPLER_SLOT_COUNT], int iBaseSamplerIndex ) const;
 #endif	//	USE_DX10
-#ifdef USE_OGL
-	void	ApplyState(State &state) const;
-	void	UpdateSampler(State &state);
-#endif // USE_OGL
-
 };
 #endif

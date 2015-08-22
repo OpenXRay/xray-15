@@ -4,73 +4,17 @@
 #include "tss_def.h"
 
 #ifdef USE_OGL
-void SimulatorStates::apply()
+#include "../xrRenderGL/glState.h"
+void SimulatorStates::record(glState& state)
 {
-	//	TODO: OGL: Implement equivalent for SimulatorStates::record for OGL
-	//VERIFY(!"SimulatorStates::record not implemented!");
-	return;
-}
-
-void SimulatorStates::record(GLuint samplerArray[CTexture::mtMaxCombinedShaderTextures])
-{
-	// Clear the sampler array
-	memset(samplerArray, 0, CTexture::mtMaxCombinedShaderTextures * sizeof(GLuint));
-
-	//	TODO: OGL: Implement a sampler object manager
 	for (u32 it = 0; it < States.size(); it++)
 	{
 		State& S = States[it];
-		if (S.type == 2)
+		switch (S.type)
 		{
-			if (S.v1 < 0 || CTexture::mtMaxCombinedShaderTextures < S.v1)
-				continue;
-
-			GLint currentFilter = GL_NEAREST;
-
-			if (samplerArray[S.v1] == NULL)
-				glGenSamplers(1, &samplerArray[S.v1]);
-			else if (S.v2 == D3DSAMP_MINFILTER || S.v2 == D3DSAMP_MIPFILTER)
-				glGetSamplerParameteriv(samplerArray[S.v1], GL_TEXTURE_MIN_FILTER, &currentFilter);
-
-			switch (S.v2)
-			{
-				case D3DSAMP_ADDRESSU:			/* D3DTEXTUREADDRESS for U coordinate */
-					CHK_GL(glSamplerParameteri(samplerArray[S.v1], GL_TEXTURE_WRAP_S, glStateUtils::ConvertTextureAddressMode(S.v3)));
-					break;
-				case D3DSAMP_ADDRESSV:			/* D3DTEXTUREADDRESS for V coordinate */
-					CHK_GL(glSamplerParameteri(samplerArray[S.v1], GL_TEXTURE_WRAP_T, glStateUtils::ConvertTextureAddressMode(S.v3)));
-					break;
-				case D3DSAMP_ADDRESSW:			/* D3DTEXTUREADDRESS for W coordinate */
-					CHK_GL(glSamplerParameteri(samplerArray[S.v1], GL_TEXTURE_WRAP_R, glStateUtils::ConvertTextureAddressMode(S.v3)));
-					break;
-				case D3DSAMP_BORDERCOLOR:		/* D3DCOLOR */
-					{
-						GLint color[] = { color_get_R(S.v3), color_get_G(S.v3), color_get_B(S.v3), color_get_A(S.v3) };
-						CHK_GL(glSamplerParameteriv(samplerArray[S.v1], GL_TEXTURE_BORDER_COLOR, color));
-					}
-					break;
-				case D3DSAMP_MAGFILTER:			/* D3DTEXTUREFILTER filter to use for magnification */
-					CHK_GL(glSamplerParameteri(samplerArray[S.v1], GL_TEXTURE_MAG_FILTER, glStateUtils::ConvertTextureFilter(S.v3)));
-					break;
-				case D3DSAMP_MINFILTER:			/* D3DTEXTUREFILTER filter to use for minification */
-					CHK_GL(glSamplerParameteri(samplerArray[S.v1], GL_TEXTURE_MIN_FILTER, glStateUtils::ConvertTextureFilter(S.v3, currentFilter)));
-					break;
-				case D3DSAMP_MIPFILTER:			/* D3DTEXTUREFILTER filter to use between mipmaps during minification */
-					CHK_GL(glSamplerParameteri(samplerArray[S.v1], GL_TEXTURE_MIN_FILTER, glStateUtils::ConvertTextureFilter(S.v3, currentFilter, true)));
-					break;
-				case D3DSAMP_MIPMAPLODBIAS:		/* float Mipmap LOD bias */
-					CHK_GL(glSamplerParameterf(samplerArray[S.v1], GL_TEXTURE_LOD_BIAS, *((float*)S.v3)));
-					break;
-				case D3DSAMP_MAXMIPLEVEL:		/* DWORD 0..(n-1) LOD index of largest map to use (0 == largest) */
-					CHK_GL(glSamplerParameteri(samplerArray[S.v1], GL_TEXTURE_MAX_LEVEL, S.v3));
-					break;
-				case D3DSAMP_MAXANISOTROPY:		/* DWORD maximum anisotropy */
-					CHK_GL(glSamplerParameteri(samplerArray[S.v1], GL_TEXTURE_MAX_ANISOTROPY_EXT, S.v3));
-					break;
-				default:
-					VERIFY(!"Sampler state not implemented");
-					break;
-			}
+		case 0:	state.UpdateRenderState(S.v1, S.v2);			break;
+		//case 1: VERIFY(!"Texture enviroment not supported");	break;
+		case 2: state.UpdateSamplerState(S.v1, S.v2, S.v3);		break;
 		}
 	}
 }

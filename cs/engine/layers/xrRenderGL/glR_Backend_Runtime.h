@@ -4,18 +4,6 @@
 
 #include "../xrRenderGL/glStateUtils.h"
 
-ICF void	CBackend::set_States		(SState* _state)
-{
-	PGO				(Msg("PGO:state_block"));
-#ifdef DEBUG
-	stat.states		++;
-#endif
-	state			= _state;
-	state->state_code.apply();
-	for (size_t stage = 0; stage < CTexture::mtMaxCombinedShaderTextures; stage++)
-		glBindSampler(stage, state->state[stage]);
-}
-
 IC void		CBackend::set_xform(u32 ID, const Fmatrix& M)
 {
 	stat.xforms++;
@@ -236,8 +224,10 @@ IC  void CBackend::set_Z(u32 _enable)
 	if (z_enable != _enable)
 	{
 		z_enable = _enable;
-		// TODO: Set depth state
-		VERIFY(!"CBackend::set_Z not implemented.");
+		if (_enable)
+			glEnable(GL_DEPTH_TEST);
+		else
+			glDisable(GL_DEPTH_TEST);
 	}
 }
 
@@ -246,19 +236,13 @@ IC  void CBackend::set_ZFunc(u32 _func)
 	if (z_func != _func)
 	{
 		z_func = _func;
-		// TODO: Set depth function
-		VERIFY(!"CBackend::set_ZFunc not implemented.");
+		CHK_GL(glDepthFunc(glStateUtils::ConvertCmpFunction(_func)));
 	}
 }
 
 IC  void CBackend::set_AlphaRef(u32 _value)
 {
-	if (alpha_ref != _value)
-	{
-		alpha_ref = _value;
-		// TODO: Set alpha reference
-		VERIFY(!"CBackend::set_AlphaRef not implemented.");
-	}
+	VERIFY(!"Not implemented.");
 }
 
 IC void	CBackend::set_ColorWriteEnable(u32 _mask)

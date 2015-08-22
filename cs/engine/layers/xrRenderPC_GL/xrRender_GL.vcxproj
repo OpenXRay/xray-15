@@ -202,6 +202,7 @@
     <ClCompile Include="..\xrRenderGL\glDetailManager_VS.cpp" />
     <ClCompile Include="..\xrRenderGL\glSH_RT.cpp" />
     <ClCompile Include="..\xrRenderGL\glSH_Texture.cpp" />
+    <ClCompile Include="..\xrRenderGL\glState.cpp" />
     <ClCompile Include="..\xrRenderGL\glStateUtils.cpp" />
     <ClCompile Include="..\xrRenderGL\glTextureUtils.cpp" />
     <ClCompile Include="..\xrRender\du_box.cpp" />
@@ -371,6 +372,7 @@
     <ClInclude Include="..\..\include\xrRender\WallMarkArray.h" />
     <ClInclude Include="..\xrRenderGL\glR_Backend_Runtime.h" />
     <ClInclude Include="..\xrRenderGL\glr_constants_cache.h" />
+    <ClInclude Include="..\xrRenderGL\glState.h" />
     <ClInclude Include="..\xrRenderGL\glStateUtils.h" />
     <ClInclude Include="..\xrRenderGL\glTextureUtils.h" />
     <ClInclude Include="..\xrRender\du_box.h" />
