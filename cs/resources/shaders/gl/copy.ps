@@ -1,0 +1,13 @@
+#include "common.h"
+
+in vec2 vTex0;
+
+layout(location = 0) out vec4 oColor;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Pixel
+//	TODO: OGL: move to load instead of sample (will need to provide integer texture coordinates)
+void main()
+{
+	oColor = texture2D( s_base, vTex0 );
+}
