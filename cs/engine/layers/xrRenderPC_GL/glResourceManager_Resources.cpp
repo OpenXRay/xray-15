@@ -176,6 +176,7 @@ SVS*	CResourceManager::_CreateVS		(LPCSTR _name)
 		m_vs.insert(mk_pair(_vs->set_name(name), _vs));
 		//_vs->vs				= NULL;
 		//_vs->signature		= NULL;
+		VERIFY(strcmpi(name, "null") != 0);
 
 		GLchar*					pErrorBuf = NULL;
 		string_path					cname;
@@ -247,6 +248,7 @@ SPS*	CResourceManager::_CreatePS			(LPCSTR _name)
 		SPS*	_ps = new SPS();
 		_ps->dwFlags |= xr_resource_flagged::RF_REGISTERED;
 		m_ps.insert(mk_pair(_ps->set_name(name), _ps));
+		VERIFY(strcmpi(name, "null") != 0);
 
 		// Open file
 		string_path					cname;
