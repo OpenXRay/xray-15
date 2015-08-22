@@ -1,0 +1,31 @@
+#include "common.h"
+
+uniform half4                b_params;
+
+in vec2 vTex0;
+in vec2 vTex1;
+in vec2 vTex2;
+in vec2 vTex3;
+
+layout(location = 0) out vec4 oColor;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Pixel
+void main ()
+{
+        // hi-rgb.base-lum
+//        half3       	s0              =        tex2D           	(s_image,        vtc0);
+//        half3         	s1              =        tex2D       		(s_image,        vtc1);
+//        half3         	s2              =        tex2D       		(s_image,        vtc2);
+//        half3         	s3             	=        tex2D    			(s_image,        vtc3);
+	half3	s0	= texture2D( s_image, vTex0).rgb;
+	half3	s1	= texture2D( s_image, vTex1).rgb;
+	half3	s2	= texture2D( s_image, vTex2).rgb;
+	half3	s3	= texture2D( s_image, vTex3).rgb;
+
+
+	half3	avg	= ( (s0+s1) + (s2+s3) )/2;
+	half	hi	= dot( avg, half3(1.f) )-b_params.x	;	// assume def_hdr equal to 3.0
+
+	oColor	=	half4( avg, hi );
+}
