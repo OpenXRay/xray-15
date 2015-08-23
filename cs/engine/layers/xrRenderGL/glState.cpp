@@ -84,6 +84,9 @@ void glState::Release()
 {
 	// Delete any generated samplers in the array
 	CHK_GL(glDeleteSamplers(CTexture::mtMaxCombinedShaderTextures, m_samplerArray));
+
+	// Clear the sampler array
+	memset(m_samplerArray, 0, CTexture::mtMaxCombinedShaderTextures * sizeof(GLuint));
 }
 
 void glState::UpdateRenderState(u32 name, u32 value)
