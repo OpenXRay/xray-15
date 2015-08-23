@@ -1,0 +1,20 @@
+#include "common.h"
+
+uniform sampler2D s_distort;
+
+in vec2 vTex0;
+
+layout(location = 0) out vec4 oColor;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Pixel
+void main ()
+{
+//	half2 	distort	= tex2D		(s_distort, vTex0);
+	half2 	distort	= texture2D(s_distort, vTex0).rg;
+	half2	offset	= (distort.xy-.5f)*def_distort;
+	half3	image 	= texture2D( s_base, vTex0 + offset).rgb;
+
+	// out
+	oColor			=  half4	(image,1);					// +mov
+}
