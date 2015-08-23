@@ -114,6 +114,8 @@ SPass*		CResourceManager::_CreatePass			(ref_state& _state, ref_program& _progra
 
 #ifdef USE_OGL
 	P->program				=	_program;
+	P->ps					=	_program->ps;
+	P->vs					=	_program->vs;
 #else
 	P->ps					=	_ps;
 	P->vs					=	_vs;
