@@ -196,12 +196,17 @@ IC void	CBackend::set_Scissor(Irect*	R)
 	if (R)
 	{
 		CHK_GL(glEnable(GL_SCISSOR_TEST));
-		CHK_GL(glScissor(R->left, R->top, R->width(), R->height()));
+
+		// The window space is inverted compared to DX,
+		// so we have to invert our vertical coordinates
+		u32 bottom = Device.dwHeight - R->bottom;
+
+		// The origin of the scissor box is lower-left
+		CHK_GL(glScissor(R->left, bottom, R->width(), R->height()));
 	}
 	else
 	{
 		CHK_GL(glDisable(GL_SCISSOR_TEST));
-		CHK_GL(glScissor(0, 0, 0, 0));
 	}
 }
 
