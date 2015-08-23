@@ -30,7 +30,7 @@ public:
 	virtual void	OnDeviceDestroy(BOOL bKeepTextures) { VERIFY(!"glRenderDeviceRender::OnDeviceDestroy not implemented."); };
 	virtual void	ValidateHW() { VERIFY(!"glRenderDeviceRender::ValidateHW not implemented."); };
 	virtual void	DestroyHW();
-	virtual void	Reset(HWND hWnd, u32 &dwWidth, u32 &dwHeight, float &fWidth_2, float &fHeight_2) { VERIFY(!"glRenderDeviceRender::Reset not implemented."); };
+	virtual void	Reset(HWND hWnd, u32 &dwWidth, u32 &dwHeight, float &fWidth_2, float &fHeight_2);
 	//	Init
 	virtual void	SetupStates();
 	virtual void	OnDeviceCreate(LPCSTR shName);

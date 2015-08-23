@@ -220,3 +220,16 @@ void glRenderDeviceRender::End()
 	Memory.dbg_check();
 	SwapBuffers(m_hDC);
 }
+
+void  glRenderDeviceRender::Reset(HWND hWnd, u32 &dwWidth, u32 &dwHeight, float &fWidth_2, float &fHeight_2)
+{
+	Resources->reset_begin();
+	Memory.mem_compact();
+
+	dwWidth = Device.dwWidth;
+	dwHeight = Device.dwHeight;
+
+	fWidth_2 = float(dwWidth / 2);
+	fHeight_2 = float(dwHeight / 2);
+	Resources->reset_end();
+}

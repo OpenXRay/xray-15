@@ -195,8 +195,8 @@ public:
 	// Loading / Unloading
 	virtual	void					create();
 	virtual	void					destroy() { VERIFY(!"CRender::destroy not implemented."); };
-	virtual	void					reset_begin() { VERIFY(!"CRender::reset_begin not implemented."); };
-	virtual	void					reset_end() { VERIFY(!"CRender::reset_end not implemented."); };
+	virtual	void					reset_begin();
+	virtual	void					reset_end();
 
 	virtual	void					level_Load(IReader*) { VERIFY(!"CRender::level_Load not implemented."); };
 	virtual void					level_Unload() { VERIFY(!"CRender::level_Unload not implemented."); };

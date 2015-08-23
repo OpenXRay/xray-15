@@ -491,3 +491,33 @@ IRender_DetailModel*	CRender::model_CreateDM(IReader*	F)
 	D->Load(F);
 	return D;
 }
+
+void CRender::reset_begin()
+{
+	// Update incremental shadowmap-visibility solver
+	// BUG-ID: 10646
+	{
+		u32 it = 0;
+		for (it = 0; it<Lights_LastFrame.size(); it++)	{
+			if (0 == Lights_LastFrame[it])	continue;
+			try {
+				Lights_LastFrame[it]->svis.resetoccq();
+			}
+			catch (...)
+			{
+				Msg("! Failed to flush-OCCq on light [%d] %X", it, *(u32*)(&Lights_LastFrame[it]));
+			}
+		}
+		Lights_LastFrame.clear();
+	}
+
+	xr_delete(Target);
+	HWOCC.occq_destroy();
+}
+
+void CRender::reset_end()
+{
+	HWOCC.occq_create(occq_size);
+	Target = new CRenderTarget();
+	xrRender_apply_tf();
+}
