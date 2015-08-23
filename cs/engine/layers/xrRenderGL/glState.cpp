@@ -38,8 +38,12 @@ glState::~glState()
 //	TODO: OGL: Does the render cache provide enough state management?
 void glState::Apply()
 {
+	// TODO: OGL: Use glBindSamplers if ARB_multi_bind is supported.
 	for (size_t stage = 0; stage < CTexture::mtMaxCombinedShaderTextures; stage++)
-		glBindSampler(stage, m_samplerArray[stage]);
+	{
+		if (m_samplerArray[stage])
+			glBindSampler(stage, m_samplerArray[stage]);
+	}
 
 	RCache.set_CullMode(m_pRasterizerState.CullMode);
 	RCache.set_Z(m_pDepthStencilState.DepthEnable);
