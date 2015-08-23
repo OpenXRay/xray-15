@@ -75,6 +75,7 @@ void CTexture::apply_load	(u32 dwStage)	{
 };
 
 void CTexture::apply_theora(u32 dwStage)	{
+	CHK_GL(glActiveTexture(GL_TEXTURE0 + dwStage));
 	CHK_GL(glBindTexture(desc, pSurface));
 
 	if (pTheora->Update(m_play_time!=0xFFFFFFFF?m_play_time:Device.dwTimeContinual)) {
@@ -98,6 +99,7 @@ void CTexture::apply_theora(u32 dwStage)	{
 	}
 };
 void CTexture::apply_avi(u32 dwStage)	{
+	CHK_GL(glActiveTexture(GL_TEXTURE0 + dwStage));
 	CHK_GL(glBindTexture(desc, pSurface));
 
 	if (pAVI->NeedUpdate())		{
@@ -120,9 +122,11 @@ void CTexture::apply_seq(u32 dwStage)	{
 		pSurface 			= seqDATA[frame_id];
 	}
 
+	CHK_GL(glActiveTexture(GL_TEXTURE0 + dwStage));
 	CHK_GL(glBindTexture(desc, pSurface));
 };
-void CTexture::apply_normal	(u32 dwStage)	{
+void CTexture::apply_normal(u32 dwStage)	{
+	CHK_GL(glActiveTexture(GL_TEXTURE0 + dwStage));
 	CHK_GL(glBindTexture(desc, pSurface));
 };
 
