@@ -178,10 +178,10 @@ void CRender::render_menu	()
 	p1.set							((_w+.5f)/_w, (_h+.5f)/_h );
 
 	FVF::TL* pv						= (FVF::TL*) RCache.Vertex.Lock	(4,Target->g_menu->vb_stride,Offset);
-	pv->set							(EPS,			float(_h+EPS),	d_Z,	d_W, C, p0.x, p1.y);	pv++;
-	pv->set							(EPS,			EPS,			d_Z,	d_W, C, p0.x, p0.y);	pv++;
-	pv->set							(float(_w+EPS),	float(_h+EPS),	d_Z,	d_W, C, p1.x, p1.y);	pv++;
-	pv->set							(float(_w+EPS),	EPS,			d_Z,	d_W, C, p1.x, p0.y);	pv++;
+	pv->set							(EPS,			float(_h+EPS),	d_Z,	d_W, C, p0.x, p0.y);	pv++;
+	pv->set							(EPS,			EPS,			d_Z,	d_W, C, p0.x, p1.y);	pv++;
+	pv->set							(float(_w+EPS),	float(_h+EPS),	d_Z,	d_W, C, p1.x, p0.y);	pv++;
+	pv->set							(float(_w+EPS),	EPS,			d_Z,	d_W, C, p1.x, p1.y);	pv++;
 	RCache.Vertex.Unlock			(4,Target->g_menu->vb_stride);
 	RCache.Render					(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
 }
