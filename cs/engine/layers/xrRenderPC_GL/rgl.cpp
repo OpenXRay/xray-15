@@ -172,8 +172,7 @@ void					CRender::create()
 
 	Target = new CRenderTarget();	// Main target
 
-	// TODO: OGL: Implement model pool.
-	//Models = new CModelPool();
+	Models = new CModelPool();
 	PSLibrary.OnCreate();
 	HWOCC.occq_create(occq_size);
 

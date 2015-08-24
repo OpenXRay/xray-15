@@ -99,9 +99,18 @@ public:
 	CHOM							HOM;
 	R_occlusion						HWOCC;
 
+	// Global vertex-buffer container
+	typedef svector<D3DVERTEXELEMENT9, MAXD3DDECLLENGTH + 1> VertexDeclarator;
+	xr_vector<FSlideWindowItem>		SWIs;
+	xr_vector<ref_shader>			Shaders;
+	xr_vector<VertexDeclarator>		nDC, xDC;
+	xr_vector<GLuint>				nVB, xVB;
+	xr_vector<GLuint>				nIB, xIB;
+	xr_vector<dxRender_Visual*>		Visuals;
 	CPSLibrary						PSLibrary;
 
 	CDetailManager*					Details;
+	CModelPool*						Models;
 	CWallmarksEngine*				Wallmarks;
 
 	CRenderTarget*					Target;			// Render-target
@@ -127,10 +136,6 @@ private:
 public:
 	ShaderElement*					rimp_select_sh_static(dxRender_Visual	*pVisual, float cdist_sq);
 	ShaderElement*					rimp_select_sh_dynamic(dxRender_Visual	*pVisual, float cdist_sq);
-	D3DVERTEXELEMENT9*				getVB_Format(int id, BOOL	_alt = FALSE);
-	GLuint							getVB(int id, BOOL	_alt = FALSE);
-	GLuint							getIB(int id, BOOL	_alt = FALSE);
-	FSlideWindowItem*				getSWI(int id);
 	IRender_Portal*					getPortal(int id) { VERIFY(!"CRender::getPortal not implemented."); return nullptr; };
 	IRender_Sector*					getSectorActive();
 	IRender_Sector*					detectSector(const Fvector& P, Fvector& D);
@@ -141,6 +146,19 @@ public:
 	IC void							occq_end(u32&	ID)	{ HWOCC.occq_end(ID); }
 	IC R_occlusion::occq_result		occq_get(u32&	ID)	{ return HWOCC.occq_get(ID); }
 
+	D3DVERTEXELEMENT9*				CRender::getVB_Format(int id, BOOL _alt = FALSE)	{
+		if (_alt)	{ VERIFY(id<int(xDC.size()));	return xDC[id].begin(); }
+		else		{ VERIFY(id<int(nDC.size()));	return nDC[id].begin(); }
+	}
+	GLuint							CRender::getVB(int id, BOOL	_alt = FALSE)	{
+		if (_alt)	{ VERIFY(id<int(xVB.size()));	return xVB[id]; }
+		else		{ VERIFY(id<int(nVB.size()));	return nVB[id]; }
+	}
+	GLuint							CRender::getIB(int id, BOOL	_alt = FALSE)	{
+		if (_alt)	{ VERIFY(id<int(xIB.size()));	return xIB[id]; }
+		else		{ VERIFY(id<int(nIB.size()));	return nIB[id]; }
+	}
+	FSlideWindowItem*				CRender::getSWI(int id)			{ VERIFY(id<int(SWIs.size()));		return &SWIs[id]; }
 	ICF void						apply_object(IRenderable*	O)
 	{
 		if (0 == O)					return;
@@ -266,7 +284,7 @@ public:
 	virtual void 					model_Delete(IRender_DetailModel* & F) { VERIFY(!"CRender::model_Delete not implemented."); };
 	virtual void					model_Logging(BOOL bEnable) { VERIFY(!"CRender::model_Logging not implemented."); };
 	virtual void					models_Prefetch() { VERIFY(!"CRender::models_Prefetch not implemented."); };
-	virtual void					models_Clear(BOOL b_complete) { VERIFY(!"CRender::models_Clear not implemented."); };
+	virtual void					models_Clear(BOOL b_complete) { Models->ClearPool(b_complete); }
 	IRenderVisual*					model_CreatePE(LPCSTR name) { VERIFY(!"CRender::model_CreatePE not implemented."); return nullptr; };
 
 	// Occlusion culling
