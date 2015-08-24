@@ -579,6 +579,9 @@
     <ClCompile Include="..\xrRender\FProgressive.cpp">
       <Filter>Models\Visuals</Filter>
     </ClCompile>
+    <ClCompile Include="glObjectSpaceRender.cpp">
+      <Filter>Interface implementations\ObjectSpaceRender</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -982,6 +985,12 @@
     </ClInclude>
     <ClInclude Include="..\xrRender\FProgressive.h">
       <Filter>Models\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\xrRender\ObjectSpaceRender.h">
+      <Filter>Interface implementations\ObjectSpaceRender</Filter>
+    </ClInclude>
+    <ClInclude Include="glObjectSpaceRender.h">
+      <Filter>Interface implementations\ObjectSpaceRender</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

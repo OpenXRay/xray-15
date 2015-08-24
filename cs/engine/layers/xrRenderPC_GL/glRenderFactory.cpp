@@ -14,7 +14,7 @@
 	#include "glEnvironmentRender.h"
 
 	#include "glRenderDeviceRender.h"
-	//#include "glObjectSpaceRender.h"
+	#include "glObjectSpaceRender.h"
 #endif // _EDITOR
 
 #include "glFontRender.h"
@@ -54,7 +54,7 @@ glRenderFactory RenderFactoryImpl;
 	RENDER_FACTORY_UNIMPLEMENT(ConsoleRender)
 	RENDER_FACTORY_IMPLEMENT(RenderDeviceRender)
 #	ifdef DEBUG
-		RENDER_FACTORY_UNIMPLEMENT(ObjectSpaceRender)
+		RENDER_FACTORY_IMPLEMENT(ObjectSpaceRender)
 #	endif // DEBUG
 	RENDER_FACTORY_IMPLEMENT(ApplicationRender)
 	RENDER_FACTORY_IMPLEMENT(WallMarkArray)
