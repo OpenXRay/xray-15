@@ -137,6 +137,7 @@ SDeclaration*	CResourceManager::_CreateDecl(D3DVERTEXELEMENT9* dcl)
 
 	u32 dcl_size = glBufferUtils::GetDeclLength(dcl) + 1;
 	D->dcl_code.assign(dcl, dcl + dcl_size);
+	D->FVF = 0;
 
 	// Because we don't use ARB_vertex_attrib_binding we can't re-use
 	// declarations like DirectX does.
@@ -370,7 +371,7 @@ SGeometry*	CResourceManager::CreateGeom	(D3DVERTEXELEMENT9* decl, GLuint vb, GLu
 	for (u32 it = 0; it<v_geoms.size(); it++)
 	{
 		SGeometry& G = *(v_geoms[it]);
-		if (dcl_equal(G.dcl->dcl_code.data(), decl) && (G.vb == vb) && (G.ib == ib) && (G.vb_stride == vb_stride))	return v_geoms[it];
+		if ((G.dcl->FVF == 0) && dcl_equal(G.dcl->dcl_code.data(), decl) && (G.vb == vb) && (G.ib == ib) && (G.vb_stride == vb_stride))	return v_geoms[it];
 	}
 
 	SDeclaration* dcl = _CreateDecl(decl);
