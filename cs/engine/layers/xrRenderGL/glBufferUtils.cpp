@@ -93,7 +93,7 @@ GLenum	VertexTypeSizeList[] =
 	sizeof(float),	// D3DDECLTYPE_FLOAT2
 	sizeof(float),	// D3DDECLTYPE_FLOAT3
 	sizeof(float),	// D3DDECLTYPE_FLOAT4
-	sizeof(D3DCOLOR), // D3DDECLTYPE_D3DCOLOR
+	sizeof(char),	// D3DDECLTYPE_D3DCOLOR
 	sizeof(char),	// D3DDECLTYPE_UBYTE4
 	sizeof(short),	// D3DDECLTYPE_SHORT2
 	sizeof(short),	// D3DDECLTYPE_SHORT4
@@ -114,10 +114,11 @@ GLsizei GetDeclVertexSize(const D3DVERTEXELEMENT9* decl)
 	for (int i = 0; i < MAXD3DDECLLENGTH; ++i)
 	{
 		const D3DVERTEXELEMENT9		&desc = decl[i];
-		size += VertexTypeSizeList[desc.Type];
 
 		if (desc.Stream == 0xFF)
 			break;
+
+		size += VertexSizeList[desc.Type] * VertexTypeSizeList[desc.Type];
 	}
 	return size;
 }
