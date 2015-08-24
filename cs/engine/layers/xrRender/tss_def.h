@@ -3,7 +3,9 @@
 
 #pragma once
 
+#ifdef USE_OGL
 #include "../xrRenderGL/glState.h"
+#endif // USE_OGL
 
 class	 SimulatorStates
 {
