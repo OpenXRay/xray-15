@@ -10,6 +10,8 @@
 #include "../xrRender/blenders\blender.h"
 #include "../xrRender/blenders\blender_recorder.h"
 
+#include "../xrRenderGL/glBufferUtils.h"
+
 void fix_texture_name(LPSTR fn);
 
 void simplify_texture(string_path &fn)
@@ -36,42 +38,6 @@ BOOL	reclaim		(xr_vector<T*>& vec, const T* ptr)
 	for (; it!=end; it++)
 		if (*it == ptr)	{ vec.erase	(it); return TRUE; }
 		return FALSE;
-}
-
-
-u32 get_vertex_size(u32 FVF)
-{
-	u32 offset = 0;
-
-	// Position attribute
-	if (FVF & D3DFVF_XYZRHW)
-		offset += sizeof(Fvector4);
-	else if (FVF & D3DFVF_XYZ)
-		offset += sizeof(Fvector);
-
-	// Diffuse color attribute
-	if (FVF & D3DFVF_DIFFUSE)
-		offset += sizeof(u32);
-
-	// Specular color attribute
-	if (FVF & D3DFVF_SPECULAR)
-		offset += sizeof(u32);
-
-	// Texture coordinates
-	for (u32 i = 0; i < (FVF & D3DFVF_TEXCOUNT_MASK) >> D3DFVF_TEXCOUNT_SHIFT; i++)
-	{
-		u32 size = 2;
-		if (FVF & D3DFVF_TEXCOORDSIZE1(i))
-			size = 1;
-		if (FVF & D3DFVF_TEXCOORDSIZE3(i))
-			size = 3;
-		if (FVF & D3DFVF_TEXCOORDSIZE4(i))
-			size = 4;
-
-		offset += size * sizeof(float);
-	}
-
-	return offset;
 }
 
 
@@ -139,15 +105,43 @@ void		CResourceManager::_DeletePass			(const SPass* P)
 }
 
 //--------------------------------------------------------------------------------------------------------------
+static BOOL	dcl_equal			(D3DVERTEXELEMENT9* a, D3DVERTEXELEMENT9* b)
+{
+	// check sizes
+	u32 a_size = glBufferUtils::GetDeclLength(a);
+	u32 b_size = glBufferUtils::GetDeclLength(b);
+	if (a_size != b_size)	return FALSE;
+	return 0 == memcmp(a, b, a_size*sizeof(D3DVERTEXELEMENT9));
+}
+
 SDeclaration*	CResourceManager::_CreateDecl	(u32 FVF)
 {
-	// Because we don't use ARB_vertex_attrib_binding we can't re-use
-	// declarations like DirectX does.
 	SDeclaration* D = new SDeclaration();
 	glGenVertexArrays(1, &D->vao);
+	glBufferUtils::ConvertVertexDeclaration(FVF, D->vao);
+
 	D->FVF = FVF;
-	D->dwFlags |= xr_resource_flagged::RF_REGISTERED;
-	v_declarations.push_back(D);
+
+	// Because we don't use ARB_vertex_attrib_binding we can't re-use
+	// declarations like DirectX does.
+	D->dwFlags = 0;
+
+	return D;
+}
+
+SDeclaration*	CResourceManager::_CreateDecl(D3DVERTEXELEMENT9* dcl)
+{
+	SDeclaration* D = new SDeclaration();
+	glGenVertexArrays(1, &D->vao);
+	glBufferUtils::ConvertVertexDeclaration(dcl, D->vao);
+
+	u32 dcl_size = glBufferUtils::GetDeclLength(dcl) + 1;
+	D->dcl_code.assign(dcl, dcl + dcl_size);
+
+	// Because we don't use ARB_vertex_attrib_binding we can't re-use
+	// declarations like DirectX does.
+	D->dwFlags = 0;
+
 	return D;
 }
 
@@ -366,11 +360,39 @@ void	CResourceManager::DBG_VerifyGeoms	()
 {
 }
 
+SGeometry*	CResourceManager::CreateGeom	(D3DVERTEXELEMENT9* decl, GLuint vb, GLuint ib)
+{
+	R_ASSERT(decl && vb);
+
+	u32 vb_stride = glBufferUtils::GetDeclVertexSize(decl);
+
+	// ***** first pass - search already loaded shader
+	for (u32 it = 0; it<v_geoms.size(); it++)
+	{
+		SGeometry& G = *(v_geoms[it]);
+		if (dcl_equal(G.dcl->dcl_code.data(), decl) && (G.vb == vb) && (G.ib == ib) && (G.vb_stride == vb_stride))	return v_geoms[it];
+	}
+
+	SDeclaration* dcl = _CreateDecl(decl);
+	CHK_GL(glBindVertexArray(dcl->vao));
+	CHK_GL(glBindBuffer(GL_ARRAY_BUFFER, vb));
+	CHK_GL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ib));
+
+	SGeometry *Geom = new SGeometry();
+	Geom->dwFlags |= xr_resource_flagged::RF_REGISTERED;
+	Geom->dcl = dcl;
+	Geom->vb = vb;
+	Geom->vb_stride = vb_stride;
+	Geom->ib = ib;
+	v_geoms.push_back(Geom);
+	return Geom;
+}
+
 SGeometry*	CResourceManager::CreateGeom	(u32 FVF, GLuint vb, GLuint ib)
 {
-	R_ASSERT(vb);
+	R_ASSERT(FVF && vb);
 
-	u32 vb_stride = get_vertex_size(FVF);
+	u32 vb_stride = glBufferUtils::GetFVFVertexSize(FVF);
 
 	// ***** first pass - search already loaded shader
 	for (u32 it = 0; it<v_geoms.size(); it++)
@@ -383,61 +405,6 @@ SGeometry*	CResourceManager::CreateGeom	(u32 FVF, GLuint vb, GLuint ib)
 	CHK_GL(glBindVertexArray(dcl->vao));
 	CHK_GL(glBindBuffer(GL_ARRAY_BUFFER, vb));
 	CHK_GL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ib));
-
-	u32 attrib = 0, offset = 0;
-
-	// Position attribute
-	if (FVF & D3DFVF_XYZRHW)
-	{
-		CHK_GL(glVertexAttribPointer(attrib, 4, GL_FLOAT, GL_FALSE, vb_stride, (void*)offset));
-		CHK_GL(glEnableVertexAttribArray(attrib));
-		offset += sizeof(Fvector4);
-		attrib++;
-	}
-	else if (FVF & D3DFVF_XYZ)
-	{
-		CHK_GL(glVertexAttribPointer(attrib, 3, GL_FLOAT, GL_FALSE, vb_stride, (void*)offset));
-		CHK_GL(glEnableVertexAttribArray(attrib));
-		offset += sizeof(Fvector);
-		attrib++;
-	}
-
-	// Diffuse color attribute
-	if (FVF & D3DFVF_DIFFUSE)
-	{
-		CHK_GL(glVertexAttribPointer(attrib, 4, GL_UNSIGNED_BYTE, GL_TRUE, vb_stride, (void*)offset));
-		CHK_GL(glEnableVertexAttribArray(attrib));
-		offset += sizeof(u32);
-		attrib++;
-	}
-
-	// Specular color attribute
-	if (FVF & D3DFVF_SPECULAR)
-	{
-		CHK_GL(glVertexAttribPointer(attrib, 4, GL_UNSIGNED_BYTE, GL_TRUE, vb_stride, (void*)offset));
-		CHK_GL(glEnableVertexAttribArray(attrib));
-		offset += sizeof(u32);
-		attrib++;
-	}
-
-	// Texture coordinates
-	for (u32 i = 0; i < (FVF & D3DFVF_TEXCOUNT_MASK) >> D3DFVF_TEXCOUNT_SHIFT; i++)
-	{
-		u32 size = 2;
-		if (FVF & D3DFVF_TEXCOORDSIZE1(i))
-			size = 1;
-		if (FVF & D3DFVF_TEXCOORDSIZE3(i))
-			size = 3;
-		if (FVF & D3DFVF_TEXCOORDSIZE4(i))
-			size = 4;
-
-		CHK_GL(glVertexAttribPointer(attrib, size, GL_FLOAT, GL_TRUE, vb_stride, (void*)offset));
-		CHK_GL(glEnableVertexAttribArray(attrib));
-		offset += size * sizeof(float);
-		attrib++;
-	}
-
-	VERIFY(vb_stride == offset);
 
 	SGeometry *Geom = new SGeometry();
 	Geom->dwFlags |= xr_resource_flagged::RF_REGISTERED;

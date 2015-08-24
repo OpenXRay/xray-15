@@ -181,9 +181,8 @@ public:
 
 #ifdef USE_OGL
 	SDeclaration*					_CreateDecl			(u32 FVF);
-#else
-	SDeclaration*					_CreateDecl			(D3DVERTEXELEMENT9* dcl);
 #endif // USE_OGL
+	SDeclaration*					_CreateDecl			(D3DVERTEXELEMENT9* dcl);
 	void							_DeleteDecl			(const SDeclaration* dcl);
 
 	STextureList*					_CreateTextureList	(STextureList& L);
@@ -226,7 +225,8 @@ public:
 	void			RegisterConstantSetup	(LPCSTR name,		R_constant_setup* s)	{	v_constant_setup.push_back(mk_pair(shared_str(name),s));	}
 
 #ifdef USE_OGL
-	SGeometry*		CreateGeom				(GLuint VAO, GLuint vb, GLuint ib);
+	SGeometry*		CreateGeom				(D3DVERTEXELEMENT9* decl, GLuint vb, GLuint ib);
+	SGeometry*		CreateGeom				(u32 FVF				, GLuint vb, GLuint ib);
 #else
 	SGeometry*		CreateGeom				(D3DVERTEXELEMENT9* decl, ID3DVertexBuffer* vb, ID3DIndexBuffer* ib);
 	SGeometry*		CreateGeom				(u32 FVF				, ID3DVertexBuffer* vb, ID3DIndexBuffer* ib);

@@ -35,6 +35,10 @@ void	resptrcode_geom::create(u32 FVF, GLuint vb, GLuint ib)
 {
 	_set(DEV->CreateGeom(FVF, vb, ib));
 }
+void	resptrcode_geom::create(D3DVERTEXELEMENT9* decl, GLuint vb, GLuint ib)
+{
+	_set(DEV->CreateGeom(decl, vb, ib));
+}
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

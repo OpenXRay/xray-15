@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef USE_OGL
+
 namespace glStateUtils
 {
 	GLenum	ConvertCullMode(u32 Mode);
@@ -10,3 +12,5 @@ namespace glStateUtils
 	GLenum	ConvertTextureAddressMode(u32 Mode);
 	GLenum  ConvertTextureFilter(u32 dxFilter, u32 glFilter = GL_NEAREST, bool MipMap = false);
 };
+
+#endif // USE_OGL

@@ -114,10 +114,11 @@ struct ECORE_API SDeclaration : public xr_resource_flagged
 	IDirect3DVertexDeclaration9*		dcl;
 #endif	//	USE_DX10
 
-	//	Use this for DirectX10 to cache DX9 declaration for comparison purpose only
+#endif // USE_OGL
+
+	//	Use this to cache DX9 declaration for comparison purpose only
 	xr_vector<D3DVERTEXELEMENT9>		dcl_code;
 
-#endif // USE_OGL
 	~SDeclaration	();
 };
 typedef	resptr_core<SDeclaration, resptr_base<SDeclaration> >	ref_declaration;

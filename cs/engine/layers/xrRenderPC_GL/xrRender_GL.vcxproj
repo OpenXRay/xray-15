@@ -199,6 +199,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\xrEngine\ai_script_lua_debug.cpp" />
     <ClCompile Include="..\..\xrEngine\ai_script_lua_extension.cpp" />
+    <ClCompile Include="..\xrRenderGL\glBufferUtils.cpp" />
     <ClCompile Include="..\xrRenderGL\glDetailManager_VS.cpp" />
     <ClCompile Include="..\xrRenderGL\glSH_RT.cpp" />
     <ClCompile Include="..\xrRenderGL\glSH_Texture.cpp" />
@@ -370,6 +371,7 @@
     <ClInclude Include="..\..\include\xrRender\UISequenceVideoItem.h" />
     <ClInclude Include="..\..\include\xrRender\UIShader.h" />
     <ClInclude Include="..\..\include\xrRender\WallMarkArray.h" />
+    <ClInclude Include="..\xrRenderGL\glBufferUtils.h" />
     <ClInclude Include="..\xrRenderGL\glR_Backend_Runtime.h" />
     <ClInclude Include="..\xrRenderGL\glr_constants_cache.h" />
     <ClInclude Include="..\xrRenderGL\glState.h" />

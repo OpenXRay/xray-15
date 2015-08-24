@@ -72,6 +72,7 @@ struct 	ECORE_API	resptrcode_geom	: public resptr_base<SGeometry>
 {
 #ifdef USE_OGL
 	void				create(u32 FVF, GLuint vb, GLuint ib);
+	void 				create(D3DVERTEXELEMENT9* decl, GLuint vb, GLuint ib);
 #else
 	void 				create(D3DVERTEXELEMENT9* decl, ID3DVertexBuffer* vb, ID3DIndexBuffer* ib);
 	void				create(u32 FVF, ID3DVertexBuffer* vb, ID3DIndexBuffer* ib);

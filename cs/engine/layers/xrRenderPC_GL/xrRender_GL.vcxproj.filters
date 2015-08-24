@@ -558,6 +558,15 @@
     <ClCompile Include="..\xrRenderGL\glState.cpp">
       <Filter>dx9 to gl Utils</Filter>
     </ClCompile>
+    <ClCompile Include="..\xrRender\ModelPool.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\FSkinned.cpp">
+      <Filter>Models\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRenderGL\glBufferUtils.cpp">
+      <Filter>dx9 to gl Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -939,6 +948,15 @@
       <Filter>Refactored\Execution &amp; 3D\DebugDraw</Filter>
     </ClInclude>
     <ClInclude Include="..\xrRenderGL\glState.h">
+      <Filter>dx9 to gl Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRender\ModelPool.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRender\FSkinned.h">
+      <Filter>Models\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRenderGL\glBufferUtils.h">
       <Filter>dx9 to gl Utils</Filter>
     </ClInclude>
   </ItemGroup>
