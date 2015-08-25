@@ -162,7 +162,7 @@ public:
 	IRender_Portal*					getPortal(int id)					{ VERIFY(id<int(Portals.size()));	return Portals[id]; };
 	IRender_Sector*					getSectorActive()					{ return pLastSector; }
 	IRender_Sector*					detectSector(const Fvector& P, Fvector& D);
-	int								translateSector(IRender_Sector* pSector) { VERIFY(!"CRender::translateSector not implemented."); return 0; };
+	int								translateSector(IRender_Sector* pSector);
 
 	// HW-occlusion culling
 	IC u32							occq_begin(u32&	ID)	{ return HWOCC.occq_begin(ID); }
@@ -263,7 +263,7 @@ public:
 	virtual ref_shader				getShader(int id) { VERIFY(id<int(Shaders.size()));	return Shaders[id]; };
 	virtual IRender_Sector*			getSector(int id) { VERIFY(id<int(Sectors.size()));	return Sectors[id]; };
 	virtual IRenderVisual*			getVisual(int id) { VERIFY(id<int(Visuals.size()));	return Visuals[id]; };
-	virtual IRender_Sector*			detectSector(const Fvector& P) { VERIFY(!"CRender::detectSector not implemented."); return nullptr; };
+	virtual IRender_Sector*			detectSector(const Fvector& P);
 	virtual IRender_Target*			getTarget() { return Target; };
 
 	// Main 

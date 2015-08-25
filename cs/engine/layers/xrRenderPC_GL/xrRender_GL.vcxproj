@@ -338,6 +338,7 @@
     <ClCompile Include="gl_R_render.cpp" />
     <ClCompile Include="r2_R_calculate.cpp" />
     <ClCompile Include="gl_rendertarget.cpp" />
+    <ClCompile Include="r2_sector_detect.cpp" />
     <ClCompile Include="rgl.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
