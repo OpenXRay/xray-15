@@ -9,8 +9,8 @@ namespace glBufferUtils
 	GLsizei GetFVFVertexSize(u32 FVF);
 	GLsizei GetDeclVertexSize(const D3DVERTEXELEMENT9* decl);
 	u32		GetDeclLength(const D3DVERTEXELEMENT9* decl);
-	void	ConvertVertexDeclaration(u32 FVF, GLuint vao, GLuint vb);
-	void	ConvertVertexDeclaration(const D3DVERTEXELEMENT9* decl, GLuint vao, GLuint vb);
+	void	ConvertVertexDeclaration(u32 FVF, GLuint vao);
+	void	ConvertVertexDeclaration(const D3DVERTEXELEMENT9* decl, GLuint vao);
 };
 
 #endif // USE_OGL

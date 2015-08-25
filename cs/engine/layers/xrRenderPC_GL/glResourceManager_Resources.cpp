@@ -116,30 +116,42 @@ static BOOL	dcl_equal			(D3DVERTEXELEMENT9* a, D3DVERTEXELEMENT9* b)
 
 SDeclaration*	CResourceManager::_CreateDecl	(u32 FVF)
 {
+	// Search equal code
+	for (u32 it = 0; it<v_declarations.size(); it++)
+	{
+		SDeclaration*		D = v_declarations[it];;
+		if (D->dcl_code.empty() && D->FVF == FVF)	return D;
+	}
+
 	SDeclaration* D = new SDeclaration();
 	glGenVertexArrays(1, &D->vao);
 
 	D->FVF = FVF;
-
-	// Because we don't use ARB_vertex_attrib_binding we can't re-use
-	// declarations like DirectX does.
-	D->dwFlags = 0;
+	glBufferUtils::ConvertVertexDeclaration(FVF, D->vao);
+	D->dwFlags |= xr_resource_flagged::RF_REGISTERED;
+	v_declarations.push_back(D);
 
 	return D;
 }
 
 SDeclaration*	CResourceManager::_CreateDecl(D3DVERTEXELEMENT9* dcl)
 {
+	// Search equal code
+	for (u32 it = 0; it<v_declarations.size(); it++)
+	{
+		SDeclaration*		D = v_declarations[it];;
+		if (!D->dcl_code.empty() && dcl_equal(dcl, &*D->dcl_code.begin()))	return D;
+	}
+
 	SDeclaration* D = new SDeclaration();
 	glGenVertexArrays(1, &D->vao);
 
+	D->FVF = 0;
 	u32 dcl_size = glBufferUtils::GetDeclLength(dcl) + 1;
 	D->dcl_code.assign(dcl, dcl + dcl_size);
-	D->FVF = 0;
-
-	// Because we don't use ARB_vertex_attrib_binding we can't re-use
-	// declarations like DirectX does.
-	D->dwFlags = 0;
+	glBufferUtils::ConvertVertexDeclaration(dcl, D->vao);
+	D->dwFlags |= xr_resource_flagged::RF_REGISTERED;
+	v_declarations.push_back(D);
 
 	return D;
 }
@@ -363,17 +375,15 @@ SGeometry*	CResourceManager::CreateGeom	(D3DVERTEXELEMENT9* decl, GLuint vb, GLu
 {
 	R_ASSERT(decl && vb);
 
+	SDeclaration* dcl = _CreateDecl(decl);
 	u32 vb_stride = glBufferUtils::GetDeclVertexSize(decl);
 
 	// ***** first pass - search already loaded shader
 	for (u32 it = 0; it<v_geoms.size(); it++)
 	{
 		SGeometry& G = *(v_geoms[it]);
-		if ((G.dcl->FVF == 0) && dcl_equal(G.dcl->dcl_code.data(), decl) && (G.vb == vb) && (G.ib == ib) && (G.vb_stride == vb_stride))	return v_geoms[it];
+		if ((G.dcl == dcl) && (G.vb == vb) && (G.ib == ib) && (G.vb_stride == vb_stride))	return v_geoms[it];
 	}
-
-	SDeclaration* dcl = _CreateDecl(decl);
-	glBufferUtils::ConvertVertexDeclaration(decl, dcl->vao, vb);
 
 	SGeometry *Geom = new SGeometry();
 	Geom->dwFlags |= xr_resource_flagged::RF_REGISTERED;
@@ -389,17 +399,15 @@ SGeometry*	CResourceManager::CreateGeom	(u32 FVF, GLuint vb, GLuint ib)
 {
 	R_ASSERT(FVF && vb);
 
+	SDeclaration* dcl = _CreateDecl(FVF);
 	u32 vb_stride = glBufferUtils::GetFVFVertexSize(FVF);
 
 	// ***** first pass - search already loaded shader
 	for (u32 it = 0; it<v_geoms.size(); it++)
 	{
 		SGeometry& G = *(v_geoms[it]);
-		if ((G.dcl->FVF == FVF) && (G.vb == vb) && (G.ib == ib) && (G.vb_stride == vb_stride))	return v_geoms[it];
+		if ((G.dcl == dcl) && (G.vb == vb) && (G.ib == ib) && (G.vb_stride == vb_stride))	return v_geoms[it];
 	}
-
-	SDeclaration* dcl = _CreateDecl(FVF);
-	glBufferUtils::ConvertVertexDeclaration(FVF, dcl->vao, vb);
 
 	SGeometry *Geom = new SGeometry();
 	Geom->dwFlags |= xr_resource_flagged::RF_REGISTERED;
