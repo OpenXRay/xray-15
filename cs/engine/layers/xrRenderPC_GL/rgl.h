@@ -28,6 +28,22 @@ public:
 };
 extern ECORE_API CHW		HW;
 
+class CGlow : public IRender_Glow
+{
+public:
+	bool				bActive;
+public:
+	CGlow() : bActive(false)		{ }
+	virtual void					set_active(bool b)					{ bActive = b; }
+	virtual bool					get_active()							{ return bActive; }
+	virtual void					set_position(const Fvector& P)			{ }
+	virtual void					set_direction(const Fvector& D)			{ }
+	virtual void					set_radius(float R)					{ }
+	virtual void					set_texture(LPCSTR name)				{ }
+	virtual void					set_color(const Fcolor& C)			{ }
+	virtual void					set_color(float r, float g, float b)	{ }
+};
+
 class CRender	:	public R_dsgraph_structure
 {
 public:
@@ -143,8 +159,8 @@ private:
 public:
 	ShaderElement*					rimp_select_sh_static(dxRender_Visual	*pVisual, float cdist_sq);
 	ShaderElement*					rimp_select_sh_dynamic(dxRender_Visual	*pVisual, float cdist_sq);
-	IRender_Portal*					getPortal(int id) { VERIFY(!"CRender::getPortal not implemented."); return nullptr; };
-	IRender_Sector*					getSectorActive();
+	IRender_Portal*					getPortal(int id)					{ VERIFY(id<int(Portals.size()));	return Portals[id]; };
+	IRender_Sector*					getSectorActive()					{ return pLastSector; }
 	IRender_Sector*					detectSector(const Fvector& P, Fvector& D);
 	int								translateSector(IRender_Sector* pSector) { VERIFY(!"CRender::translateSector not implemented."); return 0; };
 
@@ -251,35 +267,31 @@ public:
 	virtual IRender_Target*			getTarget() { return Target; };
 
 	// Main 
-	IC		void					set_Frustum(CFrustum*	O)							{ VERIFY(!"CRender::set_Frustum not implemented."); VERIFY(O);	View = O; }
-	virtual void					set_Transform(Fmatrix*	M) { VERIFY(!"CRender::set_Transform not implemented."); };
-	virtual void					set_HUD(BOOL 		V) { VERIFY(!"CRender::set_HUD not implemented."); };
-	virtual BOOL					get_HUD() { VERIFY(!"CRender::get_HUD not implemented."); return false; };
-	virtual void					set_Invisible(BOOL 		V) { VERIFY(!"CRender::set_Invisible not implemented."); };
-	virtual void					flush() { VERIFY(!"CRender::flush not implemented."); };
-	virtual void					set_Object(IRenderable*		O) { VERIFY(!"CRender::set_Object not implemented."); };
-	virtual	void					add_Occluder(Fbox2&	bb_screenspace) { VERIFY(!"CRender::add_Occluder not implemented."); };	// mask screen region as oclluded (-1..1, -1..1)
-	virtual void					add_Visual(IRenderVisual*	V) { VERIFY(!"CRender::add_Visual not implemented."); };	// add visual leaf	(no culling performed at all)
-	virtual void					add_Geometry(IRenderVisual*	V) { VERIFY(!"CRender::add_Geometry not implemented."); };	// add visual(s)	(all culling performed)
-	virtual void					add_StaticWallmark(const wm_shader& S, const Fvector& P, float s, CDB::TRI* T, Fvector* V) { VERIFY(!"CRender::add_StaticWallmark not implemented."); };
-	virtual void					add_StaticWallmark(IWallMarkArray *pArray, const Fvector& P, float s, CDB::TRI* T, Fvector* V) { VERIFY(!"CRender::add_StaticWallmark not implemented."); };
-	virtual void					clear_static_wallmarks() { VERIFY(!"CRender::clear_static_wallmarks not implemented."); };
-	virtual void					add_SkeletonWallmark(intrusive_ptr<CSkeletonWallmark> wm) { VERIFY(!"CRender::add_SkeletonWallmark not implemented."); };
-	virtual void					add_SkeletonWallmark(const Fmatrix* xf, CKinematics* obj, ref_shader& sh, const Fvector& start, const Fvector& dir, float size) { VERIFY(!"CRender::add_SkeletonWallmark not implemented."); };
-	virtual void					add_SkeletonWallmark(const Fmatrix* xf, IKinematics* obj, IWallMarkArray *pArray, const Fvector& start, const Fvector& dir, float size) { VERIFY(!"CRender::add_SkeletonWallmark not implemented."); };
+	virtual void					flush()								{ r_dsgraph_render_graph(0); };
+	virtual void					set_Object(IRenderable*		O)		{ val_pObject = O; };
+	virtual	void					add_Occluder(Fbox2&	bb_screenspace) { HOM.occlude(bb_screenspace); };						// mask screen region as oclluded (-1..1, -1..1)
+	virtual void					add_Visual(IRenderVisual*	V)		{ add_leafs_Dynamic((dxRender_Visual*)V); };			// add visual leaf	(no culling performed at all)
+	virtual void					add_Geometry(IRenderVisual*	V)		{ add_Static((dxRender_Visual*)V, View->getMask()); };	// add visual(s)	(all culling performed)
+	
+	// Wallmarks
+	virtual void					add_StaticWallmark(ref_shader& S, const Fvector& P, float s, CDB::TRI* T, Fvector* V);
+	virtual void					add_StaticWallmark(const wm_shader& S, const Fvector& P, float s, CDB::TRI* T, Fvector* V);
+	virtual void					add_StaticWallmark(IWallMarkArray *pArray, const Fvector& P, float s, CDB::TRI* T, Fvector* V);
+	virtual void					clear_static_wallmarks()									{ Wallmarks->clear(); };
+	virtual void					add_SkeletonWallmark(intrusive_ptr<CSkeletonWallmark> wm)	{ Wallmarks->AddSkeletonWallmark(wm); };
+	virtual void					add_SkeletonWallmark(const Fmatrix* xf, CKinematics* obj, ref_shader& sh, const Fvector& start, const Fvector& dir, float size);
+	virtual void					add_SkeletonWallmark(const Fmatrix* xf, IKinematics* obj, IWallMarkArray *pArray, const Fvector& start, const Fvector& dir, float size);
 
 	//
 	virtual IBlender*				blender_create(CLASS_ID cls);
 	virtual void					blender_destroy(IBlender* &);
 
-	virtual IRender_ObjectSpecific*	ros_create(IRenderable* parent) { VERIFY(!"CRender::ros_create not implemented."); return nullptr; };
-	virtual void					ros_destroy(IRender_ObjectSpecific* &) { VERIFY(!"CRender::ros_destroy not implemented."); };
+	virtual IRender_ObjectSpecific*	ros_create(IRenderable* parent)				{ return new CROS_impl(); };
+	virtual void					ros_destroy(IRender_ObjectSpecific* &p)		{ xr_delete(p); };
 
 	// Lighting/glowing
-	virtual IRender_Light*			light_create()						{ VERIFY(!"CRender::light_create not implemented."); return nullptr; };
-	virtual void					light_destroy(IRender_Light* p_)	{ VERIFY(!"CRender::light_destroy not implemented."); };
-	virtual IRender_Glow*			glow_create()						{ VERIFY(!"CRender::glow_create not implemented."); return nullptr; };
-	virtual void					glow_destroy(IRender_Glow* p_)		{ VERIFY(!"CRender::glow_destroy not implemented."); };
+	virtual IRender_Light*			light_create()						{ return Lights.Create(); };
+	virtual IRender_Glow*			glow_create()						{ return new CGlow(); };
 
 	// Models
 	virtual IRenderVisual*			model_CreateParticles(LPCSTR name);
@@ -295,9 +307,9 @@ public:
 	IRenderVisual*					model_CreatePE(LPCSTR name);
 
 	// Occlusion culling
-	virtual BOOL					occ_visible(vis_data&	V) { VERIFY(!"CRender::occ_visible not implemented."); return false; };
-	virtual BOOL					occ_visible(Fbox&		B) { VERIFY(!"CRender::occ_visible not implemented."); return false; };
-	virtual BOOL					occ_visible(sPoly&		P) { VERIFY(!"CRender::occ_visible not implemented."); return false; };
+	virtual BOOL					occ_visible(vis_data&	V)		{ return HOM.visible(V); };
+	virtual BOOL					occ_visible(Fbox&		B)		{ return HOM.visible(B); };
+	virtual BOOL					occ_visible(sPoly&		P)		{ return HOM.visible(P); };
 
 	// Main
 	virtual void					Calculate();
@@ -310,9 +322,9 @@ public:
 	virtual void					OnFrame() { VERIFY(!"CRender::OnFrame not implemented."); };
 
 	// Render mode
-	virtual void					rmNear() { VERIFY(!"CRender::rmNear not implemented."); };
-	virtual void					rmFar() { VERIFY(!"CRender::rmFar not implemented."); };
-	virtual void					rmNormal() { VERIFY(!"CRender::rmNormal not implemented."); };
+	virtual void					rmNear();
+	virtual void					rmFar();
+	virtual void					rmNormal();
 	virtual u32						memory_usage() { VERIFY(!"CRender::memory_usage not implemented."); return 0; };
 
 	// Constructor/destructor

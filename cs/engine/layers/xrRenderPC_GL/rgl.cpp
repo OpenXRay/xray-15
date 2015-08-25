@@ -1,7 +1,9 @@
 #include "stdafx.h"
 #include "rgl.h"
-#include "glRenderDeviceRender.h"
 #include "../xrRender/fbasicvisual.h"
+#include "glWallMarkArray.h"
+#include "glUIShader.h"
+#include "glRenderDeviceRender.h"
 
 CHW			HW;
 CRender		RImplementation;
@@ -553,4 +555,57 @@ void CRender::reset_end()
 	HWOCC.occq_create(occq_size);
 	Target = new CRenderTarget();
 	xrRender_apply_tf();
+}
+
+void CRender::rmNear()
+{
+	IRender_Target* T = getTarget();
+	CHK_GL(glViewport(0, 0, T->get_width(), T->get_height()));
+	CHK_GL(glDepthRangef(0.99999f, 0.02f));
+}
+
+void CRender::rmFar()
+{
+	IRender_Target* T = getTarget();
+	CHK_GL(glViewport(0, 0, T->get_width(), T->get_height()));
+	CHK_GL(glDepthRangef(0.99999f, 1.f));
+}
+
+void CRender::rmNormal()
+{
+	IRender_Target* T = getTarget();
+	CHK_GL(glViewport(0, 0, T->get_width(), T->get_height()));
+	CHK_GL(glDepthRangef(0.f, 1.f));
+}
+
+void CRender::add_StaticWallmark(ref_shader& S, const Fvector& P, float s, CDB::TRI* T, Fvector* verts)
+{
+	if (T->suppress_wm)	return;
+	VERIFY2(_valid(P) && _valid(s) && T && verts && (s>EPS_L), "Invalid static wallmark params");
+	Wallmarks->AddStaticWallmark(T, verts, P, &*S, s);
+}
+
+void CRender::add_StaticWallmark(IWallMarkArray *pArray, const Fvector& P, float s, CDB::TRI* T, Fvector* V)
+{
+	glWallMarkArray *pWMA = (glWallMarkArray *)pArray;
+	ref_shader *pShader = pWMA->glGenerateWallmark();
+	if (pShader) add_StaticWallmark(*pShader, P, s, T, V);
+}
+
+void CRender::add_StaticWallmark(const wm_shader& S, const Fvector& P, float s, CDB::TRI* T, Fvector* V)
+{
+	glUIShader* pShader = (glUIShader*)&*S;
+	add_StaticWallmark(pShader->hShader, P, s, T, V);
+}
+
+void CRender::add_SkeletonWallmark(const Fmatrix* xf, CKinematics* obj, ref_shader& sh, const Fvector& start, const Fvector& dir, float size)
+{
+	Wallmarks->AddSkeletonWallmark(xf, obj, sh, start, dir, size);
+}
+
+void CRender::add_SkeletonWallmark(const Fmatrix* xf, IKinematics* obj, IWallMarkArray *pArray, const Fvector& start, const Fvector& dir, float size)
+{
+	glWallMarkArray *pWMA = (glWallMarkArray *)pArray;
+	ref_shader *pShader = pWMA->glGenerateWallmark();
+	if (pShader) add_SkeletonWallmark(xf, (CKinematics*)obj, *pShader, start, dir, size);
 }
