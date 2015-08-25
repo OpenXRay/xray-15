@@ -89,23 +89,23 @@ GLenum	VertexNormalizedList[] =
 
 GLenum	VertexTypeSizeList[] =
 {
-	sizeof(float),	// D3DDECLTYPE_FLOAT1
-	sizeof(float),	// D3DDECLTYPE_FLOAT2
-	sizeof(float),	// D3DDECLTYPE_FLOAT3
-	sizeof(float),	// D3DDECLTYPE_FLOAT4
-	sizeof(char),	// D3DDECLTYPE_D3DCOLOR
-	sizeof(char),	// D3DDECLTYPE_UBYTE4
-	sizeof(short),	// D3DDECLTYPE_SHORT2
-	sizeof(short),	// D3DDECLTYPE_SHORT4
-	sizeof(char),	// D3DDECLTYPE_UBYTE4N
-	sizeof(short),	// D3DDECLTYPE_SHORT2N
-	sizeof(short),	// D3DDECLTYPE_SHORT4N
-	sizeof(short),	// D3DDECLTYPE_USHORT2N
-	sizeof(short),	// D3DDECLTYPE_USHORT4N
-	sizeof(int),	// D3DDECLTYPE_UDEC3
-	sizeof(int),	// D3DDECLTYPE_DEC3N
-	sizeof(short),	// D3DDECLTYPE_FLOAT16_2
-	sizeof(short)	// D3DDECLTYPE_FLOAT16_4
+	sizeof(GLfloat),	// D3DDECLTYPE_FLOAT1
+	sizeof(GLfloat),	// D3DDECLTYPE_FLOAT2
+	sizeof(GLfloat),	// D3DDECLTYPE_FLOAT3
+	sizeof(GLfloat),	// D3DDECLTYPE_FLOAT4
+	sizeof(GLubyte),	// D3DDECLTYPE_D3DCOLOR
+	sizeof(GLubyte),	// D3DDECLTYPE_UBYTE4
+	sizeof(GLshort),	// D3DDECLTYPE_SHORT2
+	sizeof(GLshort),	// D3DDECLTYPE_SHORT4
+	sizeof(GLubyte),	// D3DDECLTYPE_UBYTE4N
+	sizeof(GLshort),	// D3DDECLTYPE_SHORT2N
+	sizeof(GLshort),	// D3DDECLTYPE_SHORT4N
+	sizeof(GLushort),	// D3DDECLTYPE_USHORT2N
+	sizeof(GLushort),	// D3DDECLTYPE_USHORT4N
+	sizeof(GLuint),		// D3DDECLTYPE_UDEC3
+	sizeof(GLint),		// D3DDECLTYPE_DEC3N
+	sizeof(GLhalf),		// D3DDECLTYPE_FLOAT16_2
+	sizeof(GLhalf)		// D3DDECLTYPE_FLOAT16_4
 };
 
 GLsizei GetDeclVertexSize(const D3DVERTEXELEMENT9* decl)
@@ -123,9 +123,10 @@ GLsizei GetDeclVertexSize(const D3DVERTEXELEMENT9* decl)
 	return size;
 }
 
-void ConvertVertexDeclaration(const D3DVERTEXELEMENT9* decl, GLuint vao)
+void ConvertVertexDeclaration(const D3DVERTEXELEMENT9* decl, GLuint vao, GLuint vb)
 {
 	CHK_GL(glBindVertexArray(vao));
+	CHK_GL(glBindBuffer(GL_ARRAY_BUFFER, vb));
 
 	GLsizei stride = GetDeclVertexSize(decl);
 	for (int i = 0; i < MAXD3DDECLLENGTH; ++i)
@@ -179,9 +180,10 @@ GLsizei GetFVFVertexSize(u32 FVF)
 	return offset;
 }
 
-void ConvertVertexDeclaration(u32 FVF, GLuint vao)
+void ConvertVertexDeclaration(u32 FVF, GLuint vao, GLuint vb)
 {
 	CHK_GL(glBindVertexArray(vao));
+	CHK_GL(glBindBuffer(GL_ARRAY_BUFFER, vb));
 
 	GLsizei stride = GetFVFVertexSize(FVF);
 	u32 attrib = 0, offset = 0;

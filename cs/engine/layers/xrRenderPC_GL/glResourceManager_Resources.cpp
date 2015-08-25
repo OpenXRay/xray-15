@@ -118,7 +118,6 @@ SDeclaration*	CResourceManager::_CreateDecl	(u32 FVF)
 {
 	SDeclaration* D = new SDeclaration();
 	glGenVertexArrays(1, &D->vao);
-	glBufferUtils::ConvertVertexDeclaration(FVF, D->vao);
 
 	D->FVF = FVF;
 
@@ -133,7 +132,6 @@ SDeclaration*	CResourceManager::_CreateDecl(D3DVERTEXELEMENT9* dcl)
 {
 	SDeclaration* D = new SDeclaration();
 	glGenVertexArrays(1, &D->vao);
-	glBufferUtils::ConvertVertexDeclaration(dcl, D->vao);
 
 	u32 dcl_size = glBufferUtils::GetDeclLength(dcl) + 1;
 	D->dcl_code.assign(dcl, dcl + dcl_size);
@@ -375,9 +373,7 @@ SGeometry*	CResourceManager::CreateGeom	(D3DVERTEXELEMENT9* decl, GLuint vb, GLu
 	}
 
 	SDeclaration* dcl = _CreateDecl(decl);
-	CHK_GL(glBindVertexArray(dcl->vao));
-	CHK_GL(glBindBuffer(GL_ARRAY_BUFFER, vb));
-	CHK_GL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ib));
+	glBufferUtils::ConvertVertexDeclaration(decl, dcl->vao, vb);
 
 	SGeometry *Geom = new SGeometry();
 	Geom->dwFlags |= xr_resource_flagged::RF_REGISTERED;
@@ -403,9 +399,7 @@ SGeometry*	CResourceManager::CreateGeom	(u32 FVF, GLuint vb, GLuint ib)
 	}
 
 	SDeclaration* dcl = _CreateDecl(FVF);
-	CHK_GL(glBindVertexArray(dcl->vao));
-	CHK_GL(glBindBuffer(GL_ARRAY_BUFFER, vb));
-	CHK_GL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ib));
+	glBufferUtils::ConvertVertexDeclaration(FVF, dcl->vao, vb);
 
 	SGeometry *Geom = new SGeometry();
 	Geom->dwFlags |= xr_resource_flagged::RF_REGISTERED;
