@@ -4,12 +4,11 @@
 #include "../../xrEngine/igame_persistent.h"
 #include "../../xrEngine/environment.h"
 
-#include "../xrRenderDX10/dx10BufferUtils.h"
+#include "../xrRenderGL/glBufferUtils.h"
 
-const int			quant	= 16384;
-const int			c_hdr	= 10;
-const int			c_size	= 4;
-const int			c_registers = 256;
+const int			quant = 16384;
+const int			c_hdr = 10;
+const int			c_size = 4;
 
 #pragma pack(push,1)
 struct	vertHW
@@ -19,110 +18,11 @@ struct	vertHW
 };
 #pragma pack(pop)
 
-short QC (float v)
-{
-	int t=iFloor(v*float(quant)); clamp(t,-32768,32767);
-	return short(t&0xffff);
-}
-
-void CDetailManager::hw_Load()
-{
-	hw_Load_Geom();
-	hw_Load_Shaders();
-}
-
-void CDetailManager::hw_Load_Geom()
-{
-	// Analyze batch-size
-	hw_BatchSize = (u32(c_registers - c_hdr) / c_size);
-	clamp(hw_BatchSize, (u32)0, (u32)64);
-	Msg("* [DETAILS] VertexConsts(%d), Batch(%d)", u32(c_registers), hw_BatchSize);
-
-	// Pre-process objects
-	u32			dwVerts = 0;
-	u32			dwIndices = 0;
-	for (u32 o = 0; o<objects.size(); o++)
-	{
-		const CDetail& D = *objects[o];
-		dwVerts += D.number_vertices*hw_BatchSize;
-		dwIndices += D.number_indices*hw_BatchSize;
-	}
-	u32			vSize = sizeof(vertHW);
-	Msg("* [DETAILS] %d v(%d), %d p", dwVerts, vSize, dwIndices / 3);
-
-	// Determine POOL & USAGE
-	u32 dwUsage = GL_STATIC_DRAW;
-
-	// Create VB/IB
-	glGenBuffers(1, &hw_VB);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, hw_VB);
-	CHK_GL(glBufferData(GL_ELEMENT_ARRAY_BUFFER, dwVerts*vSize, NULL, dwUsage));
-	glGenBuffers(1, &hw_IB);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, hw_IB);
-	CHK_GL(glBufferData(GL_ELEMENT_ARRAY_BUFFER, dwIndices * 2, NULL, dwUsage));
-	Msg("* [DETAILS] Batch(%d), VB(%dK), IB(%dK)", hw_BatchSize, (dwVerts*vSize) / 1024, (dwIndices * 2) / 1024);
-
-	// Fill VB
-	{
-		vertHW* pV;
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, hw_VB);
-		CHK_GL(pV = (vertHW*)glMapBuffer(GL_ELEMENT_ARRAY_BUFFER, dwUsage));
-
-		for (o = 0; o<objects.size(); o++)
-		{
-			const CDetail& D = *objects[o];
-			for (u32 batch = 0; batch<hw_BatchSize; batch++)
-			{
-				u32 mid = batch*c_size;
-				for (u32 v = 0; v<D.number_vertices; v++)
-				{
-					const Fvector&	vP = D.vertices[v].P;
-					pV->x = vP.x;
-					pV->y = vP.y;
-					pV->z = vP.z;
-					pV->u = QC(D.vertices[v].u);
-					pV->v = QC(D.vertices[v].v);
-					pV->t = QC(vP.y / (D.bv_bb.max.y - D.bv_bb.min.y));
-					pV->mid = short(mid);
-					pV++;
-				}
-			}
-		}
-
-		glUnmapBuffer(GL_ELEMENT_ARRAY_BUFFER);
-	}
-
-	// Fill IB
-	{
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, hw_IB);
-		u16* pI = (u16*)glMapBuffer(GL_ELEMENT_ARRAY_BUFFER, dwUsage);
-
-		for (o = 0; o<objects.size(); o++)
-		{
-			const CDetail& D = *objects[o];
-			u16		offset = 0;
-			for (u32 batch = 0; batch<hw_BatchSize; batch++)
-			{
-				for (u32 i = 0; i<u32(D.number_indices); i++)
-					*pI++ = u16(u16(D.indices[i]) + u16(offset));
-				offset = u16(offset + u16(D.number_vertices));
-			}
-		}
-
-		glUnmapBuffer(GL_ELEMENT_ARRAY_BUFFER);
-	}
-
-	// Declare geometry
-	hw_Geom.create(D3DFVF_XYZ | D3DFVF_TEX1 | D3DFVF_TEXCOORDSIZE4(0), hw_VB, hw_IB);
-}
-
-void CDetailManager::hw_Unload()
-{
-	// Destroy VS/VB/IB
-	hw_Geom.destroy();
-	glDeleteBuffers(1, &hw_VB);
-	glDeleteBuffers(1, &hw_IB);
-}
+short QC (float v);
+//{
+//	int t=iFloor(v*float(quant)); clamp(t,-32768,32767);
+//	return short(t&0xffff);
+//}
 
 void CDetailManager::hw_Load_Shaders()
 {
