@@ -131,6 +131,13 @@ public:
 	u32								q_sync_count;
 
 private:
+	// Loading / Unloading
+	void							LoadBuffers(CStreamReader	*fs, BOOL	_alternative);
+	void							LoadVisuals(IReader	*fs);
+	void							LoadLights(IReader	*fs);
+	void							LoadPortals(IReader	*fs);
+	void							LoadSectors(IReader	*fs);
+	void							LoadSWIs(CStreamReader	*fs);
 	char*							LoadIncludes(LPCSTR pSrcData, UINT SrcDataLen, xr_vector<char*>& includes);
 
 public:
@@ -216,8 +223,8 @@ public:
 	virtual	void					reset_begin();
 	virtual	void					reset_end();
 
-	virtual	void					level_Load(IReader*) { VERIFY(!"CRender::level_Load not implemented."); };
-	virtual void					level_Unload() { VERIFY(!"CRender::level_Unload not implemented."); };
+	virtual	void					level_Load(IReader*);
+	virtual void					level_Unload();
 
 	virtual GLuint					texture_load(LPCSTR	fname, u32& msize, GLenum& desc);
 	virtual HRESULT					shader_compile(

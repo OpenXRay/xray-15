@@ -582,6 +582,9 @@
     <ClCompile Include="glObjectSpaceRender.cpp">
       <Filter>Interface implementations\ObjectSpaceRender</Filter>
     </ClCompile>
+    <ClCompile Include="gl_loader.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">

@@ -238,6 +238,7 @@
     <ClCompile Include="blender_luminance.cpp" />
     <ClCompile Include="blender_ssao.cpp" />
     <ClCompile Include="glObjectSpaceRender.cpp" />
+    <ClCompile Include="gl_loader.cpp" />
     <ClCompile Include="gl_rendertarget_accum_omnipart_geom.cpp" />
     <ClCompile Include="gl_rendertarget_accum_point_geom.cpp" />
     <ClCompile Include="gl_rendertarget_accum_spot_geom.cpp" />
