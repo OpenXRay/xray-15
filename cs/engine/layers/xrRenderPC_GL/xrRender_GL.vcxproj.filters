@@ -555,9 +555,6 @@
     <ClCompile Include="..\xrRender\du_sphere_part.cpp">
       <Filter>Refactored\Execution &amp; 3D\DebugDraw</Filter>
     </ClCompile>
-    <ClCompile Include="..\xrRenderGL\glState.cpp">
-      <Filter>dx9 to gl Utils</Filter>
-    </ClCompile>
     <ClCompile Include="..\xrRender\ModelPool.cpp">
       <Filter>Models</Filter>
     </ClCompile>
@@ -593,6 +590,9 @@
     </ClCompile>
     <ClCompile Include="gl_rendertarget_phase_scene.cpp">
       <Filter>Core_Target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRenderGL\glState.cpp">
+      <Filter>StateManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -974,9 +974,6 @@
     <ClInclude Include="..\xrRender\du_sphere.h">
       <Filter>Refactored\Execution &amp; 3D\DebugDraw</Filter>
     </ClInclude>
-    <ClInclude Include="..\xrRenderGL\glState.h">
-      <Filter>dx9 to gl Utils</Filter>
-    </ClInclude>
     <ClInclude Include="..\xrRender\ModelPool.h">
       <Filter>Models</Filter>
     </ClInclude>
@@ -1003,6 +1000,9 @@
     </ClInclude>
     <ClInclude Include="glObjectSpaceRender.h">
       <Filter>Interface implementations\ObjectSpaceRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRenderGL\glState.h">
+      <Filter>StateManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
