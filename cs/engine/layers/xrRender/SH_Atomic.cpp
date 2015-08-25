@@ -63,12 +63,6 @@ SInputSignature::SInputSignature(ID3DBlob* pBlob)	{ VERIFY(pBlob); signature=pBl
 SInputSignature::~SInputSignature		()			{	_RELEASE(signature); DEV->_DeleteInputSignature(this); }
 #endif	//	USE_DX10
 
-#ifdef USE_OGL
-///////////////////////////////////////////////////////////////////////
-//	SProgram
-SProgram::~SProgram						()			{ glDeleteProgram(program);		DEV->_DeleteProgram(this); }
-#endif // USE_OGL
-
 ///////////////////////////////////////////////////////////////////////
 //	SState
 #ifdef USE_OGL

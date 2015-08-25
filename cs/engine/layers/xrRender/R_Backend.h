@@ -281,11 +281,6 @@ protected:	//	In DX10 we need input shader signature which is stored in ref_vs
 	ICF void						set_VS				(ID3DVertexShader* _vs, LPCSTR _n=0);
 #endif // USE_OGL
 
-#ifdef USE_OGL
-	ICF void						set_Program			(GLuint _program);
-	ICF void						set_Program			(ref_program& _program)				{ set_Program(_program->program); }
-#endif // USE_OGL
-
 #ifdef	USE_DX10
 public:
 #endif	//	USE_DX10

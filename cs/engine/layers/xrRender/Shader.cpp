@@ -8,7 +8,11 @@
 #include "Shader.h"
 #include "ResourceManager.h"
 
+#ifdef USE_OGL
+#include "glRenderDeviceRender.h"
+#else
 #include "dxRenderDeviceRender.h"
+#endif // USE_OGL
 
 
 //
@@ -31,11 +35,19 @@ void	resptrcode_shader::create		(IBlender* B, LPCSTR s_shader, LPCSTR s_textures
 }
 
 //////////////////////////////////////////////////////////////////////////
+#ifdef USE_OGL
+void	resptrcode_geom::create			(u32 FVF , GLuint vb, GLuint ib)
+#else
 void	resptrcode_geom::create			(u32 FVF , ID3DVertexBuffer* vb, ID3DIndexBuffer* ib)
+#endif // USE_OGL
 {
 	_set(DEV->CreateGeom		(FVF,vb,ib));
 }
+#ifdef USE_OGL
+void	resptrcode_geom::create			(D3DVERTEXELEMENT9* decl, GLuint vb, GLuint ib)
+#else
 void	resptrcode_geom::create			(D3DVERTEXELEMENT9* decl, ID3DVertexBuffer* vb, ID3DIndexBuffer* ib)
+#endif // USE_OGL
 {
 	_set(DEV->CreateGeom		(decl,vb,ib));
 }

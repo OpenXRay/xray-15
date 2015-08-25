@@ -68,30 +68,23 @@ void		CResourceManager::_DeleteState		(const SState* state)
 }
 
 //--------------------------------------------------------------------------------------------------------------
-SPass*		CResourceManager::_CreatePass			(ref_state& _state, ref_program& _program, ref_ctable& _ctable, ref_texture_list& _T, ref_matrix_list& _M, ref_constant_list& _C)
+SPass*		CResourceManager::_CreatePass			(ref_state& _state, ref_ps& _ps, ref_vs& _vs, ref_ctable& _ctable, ref_texture_list& _T, ref_matrix_list& _M, ref_constant_list& _C)
 {
 	for (u32 it=0; it<v_passes.size(); it++)
-		if (v_passes[it]->equal(_state,_program,_ctable,_T,_M,_C))
+		if (v_passes[it]->equal(_state,_ps,_vs,_ctable,_T,_M,_C))
 			return v_passes[it];
 
 	SPass*	P				= new SPass();
 	P->dwFlags				|=	xr_resource_flagged::RF_REGISTERED;
-	P->state					=	_state;
-
-#ifdef USE_OGL
-	P->program				=	_program;
-	P->ps					=	_program->ps;
-	P->vs					=	_program->vs;
-#else
+	P->state				=	_state;
 	P->ps					=	_ps;
 	P->vs					=	_vs;
-#endif // USE_OGL
-	P->constants				=	_ctable;
-	P->T						=	_T;
+	P->constants			=	_ctable;
+	P->T					=	_T;
 #ifdef _EDITOR
-	P->M						=	_M;
+	P->M					=	_M;
 #endif
-	P->C						=	_C;
+	P->C					=	_C;
 
 	v_passes.push_back			(P);
 	return v_passes.back();
@@ -621,64 +614,4 @@ void			CResourceManager::_DeleteConstantList(const SConstantList* L )
 	if (0==(L->dwFlags&xr_resource_flagged::RF_REGISTERED))	return;
 	if (reclaim(lst_constants,L))					return;
 	Msg	("! ERROR: Failed to find compiled list of r1-constant-defs");
-}
-
-//--------------------------------------------------------------------------------------------------------------
-SProgram*		CResourceManager::_CreateProgram(ref_vs& _vs, ref_ps& _ps)
-{
-	string_path			name;
-	strconcat(sizeof(name), name, *_vs->cName, ":", *_ps->cName);
-	LPSTR N = LPSTR(name);
-	map_Program::iterator I = m_program.find(N);
-	if (I != m_program.end())	return I->second;
-	else
-	{
-		// Now that we're creating the pass we can link the program
-		SProgram* _program = new SProgram();
-		_program->dwFlags |= xr_resource_flagged::RF_REGISTERED;
-		m_program.insert(mk_pair(_program->set_name(N), _program));
-		VERIFY(_vs->vs && _ps->ps);
-		if (!_ps->ps || !_vs->vs)	{
-			_program->program = NULL;
-			return _program;
-		}
-		_program->program = glCreateProgram();
-		CHK_GL(glAttachShader(_program->program, _vs->vs));
-		CHK_GL(glAttachShader(_program->program, _ps->ps));
-		CHK_GL(glLinkProgram(_program->program));
-
-		// Check if the linking succeeded
-		GLint _result;
-		CHK_GL(glGetProgramiv(_program->program, GL_LINK_STATUS, &_result));
-		if (_result == GL_TRUE)
-		{
-			// Let constant table parse its data without differentiating between stages
-			_program->vs = _vs;
-			_program->ps = _ps;
-			_program->constants.parse(&_program->program, RC_dest_pixel | RC_dest_vertex);
-		}
-		else
-		{
-			GLint _length;
-			glGetProgramiv(_program->program, GL_INFO_LOG_LENGTH, &_length);
-			GLchar* pErrorBuf = xr_alloc<GLchar>(_length);
-			glGetProgramInfoLog(_program->program, _length, nullptr, pErrorBuf);
-			Log("! Pass error: ", pErrorBuf);
-			R_ASSERT2(_result, pErrorBuf);
-			xr_free(pErrorBuf);
-		}
-		return _program;
-	}
-}
-
-void	CResourceManager::_DeleteProgram(const SProgram* P)
-{
-	if (0==(P->dwFlags&xr_resource_flagged::RF_REGISTERED))	return;
-	LPSTR N				= LPSTR		(*P->cName);
-	map_Program::iterator I	= m_program.find	(N);
-	if (I!=m_program.end())	{
-		m_program.erase(I);
-		return;
-	}
-	Msg	("! ERROR: Failed to find linked shader program '%s'",*P->cName);
 }

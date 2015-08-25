@@ -119,12 +119,8 @@ IC void CBackend::set_Element			(ShaderElement* S, u32	pass)
 {
 	SPass&	P		= *(S->passes[pass]);
 	set_States		(P.state);
-#ifdef USE_OGL
-	set_Program		(P.program);
-#else
 	set_PS			(P.ps);
 	set_VS			(P.vs);
-#endif // USE_OGL
 #ifdef	USE_DX10
 	set_GS			(P.gs);
 #endif	//	USE_DX10
