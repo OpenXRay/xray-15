@@ -44,9 +44,9 @@ void CSkeletonX::_Copy		(CSkeletonX *B)
 	RMS_boneid				= B->RMS_boneid;
 	RMS_bonecount			= B->RMS_bonecount;
 
-#ifdef	USE_DX10
+#if defined(USE_DX10) || defined(USE_OGL)
 	m_Indices				= B->m_Indices;
-#endif	//	USE_DX10
+#endif	//	USE_DX10 || USE_OGL
 }
 //////////////////////////////////////////////////////////////////////
 void CSkeletonX::_Render	(ref_geom& hGeom, u32 vCount, u32 iOffset, u32 pCount)
