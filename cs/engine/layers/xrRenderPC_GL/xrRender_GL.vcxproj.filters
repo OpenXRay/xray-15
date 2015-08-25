@@ -591,6 +591,9 @@
     <ClCompile Include="r2_sector_detect.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="gl_rendertarget_phase_scene.cpp">
+      <Filter>Core_Target</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">

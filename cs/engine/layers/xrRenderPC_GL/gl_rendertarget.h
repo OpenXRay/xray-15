@@ -16,6 +16,12 @@ private:
 	u32							dwHeight;
 	u32							dwAccumulatorClearMark;
 public:
+	enum	eStencilOptimizeMode
+	{
+		SO_Light = 0,	//	Default
+		SO_Combine,		//	Default
+	};
+
 	u32							dwLightMarkerID;
 	// 
 	IBlender*					b_occq;
@@ -176,6 +182,7 @@ public:
 	void						u_compute_texgen_screen	(Fmatrix&	dest);
 	void						u_compute_texgen_jitter	(Fmatrix&	dest);
 	void						u_setrt					(const ref_rt& _1, const ref_rt& _2, const ref_rt& _3, GLuint zb);
+	void						u_setrt					(const ref_rt& _1, const ref_rt& _2, GLuint zb);
 	void						u_setrt					(u32 W, u32 H, GLuint _1, GLuint _2, GLuint _3, GLuint zb);
 	void						u_calc_tc_noise			(Fvector2& p0, Fvector2& p1);
 	void						u_calc_tc_duality_ss	(Fvector2& r0, Fvector2& r1, Fvector2& l0, Fvector2& l1);
@@ -185,9 +192,9 @@ public:
 
 	void						phase_ssao				() { VERIFY(!"CRender::phase_ssao not implemented."); };
 	void						phase_downsamp			() { VERIFY(!"CRender::phase_downsamp not implemented."); };
-	void						phase_scene_prepare		() { VERIFY(!"CRender::phase_scene_prepare not implemented."); };
-	void						phase_scene_begin		() { VERIFY(!"CRender::phase_scene_begin not implemented."); };
-	void						phase_scene_end			() { VERIFY(!"CRender::phase_scene_end not implemented."); };
+	void						phase_scene_prepare		();
+	void						phase_scene_begin		();
+	void						phase_scene_end			();
 	void						phase_occq				() { VERIFY(!"CRender::phase_occq not implemented."); };
 	void						phase_wallmarks			() { VERIFY(!"CRender::phase_wallmarks not implemented."); };
 	void						phase_smap_direct		(light* L,	u32 sub_phase) { VERIFY(!"CRender::phase_smap_direct not implemented."); };
@@ -202,7 +209,7 @@ public:
 	BOOL						enable_scissor			(light* L);		// true if intersects near plane
 	void						enable_dbt_bounds		(light* L);
 
-	void						disable_aniso			() { VERIFY(!"CRender::disable_aniso not implemented."); };
+	void						disable_aniso			();
 
 	void						draw_volume				(light* L) { VERIFY(!"CRender::draw_volume not implemented."); };
 	void						accum_direct			(u32	sub_phase);

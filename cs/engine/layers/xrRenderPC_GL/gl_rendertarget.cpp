@@ -26,6 +26,18 @@ void	CRenderTarget::u_setrt			(const ref_rt& _1, const ref_rt& _2, const ref_rt&
 //	RImplementation.rmNormal				();
 }
 
+void	CRenderTarget::u_setrt			(const ref_rt& _1, const ref_rt& _2, GLuint zb)
+{
+	VERIFY									(_1);
+	dwWidth									= _1->dwWidth;
+	dwHeight								= _1->dwHeight;
+	RCache.set_FB							(pFB);
+	if (_1) RCache.set_RT(_1->pSurface,	0); else RCache.set_RT(NULL, 0);
+	if (_2) RCache.set_RT(_2->pSurface, 1); else RCache.set_RT(NULL, 1);
+	RCache.set_ZB							(zb);
+//	RImplementation.rmNormal				();
+}
+
 void	CRenderTarget::u_setrt			(u32 W, u32 H, GLuint _1, GLuint _2, GLuint _3, GLuint zb)
 {
 	VERIFY									(_1);

@@ -219,7 +219,7 @@ public:
 	IC	const Fmatrix&				get_xform_project	();
 
 #ifdef USE_OGL
-	IC	void						set_FB(GLuint FB);
+	IC	void						set_FB(GLuint FB = 0);
 	IC	void						set_RT(GLuint RT, u32 ID = 0);
 	IC	void						set_ZB(GLuint ZB);
 	IC	GLuint						get_FB();
