@@ -127,7 +127,7 @@ void	CBlender_BmmD::Compile	(CBlender_Compile& C)
 		}
 	}
 }
-#elif RENDER==R_R2
+#elif RENDER==R_R2 || RENDER==R_GL
 
 //////////////////////////////////////////////////////////////////////////
 // R2
@@ -248,15 +248,5 @@ void	CBlender_BmmD::Compile	(CBlender_Compile& C)
 		C.r_End			();
 		break;
 	}
-}
-#elif RENDER==R_GL
-//////////////////////////////////////////////////////////////////////////
-// GL
-//////////////////////////////////////////////////////////////////////////
-void	CBlender_BmmD::Compile(CBlender_Compile& C)
-{
-	// TODO: Implement this.
-	VERIFY(!"CBlender_BmmD::Compile not implemented.");
-	C.r_End();
 }
 #endif
