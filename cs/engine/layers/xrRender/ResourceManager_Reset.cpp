@@ -8,6 +8,8 @@
 	#include <xrCore/xrAPI.hpp>
 #endif
 
+#include "../xrRenderGL/glBufferUtils.h"
+
 void	CResourceManager::reset_begin			()
 {
 	// destroy everything, renderer may use
@@ -53,9 +55,18 @@ void	CResourceManager::reset_end				()
 		for (u32 _it=0; _it<v_geoms.size(); _it++)
 		{
 			SGeometry*	_G = v_geoms[_it];
-			if			(_G->vb == RCache.Vertex.old_pVB)	_G->vb = RCache.Vertex.Buffer	();
-			if			(_G->ib == RCache.Index.old_pIB)	_G->ib = RCache.Index.Buffer	();
-			if			(_G->ib == RCache.old_QuadIB)		_G->ib = RCache.QuadIB;
+			if			(_G->vb == RCache.Vertex.old_pVB)
+			{
+				_G->vb = RCache.Vertex.Buffer	();
+#ifdef USE_OGL
+				// Recreate the vertex declaration, because it is tied to the source data in OpenGL.
+				// TODO: OGL: Implement ARB_vertex_attrib_binding to separate the declaration
+				// from the source data.
+				glBufferUtils::ConvertVertexDeclaration(_G->dcl->FVF, _G->dcl->vao, _G->vb);
+#endif // USE_OGL
+			}
+			if (_G->ib == RCache.Index.old_pIB)		_G->ib = RCache.Index.Buffer();
+			if (_G->ib == RCache.old_QuadIB)		_G->ib = RCache.QuadIB;
 		}
 	}
 
