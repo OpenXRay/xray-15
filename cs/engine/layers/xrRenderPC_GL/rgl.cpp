@@ -71,6 +71,47 @@ static class cl_sun_shafts_intensity : public R_constant_setup
 	}
 }	binder_sun_shafts_intensity;
 
+void					CRender::model_Delete(IRenderVisual* &V, BOOL bDiscard)
+{
+	dxRender_Visual* pVisual = (dxRender_Visual*)V;
+	Models->Delete(pVisual, bDiscard);
+	V = 0;
+}
+
+IRender_DetailModel*	CRender::model_CreateDM(IReader*	F)
+{
+	CDetail*	D = new CDetail();
+	D->Load(F);
+	return D;
+}
+
+void					CRender::model_Delete(IRender_DetailModel* & F)
+{
+	if (F)
+	{
+		CDetail*	D = (CDetail*)F;
+		D->Unload();
+		xr_delete(D);
+		F = NULL;
+	}
+}
+
+IRenderVisual*			CRender::model_CreatePE(LPCSTR name)
+{
+	PS::CPEDef*	SE = PSLibrary.FindPED(name);		R_ASSERT3(SE, "Particle effect doesn't exist", name);
+	return					Models->CreatePE(SE);
+}
+
+IRenderVisual*			CRender::model_CreateParticles(LPCSTR name)
+{
+	PS::CPEDef*	SE = PSLibrary.FindPED(name);
+	if (SE) return			Models->CreatePE(SE);
+	else{
+		PS::CPGDef*	SG = PSLibrary.FindPGD(name);		R_ASSERT3(SG, "Particle effect or group doesn't exist", name);
+		return				Models->CreatePG(SG);
+	}
+}
+
 CRender::CRender()
 {
 }
@@ -482,13 +523,6 @@ HRESULT	CRender::shader_compile(
 	}
 
 	return		_result;
-}
-
-IRender_DetailModel*	CRender::model_CreateDM(IReader*	F)
-{
-	CDetail*	D = new CDetail();
-	D->Load(F);
-	return D;
 }
 
 void CRender::reset_begin()

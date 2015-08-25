@@ -146,19 +146,19 @@ public:
 	IC void							occq_end(u32&	ID)	{ HWOCC.occq_end(ID); }
 	IC R_occlusion::occq_result		occq_get(u32&	ID)	{ return HWOCC.occq_get(ID); }
 
-	D3DVERTEXELEMENT9*				CRender::getVB_Format(int id, BOOL _alt = FALSE)	{
+	D3DVERTEXELEMENT9*				getVB_Format(int id, BOOL _alt = FALSE)	{
 		if (_alt)	{ VERIFY(id<int(xDC.size()));	return xDC[id].begin(); }
 		else		{ VERIFY(id<int(nDC.size()));	return nDC[id].begin(); }
 	}
-	GLuint							CRender::getVB(int id, BOOL	_alt = FALSE)	{
+	GLuint							getVB(int id, BOOL	_alt = FALSE)	{
 		if (_alt)	{ VERIFY(id<int(xVB.size()));	return xVB[id]; }
 		else		{ VERIFY(id<int(nVB.size()));	return nVB[id]; }
 	}
-	GLuint							CRender::getIB(int id, BOOL	_alt = FALSE)	{
+	GLuint							getIB(int id, BOOL	_alt = FALSE)	{
 		if (_alt)	{ VERIFY(id<int(xIB.size()));	return xIB[id]; }
 		else		{ VERIFY(id<int(nIB.size()));	return nIB[id]; }
 	}
-	FSlideWindowItem*				CRender::getSWI(int id)			{ VERIFY(id<int(SWIs.size()));		return &SWIs[id]; }
+	FSlideWindowItem*				getSWI(int id)			{ VERIFY(id<int(SWIs.size()));		return &SWIs[id]; }
 	ICF void						apply_object(IRenderable*	O)
 	{
 		if (0 == O)					return;
@@ -275,17 +275,17 @@ public:
 	virtual void					glow_destroy(IRender_Glow* p_)		{ VERIFY(!"CRender::glow_destroy not implemented."); };
 
 	// Models
-	virtual IRenderVisual*			model_CreateParticles(LPCSTR name) { VERIFY(!"CRender::model_CreateParticles not implemented."); return nullptr; };
+	virtual IRenderVisual*			model_CreateParticles(LPCSTR name);
 	virtual IRender_DetailModel*	model_CreateDM(IReader* F);
-	virtual IRenderVisual*			model_Create(LPCSTR name, IReader*	data = 0) { VERIFY(!"CRender::model_Create not implemented."); return nullptr; };
-	virtual IRenderVisual*			model_CreateChild(LPCSTR name, IReader*	data) { VERIFY(!"CRender::model_CreateChild not implemented."); return nullptr; };
-	virtual IRenderVisual*			model_Duplicate(IRenderVisual*	V) { VERIFY(!"CRender::model_Duplicate not implemented."); return nullptr; };
-	virtual void					model_Delete(IRenderVisual* &	V, BOOL bDiscard = FALSE) { VERIFY(!"CRender::model_Delete not implemented."); };
-	virtual void 					model_Delete(IRender_DetailModel* & F) { VERIFY(!"CRender::model_Delete not implemented."); };
-	virtual void					model_Logging(BOOL bEnable) { VERIFY(!"CRender::model_Logging not implemented."); };
-	virtual void					models_Prefetch() { VERIFY(!"CRender::models_Prefetch not implemented."); };
-	virtual void					models_Clear(BOOL b_complete) { Models->ClearPool(b_complete); }
-	IRenderVisual*					model_CreatePE(LPCSTR name) { VERIFY(!"CRender::model_CreatePE not implemented."); return nullptr; };
+	IRenderVisual*					model_Create(LPCSTR name, IReader* data)		{ return Models->Create(name,data);		}
+	IRenderVisual*					model_CreateChild(LPCSTR name, IReader* data)	{ return Models->CreateChild(name,data);}
+	IRenderVisual*					model_Duplicate(IRenderVisual* V)				{ return Models->Instance_Duplicate((dxRender_Visual*)V);	}
+	virtual void					model_Delete(IRenderVisual* &	V, BOOL bDiscard = FALSE);
+	virtual void 					model_Delete(IRender_DetailModel* & F);
+	virtual void					model_Logging(BOOL bEnable)						{ Models->Logging(bEnable); }
+	virtual void					models_Prefetch()								{ Models->Prefetch(); }
+	virtual void					models_Clear(BOOL b_complete)					{ Models->ClearPool(b_complete); }
+	IRenderVisual*					model_CreatePE(LPCSTR name);
 
 	// Occlusion culling
 	virtual BOOL					occ_visible(vis_data&	V) { VERIFY(!"CRender::occ_visible not implemented."); return false; };
