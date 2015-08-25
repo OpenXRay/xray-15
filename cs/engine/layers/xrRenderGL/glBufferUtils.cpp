@@ -52,7 +52,7 @@ GLenum	VertexTypeList[] =
 	GL_FLOAT,			// D3DDECLTYPE_FLOAT3
 	GL_FLOAT,			// D3DDECLTYPE_FLOAT4
 	GL_UNSIGNED_BYTE,	// D3DDECLTYPE_D3DCOLOR
-	GL_SHORT,			// D3DDECLTYPE_UBYTE4
+	GL_UNSIGNED_BYTE,	// D3DDECLTYPE_UBYTE4
 	GL_SHORT,			// D3DDECLTYPE_SHORT2
 	GL_SHORT,			// D3DDECLTYPE_SHORT4
 	GL_UNSIGNED_BYTE,	// D3DDECLTYPE_UBYTE4N
@@ -136,11 +136,10 @@ void ConvertVertexDeclaration(const D3DVERTEXELEMENT9* decl, GLuint vao, GLuint 
 		if (desc.Stream == 0xFF)
 			break;
 
-		CHK_GL(glVertexAttribPointer(i,
-			VertexSizeList[desc.Type],
-			VertexTypeList[desc.Type],
-			VertexNormalizedList[desc.Type],
-			stride, (void*)desc.Offset));
+		GLint size				= VertexSizeList[desc.Type];
+		GLenum type				= VertexTypeList[desc.Type];
+		GLboolean normalized	= VertexNormalizedList[desc.Type];
+		CHK_GL(glVertexAttribPointer(i, size, type, normalized,	stride, (void*)desc.Offset));
 		CHK_GL(glEnableVertexAttribArray(i));
 	}
 }
