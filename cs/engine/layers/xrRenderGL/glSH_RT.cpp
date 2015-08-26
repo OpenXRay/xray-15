@@ -44,22 +44,11 @@ void CRT::create	(LPCSTR Name, u32 w, u32 h,	D3DFORMAT f, u32 SampleCount )
 	if (w>max_width)		return;
 	if (h>max_height)		return;
 
-	// Select usage
-	GLenum usage	= 0;
-	if (D3DFMT_D24X8			==fmt)						usage = GL_DEPTH24_STENCIL8;
-	else if (D3DFMT_D24S8		==fmt)						usage = GL_DEPTH24_STENCIL8;
-	else if (D3DFMT_D15S1		==fmt)						usage = GL_DEPTH24_STENCIL8;
-	else if (D3DFMT_D16			==fmt)						usage = GL_DEPTH_COMPONENT16;
-	else if (D3DFMT_D16_LOCKABLE==fmt)						usage = GL_DEPTH_COMPONENT16;
-	else if (D3DFMT_D32F_LOCKABLE==fmt)						usage = GL_DEPTH_COMPONENT32F;
-	else if ((D3DFORMAT)MAKEFOURCC('D','F','2','4') == fmt)	usage = GL_DEPTH_COMPONENT24;
-	else													usage = glTextureUtils::ConvertTextureFormat(fmt);
-
 	DEV->Evict();
 
 	glGenTextures(1, &pSurface);
 	CHK_GL(glBindTexture(GL_TEXTURE_2D, pSurface));
-	CHK_GL(glTexStorage2D(GL_TEXTURE_2D, 1, usage, w, h));
+	CHK_GL(glTexStorage2D(GL_TEXTURE_2D, 1, glTextureUtils::ConvertTextureFormat(fmt), w, h));
 
 	pTexture	= DEV->_CreateTexture	(Name);
 	pTexture->surface_set(GL_TEXTURE_2D, pSurface);

@@ -42,7 +42,7 @@ IC void	CBackend::set_ZB(GLuint ZB)
 		PGO(Msg("PGO:setZB"));
 		stat.target_zb++;
 		pZB = ZB;
-		CHK_GL(glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, ZB, 0));
+		CHK_GL(glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, ZB, 0));
 	}
 }
 
