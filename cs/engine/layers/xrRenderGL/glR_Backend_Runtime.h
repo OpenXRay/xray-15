@@ -18,6 +18,9 @@ IC void	CBackend::set_FB(GLuint FB)
 		PGO(Msg("PGO:set_FB"));
 		pFB = FB;
 		CHK_GL(glBindFramebuffer(GL_FRAMEBUFFER, pFB));
+
+		// Clear cached attachments
+		pRT[0] = pRT[1] = pRT[2] = pRT[3] = pZB = NULL;
 	}
 }
 

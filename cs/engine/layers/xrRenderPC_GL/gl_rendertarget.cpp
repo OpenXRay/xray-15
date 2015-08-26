@@ -24,6 +24,8 @@ void	CRenderTarget::u_setrt			(const ref_rt& _1, const ref_rt& _2, const ref_rt&
 	if (_3) RCache.set_RT(_3->pSurface, 2); else RCache.set_RT(NULL, 2);
 	RCache.set_ZB							(zb);
 //	RImplementation.rmNormal				();
+	GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+	VERIFY(status == GL_FRAMEBUFFER_COMPLETE);
 }
 
 void	CRenderTarget::u_setrt			(const ref_rt& _1, const ref_rt& _2, GLuint zb)
@@ -36,6 +38,8 @@ void	CRenderTarget::u_setrt			(const ref_rt& _1, const ref_rt& _2, GLuint zb)
 	if (_2) RCache.set_RT(_2->pSurface, 1); else RCache.set_RT(NULL, 1);
 	RCache.set_ZB							(zb);
 //	RImplementation.rmNormal				();
+	GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+	VERIFY(status == GL_FRAMEBUFFER_COMPLETE);
 }
 
 void	CRenderTarget::u_setrt			(u32 W, u32 H, GLuint _1, GLuint _2, GLuint _3, GLuint zb)
@@ -50,6 +54,8 @@ void	CRenderTarget::u_setrt			(u32 W, u32 H, GLuint _1, GLuint _2, GLuint _3, GL
 	RCache.set_RT							(_3,	2);
 	RCache.set_ZB							(zb);
 //	RImplementation.rmNormal				();
+	GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+	VERIFY(status == GL_FRAMEBUFFER_COMPLETE);
 }
 
 void	CRenderTarget::u_stencil_optimize	(BOOL		common_stencil)
