@@ -136,7 +136,7 @@ void CDetailManager::hw_Load_Geom()
 				offset		=	u16(offset+u16(D.number_vertices));
 			}
 		}
-#if defined(USE_DX10) || defined(USE_OGL)
+#if defined(USE_OGL)
 		glBufferUtils::CreateIndexBuffer(&hw_IB, pIOriginal, dwIndices*2);
 		xr_free(pIOriginal);
 #elif defined(USE_DX10) // USE_OGL
