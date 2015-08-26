@@ -23,8 +23,8 @@ void	CRenderTarget::phase_combine	()
 	//*** exposure-pipeline
 	u32			gpu_id	= Device.dwFrame%HW.Caps.iGPUNum;
 	{
-		t_LUM_src->surface_set		(rt_LUM_pool[gpu_id*2+0]->pSurface);
-		t_LUM_dest->surface_set		(rt_LUM_pool[gpu_id*2+1]->pSurface);
+		t_LUM_src->surface_set		(GL_TEXTURE_2D, rt_LUM_pool[gpu_id*2+0]->pSurface);
+		t_LUM_dest->surface_set		(GL_TEXTURE_2D, rt_LUM_pool[gpu_id*2+1]->pSurface);
 	}
 
 	if (RImplementation.o.ssao_opt_data)
@@ -164,8 +164,8 @@ void	CRenderTarget::phase_combine	()
 		// Setup textures
 		GLuint						e0	= _menu_pp?0:envdescren.sky_r_textures_env[0].second->surface_get();
 		GLuint						e1	= _menu_pp?0:envdescren.sky_r_textures_env[1].second->surface_get();
-		t_envmap_0->surface_set		(e0);
-		t_envmap_1->surface_set		(e1);
+		t_envmap_0->surface_set		(GL_TEXTURE_CUBE_MAP, e0);
+		t_envmap_1->surface_set		(GL_TEXTURE_CUBE_MAP, e1);
 	
 		// Draw
 		RCache.set_Element			(s_combine->E[0]	);
@@ -328,8 +328,8 @@ void	CRenderTarget::phase_combine	()
 	//*** exposure-pipeline-clear
 	{
 		std::swap					(rt_LUM_pool[gpu_id*2+0],rt_LUM_pool[gpu_id*2+1]);
-		t_LUM_src->surface_set		(NULL);
-		t_LUM_dest->surface_set		(NULL);
+		t_LUM_src->surface_set		(GL_TEXTURE_2D, NULL);
+		t_LUM_dest->surface_set		(GL_TEXTURE_2D, NULL);
 	}
 
 #ifdef DEBUG

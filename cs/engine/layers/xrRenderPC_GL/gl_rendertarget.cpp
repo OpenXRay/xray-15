@@ -414,7 +414,7 @@ CRenderTarget::CRenderTarget		()
 			CHK_GL						(glBindTexture(GL_TEXTURE_3D, t_material_surf));
 			CHK_GL						(glTexStorage3D(GL_TEXTURE_3D, 1, GL_RG8, TEX_material_LdotN, TEX_material_LdotH, TEX_material_Count));
 			t_material					= glRenderDeviceRender::Instance().Resources->_CreateTexture(r2_material);
-			t_material->surface_set		(t_material_surf);
+			t_material->surface_set		(GL_TEXTURE_3D, t_material_surf);
 
 			// Fill it (addr: x=dot(L,N),y=dot(L,H))
 			static const u32 RowPitch = TEX_material_LdotN * 2;
@@ -489,7 +489,7 @@ CRenderTarget::CRenderTarget		()
 				CHK_GL						(glBindTexture(GL_TEXTURE_2D, t_noise_surf[it1]));
 				CHK_GL						(glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8, TEX_jitter, TEX_jitter));
 				t_noise[it1]				= glRenderDeviceRender::Instance().Resources->_CreateTexture	(name);
-				t_noise[it1]->surface_set	(t_noise_surf[it1]);
+				t_noise[it1]->surface_set	(GL_TEXTURE_2D, t_noise_surf[it1]);
 			}	
 
 			// Fill it,
@@ -522,7 +522,7 @@ CRenderTarget::CRenderTarget		()
 			CHK_GL						(glBindTexture(GL_TEXTURE_2D, t_noise_surf[it]));
 			CHK_GL						(glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA32F, TEX_jitter, TEX_jitter));
 			t_noise[it]					= glRenderDeviceRender::Instance().Resources->_CreateTexture	(name);
-			t_noise[it]->surface_set	(t_noise_surf[it]);
+			t_noise[it]->surface_set		(GL_TEXTURE_2D, t_noise_surf[it]);
 			
 			// Fill it,
 			static const int HBAOPitch = TEX_jitter*sampleSize*sizeof(float);
@@ -574,15 +574,15 @@ CRenderTarget::CRenderTarget		()
 CRenderTarget::~CRenderTarget	()
 {
 	// Textures
-	t_material->surface_set		(NULL);
+	t_material->surface_set		(GL_TEXTURE_2D, NULL);
 
 #ifdef DEBUG
 	//_SHOW_REF					("t_material_surf",t_material_surf);
 #endif // DEBUG
 	glDeleteTextures			(1, &t_material_surf);
 
-	t_LUM_src->surface_set		(NULL);
-	t_LUM_dest->surface_set		(NULL);
+	t_LUM_src->surface_set		(GL_TEXTURE_2D, NULL);
+	t_LUM_dest->surface_set		(GL_TEXTURE_2D, NULL);
 
 #ifdef DEBUG
 	GLuint	pSurf = 0;
@@ -595,8 +595,8 @@ CRenderTarget::~CRenderTarget	()
 	//_SHOW_REF("t_envmap_0 - #small",t_envmap_0->pSurface);
 	//_SHOW_REF("t_envmap_1 - #small",t_envmap_1->pSurface);
 #endif // DEBUG
-	t_envmap_0->surface_set		(NULL);
-	t_envmap_1->surface_set		(NULL);
+	t_envmap_0->surface_set		(GL_TEXTURE_CUBE_MAP, NULL);
+	t_envmap_1->surface_set		(GL_TEXTURE_CUBE_MAP, NULL);
 	t_envmap_0.destroy			();
 	t_envmap_1.destroy			();
 	
@@ -605,7 +605,7 @@ CRenderTarget::~CRenderTarget	()
 
 	// Jitter
 	for (int it=0; it<TEX_jitter_count; it++)	{
-		t_noise	[it]->surface_set	(NULL);
+		t_noise	[it]->surface_set	(GL_TEXTURE_2D, NULL);
 	}
 	glDeleteTextures(TEX_jitter_count, t_noise_surf);
 

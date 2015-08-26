@@ -62,13 +62,13 @@ void CRT::create	(LPCSTR Name, u32 w, u32 h,	D3DFORMAT f, u32 SampleCount )
 	CHK_GL(glTexStorage2D(GL_TEXTURE_2D, 1, usage, w, h));
 
 	pTexture	= DEV->_CreateTexture	(Name);
-	pTexture->surface_set(pSurface);
+	pTexture->surface_set(GL_TEXTURE_2D, pSurface);
 }
 
 void CRT::destroy		()
 {
 	if (pTexture._get())	{
-		pTexture->surface_set(0);
+		pTexture->surface_set(GL_TEXTURE_2D, 0);
 		pTexture = NULL;
 	}
 	CHK_GL(glDeleteTextures(1, &pSurface));

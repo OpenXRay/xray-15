@@ -49,8 +49,9 @@ CTexture::~CTexture()
 	DEV->_DeleteTexture	(this);
 }
 
-void					CTexture::surface_set	(GLuint surf )
+void					CTexture::surface_set	(GLenum target, GLuint surf )
 {
+	desc				= target;
 	pSurface			= surf;
 }
 
@@ -139,7 +140,6 @@ void CTexture::Preload	()
 void CTexture::Load		()
 {
 	flags.bLoaded = true;
-	desc = GL_TEXTURE_2D;
 	desc_cache = 0;
 	if (pSurface)					return;
 
@@ -186,6 +186,7 @@ void CTexture::Load		()
 			CHK_GL(glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8, _w, _h));
 
 			pSurface = pTexture;
+			desc = GL_TEXTURE_2D;
 			if (glGetError() != GL_NO_ERROR)
 			{
 				FATAL("Invalid video stream");
@@ -217,6 +218,7 @@ void CTexture::Load		()
 			CHK_GL(glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8, pAVI->m_dwWidth, pAVI->m_dwHeight));
 
 			pSurface = pTexture;
+			desc = GL_TEXTURE_2D;
 			if (glGetError() != GL_NO_ERROR)
 			{
 				FATAL("Invalid video stream");

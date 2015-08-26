@@ -68,8 +68,8 @@ public:
 //	void								Apply			(u32 dwStage);
 
 #ifdef USE_OGL
-	void								surface_set(GLuint surf);
-	GLuint								surface_get();
+	void								surface_set		(GLenum target, GLuint surf);
+	GLuint								surface_get		();
 #else
 	void								surface_set		(ID3DBaseTexture* surf );
 	ID3DBaseTexture*					surface_get 	();
