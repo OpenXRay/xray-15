@@ -64,8 +64,9 @@ struct ECORE_API	R_constant_load
 	u16						cls;		// element class
 #ifdef USE_OGL
 	GLuint					location;
+	GLuint					program;
 
-	R_constant_load() : index(u16(-1)), cls(u16(-1)), location(0) {};
+	R_constant_load() : index(u16(-1)), cls(u16(-1)), location(0), program(0) {};
 #else
 	R_constant_load() : index(u16(-1)), cls(u16(-1)) {};
 #endif // USE_OGL
@@ -73,7 +74,7 @@ struct ECORE_API	R_constant_load
 	IC BOOL					equal		(R_constant_load& C)
 	{
 #ifdef USE_OGL
-		return (index==C.index) && (cls == C.cls) && (location == C.location);
+		return (index==C.index) && (cls == C.cls) && (location == C.location) && (program == C.program);
 #else
 		return (index==C.index) && (cls == C.cls);
 #endif // USE_OGL
@@ -86,15 +87,11 @@ struct ECORE_API	R_constant			:public xr_resource
 	u16						type;		// float=0/integer=1/boolean=2
 	u16						destination;// pixel/vertex/(or both)/sampler
 
-#ifdef USE_OGL
-	R_constant_load			program;
-#else
 	R_constant_load			ps;
 	R_constant_load			vs;
 #ifdef	USE_DX10
 	R_constant_load			gs;
 #endif	//	USE_DX10
-#endif // USE_OGL
 	R_constant_load			samp;
 	R_constant_setup*		handler;
 
@@ -102,11 +99,7 @@ struct ECORE_API	R_constant			:public xr_resource
 
 	IC BOOL					equal		(R_constant& C)
 	{
-#ifdef USE_OGL
-		return (0 == xr_strcmp(name, C.name)) && (type == C.type) && (destination == C.destination) && program.equal(C.program) && samp.equal(C.samp) && handler == C.handler;
-#else
 		return (0 == xr_strcmp(name, C.name)) && (type == C.type) && (destination == C.destination) && ps.equal(C.ps) && vs.equal(C.vs) && samp.equal(C.samp) && handler == C.handler;
-#endif // USE_OGL
 	}
 	IC BOOL					equal		(R_constant* C)
 	{

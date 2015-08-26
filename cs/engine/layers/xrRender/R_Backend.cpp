@@ -165,6 +165,9 @@ void CBackend::OnDeviceCreate	()
 	glGenTextures(1, &pBaseZB);
 	CHK_GL(glBindTexture(GL_TEXTURE_2D, pBaseZB));
 	CHK_GL(glTexStorage2D(GL_TEXTURE_2D, 1, GL_DEPTH24_STENCIL8, Device.dwWidth, Device.dwHeight));
+
+	// Create the program pipeline used for rendering with shaders
+	glGenProgramPipelines(1, &pp);
 #endif // USE_OGL
 
 
@@ -196,6 +199,7 @@ void CBackend::OnDeviceDestroy()
 #endif	//	USE_DX10
 #ifdef USE_OGL
 	glDeleteTextures(1, &pBaseZB);
+	glDeleteProgramPipelines(1, &pp);
 #endif // USE_OGL
 }
 

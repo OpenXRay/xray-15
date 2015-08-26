@@ -63,8 +63,7 @@ ICF void CBackend::set_PS(GLuint _ps, LPCSTR _n)
 		PGO(Msg("PGO:Pshader:%x", _ps));
 		stat.ps++;
 		ps = _ps;
-		// TODO: Set pixel shader
-		VERIFY(!"CBackend::set_PS not implemented");
+		CHK_GL(glUseProgramStages(pp, GL_FRAGMENT_SHADER_BIT, ps));
 #ifdef DEBUG
 		ps_name = _n;
 #endif
@@ -78,8 +77,7 @@ ICF void CBackend::set_VS(GLuint _vs, LPCSTR _n)
 		PGO(Msg("PGO:Vshader:%x", _vs));
 		stat.vs++;
 		vs = _vs;
-		// TODO: Set vertex shader
-		VERIFY(!"CBackend::set_VS not implemented");
+		CHK_GL(glUseProgramStages(pp, GL_VERTEX_SHADER_BIT, vs));
 #ifdef DEBUG
 		vs_name = _n;
 #endif
@@ -166,6 +164,7 @@ ICF void CBackend::Render(D3DPRIMITIVETYPE T, u32 baseV, u32 startV, u32 countV,
 	stat.verts += countV;
 	stat.polys += PC;
 	constants.flush();
+	CHK_GL(glBindProgramPipeline(pp));
 	CHK_GL(glDrawElementsBaseVertex(Topology, iIndexCount, GL_UNSIGNED_SHORT, (void*)startI, baseV));
 	PGO(Msg("PGO:DIP:%dv/%df", countV, PC));
 }
@@ -179,6 +178,7 @@ ICF void CBackend::Render(D3DPRIMITIVETYPE T, u32 startV, u32 PC)
 	stat.verts += iIndexCount;
 	stat.polys += PC;
 	constants.flush();
+	CHK_GL(glBindProgramPipeline(pp));
 	CHK_GL(glDrawArrays(Topology, startV, iIndexCount));
 	PGO(Msg("PGO:DIP:%dv/%df", iIndexCount, PC));
 }

@@ -495,10 +495,16 @@ HRESULT	CRender::shader_compile(
 	sources[sources_len - 1] = srcData;
 
 	// Compile the shader
-	GLuint _shader = *(GLuint*)_ppShader;
-	R_ASSERT(_shader);
-	CHK_GL(glShaderSource(_shader, sources_len, sources, nullptr));
-	CHK_GL(glCompileShader(_shader));
+	GLuint shader = *(GLuint*)_ppShader;
+	R_ASSERT(shader);
+	CHK_GL(glShaderSource(shader, sources_len, sources, nullptr));
+	CHK_GL(glCompileShader(shader));
+
+	// Create the shader program
+	GLuint program = glCreateProgram();
+	R_ASSERT(program);
+	CHK_GL(glProgramParameteri(program, GL_PROGRAM_SEPARABLE, GL_TRUE));
+	*(GLuint*)_ppShader = program;
 
 	// Free string resources
 	xr_free(sources);
@@ -507,20 +513,38 @@ HRESULT	CRender::shader_compile(
 		xr_free(*it);
 
 	// Get the compilation result
-	GLint _result;
-	glGetShaderiv(_shader, GL_COMPILE_STATUS, &_result);
+	GLint result;
+	CHK_GL(glGetShaderiv(shader, GL_COMPILE_STATUS, &result));
 
-	// Get the compilation log, if requested
-	if (_ppErrorMsgs)
+	// Link program if compilation succeeded
+	if (result) {
+		CHK_GL(glAttachShader(program, shader));
+		CHK_GL(glLinkProgram(program));
+		CHK_GL(glDetachShader(program, shader));
+		CHK_GL(glGetProgramiv(program, GL_LINK_STATUS, &result));
+
+		if (_ppErrorMsgs)
+		{
+			// Get the compilation log, if requested
+			GLint length;
+			GLchar** _pErrorMsgs = (GLchar**)_ppErrorMsgs;
+			CHK_GL(glGetProgramiv(program, GL_INFO_LOG_LENGTH, &length));
+			*_pErrorMsgs = xr_alloc<GLchar>(length);
+			CHK_GL(glGetProgramInfoLog(program, length, nullptr, *_pErrorMsgs));
+		}
+	}
+	else if (_ppErrorMsgs)
 	{
-		GLint _length;
+		// Get the compilation log, if requested
+		GLint length;
 		GLchar** _pErrorMsgs = (GLchar**)_ppErrorMsgs;
-		glGetShaderiv(_shader, GL_INFO_LOG_LENGTH, &_length);
-		*_pErrorMsgs = xr_alloc<GLchar>(_length);
-		glGetShaderInfoLog(_shader, _length, nullptr, *_pErrorMsgs);
+		CHK_GL(glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &length));
+		*_pErrorMsgs = xr_alloc<GLchar>(length);
+		CHK_GL(glGetShaderInfoLog(shader, length, nullptr, *_pErrorMsgs));
 	}
 
-	return		_result;
+	CHK_GL(glDeleteShader(shader));
+	return		result;
 }
 
 void CRender::reset_begin()

@@ -203,7 +203,12 @@ SVS*	CResourceManager::_CreateVS		(LPCSTR _name)
 		GLenum _result = ::Render->shader_compile(name, LPCSTR(fs->pointer()), fs->length(), NULL, NULL, NULL, NULL, 0, &_vs->vs, &pErrorBuf, NULL);
 		FS.r_close(fs);
 
-		if (_result == GL_FALSE)
+		if (_result == GL_TRUE)
+		{
+			//	Parse constant, texture, sampler binding
+			_vs->constants.parse(&_vs->vs, RC_dest_vertex);
+		}
+		else
 		{
 			VERIFY(pErrorBuf);
 			Log("! VS: ", _name);
@@ -282,7 +287,12 @@ SPS*	CResourceManager::_CreatePS			(LPCSTR _name)
 		GLenum _result = ::Render->shader_compile(name, data, size, NULL, NULL, NULL, NULL, 0, &_ps->ps, &pErrorBuf, NULL);
 		xr_free(data);
 
-		if (_result == GL_FALSE)
+		if (_result == GL_TRUE)
+		{
+			//	Parse constant, texture, sampler binding
+			_ps->constants.parse(&_ps->ps, RC_dest_pixel);
+		}
+		else
 		{
 			VERIFY(pErrorBuf);
 			Log("! PS: ", _name);

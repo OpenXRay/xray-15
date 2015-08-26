@@ -7,27 +7,28 @@ class	ECORE_API  R_constants
 public:
 	// fp, non-array versions
 	ICF void				set		(R_constant* C, const Fmatrix& A)		{
+		R_constant_load& L = (C->destination&1)?C->ps:C->vs;
 		VERIFY		(RC_float == C->type);
 		Fvector4	it[4];
-		switch		(C->program.cls)
+		switch		(L.cls)
 		{
 		case RC_2x4:
 			it[0].set			(A._11, A._21, A._31, A._41);
 			it[1].set			(A._12, A._22, A._32, A._42);
-			glUniformMatrix2x4fv(C->program.location, 1, GL_FALSE, (float*)&it);
+			glProgramUniformMatrix2x4fv(L.program, L.location, 1, GL_FALSE, (float*)&it);
 			break;
 		case RC_3x4:
 			it[0].set			(A._11, A._21, A._31, A._41);
 			it[1].set			(A._12, A._22, A._32, A._42);
 			it[2].set			(A._13, A._23, A._33, A._43);
-			glUniformMatrix3x4fv(C->program.location, 1, GL_FALSE, (float*)&it);
+			glProgramUniformMatrix3x4fv(L.program, L.location, 1, GL_FALSE, (float*)&it);
 			break;
 		case RC_4x4:
 			it[0].set			(A._11, A._21, A._31, A._41);
 			it[1].set			(A._12, A._22, A._32, A._42);
 			it[2].set			(A._13, A._23, A._33, A._43);
 			it[3].set			(A._14, A._24, A._34, A._44);
-			glUniformMatrix4fv	(C->program.location, 1, GL_FALSE, (float*)&it);
+			glProgramUniformMatrix4fv(L.program, L.location, 1, GL_FALSE, (float*)&it);
 			break;
 		default:
 #ifdef DEBUG
@@ -38,14 +39,16 @@ public:
 		}
 	}
 	ICF void				set		(R_constant* C, const Fvector4& A)		{
+		R_constant_load& L = (C->destination&1)?C->ps:C->vs;
 		VERIFY		(RC_float	== C->type);
-		VERIFY		(RC_1x4		== C->program.cls);
-		glUniform4fv(C->program.location, 1, (float*)&A);
+		VERIFY		(RC_1x4		== L.cls);
+		glProgramUniform4fv(L.program, L.location, 1, (float*)&A);
 	}
 	ICF void				set		(R_constant* C, float x, float y, float z, float w)	{
+		R_constant_load& L = (C->destination&1)?C->ps:C->vs;
 		VERIFY		(RC_float	== C->type);
-		VERIFY		(RC_1x4		== C->program.cls);
-		glUniform4f	(C->program.location, x, y, z, w);
+		VERIFY		(RC_1x4		== L.cls);
+		glProgramUniform4f(L.program, L.location, x, y, z, w);
 	}
 
 	// fp, array versions

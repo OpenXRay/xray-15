@@ -111,9 +111,9 @@ private:
 
 	// Shaders/State
 #ifdef USE_OGL
+	GLuint							pp;
 	GLuint							ps;
 	GLuint							vs;
-	GLuint							program;
 	SState*							state;
 #else
 	ID3DState*						state;
@@ -170,9 +170,6 @@ public:
 		u32								calls;
 		u32								vs;
 		u32								ps;
-#ifdef USE_OGL
-		u32								program;
-#endif // USE_OGL
 #ifdef	DEBUG
 		u32								decl;
 		u32								vb;
