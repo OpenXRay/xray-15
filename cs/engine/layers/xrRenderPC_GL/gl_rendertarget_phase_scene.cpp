@@ -24,7 +24,7 @@ void	CRenderTarget::phase_scene_prepare	()
 		)
 	{
 		// TODO: OGL: Check if we need to set RT here.
-		u_setrt(Device.dwWidth, Device.dwHeight, rt_Position->pSurface, NULL, NULL, HW.pBaseZB);
+		u_setrt(Device.dwWidth, Device.dwHeight, rt_Position->pSurface, NULL, NULL, RCache.pBaseZB);
 
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
@@ -44,7 +44,7 @@ void	CRenderTarget::phase_scene_prepare	()
 // begin
 void	CRenderTarget::phase_scene_begin	()
 {
-   GLuint pZB = HW.pBaseZB;
+	GLuint pZB = RCache.pBaseZB;
 
 	// Targets, use accumulator for temporary storage
 	if (RImplementation.o.albedo_wo)	u_setrt		(rt_Position,	rt_Accumulator,	pZB);
@@ -77,7 +77,7 @@ void	CRenderTarget::phase_scene_end		()
 	if (!RImplementation.o.albedo_wo)		return;
 
 	// transfer from "rt_Accumulator" into "rt_Color"
-	u_setrt								( rt_Color,	0,	0,	HW.pBaseZB	);
+	u_setrt								( rt_Color,	0,	0,	RCache.pBaseZB	);
 	RCache.set_CullMode					( CULL_NONE );
 	RCache.set_Stencil					(TRUE,D3DCMP_LESSEQUAL,0x01,0xff,0x00);	// stencil should be >= 1
 	if (RImplementation.o.nvstencil)	u_stencil_optimize	(CRenderTarget::SO_Combine);

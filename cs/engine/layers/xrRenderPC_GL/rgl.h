@@ -24,7 +24,6 @@ class  CHW
 {
 public:
 	CHWCaps			Caps;
-	GLuint			pBaseZB;
 };
 extern ECORE_API CHW		HW;
 

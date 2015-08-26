@@ -150,12 +150,12 @@ void CRender::render_menu	()
 
 	// Main Render
 	{
-		Target->u_setrt						(Target->rt_Generic_0,0,0,HW.pBaseZB);		// LDR RT
+		Target->u_setrt						(Target->rt_Generic_0,0,0,RCache.pBaseZB);		// LDR RT
 		g_pGamePersistent->OnRenderPPUI_main()	;	// PP-UI
 	}
 	// Distort
 	{
-		Target->u_setrt						(Target->rt_Generic_1,0,0,HW.pBaseZB);		// Now RT is a distortion mask
+		Target->u_setrt						(Target->rt_Generic_1,0,0,RCache.pBaseZB);		// Now RT is a distortion mask
 		glClearColor						(0.5f, 0.5f, 0.0f, 0.5f);
 		CHK_GL								(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 		glClearColor						(0.0f, 0.0f, 0.0f, 0.0f);
@@ -333,7 +333,7 @@ void CRender::Render		()
 		// skybox can be drawn here
 		if (0)
 		{
-			Target->u_setrt		( Target->rt_Generic_0,	Target->rt_Generic_1,0,HW.pBaseZB );
+			Target->u_setrt		( Target->rt_Generic_0,	Target->rt_Generic_1,0,RCache.pBaseZB );
 			RCache.set_CullMode	( CULL_NONE );
 			RCache.set_Stencil	( FALSE		);
 

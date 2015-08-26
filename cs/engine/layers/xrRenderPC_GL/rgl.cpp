@@ -126,10 +126,6 @@ void					CRender::create()
 {
 	//Device.seqFrame.Add(this, REG_PRIORITY_HIGH + 0x12345678);
 
-	glGenTextures(1, &HW.pBaseZB);
-	CHK_GL(glBindTexture(GL_TEXTURE_2D, HW.pBaseZB));
-	CHK_GL(glTexStorage2D(GL_TEXTURE_2D, 1, GL_DEPTH24_STENCIL8, Device.dwWidth, Device.dwHeight));
-
 	m_skinning = -1;
 	m_MSAASample = -1;
 

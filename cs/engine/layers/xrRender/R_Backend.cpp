@@ -160,6 +160,13 @@ void CBackend::OnDeviceCreate	()
 #ifdef	USE_DX10
 	//CreateConstantBuffers();
 #endif	//	USE_DX10
+#ifdef USE_OGL
+	// Create an staging depth buffer used for post-processing
+	glGenTextures(1, &pBaseZB);
+	CHK_GL(glBindTexture(GL_TEXTURE_2D, pBaseZB));
+	CHK_GL(glTexStorage2D(GL_TEXTURE_2D, 1, GL_DEPTH24_STENCIL8, Device.dwWidth, Device.dwHeight));
+#endif // USE_OGL
+
 
 	CreateQuadIB		();
 
@@ -187,6 +194,9 @@ void CBackend::OnDeviceDestroy()
 #ifdef	USE_DX10
 	//DestroyConstantBuffers();
 #endif	//	USE_DX10
+#ifdef USE_OGL
+	glDeleteTextures(1, &pBaseZB);
+#endif // USE_OGL
 }
 
 #ifdef	USE_DX10
