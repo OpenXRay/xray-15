@@ -1,11 +1,13 @@
 #include "common.h"
 
+out gl_PerVertex { vec4 gl_Position; };
+
 layout(location = 0) in vec4 iPos;
 layout(location = 1) in vec4 iColor;
 layout(location = 2) in vec2 iTex0;
 
-out vec2 vTex0;
-out vec4 vColor;
+layout(location = 0) out vec2 vTex0;
+layout(location = 1) out vec4 vColor;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // Vertex

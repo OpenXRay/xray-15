@@ -1,5 +1,7 @@
 #include "common.h"
 
+out gl_PerVertex { vec4 gl_Position; };
+
 uniform half4		screen_res;		// Screen resolution (x-Width,y-Height, zw - 1/resolution)
 
 layout(location = 0) in vec4 iPos;
@@ -11,13 +13,13 @@ layout(location = 5) in vec2 iTex4;
 layout(location = 6) in vec4 iTex5;
 layout(location = 7) in vec4 iTex6;
 
-out vec2 vTex0;
-out vec2 vTex1;
-out vec2 vTex2;
-out vec2 vTex3;
-out vec2 vTex4;
-out vec4 vTex5;
-out vec4 vTex6;
+layout(location = 0) out vec2 vTex0;
+layout(location = 1) out vec2 vTex1;
+layout(location = 2) out vec2 vTex2;
+layout(location = 3) out vec2 vTex3;
+layout(location = 4) out vec2 vTex4;
+layout(location = 5) out vec4 vTex5;
+layout(location = 6) out vec4 vTex6;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // Vertex
