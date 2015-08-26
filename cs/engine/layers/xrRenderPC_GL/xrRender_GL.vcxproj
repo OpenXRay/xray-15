@@ -224,6 +224,8 @@
     <ClCompile Include="..\xrRender\FSkinned.cpp" />
     <ClCompile Include="..\xrRender\FTreeVisual.cpp" />
     <ClCompile Include="..\xrRender\FVisual.cpp" />
+    <ClCompile Include="..\xrRender\Light_Render_Direct.cpp" />
+    <ClCompile Include="..\xrRender\Light_Render_Direct_ComputeXFS.cpp" />
     <ClCompile Include="..\xrRender\ModelPool.cpp" />
     <ClCompile Include="..\xrRender\Shader.cpp" />
     <ClCompile Include="blender_bloom_build.cpp" />
@@ -354,6 +356,7 @@
     <ClCompile Include="gl_R_render.cpp" />
     <ClCompile Include="r2_R_calculate.cpp" />
     <ClCompile Include="gl_rendertarget.cpp" />
+    <ClCompile Include="r2_R_lights.cpp" />
     <ClCompile Include="r2_R_sun.cpp" />
     <ClCompile Include="r2_sector_detect.cpp" />
     <ClCompile Include="rgl.cpp" />
@@ -415,6 +418,7 @@
     <ClInclude Include="..\xrRender\FSkinned.h" />
     <ClInclude Include="..\xrRender\FTreeVisual.h" />
     <ClInclude Include="..\xrRender\FVisual.h" />
+    <ClInclude Include="..\xrRender\Light_Render_Direct.h" />
     <ClInclude Include="..\xrRender\ModelPool.h" />
     <ClInclude Include="blender_bloom_build.h" />
     <ClInclude Include="blender_combine.h" />
@@ -514,6 +518,7 @@
     <ClInclude Include="r2_types.h" />
     <ClInclude Include="gl_rendertarget.h" />
     <ClInclude Include="rgl.h" />
+    <ClInclude Include="SMAP_Allocator.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

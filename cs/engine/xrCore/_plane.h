@@ -18,6 +18,12 @@ public:
 		d		= P.d;
 		return *this;
 	}
+	IC	SelfRef	set(const _vector4<T> &_p)
+	{
+		n.set(_p.x, _p.y, _p.z);
+		d = _p.w;
+		return *this;
+	}
     IC	 BOOL 	similar (Self &P, T eps_n=EPS, T eps_d=EPS)
 	{
     	return (n.similar(P.n,eps_n)&&(_abs(d-P.d)<eps_d));

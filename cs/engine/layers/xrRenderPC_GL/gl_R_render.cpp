@@ -380,14 +380,13 @@ void CRender::Render		()
 	}
 
 	// Directional light - fucking sun
-	// TODO: OGL: Implement that fucking sun.
-	/*if (bSUN)	{
+	if (bSUN)	{
 		RImplementation.stats.l_visible		++;
 		render_sun_near						();
 		render_sun							();
 		render_sun_filtered					();
 		Target->accum_direct_blend			();
-	}*/
+	}
 
 	{
 		Target->phase_accumulator					();
@@ -408,13 +407,12 @@ void CRender::Render		()
 	}
 
 	// Lighting, non dependant on OCCQ
-	// TODO: OGL: Implement lighting
-	/*Target->phase_accumulator				();
+	Target->phase_accumulator				();
 	HOM.Disable								();
 	render_lights							(LP_normal);
 	
 	// Lighting, dependant on OCCQ
-	render_lights							(LP_pending);*/
+	render_lights							(LP_pending);
 
 	// Postprocess
 	Target->phase_combine					();

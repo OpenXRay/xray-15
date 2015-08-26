@@ -350,6 +350,7 @@
     <ClInclude Include="..\xrRender\dxRenderVisual.h" />
     <ClInclude Include="..\xrRender\light.h" />
     <ClInclude Include="..\xrRender\light_gi.h" />
+    <ClInclude Include="..\xrRender\Light_Render_Direct.h" />
     <ClInclude Include="..\xrRender\light_smapvis.h" />
     <ClInclude Include="blender_bloom_build.h" />
     <ClInclude Include="blender_combine.h" />
@@ -368,7 +369,6 @@
     <ClInclude Include="DetailFormat.h" />
     <ClInclude Include="doug_lea_memory_allocator.h" />
     <ClInclude Include="dx10MinMaxSMBlender.h" />
-    <ClInclude Include="Light_Render_Direct.h" />
     <ClInclude Include="r2_types.h" />
     <ClInclude Include="r3.h" />
     <ClInclude Include="r3_rendertarget.h" />
@@ -537,6 +537,8 @@
     <ClCompile Include="$(SolutionDir)engine\layers\xrRender\skinw.cpp" />
     <ClCompile Include="..\xrRender\dxRenderVisual.cpp" />
     <ClCompile Include="..\xrRender\light_GI.cpp" />
+    <ClCompile Include="..\xrRender\Light_Render_Direct.cpp" />
+    <ClCompile Include="..\xrRender\Light_Render_Direct_ComputeXFS.cpp" />
     <ClCompile Include="..\xrRender\light_smapvis.cpp" />
     <ClCompile Include="..\xrRender\light_vis.cpp" />
     <ClCompile Include="blender_bloom_build.cpp" />
@@ -553,8 +555,6 @@
     <ClCompile Include="blender_luminance.cpp" />
     <ClCompile Include="blender_ssao.cpp" />
     <ClCompile Include="dx10MinMaxSMBlender.cpp" />
-    <ClCompile Include="Light_Render_Direct.cpp" />
-    <ClCompile Include="Light_Render_Direct_ComputeXFS.cpp" />
     <ClCompile Include="r2_blenders.cpp" />
     <ClCompile Include="r2_R_calculate.cpp" />
     <ClCompile Include="r2_R_lights.cpp" />
