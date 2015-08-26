@@ -378,9 +378,8 @@ CRenderTarget::CRenderTarget		()
 			sprintf						(name,"%s_%d",	r2_RT_luminance_pool,it	);
 			rt_LUM_pool[it].create		(name,	1,	1,	D3DFMT_R32F				);
 			u_setrt						(rt_LUM_pool[it],	0,	0,	0			);
-										(glClearColor(0.5f, 0.5f, 0.5f, 0.5f));
-			CHK_GL						(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
-										(glClearColor(0.0f, 0.0f, 0.0f, 0.0f));
+			glClearColor(127.0f / 255.0f, 127.0f / 255.0f, 127.0f / 255.0f, 127.0f / 255.0f);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		}
 		RCache.set_FB(0);
 	}
@@ -684,4 +683,19 @@ void CRenderTarget::increment_light_marker()
 	//if (dwLightMarkerID>10)
 	if (dwLightMarkerID>255)
 		reset_light_marker(true);
+}
+
+bool CRenderTarget::need_to_render_sunshafts()
+{
+	if ( ! (RImplementation.o.advancedpp && ps_r_sun_shafts) )
+		return false;
+
+	{
+		CEnvDescriptor&	E = *g_pGamePersistent->Environment().CurrentEnv;
+		float fValue = E.m_fSunShaftsIntensity;
+		//	TODO: add multiplication by sun color here
+		if (fValue<0.0001) return false;
+	}
+
+	return true;
 }

@@ -314,10 +314,10 @@ public:
 	ICF	void						set_ca				(R_constant* C, u32 e, const Fmatrix& A)							{ if (C)		constants.seta(C,e,A);				}
 	ICF	void						set_ca				(R_constant* C, u32 e, const Fvector4& A)							{ if (C)		constants.seta(C,e,A);				}
 	ICF	void						set_ca				(R_constant* C, u32 e, float x, float y, float z, float w)			{ if (C)		constants.seta(C,e,x,y,z,w);		}
-#ifdef	USE_DX10
+#if defined(USE_DX10) || defined(USE_OGL)
 	ICF	void						set_c				(R_constant* C, float A)											{ if (C)		constants.set(C,A);					}
 	ICF	void						set_c				(R_constant* C, int A)												{ if (C)		constants.set(C,A);					}
-#endif	//	USE_DX10
+#endif	//	USE_DX10 || USE_OGL
 
 
 	// constants - LPCSTR (slow)
@@ -327,10 +327,10 @@ public:
 	ICF	void						set_ca				(LPCSTR n, u32 e, const Fmatrix& A)									{ if(ctable)	set_ca	(&*ctable->get(n),e,A);		}
 	ICF	void						set_ca				(LPCSTR n, u32 e, const Fvector4& A)								{ if(ctable)	set_ca	(&*ctable->get(n),e,A);		}
 	ICF	void						set_ca				(LPCSTR n, u32 e, float x, float y, float z, float w)				{ if(ctable)	set_ca	(&*ctable->get(n),e,x,y,z,w);}
-#ifdef	USE_DX10
-	ICF	void						set_c				(LPCSTR n, float A)											{ if(ctable)	set_c	(&*ctable->get(n),A);		}
-	ICF	void						set_c				(LPCSTR n, int A)												{ if(ctable)	set_c	(&*ctable->get(n),A);		}
-#endif	//	USE_DX10
+#if defined(USE_DX10) || defined(USE_OGL)
+	ICF	void						set_c				(LPCSTR n, float A)													{ if(ctable)	set_c	(&*ctable->get(n),A);		}
+	ICF	void						set_c				(LPCSTR n, int A)													{ if(ctable)	set_c	(&*ctable->get(n),A);		}
+#endif	//	USE_DX10 || USE_OGL
 
 	// constants - shared_str (average)
 	ICF	void						set_c				(shared_str& n, const Fmatrix& A)									{ if(ctable)	set_c	(&*ctable->get(n),A);			}
@@ -339,10 +339,10 @@ public:
 	ICF	void						set_ca				(shared_str& n, u32 e, const Fmatrix& A)							{ if(ctable)	set_ca	(&*ctable->get(n),e,A);		}
 	ICF	void						set_ca				(shared_str& n, u32 e, const Fvector4& A)							{ if(ctable)	set_ca	(&*ctable->get(n),e,A);		}
 	ICF	void						set_ca				(shared_str& n, u32 e, float x, float y, float z, float w)			{ if(ctable)	set_ca	(&*ctable->get(n),e,x,y,z,w);}
-#ifdef	USE_DX10
+#if defined(USE_DX10) || defined(USE_OGL)
 	ICF	void						set_c				(shared_str& n, float A)											{ if(ctable)	set_c	(&*ctable->get(n),A);		}
 	ICF	void						set_c				(shared_str& n, int A)												{ if(ctable)	set_c	(&*ctable->get(n),A);		}
-#endif	//	USE_DX10
+#endif	//	USE_DX10 || USE_OGL
 
 	ICF	void						Render				(D3DPRIMITIVETYPE T, u32 baseV, u32 startV, u32 countV, u32 startI, u32 PC);
 	ICF	void						Render				(D3DPRIMITIVETYPE T, u32 startV, u32 PC);

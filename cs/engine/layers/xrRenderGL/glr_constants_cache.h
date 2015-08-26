@@ -51,6 +51,23 @@ public:
 		glProgramUniform4f(L.program, L.location, x, y, z, w);
 	}
 
+	// scalars, non-array versions
+	ICF	void				set(R_constant* C, float A)
+	{
+		R_constant_load& L = (C->destination&1)?C->ps:C->vs;
+		VERIFY		(RC_float	== C->type);
+		VERIFY		(RC_1x1		== L.cls);
+		glProgramUniform1f(L.program, L.location, A);
+	}
+
+	ICF	void				set(R_constant* C, int A)
+	{
+		R_constant_load& L = (C->destination&1)?C->ps:C->vs;
+		VERIFY		(RC_int		== C->type);
+		VERIFY		(RC_1x1		== L.cls);
+		glProgramUniform1i(L.program, L.location, A);
+	}
+
 	// fp, array versions
 	ICF void				seta	(R_constant* C, u32 e, const Fmatrix& A)		{
 		VERIFY(!"R_constants array versions not implemented");

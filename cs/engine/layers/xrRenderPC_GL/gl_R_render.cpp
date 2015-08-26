@@ -156,9 +156,8 @@ void CRender::render_menu	()
 	// Distort
 	{
 		Target->u_setrt						(Target->rt_Generic_1,0,0,RCache.pBaseZB);		// Now RT is a distortion mask
-		glClearColor						(0.5f, 0.5f, 0.0f, 0.5f);
+		glClearColor						(127.0f/255.0f, 127.0f/255.0f, 0.0f, 127.0f/255.0f);
 		CHK_GL								(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
-		glClearColor						(0.0f, 0.0f, 0.0f, 0.0f);
 		g_pGamePersistent->OnRenderPPUI_PP	()	;	// PP-UI
 	}
 
