@@ -49,7 +49,7 @@ public:
 	virtual void	ResourcesDumpMemoryUsage();
 
 	//	HWSupport
-	virtual bool	HWSupportsShaderYUV2RGB() { return false; };
+	virtual bool	HWSupportsShaderYUV2RGB() { return true; };
 
 	//	Device state
 	virtual DeviceState GetDeviceState() { return dsOK; };
