@@ -22,9 +22,9 @@ IC HRESULT CreateQuery ( GLuint *pQuery)
 IC HRESULT GetData(GLuint query, void *pData, UINT DataSize)
 {
 	if (DataSize == sizeof(GLint64))
-		CHK_GL(glGetQueryObjecti64v(query, GL_SAMPLES_PASSED, (GLint64*)pData));
+		CHK_GL(glGetQueryObjecti64v(query, GL_QUERY_RESULT, (GLint64*)pData));
 	else
-		CHK_GL(glGetQueryObjectiv(query, GL_SAMPLES_PASSED, (GLint*)pData));
+		CHK_GL(glGetQueryObjectiv(query, GL_QUERY_RESULT, (GLint*)pData));
 	return S_OK;
 }
 
