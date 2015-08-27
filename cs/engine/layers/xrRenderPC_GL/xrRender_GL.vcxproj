@@ -118,7 +118,7 @@
       <OmitFramePointers>true</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <WholeProgramOptimization>true</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.\;$(SolutionDir)engine;$(SolutionDir)sdk\include;$(SolutionDir)3rd party;$(SolutionDir)3rd party\glew\include;$(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;$(SolutionDir)engine;$(SolutionDir)sdk\include;$(SolutionDir)3rd party;$(SolutionDir)3rd party\glew\include;$(SolutionDir)3rd party\gli;$(SolutionDir)3rd party\gli\external\glm;$(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>USE_OGL;NO_XR_VDECLARATOR;WIN32;NDEBUG;_WINDOWS;_USRDLL;XRRENDER_GL_EXPORTS;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <ExceptionHandling />
@@ -164,7 +164,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>false</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
-      <AdditionalIncludeDirectories>.\;$(SolutionDir)engine;$(SolutionDir)sdk\include;$(SolutionDir)3rd party;$(SolutionDir)3rd party\glew\include;$(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;$(SolutionDir)engine;$(SolutionDir)sdk\include;$(SolutionDir)3rd party;$(SolutionDir)3rd party\glew\include;$(SolutionDir)3rd party\gli;$(SolutionDir)3rd party\gli\external\glm;$(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>USE_OGL;NO_XR_VDECLARATOR;MIXED;WIN32;DEBUG;_WINDOWS;_USRDLL;XRRENDER_GL_EXPORTS;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -207,6 +207,17 @@
     <ClCompile Include="..\xrRenderGL\glStateUtils.cpp" />
     <ClCompile Include="..\xrRenderGL\glTextureUtils.cpp" />
     <ClCompile Include="..\xrRender\DetailManager_VS.cpp" />
+    <ClCompile Include="..\xrRender\doug_lea_memory_allocator.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">Level2</WarningLevel>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Level2</WarningLevel>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Level2</WarningLevel>
+    </ClCompile>
     <ClCompile Include="..\xrRender\du_box.cpp" />
     <ClCompile Include="..\xrRender\du_cone.cpp" />
     <ClCompile Include="..\xrRender\du_cylinder.cpp" />
@@ -408,6 +419,7 @@
     <ClInclude Include="..\xrRenderGL\glState.h" />
     <ClInclude Include="..\xrRenderGL\glStateUtils.h" />
     <ClInclude Include="..\xrRenderGL\glTextureUtils.h" />
+    <ClInclude Include="..\xrRender\doug_lea_memory_allocator.h" />
     <ClInclude Include="..\xrRender\du_box.h" />
     <ClInclude Include="..\xrRender\du_cone.h" />
     <ClInclude Include="..\xrRender\du_cylinder.h" />

@@ -651,6 +651,9 @@
     <ClCompile Include="..\xrRender\Light_Render_Direct.cpp">
       <Filter>Lights</Filter>
     </ClCompile>
+    <ClCompile Include="..\xrRender\doug_lea_memory_allocator.c">
+      <Filter>Core\memory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -1069,6 +1072,9 @@
     </ClInclude>
     <ClInclude Include="..\xrRender\Light_Render_Direct.h">
       <Filter>Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRender\doug_lea_memory_allocator.h">
+      <Filter>Core\memory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

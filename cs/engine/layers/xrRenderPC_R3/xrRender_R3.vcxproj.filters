@@ -198,9 +198,6 @@
     <ClInclude Include="r3_R_sun_support.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="doug_lea_memory_allocator.h">
-      <Filter>Core\memory</Filter>
-    </ClInclude>
     <ClInclude Include="DetailFormat.h">
       <Filter>Details</Filter>
     </ClInclude>
@@ -719,6 +716,9 @@
     </ClInclude>
     <ClInclude Include="..\xrRender\Light_Render_Direct.h">
       <Filter>Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRender\doug_lea_memory_allocator.h">
+      <Filter>Core\memory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

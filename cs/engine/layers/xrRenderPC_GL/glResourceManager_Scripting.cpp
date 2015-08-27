@@ -112,7 +112,7 @@ void LuaError(lua_State* L)
 #		endif // DEBUG_MEMORY_MANAGER
 	}
 #else // USE_DL_ALLOCATOR
-#	include "doug_lea_memory_allocator.h"
+#	include "../xrRender/doug_lea_memory_allocator.h"
 
 	static void *lua_alloc		(void *ud, void *ptr, size_t osize, size_t nsize)
 	{

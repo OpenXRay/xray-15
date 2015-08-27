@@ -168,7 +168,7 @@ GLenum  ConvertTextureFilter(u32 dxFilter, u32 glFilter, bool MipMap)
 			if (MipMap)
 				return (glFilter & ~MipFilterLinear) & ~MipFilterEnable;
 			VERIFY(!"D3DTEXF_NONE only supported with D3DSAMP_MIPFILTER");
-			break;
+			return glFilter;
 		case D3DTEXF_POINT:
 			if (MipMap)
 				return (glFilter & ~MipFilterLinear) | MipFilterEnable;
@@ -182,6 +182,7 @@ GLenum  ConvertTextureFilter(u32 dxFilter, u32 glFilter, bool MipMap)
 				return glFilter | FilterLinear;
 		default:
 			VERIFY(!"ConvertTextureFilter can't convert argument!");
+			return glFilter;
 	}
 }
 
