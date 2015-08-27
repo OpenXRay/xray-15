@@ -233,3 +233,9 @@ void  glRenderDeviceRender::Reset(HWND hWnd, u32 &dwWidth, u32 &dwHeight, float 
 	fHeight_2 = float(dwHeight / 2);
 	Resources->reset_end();
 }
+
+void  glRenderDeviceRender::OnAssetsChanged()
+{
+	Resources->m_textures_description.UnLoad();
+	Resources->m_textures_description.Load();
+}
