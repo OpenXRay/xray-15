@@ -13,17 +13,17 @@ layout(location = 1) out vec4 vColor;
 // Vertex
 void main ()
 {
-	vec4 vHPos, iP = iPos;
+	vec4 HPos, P = iPos;
 
 	{
-		iP.xy += 0.5f;
-		vHPos.x = iP.x/1024 * 2 - 1;
-		vHPos.y = (iP.y/768 * 2 - 1)*-1;
-		vHPos.zw = iP.zw;
+		P.xy += 0.5f;
+		HPos.x = P.x/1024 * 2 - 1;
+		HPos.y = (P.y/768 * 2 - 1)*-1;
+		HPos.zw = P.zw;
 	}
 
 	vTex0 = iTex0;
 	vColor = iColor.aaaa;	//	swizzle vertex colour
 
-	gl_Position = vHPos;
+	gl_Position = HPos;
 }

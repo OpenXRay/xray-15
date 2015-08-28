@@ -15,17 +15,19 @@ layout(location = 1) out vec4 vColor;
 // Vertex
 void main ()
 {
-	vec4 OHPos, IP = iPos;
+	vec4 HPos, P = iPos;
 
 	{
-		IP.xy += 0.5f;
-//		OHPos.x = IP.x/1024 * 2 - 1;
-//		OHPos.y = (IP.y/768 * 2 - 1)*-1;
-		OHPos.x = IP.x * screen_res.z * 2 - 1;
-		OHPos.y = (IP.y * screen_res.w * 2 - 1)*-1;
-		OHPos.zw = IP.zw;
+		P.xy += 0.5f;
+//		HPos.x = P.x/1024 * 2 - 1;
+//		HPos.y = (P.y/768 * 2 - 1)*-1;
+		HPos.x = P.x * screen_res.z * 2 - 1;
+		HPos.y = (P.y * screen_res.w * 2 - 1)*-1;
+		HPos.zw = P.zw;
 	}
 
 	vTex0 = iTex0;
 	vColor = float4(iColor.bgr*2, 1.0f);	//	swizzle vertex colour
+
+	gl_Position = HPos;
 }

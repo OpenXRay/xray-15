@@ -20,16 +20,16 @@ layout(location = 4) out vec4 vColor;
 // Vertex
 void main ()
 {
-	vec4 vHPos, iP = iPos;
+	vec4 HPos, P = iPos;
 
 	{
 
-		iP.xy += 0.5f;	//	Bugs with rasterizer??? Possible half-pixel shift.
-//		vHPos.x = iP.x/1024 * 2 - 1;
-//		vHPos.y = (iP.y/768 * 2 - 1)*-1;
-		vHPos.x = iP.x * screen_res.z * 2 - 1;
-		vHPos.y = (iP.y * screen_res.w * 2 - 1)*-1;
-		vHPos.zw = iP.zw;
+		P.xy += 0.5f;	//	Bugs with rasterizer??? Possible half-pixel shift.
+//		HPos.x = P.x/1024 * 2 - 1;
+//		HPos.y = (P.y/768 * 2 - 1)*-1;
+		HPos.x = P.x * screen_res.z * 2 - 1;
+		HPos.y = (P.y * screen_res.w * 2 - 1)*-1;
+		HPos.zw = P.zw;
 	}
 
 	vTex0 = iTex0;
@@ -37,5 +37,5 @@ void main ()
 	vTex2 = iTex2;
 	vTex3 = iTex3;
 
-	gl_Position = vHPos;
+	gl_Position = HPos;
 }
