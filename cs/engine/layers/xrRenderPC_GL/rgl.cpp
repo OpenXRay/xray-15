@@ -227,9 +227,10 @@ void					CRender::create()
 
 char* CRender::LoadIncludes(LPCSTR pSrcData, UINT SrcDataLen, xr_vector<char*>& includes)
 {
-	char* srcData = xr_alloc<char>(SrcDataLen);
+	char* srcData = xr_alloc<char>(SrcDataLen + 2);
 	memcpy(srcData, pSrcData, SrcDataLen);
-	srcData[SrcDataLen] = '\0';
+	srcData[SrcDataLen] = '\n';
+	srcData[SrcDataLen + 1] = '\0';
 
 	string_path fn, path;
 	char* str = srcData;
