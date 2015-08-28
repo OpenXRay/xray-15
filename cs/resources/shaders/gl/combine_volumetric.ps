@@ -1,0 +1,21 @@
+#include "common.h"
+
+//	Igor: used for volumetric light
+uniform	sampler2D 	s_vollight;
+
+layout(location = 0) in vec4 tc0;
+
+layout(location = 0) out vec4 low;
+layout(location = 1) out vec4 high;
+
+void main()
+{
+	// final tone-mapping
+	half          	tm_scale        = tc0.w;	// interpolated from VS
+
+	half4	color;
+
+	color = tex2D(s_vollight, tc0.xy);
+
+	tonemap(low, high, color.rgb, tm_scale );
+}
