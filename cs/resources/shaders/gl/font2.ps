@@ -1,0 +1,28 @@
+#include "common.h"
+
+layout(location = 0) in vec2 tc0;	// base
+layout(location = 1) in vec4 vColor;
+
+layout(location = 0) out vec4 oColor;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Pixel
+void main ()
+{
+	half4 r = tex2D	(s_base,tc0);
+
+	r.w = 1 - r.w;
+
+	oColor	= r;
+}
+/*
+void main()
+{
+	half4 r = tex2D	(s_base,tc0);
+//	r.x = 1 - r.x;
+//	r.y = 1 - r.y;
+//	r.z = 1 - r.z;
+	r.w = 1 - r.w;
+	oColor	= r;
+}
+*/

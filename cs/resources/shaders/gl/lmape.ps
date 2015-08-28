@@ -1,0 +1,38 @@
+#include "common.h"
+
+layout(location = 0) in vec2 tc0;	// base
+layout(location = 1) in vec2 tc1;	// lmap
+layout(location = 2) in vec2 tc2;	// hemi
+layout(location = 3) in vec2 tc3;	// env
+layout(location = 4) in vec2 c0;
+layout(location = 5) in vec2 c1;
+layout(location = 6) in float fog;
+
+layout(location = 0) out vec4 oColor;
+
+uniform samplerCUBE 	s_env;		//	Environment for forward rendering
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Pixel
+half4 main( v2p I ) : SV_Target
+{
+	half4	t_base 	= tex2D		(s_base,tc0);
+	half4	t_lmap 	= tex2D		(s_lmap,tc1);
+	half4	t_env 	= texCUBE	(s_env,	tc3);
+
+	// lighting
+	half3 	l_base 	= t_lmap.rgb;				// base light-map
+	half3	l_hemi 	= I.c0*p_hemi(tc2);			// hemi
+	half3 	l_sun 	= I.c1*t_lmap.a;			// sun color
+	half3	light	= L_ambient + l_base + l_sun + l_hemi;
+
+	// final-color
+	half3 	base 	= lerp		(t_env,t_base,t_base.a);
+	half3	final 	= light*base*2;
+
+	//	Fogging
+	final 	= lerp(fog_color, final, I.fog);
+	
+	// out
+	oColor	=  half4(final.r,final.g,final.b,t_base.a*fog*fog);
+}

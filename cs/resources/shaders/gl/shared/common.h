@@ -29,6 +29,8 @@
 #define tex2D		texture2D
 #define tex2Dproj	textureProj
 #define tex3D		texture
+#define texCUBE 	texture
+#define samplerCUBE	samplerCube
 
 //
 uniform half3x4		m_W;
