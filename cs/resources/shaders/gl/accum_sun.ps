@@ -1,0 +1,36 @@
+#include "common.h"
+#include "lmodel.h"
+#include "shadow.h"
+
+layout(location = 0) in vec2 	tc;
+layout(location = 1) in vec4 	tcJ;
+layout(location = 2) in vec2	LT;
+layout(location = 3) in vec2	RT;
+layout(location = 4) in vec2	LB;
+layout(location = 5) in vec2 	RB;
+
+layout(location = 0) out vec4	oColor;
+
+void 	main	()
+{
+	float4 _P		= tex2D 	(s_position, 	tc);
+	half4  _N		= tex2D 	(s_normal,   	tc);
+
+	// ----- light-model
+	half 	m	= xmaterial	;
+# ifndef USE_R2_STATIC_SUN
+			m 	= _P.w		;
+# endif
+	half4	light	= plight_infinity( m, _P.xyz, _N.xyz, Ldynamic_dir.xyz );
+
+	// ----- shadow
+	half4 	s_sum;
+		s_sum.x	= tex2D	( s_smap, LT).x;
+		s_sum.y = tex2D	( s_smap, RT).y;
+		s_sum.z	= tex2D	( s_smap, LB).z;
+		s_sum.w = tex2D	( s_smap, RB).w;
+//	half 	s 	= dot	( s_sum, 1.f/4.f);
+	half 	s 	= ((s_sum.x+s_sum.y)+(s_sum.z+s_sum.w))*(1.f/4.f);
+
+	oColor		= Ldynamic_color * light * s;
+}

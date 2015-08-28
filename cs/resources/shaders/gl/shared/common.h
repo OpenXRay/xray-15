@@ -24,16 +24,20 @@
 #define lerp        mix
 #define frac        fract
 #define saturate(a) clamp(a, 0.0, 1.0)
-#define tex2D       texture2D
+#define clip(x)		if (x < 0) discard
+#define mul(a,b)	a * b
+#define tex2D		texture2D
+#define tex2Dproj	textureProj
+#define tex3D		texture
 
 //
-uniform half3x4	        m_W;
-uniform half3x4	        m_V;
+uniform half3x4		m_W;
+uniform half3x4		m_V;
 uniform half4x4 	m_P;
-uniform half3x4	        m_WV;
+uniform half3x4		m_WV;
 uniform half4x4 	m_VP;
 uniform half4x4 	m_WVP;
-uniform float4x4 	m_texgen;
+//uniform float4x4 	m_texgen;
 uniform float4x4 	mVPTexgen;
 uniform half4		timers;
 uniform half4		fog_plane;

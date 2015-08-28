@@ -1,0 +1,47 @@
+#include "common.h"
+#include "lmodel.h"
+#include "shadow.h"
+
+layout(location = 0) in vec2	tc;
+layout(location = 1) in vec2	tcJ;
+
+layout(location = 0) out vec4	oColor;
+
+#ifdef USE_SUNFILTER
+void main ()
+{
+	float4 _P = tex2D( s_position, tc );
+	_P.w = 1.f;
+
+	float4 PS = mul( m_shadow,  _P );
+
+	half s	= shadowtest_sun( PS, tcJ ) * sunmask( _P );
+
+	oColor	= s;
+}
+#else
+void main ()
+{
+	float4	_P	= tex2D( s_position, tc );
+	half4	_N	= tex2D( s_normal, tc );
+
+	// ----- light-model
+	half	m	= xmaterial;
+# ifndef USE_R2_STATIC_SUN
+			m 	= _P.w;
+# endif
+	half4	light	= plight_infinity ( m, _P.xyz, _N.xyz, Ldynamic_dir.xyz );
+
+	// ----- shadow
+  	float4 	P4 	= float4( _P.x, _P.y, _P.z, 1.f);
+	float4 	PS	= mul( m_shadow, P4 );
+	half 	s 	= sunmask( P4 );
+	#ifdef 	USE_SJITTER
+	  		s 	*= shadowtest_sun( PS, tcJ );
+	#else
+	  		s 	*= shadow( PS );
+	#endif
+
+	oColor		= blend( Ldynamic_color * light * s, tc );
+}
+#endif
