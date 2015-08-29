@@ -247,10 +247,11 @@ void	CRenderTarget::phase_combine	()
 	BOOL	PP_Complex = u_need_PP();// | (BOOL)RImplementation.m_bMakeAsyncSS;
 	if (_menu_pp)			PP_Complex	= FALSE;
 
-   // HOLGER - HACK
-   PP_Complex = TRUE;
+	// HOLGER - HACK
+	PP_Complex = TRUE;
 
-	if		(PP_Complex)	u_setrt		( rt_Generic,0,0,0 );			// LDR RT
+	// Combine everything + perform AA
+	if		(PP_Complex)	u_setrt		( rt_Color,0,0,RCache.pBaseZB );			// LDR RT
 	else					RCache.set_FB();
 
 	//. u_setrt				( Device.dwWidth,Device.dwHeight,HW.pBaseRT,NULL,NULL,HW.pBaseZB);
