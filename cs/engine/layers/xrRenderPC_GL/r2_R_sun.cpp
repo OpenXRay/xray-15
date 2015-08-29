@@ -650,7 +650,7 @@ void CRender::render_sun				()
 			lightSpaceTranslate.translate(0.f, 0.f, -min_z + 1.f);
 			max_z = -min_z + max_z + 1.f;
 			min_z = 1.f;
-			lightSpaceBasis.mul(lightSpaceBasis, lightSpaceTranslate);
+			lightSpaceBasis.mulB_44(lightSpaceTranslate);
 			TransformCoordArray(lightSpaceTranslate, frustumPnts, 8);
 			frustumBox = BoundingBox( frustumPnts, 8 );
 		}
@@ -714,7 +714,7 @@ void CRender::render_sun				()
 			0.f, 0.f, 1.f, 0.f,
 			0.f, 0.f, 0.f, 1.f };
 
-		trapezoid_space.mul(trapezoid_space, scale_center);
+		trapezoid_space.mulB_44(scale_center);
 
 		//  scale the frustum AABB up by these amounts (keep all values in the same space)
 		frustumAABB2D.minPt.x *= x_scale;
@@ -757,7 +757,7 @@ void CRender::render_sun				()
 			0.f, 1.f, 0.f, 0.f,
 			0.f, 0.f, 1.f, 0.f,
 			projectionPtQ.x, 0.f, 0.f, 1.f };
-		trapezoid_space.mul(trapezoid_space, ptQ_xlate);
+		trapezoid_space.mulB_44(ptQ_xlate);
 
 		//  this shear balances the "trapezoid" around the y=0 axis (no change to the projection pt position)
 		//  since we are redistributing the trapezoid, this affects the projection field of view (shear_amt)
@@ -769,7 +769,7 @@ void CRender::render_sun				()
 			0.f, 1.f, 0.f, 0.f,
 			0.f, 0.f, 1.f, 0.f,
 			0.f, 0.f, 0.f, 1.f };
-		trapezoid_space.mul(trapezoid_space, trapezoid_shear);
+		trapezoid_space.mulB_44(trapezoid_shear);
 
 
 		float z_aspect = (frustumBox.maxPt.z-frustumBox.minPt.z) / (frustumAABB2D.maxPt.y-frustumAABB2D.minPt.y);
@@ -781,7 +781,7 @@ void CRender::render_sun				()
 			0.f, 0.f, 1.f / (z_aspect*max_slope), 0.f,
 			-xn*xf / (xf - xn), 0.f, 0.f, 0.f };
 
-		trapezoid_space.mul(trapezoid_space, trapezoid_projection);
+		trapezoid_space.mulB_44(trapezoid_projection);
 
 		//  the x axis is compressed to [0..1] as a result of the projection, so expand it to [-1,1]
 		Fmatrix biasedScaleX = {
@@ -789,11 +789,11 @@ void CRender::render_sun				()
 			0.f, 1.f, 0.f, 0.f,
 			0.f, 0.f, 1.f, 0.f,
 			-1.f, 0.f, 0.f, 1.f };
-		trapezoid_space.mul(trapezoid_space, biasedScaleX);
+		trapezoid_space.mulB_44(biasedScaleX);
 
 		m_LightViewProj.mul(m_View,				lightSpaceBasis);
-		m_LightViewProj.mul(m_LightViewProj,	lightSpaceOrtho);
-		m_LightViewProj.mul(m_LightViewProj,	trapezoid_space);
+		m_LightViewProj.mulB_44(lightSpaceOrtho);
+		m_LightViewProj.mulB_44(trapezoid_space);
 	} else {
 		m_LightViewProj				= cull_xform;
 	}
@@ -876,8 +876,7 @@ void CRender::render_sun				()
 													0.f,		2.f/boxHeight,			0.f, 0.f,
 													0.f,		0.f,					1.f, 0.f,
 										-2.f*boxX/boxWidth,		-2.f*boxY/boxHeight,	0.f, 1.f };
-		m_LightViewProj.mul(m_LightViewProj, trapezoidUnitCube);
-		//D3DXMatrixMultiply( &trapezoid_space, &trapezoid_space, &trapezoidUnitCube );
+		m_LightViewProj.mulB_44(trapezoidUnitCube);
 		FPU::m24r					();
 	}
 
