@@ -69,8 +69,8 @@ float3         calc_reflection     (float3 pos_w, float3 norm_w)
 }
 
 float3        calc_sun_r1                (float3 norm_w)    { return L_sun_color*saturate(dot((norm_w),-L_sun_dir_w));                 }
-float3        calc_model_hemi_r1         (float3 norm_w)    { return max(0,norm_w.y)*L_hemi_color;                                         }
-float3        calc_model_lq_lighting     (float3 norm_w)    { return L_material.x*calc_model_hemi_r1(norm_w) + L_ambient + L_material.y*calc_sun_r1(norm_w);         }
+float3        calc_model_hemi_r1         (float3 norm_w)    { return max(0,norm_w.y)*L_hemi_color.rgb;                                         }
+float3        calc_model_lq_lighting     (float3 norm_w)    { return L_material.x*calc_model_hemi_r1(norm_w) + L_ambient.rgb + L_material.y*calc_sun_r1(norm_w);         }
 
 //////////////////////////////////////////////////////////////////////////////////////////
 struct         v_static                {
@@ -284,8 +284,8 @@ half4		combine_bloom        (half3  low, half4 high)	{
         return        half4(low + high.rgb*high.a, 1.f);
 }
 
-float3	v_hemi        	(float3 n)                        	{        return L_hemi_color*(.5f + .5f*n.y);                   }
-float3	v_hemi_wrap     (float3 n, float w)                	{        return L_hemi_color*(w + (1-w)*n.y);                   }
+float3	v_hemi        	(float3 n)                        	{        return L_hemi_color.rgb*(.5f + .5f*n.y);                   }
+float3	v_hemi_wrap     (float3 n, float w)                	{        return L_hemi_color.rgb*(w + (1-w)*n.y);                   }
 float3	v_sun           (float3 n)                        	{        return L_sun_color*dot(n,-L_sun_dir_w);                }
 float3	v_sun_wrap      (float3 n, float w)                	{        return L_sun_color*(w+(1-w)*dot(n,-L_sun_dir_w));      }
 half3   p_hemi          (float2 tc)                         {

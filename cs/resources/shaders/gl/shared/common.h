@@ -48,8 +48,8 @@ uniform half4		fog_color;
 uniform float3		L_sun_color;
 uniform half3		L_sun_dir_w;
 uniform half3		L_sun_dir_e;
-uniform half3		L_hemi_color;
-uniform half3		L_ambient;		// L_ambient.w = skynbox-lerp-factor
+uniform half4		L_hemi_color;
+uniform half4		L_ambient;		// L_ambient.w = skynbox-lerp-factor
 uniform float3 		eye_position;
 uniform half3		eye_direction;
 uniform half3		eye_normal;
