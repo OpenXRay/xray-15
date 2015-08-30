@@ -261,7 +261,7 @@ char* CRender::LoadIncludes(LPCSTR pSrcData, UINT SrcDataLen, xr_vector<char*>& 
 }
 
 struct SHADER_MACRO {
-	char *Define = "#define ", *Name = "\n", *Definition = "\n", *EOL = "\n";
+	char *Define = "#define ", *Name = "\n", *Sep = "\t", *Definition = "\n", *EOL = "\n";
 };
 
 HRESULT	CRender::shader_compile(
@@ -429,6 +429,7 @@ HRESULT	CRender::shader_compile(
 		defines[def_it].Definition = "1";
 		def_it++;
 	}
+	R_ASSERT(m_skinning < 5);
 
 	//	Igor: need restart options
 	if (RImplementation.o.advancedpp && ps_r2_ls_flags.test(R2FLAG_SOFT_WATER))
@@ -484,12 +485,12 @@ HRESULT	CRender::shader_compile(
 	}
 
 	// Compile sources list
-	size_t def_len = def_it * 4;
+	size_t def_len = def_it * 5;
 	size_t sources_len = includes.size() + def_len + 5;
 	const char** sources = xr_alloc<const char*>(sources_len);
 	sources[0] = "#version 410\n";
-	memcpy(sources + 1, includes.data(), includes.size() * sizeof(char*));
-	memcpy(sources + includes.size() + 1, defines, def_len * sizeof(char*));
+	memcpy(sources + 1, defines, def_len * sizeof(char*));
+	memcpy(sources + def_len + 1, includes.data(), includes.size() * sizeof(char*));
 	sources[sources_len - 4] = "// ";
 	sources[sources_len - 3] = name;
 	sources[sources_len - 2] = "\n";
