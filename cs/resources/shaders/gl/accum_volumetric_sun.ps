@@ -53,13 +53,13 @@ void 	main ()
 	half4	delta 	= mul (m_shadow, float4(direction,0));
 
 	half	res = 0;
-	half	max_density = sun_shafts_intensity;
+	half	max_density = sun_shafts_intensity.x;
 	half	density = max_density/RAY_SAMPLES;
 
 	if (depth<0.0001)
 		res = max_density;
 
-	[unroll]
+//	[unroll]
 	for ( int i=0; i<RAY_SAMPLES; ++i )
 	{
 		if (depth>0.3)
@@ -118,7 +118,7 @@ void 	main ()
 	half4	delta 	= mul (m_shadow, float4(direction,0));
 
 	half	res = 0;
-	half	max_density = sun_shafts_intensity;
+	half	max_density = sun_shafts_intensity.x;
 	half	density = max_density/RAY_SAMPLES;
 
 	if (depth<0.0001)

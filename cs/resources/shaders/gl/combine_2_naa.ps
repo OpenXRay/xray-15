@@ -11,7 +11,7 @@ uniform sampler2D	s_distort;
 uniform half4 		e_barrier;	// x=norm(.8f), y=depth(.1f), z=clr
 uniform half4 		e_weights;	// x=norm, y=depth, z=clr
 uniform half4 		e_kernel;	// x=norm, y=depth, z=clr
-#define	EPSDEPTH	0.001
+//#define	EPSDEPTH	0.001
 //////////////////////////////////////////////////////////////////////////////////////////
 // Pixel
 void main()
@@ -26,9 +26,10 @@ void main()
 #else
 	float2	center 	= tc0;
 #endif
-   	//half3 	img 	= tex2D		(s_image, center);
+   	half3 	img 	= tex2D		(s_image, center).rgb;
 
-	half3	img		= dof(center);
+	// TODO: Fix the implicit cast here.
+	//half3	img		= dof		(center);
 	half4 	bloom	= tex2D		(s_bloom, center);
 	
 			img 	= mblur		(center,tex2D(s_position,tc0).rgb,img.rgb);
