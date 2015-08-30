@@ -33,6 +33,10 @@ BOOL	R_constant_table::parse(void* _desc, u16 destination)
 		GLenum reg;
 		CHK_GL(glGetActiveUniform(program, i, maxLength, NULL, &size, &reg, name));
 
+		// Remove index from arrays
+		char* str = strstr(name, "[0]");
+		if (str) *str = '\0';
+
 		u16		type = RC_float;
 		if (GL_BOOL == reg ||
 			GL_BOOL_VEC2 == reg ||

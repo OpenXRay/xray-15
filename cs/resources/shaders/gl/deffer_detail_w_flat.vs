@@ -3,11 +3,7 @@
 uniform float4 		consts; // {1/quant,1/quant,diffusescale,ambient}
 uniform float4 		wave; 	// cx,cy,cz,tm
 uniform float4 		dir2D; 
-//uniform float4 		array	[200] : register(c12);
-//tbuffer DetailsData
-//{
-	uniform float4 		array[61*4];
-//}
+uniform float4 		array[61*4];
 
 out gl_PerVertex { vec4 gl_Position; };
 
