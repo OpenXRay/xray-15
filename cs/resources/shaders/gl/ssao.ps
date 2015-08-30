@@ -30,7 +30,7 @@ float ssao_noise_tile_factor;
 float ssao_kernel_size;
 
 /*
-static const half2 poisson_disc12[12] = 
+const half2 poisson_disc12[12] = 
 {
 	half2(-0.326212f , -0.405810f),
 	half2(-0.840144f , -0.073580f),
@@ -48,7 +48,7 @@ static const half2 poisson_disc12[12] =
 */
 
 /*
-static const half2 poisson_disc12[12] = 
+const half2 poisson_disc12[12] = 
 {
 	half2(-0.326212f , -0.405810f),
 	half2(-0.840144f , -0.073580f),
@@ -65,7 +65,7 @@ static const half2 poisson_disc12[12] =
 };
 */
 /*
-static const half2 poisson_disc12[12] = 
+const half2 poisson_disc12[12] = 
 {
 	half2(-0.326212f , -0.405810f)*0.8,
 	half2(-0.840144f , -0.073580f)*0.58,
@@ -82,8 +82,7 @@ static const half2 poisson_disc12[12] =
 };
 */
 
-static const half2 poisson_disc12[12] = 
-{
+const half2 poisson_disc12[12] = half2[](
 	half2(-0.326212f , -0.405810f)*0.68,
 	half2(-0.840144f , -0.073580f)*0.92,
 	half2(-0.695914f ,  0.457137f)*0.75,
@@ -96,7 +95,7 @@ static const half2 poisson_disc12[12] =
 	half2( 0.896420f ,  0.412458f)*0.9,
 	half2(-0.321940f , -0.932615f)*0.70,
 	half2(-0.791559f , -0.597710f)
-};
+);
 
 uniform	sampler2D	jitter0;
 uniform	sampler2D	jitterMipped;
@@ -125,7 +124,7 @@ half	calc_ssao( half3 P, half3 N, half2 tc, half2 tcJ)
 ////////////////////////////////
 //	jittering
 //	half2	Mirror = tex2D( jitter0, tcJ.xy ).rg;
-	float3 tc1	= mul( m_v2w, float4(P,1) ).xyz;
+	float3 tc1	= mul( m_v2w, P ).xyz;
 	tc1 *= ssao_noise_tile_factor;
 //	tc1 *= 2;
 //	tc1 *= 4;

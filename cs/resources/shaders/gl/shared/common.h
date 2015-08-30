@@ -16,8 +16,10 @@
 #define int2        ivec2
 #define int3        ivec3
 #define int4        ivec4
+#define half3x3     mat3
 #define half4x4     mat4
 #define half3x4     mat3x4
+#define float3x3    mat3
 #define float4x4    mat4
 #define float3x4    mat3x4
 
@@ -55,9 +57,11 @@ uniform half3		eye_direction;
 uniform half3		eye_normal;
 uniform	float4 		dt_params;
 
+#define unpack_D3DCOLOR(x)	x.bgra
 half3 	unpack_normal	(half3 v)	{ return 2*v-1;			}
 half3 	unpack_bx2	(half3 v)	{ return 2*v-1; 		}
 float3 	unpack_bx4	(float3 v)	{ return 4*v-2; 		} //!reduce the amount of stretching from 4*v-2 and increase precision
+float3 	unpack_bx4	(float4 v)	{ return unpack_bx4(v.xyz);	}
 
 float2 	unpack_tc_base	(float2 tc, float du, float dv)		{
 		return (tc.xy + float2	(du,dv))*(32.f/32768.f);	//!Increase from 32bit to 64bit floating point

@@ -36,8 +36,7 @@ half DOFFactor( half depth)
 half3	dof(float2 center)
 {
 	// Scale tap offsets based on render target size
-//	half 	depth		= tex2D(s_position,center).z;
-	half 	depth		= s_position.Sample( smp_nofilter, center).z;
+	half 	depth		= tex2D(s_position,center).z;
 	if (depth <= EPSDEPTH)	depth = dof_params.w;
 	half	blur 		= DOFFactor(depth);
 
@@ -66,15 +65,17 @@ half3	dof(float2 center)
 		o[11] 	= half2(-0.791559f , -0.597710f)*scale;
 
 	// sample
-	half3	sum 	= tex2D(s_image,center);
-	half 	contrib	= 1.h;
+	half3	sum 	= tex2D(s_image,center).rgb;
+	half 	contrib	= 1.f;
 
-   	[unroll] for (int i=0; i<12; i++)
+//	[unroll]
+	for (int i=0; i<12; i++)
 	{
 		float2 	tap 		= center + o[i];
 		half4	tap_color	= tex2D	(s_image,tap);
 		half 	tap_depth 	= tex2D	(s_position,tap).z;
-		[flatten] if (tap_depth <= EPSDEPTH)	tap_depth = dof_params.w;
+//		[flatten]
+		if (tap_depth <= EPSDEPTH)	tap_depth = dof_params.w;
 		half 	tap_contrib	= DOFFactor(tap_depth);
 		sum 		+= tap_color	* tap_contrib;
 		contrib		+= tap_contrib;

@@ -1,0 +1,57 @@
+#include "common.h"
+#include "sload.h"
+
+#if defined(USE_R2_STATIC_SUN) && !defined(USE_LM_HEMI)
+layout(location = 0) in vec4	tcdh;		// Texture coordinates,         w=sun_occlusion
+#else
+layout(location = 0) in vec2	tcdh;		// Texture coordinates
+#endif
+layout(location = 1) in vec4	position;	// position + hemi
+layout(location = 2) in vec3	N;			// Eye-space normal        (for lighting)
+#ifdef USE_TDETAIL
+layout(location = 3) in vec2	tcdbump;	// d-bump
+    #ifdef USE_LM_HEMI
+layout(location = 4) in vec2	lmh;		// lm-hemi
+    #endif
+#else
+    #ifdef USE_LM_HEMI
+layout(location = 3) in vec2	lmh;		// lm-hemi
+    #endif
+#endif
+
+layout(location = 0) out vec4	P;			// px,py,pz, m-id
+layout(location = 1) out vec4	Ne;			// nx,ny,nz, hemi
+layout(location = 2) out vec4	C;			// r, g, b,  gloss
+
+void 	main	()
+{
+  // 1. Base texture + kill pixels with low alpha
+  half4 D 	= tbase	 	(tcdh);
+  clip		(D.w-def_aref);
+
+#ifdef	USE_TDETAIL
+	D.rgb	= 2*D.rgb*tex2D	(s_detail, tcdbump).rgb;
+#endif
+
+	// hemi,sun,material
+	half 	ms	= xmaterial		;
+#ifdef USE_LM_HEMI
+	half4	lm 	= tex2D			(s_hemi, lmh);
+//	half 	h  	= dot			(lm.rgb,1.f/3.f);
+	half 	h  	= get_hemi(lm);
+# ifdef USE_R2_STATIC_SUN
+//		 	ms 	= lm.w			;
+			ms 	= get_sun(lm);
+# endif
+#else
+	half 	h	= position.w	;
+# ifdef USE_R2_STATIC_SUN
+		 	ms	= tcdh.w		;
+# endif
+#endif
+
+	// 2. Standart output
+	Ne          = half4(normalize(N.xyz), h);
+	P		    = half4(position.xyz + Ne.xyz*def_virtualh/2.f, ms);	//.
+	C			= half4(D.rgb, def_gloss);	// OUT: rgb.gloss
+}
