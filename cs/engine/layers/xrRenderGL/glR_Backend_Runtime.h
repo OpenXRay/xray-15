@@ -216,15 +216,18 @@ IC void	CBackend::set_Scissor(Irect*	R)
 IC void CBackend::set_Stencil(u32 _enable, u32 _func, u32 _ref, u32 _mask, u32 _writemask, u32 _fail, u32 _pass, u32 _zfail)
 {
 	if (_enable)
+	{
 		glEnable(GL_STENCIL_TEST);
+		CHK_GL(glStencilFunc(glStateUtils::ConvertCmpFunction(_func), _ref, _mask));
+		CHK_GL(glStencilMask(_writemask));
+		CHK_GL(glStencilOp(glStateUtils::ConvertStencilOp(_fail),
+			glStateUtils::ConvertStencilOp(_zfail),
+			glStateUtils::ConvertStencilOp(_pass)));
+	}
 	else
+	{
 		glDisable(GL_STENCIL_TEST);
-
-	CHK_GL(glStencilFunc(glStateUtils::ConvertCmpFunction(_func), _ref, _mask));
-	CHK_GL(glStencilMask(_writemask));
-	CHK_GL(glStencilOp(glStateUtils::ConvertStencilOp(_fail),
-		glStateUtils::ConvertStencilOp(_zfail),
-		glStateUtils::ConvertStencilOp(_pass)));
+	}
 }
 
 IC  void CBackend::set_Z(u32 _enable)
