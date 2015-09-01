@@ -5,7 +5,8 @@
 
 void cl_sampler::setup(R_constant* C)
 {
-	CHK_GL(glProgramUniform1i(C->samp.program, C->samp.location, C->samp.index));
+	u32 location = glGetUniformLocation(C->samp.program, *C->name);
+	CHK_GL(glProgramUniform1i(C->samp.program, location, C->samp.index));
 }
 
 IC bool	p_sort(ref_constant C1, ref_constant C2)
@@ -112,7 +113,6 @@ BOOL	R_constant_table::parse(void* _desc, u16 destination)
 					R_constant_load& L = C->samp;
 					L.index = r_stage++;
 					L.cls = RC_sampler;
-					L.location = r_location;
 					L.program = program;
 					table.push_back(C);
 				}
@@ -123,7 +123,6 @@ BOOL	R_constant_table::parse(void* _desc, u16 destination)
 					R_constant_load& L = C->samp;
 					R_ASSERT(L.index == r_stage);
 					R_ASSERT(L.cls == RC_sampler);
-					R_ASSERT(L.location == r_location);
 					R_ASSERT(L.program == program);
 				}
 			}
@@ -145,7 +144,6 @@ BOOL	R_constant_table::parse(void* _desc, u16 destination)
 			R_constant_load& L	=	(destination&1)?C->ps:C->vs;
 			L.index				=	r_index;
 			L.cls				=	r_type;
-			L.location			=	r_location;
 			L.program			=	program;
 			table.push_back		(C);
 		} else {
@@ -154,7 +152,6 @@ BOOL	R_constant_table::parse(void* _desc, u16 destination)
 			R_constant_load& L	=	(destination&1)?C->ps:C->vs;
 			L.index				=	r_index;
 			L.cls				=	r_type;
-			L.location			=	r_location;
 			L.program			=	program;
 		}
 	}
