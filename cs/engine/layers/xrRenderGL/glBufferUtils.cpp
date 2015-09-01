@@ -138,7 +138,7 @@ void ConvertVertexDeclaration(const D3DVERTEXELEMENT9* decl, GLuint vao)
 		GLint size				= VertexSizeList[desc.Type];
 		GLenum type				= VertexTypeList[desc.Type];
 		GLboolean normalized	= VertexNormalizedList[desc.Type];
-		CHK_GL(glVertexAttribFormat(i, 4, GL_FLOAT, GL_FALSE, desc.Offset));
+		CHK_GL(glVertexAttribFormat(i, size, type, normalized, desc.Offset));
 		CHK_GL(glVertexAttribBinding(i, desc.Stream));
 		CHK_GL(glEnableVertexAttribArray(i));
 		CHK_GL(glEnableVertexAttribArray(i));
