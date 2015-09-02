@@ -86,9 +86,7 @@ void	_VertexStream::Unlock(u32 Count, u32 Stride)
 	mPosition += Count*Stride;
 
 	VERIFY(pVB);
-
-	glBindBuffer(GL_ARRAY_BUFFER, pVB);
-	glUnmapBuffer(GL_ARRAY_BUFFER);
+	CHK_GL(glUnmapBuffer(GL_ARRAY_BUFFER));
 }
 
 void	_VertexStream::reset_begin()
