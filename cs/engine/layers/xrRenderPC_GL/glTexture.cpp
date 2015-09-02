@@ -111,38 +111,35 @@ _DDS:
 #endif // DEBUG
 		img_size = S->length();
 		R_ASSERT(S);
-		gli::storage IMG = gli::load_dds((char*)S->pointer(), img_size);
-		if (IMG.faces() > 1)										goto _DDS_CUBE;
+		gli::texture Texture = gli::load((char*)S->pointer(), img_size);
+		R_ASSERT(!Texture.empty());
+		if (gli::is_target_cube(Texture.target()))					goto _DDS_CUBE;
 		else														goto _DDS_2D;
 
 	_DDS_CUBE:
 		{
-			gli::textureCube TextureCube(IMG);
-			R_ASSERT(!TextureCube.empty());
 			gli::gl GL;
+			mip_cnt = Texture.levels();
+			dwWidth = Texture.dimensions().x;
+			dwHeight = Texture.dimensions().y;
+			fmt = GL.translate(Texture.format());
 
-			for (size_t face = 0; face < TextureCube.faces(); face++)
+			glGenTextures(1, &pTexture);
+			glBindTexture(GL_TEXTURE_CUBE_MAP, pTexture);
+			CHK_GL(glTexStorage2D(GL_TEXTURE_CUBE_MAP, mip_cnt, fmt.Internal, dwWidth, dwHeight));
+
+			for (size_t face = 0; face < Texture.faces(); face++)
 			{
-				gli::texture2D Texture(TextureCube[face]);
-				R_ASSERT(!Texture.empty());
-				mip_cnt = Texture.levels();
-				dwWidth = Texture.dimensions().x;
-				dwHeight = Texture.dimensions().y;
-				fmt = GL.translate(Texture.format());
-
-				glGenTextures(1, &pTexture);
-				glBindTexture(GL_TEXTURE_CUBE_MAP, pTexture);
-				CHK_GL(glTexStorage2D(GL_TEXTURE_CUBE_MAP, mip_cnt, fmt.Internal, dwWidth, dwHeight));
 				for (size_t i = 0; i < mip_cnt; i++)
 				{
 					if (gli::is_compressed(Texture.format()))
 					{
-						CHK_GL(glCompressedTexSubImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + face, i, 0, 0, Texture[i].dimensions().x, Texture[i].dimensions().y,
-							fmt.External, Texture[i].size(), Texture[i].data()));
+						CHK_GL(glCompressedTexSubImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + face, i, 0, 0, Texture.dimensions(i).x, Texture.dimensions(i).y,
+							fmt.Internal, Texture.size(i), Texture.data(0, face, i)));
 					}
 					else {
-						CHK_GL(glTexSubImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + face, i, 0, 0, Texture[i].dimensions().x, Texture[i].dimensions().y,
-							fmt.External, fmt.Type, Texture[i].data()));
+						CHK_GL(glTexSubImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + face, i, 0, 0, Texture.dimensions(i).x, Texture.dimensions(i).y,
+							fmt.External, fmt.Type, Texture.data(0, face, i)));
 					}
 				}
 			}
@@ -160,8 +157,6 @@ _DDS:
 
 
 			// Load   SYS-MEM-surface, bound to device restrictions
-			gli::texture2D Texture(IMG);
-			R_ASSERT(!Texture.empty());
 			gli::gl GL;
 			mip_cnt = Texture.levels();
 			dwWidth = Texture.dimensions().x;
@@ -175,12 +170,12 @@ _DDS:
 			{
 				if (gli::is_compressed(Texture.format()))
 				{
-					CHK_GL(glCompressedTexSubImage2D(GL_TEXTURE_2D, i, 0, 0, Texture[i].dimensions().x, Texture[i].dimensions().y,
-						fmt.External, Texture[i].size(), Texture[i].data()));
+					CHK_GL(glCompressedTexSubImage2D(GL_TEXTURE_2D, i, 0, 0, Texture.dimensions(i).x, Texture.dimensions(i).y,
+						fmt.Internal, Texture.size(i), Texture.data(0, 0, i)));
 				}
 				else {
-					CHK_GL(glTexSubImage2D(GL_TEXTURE_2D, i, 0, 0, Texture[i].dimensions().x, Texture[i].dimensions().y,
-						fmt.External, fmt.Type, Texture[i].data()));
+					CHK_GL(glTexSubImage2D(GL_TEXTURE_2D, i, 0, 0, Texture.dimensions(i).x, Texture.dimensions(i).y,
+						fmt.External, fmt.Type, Texture.data(0, 0, i)));
 				}
 			}
 			FS.r_close(S);

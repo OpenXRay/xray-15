@@ -220,8 +220,10 @@ void R_constant_table::merge(R_constant_table* T)
 			R_constant_load& dL	=	(src->destination&4)?C->samp:((src->destination&1)?C->ps:C->vs);
 			dL.index			=	sL.index;
 			dL.cls				=	sL.cls;
+#ifdef USE_OGL
 			dL.location			=	sL.location;
 			dL.program			=	sL.program;
+#endif // USE_OGL
 		}
 	}
 
