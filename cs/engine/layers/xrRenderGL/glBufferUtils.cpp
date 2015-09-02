@@ -141,7 +141,6 @@ void ConvertVertexDeclaration(const D3DVERTEXELEMENT9* decl, GLuint vao)
 		CHK_GL(glVertexAttribFormat(i, size, type, normalized, desc.Offset));
 		CHK_GL(glVertexAttribBinding(i, desc.Stream));
 		CHK_GL(glEnableVertexAttribArray(i));
-		CHK_GL(glEnableVertexAttribArray(i));
 	}
 }
 
