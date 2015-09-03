@@ -7,6 +7,8 @@
 
 #pragma comment(lib,"xrEngine.lib")
 
+xr_token vid_mode = { NULL, -1 };
+
 BOOL APIENTRY DllMain( HANDLE hModule, 
                        DWORD  ul_reason_for_call, 
                        LPVOID lpReserved
@@ -20,7 +22,7 @@ BOOL APIENTRY DllMain( HANDLE hModule,
 		::Render					= &RImplementation;
 		::RenderFactory				= &RenderFactoryImpl;
 		::DU						= &DUImpl;
-		//::vid_mode_token			= inited by HW;
+		::vid_mode_token			= &vid_mode;
 		UIRender					= &UIRenderImpl;
 #ifdef DEBUG
 		DRender						= &DebugRenderImpl;
