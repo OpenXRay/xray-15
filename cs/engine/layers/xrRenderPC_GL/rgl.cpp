@@ -486,14 +486,11 @@ HRESULT	CRender::shader_compile(
 
 	// Compile sources list
 	size_t def_len = def_it * 5;
-	size_t sources_len = includes.size() + def_len + 5;
+	size_t sources_len = includes.size() + def_len + 2;
 	const char** sources = xr_alloc<const char*>(sources_len);
 	sources[0] = "#version 410\n";
 	memcpy(sources + 1, defines, def_len * sizeof(char*));
 	memcpy(sources + def_len + 1, includes.data(), includes.size() * sizeof(char*));
-	sources[sources_len - 4] = "// ";
-	sources[sources_len - 3] = name;
-	sources[sources_len - 2] = "\n";
 	sources[sources_len - 1] = srcData;
 
 	// Compile the shader
@@ -505,6 +502,7 @@ HRESULT	CRender::shader_compile(
 	// Create the shader program
 	GLuint program = glCreateProgram();
 	R_ASSERT(program);
+	CHK_GL(glObjectLabel(GL_PROGRAM, program, -1, name));
 	CHK_GL(glProgramParameteri(program, GL_PROGRAM_SEPARABLE, GL_TRUE));
 	*(GLuint*)_ppShader = program;
 
