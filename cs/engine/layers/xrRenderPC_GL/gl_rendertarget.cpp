@@ -19,13 +19,31 @@ void	CRenderTarget::u_setrt			(const ref_rt& _1, const ref_rt& _2, const ref_rt&
 	dwWidth									= _1->dwWidth;
 	dwHeight								= _1->dwHeight;
 	RCache.set_FB							(pFB);
-	if (_1) RCache.set_RT(_1->pSurface,	0); else RCache.set_RT(NULL, 0);
-	if (_2) RCache.set_RT(_2->pSurface, 1); else RCache.set_RT(NULL, 1);
-	if (_3) RCache.set_RT(_3->pSurface, 2); else RCache.set_RT(NULL, 2);
+	GLuint cnt = 0;
+	GLenum buffers[3];
+	if (_1)
+	{
+		buffers[cnt++] = GL_COLOR_ATTACHMENT0;
+		RCache.set_RT(_1->pSurface, 0);
+	}
+	else RCache.set_RT(NULL, 0);
+	if (_2)
+	{
+		buffers[cnt++] = GL_COLOR_ATTACHMENT1;
+		RCache.set_RT(_2->pSurface, 1);
+	}
+	else RCache.set_RT(NULL, 1);
+	if (_3)
+	{
+		buffers[cnt++] = GL_COLOR_ATTACHMENT2;
+		RCache.set_RT(_3->pSurface, 2);
+	}
+	else RCache.set_RT(NULL, 2);
 	RCache.set_ZB							(zb);
 //	RImplementation.rmNormal				();
 	GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 	VERIFY(status == GL_FRAMEBUFFER_COMPLETE);
+	CHK_GL(glDrawBuffers(cnt, buffers));
 }
 
 void	CRenderTarget::u_setrt			(const ref_rt& _1, const ref_rt& _2, GLuint zb)
@@ -34,12 +52,25 @@ void	CRenderTarget::u_setrt			(const ref_rt& _1, const ref_rt& _2, GLuint zb)
 	dwWidth									= _1->dwWidth;
 	dwHeight								= _1->dwHeight;
 	RCache.set_FB							(pFB);
-	if (_1) RCache.set_RT(_1->pSurface,	0); else RCache.set_RT(NULL, 0);
-	if (_2) RCache.set_RT(_2->pSurface, 1); else RCache.set_RT(NULL, 1);
+	GLuint cnt = 0;
+	GLenum buffers[2];
+	if (_1)
+	{
+		buffers[cnt++] = GL_COLOR_ATTACHMENT0;
+		RCache.set_RT(_1->pSurface, 0);
+	}
+	else RCache.set_RT(NULL, 0);
+	if (_2)
+	{
+		buffers[cnt++] = GL_COLOR_ATTACHMENT1;
+		RCache.set_RT(_2->pSurface, 1);
+	}
+	else RCache.set_RT(NULL, 1);
 	RCache.set_ZB							(zb);
 //	RImplementation.rmNormal				();
 	GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 	VERIFY(status == GL_FRAMEBUFFER_COMPLETE);
+	CHK_GL(glDrawBuffers(cnt, buffers));
 }
 
 void	CRenderTarget::u_setrt			(u32 W, u32 H, GLuint _1, GLuint _2, GLuint _3, GLuint zb)
