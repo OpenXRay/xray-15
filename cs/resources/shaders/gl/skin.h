@@ -5,45 +5,45 @@
 
 struct 	v_model_skinned_0
 {
-	int4 	P;	// (float,float,float,1) - quantized	// short4
+	float4 	P;	// (float,float,float,1) - quantized	// short4
 	float3	N;	// normal				// DWORD
 	float3	T;	// tangent				// DWORD
 	float3	B;	// binormal				// DWORD
-	int2	tc;	// (u,v)				// short2
+	float2	tc;	// (u,v)				// short2
 };
 struct 	v_model_skinned_1   		// 24 bytes
 {
-	int4 	P;	// (float,float,float,1) - quantized	// short4
+	float4 	P;	// (float,float,float,1) - quantized	// short4
 	float4	N;	// (nx,ny,nz,index)			// DWORD
 	float3	T;	// tangent				// DWORD
 	float3	B;	// binormal				// DWORD
-	int2	tc;	// (u,v)				// short2
+	float2	tc;	// (u,v)				// short2
 };
 struct 	v_model_skinned_2		// 28 bytes
 {
-	int4 	P;	// (float,float,float,1) - quantized	// short4
+	float4 	P;	// (float,float,float,1) - quantized	// short4
 	float4 	N;	// (nx,ny,nz,weight)	// DWORD
 	float3	T;	// tangent				// DWORD
 	float3	B;	// binormal				// DWORD
-	int4 	tc;	// (u,v, w=m-index0, z=m-index1)  	// short4
+	float4 	tc;	// (u,v, w=m-index0, z=m-index1)  	// short4
 };
 
 struct 	v_model_skinned_3		// 28 bytes
 {
-	int4 	P;	// (float,float,float,1) - quantized	// short4
+	float4 	P;	// (float,float,float,1) - quantized	// short4
 	float4 	N;	// (nx,ny,nz,weight0)			// DWORD
 	float4	T;	// (tx,ty,tz,weight1)				// DWORD
 	float4	B;	// (bx,by,bz,m-index2)				// DWORD
-	int4 	tc;	// (u,v, w=m-index0, z=m-index1)  	// short4
+	float4 	tc;	// (u,v, w=m-index0, z=m-index1)  	// short4
 };
 
 struct 	v_model_skinned_4		// 28 bytes
 {
-	int4 	P;	// (float,float,float,1) - quantized	// short4
+	float4 	P;	// (float,float,float,1) - quantized	// short4
 	float4 	N;	// (nx,ny,nz,weight0)			// DWORD
 	float4	T;	// (tx,ty,tz,weight1)				// DWORD
 	float4	B;	// (bx,by,bz,weight2)				// DWORD
-	int2 	tc;	// (u,v)  					// short2
+	float2 	tc;	// (u,v)  					// short2
 	float4 	ind;// (x=m-index0, y=m-index1, z=m-index2, w=m-index3)  	// DWORD
 };
 
@@ -126,11 +126,11 @@ v_model skinning_2 	(v_model_skinned_2	v)
 	v.B.xyz		= v.B.zyx;
 
 	// matrices
-	int 	id_0 	= v.tc.z;
+	int 	id_0 	= int(v.tc.z);
 	float4  m0_0 	= sbones_array[id_0+0];
 	float4  m1_0 	= sbones_array[id_0+1];
 	float4  m2_0 	= sbones_array[id_0+2];
-	int 	id_1 	= v.tc.w;
+	int 	id_1 	= int(v.tc.w);
 	float4  m0_1 	= sbones_array[id_1+0];
 	float4  m1_1 	= sbones_array[id_1+1];
 	float4  m2_1 	= sbones_array[id_1+2];
@@ -158,11 +158,11 @@ v_model skinning_3 	(v_model_skinned_3	v)
 	v.B.xyz		= v.B.zyx;
 
 	// matrices
-	int 	id_0 	= v.tc.z;
+	int 	id_0 	= int(v.tc.z);
 	float4  m0_0 	= sbones_array[id_0+0];
 	float4  m1_0 	= sbones_array[id_0+1];
 	float4  m2_0 	= sbones_array[id_0+2];
-	int 	id_1 	= v.tc.w;
+	int 	id_1 	= int(v.tc.w);
 	float4  m0_1 	= sbones_array[id_1+0];
 	float4  m1_1 	= sbones_array[id_1+1];
 	float4  m2_1 	= sbones_array[id_1+2];

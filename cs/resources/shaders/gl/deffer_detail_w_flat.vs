@@ -8,7 +8,7 @@ uniform float4 		array[61*4];
 out gl_PerVertex { vec4 gl_Position; };
 
 layout(location = 0) in vec4 P;				// (float,float,float,1)
-layout(location = 1) in ivec4 misc;			// (u(Q),v(Q),frac,matrix-id)
+layout(location = 1) in vec4 misc;			// (u(Q),v(Q),frac,matrix-id)
 
 #if defined(USE_R2_STATIC_SUN) && !defined(USE_LM_HEMI)
 layout(location = 0) out vec4	tcdh;		// Texture coordinates,         w=sun_occlusion
@@ -31,7 +31,7 @@ layout(location = 3) out vec2	lmh;		// lm-hemi
 void 	main ()
 {
 	// index
-	int 	i 	= misc.w;
+	int 	i 	= int(misc.w);
 	float4  m0 	= array[i+0];
 	float4  m1 	= array[i+1];
 	float4  m2 	= array[i+2];

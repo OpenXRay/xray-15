@@ -8,9 +8,9 @@ layout(location = 0) in vec4 	P;		// (float,float,float,1)
 layout(location = 1) in vec4	Nh;		// (nx,ny,nz,hemi occlusion)
 layout(location = 2) in vec4	T;		// tangent
 layout(location = 3) in vec4	B;		// binormal
-layout(location = 4) in ivec2	tc;		// (u,v)
+layout(location = 4) in vec2	tc;		// (u,v)
 #ifdef	USE_LM_HEMI
-layout(location = 5) in ivec2	lmh;	// (lmu,lmv)
+layout(location = 5) in vec2	lmh;	// (lmu,lmv)
 #endif
 //layout(location = 6) in vec4	color;	// (r,g,b,dir-occlusion)	//	Swizzle before use!!!
 
