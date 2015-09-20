@@ -107,7 +107,8 @@ ICF void CBackend::set_Vertices(GLuint _vb, u32 _vb_stride)
 
 ICF void CBackend::set_Indices(GLuint _ib)
 {
-	if (ib != _ib)
+	// TODO: OGL: Cache index buffer binding.
+	//if (ib != _ib)
 	{
 		PGO(Msg("PGO:IB:%x", _ib));
 #ifdef DEBUG
