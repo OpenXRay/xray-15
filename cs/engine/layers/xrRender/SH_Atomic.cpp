@@ -37,7 +37,6 @@ SVS::~SVS()
 #endif	//	USE_DX10
 #ifdef USE_OGL
 	CHK_GL(glDeleteProgram(vs));
-	vs = NULL;
 #else
 	_RELEASE(vs);
 #endif // USE_OGL
@@ -47,7 +46,7 @@ SVS::~SVS()
 ///////////////////////////////////////////////////////////////////////
 //	SPS
 #ifdef USE_OGL
-SPS::~SPS								()			{	 CHK_GL(glDeleteProgram(ps));	ps = NULL;		DEV->_DeletePS			(this);	}
+SPS::~SPS								()			{	 CHK_GL(glDeleteProgram(ps));	DEV->_DeletePS			(this);	}
 #else
 SPS::~SPS								()			{	_RELEASE(ps);		DEV->_DeletePS			(this);	}
 #endif // USE_OGL

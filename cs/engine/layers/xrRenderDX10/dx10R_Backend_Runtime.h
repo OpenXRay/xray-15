@@ -76,7 +76,7 @@ ICF void CBackend::set_GS(ID3DGeometryShader* _gs, LPCSTR _n)
 {
 	if (gs!=_gs)
 	{
-		PGO				(Msg("PGO:Gshader:%x",_ps));
+		PGO				(Msg("PGO:Gshader:%x",_gs));
 		//	TODO: DX10: Get statistics for G Shader change
 		//stat.gs			++;
 		gs				= _gs;
