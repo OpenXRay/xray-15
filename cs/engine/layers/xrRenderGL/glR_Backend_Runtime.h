@@ -56,6 +56,9 @@ ICF void CBackend::set_Format(SDeclaration* _decl)
 #endif
 		decl = _decl;
 		CHK_GL(glBindVertexArray(_decl->vao));
+
+		// Clear cached index buffer
+		ib = 0;
 	}
 }
 
@@ -107,8 +110,7 @@ ICF void CBackend::set_Vertices(GLuint _vb, u32 _vb_stride)
 
 ICF void CBackend::set_Indices(GLuint _ib)
 {
-	// TODO: OGL: Cache index buffer binding.
-	//if (ib != _ib)
+	if (ib != _ib)
 	{
 		PGO(Msg("PGO:IB:%x", _ib));
 #ifdef DEBUG
