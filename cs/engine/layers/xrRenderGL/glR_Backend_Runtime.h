@@ -68,7 +68,7 @@ ICF void CBackend::set_PS(GLuint _ps, LPCSTR _n)
 	{
 		string_path name;
 		PGO(glGetObjectLabel(GL_PROGRAM, _ps, sizeof(name), nullptr, name));
-		PGO(Msg("PGO:Pshader:%s", _n ? _n : name));
+		PGO(Msg("PGO:Pshader:%d,%s", _ps, _n ? _n : name));
 		stat.ps++;
 		ps = _ps;
 		CHK_GL(glUseProgramStages(pp, GL_FRAGMENT_SHADER_BIT, ps));
@@ -84,7 +84,7 @@ ICF void CBackend::set_VS(GLuint _vs, LPCSTR _n)
 	{
 		string_path name;
 		PGO(glGetObjectLabel(GL_PROGRAM, _vs, sizeof(name), nullptr, name));
-		PGO(Msg("PGO:Vshader:%s", _n ? _n : name));
+		PGO(Msg("PGO:Vshader:%d,%s", _vs, _n ? _n : name));
 		stat.vs++;
 		vs = _vs;
 		CHK_GL(glUseProgramStages(pp, GL_VERTEX_SHADER_BIT, vs));
