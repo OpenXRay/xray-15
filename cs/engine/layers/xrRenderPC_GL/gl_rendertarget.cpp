@@ -80,13 +80,19 @@ void	CRenderTarget::u_setrt			(u32 W, u32 H, GLuint _1, GLuint _2, GLuint _3, GL
 	dwHeight								= H;
 	VERIFY									(_1);
 	RCache.set_FB							(pFB);
+	GLuint cnt = 0;
+	GLenum buffers[2];
+	if (_1)									buffers[cnt++] = GL_COLOR_ATTACHMENT0;
 	RCache.set_RT							(_1,	0);
+	if (_2)									buffers[cnt++] = GL_COLOR_ATTACHMENT1;
 	RCache.set_RT							(_2,	1);
+	if (_3)									buffers[cnt++] = GL_COLOR_ATTACHMENT2;
 	RCache.set_RT							(_3,	2);
 	RCache.set_ZB							(zb);
 //	RImplementation.rmNormal				();
 	GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 	VERIFY(status == GL_FRAMEBUFFER_COMPLETE);
+	CHK_GL(glDrawBuffers(cnt, buffers));
 }
 
 void	CRenderTarget::u_stencil_optimize	(BOOL		common_stencil)
