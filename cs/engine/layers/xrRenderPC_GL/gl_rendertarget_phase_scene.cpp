@@ -32,7 +32,7 @@ void	CRenderTarget::phase_scene_prepare	()
 	else
 	{
 		// TODO: OGL: Check if we need to set RT here.
-		RCache.set_FB();
+		u_setrt(rt_Color, 0, 0, RCache.pBaseZB);
 		glClear(GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	}
 
