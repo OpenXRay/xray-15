@@ -33,7 +33,7 @@ void	CRenderTarget::phase_scene_prepare	()
 	{
 		// TODO: OGL: Check if we need to set RT here.
 		u_setrt(rt_Color, 0, 0, RCache.pBaseZB);
-		glClear(GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	}
 
 	//	Igor: for volumetric lights
