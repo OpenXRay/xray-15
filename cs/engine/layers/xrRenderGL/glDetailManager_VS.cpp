@@ -33,10 +33,10 @@ void CDetailManager::hw_Load_Shaders()
 	hwc_consts			= T0.get("consts");
 	hwc_wave			= T0.get("wave");
 	hwc_wind			= T0.get("dir2D");
-	hwc_array			= T0.get("array[0]");
+	hwc_array			= T0.get("array");
 	hwc_s_consts		= T1.get("consts");
 	hwc_s_xform			= T1.get("xform");
-	hwc_s_array			= T1.get("array[0]");
+	hwc_s_array			= T1.get("array");
 }
 
 void CDetailManager::hw_Render()
@@ -98,7 +98,7 @@ void CDetailManager::hw_Render_dump(const Fvector4 &consts, const Fvector4 &wave
 	static shared_str strConsts("consts");
 	static shared_str strWave("wave");
 	static shared_str strDir2D("dir2D");
-	static shared_str strArray("array[0]");
+	static shared_str strArray("array");
 	static shared_str strXForm("xform");
 
 	Device.Statistic->RenderDUMP_DT_Count	= 0;
