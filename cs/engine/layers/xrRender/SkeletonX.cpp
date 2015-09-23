@@ -163,7 +163,7 @@ void CSkeletonX::_Render_soft	(ref_geom& hGeom, u32 vCount, u32 iOffset, u32 pCo
 
 void CSkeletonX::_Load	(const char* N, IReader *data, u32& dwVertCount) 
 {	
-	s_bones_array_const		= "sbones_array[0]";
+	s_bones_array_const		= "sbones_array";
 	xr_vector<u16>			bids;
 
 	// Load vertices
