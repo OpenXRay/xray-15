@@ -81,7 +81,7 @@ void	CRenderTarget::u_setrt			(u32 W, u32 H, GLuint _1, GLuint _2, GLuint _3, GL
 	VERIFY									(_1);
 	RCache.set_FB							(pFB);
 	GLuint cnt = 0;
-	GLenum buffers[2];
+	GLenum buffers[3];
 	if (_1)									buffers[cnt++] = GL_COLOR_ATTACHMENT0;
 	RCache.set_RT							(_1,	0);
 	if (_2)									buffers[cnt++] = GL_COLOR_ATTACHMENT1;

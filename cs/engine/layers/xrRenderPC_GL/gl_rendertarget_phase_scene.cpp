@@ -24,7 +24,7 @@ void	CRenderTarget::phase_scene_prepare	()
 		)
 	{
 		// TODO: OGL: Check if we need to set RT here.
-		u_setrt(Device.dwWidth, Device.dwHeight, rt_Position->pSurface, NULL, NULL, RCache.pBaseZB);
+		u_setrt(Device.dwWidth, Device.dwHeight, rt_Position->pSurface, rt_Normal->pSurface, rt_Color->pSurface, RCache.pBaseZB);
 
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
