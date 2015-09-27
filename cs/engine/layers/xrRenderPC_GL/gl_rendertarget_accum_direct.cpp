@@ -39,10 +39,10 @@ void CRenderTarget::accum_direct		(u32 sub_phase)
 	{
 		// Fill vertex buffer
 		FVF::TL* pv					= (FVF::TL*)	RCache.Vertex.Lock	(4,g_combine->vb_stride,Offset);
-		pv->set						(EPS,			float(_h+EPS),	d_Z,	d_W, C, p0.x, p1.y);	pv++;
-		pv->set						(EPS,			EPS,			d_Z,	d_W, C, p0.x, p0.y);	pv++;
-		pv->set						(float(_w+EPS),	float(_h+EPS),	d_Z,	d_W, C, p1.x, p1.y);	pv++;
-		pv->set						(float(_w+EPS),	EPS,			d_Z,	d_W, C, p1.x, p0.y);	pv++;
+		pv->set						(EPS,			float(_h+EPS),	d_Z,	d_W, C, p0.x, p0.y);	pv++;
+		pv->set						(EPS,			EPS,			d_Z,	d_W, C, p0.x, p1.y);	pv++;
+		pv->set						(float(_w+EPS),	float(_h+EPS),	d_Z,	d_W, C, p1.x, p0.y);	pv++;
+		pv->set						(float(_w+EPS),	EPS,			d_Z,	d_W, C, p1.x, p1.y);	pv++;
 		RCache.Vertex.Unlock		(4,g_combine->vb_stride);
 		RCache.set_Geometry			(g_combine);
 
@@ -151,10 +151,10 @@ void CRenderTarget::accum_direct		(u32 sub_phase)
 		//pv->set						(EPS,			EPS,			d_Z,	d_W, C, p0.x, p0.y, j0.x, j0.y);	pv++;
 		//pv->set						(float(_w+EPS),	float(_h+EPS),	d_Z,	d_W, C, p1.x, p1.y, j1.x, j1.y);	pv++;
 		//pv->set						(float(_w+EPS),	EPS,			d_Z,	d_W, C, p1.x, p0.y, j1.x, j0.y);	pv++;
-		pv->set						(-1,	-1,	d_Z,	d_W, C, 0, 1, 0,		scale_X);	pv++;
-		pv->set						(-1,	1,	d_Z,	d_W, C, 0, 0, 0,		0);	pv++;
-		pv->set						(1,		-1,	d_Z,	d_W, C, 1, 1, scale_X,	scale_X);	pv++;
-		pv->set						(1,		1,	d_Z,	d_W, C, 1, 0, scale_X,	0);	pv++;
+		pv->set						(-1,	-1,	d_Z,	d_W, C, 0, 1, 0,		0);	pv++;
+		pv->set						(-1,	1,	d_Z,	d_W, C, 0, 0, 0,		scale_X);	pv++;
+		pv->set						(1,		-1,	d_Z,	d_W, C, 1, 1, scale_X,	0);	pv++;
+		pv->set						(1,		1,	d_Z,	d_W, C, 1, 0, scale_X,	scale_X);	pv++;
 		RCache.Vertex.Unlock		(4,g_combine_2UV->vb_stride);
 		RCache.set_Geometry			(g_combine_2UV);
 
