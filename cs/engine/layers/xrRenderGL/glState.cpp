@@ -11,7 +11,7 @@ glState::glState()
 	m_pDepthStencilState.DepthEnable		= TRUE;
 	m_pDepthStencilState.DepthFunc			= D3DCMP_LESSEQUAL;
 	m_pDepthStencilState.DepthWriteMask		= GL_TRUE;
-	m_pDepthStencilState.StencilEnable		= FALSE;
+	m_pDepthStencilState.StencilEnable		= TRUE;
 	m_pDepthStencilState.StencilFailOp		= D3DSTENCILOP_KEEP;
 	m_pDepthStencilState.StencilDepthFailOp = D3DSTENCILOP_KEEP;
 	m_pDepthStencilState.StencilPassOp		= D3DSTENCILOP_KEEP;
