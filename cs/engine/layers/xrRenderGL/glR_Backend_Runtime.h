@@ -178,8 +178,9 @@ ICF void CBackend::Render(D3DPRIMITIVETYPE T, u32 baseV, u32 startV, u32 countV,
 	CHK_GL(glDrawElementsBaseVertex(Topology, iIndexCount, GL_UNSIGNED_SHORT, (void*)(startI * sizeof(GLushort)), baseV));
 	PGO(Msg("PGO:DIP:%dv/%df", countV, PC));
 
-	// Reset depth mask
+	// Reset depth and stencil mask
 	CHK_GL(glDepthMask(GL_TRUE));
+	CHK_GL(glStencilMask(~0));
 }
 
 ICF void CBackend::Render(D3DPRIMITIVETYPE T, u32 startV, u32 PC)
@@ -195,8 +196,10 @@ ICF void CBackend::Render(D3DPRIMITIVETYPE T, u32 startV, u32 PC)
 	CHK_GL(glDrawArrays(Topology, startV, iIndexCount));
 	PGO(Msg("PGO:DIP:%dv/%df", iIndexCount, PC));
 
-	// Reset depth mask
+	// Reset depth and stencil mask
 	CHK_GL(glDepthMask(GL_TRUE));
+	CHK_GL(glStencilMask(~0));
+
 }
 
 IC void CBackend::set_Geometry(SGeometry* _geom)
