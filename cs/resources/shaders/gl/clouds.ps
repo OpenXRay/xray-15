@@ -1,0 +1,25 @@
+#include "common.h"
+
+layout(location = 0) in vec4 vColor;
+layout(location = 1) in vec2 tc0;
+layout(location = 2) in vec2 tc1;
+
+layout(location = 0) out vec4 oColor;
+
+uniform sampler2D 	s_clouds0;
+uniform sampler2D 	s_clouds1;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Pixel
+void 	main	( void )
+{
+	half4 	s0		= tex2D		(s_clouds0,tc0);
+	half4 	s1		= tex2D		(s_clouds1,tc1);
+//	half4 	s0		= s_clouds0.Sample( smp_base, tc0 );
+//	half4 	s1		= s_clouds1.Sample( smp_base, tc1 );
+	half4 	mix 	= vColor * (s0 + s1)	;
+
+	oColor			= mix		;
+
+//	return  half4	(rgb.rgb, vColor.a);
+}

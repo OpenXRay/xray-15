@@ -30,6 +30,7 @@
 #define mul(a,b)	(a * b)
 #define tex2D		texture2D
 #define tex2Dproj	textureProj
+#define tex2Dlod	textureLod
 #define tex3D		texture
 #define texCUBE 	texture
 #define samplerCUBE	samplerCube
