@@ -421,7 +421,7 @@ CRenderTarget::CRenderTarget		()
 			sprintf						(name,"%s_%d",	r2_RT_luminance_pool,it	);
 			rt_LUM_pool[it].create		(name,	1,	1,	D3DFMT_R32F				);
 			u_setrt						(rt_LUM_pool[it],	0,	0,	0			);
-			glClearColor(127.0f / 255.0f, 127.0f / 255.0f, 127.0f / 255.0f, 127.0f / 255.0f);
+			glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		}
 		RCache.set_FB(0);
