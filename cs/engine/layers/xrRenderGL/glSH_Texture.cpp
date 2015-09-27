@@ -31,6 +31,7 @@ CTexture::CTexture		()
 	pBuffer				= NULL;
 	pAVI				= NULL;
 	pTheora				= NULL;
+	desc				= GL_TEXTURE_2D;
 	desc_cache			= 0;
 	seqMSPF				= 0;
 	flags.MemoryUsage	= 0;
