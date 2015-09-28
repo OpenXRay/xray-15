@@ -2,7 +2,7 @@
 
 out gl_PerVertex { vec4 gl_Position; };
 
-float4		screen_res;		// Screen resolution (x-Width,y-Height, zw - 1/resolution)
+uniform float4		screen_res;		// Screen resolution (x-Width,y-Height, zw - 1/resolution)
 
 layout(location = 0) in vec4 iPos;
 layout(location = 1) in vec2 iTex0;
@@ -26,9 +26,9 @@ void main ()
 
 		P.xy += 0.5f;	//	Bugs with rasterizer??? Possible half-pixel shift.
 //		HPos.x = P.x/1024 * 2 - 1;
-//		HPos.y = (P.y/768 * 2 - 1)*-1;
+//		HPos.y = P.y/768 * 2 - 1;
 		HPos.x = P.x * screen_res.z * 2 - 1;
-		HPos.y = (P.y * screen_res.w * 2 - 1)*-1;
+		HPos.y = P.y * screen_res.w * 2 - 1;
 		HPos.zw = P.zw;
 	}
 
