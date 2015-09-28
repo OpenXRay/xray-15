@@ -39,13 +39,45 @@ private:
 	}
 	ICF void				set(R_constant* C, R_constant_load& L, const Fvector4& A)		{
 		VERIFY(RC_float == C->type);
-		VERIFY(RC_1x4 == L.cls);
-		CHK_GL(glProgramUniform4fv(L.program, L.location, 1, (float*)&A));
+		switch (L.cls)
+		{
+		case RC_1x2:
+			CHK_GL(glProgramUniform2fv(L.program, L.location, 1, (float*)&A));
+			break;
+		case RC_1x3:
+			CHK_GL(glProgramUniform3fv(L.program, L.location, 1, (float*)&A));
+			break;
+		case RC_1x4:
+			CHK_GL(glProgramUniform4fv(L.program, L.location, 1, (float*)&A));
+			break;
+		default:
+#ifdef DEBUG
+			xrDebug::Fatal(DEBUG_INFO, "Invalid constant run-time-type for '%s'", *C->name);
+#else
+			NODEFAULT;
+#endif
+		}
 	}
 	ICF void				set(R_constant* C, R_constant_load& L, float x, float y, float z, float w)	{
 		VERIFY(RC_float == C->type);
-		VERIFY(RC_1x4 == L.cls);
-		CHK_GL(glProgramUniform4f(L.program, L.location, x, y, z, w));
+		switch (L.cls)
+		{
+		case RC_1x2:
+			CHK_GL(glProgramUniform2f(L.program, L.location, x, y));
+			break;
+		case RC_1x3:
+			CHK_GL(glProgramUniform3f(L.program, L.location, x, y, z));
+			break;
+		case RC_1x4:
+			CHK_GL(glProgramUniform4f(L.program, L.location, x, y, z, w));
+			break;
+		default:
+#ifdef DEBUG
+			xrDebug::Fatal(DEBUG_INFO, "Invalid constant run-time-type for '%s'", *C->name);
+#else
+			NODEFAULT;
+#endif
+		}
 	}
 
 	// scalars, non-array versions
