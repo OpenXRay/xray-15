@@ -40,10 +40,10 @@ void CRenderTarget::phase_ssao	()
 
 	// Fill vertex buffer
 	FVF::TL* pv					= (FVF::TL*)	RCache.Vertex.Lock	(4,g_combine->vb_stride,Offset);
-	pv->set						( -1,  1, 0, 1, 0,		0,	scale_Y	);	pv++;
-	pv->set						( -1, -1, 0, 0, 0,		0,		  0	);	pv++;
-	pv->set						(  1,  1, 1, 1, 0, scale_X,	scale_Y	);	pv++;
-	pv->set						(  1, -1, 1, 0, 0, scale_X,		  0	);	pv++;
+	pv->set						( -1,  1, 0, 0, 0,		0,	0		);	pv++;
+	pv->set						( -1, -1, 0, 1, 0,		0,	scale_Y	);	pv++;
+	pv->set						(  1,  1, 1, 0, 0, scale_X,	0		);	pv++;
+	pv->set						(  1, -1, 1, 1, 0, scale_X,	scale_Y	);	pv++;
 	RCache.Vertex.Unlock		(4,g_combine->vb_stride);
 
 	// Draw
@@ -103,10 +103,10 @@ void CRenderTarget::phase_downsamp	()
 
 		// Fill vertex buffer
 		FVF::TL* pv					= (FVF::TL*)	RCache.Vertex.Lock	(4,g_combine->vb_stride,Offset);
-		pv->set						( -1,  1, 0, 1, 0,		0,	scale_Y	);	pv++;
-		pv->set						( -1, -1, 0, 0, 0,		0,		  0	);	pv++;
-		pv->set						(  1,  1, 1, 1, 0, scale_X,	scale_Y	);	pv++;
-		pv->set						(  1, -1, 1, 0, 0, scale_X,		  0	);	pv++;
+		pv->set						( -1,  1, 0, 0, 0,		0,	0		);	pv++;
+		pv->set						( -1, -1, 0, 1, 0,		0,	scale_Y	);	pv++;
+		pv->set						(  1,  1, 1, 0, 0, scale_X,	0		);	pv++;
+		pv->set						(  1, -1, 1, 1, 0, scale_X,	scale_Y	);	pv++;
 		RCache.Vertex.Unlock		(4,g_combine->vb_stride);
 
 		// Draw
