@@ -26,9 +26,9 @@ void main ()
 
 		P.xy += 0.5f;	//	Bugs with rasterizer??? Possible half-pixel shift.
 //		HPos.x = P.x/1024 * 2 - 1;
-//		HPos.y = P.y/768 * 2 - 1;
+//		HPos.y = (P.y/768 * 2 - 1)*-1;
 		HPos.x = P.x * screen_res.z * 2 - 1;
-		HPos.y = P.y * screen_res.w * 2 - 1;
+		HPos.y = (P.y * screen_res.w * 2 - 1)*-1;
 		HPos.zw = P.zw;
 	}
 
