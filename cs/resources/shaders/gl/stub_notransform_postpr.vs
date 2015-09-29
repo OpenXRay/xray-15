@@ -11,11 +11,11 @@ layout(location = 3) in vec2 iTex0;
 layout(location = 4) in vec2 iTex1;
 layout(location = 5) in vec2 iTex2;
 
-layout(location = 0) out vec2 vTex0;
-layout(location = 1) out vec2 vTex1;
-layout(location = 2) out vec2 vTex2;
-layout(location = 3) out vec4 vColor;
-layout(location = 4) out vec4 vGray;
+layout(location = 0) out vec4 vColor;
+layout(location = 1) out vec4 vGray;
+layout(location = 2) out vec2 vTex0;
+layout(location = 3) out vec2 vTex1;
+layout(location = 4) out vec2 vTex2;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // Vertex
