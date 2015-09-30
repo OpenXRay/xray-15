@@ -100,7 +100,7 @@ void 		main	()
 
 	 half3	mix		= 	n_R+n_G+n_B+n_A;
 			mix.z	*=	0.5;		//. make bump twice as contrast (fake, remove me if possible)
-	 half3	N		= 	mul     	(half3x3(I.M1, I.M2, I.M3), mix.xyz);
+	 half3	N		= 	mul     	(mix.xyz, half3x3(I.M1, I.M2, I.M3));
 
 	 	 	G 		= 	g_R+g_G+g_B+g_A;
 //			G 	= 0			;

@@ -60,7 +60,7 @@ void 	main	()
 	clip					(S.base.w-def_aref);
 
 	// Sample normal, rotate it by matrix, encode position 
-  	half3	Ne  = mul		(half3x3(M1, M2, M3), S.normal);
+  	half3	Ne  = mul		(S.normal, half3x3(M1, M2, M3));
 			Ne	= normalize	(Ne);
 
 	// hemi,sun,material
