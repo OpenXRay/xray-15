@@ -581,7 +581,7 @@ void CRender::rmNear()
 {
 	IRender_Target* T = getTarget();
 	CHK_GL(glViewport(0, 0, T->get_width(), T->get_height()));
-	CHK_GL(glDepthRangef(0.99999f, 0.02f));
+	CHK_GL(glDepthRangef(0.02f, 0.99999f));
 }
 
 void CRender::rmFar()
