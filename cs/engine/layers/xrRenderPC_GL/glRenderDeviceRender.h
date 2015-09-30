@@ -68,9 +68,12 @@ public:
 	ref_shader			m_SelectionShader;
 
 private:
+	bool			m_move_window;
 	HWND			m_hWnd;
 	HDC				m_hDC;
 	HGLRC			m_hRC;
+
+	void			updateWindowProps();
 
 	static void CALLBACK glRenderDeviceRender::OnDebugCallback(GLenum source, GLenum type, GLuint id, GLenum severity,
 		GLsizei length, const GLchar* message, const void* userParam);

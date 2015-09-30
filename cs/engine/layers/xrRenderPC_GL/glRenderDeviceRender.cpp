@@ -3,6 +3,14 @@
 
 #include <stdio.h>
 
+#ifndef _EDITOR
+void	fill_vid_mode_list();
+void	free_vid_mode_list();
+#else
+void	fill_vid_mode_list()	{}
+void	free_vid_mode_list()	{}
+#endif
+
 void CALLBACK glRenderDeviceRender::OnDebugCallback(GLenum source, GLenum type, GLuint id, GLenum severity,
 	GLsizei length, const GLchar* message, const void* userParam)
 {
@@ -42,6 +50,13 @@ bool glRenderDeviceRender::Create(HWND hWnd, u32 &dwWidth, u32 &dwHeight, float 
 	m_hWnd = hWnd;
 	if (m_hWnd == NULL)
 		return false;
+
+	m_move_window = move_window;
+
+#ifndef _EDITOR
+	updateWindowProps();
+	fill_vid_mode_list();
+#endif
 
 	RECT rClient = { 0 };
 
@@ -154,6 +169,10 @@ void glRenderDeviceRender::DestroyHW()
 
 		m_hDC = nullptr;
 	}
+
+#ifndef _EDITOR
+	free_vid_mode_list();
+#endif
 }
 
 void glRenderDeviceRender::SetupStates()
@@ -223,11 +242,14 @@ void glRenderDeviceRender::End()
 
 void  glRenderDeviceRender::Reset(HWND hWnd, u32 &dwWidth, u32 &dwHeight, float &fWidth_2, float &fHeight_2)
 {
+	// We should still be rendering to the same window.
+	R_ASSERT(m_hWnd == hWnd);
 	Resources->reset_begin();
 	Memory.mem_compact();
 
-	dwWidth = Device.dwWidth;
-	dwHeight = Device.dwHeight;
+	dwWidth = psCurrentVidMode[0];
+	dwHeight = psCurrentVidMode[1];
+	updateWindowProps();
 
 	fWidth_2 = float(dwWidth / 2);
 	fHeight_2 = float(dwHeight / 2);
@@ -238,4 +260,132 @@ void  glRenderDeviceRender::OnAssetsChanged()
 {
 	Resources->m_textures_description.UnLoad();
 	Resources->m_textures_description.Load();
+}
+
+void glRenderDeviceRender::updateWindowProps()
+{
+	//	BOOL	bWindowed				= strstr(Core.Params,"-dedicated") ? TRUE : !psDeviceFlags.is	(rsFullscreen);
+	BOOL	bWindowed = !psDeviceFlags.is(rsFullscreen);
+
+	u32		dwWindowStyle = 0;
+	// Set window properties depending on what mode were in.
+	if (bWindowed)		{
+		if (m_move_window) {
+			if (strstr(Core.Params, "-no_dialog_header"))
+				SetWindowLong(m_hWnd, GWL_STYLE, dwWindowStyle = (WS_BORDER | WS_VISIBLE));
+			else
+				SetWindowLong(m_hWnd, GWL_STYLE, dwWindowStyle = (WS_BORDER | WS_DLGFRAME | WS_VISIBLE | WS_SYSMENU | WS_MINIMIZEBOX));
+			// When moving from fullscreen to windowed mode, it is important to
+			// adjust the window size after recreating the device rather than
+			// beforehand to ensure that you get the window size you want.  For
+			// example, when switching from 640x480 fullscreen to windowed with
+			// a 1000x600 window on a 1024x768 desktop, it is impossible to set
+			// the window size to 1000x600 until after the display mode has
+			// changed to 1024x768, because windows cannot be larger than the
+			// desktop.
+
+			RECT			m_rcWindowBounds;
+			BOOL			bCenter = FALSE;
+			if (strstr(Core.Params, "-center_screen"))	bCenter = TRUE;
+
+			if (bCenter) {
+				RECT				DesktopRect;
+
+				GetClientRect(GetDesktopWindow(), &DesktopRect);
+
+				SetRect(&m_rcWindowBounds,
+					(DesktopRect.right - psCurrentVidMode[0]) / 2,
+					(DesktopRect.bottom - psCurrentVidMode[1]) / 2,
+					(DesktopRect.right + psCurrentVidMode[0]) / 2,
+					(DesktopRect.bottom + psCurrentVidMode[1]) / 2);
+			}
+			else{
+				SetRect(&m_rcWindowBounds,
+					0,
+					0,
+					psCurrentVidMode[0],
+					psCurrentVidMode[1]);
+			};
+
+			AdjustWindowRect(&m_rcWindowBounds, dwWindowStyle, FALSE);
+
+			SetWindowPos(m_hWnd,
+				HWND_TOP,
+				m_rcWindowBounds.left,
+				m_rcWindowBounds.top,
+				(m_rcWindowBounds.right - m_rcWindowBounds.left),
+				(m_rcWindowBounds.bottom - m_rcWindowBounds.top),
+				SWP_SHOWWINDOW | SWP_NOCOPYBITS | SWP_DRAWFRAME);
+		}
+	}
+	else
+	{
+		SetWindowLong(m_hWnd, GWL_STYLE, dwWindowStyle = (WS_POPUP | WS_VISIBLE));
+	}
+
+	ShowCursor(FALSE);
+	SetForegroundWindow(m_hWnd);
+}
+
+struct _uniq_mode
+{
+	_uniq_mode(LPCSTR v) :_val(v){}
+	LPCSTR _val;
+	bool operator() (LPCSTR _other) { return !stricmp(_val, _other); }
+};
+
+void free_vid_mode_list()
+{
+	for (int i = 0; vid_mode_token[i].name; i++)
+	{
+		xr_free(vid_mode_token[i].name);
+	}
+	xr_free(vid_mode_token);
+	vid_mode_token = NULL;
+}
+
+void fill_vid_mode_list()
+{
+	if (vid_mode_token != NULL)		return;
+	xr_vector<LPCSTR>	_tmp;
+
+	DWORD iModeNum = 0;
+	DEVMODE dmi;
+	ZeroMemory(&dmi, sizeof(dmi));
+	dmi.dmSize = sizeof(dmi);
+
+	while (EnumDisplaySettings(nullptr, iModeNum++, &dmi) != 0)
+	{
+		string32 str;
+
+		if (dmi.dmPelsWidth < 800)
+			continue;
+
+		sprintf_s(str, sizeof(str), "%dx%d", dmi.dmPelsWidth, dmi.dmPelsHeight);
+
+		if (_tmp.end() != std::find_if(_tmp.begin(), _tmp.end(), _uniq_mode(str)))
+			continue;
+
+		_tmp.push_back(NULL);
+		_tmp.back() = xr_strdup(str);
+	}
+
+	u32 _cnt = _tmp.size() + 1;
+
+	vid_mode_token = xr_alloc<xr_token>(_cnt);
+
+	vid_mode_token[_cnt - 1].id = -1;
+	vid_mode_token[_cnt - 1].name = NULL;
+
+#ifdef DEBUG
+	Msg("Available video modes[%d]:", _tmp.size());
+#endif // DEBUG
+	for (u32 i = 0; i<_tmp.size(); ++i)
+	{
+		vid_mode_token[i].id = i;
+		vid_mode_token[i].name = _tmp[i];
+#ifdef DEBUG
+		Msg("[%s]", _tmp[i]);
+#endif // DEBUG
+	}
 }
