@@ -91,11 +91,11 @@ void 	main 	()
 	float3 	N 		= unpack_bx4(Nh);	// just scale (assume normal in the -.5f, .5f)
 	float3 	xT 		= unpack_bx4(T);	//
 	float3 	xB 		= unpack_bx4(B);	//
-	float3x3 xform	= mul	(mat3(m_xform_v), float3x3(
+	float3x3 xform	= mul	(float3x3(
 						xT.x,xB.x,N.x,
 						xT.y,xB.y,N.y,
 						xT.z,xB.z,N.z
-					));
+					), mat3(m_xform_v));
 
 	// The pixel shader operates on the bump-map in [0..1] range
 	// Remap this range in the matrix, anyway we are pixel-shader limited :)
@@ -112,7 +112,7 @@ void 	main 	()
 	M3 			= xform[2];
 
 #ifdef 	USE_PARALLAX
-	eye 		= mul		(float3x3(T,B,N),-(w_pos - eye_position));
+	eye 		= mul		(-(w_pos - eye_position), float3x3(T,B,N));
 #endif
 
 #ifdef 	USE_TDETAIL
