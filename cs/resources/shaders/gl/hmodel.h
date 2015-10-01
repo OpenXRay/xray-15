@@ -32,7 +32,7 @@ void hmodel
 	half	hspec	= .5f + .5f * dot( vreflect, v2Pnt );
 
 	// material	// sample material
-	half4	light	= tex3D( s_material, half3(hscale, hspec, m) ).rrrr;
+	half4	light	= tex3D( s_material, half3(hscale, hspec, m) ).rrrg;
 //	half4	light	= half4(1,1,1,1);
 
 	// diffuse color
@@ -63,7 +63,7 @@ void         hmodel_table        (out half3 hdiffuse, out half3 hspecular, half 
         half         hspec         = .5h+.5h*dot        (vreflect,v2point);
 
         // material
-          half4         light        = tex3D                (s_material, half3(hscale, hspec, m) ).rrrr;                // sample material
+          half4         light        = tex3D                (s_material, half3(hscale, hspec, m) ).rrrg;                // sample material
 
         // diffuse color
         half3         env_d         = texCUBE         (env_s0,normal);
