@@ -37,6 +37,8 @@ void	CRenderTarget::phase_combine	()
 
 	// low/hi RTs
 	u_setrt				( rt_Generic_0,rt_Generic_1,0,RCache.pBaseZB );
+	glClearColor		( 0.0f, 0.0f, 0.0f, 0.0f );
+	glClear				( GL_COLOR_BUFFER_BIT );
 	RCache.set_CullMode	( CULL_NONE );
 	RCache.set_Stencil	( FALSE		);
 
