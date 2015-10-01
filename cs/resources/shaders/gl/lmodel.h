@@ -11,7 +11,7 @@ half4 plight_infinity( half m, half3 pnt, half3 normal, half3 light_direction )
   	half3 V 		= -normalize	(pnt);					// vector2eye
   	half3 L 		= -light_direction;						// vector2light
   	half3 H			= normalize	(L+V);						// half-angle-vector 
-	return tex3D 		(s_material,	half3( dot(L,N), dot(H,N), m ) );		// sample material
+	return tex3D 		(s_material,	half3( dot(L,N), dot(H,N), m ) ).rrrr;		// sample material
 }
 /*
 half plight_infinity2( half m, half3 pnt, half3 normal, half3 light_direction )
@@ -25,7 +25,7 @@ half plight_infinity2( half m, half3 pnt, half3 normal, half3 light_direction )
 			s	= saturate(dot(H,N));
 	half 	f 	= saturate(dot(-V,R));
 			s  *= f;
-	half4	r	= tex3D 			(s_material,	half3( dot(L,N), s, m ) );	// sample material
+	half4	r	= tex3D 			(s_material,	half3( dot(L,N), s, m ) ).rrrr;	// sample material
 			r.w	= pow(saturate(s),4);
   	return	r	;
 }
@@ -40,7 +40,7 @@ half4 plight_local( half m, half3 pnt, half3 normal, half3 light_position, half 
   	half3 H		= normalize	(L+V);						// half-angle-vector
 		rsqr	= dot		(L2P,L2P);					// distance 2 light (squared)
   	half  att 	= saturate	(1 - rsqr*light_range_rsq);			// q-linear attenuate
-	half4 light	= tex3D		(s_material, half3( dot(L,N), dot(H,N), m ) ); 	// sample material
+	half4 light	= tex3D		(s_material, half3( dot(L,N), dot(H,N), m ) ).rrrr; 	// sample material
   	return att*light;
 }
 
