@@ -22,8 +22,8 @@ Compilation
 This project is being developed with Visual Studio 2013.
 
 To build X-Ray Engine you'll need following SDKs:
-  * Windows SDK [http://www.microsoft.com/en-us/download/details.aspx?id=8279]
-  * DirectX SDK June 2010 [http://www.microsoft.com/en-us/download/details.aspx?id=6812]
+  * [Windows SDK](http://www.microsoft.com/en-us/download/details.aspx?id=8279) (included in VS2013)
+  * [DirectX SDK June 2010](http://www.microsoft.com/en-us/download/details.aspx?id=6812)
 
 Make sure to run `git submodule update --init` after cloning the repository.
 
