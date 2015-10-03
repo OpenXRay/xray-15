@@ -401,7 +401,7 @@
     <ResourceCompile Include="xrCore.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\3rd party\BugTrap.vcxproj">
+    <ProjectReference Include="..\..\3rd party\BugTrap\source\BugTrap.vcxproj">
       <Project>{e8cf1ada-264a-4127-86c2-fd7057d3792c}</Project>
     </ProjectReference>
   </ItemGroup>
