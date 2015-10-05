@@ -106,8 +106,8 @@ void _main( v_model I )
 	M3 			= xform	[2]; 
 
 #if defined(USE_PARALLAX) || defined(USE_STEEPPARALLAX)
-	float3  WrldEye	= -(mul(m_W,w_pos) - eye_position);
-	float3	ObjEye	= mul( m_invW,  WrldEye);
+	float3  WrldEye	= -(mul(m_W,w_pos.xyz).xyz - eye_position);
+	float3	ObjEye	= mul( m_invW,  WrldEye).xyz;
 	eye 			= mul( ObjEye,  float3x3(T,B,N));	//	Local eye
 #endif
 

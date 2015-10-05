@@ -10,7 +10,7 @@ layout(location = 2) in vec4	T;		// tangent
 layout(location = 3) in vec4	B;		// binormal
 layout(location = 4) in vec2	tc;		// (u,v)
 #ifdef	USE_LM_HEMI
-layout(location = 5) in vec2	lmh;	// (lmu,lmv)
+layout(location = 5) in vec2	lm;		// (lmu,lmv)
 #endif
 //layout(location = 6) in vec4	color;	// (r,g,b,dir-occlusion)	//	Swizzle before use!!!
 
@@ -29,7 +29,7 @@ vf main(v_static v)
 	
 	gl_Position = mul				(m_VP, P);			// xform, input in world coords
 	tc0			= unpack_tc_base	(tc,T.w,B.w);		// copy tc
-	tc1			= unpack_tc_lmap	(lmh);				// copy tc 
+	tc1			= unpack_tc_lmap	(lm);				// copy tc 
 	tch 		= tc1;
 	tc2			= calc_reflection	(pos_w, norm_w);
 	c0			= v_hemi(norm_w);						// just hemisphere

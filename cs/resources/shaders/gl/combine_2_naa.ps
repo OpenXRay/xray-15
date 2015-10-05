@@ -35,7 +35,7 @@ void main()
 			img 	= mblur		(center,tex2D(s_position,tc0).rgb,img.rgb);
 
 #ifdef 	USE_DISTORT
- 	half3	blurred	= bloom*def_hdr	;
+ 	half3	blurred	= bloom.rgb*def_hdr	;
 			img		= lerp	(img,blurred,distort.z);
 #endif
 

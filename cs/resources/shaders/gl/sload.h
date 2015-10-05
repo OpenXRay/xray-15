@@ -22,8 +22,8 @@ float4 tbase( float2 tc )
 
 #if defined(ALLOW_STEEPPARALLAX) && defined(USE_STEEPPARALLAX)
 
-static const float fParallaxStartFade = 8.0f;
-static const float fParallaxStopFade = 12.0f;
+const float fParallaxStartFade = 8.0f;
+const float fParallaxStopFade = 12.0f;
 
 void UpdateTC( inout p_bumped I)
 {
@@ -79,7 +79,7 @@ void UpdateTC( inout p_bumped I)
 		I.tcdh = vTexCoord;
 
 #if defined(USE_TDETAIL) && defined(USE_STEEPPARALLAX)
-		I.tcdbump = vTexCoord * dt_params;
+		I.tcdbump = vTexCoord * dt_params.xy;
 #endif
 	}
 
@@ -93,7 +93,7 @@ void UpdateTC( inout p_bumped I)
 			//height  /= 2;
 			//height  *= 0.8;
 			height	= height*(parallax.x) + (parallax.y);	//
-	float2	new_tc  = I.tcdh + height * normalize(I.eye);	//
+	float2	new_tc  = I.tcdh + height * normalize(I.eye).xy;	//
 
 	//	Output the result
 	I.tcdh	= new_tc;

@@ -8,7 +8,7 @@ layout(location = 2) in vec4	tan;	// tangent
 layout(location = 3) in vec4	bnorm;	// binormal
 layout(location = 4) in vec2	tc;		// (u,v)
 #if	defined(USE_LM_HEMI)
-layout(location = 5) in vec2	lmh;	// (lmu,lmv)
+layout(location = 5) in vec2	lm;		// (lmu,lmv)
 #elif defined(USE_R2_STATIC_SUN)
 layout(location = 5) in vec4	color;	// (r,g,b,dir-occlusion)	//	Swizzle before use!!!
 #endif
@@ -59,6 +59,6 @@ void main ()
 #endif
 
 #ifdef	USE_LM_HEMI
-	lmh 		= unpack_tc_lmap( lmh );
+	lmh 		= unpack_tc_lmap( lm );
 #endif
 }

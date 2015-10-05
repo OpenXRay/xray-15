@@ -8,7 +8,7 @@ layout(location = 2) in vec4	tan;	// tangent
 layout(location = 3) in vec4	bnorm;	// binormal
 layout(location = 4) in vec2	tc;		// (u,v)
 #if	defined(USE_LM_HEMI)
-layout(location = 5) in vec2	lmh;	// (lmu,lmv)
+layout(location = 5) in vec2	lm;		// (lmu,lmv)
 #elif defined(USE_R2_STATIC_SUN)
 layout(location = 5) in vec4	color;	// (r,g,b,dir-occlusion)	//	Swizzle before use!!!
 #endif
@@ -96,14 +96,14 @@ void main()
 	M3 			= xform[2]; 
 
 #if defined(USE_PARALLAX) || defined(USE_STEEPPARALLAX)
-	eye 		= mul		(-(w_pos - eye_position), float3x3(T,B,xN));
+	eye 		= mul		(-(w_pos.xyz - eye_position), float3x3(T,B,N));
 #endif
 
 #ifdef 	USE_TDETAIL
-	tcdbump		= tcdh * dt_params;		// dt tc
+	tcdbump		= tcdh * dt_params.xy;		// dt tc
 #endif
 
 #ifdef	USE_LM_HEMI
-	lmh 		= unpack_tc_lmap	(lmh);
+	lmh 		= unpack_tc_lmap	(lm);
 #endif
 }

@@ -35,7 +35,7 @@ void main()
 	// hemi,sun,material
 	half 	ms	= xmaterial		;
 #ifdef USE_LM_HEMI
-	half4	lm 	= tex2D( s_hemi, I.lmh );
+	half4	lm 	= tex2D( s_hemi, lmh );
 //	half 	h  	= dot( lm.rgb, 1.f/3.f );
 	half 	h  	= get_hemi(lm);
 # ifdef USE_R2_STATIC_SUN
