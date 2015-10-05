@@ -157,7 +157,7 @@ private:
 	void							LoadPortals(IReader	*fs);
 	void							LoadSectors(IReader	*fs);
 	void							LoadSWIs(CStreamReader	*fs);
-	char*							LoadIncludes(LPCSTR pSrcData, UINT SrcDataLen, xr_vector<char*>& includes);
+	void							LoadIncludes(LPCSTR pSrcData, UINT SrcDataLen, xr_vector<char*>& source, xr_vector<char*>& includes);
 
 public:
 	ShaderElement*					rimp_select_sh_static(dxRender_Visual	*pVisual, float cdist_sq);

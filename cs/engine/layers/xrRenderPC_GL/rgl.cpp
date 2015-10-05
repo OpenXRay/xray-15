@@ -225,39 +225,41 @@ void					CRender::create()
 	::PortalTraverser.initialize();
 }
 
-char* CRender::LoadIncludes(LPCSTR pSrcData, UINT SrcDataLen, xr_vector<char*>& includes)
+void CRender::LoadIncludes(LPCSTR pSrcData, UINT SrcDataLen, xr_vector<char*>& source, xr_vector<char*>& includes)
 {
 	char* srcData = xr_alloc<char>(SrcDataLen + 2);
 	memcpy(srcData, pSrcData, SrcDataLen);
 	srcData[SrcDataLen] = '\n';
 	srcData[SrcDataLen + 1] = '\0';
+	includes.push_back(srcData);
+	source.push_back(srcData);
 
-	string_path fn, path;
+	string_path path;
 	char* str = srcData;
 	while (strstr(str, "#include") != nullptr)
 	{
-		// get filename
-		str = strstr(str, "#include");
-		str[0] = str[1] = '/';
-		str = strchr(str, '"') + 1; // Skip quotation
-		size_t len = strchr(str, '"') - str;
-		strncpy(fn, str, len);
-		fn[len] = '\0';
+		// Get filename of include directive
+		str = strstr(str, "#include");		// Find the include directive
+		char* fn = strchr(str, '"') + 1;	// Get filename, skip quotation
+		*str = '\0';						// Terminate previous source
+		str = strchr(fn, '"');				// Get end of filename path
+		*str = '\0';						// Terminate filename path
 
-		// create path
+		// Create path to included shader
 		strconcat(sizeof(path), path, ::Render->getShaderPath(), fn);
 		FS.update_path(path, "$game_shaders$", path);
 		while (char* sep = strchr(path, '/')) *sep = '\\';
 
-		// open and read file
+		// Open and read file, recursively load includes
 		IReader* R = FS.r_open(path);
 		R_ASSERT2(R, path);
-		includes.push_back(LoadIncludes((char*)R->pointer(), R->length(), includes));
+		LoadIncludes((char*)R->pointer(), R->length(), source, includes);
 		FS.r_close(R);
-	}
 
-	// remove include directives from source data
-	return srcData;
+		// Add next source, skip quotation
+		str++;
+		source.push_back(str);
+	}
 }
 
 struct SHADER_MACRO {
@@ -277,7 +279,7 @@ HRESULT	CRender::shader_compile(
 	void*							_ppErrorMsgs,
 	void*							_ppConstantTable)
 {
-	xr_vector<char*>				includes;
+	xr_vector<char*>				source, includes;
 	SHADER_MACRO					defines[128];
 	int								def_it = 0;
 	char							c_smapsize[32];
@@ -285,7 +287,6 @@ HRESULT	CRender::shader_compile(
 	char							c_sun_shafts[32];
 	char							c_ssao[32];
 	char							c_sun_quality[32];
-	const char*						srcData;
 
 	// TODO: OGL: Implement these parameters.
 	VERIFY(!_pDefines);
@@ -296,7 +297,7 @@ HRESULT	CRender::shader_compile(
 	VERIFY(!_ppConstantTable);
 
 	// open included files
-	srcData = LoadIncludes(pSrcData, SrcDataLen, includes);
+	LoadIncludes(pSrcData, SrcDataLen, source, includes);
 
 	// options
 	{
@@ -486,12 +487,11 @@ HRESULT	CRender::shader_compile(
 
 	// Compile sources list
 	size_t def_len = def_it * 5;
-	size_t sources_len = includes.size() + def_len + 2;
+	size_t sources_len = source.size() + def_len + 1;
 	const char** sources = xr_alloc<const char*>(sources_len);
 	sources[0] = "#version 410\n";
 	memcpy(sources + 1, defines, def_len * sizeof(char*));
-	memcpy(sources + def_len + 1, includes.data(), includes.size() * sizeof(char*));
-	sources[sources_len - 1] = srcData;
+	memcpy(sources + def_len + 1, source.data(), source.size() * sizeof(char*));
 
 	// Compile the shader
 	GLuint shader = *(GLuint*)_ppShader;
@@ -508,7 +508,6 @@ HRESULT	CRender::shader_compile(
 
 	// Free string resources
 	xr_free(sources);
-	xr_free(srcData);
 	for (xr_vector<char*>::iterator it = includes.begin(); it != includes.end(); it++)
 		xr_free(*it);
 
