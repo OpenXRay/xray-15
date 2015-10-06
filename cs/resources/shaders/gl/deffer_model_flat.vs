@@ -13,7 +13,7 @@ p_flat _main( v_model I )
 	O.hpos		= mul( m_WVP, I.P );
 	O.N	 		= mul( m_WV, I.N ).xyz;
 
-	position	= float4( Pe, L_material.x );
+	O.position	= float4( Pe, L_material.x );
 
 #if defined(USE_R2_STATIC_SUN) && !defined(USE_LM_HEMI)
 	O.tcdh 		= float4( I.tc.xyyy	);
@@ -23,7 +23,7 @@ p_flat _main( v_model I )
 #endif
 
 #ifdef USE_TDETAIL
-	O.tcdbump	= tcdh*dt_params;					// dt tc
+	O.tcdbump	= O.tcdh*dt_params;					// dt tc
 #endif
 
 	return	O;

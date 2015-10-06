@@ -15,10 +15,10 @@ p_flat _main ( v_static I )
 	float3	Pe	= mul( m_WV, I.P.xyz ).xyz;
 
 	float2	tc 	= unpack_tc_base( I.tc, I.T.w, I.B.w);	// copy tc
-	position	= float4( Pe, I.Nh.w );
+	O.position	= float4( Pe, I.Nh.w );
 
 #if defined(USE_R2_STATIC_SUN) && !defined(USE_LM_HEMI)
-	float 	s	= color.w	;							// (r,g,b,dir-occlusion)
+	float 	s	= I.color.w	;							// (r,g,b,dir-occlusion)
 	O.tcdh		= float4( tc.xyyy );
 	O.tcdh.w	= s;
 #else
