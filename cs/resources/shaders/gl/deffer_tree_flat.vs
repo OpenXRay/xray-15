@@ -71,6 +71,6 @@ void main ()
 #endif
 
 #ifdef USE_TDETAIL
-	tcdbump	= tcdh*dt_params;					// dt tc
+	tcdbump	= tcdh*dt_params.xy;					// dt tc
 #endif
 }

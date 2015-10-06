@@ -76,13 +76,13 @@ void 		main	()
 # ifdef	USE_TDETAIL
  # ifdef USE_4_DETAIL
 	half4	mask= tex2D		(s_mask, tcdh);
-	half 	mag	= dot 		(mask,1);
+	half 	mag	= dot 		(mask,half4(1));
 			mask= mask/mag	;
 
-	half3	d_R	= tex2D		(s_dt_r, tcdbump)*mask.r;
-	half3	d_G	= tex2D		(s_dt_g, tcdbump)*mask.g;
-	half3	d_B	= tex2D		(s_dt_b, tcdbump)*mask.b;
-	half3	d_A	= tex2D		(s_dt_a, tcdbump)*mask.a;
+	half3	d_R	= tex2D		(s_dt_r, tcdbump).xyz*mask.r;
+	half3	d_G	= tex2D		(s_dt_g, tcdbump).xyz*mask.g;
+	half3	d_B	= tex2D		(s_dt_b, tcdbump).xyz*mask.b;
+	half3	d_A	= tex2D		(s_dt_a, tcdbump).xyz*mask.a;
 	half3	dt	= d_R+d_G+d_B+d_A;
 		D.rgb	= 2*D.rgb*dt	 ;
 
@@ -93,14 +93,14 @@ void 		main	()
 	 half4	n_Bt = tex2D	(s_dn_b, tcdbump).wzyx;
 	 half4	n_At = tex2D	(s_dn_a, tcdbump).wzyx;
 	 
- 	 half3	n_R = (n_Rt-0.5)*mask.r; half g_R=n_Rt.w*mask.r;
-	 half3	n_G = (n_Gt-0.5)*mask.g; half g_G=n_Gt.w*mask.g;
-	 half3	n_B = (n_Bt-0.5)*mask.b; half g_B=n_Bt.w*mask.b;
-	 half3	n_A = (n_At-0.5)*mask.a; half g_A=n_At.w*mask.a;
+ 	 half3	n_R = (n_Rt.xyz-float3(0.5))*mask.r; half g_R=n_Rt.w*mask.r;
+	 half3	n_G = (n_Gt.xyz-float3(0.5))*mask.g; half g_G=n_Gt.w*mask.g;
+	 half3	n_B = (n_Bt.xyz-float3(0.5))*mask.b; half g_B=n_Bt.w*mask.b;
+	 half3	n_A = (n_At.xyz-float3(0.5))*mask.a; half g_A=n_At.w*mask.a;
 
 	 half3	mix		= 	n_R+n_G+n_B+n_A;
 			mix.z	*=	0.5;		//. make bump twice as contrast (fake, remove me if possible)
-	 half3	N		= 	mul     	(mix.xyz, half3x3(I.M1, I.M2, I.M3));
+	 half3	N		= 	mul     	(mix.xyz, half3x3(M1, M2, M3));
 
 	 	 	G 		= 	g_R+g_G+g_B+g_A;
 //			G 	= 0			;

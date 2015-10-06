@@ -41,7 +41,7 @@ void main()
 	position	= float4	(Pe, 		.2f		);
 
 #ifdef 	USE_TDETAIL
-	tcdbump		= tcdh * dt_params;			// dt tc
+	tcdbump		= tcdh * dt_params.xy;			// dt tc
 #endif
 
 	color = c;

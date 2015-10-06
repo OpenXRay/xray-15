@@ -19,7 +19,7 @@ layout(location = 0) out float	depth;	// Depth
 layout(location = 1) out vec2	tc0;	// Diffuse map for aref
 #endif
 
-v_shadow_direct_aref main ( v_static I )
+v_shadow_direct_aref _main ( v_static I );
 
 void	main()
 {

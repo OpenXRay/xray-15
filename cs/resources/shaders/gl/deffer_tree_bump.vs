@@ -65,7 +65,7 @@ void 	main 	()
 	float 	inten 	= H * dp;				// intensity
 	float2 	result	= calc_xz_wave	(wind.xz*inten, frac);
 #ifdef		USE_TREEWAVE
-			result	= 0;
+			result	= float2(0);
 #endif
 	float4 	w_pos 	= float4(pos.x+result.x, pos.y, pos.z+result.y, 1);
 	float2 	tc 		= (tc * consts).xy;
@@ -112,10 +112,10 @@ void 	main 	()
 	M3 			= xform[2];
 
 #ifdef 	USE_PARALLAX
-	eye 		= mul		(-(w_pos - eye_position), float3x3(T,B,N));
+	eye 		= mul		(-(w_pos.xyz - eye_position), float3x3(T,B,N));
 #endif
 
 #ifdef 	USE_TDETAIL
-	tcdbump		= tcdh * dt_params;		// dt tc
+	tcdbump		= tcdh * dt_params.xy;		// dt tc
 #endif
 }

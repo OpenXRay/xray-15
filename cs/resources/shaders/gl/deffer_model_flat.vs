@@ -23,7 +23,7 @@ p_flat _main( v_model I )
 #endif
 
 #ifdef USE_TDETAIL
-	O.tcdbump	= O.tcdh*dt_params;					// dt tc
+	O.tcdbump	= O.tcdh*dt_params.xy;					// dt tc
 #endif
 
 	return	O;
