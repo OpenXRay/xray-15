@@ -316,7 +316,4 @@ half Contrast(half Input, half ContrastPower)
      return Output;
 }
 
-#define FXPS technique _render{pass _code{PixelShader=compile ps_3_0 main();}}
-#define FXVS technique _render{pass _code{VertexShader=compile vs_3_0 main();}}
-
 #endif
