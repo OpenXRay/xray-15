@@ -1,0 +1,28 @@
+#include "common.h"
+
+#ifdef 	USE_HWSMAP
+layout(location = 0) in vec2 tc0;
+#else
+layout(location = 0) in float depth;
+layout(location = 1) in vec2 tc0;
+#endif
+
+layout(location = 0) out vec4 Color;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Pixel
+void main ()
+{
+#ifdef 	USE_HWSMAP
+	half4 	C 	= tex2D		(s_base, tc0);
+	clip	(C.w - def_aref);
+	Color	=  C;
+#else
+	// 1. Base texture + kill pixels with low alpha
+	half4 	C 	= tex2D		(s_base, tc0);
+	clip		(C.w - def_aref);
+
+	// 2.
+	Color	= float4(I.depth);
+#endif
+}
