@@ -51,8 +51,8 @@ void 	main ()
 	// Final out
 	float4	Pp 	= mul		(m_WVP,	pos				);
 	gl_Position	= Pp;
-	N	 		= mul		(m_WV,  normalize(norm)	).xyz;
-	float3	Pe	= mul		(m_WV,  pos.xyz			).xyz;
+	N	 		= mul		(m_WV,  normalize(norm)	);
+	float3	Pe	= mul		(m_WV,  pos				);
 
 # if defined(USE_R2_STATIC_SUN)
 	tcdh 		= (misc * consts).xyyy;

@@ -9,7 +9,7 @@ p_bumped _main( v_static I )
 
 	// Eye-space pos/normal
 	p_bumped 	O;
-	float3	Pe	= mul		(m_WV,  w_pos.xyz	).xyz;
+	float3	Pe	= mul		(m_WV,  w_pos		);
 	O.hpos		= mul		(m_WVP,	w_pos		);
 	O.position	= float4	(Pe, hemi			);
 //	O.position	= float4	(O.hpos.xyz, hemi	);

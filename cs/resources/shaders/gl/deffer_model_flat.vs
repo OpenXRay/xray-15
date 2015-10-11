@@ -5,13 +5,13 @@
 p_flat _main( v_model I )
 {
 	// world-space  N
-	float3 	N_w	= mul( m_W, I.N ).xyz;
+	float3 	N_w	= mul( m_W, I.N );
 
 	// Eye-space pos/normal
 	p_flat 		O;
-	float3	Pe	= mul( m_WV, I.P.xyz ).xyz;
+	float3	Pe	= mul( m_WV, I.P );
 	O.hpos		= mul( m_WVP, I.P );
-	O.N	 		= mul( m_WV, I.N ).xyz;
+	O.N	 		= mul( m_WV, I.N );
 
 	O.position	= float4( Pe, L_material.x );
 

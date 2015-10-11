@@ -55,7 +55,7 @@ void 	main 	()
 	vec4 B	=	unpack_D3DCOLOR(bnorm);
 
 	// Transform to world coords
-	float3 	pos		= mul			(m_xform, P.xyz).xyz;
+	float3 	pos		= mul			(m_xform, P);
 
 	//
 	float 	base 	= m_xform._24	;		// take base height from matrix
@@ -73,7 +73,7 @@ void 	main 	()
 //	float 	hemi 	= Nh.w;
 
 	// Eye-space pos/normal
-	float3	Pe		= mul		(m_V,  	w_pos.xyz	).xyz;
+	float3	Pe		= mul		(m_V,  	w_pos		);
 	gl_Position		= mul		(m_VP,	w_pos		);
 	position		= float4	(Pe, 	hemi		);
 

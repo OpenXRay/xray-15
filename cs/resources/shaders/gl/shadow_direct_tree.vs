@@ -26,7 +26,7 @@ v_shadow_direct _main ( v_shadow_direct I )
 	
 
 	// Transform to world coords
-	float3 	pos	= mul		(m_xform , I.hpos.xyz).xyz;
+	float3 	pos	= mul		(m_xform , I.hpos);
 
 	// 
 	float 	base 	= m_xform._24;			// take base height from matrix

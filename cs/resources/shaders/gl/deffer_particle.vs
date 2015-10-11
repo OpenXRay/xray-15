@@ -32,7 +32,7 @@ void main()
 	// Eye-space pos/normal
 	gl_Position	= mul		(m_WVP,		w_pos	);
 	N 			= normalize (eye_position-w_pos.xyz	);
-	float3	Pe	= mul		(m_WV, 		P.xyz	).xyz;
+	float3	Pe	= mul		(m_WV, 		P		);
 #if defined(USE_R2_STATIC_SUN) && !defined(USE_LM_HEMI)
 	tcdh 		= float4	(tc.xyyy			);
 #else

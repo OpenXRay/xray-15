@@ -124,7 +124,7 @@ half	calc_ssao( half3 P, half3 N, half2 tc, half2 tcJ)
 ////////////////////////////////
 //	jittering
 //	half2	Mirror = tex2D( jitter0, tcJ.xy ).rg;
-	float3 tc1	= mul( m_v2w, P ).xyz;
+	float3 tc1	= mul( m_v2w, P );
 	tc1 *= ssao_noise_tile_factor;
 //	tc1 *= 2;
 //	tc1 *= 4;

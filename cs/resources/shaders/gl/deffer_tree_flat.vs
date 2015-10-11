@@ -39,7 +39,7 @@ void main ()
 	vec4 B	=	unpack_D3DCOLOR(bnorm);
 
 	// Transform to world coords
-	float3 	pos		= mul		(m_xform, P.xyz).xyz;
+	float3 	pos		= mul		(m_xform, P);
 
 	//
 	float 	base 	= m_xform._24;			// take base height from matrix
@@ -55,11 +55,11 @@ void main ()
 
 	// Final xform(s)
 	// Final xform
-	float3	Pe		= mul		(m_V,  f_pos.xyz			).xyz;
+	float3	Pe		= mul		(m_V,  f_pos				);
 	float 	hemi 	= Nh.w*c_scale.w + c_bias.w;
     //float 	hemi 	= Nh.w;
 	gl_Position		= mul		(m_VP, f_pos				);
-	N 				= mul		(m_xform_v, unpack_bx2(Nh.rgb)	).xyz;
+	N 				= mul		(m_xform_v, unpack_bx2(Nh.rgb)	);
 	position		= float4	(Pe, hemi					);
 
 #if defined(USE_R2_STATIC_SUN) && !defined(USE_LM_HEMI)

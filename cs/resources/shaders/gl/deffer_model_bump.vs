@@ -14,7 +14,7 @@ p_bumped _main( v_model I )
 	p_bumped	O;
 	O.hpos		= mul( m_WVP, w_pos	);
 	float2 	tc 	= I.tc;
-	float3	Pe	= mul( m_WV, w_pos.xyz ).xyz;
+	float3	Pe	= mul( m_WV, w_pos );
 	O.position	= float4( Pe, L_material.x );
 
 #if defined(USE_R2_STATIC_SUN) && !defined(USE_LM_HEMI)
@@ -50,8 +50,8 @@ p_bumped _main( v_model I )
 	O.M3		= xform	[2]; 
 
 #if defined(USE_PARALLAX) || defined(USE_STEEPPARALLAX)
-	float3  WrldEye	= -(mul(m_W,w_pos.xyz).xyz - eye_position);
-	float3	ObjEye	= mul( m_invW,  WrldEye).xyz;
+	float3  WrldEye	= -(mul(m_W,w_pos) - eye_position);
+	float3	ObjEye	= mul( m_invW,  WrldEye);
 	O.eye 			= mul( ObjEye,  float3x3(T,B,N));	//	Local eye
 #endif
 

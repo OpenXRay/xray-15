@@ -18,16 +18,24 @@
 #define int4        ivec4
 #define half3x3     mat3
 #define half4x4     mat4
-#define half3x4     mat3x4
+#define half3x4     mat4x3
 #define float3x3    mat3
 #define float4x4    mat4
-#define float3x4    mat3x4
+#define float3x4    mat4x3
+
+vec3	mul(mat3 a,		vec3 b)	{ return a * b; }
+vec3	mul(vec3 a,		mat3 b)	{ return a * b; }
+mat3	mul(mat3 a,		mat3 b)	{ return a * b; }
+vec4	mul(mat4 a,		vec4 b)	{ return a * b; }
+vec4	mul(vec4 a,		mat4 b)	{ return a * b; }
+mat4	mul(mat4 a,		mat4 b)	{ return a * b; }
+vec3	mul(mat4x3 a,	vec4 b)	{ return a * b; }
+vec3	mul(mat4x3 a,	vec3 b)	{ return (b * a).xyz; }
 
 #define lerp        mix
 #define frac        fract
 #define saturate(a) clamp(a, 0.0, 1.0)
 #define clip(x)		if (x < 0) discard
-#define mul(a,b)	((a) * (b))
 #define tex2D		texture2D
 #define tex2Dproj	textureProj
 #define tex2Dlod	textureLod

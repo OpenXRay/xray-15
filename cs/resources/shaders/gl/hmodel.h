@@ -18,7 +18,7 @@ void hmodel
 )
 {
         // hscale - something like diffuse reflection
-	half3	nw		= mul( m_v2w, normal ).xyz;
+	half3	nw		= mul( m_v2w, normal );
 	half	hscale	= h;	//. *        (.5f + .5f*nw.y);
 
 #ifdef         USE_GAMMA_22
@@ -27,7 +27,7 @@ void hmodel
 
 	// reflection vector
 	float3	v2PntL	= normalize( Pnt );
-	half3	v2Pnt	= mul( m_v2w, v2PntL ).xyz;
+	half3	v2Pnt	= mul( m_v2w, v2PntL );
 	half3	vreflect= reflect( v2Pnt, nw );
 	half	hspec	= .5f + .5f * dot( vreflect, v2Pnt );
 
