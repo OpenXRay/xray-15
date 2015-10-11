@@ -29,7 +29,7 @@ v_shadow_direct _main ( v_shadow_direct I )
 	float3 	pos	= mul		(m_xform , I.hpos);
 
 	// 
-	float 	base 	= m_xform._24;			// take base height from matrix
+	float 	base 	= m_xform._42;			// take base height from matrix
 	float 	dp		= calc_cyclic  (wave.w+dot(pos,wave.xyz));
 	float 	H 		= pos.y - base;			// height of vertex (scaled, rotated, etc.)
 	float 	inten 	= H * dp;			// intensity

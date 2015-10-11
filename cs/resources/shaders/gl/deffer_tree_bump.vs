@@ -58,7 +58,7 @@ void 	main 	()
 	float3 	pos		= mul			(m_xform, P);
 
 	//
-	float 	base 	= m_xform._24	;		// take base height from matrix
+	float 	base 	= m_xform._42	;		// take base height from matrix
 	float 	dp		= calc_cyclic  	(wave.w+dot(pos,wave.xyz));
 	float 	H 		= pos.y - base	;		// height of vertex (scaled, rotated, etc.)
 	float 	frac 	= tc.z*consts.x;		// fractional (or rigidity)
