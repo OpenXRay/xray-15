@@ -95,7 +95,7 @@ void 	main 	()
 						xT.x,xB.x,N.x,
 						xT.y,xB.y,N.y,
 						xT.z,xB.z,N.z
-					), mat3(m_xform_v));
+					), float3x3(m_xform_v));
 
 	// The pixel shader operates on the bump-map in [0..1] range
 	// Remap this range in the matrix, anyway we are pixel-shader limited :)

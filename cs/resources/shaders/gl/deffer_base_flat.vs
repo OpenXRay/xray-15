@@ -11,7 +11,7 @@ p_flat _main ( v_static I )
 	p_flat 		O;
 	float4	Pp 	= mul( m_WVP, I.P );
 	O.hpos		= Pp;
-	O.N			= mul( m_WV, unpack_bx2(I.Nh.rgb) );
+	O.N			= mul( float3x3(m_WV), unpack_bx2(I.Nh.rgb) );
 	float3	Pe	= mul( m_WV, I.P );
 
 	float2	tc 	= unpack_tc_base( I.tc, I.T.w, I.B.w);	// copy tc

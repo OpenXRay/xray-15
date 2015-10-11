@@ -59,7 +59,7 @@ void main ()
 	float 	hemi 	= Nh.w*c_scale.w + c_bias.w;
     //float 	hemi 	= Nh.w;
 	gl_Position		= mul		(m_VP, f_pos				);
-	N 				= mul		(m_xform_v, unpack_bx2(Nh.rgb)	);
+	N 				= mul		(float3x3(m_xform_v), unpack_bx2(Nh.rgb)	);
 	position		= float4	(Pe, hemi					);
 
 #if defined(USE_R2_STATIC_SUN) && !defined(USE_LM_HEMI)

@@ -11,7 +11,7 @@ p_flat _main( v_model I )
 	p_flat 		O;
 	float3	Pe	= mul( m_WV, I.P );
 	O.hpos		= mul( m_WVP, I.P );
-	O.N	 		= mul( m_WV, I.N );
+	O.N	 		= mul( float3x3(m_WV), I.N );
 
 	O.position	= float4( Pe, L_material.x );
 
