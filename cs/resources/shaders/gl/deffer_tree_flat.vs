@@ -49,7 +49,7 @@ void main ()
 	float 	inten 	= H * dp;			// intensity
 	float2 	result	= calc_xz_wave	(wind.xz*inten, frac);
 #ifdef		USE_TREEWAVE
-			result	= 0;
+			result	= float2(0);
 #endif
 	float4 	f_pos 	= float4(pos.x+result.x, pos.y, pos.z+result.y, 1);
 

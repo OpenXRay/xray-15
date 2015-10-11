@@ -15,9 +15,9 @@ layout(location = 2) in vec3 tan;	// (nx,ny,nz)
 layout(location = 3) in vec3 bnorm;	// (nx,ny,nz)
 #endif
 #if defined(SKIN_2) || defined(SKIN_3)
-layout(location = 4) in vec4 tc0;	// (u,v)
+layout(location = 4) in vec4 tc;	// (u,v)
 #else
-layout(location = 4) in vec2 tc0;	// (u,v)
+layout(location = 4) in vec2 tc;	// (u,v)
 #endif
 #ifdef 	SKIN_4
 layout(location = 5) in vec4 ind;
@@ -30,7 +30,7 @@ layout(location = 0) out float	depth;	// Depth
 layout(location = 1) out vec2	tc0;	// Diffuse map for aref
 #endif
 
-v_shadow_direct_aref main ( v_static I )
+v_shadow_direct_aref _main( v_model	I );
 
 void	main()
 {
@@ -58,7 +58,7 @@ void	main()
 	I.N = norm;
 	I.T = tan;
 	I.B = bnorm;
-	I.tc = tc0;
+	I.tc = tc;
 
 	v_shadow_direct_aref O;
 #ifdef 	SKIN_NONE
