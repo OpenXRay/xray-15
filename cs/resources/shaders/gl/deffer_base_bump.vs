@@ -30,11 +30,11 @@ p_bumped _main( v_static I )
 	float3 	N 	= unpack_bx4(I.Nh);	// just scale (assume normal in the -.5f, .5f)
 	float3 	T 	= unpack_bx4(I.T);	// 
 	float3 	B 	= unpack_bx4(I.B);	// 
-	float3x3 xform	= mul	(float3x3(
+	float3x3 xform	= mul	(float3x3(m_WV), float3x3(
 						T.x,B.x,N.x,
 						T.y,B.y,N.y,
 						T.z,B.z,N.z
-				), float3x3(m_WV));
+				));
 	// The pixel shader operates on the bump-map in [0..1] range
 	// Remap this range in the matrix, anyway we are pixel-shader limited :)
 	// ...... [ 2  0  0  0]
@@ -50,7 +50,7 @@ p_bumped _main( v_static I )
 	O.M3 			= xform[2]; 
 
 #if defined(USE_PARALLAX) || defined(USE_STEEPPARALLAX)
-	O.eye 		= mul		(-(w_pos.xyz - eye_position), float3x3(T,B,N));
+	O.eye 		= mul		(float3x3(T,B,N),-(w_pos.xyz - eye_position));
 #endif
 
 #ifdef 	USE_TDETAIL
