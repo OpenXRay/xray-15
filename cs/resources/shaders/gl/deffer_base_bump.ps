@@ -9,11 +9,11 @@ f_deffer _main ( p_bumped I )
   surface_bumped 	S 	= sload 	(I);
 
   // Sample normal, rotate it by matrix, encode position 
-  half3 Ne				= mul       (S.normal, half3x3(I.M1, I.M2, I.M3));
+  half3 Ne				= mul       (half3x3(I.M1, I.M2, I.M3), S.normal);
 		Ne				= normalize	(Ne);
 
-  // hemi,sun,material
-  half 	ms	= xmaterial		;
+	// hemi,sun,material
+	half 	ms	= xmaterial		;
 #ifdef USE_LM_HEMI
 	half4	lm 	= tex2D			(s_hemi, I.lmh);
 //	half 	h  	= dot			(lm.rgb,1.f/3.f);
