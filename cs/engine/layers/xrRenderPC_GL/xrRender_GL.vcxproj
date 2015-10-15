@@ -75,7 +75,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
-      <AdditionalIncludeDirectories>.\;$(SolutionDir)engine;$(SolutionDir)sdk\include;$(SolutionDir)3rd party;$(SolutionDir)3rd party\glew\include;$(SolutionDir)3rd party\gli;$(SolutionDir)3rd party\gli\external\glm-0.9.7.1;$(AdditionalIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;$(DXSDK_DIR)\include;$(SolutionDir)engine;$(SolutionDir)sdk\include;$(SolutionDir)3rd party;$(SolutionDir)3rd party\glew\include;$(SolutionDir)3rd party\gli;$(SolutionDir)3rd party\gli\external\glm-0.9.7.1;$(AdditionalIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>USE_OGL;NO_XR_VDECLARATOR;WIN32;DEBUG;_WINDOWS;_USRDLL;XRRENDER_GL_EXPORTS;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -98,7 +98,7 @@
     <Link>
       <AdditionalDependencies>opengl32.lib;glu32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(SolutionDir)sdk\libraries;$(SolutionDir)libraries\$(Configuration);$(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x86;$(SolutionDir)sdk\libraries;$(SolutionDir)libraries\$(Configuration);$(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <GenerateMapFile>false</GenerateMapFile>
       <MapFileName />
@@ -118,7 +118,7 @@
       <OmitFramePointers>true</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <WholeProgramOptimization>true</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.\;$(SolutionDir)engine;$(SolutionDir)sdk\include;$(SolutionDir)3rd party;$(SolutionDir)3rd party\glew\include;$(SolutionDir)3rd party\gli;$(SolutionDir)3rd party\gli\external\glm-0.9.7.1;$(AdditionalIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;$(DXSDK_DIR)\include;$(SolutionDir)engine;$(SolutionDir)sdk\include;$(SolutionDir)3rd party;$(SolutionDir)3rd party\glew\include;$(SolutionDir)3rd party\gli;$(SolutionDir)3rd party\gli\external\glm-0.9.7.1;$(AdditionalIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>USE_OGL;NO_XR_VDECLARATOR;WIN32;NDEBUG;_WINDOWS;_USRDLL;XRRENDER_GL_EXPORTS;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <ExceptionHandling />
@@ -141,7 +141,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>opengl32.lib;glu32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)sdk\libraries;$(SolutionDir)libraries\$(Configuration);$(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x86;$(SolutionDir)sdk\libraries;$(SolutionDir)libraries\$(Configuration);$(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
       <GenerateMapFile>false</GenerateMapFile>
@@ -164,7 +164,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>false</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
-      <AdditionalIncludeDirectories>.\;$(SolutionDir)engine;$(SolutionDir)sdk\include;$(SolutionDir)3rd party;$(SolutionDir)3rd party\glew\include;$(SolutionDir)3rd party\gli;$(SolutionDir)3rd party\gli\external\glm-0.9.7.1;$(AdditionalIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;$(DXSDK_DIR)\include;$(SolutionDir)engine;$(SolutionDir)sdk\include;$(SolutionDir)3rd party;$(SolutionDir)3rd party\glew\include;$(SolutionDir)3rd party\gli;$(SolutionDir)3rd party\gli\external\glm-0.9.7.1;$(AdditionalIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>USE_OGL;NO_XR_VDECLARATOR;MIXED;WIN32;DEBUG;_WINDOWS;_USRDLL;XRRENDER_GL_EXPORTS;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -185,7 +185,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>opengl32.lib;glu32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)sdk\libraries;$(SolutionDir)libraries\$(Configuration);$(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x86;$(SolutionDir)sdk\libraries;$(SolutionDir)libraries\$(Configuration);$(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <GenerateMapFile>false</GenerateMapFile>
       <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
