@@ -15,7 +15,8 @@ half sample_hw_pcf (float4 tc,float4 shift)
 {
 	const float 	ts = KERNEL / float(SMAP_size);
 
-	return tex2Dproj( s_smap, tc + tc.w * shift * ts ).x;
+	float	s	= tex2Dproj( s_smap, tc + tc.w * shift * ts ).x;
+	return (s < tc.z / tc.w) ? 0.f : 1.f;
 }
 
 half shadow_hw( float4 tc )
@@ -48,10 +49,9 @@ uniform sampler2D	jitter1;
 
 half4 	test 		(float4 tc, half2 offset)
 {
-
 	float4	tcx	= float4 (tc.xy + tc.w*offset, tc.zw);
-	return 	tex2Dproj (s_smap,tcx);
-
+	bvec4	s	= lessThan(tex2Dproj (s_smap,tcx), float4(tc.z / tc.w));
+	return	half4(s);
 }
 
 half 	shadowtest 	(float4 tc, float4 tcJ)				// jittered sampling
