@@ -181,6 +181,7 @@ void CTexture::Load		()
 			glGenBuffers(1, &pBuffer);
 			glBindBuffer(GL_PIXEL_UNPACK_BUFFER, pBuffer);
 			CHK_GL(glBufferData(GL_PIXEL_UNPACK_BUFFER, flags.MemoryUsage, 0, GL_STREAM_DRAW));
+			glBindBuffer(GL_PIXEL_UNPACK_BUFFER, 0);
 
 			glGenTextures(1, &pTexture);
 			glBindTexture(GL_TEXTURE_2D, pTexture);
