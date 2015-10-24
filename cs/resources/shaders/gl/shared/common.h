@@ -30,7 +30,7 @@ vec4	mul(mat4 a,		vec4 b)	{ return a * b; }
 vec4	mul(vec4 a,		mat4 b)	{ return a * b; }
 mat4	mul(mat4 a,		mat4 b)	{ return a * b; }
 vec3	mul(mat4x3 a,	vec4 b)	{ return a * b; }
-vec3	mul(mat4x3 a,	vec3 b)	{ return (b * a).xyz; }
+vec3	mul(mat4x3 a,	vec3 b)	{ return mat3(a) * b; }
 
 #define lerp        mix
 #define frac        fract
