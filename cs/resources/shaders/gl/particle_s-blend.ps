@@ -1,0 +1,17 @@
+#include "common.h"
+
+layout(location = 0) in vec2	tc0;
+layout(location = 1) in vec4	c0;
+
+layout(location = 0) out vec4	C;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Pixel
+void main ()
+{
+	// alpha = 0 	-> color=1
+	// alpha = 1	-> color=c
+	float4	c 	= c0*tex2D	(s_base,tc0);
+	float3 	r 	= lerp(float3(1,1,1),c.xyz,c.w);
+	C	=	float4(r,1);
+}

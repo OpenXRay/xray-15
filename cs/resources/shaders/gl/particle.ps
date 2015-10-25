@@ -1,0 +1,46 @@
+#include "common.h"
+
+layout(location = 0) in vec2	tc0;
+layout(location = 1) in vec4	c0;
+//	Igor: for additional depth dest
+#ifdef	USE_SOFT_PARTICLES
+layout(location = 2) in vec4	tctexgen;
+#endif	//	USE_SOFT_PARTICLES
+
+layout(location = 0) out vec4	C;
+
+//	Must be less than view near
+#define	DEPTH_EPSILON	0.1f
+//////////////////////////////////////////////////////////////////////////////////////////
+// Pixel
+void main()
+{
+	float4 result = c0*tex2D	(s_base,tc0);
+
+	//	Igor: additional depth test
+#ifdef	USE_SOFT_PARTICLES
+	float4 _P		= tex2Dproj         (s_position,         tctexgen);
+// TODO: OGL: Implement geom shaders
+//	float2 tcProj	= tctexgen.xy / tctexgen.w;
+//#ifdef GBUFFER_OPTIMIZATION
+//	gbuffer_data gbd = gbuffer_load_data( tcProj, gl_FragCoord );
+//#else
+//	gbuffer_data gbd = gbuffer_load_data( tcProj );
+//#endif
+	//float4 _P		= float4( gbd.P, gbd.mtl );
+	float spaceDepth = _P.z-tctexgen.z-DEPTH_EPSILON;
+	if (spaceDepth < -2*DEPTH_EPSILON ) spaceDepth = 100000.0f; //  Skybox doesn't draw into position buffer
+	//result.a *= saturate(spaceDepth*0.3f);
+	result.a *= Contrast( saturate(spaceDepth*1.3f), 2);
+	result.rgb *= Contrast( saturate(spaceDepth*1.3f), 2);
+//	result = Contrast( saturate(spaceDepth*1.3f), 2);
+//	result = saturate (spaceDepth*5.0);
+//	result.rgb = float3(1,0,0);
+//	result.a = 1;
+#endif	//	USE_SOFT_PARTICLES
+
+	clip(result.a-(0.01f/255.0f));
+	//clip(result.a-0.5);
+
+	C =	result;
+}

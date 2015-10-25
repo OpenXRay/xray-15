@@ -1,0 +1,40 @@
+#include "common.h"
+
+layout(location = 0) in vec2	tc0;
+layout(location = 1) in vec4	c0;
+//	Igor: for additional depth dest
+#ifdef	USE_SOFT_PARTICLES
+layout(location = 2) in vec4	tctexgen;
+#endif	//	USE_SOFT_PARTICLES
+
+layout(location = 0) out vec4	C;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Pixel
+uniform sampler2D s_distort;
+void main ()
+{
+	float4	distort	= tex2D		(s_distort,tc0);
+	float    factor	= distort.a * dot(c0.rgb,float3(0.33f));	
+/*
+#ifdef	USE_SOFT_PARTICLES
+	float2	zero = float2( 0.5, 0.5);
+	float	alphaDistort;
+// TODO: OGL: Implement geom shaders
+//	float2 tcProj = txtexgen.xy / texgen.w;
+//#ifdef GBUFFER_OPTIMIZATION
+//	gbuffer_data gbd = gbuffer_load_data( tcProj, gl_FragCoord );
+//#else
+//	gbuffer_data gbd = gbuffer_load_data( tcProj );
+//#endif
+	float4 _P = tex2Dproj( s_position, tctexgen);
+	//float4 _P = float4( gbd.P, gbd.mtl );
+	float spaceDepth = _P.z - I.tctexgen.z;
+	if (spaceDepth < -0.1f ) spaceDepth = 100000.0f; //  Skybox doesn't draw into position buffer
+	alphaDistort = saturate(1.3*spaceDepth);
+//	alphaDistort = 0;
+	distort.xy = lerp  ( zero, distort.xy, alphaDistort);
+#endif	//	USE_SOFT_PARTICLES
+*/
+	C	=	float4	(distort.rgb,factor);
+}
