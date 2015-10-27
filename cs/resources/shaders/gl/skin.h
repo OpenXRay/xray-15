@@ -52,7 +52,9 @@ struct 	v_model_skinned_4		// 28 bytes
 float4 	u_position	(float4 v)	{ return float4(v.xyz*(12.f / 32768.f), 1.f);	}	// -12..+12
 
 //////////////////////////////////////////////////////////////////////////////////////////
-uniform float4 	sbones_array	[256-22];
+//uniform float4 	sbones_array	[256-22];
+//  Igor: Max number of bones per mesh - 64. 3 registers per bone.
+uniform float4 	sbones_array	[65*3];
 
 float3 	skinning_dir 	(float3 dir, float4 m0, float4 m1, float4 m2)
 {
