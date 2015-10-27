@@ -50,22 +50,22 @@ void UpdateTC( inout p_bumped I)
 			if (fCurrHeight < fCurrentBound)
 			{	
 				vTexCurrentOffset += vTexOffsetPerStep;		
-				fCurrHeight = textureLod(s_bumpX, vTexCurrentOffset.xy, 0 ).a; 
+				fCurrHeight = tex2Dlod( s_bumpX, float4(vTexCurrentOffset.xy,0,0) ).a;
 				fCurrentBound -= fStepSize;
 			}
 		}
 
 /*
-		[unroll(25)]	//	Doesn't work with [loop]
+		//[unroll(25)]	//	Doesn't work with [loop]
 		for( ;fCurrHeight < fCurrentBound; fCurrentBound -= fStepSize )
 		{
 			vTexCurrentOffset += vTexOffsetPerStep;		
-			fCurrHeight = textureLod(s_bumpX, vTexCurrentOffset.xy, 0 ).a; 
+			fCurrHeight = tex2Dlod( s_bumpX, float4(vTexCurrentOffset.xy,0,0) ).a; 
 		}
 */
 		//	Reconstruct previouse step's data
 		vTexCurrentOffset -= vTexOffsetPerStep;
-		float fPrevHeight = tex2D(s_bumpX, vTexCurrentOffset.xy ).a;
+		float fPrevHeight = tex2D( s_bumpX, vTexCurrentOffset.xy ).a;
 
 		//	Smooth tc position between current and previouse step
 		float	fDelta2 = ((fCurrentBound + fStepSize) - fPrevHeight);
