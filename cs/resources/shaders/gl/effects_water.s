@@ -3,6 +3,7 @@ local tex_nmap                = "water\\water_normal"
 local tex_dist                = "water\\water_dudv"
 local tex_env0                = "$user$sky0"         -- "sky\\sky_8_cube"
 local tex_env1                = "$user$sky1"         -- "sky\\sky_8_cube"
+local tex_leaves              = "water\\water_foam"
 
 function normal                (shader, t_base, t_second, t_detail)
   shader:begin                ("water_soft","water_soft")
@@ -28,6 +29,9 @@ function l_special        (shader, t_base, t_second, t_detail)
   shader:sampler        ("s_base")       :texture  (tex_base)
   shader:sampler        ("s_distort")    :texture  (tex_dist)
   shader:sampler        ("s_position")       :texture  ("$user$position")
+
+  shader:sampler        ("s_leaves")     :texture  (tex_leaves) : wrap()	:f_anisotropic()
+
 end
 
 --[[
