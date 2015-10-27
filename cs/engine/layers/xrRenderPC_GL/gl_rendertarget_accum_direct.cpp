@@ -92,7 +92,7 @@ void CRenderTarget::accum_direct		(u32 sub_phase)
 		Fmatrix			m_TexelAdjust		= 
 		{
 			0.5f,				0.0f,				0.0f,			0.0f,
-			0.0f,				-0.5f,				0.0f,			0.0f,
+			0.0f,				0.5f,				0.0f,			0.0f,
 			0.0f,				0.0f,				fRange,			0.0f,
 			0.5f,				0.5f,				fBias,			1.0f
 		};
@@ -241,10 +241,10 @@ void CRenderTarget::accum_direct_blend	()
 		//pv->set						(EPS,			EPS,			d_Z,	d_W, C, p0.x, p0.y, p0.x, p0.y);	pv++;
 		//pv->set						(float(_w+EPS),	float(_h+EPS),	d_Z,	d_W, C, p1.x, p1.y, p1.x, p1.y);	pv++;
 		//pv->set						(float(_w+EPS),	EPS,			d_Z,	d_W, C, p1.x, p0.y, p1.x, p0.y);	pv++;
-		pv->set						(-1,	-1,	d_Z,	d_W, C, 0, 1, 0,		1);	pv++;
-		pv->set						(-1,	1,	d_Z,	d_W, C, 0, 0, 0,		0);	pv++;
-		pv->set						(1,		-1,	d_Z,	d_W, C, 1, 1, 1,	1);	pv++;
-		pv->set						(1,		1,	d_Z,	d_W, C, 1, 0, 1,	0);	pv++;
+		pv->set						(-1,	-1,	d_Z,	d_W, C, 0, 0, 0,	0);	pv++;
+		pv->set						(-1,	1,	d_Z,	d_W, C, 0, 1, 0,	1);	pv++;
+		pv->set						(1,		-1,	d_Z,	d_W, C, 1, 0, 1,	0);	pv++;
+		pv->set						(1,		1,	d_Z,	d_W, C, 1, 1, 1,	1);	pv++;
 		RCache.Vertex.Unlock		(4,g_combine_2UV->vb_stride);
 		RCache.set_Geometry			(g_combine_2UV);
 		RCache.set_Element			(s_accum_mask->E[SE_MASK_ACCUM_2D]	);
@@ -296,10 +296,10 @@ void CRenderTarget::accum_direct_f		(u32 sub_phase)
 
 		// Fill vertex buffer
 		FVF::TL* pv					= (FVF::TL*)	RCache.Vertex.Lock	(4,g_combine->vb_stride,Offset);
-		pv->set						(EPS,			float(_h+EPS),	d_Z,	d_W, C, p0.x, p1.y);	pv++;
-		pv->set						(EPS,			EPS,			d_Z,	d_W, C, p0.x, p0.y);	pv++;
-		pv->set						(float(_w+EPS),	float(_h+EPS),	d_Z,	d_W, C, p1.x, p1.y);	pv++;
-		pv->set						(float(_w+EPS),	EPS,			d_Z,	d_W, C, p1.x, p0.y);	pv++;
+		pv->set						(EPS,			float(_h+EPS),	d_Z,	d_W, C, p0.x, p0.y);	pv++;
+		pv->set						(EPS,			EPS,			d_Z,	d_W, C, p0.x, p1.y);	pv++;
+		pv->set						(float(_w+EPS),	float(_h+EPS),	d_Z,	d_W, C, p1.x, p0.y);	pv++;
+		pv->set						(float(_w+EPS),	EPS,			d_Z,	d_W, C, p1.x, p1.y);	pv++;
 		RCache.Vertex.Unlock		(4,g_combine->vb_stride);
 		RCache.set_Geometry			(g_combine);
 
@@ -340,7 +340,7 @@ void CRenderTarget::accum_direct_f		(u32 sub_phase)
 		Fmatrix			m_TexelAdjust		= 
 		{
 			0.5f,				0.0f,				0.0f,			0.0f,
-			0.0f,				-0.5f,				0.0f,			0.0f,
+			0.0f,				0.5f,				0.0f,			0.0f,
 			0.0f,				0.0f,				fRange,			0.0f,
 			0.5f + fTexelOffs,	0.5f + fTexelOffs,	fBias,			1.0f
 		};
