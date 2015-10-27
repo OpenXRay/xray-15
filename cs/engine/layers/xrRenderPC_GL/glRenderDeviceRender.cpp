@@ -142,6 +142,9 @@ bool glRenderDeviceRender::Create(HWND hWnd, u32 &dwWidth, u32 &dwHeight, float 
 	CHK_GL(glDebugMessageCallback((GLDEBUGPROC)OnDebugCallback, nullptr));
 #endif // DEBUG
 
+	// TODO: OGL: Remap dpeth values to the -1..1 range.
+	glClipControl(GL_LOWER_LEFT, GL_ZERO_TO_ONE);
+
 	Resources = new CResourceManager();
 
 	return true;
