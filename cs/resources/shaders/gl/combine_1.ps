@@ -52,9 +52,8 @@ void main ()
 	//  Calculate SSAO
 	half occ = calc_ssao(P.xyz, N.xyz, tc0.xy, tcJ.xy);
 
-	// TODO: OGL: Fix hemisphere parameter
-//	hmodel		(hdiffuse, hspecular, mtl, N.w, D.w, P.xyz, N.xyz);
-	hmodel		(hdiffuse, hspecular, mtl, 1, D.w, P.xyz, N.xyz);
+        hmodel		(hdiffuse, hspecular, mtl, N.w, D.w, P.xyz, N.xyz);
+//      hmodel		(hdiffuse, hspecular, mtl, 1, D.w, P.xyz, N.xyz);
 //	hdiffuse*=hdiffuse;			//. high contrast hemi
 //	hdiffuse*=(D.rgb*0.8 + 0.2f);	// rise texture contrast for diffuse lighting
 //	hdiffuse = 0.8;
