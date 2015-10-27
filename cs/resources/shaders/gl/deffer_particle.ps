@@ -32,7 +32,7 @@ void 	main	()
 			clip	(D.w-def_aref);
 
 	// 2. Standart output
-	Ne			= half4(normalize(N.xyz), position.w / 2.0f + 1.0f); // OGL: Depth is -1:1
+	Ne			= half4(normalize(N.xyz), position.w);
 	P		    = half4(position.xyz + Ne.xyz*def_virtualh/2.f, xmaterial);
 	C			= half4(D.xyz, def_gloss);		// OUT: rgb.gloss
 }
