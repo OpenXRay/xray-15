@@ -81,7 +81,7 @@ void CRenderTarget::accum_direct		(u32 sub_phase)
 		//Fmatrix			m_TexelAdjust		= 
 		//{
 		//	0.5f,				0.0f,				0.0f,			0.0f,
-		//	0.0f,				-0.5f,				0.0f,			0.0f,
+		//	0.0f,				0.5f,				0.0f,			0.0f,
 		//	0.0f,				0.0f,				fRange,			0.0f,
 		//	0.5f + fTexelOffs,	0.5f + fTexelOffs,	fBias,			1.0f
 		//};

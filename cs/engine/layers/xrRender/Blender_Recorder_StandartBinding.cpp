@@ -66,6 +66,16 @@ class cl_texgen : public R_constant_setup
 	{
 		Fmatrix mTexgen;
 
+#ifdef USE_OGL
+		Fmatrix			mTexelAdjust		= 
+		{
+			0.5f,				0.0f,				0.0f,			0.0f,
+			0.0f,				0.5f,				0.0f,			0.0f,
+			0.0f,				0.0f,				1.0f,			0.0f,
+			0.5f,				0.5f,				0.0f,			1.0f
+		};
+#else
+
 #ifdef	USE_DX10
 		Fmatrix			mTexelAdjust		= 
 		{
@@ -87,6 +97,8 @@ class cl_texgen : public R_constant_setup
 			0.5f + o_w,			0.5f + o_h,			0.0f,			1.0f
 		};
 #endif	//	USE_DX10
+
+#endif // USE_OGL
 
 		mTexgen.mul	(mTexelAdjust,RCache.xforms.m_wvp);
 
@@ -101,6 +113,16 @@ class cl_VPtexgen : public R_constant_setup
 	{
 		Fmatrix mTexgen;
 
+#ifdef USE_OGL
+		Fmatrix			mTexelAdjust		= 
+		{
+			0.5f,				0.0f,				0.0f,			0.0f,
+			0.0f,				0.5f,				0.0f,			0.0f,
+			0.0f,				0.0f,				1.0f,			0.0f,
+			0.5f,				0.5f,				0.0f,			1.0f
+		};
+#else
+
 #ifdef	USE_DX10
 		Fmatrix			mTexelAdjust		= 
 		{
@@ -122,6 +144,8 @@ class cl_VPtexgen : public R_constant_setup
 			0.5f + o_w,			0.5f + o_h,			0.0f,			1.0f
 		};
 #endif	//	USE_DX10
+
+#endif // USE_OGL
 
 		mTexgen.mul	(mTexelAdjust,RCache.xforms.m_vp);
 
