@@ -36,9 +36,9 @@ vec3	mul(mat4x3 a,	vec3 b)	{ return mat3(a) * b; }
 #define frac        fract
 #define saturate(a) clamp(a, 0.0, 1.0)
 #define clip(x)		if (x < 0) discard
-#define tex2D		texture2D
+#define tex2D		texture
 #define tex2Dproj	textureProj
-#define tex2Dlod	textureLod
+#define tex2Dlod(s,t)	textureLod(s,t.xy,t.w)
 #define tex3D		texture
 #define texCUBE 	texture
 #define samplerCUBE	samplerCube

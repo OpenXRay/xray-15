@@ -28,7 +28,7 @@ void main (void)
 	vColor		=	iColor	;			// copy color, low precision, cannot prescale even by 2
 	vColor.w	*= 	pow		(p.y,25);
 
-	float  	scale 	= 	tex2Dlod (s_tonemap,float2(.5),.5).x ;
+	float  	scale 	= 	tex2Dlod (s_tonemap,float4(.5)).x ;
 //	float	scale	= s_tonemap.Load( int3(0,0,0) ).x;
 //	float	scale	= s_tonemap.Load( int3(1,1,0) ).x;
 	vColor.rgb 	*= 	scale	;		// high precision
