@@ -487,11 +487,14 @@ HRESULT	CRender::shader_compile(
 
 	// Compile sources list
 	size_t def_len = def_it * 5;
-	size_t sources_len = source.size() + def_len + 1;
+	size_t sources_len = source.size() + def_len + 2;
+	string256 name_comment;
+	sprintf_s(name_comment, "// %s\n", name);
 	const char** sources = xr_alloc<const char*>(sources_len);
 	sources[0] = "#version 410\n";
-	memcpy(sources + 1, defines, def_len * sizeof(char*));
-	memcpy(sources + def_len + 1, source.data(), source.size() * sizeof(char*));
+	sources[1] = name_comment;
+	memcpy(sources + 2, defines, def_len * sizeof(char*));
+	memcpy(sources + def_len + 2, source.data(), source.size() * sizeof(char*));
 
 	// Compile the shader
 	GLuint shader = *(GLuint*)_ppShader;
