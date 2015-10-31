@@ -46,7 +46,7 @@ p_bumped _main( v_static I )
 	O.M3 			= xform[2]; 
 
 #if defined(USE_PARALLAX) || defined(USE_STEEPPARALLAX)
-	O.eye 		= mul		(float3x3(T,B,N),-(w_pos.xyz - eye_position));
+	O.eye 		= mul		(-(w_pos.xyz - eye_position),float3x3(T,B,N));
 #endif
 
 #ifdef 	USE_TDETAIL

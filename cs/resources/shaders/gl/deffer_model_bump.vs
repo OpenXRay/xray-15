@@ -56,8 +56,8 @@ p_bumped _main( v_model I )
 
 #if defined(USE_PARALLAX) || defined(USE_STEEPPARALLAX)
 	float3  WrldEye	= -(mul(m_W,w_pos) - eye_position);
-	float3	ObjEye	= mul( m_invW,  WrldEye);
-	O.eye 			= mul( float3x3(T,B,N),  ObjEye);	//	Local eye
+	float3	ObjEye	= mul(m_invW,  WrldEye);
+	O.eye 			= mul(ObjEye, float3x3(T,B,N));	//	Local eye
 #endif
 
 #ifdef 	USE_TDETAIL
