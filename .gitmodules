@@ -12,4 +12,4 @@
 	url = https://github.com/Armada651/glew.git
 [submodule "cs/3rd party/gli"]
 	path = cs/3rd party/gli
-	url = https://github.com/Armada651/gli.git
+	url = https://github.com/g-truc/gli.git
