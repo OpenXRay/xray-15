@@ -4,9 +4,9 @@ void CRenderTarget::phase_ssao	()
 {
 	u32	Offset	= 0;
 
-	//HW.pDevice->ClearRenderTargetView(rt_ssao_temp->pRT, ColorRGBA);
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
+	u_setrt(rt_ssao_temp, NULL, NULL, NULL);		// No need for ZBuffer at all
+	u32		clr4clear = color_rgba(0, 0, 0, 0);	// 0x00
+	CHK_DX(HW.pDevice->Clear(0L, NULL, D3DCLEAR_TARGET, clr4clear, 1.0f, 0L));
 	
 	// low/hi RTs
 	u_setrt				( rt_ssao_temp,0,0,0/*HW.pBaseZB*/ );
@@ -78,9 +78,8 @@ void CRenderTarget::phase_downsamp	()
 	// Targets
 	u_setrt				( rt_half_depth,0,0,0/*HW.pBaseZB*/ );
 
-	//HW.pDevice->ClearRenderTargetView(rt_half_depth->pRT, ColorRGBA);
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
+	u32		clr4clear = color_rgba(0, 0, 0, 0);	// 0x00
+	CHK_DX(HW.pDevice->Clear(0L, NULL, D3DCLEAR_TARGET, clr4clear, 1.0f, 0L));
 
 	u32 w = Device.dwWidth;
 	u32 h = Device.dwHeight;

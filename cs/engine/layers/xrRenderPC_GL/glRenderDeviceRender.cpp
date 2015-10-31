@@ -145,6 +145,8 @@ bool glRenderDeviceRender::Create(HWND hWnd, u32 &dwWidth, u32 &dwHeight, float 
 	// TODO: OGL: Remap dpeth values to the -1..1 range.
 	glClipControl(GL_LOWER_LEFT, GL_ZERO_TO_ONE);
 
+	updateViews();
+
 	Resources = new CResourceManager();
 
 	return true;
@@ -219,8 +221,55 @@ void glRenderDeviceRender::ResourcesDumpMemoryUsage()
 
 void glRenderDeviceRender::ClearTarget()
 {
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-	CHK_GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT));
+	Clear(0, 0,
+		D3DCLEAR_ZBUFFER | D3DCLEAR_STENCIL |
+		(psDeviceFlags.test(rsClearBB) ? D3DCLEAR_TARGET : 0),
+		color_xrgb(0, 0, 0), 1, 0
+		);
+}
+
+HRESULT glRenderDeviceRender::Clear(DWORD Count, const D3DRECT *pRects, DWORD Flags, D3DCOLOR Color, float Z, DWORD Stencil)
+{
+	// TODO: OGL: Implement support for clearing rectangles.
+	R_ASSERT(Count == 0 && pRects == NULL);
+
+	GLbitfield mask = 0;
+	if (Flags & D3DCLEAR_TARGET)
+		mask |= GL_COLOR_BUFFER_BIT;
+	if (Flags & D3DCLEAR_ZBUFFER)
+		mask |= GL_DEPTH_BUFFER_BIT;
+	if (Flags & D3DCLEAR_STENCIL)
+		mask |= GL_STENCIL_BUFFER_BIT;
+	
+
+	glPushAttrib(mask);
+
+	if (Flags & D3DCLEAR_TARGET)
+	{
+		glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
+		glClearColor(
+			color_get_R(Color) / 255.0f,
+			color_get_G(Color) / 255.0f,
+			color_get_B(Color) / 255.0f,
+			color_get_A(Color) / 255.0f);
+	}
+
+	if (Flags & D3DCLEAR_ZBUFFER)
+	{
+		glDepthMask(GL_TRUE);
+		glClearDepthf(Z);
+	}
+
+	if (Flags & D3DCLEAR_STENCIL)
+	{
+		glStencilMask(~0);
+		glClearStencil(Stencil);
+	}
+
+	CHK_GL(glClear(mask));
+	glPopAttrib();
+
+	return S_OK;
 }
 
 void glRenderDeviceRender::SetCacheXform(Fmatrix &mView, Fmatrix &mProject)
@@ -252,6 +301,10 @@ void  glRenderDeviceRender::Reset(HWND hWnd, u32 &dwWidth, u32 &dwHeight, float 
 
 	dwWidth = psCurrentVidMode[0];
 	dwHeight = psCurrentVidMode[1];
+
+	CHK_GL(glDeleteTextures(1, &HW.pBaseZB));
+
+	updateViews();
 	updateWindowProps();
 
 	fWidth_2 = float(dwWidth / 2);
@@ -263,6 +316,14 @@ void  glRenderDeviceRender::OnAssetsChanged()
 {
 	Resources->m_textures_description.UnLoad();
 	Resources->m_textures_description.Load();
+}
+
+void glRenderDeviceRender::updateViews()
+{
+	// Create an staging depth buffer used for post-processing
+	glGenTextures(1, &HW.pBaseZB);
+	CHK_GL(glBindTexture(GL_TEXTURE_2D, HW.pBaseZB));
+	CHK_GL(glTexStorage2D(GL_TEXTURE_2D, 1, GL_DEPTH24_STENCIL8, Device.dwWidth, Device.dwHeight));
 }
 
 void glRenderDeviceRender::updateWindowProps()

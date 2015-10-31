@@ -24,16 +24,14 @@ void	CRenderTarget::phase_scene_prepare	()
 		)
 	{
 		// TODO: OGL: Check if we need to set RT here.
-		u_setrt(Device.dwWidth, Device.dwHeight, rt_Position->pSurface, rt_Normal->pSurface, rt_Color->pSurface, RCache.pBaseZB);
-
-		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+		u_setrt(Device.dwWidth, Device.dwHeight, rt_Position->pSurface, rt_Normal->pSurface, rt_Color->pSurface, HW.pBaseZB);
+		CHK_DX(HW.pDevice->Clear(0L, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER | D3DCLEAR_STENCIL, 0x0, 1.0f, 0L));
 	}
 	else
 	{
 		// TODO: OGL: Check if we need to set RT here.
-		u_setrt(rt_Color, 0, 0, RCache.pBaseZB);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+		u_setrt(rt_Color, 0, 0, HW.pBaseZB);
+		CHK_DX(HW.pDevice->Clear(0L, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER | D3DCLEAR_STENCIL, 0x0, 1.0f, 0L));
 	}
 
 	//	Igor: for volumetric lights
@@ -44,11 +42,11 @@ void	CRenderTarget::phase_scene_prepare	()
 // begin
 void	CRenderTarget::phase_scene_begin	()
 {
-	GLuint pZB = RCache.pBaseZB;
+	GLuint pZB = HW.pBaseZB;
 
 	// Targets, use accumulator for temporary storage
-	if (RImplementation.o.albedo_wo)	u_setrt		(rt_Position,	rt_Normal,	rt_Accumulator,	RCache.pBaseZB);
-	else								u_setrt		(rt_Position,	rt_Normal,	rt_Color,		RCache.pBaseZB);
+	if (RImplementation.o.albedo_wo)	u_setrt		(rt_Position,	rt_Normal,	rt_Accumulator,	HW.pBaseZB);
+	else								u_setrt		(rt_Position,	rt_Normal,	rt_Color,		HW.pBaseZB);
 
 	// Stencil - write 0x1 at pixel pos
 	RCache.set_Stencil					( TRUE,D3DCMP_ALWAYS,0x01,0xff,0x7f,D3DSTENCILOP_KEEP,D3DSTENCILOP_REPLACE,D3DSTENCILOP_KEEP);
@@ -76,7 +74,7 @@ void	CRenderTarget::phase_scene_end		()
 	if (!RImplementation.o.albedo_wo)		return;
 
 	// transfer from "rt_Accumulator" into "rt_Color"
-	u_setrt								( rt_Color,	0,	0,	RCache.pBaseZB	);
+	u_setrt								( rt_Color,	0,	0,	HW.pBaseZB	);
 	RCache.set_CullMode					( CULL_NONE );
 	RCache.set_Stencil					(TRUE,D3DCMP_LESSEQUAL,0x01,0xff,0x00);	// stencil should be >= 1
 	if (RImplementation.o.nvstencil)	u_stencil_optimize	(CRenderTarget::SO_Combine);

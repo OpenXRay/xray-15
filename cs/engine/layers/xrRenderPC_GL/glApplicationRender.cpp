@@ -41,8 +41,7 @@ void glApplicationRender::load_draw_internal(CApplication &owner)
 {
 	if (!sh_progress)
 	{
-		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		CHK_DX(HW.pDevice->Clear(0, 0, D3DCLEAR_TARGET, D3DCOLOR_ARGB(0, 0, 0, 0), 1, 0));
 		return;
 	}
 

@@ -5,7 +5,6 @@
 #include "glUIShader.h"
 #include "glRenderDeviceRender.h"
 
-CHW			HW;
 CRender		RImplementation;
 
 extern ENGINE_API BOOL r2_sun_static;

@@ -9,7 +9,7 @@ void	CRenderTarget::phase_smap_direct		(light* L, u32 sub_phase)
 	else								VERIFY(!"Use HW SMap only for OGL!");
 
 
-	//	Don't have rect clear for DX10
+	//	Don't have rect clear for OGL
 	//	TODO: DX9:	Full clear must be faster for the near phase for SLI
 	//	inobody clears this buffer _this_ frame.
 	// Clear
@@ -23,11 +23,8 @@ void	CRenderTarget::phase_smap_direct		(light* L, u32 sub_phase)
 	//	CHK_DX							(HW.pDevice->Clear( 1L, &R,	  D3DCLEAR_ZBUFFER,	0xFFFFFFFF, 1.0f, 0L));
 	//} else {
 		// full-clear
-	//	CHK_DX							(HW.pDevice->Clear( 0L, NULL, D3DCLEAR_ZBUFFER,	0xFFFFFFFF, 1.0f, 0L));
+		CHK_DX							(HW.pDevice->Clear( 0L, NULL, D3DCLEAR_ZBUFFER,	0xFFFFFFFF, 1.0f, 0L));
 	//}
-
-	glClearDepthf(1.0f);
-	glClear(GL_DEPTH_BUFFER_BIT);
 
 	//	Prepare viewport for shadow map rendering
 	if (sub_phase!=SE_SUN_RAIN_SMAP	)
@@ -59,11 +56,9 @@ void	CRenderTarget::phase_smap_direct		(light* L, u32 sub_phase)
 void	CRenderTarget::phase_smap_direct_tsh	(light* L, u32 sub_phase)
 {
 	VERIFY								(RImplementation.o.Tshadows);
-	//u32		_clr						= 0xffffffff;	//color_rgba(127,127,12,12);
-	glClearColor						(1.0f, 1.0f, 1.0f, 1.0f);
+	u32		_clr						= 0xffffffff;	//color_rgba(127,127,12,12);
 	RCache.set_ColorWriteEnable			();
 	//	Prepare viewport for shadow map rendering
 	RImplementation.rmNormal();
-	glClear(GL_COLOR_BUFFER_BIT);
-	//CHK_DX								(HW.pDevice->Clear( 0L, NULL, D3DCLEAR_TARGET,	_clr,	1.0f, 0L));
+	CHK_DX								(HW.pDevice->Clear( 0L, NULL, D3DCLEAR_TARGET,	_clr,	1.0f, 0L));
 }

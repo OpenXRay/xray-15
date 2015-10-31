@@ -7,6 +7,7 @@
 
 #include "r2_types.h"
 #include "gl_rendertarget.h"
+#include "glRenderDeviceRender.h"
 
 #include "../xrRender/hom.h"
 #include "../xrRender/detailmanager.h"
@@ -22,12 +23,7 @@
 #include "../../xrEngine/irenderable.h"
 #include "../../xrEngine/fmesh.h"
 
-class  CHW
-{
-public:
-	CHWCaps			Caps;
-};
-extern ECORE_API CHW		HW;
+#define HW RImplementation
 
 class CGlow : public IRender_Glow
 {
@@ -148,6 +144,11 @@ public:
 	float							o_sun;
 	GLsync							q_sync_point[CHWCaps::MAX_GPUS];
 	u32								q_sync_count;
+
+	// HW Support
+	GLuint							pBaseZB;
+	CHWCaps							Caps;
+	glRenderDeviceRender*			pDevice;
 
 private:
 	// Loading / Unloading

@@ -36,9 +36,8 @@ void	CRenderTarget::phase_combine	()
 		phase_ssao();
 
 	// low/hi RTs
-	u_setrt				( rt_Generic_0,rt_Generic_1,0,RCache.pBaseZB );
-	glClearColor		( 0.0f, 0.0f, 0.0f, 0.0f );
-	glClear				( GL_COLOR_BUFFER_BIT );
+	u_setrt				( rt_Generic_0,rt_Generic_1,0,HW.pBaseZB );
+	CHK_DX(HW.pDevice->Clear(0L, NULL, D3DCLEAR_TARGET, 0, 1.0f, 0L));
 	RCache.set_CullMode	( CULL_NONE );
 	RCache.set_Stencil	( FALSE		);
 
@@ -191,7 +190,7 @@ void	CRenderTarget::phase_combine	()
 
 	// Forward rendering
 	{
-		u_setrt							(rt_Generic_0,0,0,RCache.pBaseZB);		// LDR RT
+		u_setrt							(rt_Generic_0,0,0,HW.pBaseZB);		// LDR RT
 		RCache.set_CullMode				(CULL_CCW);
 		RCache.set_Stencil				(FALSE);
 		RCache.set_ColorWriteEnable		();
@@ -222,13 +221,11 @@ void	CRenderTarget::phase_combine	()
 			bDistort= FALSE;
 		if (bDistort)		
 		{
-			u_setrt						(rt_Generic_1,0,0,RCache.pBaseZB);		// Now RT is a distortion mask
+			u_setrt						(rt_Generic_1,0,0,HW.pBaseZB);		// Now RT is a distortion mask
 			RCache.set_CullMode			(CULL_CCW);
 			RCache.set_Stencil			(FALSE);
 			RCache.set_ColorWriteEnable	();
-			//CHK_DX(HW.pDevice->Clear	( 0L, NULL, D3DCLEAR_TARGET, color_rgba(127,127,0,127), 1.0f, 0L));
-			glClearColor(127.0f/255.0f, 127.0f/255.0f, 0.0f, 127.0f/255.0f);
-			glClear(GL_COLOR_BUFFER_BIT);
+			CHK_DX(HW.pDevice->Clear	( 0L, NULL, D3DCLEAR_TARGET, color_rgba(127,127,0,127), 1.0f, 0L));
 			RImplementation.r_dsgraph_render_distort	();
 			if (g_pGamePersistent)	g_pGamePersistent->OnRenderPPUI_PP()	;	// PP-UI
 		}
@@ -250,7 +247,7 @@ void	CRenderTarget::phase_combine	()
 	if (_menu_pp)			PP_Complex	= FALSE;
 
 	// Combine everything + perform AA
-	if		(PP_Complex)	u_setrt		( rt_Color,0,0,RCache.pBaseZB );			// LDR RT
+	if		(PP_Complex)	u_setrt		( rt_Color,0,0,HW.pBaseZB );			// LDR RT
 	else					RCache.set_FB();
 
 	//. u_setrt				( Device.dwWidth,Device.dwHeight,HW.pBaseRT,NULL,NULL,HW.pBaseZB);
@@ -442,7 +439,7 @@ void CRenderTarget::phase_wallmarks		()
 	// Targets
 	RCache.set_RT(NULL,2);
 	RCache.set_RT(NULL,1);
-	u_setrt								(rt_Color,NULL,NULL,RCache.pBaseZB);
+	u_setrt								(rt_Color,NULL,NULL,HW.pBaseZB);
 	// Stencil	- draw only where stencil >= 0x1
 	RCache.set_Stencil					(TRUE,D3DCMP_LESSEQUAL,0x01,0xff,0x00);
 	RCache.set_CullMode					(CULL_CCW);
@@ -457,7 +454,7 @@ void CRenderTarget::phase_combine_volumetric()
 	//	TODO: DX10: Remove half pixel offset here
 
 	//u_setrt(rt_Generic_0,0,0,HW.pBaseZB );			// LDR RT
-   	u_setrt(rt_Generic_0,rt_Generic_1,0,RCache.pBaseZB );
+   	u_setrt(rt_Generic_0,rt_Generic_1,0,HW.pBaseZB );
 	//	Sets limits to both render targets
 	RCache.set_ColorWriteEnable(D3DCOLORWRITEENABLE_RED|D3DCOLORWRITEENABLE_GREEN|D3DCOLORWRITEENABLE_BLUE);
 	{

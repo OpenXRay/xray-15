@@ -50,6 +50,7 @@ public:
 
 	//	HWSupport
 	virtual bool	HWSupportsShaderYUV2RGB() { return true; };
+	HRESULT			Clear(DWORD Count, const D3DRECT *pRects, DWORD Flags, D3DCOLOR Color, float Z, DWORD Stencil);
 
 	//	Device state
 	virtual DeviceState GetDeviceState() { return dsOK; };
@@ -74,6 +75,7 @@ private:
 	HGLRC			m_hRC;
 
 	void			updateWindowProps();
+	void			updateViews();
 
 	static void CALLBACK glRenderDeviceRender::OnDebugCallback(GLenum source, GLenum type, GLuint id, GLenum severity,
 		GLsizei length, const GLchar* message, const void* userParam);

@@ -60,7 +60,6 @@ public:
 #ifdef USE_OGL
 	GLuint							QuadIB;
 	GLuint							old_QuadIB;
-	GLuint							pBaseZB;
 #else
 	ID3DIndexBuffer*				QuadIB;
 	ID3DIndexBuffer*				old_QuadIB;

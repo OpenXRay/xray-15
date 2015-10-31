@@ -6,8 +6,7 @@ void	CRenderTarget::phase_smap_spot_clear()
 	if (RImplementation.o.HW_smap)		u_setrt(rt_smap_surf, NULL, NULL, rt_smap_depth->pSurface);
 	//else								u_setrt	(rt_smap_surf, NULL, NULL, rt_smap_ZB);
 	else								VERIFY(!"Use HW SMap only for OGL!");
-	glClearDepthf(1.0f);
-	glClear(GL_DEPTH_BUFFER_BIT);
+	CHK_DX								(HW.pDevice->Clear( 0L, NULL, D3DCLEAR_ZBUFFER,	0xffffffff,	1.0f, 0L));
 }
 
 void	CRenderTarget::phase_smap_spot		(light* L)
@@ -38,9 +37,7 @@ void	CRenderTarget::phase_smap_spot_tsh	(light* L)
 	RCache.set_ColorWriteEnable		();
 	if (IRender_Light::OMNIPART == L->flags.type)	{
 		// omni-part
-		//CHK_DX							(HW.pDevice->Clear( 0L, NULL, D3DCLEAR_TARGET,	0xffffffff,	1.0f, 0L));
-		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
+		CHK_DX							(HW.pDevice->Clear( 0L, NULL, D3DCLEAR_TARGET,	0xffffffff,	1.0f, 0L));
 	} else {
 		// real-spot
 		// Select color-mask
