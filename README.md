@@ -10,8 +10,7 @@ supports all the features from the DX10 backend we will move on to Call of Pripy
 and port its DX11 backend.
 
 The goal of this fork is purely to make the game multi-platform, without any gameplay
-or graphical enhancements. Any enhancements such as making a Virtual Reality mode
-(please make one) should be contributed to the [OpenXRay](https://github.com/OpenXRay/xray) project.
+or graphical enhancements.
 
 This repository contains X-Ray Engine sources based on version 1.5.10.
 The original engine is used in S.T.A.L.K.E.R. Clear Sky game released by GSC Game World.
