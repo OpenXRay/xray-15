@@ -2,11 +2,10 @@
 
 void	CRenderTarget::phase_smap_spot_clear()
 {
-	/*
-	if (RImplementation.b_HW_smap)		u_setrt	(rt_smap_surf, NULL, NULL, rt_smap_d_depth->pRT);
-	else								u_setrt	(rt_smap_surf, NULL, NULL, rt_smap_d_ZB);
-	CHK_DX								(HW.pDevice->Clear( 0L, NULL, D3DCLEAR_ZBUFFER,	0xffffffff,	1.0f, 0L));
-	*/
+	//	TODO: OGL: CHeck if we don't need old-style SMAP
+	if (RImplementation.o.HW_smap)		u_setrt(rt_smap_surf, NULL, NULL, rt_smap_depth->pSurface);
+	//else								u_setrt	(rt_smap_surf, NULL, NULL, rt_smap_ZB);
+	else								VERIFY(!"Use HW SMap only for OGL!");
 	glClearDepthf(1.0f);
 	glClear(GL_DEPTH_BUFFER_BIT);
 }
@@ -14,7 +13,7 @@ void	CRenderTarget::phase_smap_spot_clear()
 void	CRenderTarget::phase_smap_spot		(light* L)
 {
 	// Targets + viewport
-	//	TODO: DX10: CHeck if we don't need old-style SMAP
+	//	TODO: OGL: CHeck if we don't need old-style SMAP
 	if (RImplementation.o.HW_smap)		u_setrt	(rt_smap_surf, NULL, NULL, rt_smap_depth->pSurface);
 	//else								u_setrt	(rt_smap_surf, NULL, NULL, rt_smap_ZB);
 	else								VERIFY(!"Use HW SMap only for OGL!");
