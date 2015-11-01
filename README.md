@@ -1,3 +1,10 @@
+Notice about legality
+=====================
+
+This project is still pending permission from the rights holder, Sergey Grigorovich.
+As such you should be aware that you could be held responsible for any damages
+that are incurred by publishing derivatives based on leaked source code.
+
 OpenGL X-Ray Engine
 ===================
 
