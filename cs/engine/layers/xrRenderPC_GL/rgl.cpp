@@ -214,7 +214,7 @@ void					CRender::create()
 	PSLibrary.OnCreate();
 	HWOCC.occq_create(occq_size);
 
-	//rmNormal					();
+	rmNormal					();
 	marker = 0;
 	//R_CHK						(HW.pDevice->CreateQuery(D3DQUERYTYPE_EVENT,&q_sync_point[0]));
 	//R_CHK						(HW.pDevice->CreateQuery(D3DQUERYTYPE_EVENT,&q_sync_point[1]));
