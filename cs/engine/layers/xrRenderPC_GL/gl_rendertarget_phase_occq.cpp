@@ -2,7 +2,7 @@
 
 void	CRenderTarget::phase_occq	()
 {
-	RCache.set_FB				();
+	u_setrt						( Device.dwWidth,Device.dwHeight,NULL,NULL,NULL,HW.pBaseZB);
 	RCache.set_Shader			( s_occq	);
 	RCache.set_CullMode			( CULL_CCW	);
 	RCache.set_Stencil			(TRUE,D3DCMP_LESSEQUAL,0x01,0xff,0x00);

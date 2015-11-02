@@ -75,10 +75,8 @@ void	CRenderTarget::u_setrt			(const ref_rt& _1, const ref_rt& _2, GLuint zb)
 
 void	CRenderTarget::u_setrt			(u32 W, u32 H, GLuint _1, GLuint _2, GLuint _3, GLuint zb)
 {
-	VERIFY									(_1);
 	dwWidth									= W;
 	dwHeight								= H;
-	VERIFY									(_1);
 	RCache.set_FB							(pFB);
 	GLuint cnt = 0;
 	GLenum buffers[3];
