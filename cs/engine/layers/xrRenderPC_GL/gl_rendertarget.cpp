@@ -95,6 +95,13 @@ void	CRenderTarget::u_setrt			(u32 W, u32 H, GLuint _1, GLuint _2, GLuint _3, GL
 	CHK_GL(glDrawBuffers(cnt, buffers));
 }
 
+void	CRenderTarget::u_setbb			()
+{
+	dwWidth = Device.dwWidth;
+	dwHeight = Device.dwHeight;
+	RCache.set_FB();
+}
+
 void	CRenderTarget::u_stencil_optimize	(BOOL		common_stencil)
 {
 	VERIFY	(RImplementation.o.nvstencil);
