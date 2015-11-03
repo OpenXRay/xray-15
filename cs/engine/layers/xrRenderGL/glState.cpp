@@ -78,7 +78,8 @@ void glState::Apply()
 		glStateUtils::ConvertBlendOp(m_pBlendState.BlendOpAlpha)
 		));
 
-	RCache.set_ColorWriteEnable(m_pBlendState.ColorMask);
+	// TODO: OGL: Cache the color mask globally.
+	//RCache.set_ColorWriteEnable(m_pBlendState.ColorMask);
 }
 
 void glState::Release()
