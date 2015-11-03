@@ -7,12 +7,8 @@ layout(location = 0) in vec4	P;		// (float,float,float,1)
 layout(location = 1) in vec4	Nh;		// (nx,ny,nz,hemi occlusion)
 layout(location = 2) in vec4	T;		// tangent
 layout(location = 3) in vec4	B;		// binormal
-layout(location = 4) in vec2	tc;		// (u,v)
-#if	defined(USE_LM_HEMI)
-layout(location = 5) in vec2	lm;		// (lmu,lmv)
-#elif defined(USE_R2_STATIC_SUN)
-layout(location = 5) in vec4	color;	// (r,g,b,dir-occlusion)	//	Swizzle before use!!!
-#endif
+layout(location = 4) in vec4	color;	// (r,g,b,dir-occlusion)	//	Swizzle before use!!!
+layout(location = 5) in vec2	tc;		// (u,v)
 
 layout(location = 0) out vec2	tc0;
 layout(location = 1) out vec3	c0;		// c0=all lighting
