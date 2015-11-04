@@ -43,7 +43,7 @@ vec3	mul(mat4x3 a,	vec3 b)	{ return mat3(a) * b; }
 #define texCUBE 	texture
 #define samplerCUBE	samplerCube
 
-// Input semantics, maximum 16 slots
+// Semantics assignment, maximum 16 slots
 #define COLOR0		0
 #define COLOR1		1
 #define COLOR2		2
