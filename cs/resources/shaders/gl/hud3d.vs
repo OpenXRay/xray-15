@@ -2,11 +2,11 @@
 
 out gl_PerVertex { vec4 gl_Position; };
 
-layout(location = 0) in vec4 iPos;
-layout(location = 1) in vec4 color;
-layout(location = 2) in vec2 uv;
+layout(location = POSITION) in vec4 iPos;
+layout(location = COLOR0) in vec4 color;
+layout(location = TEXCOORD0) in vec2 uv;
 
-layout(location = 0) out vec2 tc0;
+layout(location = TEXCOORD0) out vec2 tc0;
 
 void main ()
 {

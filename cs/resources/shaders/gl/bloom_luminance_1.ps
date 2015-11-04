@@ -1,12 +1,12 @@
 #include "common.h"
 
-layout(location = 0) in vec2 Tex0;
-layout(location = 1) in vec2 Tex1;
-layout(location = 2) in vec2 Tex2;
-layout(location = 3) in vec2 Tex3;
-layout(location = 4) in vec4 vColor;
+layout(location = TEXCOORD0) in vec2 Tex0;
+layout(location = TEXCOORD1) in vec2 Tex1;
+layout(location = TEXCOORD2) in vec2 Tex2;
+layout(location = TEXCOORD3) in vec2 Tex3;
+layout(location = TEXCOORD4) in vec4 vColor;
 
-layout(location = 0) out vec4 oColor;
+layout(location = COLOR0) out vec4 oColor;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 #define	LUMINANCE_BASE		0.0001f

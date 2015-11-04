@@ -1,15 +1,15 @@
 #include "common.h"
 
-layout(location = 0) in vec2 vTex0;
-layout(location = 1) in vec4 vTex1;
-layout(location = 2) in vec4 vTex2;
-layout(location = 3) in vec4 vTex3;
-layout(location = 4) in vec4 vTex4;
-layout(location = 5) in vec4 vTex5;
-layout(location = 6) in vec4 vTex6;
-layout(location = 7) in vec4 vTex7;
+layout(location = TEXCOORD0) in vec2 vTex0;
+layout(location = TEXCOORD1) in vec4 vTex1;
+layout(location = TEXCOORD2) in vec4 vTex2;
+layout(location = TEXCOORD3) in vec4 vTex3;
+layout(location = TEXCOORD4) in vec4 vTex4;
+layout(location = TEXCOORD5) in vec4 vTex5;
+layout(location = TEXCOORD6) in vec4 vTex6;
+layout(location = TEXCOORD7) in vec4 vTex7;
 
-layout(location = 0) out vec4 oColor;
+layout(location = COLOR0) out vec4 oColor;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 uniform half4 		weight[2];

@@ -2,10 +2,10 @@
 #include "lmodel.h"
 #include "shadow.h"
 
-layout(location = 0) in vec2	tc;
-layout(location = 1) in vec2	tcJ;
+layout(location = TEXCOORD0) in vec2	tc;
+layout(location = TEXCOORD1) in vec2	tcJ;
 
-layout(location = 0) out vec4	oColor;
+layout(location = COLOR0) out vec4	oColor;
 
 #ifdef USE_SUNFILTER
 void main ()

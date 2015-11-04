@@ -1,26 +1,26 @@
 
 out gl_PerVertex { vec4 gl_Position; };
 
-layout(location = 0) in vec4 P;		// (float,float,float,1)
+layout(location = POSITION)	in vec4 P;		// (float,float,float,1)
 #ifdef 	SKIN_0
-layout(location = 1) in vec3 norm;	// (nx,ny,nz)
+layout(location = NORMAL)	in vec3 norm;	// (nx,ny,nz)
 #else
-layout(location = 1) in vec4 norm;	// (nx,ny,nz)
+layout(location = NORMAL)	in vec4 norm;	// (nx,ny,nz)
 #endif
 #if defined(SKIN_3) || defined(SKIN_4)
-layout(location = 2) in vec4 tan;	// (nx,ny,nz)
-layout(location = 3) in vec4 bnorm;	// (nx,ny,nz)
+layout(location = TANGENT)	in vec4 tan;	// (nx,ny,nz)
+layout(location = BINORMAL)	in vec4 bnorm;	// (nx,ny,nz)
 #else
-layout(location = 2) in vec3 tan;	// (nx,ny,nz)
-layout(location = 3) in vec3 bnorm;	// (nx,ny,nz)
+layout(location = TANGENT)	in vec3 tan;	// (nx,ny,nz)
+layout(location = BINORMAL)	in vec3 bnorm;	// (nx,ny,nz)
 #endif
 #if defined(SKIN_2) || defined(SKIN_3)
-layout(location = 4) in vec4 tc;	// (u,v)
+layout(location = TEXCOORD0) in vec4 tc0;	// (u,v)
 #else
-layout(location = 4) in vec2 tc;	// (u,v)
+layout(location = TEXCOORD0) in vec2 tc0;	// (u,v)
 #endif
 #ifdef 	SKIN_4
-layout(location = 5) in vec4 ind;
+layout(location = TEXCOORD1) in vec4 ind;
 #endif
 
 #ifdef  USE_HWSMAP

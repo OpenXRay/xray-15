@@ -108,6 +108,24 @@ GLenum	VertexTypeSizeList[] =
 	sizeof(GLhalf)		// D3DDECLTYPE_FLOAT16_4
 };
 
+GLuint	VertexUsageList[] =
+{
+	3,	// D3DDECLUSAGE_POSITION
+	-1,	// D3DDECLUSAGE_BLENDWEIGHT
+	-1,	// D3DDECLUSAGE_BLENDINDICES
+	5,	// D3DDECLUSAGE_NORMAL
+	-1,	// D3DDECLUSAGE_PSIZE
+	8,	// D3DDECLUSAGE_TEXCOORD
+	4,	// D3DDECLUSAGE_TANGENT
+	6,	// D3DDECLUSAGE_BINORMAL
+	-1,	// D3DDECLUSAGE_TESSFACTOR
+	-1,	// D3DDECLUSAGE_POSITIONT
+	0,	// D3DDECLUSAGE_COLOR
+	7,	// D3DDECLUSAGE_FOG
+	-1,	// D3DDECLUSAGE_DEPTH
+	-1,	// D3DDECLUSAGE_SAMPLE
+};
+
 GLsizei GetDeclVertexSize(const D3DVERTEXELEMENT9* decl)
 {
 	GLsizei size = 0;
@@ -135,12 +153,18 @@ void ConvertVertexDeclaration(const D3DVERTEXELEMENT9* decl, GLuint vao)
 		if (desc.Stream == 0xFF)
 			break;
 
+		GLuint location			= VertexUsageList[desc.Usage];
 		GLint size				= VertexSizeList[desc.Type];
 		GLenum type				= VertexTypeList[desc.Type];
 		GLboolean normalized	= VertexNormalizedList[desc.Type];
-		CHK_GL(glVertexAttribFormat(i, size, type, normalized, desc.Offset));
-		CHK_GL(glVertexAttribBinding(i, desc.Stream));
-		CHK_GL(glEnableVertexAttribArray(i));
+
+		if (location < 0)
+			continue; // Unsupported
+
+		location += desc.UsageIndex;
+		CHK_GL(glVertexAttribFormat(location, size, type, normalized, desc.Offset));
+		CHK_GL(glVertexAttribBinding(location, desc.Stream));
+		CHK_GL(glEnableVertexAttribArray(location));
 	}
 }
 
@@ -184,49 +208,51 @@ void ConvertVertexDeclaration(u32 FVF, GLuint vao)
 	CHK_GL(glBindVertexArray(vao));
 
 	GLsizei stride = GetFVFVertexSize(FVF);
-	u32 attrib = 0, offset = 0;
+	u32 offset = 0;
 
 	// Position attribute
 	if (FVF & D3DFVF_XYZRHW)
 	{
+		GLuint attrib = VertexUsageList[D3DDECLUSAGE_POSITION];
 		CHK_GL(glVertexAttribFormat(attrib, 4, GL_FLOAT, GL_FALSE, offset));
 		CHK_GL(glVertexAttribBinding(attrib, 0));
 		CHK_GL(glEnableVertexAttribArray(attrib));
 		offset += sizeof(Fvector4);
-		attrib++;
 	}
 	else if (FVF & D3DFVF_XYZ)
 	{
+		GLuint attrib = VertexUsageList[D3DDECLUSAGE_POSITION];
 		CHK_GL(glVertexAttribFormat(attrib, 3, GL_FLOAT, GL_FALSE, offset));
 		CHK_GL(glVertexAttribBinding(attrib, 0));
 		CHK_GL(glEnableVertexAttribArray(attrib));
 		offset += sizeof(Fvector);
-		attrib++;
 	}
 
 	// Diffuse color attribute
 	if (FVF & D3DFVF_DIFFUSE)
 	{
+		GLuint attrib = VertexUsageList[D3DDECLUSAGE_COLOR];
 		CHK_GL(glVertexAttribFormat(attrib, 4, GL_UNSIGNED_BYTE, GL_TRUE, offset));
 		CHK_GL(glVertexAttribBinding(attrib, 0));
 		CHK_GL(glEnableVertexAttribArray(attrib));
 		offset += sizeof(u32);
-		attrib++;
 	}
 
 	// Specular color attribute
 	if (FVF & D3DFVF_SPECULAR)
 	{
+		GLuint attrib = VertexUsageList[D3DDECLUSAGE_COLOR] + 1;
 		CHK_GL(glVertexAttribFormat(attrib, 4, GL_UNSIGNED_BYTE, GL_TRUE, offset));
 		CHK_GL(glVertexAttribBinding(attrib, 0));
 		CHK_GL(glEnableVertexAttribArray(attrib));
 		offset += sizeof(u32);
-		attrib++;
 	}
 
 	// Texture coordinates
 	for (u32 i = 0; i < (FVF & D3DFVF_TEXCOUNT_MASK) >> D3DFVF_TEXCOUNT_SHIFT; i++)
 	{
+		GLuint attrib = VertexUsageList[D3DDECLUSAGE_TEXCOORD] + i;
+
 		u32 size = 2;
 		if (FVF & D3DFVF_TEXCOORDSIZE1(i))
 			size = 1;
@@ -239,7 +265,6 @@ void ConvertVertexDeclaration(u32 FVF, GLuint vao)
 		CHK_GL(glVertexAttribBinding(attrib, 0));
 		CHK_GL(glEnableVertexAttribArray(attrib));
 		offset += size * sizeof(float);
-		attrib++;
 	}
 
 	VERIFY(stride == offset);

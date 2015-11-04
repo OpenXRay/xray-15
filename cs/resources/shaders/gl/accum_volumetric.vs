@@ -10,12 +10,12 @@ out gl_PerVertex
 	float gl_ClipDistance[6];
 };
 
-layout(location = 0) in vec3	P;
+layout(location = POSITION) in vec3	P;
 
-layout(location = 0) out vec3	lightToPos;	// light center to plane vector
-layout(location = 1) out vec3	hPos;		// position in camera space
-layout(location = 2) out float	fDensity;	// plane density alon Z axis
-//layout(location = 3) out vec2	tNoise;		// projective noise
+layout(location = TEXCOORD0) out vec3	lightToPos;	// light center to plane vector
+layout(location = TEXCOORD1) out vec3	hPos;		// position in camera space
+layout(location = TEXCOORD2) out float	fDensity;	// plane density alon Z axis
+//layout(location = TEXCOORD3) out vec2	tNoise;		// projective noise
 
 void main ()
 {

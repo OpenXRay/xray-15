@@ -4,17 +4,17 @@ out gl_PerVertex { vec4 gl_Position; };
 
 uniform float4		screen_res;		// Screen resolution (x-Width,y-Height, zw - 1/resolution)
 
-layout(location = 0) in vec4 iPos;
-layout(location = 1) in vec2 iTex0;
-layout(location = 2) in vec2 iTex1;
-layout(location = 3) in vec2 iTex2;
-layout(location = 4) in vec2 iTex3;
+layout(location = POSITION) 	in vec4 iPos;
+layout(location = TEXCOORD0)	in vec2 iTex0;
+layout(location = TEXCOORD1)	in vec2 iTex1;
+layout(location = TEXCOORD2)	in vec2 iTex2;
+layout(location = TEXCOORD3)	in vec2 iTex3;
 
-layout(location = 0) out vec2 vTex0;
-layout(location = 1) out vec2 vTex1;
-layout(location = 2) out vec2 vTex2;
-layout(location = 3) out vec2 vTex3;
-layout(location = 4) out vec4 vColor;
+layout(location = TEXCOORD0)	out vec2 vTex0;
+layout(location = TEXCOORD1)	out vec2 vTex1;
+layout(location = TEXCOORD2)	out vec2 vTex2;
+layout(location = TEXCOORD3)	out vec2 vTex3;
+layout(location = TEXCOORD4)	out vec4 vColor;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // Vertex

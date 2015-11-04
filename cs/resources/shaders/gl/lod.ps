@@ -1,14 +1,14 @@
 #include "common.h"
 #include "sload.h"
 
-layout(location = 0) in vec3	position;
-layout(location = 1) in vec2 	tc0;		// base0
-layout(location = 2) in vec2 	tc1;		// base1
-layout(location = 3) in vec4 	af;			// alpha&factor
+layout(location = POSITION) in vec3	position;
+layout(location = TEXCOORD0) in vec2 	tc0;		// base0
+layout(location = TEXCOORD1) in vec2 	tc1;		// base1
+layout(location = COLOR1)	in vec4 	af;			// alpha&factor
 
-layout(location = 0) out vec4	P;			// px,py,pz, m-id
-layout(location = 1) out vec4	Ne;			// nx,ny,nz, hemi
-layout(location = 2) out vec4	C;			// r, g, b,  gloss
+layout(location = COLOR0) out vec4	P;			// px,py,pz, m-id
+layout(location = COLOR1) out vec4	Ne;			// nx,ny,nz, hemi
+layout(location = COLOR2) out vec4	C;			// r, g, b,  gloss
 
 void 	main	()
 {

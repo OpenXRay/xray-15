@@ -1,12 +1,12 @@
 #include "common.h"
 
-layout(location = 0) in vec4 Color;
-layout(location = 1) in vec4 Gray;
-layout(location = 2) in vec2 tc0;
-layout(location = 3) in vec2 tc1;
-layout(location = 4) in vec2 tc2;
+layout(location = COLOR0) in vec4 Color;
+layout(location = COLOR1) in vec4 Gray;
+layout(location = TEXCOORD0) in vec2 tc0;
+layout(location = TEXCOORD1) in vec2 tc1;
+layout(location = TEXCOORD2) in vec2 tc2;
 
-layout(location = 0) out vec4 oColor;
+layout(location = COLOR0) out vec4 oColor;
 
 uniform	sampler2D 	s_base0;
 uniform	sampler2D 	s_base1;

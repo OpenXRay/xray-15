@@ -2,11 +2,11 @@
 
 out gl_PerVertex { vec4 gl_Position; };
 
-layout(location = 0) in vec4 	P;
+layout(location = POSITION) in vec4 	P;
 
-layout(location = 0) out vec4 	tc;
+layout(location = TEXCOORD0) out vec4 	tc;
 #ifdef 	USE_SJITTER
-layout(location = 1) out vec4 	tcJ;
+layout(location = TEXCOORD1) out vec4 	tcJ;
 #endif
 
 //////////////////////////////////////////////////////////////////////////////////////////

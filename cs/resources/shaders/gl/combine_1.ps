@@ -7,11 +7,11 @@
 
 #include "ssao.ps"
 
-layout(location = 0) in vec4 tc0;	// tc.xy, tc.w = tonemap scale
-layout(location = 1) in vec2 tcJ;	// jitter coords
+layout(location = TEXCOORD0) in vec4 tc0;	// tc.xy, tc.w = tonemap scale
+layout(location = TEXCOORD1) in vec2 tcJ;	// jitter coords
 
-layout(location = 0) out vec4 low;
-layout(location = 1) out vec4 high;
+layout(location = COLOR0) out vec4 low;
+layout(location = COLOR1) out vec4 high;
 
 void main ()
 {

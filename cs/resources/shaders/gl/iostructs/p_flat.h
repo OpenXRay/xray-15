@@ -1,25 +1,25 @@
 
 #if defined(USE_R2_STATIC_SUN) && !defined(USE_LM_HEMI)
-layout(location = 0) in vec4	tcdh;		// Texture coordinates,         w=sun_occlusion
+layout(location = TEXCOORD0) in vec4	tcdh;		// Texture coordinates,         w=sun_occlusion
 #else
-layout(location = 0) in vec2	tcdh;		// Texture coordinates
+layout(location = TEXCOORD0) in vec2	tcdh;		// Texture coordinates
 #endif
-layout(location = 1) in vec4	position;	// position + hemi
-layout(location = 2) in vec3	N;			// Eye-space normal        (for lighting)
+layout(location = TEXCOORD1) in vec4	position;	// position + hemi
+layout(location = TEXCOORD2) in vec3	N;			// Eye-space normal        (for lighting)
 #ifdef USE_TDETAIL
-layout(location = 3) in vec2	tcdbump;	// d-bump
+layout(location = TEXCOORD3) in vec2	tcdbump;	// d-bump
     #ifdef USE_LM_HEMI
-layout(location = 4) in vec2	lmh;		// lm-hemi
+layout(location = TEXCOORD4) in vec2	lmh;		// lm-hemi
     #endif
 #else
     #ifdef USE_LM_HEMI
-layout(location = 3) in vec2	lmh;		// lm-hemi
+layout(location = TEXCOORD3) in vec2	lmh;		// lm-hemi
     #endif
 #endif
 
-layout(location = 0) out vec4	P;			// px,py,pz, m-id
-layout(location = 1) out vec4	Ne;			// nx,ny,nz, hemi
-layout(location = 2) out vec4	C;			// r, g, b,  gloss
+layout(location = COLOR0) out vec4	P;			// px,py,pz, m-id
+layout(location = COLOR1) out vec4	Ne;			// nx,ny,nz, hemi
+layout(location = COLOR2) out vec4	C;			// r, g, b,  gloss
 
 f_deffer _main( p_flat I );
 

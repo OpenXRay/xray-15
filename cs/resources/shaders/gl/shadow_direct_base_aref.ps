@@ -1,13 +1,13 @@
 #include "common.h"
 
 #ifdef 	USE_HWSMAP
-layout(location = 0) in vec2 tc0;
+layout(location = TEXCOORD0) in vec2 tc0;
 #else
-layout(location = 0) in float depth;
-layout(location = 1) in vec2 tc0;
+layout(location = TEXCOORD0) in float depth;
+layout(location = TEXCOORD1) in vec2 tc0;
 #endif
 
-layout(location = 0) out vec4 Color;
+layout(location = COLOR0) out vec4 Color;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // Pixel

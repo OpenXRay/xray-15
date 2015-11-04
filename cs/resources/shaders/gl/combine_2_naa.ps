@@ -2,9 +2,9 @@
 #include "mblur.h"
 #include "dof.h"
 
-layout(location = 0) in vec2 tc0;
+layout(location = TEXCOORD0) in vec2 tc0;
 
-layout(location = 0) out vec4 oColor;
+layout(location = COLOR0) out vec4 oColor;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 uniform sampler2D	s_distort;

@@ -4,10 +4,10 @@ uniform half4		screen_res;		// Screen resolution (x-Width,y-Height, zw - 1/resol
 
 out gl_PerVertex { vec4 gl_Position; };
 
-layout(location = 0) in vec4 iPos;
-layout(location = 1) in vec4 iColor;
+layout(location = POSITION) in vec4 iPos;
+layout(location = COLOR0) in vec4 iColor;
 
-layout(location = 0) out vec4 vColor;
+layout(location = COLOR0) out vec4 vColor;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // Vertex

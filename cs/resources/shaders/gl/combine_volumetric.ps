@@ -3,10 +3,10 @@
 //	Igor: used for volumetric light
 uniform	sampler2D 	s_vollight;
 
-layout(location = 0) in vec4 tc0;
+layout(location = TEXCOORD0) in vec4 tc0;
 
-layout(location = 0) out vec4 low;
-layout(location = 1) out vec4 high;
+layout(location = COLOR0) out vec4 low;
+layout(location = COLOR1) out vec4 high;
 
 void main()
 {

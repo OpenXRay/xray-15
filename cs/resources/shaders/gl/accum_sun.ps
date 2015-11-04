@@ -2,14 +2,14 @@
 #include "lmodel.h"
 #include "shadow.h"
 
-layout(location = 0) in vec2 	tc;
-layout(location = 1) in vec4 	tcJ;
-layout(location = 2) in vec2	LT;
-layout(location = 3) in vec2	RT;
-layout(location = 4) in vec2	LB;
-layout(location = 5) in vec2 	RB;
+layout(location = TEXCOORD0) in vec2 	tc;
+layout(location = TEXCOORD1) in vec4 	tcJ;
+layout(location = TEXCOORD2) in vec2	LT;
+layout(location = TEXCOORD3) in vec2	RT;
+layout(location = TEXCOORD4) in vec2	LB;
+layout(location = TEXCOORD5) in vec2 	RB;
 
-layout(location = 0) out vec4	oColor;
+layout(location = COLOR0) out vec4	oColor;
 
 void 	main	()
 {

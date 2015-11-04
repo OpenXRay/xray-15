@@ -1,9 +1,9 @@
 #include "common.h"
 
-layout(location = 0) in vec2 vTex0;
-layout(location = 1) in vec4 vColor;
+layout(location = TEXCOORD0) in vec2 vTex0;
+layout(location = COLOR0) in vec4 vColor;
 
-layout(location = 0) out vec4 oColor;
+layout(location = COLOR0) out vec4 oColor;
 
 //	TODO: OGL: move to load instead of sample (will need to provide integer texture coordinates)
 #define EPS	(0.9f/255.f)

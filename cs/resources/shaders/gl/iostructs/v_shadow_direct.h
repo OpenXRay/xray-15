@@ -7,10 +7,10 @@ struct 	a2v
 	float4 P;	// Object-space position
 };
 
-layout(location = 0) in vec4	P;		// (float,float,float,1)
+layout(location = POSITION) in vec4	P;		// (float,float,float,1)
 
 #ifndef  USE_HWSMAP
-layout(location = 0) out float	depth;	// Depth
+layout(location = TEXCOORD0) out float	depth;	// Depth
 #endif
 
 v_shadow_direct _main( a2v I );

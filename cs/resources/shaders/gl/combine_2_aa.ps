@@ -1,15 +1,15 @@
 #include "common.h"
 #include "mblur.h"
 
-layout(location = 0) in vec4 tc0;	// Center
-layout(location = 1) in vec4 tc1;	// LT
-layout(location = 2) in vec4 tc2;	// RB
-layout(location = 3) in vec4 tc3;	// RT
-layout(location = 4) in vec4 tc4;	// LB
-layout(location = 5) in vec4 tc5;	// Left	/ Right
-layout(location = 6) in vec4 tc6;	// Top  / Bottom
+layout(location = TEXCOORD0) in vec4 tc0;	// Center
+layout(location = TEXCOORD1) in vec4 tc1;	// LT
+layout(location = TEXCOORD2) in vec4 tc2;	// RB
+layout(location = TEXCOORD3) in vec4 tc3;	// RT
+layout(location = TEXCOORD4) in vec4 tc4;	// LB
+layout(location = TEXCOORD5) in vec4 tc5;	// Left	/ Right
+layout(location = TEXCOORD6) in vec4 tc6;	// Top  / Bottom
 
-layout(location = 0) out vec4 oColor;
+layout(location = COLOR0) out vec4 oColor;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 uniform sampler2D	s_distort;

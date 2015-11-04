@@ -2,20 +2,20 @@
 
 out gl_PerVertex { vec4 gl_Position; };
 
-layout(location = 0) in vec3 pos0;
-layout(location = 1) in vec3 pos1;
-layout(location = 2) in vec3 n0;
-layout(location = 3) in vec3 n1;
-layout(location = 4) in vec2 tex0;
-layout(location = 5) in vec2 tex1;
-layout(location = 6) in vec4 rgbh0;		// rgb.h
-layout(location = 7) in vec4 rgbh1;		// rgb.h
-layout(location = 8) in vec4 sun_af;	// x=sun_0, y=sun_1, z=alpha, w=factor
+layout(location = POSITION)		in vec3 pos0;
+layout(location = TANGENT)		in vec3 pos1;
+layout(location = NORMAL)		in vec3 n0;
+layout(location = BINORMAL)		in vec3 n1;
+layout(location = TEXCOORD0)	in vec2 tex0;
+layout(location = TEXCOORD1)	in vec2 tex1;
+layout(location = TEXCOORD2)	in vec4 rgbh0;		// rgb.h
+layout(location = TEXCOORD3)	in vec4 rgbh1;		// rgb.h
+layout(location = COLOR0)		in vec4 sun_af;	// x=sun_0, y=sun_1, z=alpha, w=factor
 
-layout(location = 0) out vec3	position;
-layout(location = 1) out vec2 	tc0;	// base0
-layout(location = 2) out vec2 	tc1;	// base1
-layout(location = 3) out vec4 	af;		// alpha&factor
+layout(location = TEXCOORD0) out vec3	position;
+layout(location = TEXCOORD1) out vec2 	tc0;	// base0
+layout(location = TEXCOORD2) out vec2 	tc1;	// base1
+layout(location = COLOR1) out vec4 	af;		// alpha&factor
 
 #define L_SCALE (2.0f*1.55f)
 void 	main	()

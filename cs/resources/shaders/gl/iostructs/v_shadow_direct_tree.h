@@ -1,13 +1,13 @@
 
 out gl_PerVertex { vec4 gl_Position; };
 
-layout(location = 0) in vec4	hpos;	// (float,float,float,1)
+layout(location = POSITION)	in vec4	hpos;	// (float,float,float,1)
 #ifndef  USE_HWSMAP
-layout(location = 1) out float	depth;	// Depth
+layout(location = TEXCOORD1) out float	depth;	// Depth
 #endif
 
 #ifndef  USE_HWSMAP
-layout(location = 0) out float	depth;	// Depth
+layout(location = TEXCOORD0) out float	depth;	// Depth
 #endif
 
 v_shadow_direct _main( v_shadow_direct I );

@@ -1,9 +1,9 @@
 #include "common.h"
 
-layout(location = 0) in vec2 tc0;	// base
-layout(location = 1) in vec4 vColor;
+layout(location = TEXCOORD0) in vec2 tc0;	// base
+layout(location = COLOR0) in vec4 vColor;
 
-layout(location = 0) out vec4 oColor;
+layout(location = COLOR0) out vec4 oColor;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // Pixel

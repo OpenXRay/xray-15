@@ -3,13 +3,13 @@
 
 out gl_PerVertex { vec4 gl_Position; };
 
-layout(location = 0) in vec4 p;
-layout(location = 1) in vec4 dir;
-layout(location = 2) in vec4 iColor;
+layout(location = POSITION) in vec4 p;
+layout(location = COLOR0) in vec4 dir;
+layout(location = COLOR1) in vec4 iColor;
 
-layout(location = 0) out vec4 vColor;
-layout(location = 1) out vec2 tc0;
-layout(location = 2) out vec2 tc1;
+layout(location = COLOR0) out vec4 vColor;
+layout(location = TEXCOORD1) out vec2 tc0;
+layout(location = TEXCOORD2) out vec2 tc1;
 
 void main (void)
 {

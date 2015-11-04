@@ -1,11 +1,11 @@
 #include "common.h"
 
-layout(location = 0) in vec4 factor;
-layout(location = 1) in vec3 tc0;
-layout(location = 2) in vec3 tc1;
+layout(location = TEXCOORD0) in vec4 factor;
+layout(location = TEXCOORD1) in vec3 tc0;
+layout(location = TEXCOORD2) in vec3 tc1;
 
-layout(location = 0) out vec4 low;
-layout(location = 1) out vec4 high;
+layout(location = COLOR0) out vec4 low;
+layout(location = COLOR1) out vec4 high;
 
 
 uniform samplerCube	s_sky0;

@@ -4,18 +4,18 @@ out gl_PerVertex { vec4 gl_Position; };
 
 uniform half4		screen_res;		// Screen resolution (x-Width,y-Height, zw - 1/resolution)
 
-layout(location = 0) in vec4 iPos;
-layout(location = 1) in vec4 iColor;
-layout(location = 2) in vec4 iGray;
-layout(location = 3) in vec2 iTex0;
-layout(location = 4) in vec2 iTex1;
-layout(location = 5) in vec2 iTex2;
+layout(location = POSITION)		in vec4 iPos;
+layout(location = COLOR0)		in vec4 iColor;
+layout(location = COLOR1)		in vec4 iGray;
+layout(location = TEXCOORD0)	in vec2 iTex0;
+layout(location = TEXCOORD1)	in vec2 iTex1;
+layout(location = TEXCOORD2)	in vec2 iTex2;
 
-layout(location = 0) out vec4 vColor;
-layout(location = 1) out vec4 vGray;
-layout(location = 2) out vec2 vTex0;
-layout(location = 3) out vec2 vTex1;
-layout(location = 4) out vec2 vTex2;
+layout(location = COLOR0)		out vec4 vColor;
+layout(location = COLOR1)		out vec4 vGray;
+layout(location = TEXCOORD0)	out vec2 vTex0;
+layout(location = TEXCOORD1)	out vec2 vTex1;
+layout(location = TEXCOORD2)	out vec2 vTex2;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // Vertex

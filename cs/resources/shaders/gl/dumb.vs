@@ -2,7 +2,7 @@
 
 out gl_PerVertex { vec4 gl_Position; };
 
-layout(location = 0) in vec4 iPos;
+layout(location = POSITION) in vec4 iPos;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // Vertex
