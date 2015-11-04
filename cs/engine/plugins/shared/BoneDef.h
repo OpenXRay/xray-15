@@ -33,4 +33,5 @@ public:
 		}
 	}
 };
-DEFINE_VECTOR(CBoneDef*,BoneDefVec,BoneDefIt);
+using BoneDefVec = xr_vector<CBoneDef*>;
+using BoneDefIt = BoneDefVec::iterator;

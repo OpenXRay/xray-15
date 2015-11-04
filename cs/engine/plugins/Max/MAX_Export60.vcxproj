@@ -116,7 +116,7 @@
       <AdditionalDependencies>mesh.lib;geom.lib;gfx.lib;maxutil.lib;core.lib;paramblk2.lib;comctl32.lib;odbc32.lib;odbccp32.lib;Winmm.lib;xrcorestatic.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)xray_export.dlu</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(SolutionDir)sdk/3d_sdk/3dsmax/ver-6.0/lib;$(SolutionDir)libraries\$(Configuration);$(SolutionDir)sdk\libraries;$(XRAY_15X_LIBS)\bugtrap\bin;$(DXSDK_DIR)Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)sdk/3d_sdk/3dsmax/ver-6.0/lib;$(SolutionDir)libraries\$(Configuration);$(SolutionDir)sdk\libraries;$(DXSDK_DIR)Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>Export\Utility.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)xray_export.pdb</ProgramDatabaseFile>
@@ -165,7 +165,7 @@
       <AdditionalDependencies>mesh.lib;geom.lib;gfx.lib;maxutil.lib;core.lib;paramblk2.lib;comctl32.lib;odbc32.lib;odbccp32.lib;Winmm.lib;xrcorestatic.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)xray_export.dlu</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(SolutionDir)sdk/3d_sdk/3dsmax/ver-6.0/lib;$(SolutionDir)libraries\$(Configuration);$(SolutionDir)sdk\libraries;$(XRAY_15X_LIBS)\bugtrap\bin;$(DXSDK_DIR)Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)sdk/3d_sdk/3dsmax/ver-6.0/lib;$(SolutionDir)libraries\$(Configuration);$(SolutionDir)sdk\libraries;$(DXSDK_DIR)Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>Export\Utility.def</ModuleDefinitionFile>
       <ProgramDatabaseFile>
       </ProgramDatabaseFile>
@@ -211,7 +211,7 @@
       <AdditionalDependencies>d3dx.lib;mesh.lib;geom.lib;gfx.lib;maxutil.lib;core.lib;paramblk2.lib;comctl32.lib;odbc32.lib;odbccp32.lib;Winmm.lib;R:\MagicFM\Sdk\Library\Release\MagicFM.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)xray_export.dlu</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(SolutionDir)sdk/3d_sdk/3dsmax/ver-6.0/lib;$(SolutionDir)libraries\$(Configuration);$(SolutionDir)sdk\libraries;$(XRAY_15X_LIBS)\bugtrap\bin;$(DXSDK_DIR)Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)sdk/3d_sdk/3dsmax/ver-6.0/lib;$(SolutionDir)libraries\$(Configuration);$(SolutionDir)sdk\libraries;$(DXSDK_DIR)Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>.\Utility.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>.\Release\XRayExportUtility.pdb</ProgramDatabaseFile>
@@ -290,6 +290,9 @@
     <ProjectReference Include="$(SolutionDir)engine\xrCore\xrCoreStatic.vcxproj">
       <Project>{f1066eac-ee25-4c7a-9023-5957a6f7ba27}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\3rd party\BugTrap.vcxproj">
+      <Project>{e8cf1ada-264a-4127-86c2-fd7057d3792c}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

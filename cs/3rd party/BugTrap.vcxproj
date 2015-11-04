@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{E8CF1ADA-264A-4127-86C2-FD7057D3792C}</ProjectGuid>
+    <RootNamespace>BugTrap</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)binaries\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)intermediate\$(Configuration)\$(ProjectName)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)binaries\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)intermediate\$(Configuration)\$(ProjectName)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;BUGTRAP_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>BugTrap\lib\zlib\include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <ResourceOutputFileName>$(IntDir)$(TargetName).res</ResourceOutputFileName>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;comctl32.lib;shlwapi.lib;version.lib;wininet.lib;nothrownew.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName)D.dll</OutputFile>
+      <ModuleDefinitionFile>BugTrap\source\BugTrap.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <GenerateMapFile>false</GenerateMapFile>
+      <MapFileName>
+      </MapFileName>
+      <MapExports>false</MapExports>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)libraries\$(Configuration)\$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalLibraryDirectories>BugTrap\lib\zlib-bin</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MinSpace</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <OmitFramePointers>true</OmitFramePointers>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;BUGTRAP_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>BugTrap\lib\zlib\include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <ResourceOutputFileName>$(IntDir)$(TargetName).res</ResourceOutputFileName>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;comctl32.lib;shlwapi.lib;version.lib;wininet.lib;nothrownew.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>BugTrap\source\BugTrap.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <GenerateMapFile>false</GenerateMapFile>
+      <MapFileName>
+      </MapFileName>
+      <MapExports>false</MapExports>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)libraries\$(Configuration)\$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalLibraryDirectories>BugTrap\lib\zlib-bin</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BugTrap\source\AboutDlg.cpp" />
+    <ClCompile Include="BugTrap\source\DescribeErrorDlg.cpp" />
+    <ClCompile Include="BugTrap\source\MachineInfoDlg.cpp" />
+    <ClCompile Include="BugTrap\source\MachineStateDlg.cpp" />
+    <ClCompile Include="BugTrap\source\MainDlg.cpp" />
+    <ClCompile Include="BugTrap\source\PreviewDlg.cpp" />
+    <ClCompile Include="BugTrap\source\SendMailDlg.cpp" />
+    <ClCompile Include="BugTrap\source\SimpleDlg.cpp" />
+    <ClCompile Include="BugTrap\source\TransferProgressDlg.cpp" />
+    <ClCompile Include="BugTrap\source\WaitDlg.cpp" />
+    <ClCompile Include="BugTrap\source\ColHelper.cpp" />
+    <ClCompile Include="BugTrap\source\StrHolder.cpp" />
+    <ClCompile Include="BugTrap\source\AnimProgressBar.cpp" />
+    <ClCompile Include="BugTrap\source\HexView.cpp" />
+    <ClCompile Include="BugTrap\source\HyperLink.cpp" />
+    <ClCompile Include="BugTrap\source\ImageView.cpp" />
+    <ClCompile Include="BugTrap\source\LayoutManager.cpp" />
+    <ClCompile Include="BugTrap\source\Splitter.cpp" />
+    <ClCompile Include="BugTrap\source\TextView.cpp" />
+    <ClCompile Include="BugTrap\source\WaitCursor.cpp" />
+    <ClCompile Include="BugTrap\source\CMapi.cpp" />
+    <ClCompile Include="BugTrap\source\EnumProcess.cpp" />
+    <ClCompile Include="BugTrap\source\InMemLogFile.cpp" />
+    <ClCompile Include="BugTrap\source\LogFile.cpp" />
+    <ClCompile Include="BugTrap\source\LogStream.cpp" />
+    <ClCompile Include="BugTrap\source\ModuleImportTable.cpp" />
+    <ClCompile Include="BugTrap\source\NetThunks.cpp" />
+    <ClCompile Include="BugTrap\source\SymEngine.cpp" />
+    <ClCompile Include="BugTrap\source\SymEngineNet.cpp" />
+    <ClCompile Include="BugTrap\source\TextLogFile.cpp" />
+    <ClCompile Include="BugTrap\source\ThemeXP.cpp" />
+    <ClCompile Include="BugTrap\source\XmlLogFile.cpp" />
+    <ClCompile Include="BugTrap\source\BugTrap.cpp" />
+    <ClCompile Include="BugTrap\source\BugTrapNet.cpp" />
+    <ClCompile Include="BugTrap\source\BugTrapUI.cpp" />
+    <ClCompile Include="BugTrap\source\BugTrapUtils.cpp" />
+    <ClCompile Include="BugTrap\source\ResManager.cpp" />
+    <ClCompile Include="BugTrap\source\AssemblyInfo.cpp" />
+    <ClCompile Include="BugTrap\source\Globals.cpp" />
+    <ClCompile Include="BugTrap\source\stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="BugTrap\source\Encoding.cpp" />
+    <ClCompile Include="BugTrap\source\TextFormat.cpp" />
+    <ClCompile Include="BugTrap\source\XmlReader.cpp" />
+    <ClCompile Include="BugTrap\source\XmlWriter.cpp" />
+    <ClCompile Include="BugTrap\source\FileStream.cpp" />
+    <ClCompile Include="BugTrap\source\InputStream.cpp" />
+    <ClCompile Include="BugTrap\source\MemStream.cpp" />
+    <ClCompile Include="BugTrap\source\OutputStream.cpp" />
+    <ClCompile Include="BugTrap\source\StrStream.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BugTrap\source\AboutDlg.h" />
+    <ClInclude Include="BugTrap\source\DescribeErrorDlg.h" />
+    <ClInclude Include="BugTrap\source\MachineInfoDlg.h" />
+    <ClInclude Include="BugTrap\source\MachineStateDlg.h" />
+    <ClInclude Include="BugTrap\source\MainDlg.h" />
+    <ClInclude Include="BugTrap\source\PreviewDlg.h" />
+    <ClInclude Include="BugTrap\source\SendMailDlg.h" />
+    <ClInclude Include="BugTrap\source\SimpleDlg.h" />
+    <ClInclude Include="BugTrap\source\TransferProgressDlg.h" />
+    <ClInclude Include="BugTrap\source\WaitDlg.h" />
+    <ClInclude Include="BugTrap\source\Array.h" />
+    <ClInclude Include="BugTrap\source\Buffer.h" />
+    <ClInclude Include="BugTrap\source\ColHelper.h" />
+    <ClInclude Include="BugTrap\source\Hash.h" />
+    <ClInclude Include="BugTrap\source\InterfacePtr.h" />
+    <ClInclude Include="BugTrap\source\List.h" />
+    <ClInclude Include="BugTrap\source\SmartPtr.h" />
+    <ClInclude Include="BugTrap\source\StrHolder.h" />
+    <ClInclude Include="BugTrap\source\AnimProgressBar.h" />
+    <ClInclude Include="BugTrap\source\HexView.h" />
+    <ClInclude Include="BugTrap\source\HyperLink.h" />
+    <ClInclude Include="BugTrap\source\ImageView.h" />
+    <ClInclude Include="BugTrap\source\LayoutManager.h" />
+    <ClInclude Include="BugTrap\source\Splitter.h" />
+    <ClInclude Include="BugTrap\source\TextView.h" />
+    <ClInclude Include="BugTrap\source\WaitCursor.h" />
+    <ClInclude Include="BugTrap\source\CMapi.h" />
+    <ClInclude Include="BugTrap\source\EnumProcess.h" />
+    <ClInclude Include="BugTrap\source\InMemLogFile.h" />
+    <ClInclude Include="BugTrap\source\LogFile.h" />
+    <ClInclude Include="BugTrap\source\LogLink.h" />
+    <ClInclude Include="BugTrap\source\LogStream.h" />
+    <ClInclude Include="BugTrap\source\ModuleImportTable.h" />
+    <ClInclude Include="BugTrap\source\NetThunks.h" />
+    <ClInclude Include="BugTrap\source\SymEngine.h" />
+    <ClInclude Include="BugTrap\source\SymEngineNet.h" />
+    <ClInclude Include="BugTrap\source\TextLogFile.h" />
+    <ClInclude Include="BugTrap\source\ThemeXP.h" />
+    <ClInclude Include="BugTrap\source\XmlLogFile.h" />
+    <ClInclude Include="BugTrap\source\BTAtlWindow.h" />
+    <ClInclude Include="BugTrap\source\BTMfcWindow.h" />
+    <ClInclude Include="BugTrap\source\BTTrace.h" />
+    <ClInclude Include="BugTrap\source\BugTrap.h" />
+    <ClInclude Include="BugTrap\source\BugTrapNet.h" />
+    <ClInclude Include="BugTrap\source\BugTrapUI.h" />
+    <ClInclude Include="BugTrap\source\BugTrapUtils.h" />
+    <ClInclude Include="BugTrap\source\ResManager.h" />
+    <ClInclude Include="BugTrap\source\Globals.h" />
+    <ClInclude Include="BugTrap\source\LeakWatcher.h" />
+    <ClInclude Include="BugTrap\source\resource.h" />
+    <ClInclude Include="BugTrap\source\stdafx.h" />
+    <ClInclude Include="BugTrap\source\VersionInfo.h" />
+    <ClInclude Include="BugTrap\source\Encoding.h" />
+    <ClInclude Include="BugTrap\source\TextFormat.h" />
+    <ClInclude Include="BugTrap\source\XmlReader.h" />
+    <ClInclude Include="BugTrap\source\XmlWriter.h" />
+    <ClInclude Include="BugTrap\source\BaseStream.h" />
+    <ClInclude Include="BugTrap\source\FileStream.h" />
+    <ClInclude Include="BugTrap\source\InputStream.h" />
+    <ClInclude Include="BugTrap\source\MemStream.h" />
+    <ClInclude Include="BugTrap\source\OutputStream.h" />
+    <ClInclude Include="BugTrap\source\Stream.h" />
+    <ClInclude Include="BugTrap\source\StrStream.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BugTrap\source\res\Bug.ico" />
+    <None Include="BugTrap\source\BugTrap.def" />
+    <None Include="BugTrap\source\res\CheckMark.bmp" />
+    <None Include="BugTrap\source\res\ImageToolbar.bmp" />
+    <None Include="BugTrap\source\res\KeyPair.snk" />
+    <None Include="BugTrap\source\res\SortArrows.bmp" />
+    <None Include="BugTrap\source\res\Upload.avi" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="BugTrap\source\BugTrap.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

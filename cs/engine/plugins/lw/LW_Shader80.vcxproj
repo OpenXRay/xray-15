@@ -92,7 +92,7 @@
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;lw_server.lib;xrcorestatic.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(SolutionDir)libraries\$(Configuration);$(XRAY_15X_LIBS)\bugtrap\bin;$(DXSDK_DIR)Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)libraries\$(Configuration);$(DXSDK_DIR)Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>Server\serv.def</ModuleDefinitionFile>
       <ProgramDatabaseFile />
       <ImportLibrary>$(SolutionDir)intermediate_plugs\$(Configuration)\$(ProjectName).lib</ImportLibrary>
@@ -140,7 +140,7 @@
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;lw_server.lib;xrcorestatic.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(SolutionDir)libraries\$(Configuration);$(XRAY_15X_LIBS)\bugtrap\bin;$(DXSDK_DIR)Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)libraries\$(Configuration);$(DXSDK_DIR)Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>Server\serv.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)xray_shader.pdb</ProgramDatabaseFile>
@@ -181,6 +181,17 @@
     <ClInclude Include="Shader\LW_Shader.h" />
     <ClInclude Include="shader\resource.h" />
     <ClInclude Include="shader\stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\3rd party\BugTrap.vcxproj">
+      <Project>{e8cf1ada-264a-4127-86c2-fd7057d3792c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\xrCore\xrCoreStatic.vcxproj">
+      <Project>{f1066eac-ee25-4c7a-9023-5957a6f7ba27}</Project>
+    </ProjectReference>
+    <ProjectReference Include="LW_Server.vcxproj">
+      <Project>{6ba3121a-acbc-4685-9246-4549ca1efffd}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

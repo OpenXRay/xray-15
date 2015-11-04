@@ -90,7 +90,7 @@
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;Foundation.lib;OpenMaya.lib;OpenMayaRender.lib;OpenMayaUI.lib;glu32.lib;opengl32.lib;xrcorestatic.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)xrayMaya_material.mll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(DXSDK_DIR)Lib\x86;$(XRAY_15X_LIBS)\bugtrap\bin;$(SolutionDir)sdk/3d_sdk/maya/ver-2008/lib;$(SolutionDir)libraries\$(Configuration);$(SolutionDir)sdk\libraries;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)Lib\x86;$(SolutionDir)sdk/3d_sdk/maya/ver-2008/lib;$(SolutionDir)libraries\$(Configuration);$(SolutionDir)sdk\libraries;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)xrayMaya_material.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
@@ -135,7 +135,7 @@
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;Foundation.lib;OpenMaya.lib;OpenMayaRender.lib;OpenMayaUI.lib;glu32.lib;opengl32.lib;xrcorestatic.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)xrayMaya_material.mll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(DXSDK_DIR)Lib\x86;$(XRAY_15X_LIBS)\bugtrap\bin;$(SolutionDir)sdk/3d_sdk/maya/ver-2008/lib;$(SolutionDir)libraries\$(Configuration);$(SolutionDir)sdk\libraries;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)Lib\x86;$(SolutionDir)sdk/3d_sdk/maya/ver-2008/lib;$(SolutionDir)libraries\$(Configuration);$(SolutionDir)sdk\libraries;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ProgramDatabaseFile />
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>$(SolutionDir)intermediate_plugs\$(Configuration)\$(ProjectName).lib</ImportLibrary>
@@ -166,6 +166,9 @@
     <ProjectReference Include="$(SolutionDir)engine\xrCore\xrCoreStatic.vcxproj">
       <Project>{f1066eac-ee25-4c7a-9023-5957a6f7ba27}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\3rd party\BugTrap.vcxproj">
+      <Project>{e8cf1ada-264a-4127-86c2-fd7057d3792c}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
