@@ -1,0 +1,21 @@
+#include "common.h"
+
+layout(location = TEXCOORD0)	in vec2 tc0;	// base
+layout(location = COLOR0)		in vec3 c0;
+layout(location = FOG)			in float fog;
+
+layout(location = COLOR0)		out vec4 C;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Pixel
+void main()
+{
+	float4	t_base 	= tex2D		(s_base,tc0);
+	float3	final 	= t_base.rgb*c0*2;
+
+	//	Fogging
+	final 	= lerp(fog_color.rgb, final, fog);
+
+	// out
+	C		= float4(final, t_base.a*fog*fog);
+}
