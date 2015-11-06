@@ -71,7 +71,7 @@ void CRenderTarget::accum_spot	(light* L)
 		float			fBias				= ps_r2_ls_depth_bias;
 		Fmatrix			m_TexelAdjust		= {
 			view_dim/2.f,							0.0f,									0.0f,		0.0f,
-			0.0f,									-view_dim/2.f,							0.0f,		0.0f,
+			0.0f,									view_dim/2.f,							0.0f,		0.0f,
 			0.0f,									0.0f,									fRange,		0.0f,
 			view_dim/2.f + view_sx + fTexelOffs,	view_dim/2.f + view_sy + fTexelOffs,	fBias,		1.0f
 		};
@@ -89,7 +89,7 @@ void CRenderTarget::accum_spot	(light* L)
 						view_sy				= 0.f;
 		Fmatrix			m_TexelAdjust2		= {
 			view_dim/2.f,							0.0f,									0.0f,		0.0f,
-			0.0f,									-view_dim/2.f,							0.0f,		0.0f,
+			0.0f,									view_dim/2.f,							0.0f,		0.0f,
 			0.0f,									0.0f,									fRange,		0.0f,
 			view_dim/2.f + view_sx + fTexelOffs,	view_dim/2.f + view_sy + fTexelOffs,	fBias,		1.0f
 		};
@@ -238,7 +238,7 @@ void CRenderTarget::accum_volumetric(light* L)
 		view_sy				= 0.f;
 		Fmatrix			m_TexelAdjust2		= {
 			view_dim/2.f,							0.0f,									0.0f,		0.0f,
-			0.0f,									-view_dim/2.f,							0.0f,		0.0f,
+			0.0f,									view_dim/2.f,							0.0f,		0.0f,
 			0.0f,									0.0f,									fRange,		0.0f,
 			view_dim/2.f + view_sx + fTexelOffs,	view_dim/2.f + view_sy + fTexelOffs,	fBias,		1.0f
 		};
