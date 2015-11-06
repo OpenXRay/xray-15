@@ -54,8 +54,7 @@ void CRenderTarget::accum_direct		(u32 sub_phase)
 		RCache.set_c				("Ldynamic_dir",		dir.x,dir.y,dir.z,0		);
 
 		// if (stencil>=1 && aref_pass)	stencil = light_id
-		//	Done in blender!
-		//RCache.set_ColorWriteEnable	(FALSE		);
+		RCache.set_ColorWriteEnable	(FALSE		);
 		RCache.set_Stencil		(TRUE,D3DCMP_LESSEQUAL,dwLightMarkerID,0x01,0xff,D3DSTENCILOP_KEEP,D3DSTENCILOP_REPLACE,D3DSTENCILOP_KEEP);
 		RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
 	}
@@ -309,8 +308,7 @@ void CRenderTarget::accum_direct_f		(u32 sub_phase)
 		RCache.set_c				("Ldynamic_dir",		dir.x,dir.y,dir.z,0		);
 
 		// if (stencil>=1 && aref_pass)	stencil = light_id
-		//	Done in blender!
-		//RCache.set_ColorWriteEnable	(FALSE		);
+		RCache.set_ColorWriteEnable	(FALSE		);
 		RCache.set_Stencil	(TRUE,D3DCMP_LESSEQUAL,dwLightMarkerID,0x01,0xff,D3DSTENCILOP_KEEP,D3DSTENCILOP_REPLACE,D3DSTENCILOP_KEEP);
 		RCache.Render		(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
 	}

@@ -33,8 +33,7 @@ void CRenderTarget::accum_spot	(light* L)
 		// *** similar to "Carmack's reverse", but assumes convex, non intersecting objects,
 		// *** thus can cope without stencil clear with 127 lights
 		// *** in practice, 'cause we "clear" it back to 0x1 it usually allows us to > 200 lights :)
-		//	Done in blender!
-		//RCache.set_ColorWriteEnable		(FALSE);
+		RCache.set_ColorWriteEnable		(FALSE);
 		RCache.set_Element		(s_accum_mask->E[SE_MASK_SPOT]);		// masker
 
 		// backfaces: if (stencil>=1 && zfail)			stencil = light_id

@@ -30,8 +30,7 @@ void CRenderTarget::accum_point		(light* L)
 	// *** thus can cope without stencil clear with 127 lights
 	// *** in practice, 'cause we "clear" it back to 0x1 it usually allows us to > 200 lights :)
 	RCache.set_Element				(s_accum_mask->E[SE_MASK_POINT]);			// masker
-	//	Done in blender!
-	//RCache.set_ColorWriteEnable		(FALSE);
+	RCache.set_ColorWriteEnable		(FALSE);
 
 	// backfaces: if (1<=stencil && zfail)	stencil = light_id
 	RCache.set_CullMode				(CULL_CW);
