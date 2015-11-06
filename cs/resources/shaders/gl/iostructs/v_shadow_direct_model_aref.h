@@ -15,19 +15,19 @@ layout(location = TANGENT)	in vec3 tan;	// (nx,ny,nz)
 layout(location = BINORMAL)	in vec3 bnorm;	// (nx,ny,nz)
 #endif
 #if defined(SKIN_2) || defined(SKIN_3)
-layout(location = TEXCOORD0) in vec4 tc0;	// (u,v)
+layout(location = TEXCOORD0) in vec4 tc;	// (u,v)
 #else
-layout(location = TEXCOORD0) in vec2 tc0;	// (u,v)
+layout(location = TEXCOORD0) in vec2 tc;	// (u,v)
 #endif
 #ifdef 	SKIN_4
 layout(location = TEXCOORD1) in vec4 ind;
 #endif
 
 #ifdef  USE_HWSMAP
-layout(location = 0) out vec2	tc0;	// Diffuse map for aref
+layout(location = TEXCOORD0) out vec2	tc0;	// Diffuse map for aref
 #else
-layout(location = 0) out float	depth;	// Depth
-layout(location = 1) out vec2	tc0;	// Diffuse map for aref
+layout(location = TEXCOORD0) out float	depth;	// Depth
+layout(location = TEXCOORD1) out vec2	tc0;	// Diffuse map for aref
 #endif
 
 v_shadow_direct_aref _main( v_model	I );

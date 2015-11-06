@@ -24,20 +24,20 @@ layout(location = TEXCOORD1) in vec4 ind;
 #endif
 
 #if defined(USE_R2_STATIC_SUN) && !defined(USE_LM_HEMI)
-layout(location = 0) out vec4	tcdh;		// Texture coordinates,         w=sun_occlusion
+layout(location = TEXCOORD0) out vec4	tcdh;		// Texture coordinates,         w=sun_occlusion
 #else
-layout(location = 0) out vec2	tcdh;		// Texture coordinates
+layout(location = TEXCOORD0) out vec2	tcdh;		// Texture coordinates
 #endif
-layout(location = 1) out vec4	position;	// position + hemi
-layout(location = 2) out vec3	N;			// Eye-space normal        (for lighting)
+layout(location = TEXCOORD1) out vec4	position;	// position + hemi
+layout(location = TEXCOORD2) out vec3	N;			// Eye-space normal        (for lighting)
 #ifdef USE_TDETAIL
-layout(location = 3) out vec2	tcdbump;	// d-bump
+layout(location = TEXCOORD3) out vec2	tcdbump;	// d-bump
 	#ifdef USE_LM_HEMI
-layout(location = 4) out vec2	lmh;		// lm-hemi
+layout(location = TEXCOORD4) out vec2	lmh;		// lm-hemi
 	#endif
 #else
 	#ifdef USE_LM_HEMI
-layout(location = 3) out vec2	lmh;		// lm-hemi
+layout(location = TEXCOORD3) out vec2	lmh;		// lm-hemi
 	#endif
 #endif
 
