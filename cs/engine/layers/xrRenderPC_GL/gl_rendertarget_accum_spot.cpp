@@ -220,7 +220,7 @@ void CRenderTarget::accum_volumetric(light* L)
 		float			fBias				= ps_r2_ls_depth_bias;
 		Fmatrix			m_TexelAdjust		= {
 			view_dim/2.f,							0.0f,									0.0f,		0.0f,
-			0.0f,									-view_dim/2.f,							0.0f,		0.0f,
+			0.0f,									view_dim/2.f,							0.0f,		0.0f,
 			0.0f,									0.0f,									fRange,		0.0f,
 			view_dim/2.f + view_sx + fTexelOffs,	view_dim/2.f + view_sy + fTexelOffs,	fBias,		1.0f
 		};
