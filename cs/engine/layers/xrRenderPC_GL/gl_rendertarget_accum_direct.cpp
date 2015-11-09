@@ -492,39 +492,6 @@ void CRenderTarget::accum_direct_volumetric	(u32 sub_phase, const u32 Offset, co
 
 	RCache.set_ColorWriteEnable();
 
-	ref_selement	Element = s_accum_direct_volumetric->E[0];
-
-	//	Assume everything was recalculated before this call by accum_direct
-
-	//	Set correct depth surface
-	//	It's slow. Make this when shader is created
-	{
-		char*		pszSMapName;
-		BOOL		b_HW_smap	= RImplementation.o.HW_smap;
-		BOOL		b_HW_PCF	= RImplementation.o.HW_smap_PCF;
-		if (b_HW_smap)		{
-			if (b_HW_PCF)	pszSMapName = r2_RT_smap_depth;
-			else			pszSMapName = r2_RT_smap_depth;
-		}
-		else				pszSMapName = r2_RT_smap_surf;
-		//s_smap
-		STextureList* _T = &*Element->passes[0]->T;
-
-		STextureList::iterator	_it		= _T->begin	();
-		STextureList::iterator	_end	= _T->end	();
-		for (; _it!=_end; _it++)
-		{
-			std::pair<u32,ref_texture>&		loader	=	*_it;
-			u32			load_id	= loader.first;
-			//	Shadowmap texture always uses 0 texture unit
-			if (load_id==0)		
-			{
-				//	Assign correct texture
-				loader.second.create(pszSMapName);
-			}
-		}
-	}
-
 	// Perform lighting
 	{
 
@@ -540,7 +507,7 @@ void CRenderTarget::accum_direct_volumetric	(u32 sub_phase, const u32 Offset, co
 
 		// setup
 		//RCache.set_Element			(s_accum_direct_volumetric->E[sub_phase]);
-		RCache.set_Element			(Element);
+		RCache.set_Element			(s_accum_direct_volumetric->E[0]);
 //		RCache.set_c				("Ldynamic_dir",		L_dir.x,L_dir.y,L_dir.z,0 );
 		RCache.set_c				("Ldynamic_color",		L_clr.x,L_clr.y,L_clr.z,0);
 		RCache.set_c				("m_shadow",			mShadow);
@@ -595,43 +562,7 @@ void CRenderTarget::accum_direct_volumetric	(u32 sub_phase, const u32 Offset, co
 
 		// setup stencil: we have to draw to both lit and unlit pixels
 		//RCache.set_Stencil			(TRUE,D3DCMP_LESSEQUAL,dwLightMarkerID,0xff,0x00);
-      //if( ! RImplementation.o.dx10_msaa )
-		   RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
-         /*
-      else 
-      {
-		   // per pixel
-		   RCache.Render			(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
-   		
-		   // per sample
-         if( RImplementation.o.dx10_msaa_opt )
-         {
-			   RCache.set_Element	(s_accum_direct_volumetric_msaa[0]->E[0]);
-            RCache.set_Stencil	(TRUE,D3DCMP_ALWAYS,0xff,0xff,0xff);
-				if (SE_SUN_NEAR==sub_phase)
-				   RCache.set_ZFunc(D3DCMP_GREATER);
-				else
-				   RCache.set_ZFunc(D3DCMP_LESSEQUAL);
-            RCache.Render			(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
-         }
-         else
-         {
-		      for( u32 i = 0; i < RImplementation.o.dx10_msaa_samples; ++i )
-		      {
-					RCache.set_Element	      (s_accum_direct_volumetric_msaa[i]->E[0]);
-               StateManager.SetSampleMask ( u32(1) << i );
-               RCache.set_Stencil	      (TRUE,D3DCMP_ALWAYS,0xff,0xff,0xff);
-					if (SE_SUN_NEAR==sub_phase)
-					   RCache.set_ZFunc(D3DCMP_GREATER);
-					else
-						RCache.set_ZFunc(D3DCMP_LESSEQUAL);
-               RCache.Render				   (D3DPT_TRIANGLELIST,Offset,0,4,0,2);
-		      }
-		      StateManager.SetSampleMask( 0xffffffff );
-         }
-		   RCache.set_Stencil			(TRUE,D3DCMP_LESSEQUAL,dwLightMarkerID,0xff,0x00);
-      }
-      */
+		RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);
 
 		// Fetch4 : disable
 //		if (RImplementation.o.HW_smap_FETCH4)	{
