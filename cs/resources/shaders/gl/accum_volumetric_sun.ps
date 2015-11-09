@@ -1,8 +1,3 @@
-//	Allow dynamic branching usage for HW PCF support
-#ifdef	USE_HWSMAP_PCF
-#define SUNSHAFTS_DYNAMIC
-#endif	//	USE_HWSMAP_PCF
-
 #include "common.h"
 #include "shadow.h"
 
@@ -64,7 +59,6 @@ void 	main ()
 	if (depth<0.0001)
 		res = max_density;
 
-	#ifndef SUNSHAFTS_DYNAMIC
 	for ( int i=0; i<RAY_SAMPLES; ++i )
 	{
 		if (depth>0.3)
@@ -79,19 +73,6 @@ void 	main ()
 		depth -= deltaDepth;
 		current -= delta;
 	}
-	#else
-	int n = int((P.z - 0.3) / deltaDepth);
-	for ( int i=0; i<n; ++i )
-	{		
-#ifndef	FILTER_LOW
-				res += density*shadow(current);
-#else	//	FILTER_LOW
-				res += density*sample_hw_pcf(current, float4(0,0,0,0));
-#endif	//	FILTER_LOW
-		depth -= deltaDepth;
-		current -= delta;
-	}
-	#endif
 
 	float fSturation = -Ldynamic_dir.z;
 

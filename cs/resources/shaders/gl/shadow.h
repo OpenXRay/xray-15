@@ -14,14 +14,8 @@ uniform sampler2D	s_smap;		// 2D/cube shadowmap
 half sample_hw_pcf (float4 tc,float4 shift)
 {
 	const float 	ts = KERNEL / float(SMAP_size);
-#ifndef SUNSHAFTS_DYNAMIC
 	float	s	= tex2Dproj( s_smap, tc + tc.w * shift * ts ).x;
 	return (s < tc.z / tc.w) ? 0.f : 1.f;
-#else	//	SUNSHAFTS_DYNAMIC
-	float4 tc2 = tc / tc.w + shift * ts;
-	tc2.w = 0;
-	return tex2Dlod(s_smap, tc2).x;
-#endif	//	SUNSHAFTS_DYNAMIC
 }
 
 half shadow_hw( float4 tc )
