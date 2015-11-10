@@ -3,8 +3,7 @@
 
 #include "common.h"
 
-//	Used for RGBA texture too ?!
-uniform sampler2D	s_smap;		// 2D/cube shadowmap
+uniform sampler2DShadow	s_smap;		// 2D/cube shadowmap
 
 #define	KERNEL	.6f
 
@@ -14,8 +13,7 @@ uniform sampler2D	s_smap;		// 2D/cube shadowmap
 half sample_hw_pcf (float4 tc,float4 shift)
 {
 	const float 	ts = KERNEL / float(SMAP_size);
-	float	s	= tex2Dproj( s_smap, tc + tc.w * shift * ts ).x;
-	return (s < tc.z / tc.w) ? 0.f : 1.f;
+	return tex2Dproj( s_smap, tc + tc.w * shift * ts );
 }
 
 half shadow_hw( float4 tc )
@@ -49,8 +47,7 @@ uniform sampler2D	jitter1;
 half4 	test 		(float4 tc, half2 offset)
 {
 	float4	tcx	= float4 (tc.xy + tc.w*offset, tc.zw);
-	bvec4	s	= lessThan(tex2Dproj (s_smap,tcx), float4(tc.z / tc.w));
-	return	half4(s);
+	return 	half4(tex2Dproj (s_smap,tcx));
 }
 
 half 	shadowtest 	(float4 tc, float4 tcJ)				// jittered sampling

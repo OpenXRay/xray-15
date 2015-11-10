@@ -164,6 +164,23 @@ void	CBlender_Compile::r_Sampler_clw	(LPCSTR name, LPCSTR texture, bool b_ps1x_P
 	u32 s			= r_Sampler	(name,texture,b_ps1x_ProjectiveDivide,D3DTADDRESS_CLAMP,D3DTEXF_LINEAR,D3DTEXF_NONE,D3DTEXF_LINEAR);
 	if (u32(-1)!=s)	RS.SetSAMP	(s,D3DSAMP_ADDRESSW, D3DTADDRESS_WRAP);
 }
+#ifdef USE_OGL
+// TODO: OGL: Support comparison mode through r_dx10Sampler.
+void	CBlender_Compile::i_Comparison		(u32 s, u32 func)
+{
+	RS.SetSAMP			(s, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
+	RS.SetSAMP			(s, GL_TEXTURE_COMPARE_FUNC, func);
+}
+void	CBlender_Compile::r_Sampler_cmp(LPCSTR name, LPCSTR texture, bool b_ps1x_ProjectiveDivide)
+{
+	u32 s			= r_Sampler(name, texture, b_ps1x_ProjectiveDivide, D3DTADDRESS_CLAMP, D3DTEXF_LINEAR, D3DTEXF_NONE, D3DTEXF_LINEAR);
+	if (u32(-1) != s)
+	{
+		RS.SetSAMP		(s, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
+		RS.SetSAMP		(s, GL_TEXTURE_COMPARE_FUNC, GL_LESS);
+	}
+}
+#endif // USE_OGL
 
 void	CBlender_Compile::r_End			()
 {

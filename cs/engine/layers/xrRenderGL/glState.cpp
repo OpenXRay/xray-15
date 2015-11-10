@@ -239,7 +239,8 @@ void glState::UpdateSamplerState(u32 stage, u32 name, u32 value)
 			CHK_GL(glSamplerParameteri(m_samplerArray[stage], GL_TEXTURE_MAX_ANISOTROPY_EXT, value));
 			break;
 		default:
-			VERIFY(!"Sampler state not implemented");
+			// Assume this is an OpenGL sampler parameter
+			CHK_GL(glSamplerParameteri(m_samplerArray[stage], name, value));
 			break;
 	}
 }

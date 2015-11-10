@@ -51,6 +51,7 @@ public:
 	adopt_sampler&			_fmag_none		()						{ if (C) C->i_Filter_Mag(stage,D3DTEXF_NONE);										return *this;	}
 	adopt_sampler&			_fmag_point		()						{ if (C) C->i_Filter_Mag(stage,D3DTEXF_POINT);										return *this;	}
 	adopt_sampler&			_fmag_linear	()						{ if (C) C->i_Filter_Mag(stage,D3DTEXF_LINEAR);										return *this;	}
+	adopt_sampler&			_comp_less		()						{ if (C) C->i_Comparison(stage,GL_LESS);											return *this;	}
 };																																							
 																																							
 // wrapper																																					
@@ -170,7 +171,8 @@ void	CResourceManager::LS_Load			()
 			.def("fmip_linear",					&adopt_sampler::_fmip_linear	,return_reference_to(_1))
 			.def("fmag_none",					&adopt_sampler::_fmag_none		,return_reference_to(_1))
 			.def("fmag_point",					&adopt_sampler::_fmag_point		,return_reference_to(_1))
-			.def("fmag_linear",					&adopt_sampler::_fmag_linear	,return_reference_to(_1)),
+			.def("fmag_linear",					&adopt_sampler::_fmag_linear	,return_reference_to(_1))
+			.def("comp_less",					&adopt_sampler::_comp_less		,return_reference_to(_1)),
 
 		class_<adopt_compiler>("_compiler")
 			.def(								constructor<const adopt_compiler&>())

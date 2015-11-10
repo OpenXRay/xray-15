@@ -36,11 +36,7 @@ void	CBlender_accum_point::Compile(CBlender_Compile& C)
 		C.r_Sampler_rtf		("s_normal",		r2_RT_N);
 		C.r_Sampler_clw		("s_material",		r2_material);
 		C.r_Sampler			("s_lmap",			C.L_textures[0]	);
-		if (b_HW_smap)		{
-			if (b_HW_PCF)	C.r_Sampler_clf		("s_smap",r2_RT_smap_depth	);
-			else			C.r_Sampler_rtf		("s_smap",r2_RT_smap_depth	);
-		}
-		else				C.r_Sampler_rtf		("s_smap",r2_RT_smap_surf	);
+		C.r_Sampler_cmp		("s_smap",			r2_RT_smap_depth);
 		jitter				(C);
 		C.r_Sampler_rtf		("s_accumulator",	r2_RT_accum		);
 		C.r_End				();
@@ -51,11 +47,7 @@ void	CBlender_accum_point::Compile(CBlender_Compile& C)
 		C.r_Sampler_rtf		("s_normal",		r2_RT_N);
 		C.r_Sampler_clw		("s_material",		r2_material);
 		C.r_Sampler			("s_lmap",			C.L_textures[0]);
-		if (b_HW_smap)		{
-			if (b_HW_PCF)	C.r_Sampler_clf		("s_smap",r2_RT_smap_depth	);
-			else			C.r_Sampler_rtf		("s_smap",r2_RT_smap_depth	);
-		}
-		else				C.r_Sampler_rtf		("s_smap",r2_RT_smap_surf	);
+		C.r_Sampler_cmp		("s_smap",			r2_RT_smap_depth);
 		jitter				(C);
 		C.r_Sampler_rtf		("s_accumulator",	r2_RT_accum		);
 		C.r_End				();
@@ -66,11 +58,7 @@ void	CBlender_accum_point::Compile(CBlender_Compile& C)
 		C.r_Sampler_rtf		("s_normal",		r2_RT_N);
 		C.r_Sampler_clw		("s_material",		r2_material);
 		C.r_Sampler_clf		("s_lmap",			r2_RT_smap_surf);			// diff here
-		if (b_HW_smap)		{
-			if (b_HW_PCF)	C.r_Sampler_clf		("s_smap",r2_RT_smap_depth	);
-			else			C.r_Sampler_rtf		("s_smap",r2_RT_smap_depth	);
-		}
-		else				C.r_Sampler_rtf		("s_smap",r2_RT_smap_surf	);
+		C.r_Sampler_cmp		("s_smap",			r2_RT_smap_depth);
 		jitter				(C);
 		C.r_Sampler_rtf		("s_accumulator",	r2_RT_accum		);
 		C.r_End				();

@@ -25,10 +25,10 @@ void 	main	()
 
 	// ----- shadow
 	half4 	s_sum;
-		s_sum.x	= tex2D	( s_smap, LT).x;
-		s_sum.y = tex2D	( s_smap, RT).y;
-		s_sum.z	= tex2D	( s_smap, LB).z;
-		s_sum.w = tex2D	( s_smap, RB).w;
+		s_sum.x	= tex2D	( s_image, LT).x;
+		s_sum.y = tex2D	( s_image, RT).y;
+		s_sum.z	= tex2D	( s_image, LB).z;
+		s_sum.w = tex2D	( s_image, RB).w;
 //	half 	s 	= dot	( s_sum, 1.f/4.f);
 	half 	s 	= ((s_sum.x+s_sum.y)+(s_sum.z+s_sum.w))*(1.f/4.f);
 

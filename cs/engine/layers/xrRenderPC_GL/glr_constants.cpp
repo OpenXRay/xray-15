@@ -98,6 +98,7 @@ BOOL	R_constant_table::parse(void* _desc, u16 destination)
 		case GL_SAMPLER_2D:
 		case GL_SAMPLER_3D:
 		case GL_SAMPLER_CUBE:
+		case GL_SAMPLER_2D_SHADOW:
 			{
 				// ***Register sampler***
 				// We have determined all valuable info, search if constant already created
@@ -130,6 +131,7 @@ BOOL	R_constant_table::parse(void* _desc, u16 destination)
 			bSkip = TRUE;
 			break;
 		default:
+			fatal("unsupported uniform");
 			bSkip = TRUE;
 			break;
 		}
