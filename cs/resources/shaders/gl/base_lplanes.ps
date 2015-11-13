@@ -1,0 +1,17 @@
+#include "common.h"
+
+layout(location = TEXCOORD0)	in half2 	tc0;	// base
+//layout(location = TEXCOORD1)	in half2 	tc1;	// lmap
+layout(location = COLOR0)		in half4	c0;		// sun
+
+layout(location = COLOR0)		out half4	C;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Pixel
+void 	main	()
+{
+	half4	t_base 	= tex2D	(s_base,tc0);
+
+	// out
+	C = half4	(t_base.r,t_base.g,t_base.b,t_base.a * c0.a);
+}
