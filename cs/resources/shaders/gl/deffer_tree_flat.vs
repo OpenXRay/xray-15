@@ -36,7 +36,7 @@ p_flat _main (v_tree I)
 	float 	hemi 	= I.Nh.w*c_scale.w + c_bias.w;
     //float 	hemi 	= Nh.w;
 	O.hpos			= mul		(m_VP, f_pos				);
-	O.N				= mul		(float3x3(m_xform_v), unpack_bx2(I.Nh.rgb)	);
+	O.N				= mul		(float3x3(m_xform_v), unpack_bx2(I.Nh)	);
 	O.position		= float4	(Pe, hemi					);
 
 #if defined(USE_R2_STATIC_SUN) && !defined(USE_LM_HEMI)

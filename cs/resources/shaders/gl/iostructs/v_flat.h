@@ -38,6 +38,7 @@ void main()
 	I.B		= B;
 	I.tc	= tc;
 	I.lmh	= lm;
+	I.color = color;
 
 	p_flat O 	= _main (I);
 

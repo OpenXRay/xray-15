@@ -15,7 +15,7 @@ layout(location = FOG)			out float fog;
 
 void main ()
 {
-	float3 	N 	= unpack_normal		(Nh.xyz);
+	float3 	N 	= unpack_normal		(Nh);
 	gl_Position	= mul				(m_VP, P);			// xform, input in world coords
 	tc0			= unpack_tc_base	(tc,T.w,B.w);		// copy tc
 //	tc0			= unpack_tc_base	(tc);				// copy tc

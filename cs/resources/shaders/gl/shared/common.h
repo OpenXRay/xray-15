@@ -87,7 +87,9 @@ uniform	float4 		dt_params;
 float3 	unpack_D3DCOLOR	(float3 v)	{ return v.bgr;	}
 float4 	unpack_D3DCOLOR	(float4 v)	{ return v.bgra;}
 half3 	unpack_normal	(half3 v)	{ return 2*v-1;			}
+half3 	unpack_normal	(half4 v)	{ return 2*v.xyz-1;		}
 half3 	unpack_bx2	(half3 v)	{ return 2*v-1; 		}
+half3 	unpack_bx2	(half4 v)	{ return 2*v.xyz-1;		}
 float3 	unpack_bx4	(float3 v)	{ return 4*v-2; 		} //!reduce the amount of stretching from 4*v-2 and increase precision
 float3 	unpack_bx4	(float4 v)	{ return unpack_bx4(v.xyz);	}
 
