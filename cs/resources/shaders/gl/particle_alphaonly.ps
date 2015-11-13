@@ -1,13 +1,9 @@
 #include "common.h"
-
-layout(location = 0) in vec2	tc0;
-layout(location = 1) in vec4	c0;
-
-layout(location = 0) out vec4	C;
+#include "iostructs/p_particle.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // Pixel
-void main ()
+half4 	_main	( v2p I )
 {
-	C	=	c0.a * tex2D(s_base,tc0).aaaa;
+	return	I.c.a * tex2D(s_base,I.tc0).a;
 }

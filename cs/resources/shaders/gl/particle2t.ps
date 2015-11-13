@@ -1,0 +1,13 @@
+#include "common.h"
+#include "iostructs/p_particle.h"
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Pixel
+uniform sampler2D   s_another;
+half4   _main  ( v2p I )
+{
+ half3 base = I.c*tex2D(s_base,I.tc0);
+ half4 grad = tex2D(s_another,I.tc1);
+ half3 mult = base*grad*2;
+  return  half4( lerp(base,mult,grad.w), 1);
+}
