@@ -6,7 +6,7 @@ uniform	float4		screen_res;
 layout(location = TEXCOORD0) in float2	tc0;		// tc.xy
 layout(location = TEXCOORD1) in float2	tcJ;		// jitter coords
 
-layout(location = COLOR0) 	out float2	C;
+layout(location = COLOR0) 	out float4	C;
 
 void	main()
 {
@@ -25,9 +25,9 @@ void	main()
 	if (P3.z < P.z) P = P3;
 
 #if SSAO_OPT_DATA == 2	
-	return  float4(P.zzzz);
+	C		= float4(P.zzzz);
 #else	//	USE_HBAO == 2	
 	P 		= tex2D         (s_position,      tc0 - 0.5f * screen_res.zw);
-	return  float4(P.zzzz);
+	C		= float4(P.zzzz);
 #endif	//	USE_HBAO == 2
 }

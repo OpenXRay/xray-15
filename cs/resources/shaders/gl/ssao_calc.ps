@@ -1,0 +1,28 @@
+#include "common.h"
+
+//in vec4 gl_FragCoord;
+
+uniform half3x4                        m_v2w                ;
+uniform	sampler2D	s_half_depth;
+
+#include "ssao_blur.ps"
+#include "ssao.ps"
+#include "ssao_hbao.ps"
+
+layout(location = TEXCOORD0)	in float4	tc0;		// tc.xy, tc.w = tonemap scale
+layout(location = TEXCOORD1)	in float2	tcJ;		// jitter coords
+
+layout(location = COLOR0)		out float4	C;
+
+void	main()
+{
+	float4 	P	= tex2D         (s_position,      tc0.xy);                // position.(mtl or sun)
+	float4 	N	= tex2D         (s_normal,        tc0.xy);                // normal.hemi
+#ifndef USE_HBAO
+	float	o	= calc_ssao(P.xyz, N.xyz, tc0.xy, tcJ);
+#else
+	//	Is not supported now
+	float   o   = 1.0f;//hbao_calc(P, N, tc0.xy, gl_FragCoord);
+#endif
+	C	=  float4(o, P.z, 0, 0);
+}

@@ -1,11 +1,17 @@
 #include "common.h"
 
 //#define USE_SUPER_SPECULAR
+//#define USE_ORIGINAL_SSAO
+//#define HBAO_WORLD_JITTER
+
+uniform	sampler2D	s_half_depth;
 
 #include "lmodel.h"
 #include "hmodel.h"
 
+#include "ssao_blur.ps"
 #include "ssao.ps"
+#include "ssao_hbao.ps"
 
 layout(location = TEXCOORD0) in vec4 tc0;	// tc.xy, tc.w = tonemap scale
 layout(location = TEXCOORD1) in vec2 tcJ;	// jitter coords
@@ -50,7 +56,13 @@ void main ()
 	half3 hdiffuse, hspecular;
 
 	//  Calculate SSAO
-	half occ = calc_ssao(P.xyz, N.xyz, tc0.xy, tcJ.xy);
+//#ifdef USE_SSAO_BLUR
+//	half occ = ssao_blur_ps(tc0.xy);
+#ifdef USE_HBAO
+	float occ = calc_hbao(P.z, N, tc0.xy);
+#else
+	half occ = calc_ssao(P, N, tc0.xy, tcJ);
+#endif
 
         hmodel		(hdiffuse, hspecular, mtl, N.w, D.w, P.xyz, N.xyz);
 //      hmodel		(hdiffuse, hspecular, mtl, 1, D.w, P.xyz, N.xyz);

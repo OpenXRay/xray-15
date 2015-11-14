@@ -31,6 +31,7 @@ vec4	mul(vec4 a,		mat4 b)	{ return a * b; }
 mat4	mul(mat4 a,		mat4 b)	{ return a * b; }
 vec3	mul(mat4x3 a,	vec4 b)	{ return a * b; }
 vec3	mul(mat4x3 a,	vec3 b)	{ return mat3(a) * b; }
+void	sincos(float x, out float s, out float c) { s = sin(x); c = cos(x); }
 
 #define lerp        mix
 #define frac        fract
