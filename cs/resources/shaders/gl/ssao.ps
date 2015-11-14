@@ -68,7 +68,8 @@ const half angles[5] = half[]
 );
 #endif
 
-uniform float4 ssao_params;
+uniform float ssao_noise_tile_factor;
+uniform float ssao_kernel_size;
 uniform float4 pos_decompression_params;
 
 uniform sampler2D 	jitter0;
@@ -84,9 +85,6 @@ float3 uv_to_eye(float2 uv, float eye_z)
 //	tc	G-buffer coordinates of the original point
 half	calc_ssao( half3 P, half3 N, half2 tc, half2 tcJ)
 {
-	float ssao_noise_tile_factor = ssao_params.x;
-	float ssao_kernel_size = ssao_params.y;
-
 	half point_depth = P.z;
 	if (point_depth<0.01) point_depth = 100000.0f;	//	filter for the sky
 //	half2 	scale 	= half2	(.5f / 1024.f, .5f / 768.f)*100/point_depth;

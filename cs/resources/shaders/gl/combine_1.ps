@@ -61,7 +61,7 @@ void main ()
 #ifdef USE_HBAO
 	float occ = calc_hbao(P.z, N, tc0.xy);
 #else
-	half occ = calc_ssao(P, N, tc0.xy, tcJ);
+	half occ = calc_ssao(P.xyz, N.xyz, tc0.xy, tcJ);
 #endif
 
         hmodel		(hdiffuse, hspecular, mtl, N.w, D.w, P.xyz, N.xyz);
@@ -131,8 +131,10 @@ void main ()
 #ifdef        USE_SUPER_SPECULAR
         color        	= spec          - hspecular	;
 #endif
-//		color 		= N; //show normals
-//		color                        	= D.xyz;
+// color 		= N; //show normals
+// color 		= N.w; //show normals
+//   color 		= float4(occ.xxx,1.0f); //show occlusion
+//	color		= float3(occ);
         tonemap        	(low, high, color, tm_scale )	;
         low 	= half4(low.rgb, skyblend);
         high 	= half4(high.rgb, skyblend);

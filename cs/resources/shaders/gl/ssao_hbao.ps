@@ -209,9 +209,6 @@ float horizon_occlusion(float2 deltaUV,
 
 float calc_hbao(float z, float4 curN, float2 tc0)
 {
-	float ssao_noise_tile_factor = ssao_params.x;
-	float ssao_kernel_size = ssao_params.y;
-
 	float3 N = curN.xyz;
     float3 P = uv_to_eye(tc0, z);
 
