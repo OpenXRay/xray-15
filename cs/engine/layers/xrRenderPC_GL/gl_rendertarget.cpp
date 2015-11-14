@@ -601,7 +601,7 @@ CRenderTarget::CRenderTarget		()
 				}
 			}
 			CHK_GL	(glBindTexture(GL_TEXTURE_2D, t_noise_surf[it3]));
-			CHK_GL	(glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, TEX_jitter, TEX_jitter, GL_RGBA, GL_UNSIGNED_BYTE, tempDataHBAO));
+			CHK_GL	(glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, TEX_jitter, TEX_jitter, GL_RGBA, GL_FLOAT, tempDataHBAO));
 		}
 	}
 
