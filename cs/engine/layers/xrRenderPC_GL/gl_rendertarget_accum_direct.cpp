@@ -92,8 +92,8 @@ void CRenderTarget::accum_direct		(u32 sub_phase)
 		{
 			0.5f,				0.0f,				0.0f,			0.0f,
 			0.0f,				0.5f,				0.0f,			0.0f,
-			0.0f,				0.0f,				fRange,			0.0f,
-			0.5f,				0.5f,				fBias,			1.0f
+			0.0f,				0.0f,				0.5f * fRange,	0.0f,
+			0.5f,				0.5f,				0.5f + fBias,	1.0f
 		};
 
 		// compute xforms
@@ -337,8 +337,8 @@ void CRenderTarget::accum_direct_f		(u32 sub_phase)
 		{
 			0.5f,				0.0f,				0.0f,			0.0f,
 			0.0f,				0.5f,				0.0f,			0.0f,
-			0.0f,				0.0f,				fRange,			0.0f,
-			0.5f + fTexelOffs,	0.5f + fTexelOffs,	fBias,			1.0f
+			0.0f,				0.0f,				0.5f * fRange,	0.0f,
+			0.5f + fTexelOffs,	0.5f + fTexelOffs,	0.5f + fBias,	1.0f
 		};
 
 		// compute xforms
