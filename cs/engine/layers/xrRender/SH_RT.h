@@ -8,15 +8,19 @@ public:
 	CRT();
 	~CRT();
 
-	void	create(LPCSTR Name, u32 w, u32 h, D3DFORMAT f, u32 SampleCount = 1 );
+	void	create						(LPCSTR Name, u32 w, u32 h, D3DFORMAT f, u32 SampleCount = 1);
 	void	destroy();
 	void	reset_begin();
 	void	reset_end();
 	IC BOOL	valid()	{ return !!pTexture; }
 
 public:
+#ifdef USE_OGL
+	GLuint					pSurface;
+#else
 	ID3DTexture2D*			pSurface;
 	ID3DRenderTargetView*	pRT;
+#endif // USE_OGL
 #ifdef	USE_DX10
 	ID3DDepthStencilView*	pZRT;
 #endif	//	USE_DX10
@@ -30,7 +34,7 @@ public:
 };
 struct 		resptrcode_crt	: public resptr_base<CRT>
 {
-	void				create			(LPCSTR Name, u32 w, u32 h, D3DFORMAT f, u32 SampleCount = 1 );
+	void				create			(LPCSTR Name, u32 w, u32 h, D3DFORMAT f, u32 SampleCount = 1);
 	void				destroy			()	{ _set(NULL);		}
 };
 typedef	resptr_core<CRT,resptrcode_crt>		ref_rt;

@@ -7,7 +7,12 @@
 #include "occRasterizer.h"
 #include "../../xrEngine/GameFont.h"
 
-#include "dxRenderDeviceRender.h"
+#ifdef USE_OGL
+#	include "glRenderDeviceRender.h"
+#else
+#	include "dxRenderDeviceRender.h"
+#endif // USE_OGL
+
  
 float	psOSSR		= .001f;
 
@@ -149,6 +154,7 @@ public:
 
 void CHOM::Render_DB			(CFrustum& base)
 {
+	// TODO: OGL: Should the viewport be vertically inverted here?
 	float			view_dim	= occ_dim_0;
 	Fmatrix			m_viewport		= {
 		view_dim/2.f,			0.0f,					0.0f,		0.0f,
@@ -367,7 +373,11 @@ void CHOM::OnRender	()
 			RCache.set_xform_world(Fidentity);
 			// draw solid
 			Device.SetNearer(TRUE);
+#ifdef USE_OGL
+			RCache.set_Shader	(glRenderDeviceRender::Instance().m_SelectionShader);
+#else
 			RCache.set_Shader	(dxRenderDeviceRender::Instance().m_SelectionShader);
+#endif // USE_OGL
 			RCache.dbg_Draw		(D3DPT_TRIANGLELIST,&*poly.begin(),poly.size()/3);
 			Device.SetNearer(FALSE);
 			// draw wire
@@ -376,7 +386,11 @@ void CHOM::OnRender	()
 			}else{
 				Device.SetNearer(TRUE);
 			}
+#ifdef USE_OGL
+			RCache.set_Shader	(glRenderDeviceRender::Instance().m_SelectionShader);
+#else
 			RCache.set_Shader	(dxRenderDeviceRender::Instance().m_SelectionShader);
+#endif // USE_OGL
 			RCache.dbg_Draw		(D3DPT_LINELIST,&*line.begin(),line.size()/2);
 			if (bDebug){
 				RImplementation.rmNormal();

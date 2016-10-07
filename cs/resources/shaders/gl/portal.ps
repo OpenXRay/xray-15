@@ -1,0 +1,11 @@
+#include "common.h"
+
+layout(location = COLOR0) 	in vec4	c0;
+layout(location = FOG) 		in float	fog;
+
+layout(location = COLOR0)	out vec4	C;
+
+void main ()
+{
+	C = c0;
+}

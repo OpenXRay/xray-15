@@ -131,7 +131,11 @@ public:
 	virtual ObjectList* 			GetSnapList		()=0;
 #endif
 
-	IC bool							UseVS			()		{ return HW.Caps.geometry_major >= 1; }
+#ifdef USE_OGL
+	IC bool							UseVS()		{ return true; }
+#else
+	IC bool							UseVS()		{ return HW.Caps.geometry_major >= 1; }
+#endif // USE_OGL
 
 	// Software processor
     ref_geom						soft_Geom;
@@ -142,8 +146,13 @@ public:
 	// Hardware processor
 	ref_geom						hw_Geom;
 	u32								hw_BatchSize;
-	ID3DVertexBuffer*			hw_VB;
-	ID3DIndexBuffer*			hw_IB;
+#ifdef USE_OGL
+	GLuint							hw_VB;
+	GLuint							hw_IB;
+#else
+	ID3DVertexBuffer*				hw_VB;
+	ID3DIndexBuffer*				hw_IB;
+#endif // USE_OGL
 	ref_constant					hwc_consts;
 	ref_constant					hwc_wave;
 	ref_constant					hwc_wind;
@@ -156,11 +165,11 @@ public:
 	void							hw_Load_Shaders	();
 	void							hw_Unload		();
 	void							hw_Render		();
-#ifdef	USE_DX10
+#if defined(USE_DX10) || defined(USE_OGL)
 	void							hw_Render_dump	(const Fvector4 &consts, const Fvector4 &wave, const Fvector4 &wind, u32 var_id, u32 lod_id);
-#else	//	USE_DX10
+#else	//	USE_DX10 || USE_OGL
 	void							hw_Render_dump	(ref_constant array, u32 var_id, u32 lod_id, u32 c_base);
-#endif	//	USE_DX10
+#endif	//	USE_DX10 || USE_OGL
 
 public:
 	// get unpacked slot

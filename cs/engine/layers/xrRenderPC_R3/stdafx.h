@@ -4,15 +4,22 @@
 
 #pragma once
 
+#ifdef _DEBUG
+#	define D3D_DEBUG_INFO
+#endif
+
 #pragma warning(disable:4995)
 #include "../../xrEngine/stdafx.h"
 #pragma warning(disable:4995)
+#include <d3d9.h>
 #include <d3dx9.h>
 #pragma warning(default:4995)
 #pragma warning(disable:4714)
 #pragma warning( 4 : 4018 )
 #pragma warning( 4 : 4244 )
 #pragma warning(disable:4237)
+
+#pragma comment( lib, "d3d9.lib"		)
 
 #include "d3d10_1.h"
 #include <D3Dx10core.h>
@@ -21,6 +28,7 @@
 
 #include "../xrRender/Debug/dxPixEventWrapper.h"
 
+#define		R_GL	-1
 #define		R_R1	1
 #define		R_R2	2
 #define		R_R3	3

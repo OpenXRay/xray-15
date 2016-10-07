@@ -57,7 +57,7 @@ void dx10ShaderResourceStateCache::Apply()
 
 void dx10ShaderResourceStateCache::SetPSResource( u32 uiSlot, ID3D10ShaderResourceView	*pRes )
 {
-	VERIFY(uiSlot<CBackend::mtMaxPixelShaderTextures);
+	VERIFY(uiSlot<CTexture::mtMaxPixelShaderTextures);
 
 	if ( m_PSViews[uiSlot] != pRes)
 	{
@@ -78,7 +78,7 @@ void dx10ShaderResourceStateCache::SetPSResource( u32 uiSlot, ID3D10ShaderResour
 
 void dx10ShaderResourceStateCache::SetGSResource( u32 uiSlot, ID3D10ShaderResourceView	*pRes )
 {
-	VERIFY(uiSlot<CBackend::mtMaxGeometryShaderTextures);
+	VERIFY(uiSlot<CTexture::mtMaxGeometryShaderTextures);
 
 	if ( m_GSViews[uiSlot] != pRes)
 	{
@@ -99,7 +99,7 @@ void dx10ShaderResourceStateCache::SetGSResource( u32 uiSlot, ID3D10ShaderResour
 
 void dx10ShaderResourceStateCache::SetVSResource( u32 uiSlot, ID3D10ShaderResourceView	*pRes )
 {
-	VERIFY(uiSlot<CBackend::mtMaxVertexShaderTextures);
+	VERIFY(uiSlot<CTexture::mtMaxVertexShaderTextures);
 
 	if ( m_VSViews[uiSlot] != pRes)
 	{

@@ -16,9 +16,9 @@ public:
 	void	SetVSResource( u32 uiSlot, ID3D10ShaderResourceView	*pRes );
 
 private:
-	ID3D10ShaderResourceView	*m_PSViews[CBackend::mtMaxPixelShaderTextures];
-	ID3D10ShaderResourceView	*m_GSViews[CBackend::mtMaxGeometryShaderTextures];
-	ID3D10ShaderResourceView	*m_VSViews[CBackend::mtMaxVertexShaderTextures];
+	ID3D10ShaderResourceView	*m_PSViews[CTexture::mtMaxPixelShaderTextures];
+	ID3D10ShaderResourceView	*m_GSViews[CTexture::mtMaxGeometryShaderTextures];
+	ID3D10ShaderResourceView	*m_VSViews[CTexture::mtMaxVertexShaderTextures];
 
 	u32		m_uiMinPSView;
 	u32		m_uiMaxPSView;

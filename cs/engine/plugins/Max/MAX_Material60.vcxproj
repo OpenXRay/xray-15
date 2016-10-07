@@ -186,7 +186,7 @@
       <Project>{f1066eac-ee25-4c7a-9023-5957a6f7ba27}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\3rd party\BugTrap.vcxproj">
+    <ProjectReference Include="..\..\..\3rd party\BugTrap\source\BugTrap.vcxproj">
       <Project>{e8cf1ada-264a-4127-86c2-fd7057d3792c}</Project>
     </ProjectReference>
   </ItemGroup>

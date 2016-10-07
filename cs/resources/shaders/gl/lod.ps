@@ -1,0 +1,31 @@
+#include "common.h"
+#include "sload.h"
+
+layout(location = POSITION) in vec3	position;
+layout(location = TEXCOORD0) in vec2 	tc0;		// base0
+layout(location = TEXCOORD1) in vec2 	tc1;		// base1
+layout(location = COLOR1)	in vec4 	af;			// alpha&factor
+
+layout(location = COLOR0) out vec4	P;			// px,py,pz, m-id
+layout(location = COLOR1) out vec4	Ne;			// nx,ny,nz, hemi
+layout(location = COLOR2) out vec4	C;			// r, g, b,  gloss
+
+void 	main	()
+{
+	// 1. Base texture + kill pixels with low alpha
+	half4 D0 	= tex2D		(s_base, tc0);
+	half4 D1 	= tex2D		(s_base, tc1);
+	half4 H0 	= tex2D		(s_hemi, tc0);	H0.xyz 	=  H0.rgb*2.f-float3(1);	// expand
+	half4 H1 	= tex2D		(s_hemi, tc1);	H1.xyz 	=  H1.rgb*2.f-float3(1);	// expand
+
+	half4 D 	= lerp		(D0,D1,af.w);		D.w	*= af.z;	// multiply alpha
+	half4 H 	= lerp		(H0,H1,af.w);		H.w	*= af.x;	// multiply hemi
+
+	clip		(D.w-(96.f/255.f))  ;
+	half3 N 	= normalize	(H.xyz);
+
+	// 2. Standart output
+	Ne			= half4		(N							, H.w		);
+	P			= half4 	(position + N*def_virtualh/2.f	, 0		);
+	C			= half4		(D.x,	D.y,	D.z			, def_gloss	);		// OUT: rgb.gloss
+}

@@ -1,0 +1,34 @@
+#include "common.h"
+
+layout(location = COLOR0) in vec4 Color;
+layout(location = COLOR1) in vec4 Gray;
+layout(location = TEXCOORD0) in vec2 tc0;
+layout(location = TEXCOORD1) in vec2 tc1;
+layout(location = TEXCOORD2) in vec2 tc2;
+
+layout(location = COLOR0) out vec4 oColor;
+
+uniform	sampler2D 	s_base0;
+uniform	sampler2D 	s_base1;
+uniform	sampler2D 	s_noise;
+uniform half4 		c_brightness;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Pixel
+void main()
+{
+	half3	t_0 	= tex2D		(s_base0,tc0).rgb;
+	half3	t_1 	= tex2D		(s_base1,tc1).rgb;	
+	half3 	image	= (t_0+t_1)*.5;					// add_d2
+	half	gray 	= dot		(image,Gray.rgb);			// dp3
+			image 	= lerp 		(vec3(gray),image,Gray.w);		// mul/mad
+
+	half4	t_noise	= tex2D		(s_noise,tc2);
+	half3 	noised 	= image*t_noise.rgb*2;                     		// mul_2x
+			image	= lerp( noised, image, Color.w); 	// lrp ?
+			image	= (image * Color.rgb + c_brightness.rgb)*2;		// mad
+//		image	= (image + c_brightness) * Color;		// mad ?
+
+	// out
+	oColor			=  half4( image, 1.0f);					// +mov
+}

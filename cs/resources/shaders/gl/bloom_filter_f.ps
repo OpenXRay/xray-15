@@ -1,0 +1,26 @@
+#include "common.h"
+
+layout(location = TEXCOORD0) in vec2 vTex0;
+layout(location = TEXCOORD1) in vec2 vTex1;
+layout(location = TEXCOORD2) in vec2 vTex2;
+layout(location = TEXCOORD3) in vec2 vTex3;
+
+layout(location = COLOR0) out vec4 oColor;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Pixel
+void main()
+{
+//        half4        t_0        = tex2D                (s_bloom,vtc0);
+//      half4        t_1        = tex2D                (s_bloom,vtc1);
+//        half4        t_2        = tex2D                (s_bloom,vtc2);
+//        half4        t_3        = tex2D                (s_bloom,vtc3);
+
+	half4	t_0	= texture2D( s_image, vTex0);
+	half4	t_1	= texture2D( s_image, vTex1);
+	half4	t_2	= texture2D( s_image, vTex2);
+	half4	t_3	= texture2D( s_image, vTex3);
+
+        // out
+	oColor		=  ( (t_0+t_1) + (t_2+t_3) ) / 2;
+}

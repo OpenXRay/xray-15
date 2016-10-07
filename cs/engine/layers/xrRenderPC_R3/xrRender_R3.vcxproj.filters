@@ -198,23 +198,8 @@
     <ClInclude Include="r3_R_sun_support.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="doug_lea_memory_allocator.h">
-      <Filter>Core\memory</Filter>
-    </ClInclude>
     <ClInclude Include="DetailFormat.h">
       <Filter>Details</Filter>
-    </ClInclude>
-    <ClInclude Include="light.h">
-      <Filter>Lights</Filter>
-    </ClInclude>
-    <ClInclude Include="light_gi.h">
-      <Filter>Lights</Filter>
-    </ClInclude>
-    <ClInclude Include="Light_Render_Direct.h">
-      <Filter>Lights</Filter>
-    </ClInclude>
-    <ClInclude Include="light_smapvis.h">
-      <Filter>Lights</Filter>
     </ClInclude>
     <ClInclude Include="SMAP_Allocator.h">
       <Filter>Lights</Filter>
@@ -717,6 +702,24 @@
     <ClInclude Include="$(SolutionDir)engine\layers\xrRender\skinw.h">
       <Filter>Refactored\Execution &amp; 3D\Visuals\Skeleton</Filter>
     </ClInclude>
+    <ClInclude Include="..\xrRender\dxRenderVisual.h">
+      <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRender\light_smapvis.h">
+      <Filter>Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRender\light_gi.h">
+      <Filter>Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRender\light.h">
+      <Filter>Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRender\Light_Render_Direct.h">
+      <Filter>Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xrRender\doug_lea_memory_allocator.h">
+      <Filter>Core\memory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -757,21 +760,6 @@
     </ClCompile>
     <ClCompile Include="r3_R_sun_support.cpp">
       <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="light_GI.cpp">
-      <Filter>Lights</Filter>
-    </ClCompile>
-    <ClCompile Include="Light_Render_Direct.cpp">
-      <Filter>Lights</Filter>
-    </ClCompile>
-    <ClCompile Include="Light_Render_Direct_ComputeXFS.cpp">
-      <Filter>Lights</Filter>
-    </ClCompile>
-    <ClCompile Include="light_smapvis.cpp">
-      <Filter>Lights</Filter>
-    </ClCompile>
-    <ClCompile Include="light_vis.cpp">
-      <Filter>Lights</Filter>
     </ClCompile>
     <ClCompile Include="blender_bloom_build.cpp">
       <Filter>Shading templates</Filter>
@@ -1306,6 +1294,24 @@
     </ClCompile>
     <ClCompile Include="$(SolutionDir)engine\layers\xrRender\skinw.cpp">
       <Filter>Refactored\Execution &amp; 3D\Visuals\Skeleton</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\dxRenderVisual.cpp">
+      <Filter>Refactored\Execution &amp; 3D\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\light_smapvis.cpp">
+      <Filter>Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\light_GI.cpp">
+      <Filter>Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\light_vis.cpp">
+      <Filter>Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\Light_Render_Direct.cpp">
+      <Filter>Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xrRender\Light_Render_Direct_ComputeXFS.cpp">
+      <Filter>Lights</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

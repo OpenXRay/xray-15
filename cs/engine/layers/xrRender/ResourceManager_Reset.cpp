@@ -8,14 +8,20 @@
 	#include <xrCore/xrAPI.hpp>
 #endif
 
+#include "../xrRenderGL/glBufferUtils.h"
+
 void	CResourceManager::reset_begin			()
 {
 	// destroy everything, renderer may use
 	::Render->reset_begin		();
 
 	// destroy state-blocks
-	for (u32 _it=0; _it<v_states.size(); _it++)
+	for (u32 _it = 0; _it<v_states.size(); _it++)
+#ifdef USE_OGL
+		v_states[_it]->state.Release();
+#else
 		_RELEASE(v_states[_it]->state);
+#endif // USE_OGL
 
 	// destroy RTs
 	for (map_RTIt rt_it=m_rtargets.begin(); rt_it!=m_rtargets.end(); rt_it++)
@@ -25,7 +31,11 @@ void	CResourceManager::reset_begin			()
 
 	// destroy DStreams
 	RCache.old_QuadIB			= RCache.QuadIB;
+#ifdef USE_OGL
+	glDeleteBuffers				(1, &RCache.QuadIB);
+#else
 	_RELEASE					(RCache.QuadIB);
+#endif // USE_OGL
 	RCache.Index.reset_begin	();
 	RCache.Vertex.reset_begin	();
 }
@@ -45,9 +55,9 @@ void	CResourceManager::reset_end				()
 		for (u32 _it=0; _it<v_geoms.size(); _it++)
 		{
 			SGeometry*	_G = v_geoms[_it];
-			if			(_G->vb == RCache.Vertex.old_pVB)	_G->vb = RCache.Vertex.Buffer	();
-			if			(_G->ib == RCache.Index.old_pIB)	_G->ib = RCache.Index.Buffer	();
-			if			(_G->ib == RCache.old_QuadIB)		_G->ib = RCache.QuadIB;
+			if (_G->vb == RCache.Vertex.old_pVB)		_G->vb = RCache.Vertex.Buffer();
+			if (_G->ib == RCache.Index.old_pIB)		_G->ib = RCache.Index.Buffer();
+			if (_G->ib == RCache.old_QuadIB)			_G->ib = RCache.QuadIB;
 		}
 	}
 
@@ -72,11 +82,13 @@ void	CResourceManager::reset_end				()
 	// create state-blocks
 	{
 		for (u32 _it=0; _it<v_states.size(); _it++)
-#ifdef	USE_DX10
+#if		defined(USE_OGL)
+			v_states[_it]->state_code.record(v_states[_it]->state);
+#elif	defined(USE_DX10)
 			v_states[_it]->state = ID3DState::Create(v_states[_it]->state_code);
 #else	//	USE_DX10
 			v_states[_it]->state = v_states[_it]->state_code.record();
-#endif	//	USE_DX10
+#endif
 	}
 
 	// create everything, renderer may use

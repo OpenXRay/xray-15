@@ -106,6 +106,11 @@ public:
 	void				i_Filter			(u32 s, u32 _min, u32 _mip, u32 _mag);
 #endif	//	USE_DX10
 
+#ifdef USE_OGL
+	void				i_Comparison		(u32 s, u32		func);
+	void				r_Sampler_cmp		(LPCSTR name,	LPCSTR texture, 	bool b_ps1x_ProjectiveDivide=false);
+#endif // USE_OGL
+
 	// R1/R2-compiler	[programmable]		- templates
 	void				r_Pass				(LPCSTR vs,		LPCSTR ps,		bool bFog,	BOOL	bZtest=TRUE,				BOOL	bZwrite=TRUE,			BOOL	bABlend=FALSE,			D3DBLEND	abSRC=D3DBLEND_ONE,		D3DBLEND abDST=D3DBLEND_ZERO,	BOOL aTest=FALSE,	u32 aRef=0);
 	void				r_Constant			(LPCSTR name,	R_constant_setup* s);

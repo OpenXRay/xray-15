@@ -1,11 +1,6 @@
 #include "stdafx.h"
 #pragma hdrstop
 
-#pragma warning(push)
-#pragma warning(disable:4995)
-#include <d3dx9.h>
-#pragma warning(pop)
-
 #include "ResourceManager.h"
 #include "blenders\Blender_Recorder.h"
 #include "blenders\Blender.h"
@@ -13,7 +8,11 @@
 #include "../../xrEngine/igame_persistent.h"
 #include "../../xrEngine/environment.h"
 
+#ifdef USE_OGL
+#include "glRenderDeviceRender.h"
+#else
 #include "dxRenderDeviceRender.h"
+#endif // USE_OGL
 
 // matrices
 #define	BIND_DECLARE(xf)	\
@@ -67,6 +66,16 @@ class cl_texgen : public R_constant_setup
 	{
 		Fmatrix mTexgen;
 
+#ifdef USE_OGL
+		Fmatrix			mTexelAdjust		= 
+		{
+			0.5f,				0.0f,				0.0f,			0.0f,
+			0.0f,				0.5f,				0.0f,			0.0f,
+			0.0f,				0.0f,				1.0f,			0.0f,
+			0.5f,				0.5f,				0.0f,			1.0f
+		};
+#else
+
 #ifdef	USE_DX10
 		Fmatrix			mTexelAdjust		= 
 		{
@@ -88,6 +97,8 @@ class cl_texgen : public R_constant_setup
 			0.5f + o_w,			0.5f + o_h,			0.0f,			1.0f
 		};
 #endif	//	USE_DX10
+
+#endif // USE_OGL
 
 		mTexgen.mul	(mTexelAdjust,RCache.xforms.m_wvp);
 
@@ -102,6 +113,16 @@ class cl_VPtexgen : public R_constant_setup
 	{
 		Fmatrix mTexgen;
 
+#ifdef USE_OGL
+		Fmatrix			mTexelAdjust		= 
+		{
+			0.5f,				0.0f,				0.0f,			0.0f,
+			0.0f,				0.5f,				0.0f,			0.0f,
+			0.0f,				0.0f,				1.0f,			0.0f,
+			0.5f,				0.5f,				0.0f,			1.0f
+		};
+#else
+
 #ifdef	USE_DX10
 		Fmatrix			mTexelAdjust		= 
 		{
@@ -123,6 +144,8 @@ class cl_VPtexgen : public R_constant_setup
 			0.5f + o_w,			0.5f + o_h,			0.0f,			1.0f
 		};
 #endif	//	USE_DX10
+
+#endif // USE_OGL
 
 		mTexgen.mul	(mTexelAdjust,RCache.xforms.m_vp);
 

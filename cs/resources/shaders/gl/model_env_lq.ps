@@ -1,0 +1,28 @@
+#include "common.h"
+
+layout(location = TEXCOORD0) in vec2 	tc0;	// base
+layout(location = TEXCOORD1) in vec3 	tc1;	// environment
+layout(location = COLOR0) in vec3		c0;		// sun
+layout(location = FOG) in float  		fog;
+
+layout(location = COLOR0) out vec4	color;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Pixel
+uniform samplerCUBE 	s_env	;		//	Environment for forward rendering
+
+void 	main	()
+{
+	float4	t_base 	= tex2D		(s_base,tc0);
+	float4	t_env 	= texCUBE	(s_env,	tc1);
+
+	float3 	base 	= lerp		(t_env.rgb,t_base.rgb,t_base.a);
+	float3	light	= c0;
+	float3	final 	= light*base*2;
+
+	//	Fogging
+	final 	= lerp(fog_color.rgb, final, fog);
+
+	// out
+	color	= float4(final.r,final.g,final.b,t_base.a*fog*fog);
+}

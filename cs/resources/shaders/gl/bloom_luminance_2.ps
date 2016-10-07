@@ -1,0 +1,56 @@
+#include "common.h"
+
+layout(location = TEXCOORD0) in vec4 Tex0;	// Central
+layout(location = TEXCOORD1) in vec4 Tex1;	// -1,+1
+layout(location = TEXCOORD2) in vec4 Tex2;	// -2,+2
+layout(location = TEXCOORD3) in vec4 Tex3;	// -3,+3
+layout(location = TEXCOORD4) in vec4 Tex4;	// -4,+4
+layout(location = TEXCOORD5) in vec4 Tex5;	// -5,+5
+layout(location = TEXCOORD6) in vec4 Tex6;	// -6,+6
+layout(location = TEXCOORD7) in vec4 Tex7;	// -7,+7
+
+layout(location = COLOR0) out vec4 oColor;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+//	perform 4x4 bilinear, 8x8p, the step (B)
+//	b):	64x64p	=> 8x8p
+half	luminance	(half2	tc)	
+{
+	half4	data = tex2D(s_image,tc);
+	return 	dot( data, vec4(1.f/4.f) );	// sum components
+}
+
+void main()
+{
+	// luminance
+	half4 	accum0;
+		accum0.x =	luminance(Tex0.xy);
+		accum0.y = 	luminance(Tex1.xy);
+		accum0.z = 	luminance(Tex2.xy);
+		accum0.w =	luminance(Tex3.xy);
+	half4 	accum1;
+		accum1.x =	luminance(Tex4.xy);
+		accum1.y = 	luminance(Tex5.xy);
+		accum1.z = 	luminance(Tex6.xy);
+		accum1.w =	luminance(Tex7.xy);
+	half4 	accum2;
+		accum2.x =	luminance(Tex0.wz);
+		accum2.y = 	luminance(Tex1.wz);
+		accum2.z = 	luminance(Tex2.wz);
+		accum2.w =	luminance(Tex3.wz);
+	half4 	accum3;
+		accum3.x =	luminance(Tex4.wz);
+		accum3.y = 	luminance(Tex5.wz);
+		accum3.z = 	luminance(Tex6.wz);
+		accum3.w =	luminance(Tex7.wz);
+
+	// perform accumulation
+	half4	final;
+		final.x	= dot(accum0, vec4(1.f/4.f));
+		final.y	= dot(accum1, vec4(1.f/4.f));
+		final.z	= dot(accum2, vec4(1.f/4.f));
+		final.w	= dot(accum3, vec4(1.f/4.f));
+
+	// OK
+	oColor		= final;
+}

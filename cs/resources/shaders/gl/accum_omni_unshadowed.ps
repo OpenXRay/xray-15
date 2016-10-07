@@ -1,0 +1,25 @@
+#include "common.h"
+#include "lmodel.h"
+
+layout(location = TEXCOORD0) in vec4 tc;
+
+layout(location = COLOR0) out vec4 oColor;
+
+//	TODO: OGL: Move to Load
+void main ()
+{
+	const half bias_mul 	= 0.999f;
+
+ 	// Sample the fat framebuffer:
+	half4 _P		= tex2Dproj 	(s_position, tc); 
+	half4 _N		= tex2Dproj 	(s_normal,   tc); 
+
+	half 	m	= xmaterial	;
+#ifndef USE_R2_STATIC_SUN
+			m 	= _P.w		;
+#endif
+
+	half	rsqr;
+	half4	light 		= plight_local( m, _P.xyz, _N.xyz, Ldynamic_pos.xyz, Ldynamic_pos.w, rsqr );
+	oColor              = blendp( Ldynamic_color * light, tc);
+}

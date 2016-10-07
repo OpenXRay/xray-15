@@ -41,7 +41,7 @@ public:
 	//	Init
 	virtual void	SetupStates();
 	virtual void	OnDeviceCreate(LPCSTR shName);
-	virtual void	Create( HWND hWnd, u32 &dwWidth, u32 &dwHeight, float &fWidth_2, float &fHeight_2, bool);
+	virtual bool	Create( HWND hWnd, u32 &dwWidth, u32 &dwHeight, float &fWidth_2, float &fHeight_2, bool);
 	virtual void	SetupGPU( BOOL bForceGPU_SW, BOOL bForceGPU_NonPure, BOOL bForceGPU_REF);
 	//	Overdraw
 	virtual void	overdrawBegin();

@@ -3,6 +3,10 @@
 
 #pragma once
 
+#ifdef USE_OGL
+#include "../xrRenderGL/glState.h"
+#endif // USE_OGL
+
 class	 SimulatorStates
 {
 private:
@@ -35,13 +39,18 @@ private:
 	};
 private:
 	xr_vector<State>		States;
+
 public:
 	void					set_RS	(u32 a, u32 b);
 	void					set_TSS	(u32 a, u32 b, u32 c);
 	void					set_SAMP(u32 a, u32 b, u32 c);
 	BOOL					equal	(SimulatorStates& S);
 	void					clear	();
+#ifdef USE_OGL
+	void					record	(glState &state);
+#else
 	IDirect3DStateBlock9*	record	();
+#endif // USE_OGL
 #ifdef	USE_DX10
 	void	UpdateState( dx10State &state) const;
 	void	UpdateDesc( D3D10_RASTERIZER_DESC &desc ) const;

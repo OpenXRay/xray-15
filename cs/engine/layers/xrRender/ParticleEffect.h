@@ -15,7 +15,7 @@
 
 namespace PS
 {
-	class ECORE_API CParticleEffect: public dxParticleCustom
+	class ECORE_API CParticleEffect : public dxParticleCustom
 	{
 		friend class CPEDef;
 	protected:
@@ -55,7 +55,7 @@ namespace PS
 
 		u32					RenderTO			();
 		virtual void		Render				(float LOD);
-		virtual void		Copy				(dxRender_Visual* pFrom);
+		virtual void		Copy				(IRenderVisual* pFrom);
 
 		virtual void 		OnDeviceCreate		();
 		virtual void 		OnDeviceDestroy		();

@@ -1,0 +1,13 @@
+#include "common.h"
+
+layout(location = TEXCOORD0) in vec2 vTex0;
+layout(location = COLOR0) in vec4 vColor;
+
+layout(location = COLOR0) out vec4 oColor;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Pixel
+void main()
+{
+	oColor = texture2D(s_base, vTex0)*vColor;
+}

@@ -1,0 +1,74 @@
+#include "common.h"
+#include "mblur.h"
+
+layout(location = TEXCOORD0) in vec4 tc0;	// Center
+layout(location = TEXCOORD1) in vec4 tc1;	// LT
+layout(location = TEXCOORD2) in vec4 tc2;	// RB
+layout(location = TEXCOORD3) in vec4 tc3;	// RT
+layout(location = TEXCOORD4) in vec4 tc4;	// LB
+layout(location = TEXCOORD5) in vec4 tc5;	// Left	/ Right
+layout(location = TEXCOORD6) in vec4 tc6;	// Top  / Bottom
+
+layout(location = COLOR0) out vec4 oColor;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+uniform sampler2D	s_distort;
+uniform half4 		e_barrier;	// x=norm(.8f), y=depth(.1f), z=clr
+uniform half4 		e_weights;	// x=norm, y=depth, z=clr
+uniform half4 		e_kernel;	// x=norm, y=depth, z=clr
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Pixel
+void main ()
+{
+  // Normal discontinuety filter
+  half3 nc		=  tex2D	(s_normal,   	tc0.xy).rgb;
+  half4 nd;
+	nd.x 		=  dot 		(nc, tex2D(s_normal,tc1.xy).rgb);
+	nd.y 		=  dot 		(nc, tex2D(s_normal,tc2.xy).rgb);
+	nd.z 		=  dot 		(nc, tex2D(s_normal,tc3.xy).rgb);
+	nd.w 		=  dot 		(nc, tex2D(s_normal,tc4.xy).rgb);
+
+	nd 		-= vec4(e_barrier.x);
+	nd 		=  step		(vec4(0),nd);	// bw
+  half  ne 		=  saturate	(dot(nd,vec4(e_weights.x)));
+
+  // Opposite coords
+  vec2 tc5r 		=  tc5.wz;
+  vec2 tc6r 		=  tc6.wz;
+
+  // Depth filter : compute gradiental difference: (c-sample1)+(c-sample1_opposite)
+  half4 dc		=  tex2D 	(s_position, tc0.xy);
+  half4 dd;
+	dd.x 		=  tex2D(s_position,tc1.xy).z + tex2D(s_position,tc2.xy).z;
+	dd.y 		=  tex2D(s_position,tc3.xy).z + tex2D(s_position,tc4.xy).z;
+	dd.z 		=  tex2D(s_position,tc5.xy).z + tex2D(s_position,tc5r).z;
+	dd.w 		=  tex2D(s_position,tc6.xy).z + tex2D(s_position,tc6r).z;
+	dd 		=  abs(2*dc.z-dd)-vec4(e_barrier.y);
+	dd 		=  step		(dd,vec4(0));		// bw
+  half  de 		=  saturate	(dot(dd,vec4(e_weights.y)));
+
+  // weight
+  half 	w 		=  (1-de*ne)*e_kernel.x;	// 0 - no aa, 1=full aa
+
+#ifdef 	USE_DISTORT
+	half4 	distort	= tex2D		(s_distort, tc0.xy);
+	half2	doffs	= (distort.xy-.5f)*def_distort;
+	float2	center	= tc0.xy + doffs;
+#else
+	float2	center 	= tc0.xy;
+#endif
+
+  // Smoothed color
+  // (a-c)*w + c = a*w + c(1-w)
+
+	float2	offset 	=  center * (1-w);
+	half4 	s0 	=  tex2D	(s_image, offset + tc1.xy*w);
+	half4 	s1 	=  tex2D	(s_image, offset + tc2.xy*w);
+	half4 	s2 	=  tex2D	(s_image, offset + tc3.xy*w);
+	half4 	s3 	=  tex2D	(s_image, offset + tc4.xy*w);
+
+	half3 	final	=  mblur( center, dc.xyz, (s0+s1+s2+s3).rgb/4.f );
+
+	oColor	= combine_bloom(final,tex2D	(s_bloom, tc0.xy));
+}

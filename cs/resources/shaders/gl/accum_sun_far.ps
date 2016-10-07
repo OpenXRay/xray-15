@@ -1,0 +1,60 @@
+#include "common.h"
+#include "lmodel.h"
+#include "shadow.h"
+
+#define SUN_FARPLANE 100.f
+
+layout(location = TEXCOORD0) in vec2	tc;
+layout(location = TEXCOORD1) in vec2	tcJ;
+
+layout(location = COLOR0) out vec4	oColor;
+
+#ifdef USE_SUNFILTER
+void main()
+{
+	float4 	_P	= tex2D 	(s_position, 	tc);
+		_P.w 	= 1.f;
+	float4 	PS	= mul( m_shadow, _P);
+#ifdef 	USE_HWSMAP
+	half 	s 	= sunmask( _P )*sample_hw( PS, float4(0,0,0,0) );
+#else
+	half 	s 	= sunmask( _P )*sample_sw( PS.xy / PS.w, float2(0,0), PS.z );
+#endif
+	oColor		= s;
+}
+#else
+void main ()
+{
+	float4 _P		= tex2D 	(s_position, 	tc);
+	half4  _N		= tex2D 	(s_normal,   	tc);
+
+	// ----- light-model
+	half 	m	= xmaterial	;
+# ifndef USE_R2_STATIC_SUN
+			m 	= _P.w		;
+# endif
+	half4	light 	= plight_infinity( m, _P.xyz, _N.xyz, Ldynamic_dir.xyz );
+
+	// ----- shadow
+  	float4 	P4 	= float4( _P.x, _P.y, _P.z, 1 );
+	float4 	PS	= mul( m_shadow, P4 );
+
+#ifndef	SUN_QUALITY
+	half 	s 	= sunmask( P4 )*sample_hw_pcf( PS, float4(0,0,0,0) );
+#else	//	SUN_QUALITY
+	half 	s 	= sunmask(P4);
+	#if SUN_QUALITY==1
+		s 	*= shadow		(PS);
+	#elif SUN_QUALITY==2
+		s 	*= shadowtest_sun 	(PS,tcJ);
+	#endif
+#endif	//	SUN_QUALITY
+
+#ifdef 	SUN_FARPLANE
+	float f		= saturate( _P.z / SUN_FARPLANE );
+	s			= lerp( s, 0.333f, f*f );
+#endif
+
+	oColor		= blend( Ldynamic_color * light * s, tc );
+}
+#endif

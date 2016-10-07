@@ -3,6 +3,22 @@
 
 #include "tss_def.h"
 
+#ifdef USE_OGL
+#include "../xrRenderGL/glState.h"
+void SimulatorStates::record(glState& state)
+{
+	for (u32 it = 0; it < States.size(); it++)
+	{
+		State& S = States[it];
+		switch (S.type)
+		{
+		case 0:	state.UpdateRenderState(S.v1, S.v2);			break;
+		//case 1: VERIFY(!"Texture enviroment not supported");	break;
+		case 2: state.UpdateSamplerState(S.v1, S.v2, S.v3);		break;
+		}
+	}
+}
+#else
 IDirect3DStateBlock9* SimulatorStates::record	()
 {
 //	TODO: DX10: Implement equivalent for SimulatorStates::record for DX10
@@ -31,6 +47,7 @@ IDirect3DStateBlock9* SimulatorStates::record	()
 	return	SB;
 #endif	//	USE_DX10
 }
+#endif // USE_OGL
 
 void	SimulatorStates::set_RS	(u32 a, u32 b)
 {
@@ -52,6 +69,8 @@ void	SimulatorStates::set_RS	(u32 a, u32 b)
 
 void	SimulatorStates::set_TSS	(u32 a, u32 b, u32 c)
 {
+	//VERIFY(!"OGL: Texture environment not supported.");
+
 	// Search duplicates
 	for (int t=0; t<int(States.size()); t++)
 	{

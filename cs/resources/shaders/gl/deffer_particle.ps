@@ -1,0 +1,38 @@
+#include "common.h"
+#include "sload.h"
+
+#if defined(USE_R2_STATIC_SUN) && !defined(USE_LM_HEMI)
+layout(location = TEXCOORD0) in vec4	tcdh;		// Texture coordinates,         w=sun_occlusion
+#else
+layout(location = TEXCOORD0) in vec2	tcdh;		// Texture coordinates
+#endif
+layout(location = TEXCOORD1) in vec4	position;	// position + hemi
+layout(location = TEXCOORD2) in vec3	N;			// Eye-space normal        (for lighting)
+#ifdef USE_TDETAIL
+layout(location = TEXCOORD3) in vec2	tcdbump;	// d-bump
+	#ifdef USE_LM_HEMI
+layout(location = TEXCOORD4) in vec2	lmh;		// lm-hemi
+	#endif
+#else
+	#ifdef USE_LM_HEMI
+layout(location = TEXCOORD3) in vec2	lmh;		// lm-hemi
+	#endif
+#endif
+layout(location = COLOR0) in vec4 	color;
+
+layout(location = COLOR0) out vec4	P;			// px,py,pz, m-id
+layout(location = COLOR1) out vec4	Ne;			// nx,ny,nz, hemi
+layout(location = COLOR2) out vec4	C;			// r, g, b,  gloss
+
+void 	main	()
+{
+  // 1. Base texture + kill pixels with low alpha
+	half4 	D 	= 	tex2D		(s_base, tcdh);
+			D	*=	color;
+			clip	(D.w-def_aref);
+
+	// 2. Standart output
+	Ne			= half4(normalize(N.xyz), position.w);
+	P		    = half4(position.xyz + Ne.xyz*def_virtualh/2.f, xmaterial);
+	C			= half4(D.xyz, def_gloss);		// OUT: rgb.gloss
+}

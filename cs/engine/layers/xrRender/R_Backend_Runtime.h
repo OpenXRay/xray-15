@@ -7,12 +7,18 @@
 #include "sh_constant.h"
 #include "sh_rt.h"
 
+#ifdef USE_OGL
+#include "../xrRenderGL/glR_Backend_Runtime.h"
+#else
+
 #ifdef	USE_DX10
 #include "../xrRenderDX10/dx10R_Backend_Runtime.h"
 #include "../xrRenderDX10/StateManager/dx10State.h"
 #else	//	USE_DX10
 #include "../xrRenderDX9/dx9R_Backend_Runtime.h"
 #endif	//	USE_DX10
+
+#endif // !USE_OGL
 
 IC void		R_xforms::set_c_w			(R_constant* C)		{	c_w		= C;	RCache.set_c(C,m_w);	};
 IC void		R_xforms::set_c_invw		(R_constant* C)		{	c_invw	= C;	apply_invw();			};
@@ -38,31 +44,51 @@ IC	const Fmatrix&	CBackend::get_xform_world	()	{ return xforms.get_W();	}
 IC	const Fmatrix&	CBackend::get_xform_view	()	{ return xforms.get_V();	}
 IC	const Fmatrix&	CBackend::get_xform_project	()	{ return xforms.get_P();	}
 
+#ifdef USE_OGL
+IC	GLuint CBackend::get_FB()
+{
+	return pFB;
+}
+#endif // USE_OGL
+
+#ifdef USE_OGL
+IC	GLuint CBackend::get_RT(u32 ID)
+#else
 IC	ID3DRenderTargetView* CBackend::get_RT(u32 ID)
+#endif // USE_OGL
 {
 	VERIFY((ID>=0)&&(ID<4));
 
 	return pRT[ID];
 }
 
-IC	ID3DDepthStencilView* CBackend::get_ZB				()
+#ifdef USE_OGL
+IC	GLuint CBackend::get_ZB()
+#else
+IC	ID3DDepthStencilView* CBackend::get_ZB()
+#endif // USE_OGL
 {
 	return pZB;
 }
 
-ICF void	CBackend::set_States		(ID3DState* _state)
+ICF void	CBackend::set_States		(SState* _state)
 {
 //	DX10 Manages states using it's own algorithm. Don't mess with it.
-#ifndef	USE_DX10
-	if (state!=_state)
-#endif	//	USE_DX10
+#if !defined(USE_DX10) && !defined(USE_OGL)
+	if (state!=_state->state)
+#endif	//	!USE_DX10 && !USE_OGL
 	{
 		PGO				(Msg("PGO:state_block"));
 #ifdef DEBUG
 		stat.states		++;
 #endif
-		state			= _state;
-		state->Apply	();
+#ifdef USE_OGL
+		state = _state;
+		state->state.Apply();
+#else
+		state = _state->state;
+		state->Apply();
+#endif // USE_OGL
 	}
 }
 

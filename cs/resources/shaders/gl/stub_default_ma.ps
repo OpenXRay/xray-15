@@ -1,0 +1,23 @@
+#include "common.h"
+
+layout(location = TEXCOORD0) in vec2 vTex0;
+layout(location = COLOR0) in vec4 vColor;
+
+layout(location = COLOR0) out vec4 oColor;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Pixel
+
+void main ()
+{
+	half4 res 	= texture2D( s_base, vTex0 );
+//	res.rgb		= lerp( vColor.rgb, res.rgb, vColor.a);
+	res.rgb		= lerp( res.rgb, vColor.rgb, vColor.a);
+	res.a		*= vColor.a;
+
+//	clip(res-m_AlphaRef);
+//	clip(res-0.5);
+
+	oColor		= res;
+//	return half4(1,1,1,1);
+}

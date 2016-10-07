@@ -1,0 +1,28 @@
+#include "common.h"
+
+layout(location = TEXCOORD0) in vec4 factor;
+layout(location = TEXCOORD1) in vec3 tc0;
+layout(location = TEXCOORD2) in vec3 tc1;
+
+layout(location = COLOR0) out vec4 low;
+layout(location = COLOR1) out vec4 high;
+
+
+uniform samplerCube	s_sky0;
+uniform samplerCube	s_sky1;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Pixel
+void main( void )
+{
+    half3         	s0  	= texCUBE        (s_sky0,tc0).rgb;
+    half3         	s1      = texCUBE        (s_sky1,tc1).rgb;
+//	half3	s0		= s_sky0.Sample( smp_rtlinear, tc0 );
+//	half3	s1		= s_sky1.Sample( smp_rtlinear, tc1 );
+	half3	sky		= factor.xyz*lerp( s0, s1, factor.w );
+			sky		*= 0.33f;
+
+	// final tone-mapping
+	low				=		sky.xyzz		;
+	high			=		sky.xyzz/def_hdr;
+}

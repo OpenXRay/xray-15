@@ -5,7 +5,11 @@
 #include "blenders\Blender_Recorder.h"
 #include "blenders\Blender.h"
 
+#ifdef USE_OGL
+#include "glRenderDeviceRender.h"
+#else
 #include "dxRenderDeviceRender.h"
+#endif // !USE_OGL
 
 void fix_texture_name(LPSTR fn);
 
@@ -36,11 +40,13 @@ void	CBlender_Compile::r_Pass		(LPCSTR _vs, LPCSTR _ps, bool bFog, BOOL bZtest, 
 	ctable.merge			(&vs->constants);
 	SetMapping				();
 
+#ifndef USE_OGL
 	// Last Stage - disable
-	if (0==stricmp(_ps,"null"))	{
-		RS.SetTSS				(0,D3DTSS_COLOROP,D3DTOP_DISABLE);
-		RS.SetTSS				(0,D3DTSS_ALPHAOP,D3DTOP_DISABLE);
+	if (0 == stricmp(_ps, "null"))	{
+		RS.SetTSS(0, D3DTSS_COLOROP, D3DTOP_DISABLE);
+		RS.SetTSS(0, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
 	}
+#endif // !USE_OGL
 }
 
 void	CBlender_Compile::r_Constant	(LPCSTR name, R_constant_setup* s)
@@ -58,10 +64,10 @@ void CBlender_Compile::r_ColorWriteEnable( bool cR, bool cG, bool cB, bool cA)
 	Mask |= cB ? D3DCOLORWRITEENABLE_BLUE : 0;
 	Mask |= cA ? D3DCOLORWRITEENABLE_ALPHA : 0;
 
-	RS.SetRS( D3DRS_COLORWRITEENABLE, Mask);
-	RS.SetRS( D3DRS_COLORWRITEENABLE1, Mask);
-	RS.SetRS( D3DRS_COLORWRITEENABLE2, Mask);
-	RS.SetRS( D3DRS_COLORWRITEENABLE3, Mask);
+	RS.SetRS(D3DRS_COLORWRITEENABLE, Mask);
+	RS.SetRS(D3DRS_COLORWRITEENABLE1, Mask);
+	RS.SetRS(D3DRS_COLORWRITEENABLE2, Mask);
+	RS.SetRS(D3DRS_COLORWRITEENABLE3, Mask);
 }
 
 #ifndef	USE_DX10
@@ -75,6 +81,7 @@ u32		CBlender_Compile::i_Sampler		(LPCSTR _name)
 
 	// Find index
 	ref_constant C			= ctable.get(name);
+	//VERIFY(C);
 	if (!C)					return	u32(-1);
 
 	R_ASSERT				(C->type == RC_sampler);
@@ -157,6 +164,23 @@ void	CBlender_Compile::r_Sampler_clw	(LPCSTR name, LPCSTR texture, bool b_ps1x_P
 	u32 s			= r_Sampler	(name,texture,b_ps1x_ProjectiveDivide,D3DTADDRESS_CLAMP,D3DTEXF_LINEAR,D3DTEXF_NONE,D3DTEXF_LINEAR);
 	if (u32(-1)!=s)	RS.SetSAMP	(s,D3DSAMP_ADDRESSW, D3DTADDRESS_WRAP);
 }
+#ifdef USE_OGL
+// TODO: OGL: Support comparison mode through r_dx10Sampler.
+void	CBlender_Compile::i_Comparison		(u32 s, u32 func)
+{
+	RS.SetSAMP			(s, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
+	RS.SetSAMP			(s, GL_TEXTURE_COMPARE_FUNC, func);
+}
+void	CBlender_Compile::r_Sampler_cmp(LPCSTR name, LPCSTR texture, bool b_ps1x_ProjectiveDivide)
+{
+	u32 s			= r_Sampler(name, texture, b_ps1x_ProjectiveDivide, D3DTADDRESS_CLAMP, D3DTEXF_LINEAR, D3DTEXF_NONE, D3DTEXF_LINEAR);
+	if (u32(-1) != s)
+	{
+		RS.SetSAMP		(s, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
+		RS.SetSAMP		(s, GL_TEXTURE_COMPARE_FUNC, GL_LESS);
+	}
+}
+#endif // USE_OGL
 
 void	CBlender_Compile::r_End			()
 {

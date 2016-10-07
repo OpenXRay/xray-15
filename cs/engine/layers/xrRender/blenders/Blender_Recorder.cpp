@@ -9,7 +9,11 @@
 #include "Blender_Recorder.h"
 #include "Blender.h"
 
+#ifdef USE_OGL
+#include "glRenderDeviceRender.h"
+#else
 #include "..\dxRenderDeviceRender.h"
+#endif // !USE_OGL
 
 static int ParseName(LPCSTR N)
 {
@@ -149,6 +153,7 @@ void	CBlender_Compile::SetParams		(int iPriority, bool bStrictB2F)
 void	CBlender_Compile::PassBegin		()
 {
 	RS.Invalidate			();
+	ctable.clear			();
 	passTextures.clear		();
 	passMatrices.clear		();
 	passConstants.clear		();
@@ -159,9 +164,11 @@ void	CBlender_Compile::PassBegin		()
 
 void	CBlender_Compile::PassEnd			()
 {
+#ifndef USE_OGL
 	// Last Stage - disable
-	RS.SetTSS				(Stage(),D3DTSS_COLOROP,D3DTOP_DISABLE);
-	RS.SetTSS				(Stage(),D3DTSS_ALPHAOP,D3DTOP_DISABLE);
+	RS.SetTSS(Stage(), D3DTSS_COLOROP, D3DTOP_DISABLE);
+	RS.SetTSS(Stage(), D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+#endif // !USE_OGL
 
 	// Create pass
 	ref_state	state		= DEV->_CreateState		(RS.GetContainer());
@@ -174,9 +181,9 @@ void	CBlender_Compile::PassEnd			()
 	ctable.merge			(&gs->constants);
 #endif	//	USE_DX10
 	SetMapping				();
-	ref_ctable			ct	= DEV->_CreateConstantTable(ctable);
+	ref_ctable			ct	= DEV->_CreateConstantTable	(ctable);
 	ref_texture_list	T 	= DEV->_CreateTextureList	(passTextures);
-	ref_matrix_list		M	= DEV->_CreateMatrixList	(passMatrices);
+	ref_matrix_list		M	= DEV->_CreateMatrixList		(passMatrices);
 	ref_constant_list	C	= DEV->_CreateConstantList	(passConstants);
 #ifdef	USE_DX10
 	ref_pass	_pass_		= DEV->_CreatePass			(state,ps,vs,gs,ct,T,M,C);

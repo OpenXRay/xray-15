@@ -1,11 +1,6 @@
 #include "stdafx.h"
 #pragma hdrstop
 
-#pragma warning(push)
-#pragma warning(disable:4995)
-#include <d3dx9.h>
-#pragma warning(pop)
-
 #include "../../xrEngine/frustum.h"
 
 #ifdef	USE_DX10
@@ -20,10 +15,12 @@ void CBackend::OnFrameEnd	()
 	if (!g_dedicated_server)
 #endif    
 	{
-#ifdef	USE_DX10
+#if defined(USE_DX10) || defined(USE_OGL)
+#ifndef USE_OGL
 		HW.pDevice->ClearState();
+#endif // !USE_OGL
 		Invalidate			();
-#else	//	USE_DX10
+#else	//	USE_DX10 || USE_OGL
 
 		for (u32 stage=0; stage<HW.Caps.raster.dwStages; stage++)
 			CHK_DX(HW.pDevice->SetTexture(0,0));
@@ -32,7 +29,7 @@ void CBackend::OnFrameEnd	()
 		CHK_DX				(HW.pDevice->SetVertexShader	(0));
 		CHK_DX				(HW.pDevice->SetPixelShader		(0));
 		Invalidate			();
-#endif	//	USE_DX10
+#endif	//	USE_DX10 || USE_OGL
 	}
 //#endif
 }
@@ -73,10 +70,14 @@ void CBackend::Invalidate	()
 	ib							= NULL;
 	vb_stride					= 0;
 
+#ifndef USE_OGL
 	state						= NULL;
+#endif // !USE_OGL
 	ps							= NULL;
 	vs							= NULL;
-DX10_ONLY(gs					= NULL);
+#ifdef USE_DX10
+	gs							= NULL;
+#endif // USE_DX10
 	ctable						= NULL;
 
 	T							= NULL;
@@ -119,11 +120,11 @@ DX10_ONLY(gs					= NULL);
 	SSManager.ResetDeviceState();
 	SRVSManager.ResetDeviceState();
 
-	for (u32 gs_it =0; gs_it < mtMaxGeometryShaderTextures;)	textures_gs	[gs_it++]	= 0;
+	for (u32 gs_it =0; gs_it < CTexture::mtMaxGeometryShaderTextures;)	textures_gs	[gs_it++]	= 0;
 #endif	//	USE_DX10
 
-	for (u32 ps_it =0; ps_it < mtMaxPixelShaderTextures;)	textures_ps	[ps_it++]	= 0;
-	for (u32 vs_it =0; vs_it < mtMaxVertexShaderTextures;)	textures_vs	[vs_it++]	= 0;
+	for (u32 ps_it =0; ps_it < CTexture::mtMaxPixelShaderTextures;)	textures_ps	[ps_it++]	= 0;
+	for (u32 vs_it =0; vs_it < CTexture::mtMaxVertexShaderTextures;)	textures_vs	[vs_it++]	= 0;
 #ifdef _EDITOR
 	for (u32 m_it =0; m_it< 8;)		matrices	[m_it++]	= 0;
 #endif
@@ -131,12 +132,12 @@ DX10_ONLY(gs					= NULL);
 
 void	CBackend::set_ClipPlanes	(u32 _enable, Fplane*	_planes /*=NULL */, u32 count/* =0*/)
 {
-#ifdef	USE_DX10
+#if defined(USE_DX10) || defined(USE_OGL)
 	//	TODO: DX10: Implement in the corresponding vertex shaders
 	//	Use this to set up location, were shader setup code will get data
 	//VERIFY(!"CBackend::set_ClipPlanes not implemented!");
 	return;
-#else	//	USE_DX10
+#else	//	USE_DX10 || USE_OGL
 	if (0==HW.Caps.geometry.dwClipPlanes)	return;
 	if (!_enable)	{
 		CHK_DX	(HW.pDevice->SetRenderState(D3DRS_CLIPPLANEENABLE,FALSE));
@@ -161,21 +162,23 @@ void	CBackend::set_ClipPlanes	(u32 _enable, Fplane*	_planes /*=NULL */, u32 coun
 	// Enable them
 	u32		e_mask	= (1<<count)-1;
 	CHK_DX	(HW.pDevice->SetRenderState(D3DRS_CLIPPLANEENABLE,e_mask));
-#endif	//	USE_DX10
+#endif	//	USE_DX10 || USE_OGL
 }
 
 #ifndef DEDICATED_SREVER
 void	CBackend::set_ClipPlanes	(u32 _enable, Fmatrix*	_xform  /*=NULL */, u32 fmask/* =0xff */)
 {
+#ifndef USE_OGL
 	if (0==HW.Caps.geometry.dwClipPlanes)	return;
+#endif // !USE_OGL
 	if (!_enable)	{
-#ifdef	USE_DX10
+#if defined(USE_DX10) || defined(USE_OGL)
 		//	TODO: DX10: Implement in the corresponding vertex shaders
 		//	Use this to set up location, were shader setup code will get data
 		//VERIFY(!"CBackend::set_ClipPlanes not implemented!");
-#else	//	USE_DX10
+#else	//	USE_DX10 || USE_OGL
 		CHK_DX	(HW.pDevice->SetRenderState(D3DRS_CLIPPLANEENABLE,FALSE));
-#endif	//	USE_DX10
+#endif	//	USE_DX10 || USE_OGL
 		return;
 	}
 	VERIFY		(_xform && fmask);
@@ -206,7 +209,7 @@ void CBackend::set_Textures			(STextureList* _T)
 		if (load_id < CTexture::rstVertex)
 		{
 			//	Set up pixel shader resources
-			VERIFY(load_id<mtMaxPixelShaderTextures);
+			VERIFY(load_id<CTexture::mtMaxPixelShaderTextures);
 			// ordinary pixel surface
 			if ((int)load_id>_last_ps)		_last_ps	=	load_id;
 			if (textures_ps[load_id]!=load_surf)	
@@ -223,12 +226,12 @@ void CBackend::set_Textures			(STextureList* _T)
 				}
 			}
 		} else 
-#ifdef	UDE_DX10
+#ifdef	USE_DX10
 		if (load_id < CTexture::rstGeometry)
-#endif	//	UDE_DX10
+#endif	//	USE_DX10
 		{
 			//	Set up pixel shader resources
-			VERIFY(load_id < CTexture::rstVertex+mtMaxVertexShaderTextures);
+			VERIFY(load_id < CTexture::rstVertex+CTexture::mtMaxVertexShaderTextures);
 
 			// vertex only //d-map or vertex	
 			u32		load_id_remapped	= load_id - CTexture::rstVertex;
@@ -247,36 +250,35 @@ void CBackend::set_Textures			(STextureList* _T)
 				}
 			}
 		}
-	}
-#ifdef	UDE_DX10
-	else
-	{
-		//	Set up pixel shader resources
-		VERIFY(load_id < CTexture::rstGeometry+mtMaxGeometryShaderTextures);
-
-		// vertex only //d-map or vertex	
-		u32		load_id_remapped	= load_id - CTexture::rstGeometry;
-		if ((int)load_id_remapped>_last_gs)	_last_gs	=	load_id_remapped;
-		if (textures_gs[load_id_remapped]!=load_surf)	
+#ifdef	USE_DX10
+		else
 		{
-			textures_gs[load_id_remapped]	= load_surf;
-#ifdef DEBUG
-			stat.textures	++;
-#endif
-			if (load_surf)
+			//	Set up pixel shader resources
+			VERIFY(load_id < CTexture::rstGeometry + CTexture::mtMaxGeometryShaderTextures);
+
+			// vertex only //d-map or vertex	
+			u32		load_id_remapped = load_id - CTexture::rstGeometry;
+			if ((int)load_id_remapped>_last_gs)	_last_gs = load_id_remapped;
+			if (textures_gs[load_id_remapped] != load_surf)
 			{
-				PGO					(Msg("PGO:tex%d:%s",load_id,load_surf->cName.c_str()));
-				load_surf->bind		(load_id);
-				//					load_surf->Apply	(load_id);
+				textures_gs[load_id_remapped] = load_surf;
+#ifdef DEBUG
+				stat.textures++;
+#endif
+				if (load_surf)
+				{
+					PGO(Msg("PGO:tex%d:%s", load_id, load_surf->cName.c_str()));
+					load_surf->bind(load_id);
+					//					load_surf->Apply	(load_id);
+				}
 			}
 		}
+#endif	//	USE_DX10
 	}
-	}
-#endif	//	UDE_DX10
 
-
+	// TODO: OGL: Do we actually need to clear the remaining stages?
 	// clear remaining stages (PS)
-	for (++_last_ps; _last_ps<mtMaxPixelShaderTextures; _last_ps++)
+	for (++_last_ps; _last_ps<CTexture::mtMaxPixelShaderTextures; _last_ps++)
 	{
 		if (!textures_ps[_last_ps])
 			continue;
@@ -288,11 +290,17 @@ void CBackend::set_Textures			(STextureList* _T)
 		//HW.pDevice->PSSetShaderResources(_last_ps, 1, &pRes);
 		SRVSManager.SetPSResource(_last_ps, pRes);
 #else	//	USE_DX10
+#ifdef	USE_OGL
+		CHK_GL							(glActiveTexture(GL_TEXTURE0 + _last_ps));
+		CHK_GL							(glBindTexture(GL_TEXTURE_2D, 0));
+		CHK_GL							(glBindTexture(GL_TEXTURE_CUBE_MAP, 0));
+#else
 		CHK_DX							(HW.pDevice->SetTexture(_last_ps,NULL));
+#endif	//	USE_OGL
 #endif	//	USE_DX10
 	}
 	// clear remaining stages (VS)
-	for (++_last_vs; _last_vs<mtMaxVertexShaderTextures; _last_vs++)		
+	for (++_last_vs; _last_vs<CTexture::mtMaxVertexShaderTextures; _last_vs++)
 	{
 		if (!textures_vs[_last_vs])
 			continue;
@@ -304,29 +312,41 @@ void CBackend::set_Textures			(STextureList* _T)
 		//HW.pDevice->VSSetShaderResources(_last_vs, 1, &pRes);
 		SRVSManager.SetVSResource(_last_vs, pRes);
 #else	//	USE_DX10
+#ifdef	USE_OGL
+		CHK_GL							(glActiveTexture(GL_TEXTURE0 + CTexture::rstVertex + _last_vs));
+		CHK_GL							(glBindTexture(GL_TEXTURE_2D, 0));
+		CHK_GL							(glBindTexture(GL_TEXTURE_CUBE_MAP, 0));
+#else
 		CHK_DX							(HW.pDevice->SetTexture(_last_vs+CTexture::rstVertex,NULL));
+#endif	//	USE_OGL
 #endif	//	USE_DX10
 	}
 
 #ifdef	USE_DX10
 	// clear remaining stages (VS)
-	for (++_last_gs; _last_gs<mtMaxGeometryShaderTextures; _last_gs++)
+	for (++_last_gs; _last_gs<CTexture::mtMaxGeometryShaderTextures; _last_gs++)
 	{
 		if (!textures_gs[_last_gs])
 			continue;
 
 		textures_gs[_last_gs]			= 0;
 
+#ifdef	USE_OGL
+		CHK_GL							(glActiveTexture(GL_TEXTURE20 + _last_gs));
+		CHK_GL							(glBindTexture(GL_TEXTURE_2D, 0));
+		CHK_GL							(glBindTexture(GL_TEXTURE_CUBE_MAP, 0));
+#else
 		//	TODO: DX10: Optimise: set all resources at once
 		ID3D10ShaderResourceView	*pRes = 0;
 		//HW.pDevice->GSSetShaderResources(_last_gs, 1, &pRes);
 		SRVSManager.SetGSResource(_last_gs, pRes);
+#endif	//	USE_OGL
 	}
 #endif	//	USE_DX10
 }
 #else
 
 void	CBackend::set_ClipPlanes	(u32 _enable, Fmatrix*	_xform  /*=NULL */, u32 fmask/* =0xff */) {}
-void CBackend::set_Textures			(STextureList* _T) {}
+void	CBackend::set_Textures			(STextureList* _T) {}
 
 #endif

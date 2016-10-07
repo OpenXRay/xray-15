@@ -1,0 +1,67 @@
+#include "common.h"
+
+layout(location = TEXCOORD0) in vec2 vTex0;
+layout(location = TEXCOORD1) in vec4 vTex1;
+layout(location = TEXCOORD2) in vec4 vTex2;
+layout(location = TEXCOORD3) in vec4 vTex3;
+layout(location = TEXCOORD4) in vec4 vTex4;
+layout(location = TEXCOORD5) in vec4 vTex5;
+layout(location = TEXCOORD6) in vec4 vTex6;
+layout(location = TEXCOORD7) in vec4 vTex7;
+
+layout(location = COLOR0) out vec4 oColor;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+uniform half4 		weight[2];
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Pixel
+// Separable gauss filter: 	2*7 + 1 + 7*2 = 29 samples
+// Samples:			0-central, -1, -2,..., -7, 1, 2,... 7
+// Approximated i-count:	15t + 15a + 7a(d) + 1(out) = 38, HLSL compiled to 38 :)
+void main ()
+{
+	// central
+	//half4 accum 	=	weight[1].w * tex2D	(s_bloom, vtc0);
+	half4 accum 	=	weight[1].w * texture2D(s_bloom, vTex0);
+
+	// left (7)
+	// right (7) - no swizles on 'texld', so this is dep-read infact
+//	accum		+= 	weight[0].x * tex2D	(s_bloom, vtc1.xy);
+//	accum		+= 	weight[0].x * tex2D	(s_bloom, vtc1.wz);
+	accum		+= 	weight[0].x * texture2D(s_bloom, vTex1.xy);
+	accum		+= 	weight[0].x * texture2D(s_bloom, vTex1.wz);
+
+//	accum		+= 	weight[0].y * tex2D	(s_bloom, vtc2.xy);
+//	accum		+= 	weight[0].y * tex2D	(s_bloom, vtc2.wz);
+	accum		+= 	weight[0].y * texture2D(s_bloom, vTex2.xy);
+	accum		+= 	weight[0].y * texture2D(s_bloom, vTex2.wz);
+
+//	accum		+= 	weight[0].z * tex2D	(s_bloom, vtc3.xy);
+//	accum		+= 	weight[0].z * tex2D	(s_bloom, vtc3.wz);
+	accum		+= 	weight[0].z * texture2D(s_bloom, vTex3.xy);
+	accum		+= 	weight[0].z * texture2D(s_bloom, vTex3.wz);
+
+//	accum		+= 	weight[0].w * tex2D	(s_bloom, vtc4.xy);
+//	accum		+= 	weight[0].w * tex2D	(s_bloom, vtc4.wz);
+	accum		+= 	weight[0].w * texture2D(s_bloom, vTex4.xy);
+	accum		+= 	weight[0].w * texture2D(s_bloom, vTex4.wz);
+
+//	accum		+= 	weight[1].x * tex2D	(s_bloom, vtc5.xy);
+//	accum		+= 	weight[1].x * tex2D	(s_bloom, vtc5.wz);
+	accum		+= 	weight[1].x * texture2D(s_bloom, vTex5.xy);
+	accum		+= 	weight[1].x * texture2D(s_bloom, vTex5.wz);
+
+//	accum		+= 	weight[1].y * tex2D	(s_bloom, vtc6.xy);
+//	accum		+= 	weight[1].y * tex2D	(s_bloom, vtc6.wz);
+	accum		+= 	weight[1].y * texture2D(s_bloom, vTex6.xy);
+	accum		+= 	weight[1].y * texture2D(s_bloom, vTex6.wz);
+
+//	accum		+= 	weight[1].z * tex2D	(s_bloom, vtc7.xy);
+//	accum		+= 	weight[1].z * tex2D	(s_bloom, vtc7.wz);
+	accum		+= 	weight[1].z * texture2D(s_bloom, vTex7.xy);
+	accum		+= 	weight[1].z * texture2D(s_bloom, vTex7.wz);
+
+	// OK
+	oColor		=	accum;
+}

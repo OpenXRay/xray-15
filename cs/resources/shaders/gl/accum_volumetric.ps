@@ -1,0 +1,83 @@
+#include "common.h"
+#include "shadow.h"
+
+layout(location = TEXCOORD0) in vec3	lightToPos;
+layout(location = TEXCOORD1) in vec3	vPos;
+layout(location = TEXCOORD2) in half	fDensity;
+//layout(location = TEXCOORD3) in vec2	tNoise;
+
+layout(location = COLOR0) out vec4	oColor;
+
+uniform float4			m_lmap[2];
+uniform sampler2D		s_noise;
+
+#define	USE_LMAP
+#define	USE_LMAPXFORM
+#define	USE_SHADOW
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Pixel
+void main ()
+{
+        // ----- shadow
+		float4	P4	= half4(vPos, 1);
+        float4	PS	= mul( m_shadow, P4);
+        half	s	= 1.f;
+        #ifdef	USE_SHADOW
+//                #ifdef	USE_SJITTER
+//                  s         = shadowtest        (PS,tcJ);
+//                #else
+//	TODO: OGL: Use lower quality shadow test
+                  	s	= shadow(PS);
+//                #endif
+        #endif
+
+        // ----- lightmap
+        half4	lightmap = vec4(1.f);
+        #ifdef	USE_LMAP
+                #ifdef	USE_LMAPXFORM
+					PS.x	= dot( P4, m_lmap[0]);
+					PS.y	= dot( P4, m_lmap[1]);
+                #endif
+                lightmap = tex2Dproj(s_lmap, PS);
+        #endif
+
+	// ----- attenuate
+	half rsqr	= dot( lightToPos, lightToPos); // distance 2 light (squared)
+  	half  att 	= saturate( 1 - rsqr * Ldynamic_pos.w ); // q-linear attenuate
+	//half  att 	= saturate( 1 - (rsqr * Ldynamic_pos.w)*(rsqr * Ldynamic_pos.w) ); // q-linear attenuate
+  	//half  att 	= 10*(1/(1+0.1*rsqr));
+	//half  att 	= 1.0h/rsqr;
+	//half  att 	= 1.0h/rsqr-Ldynamic_pos.w;
+	//half  att 	= 5*(sqrt(1.0f/rsqr)-sqrt(Ldynamic_pos.w));
+
+	// ----- noise
+	PS.xy /= PS.w;
+	half time = timers.z*0.1;	
+	PS.xy /= 3;
+	PS.x += time;
+	//	TODO: OGL: Can use sampler with point mip filter
+	half4	t_noise	= tex2D(s_noise,PS.xy);
+	PS.x -= time;
+	PS.y -= time*0.70091;
+	//	TODO: OGL: Can use sampler with point mip filter	
+	t_noise *= tex2D(s_noise,PS.xy);
+	//t_noise *= 4;
+	t_noise = t_noise*0.5+0.5;
+
+	// out
+	//half maxIntens = 1.0h/100.0f;
+	//half maxIntens = 1.0h/40.0f;	
+	//half maxIntens = 1.0h/10.0f;
+	half maxIntens = fDensity;
+	vec4	result = vec4(maxIntens * s * att);
+	result *= lightmap;
+	result *= Ldynamic_color * t_noise;
+
+//	result = maxIntens;
+//	result *= lightmap;
+
+//	result = 0.1f;
+//	result = 0.0f;
+	oColor = half4( result.rgb, 0);
+}

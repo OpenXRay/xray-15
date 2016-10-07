@@ -94,8 +94,14 @@ namespace	R_dsgraph
 	typedef	ref_vs						vs_type;
 	typedef	ref_ps						ps_type;
 	#ifdef	USE_DX10
-		typedef	ref_gs						gs_type;
+		typedef	ref_gs					gs_type;
 	#endif	//	USE_DX10
+	typedef ref_state					state_type;
+#else
+
+#ifdef USE_OGL
+	typedef	GLuint						vs_type;
+	typedef	GLuint						ps_type;
 #else
 	#ifdef	USE_DX10	//	DX10 needs shader signature to propperly bind deometry to shader
 		typedef	SVS*					vs_type;
@@ -104,14 +110,16 @@ namespace	R_dsgraph
 		typedef	ID3DVertexShader*		vs_type;
 	#endif	//	USE_DX10
 		typedef	ID3DPixelShader*		ps_type;
+#endif // USE_OGL
+	typedef SState*						state_type;
 #endif
 
 	// NORMAL
-	typedef xr_vector<_NormalItem,render_allocator::helper<_NormalItem>::result>			mapNormalDirect;
-	struct	mapNormalItems		: public	mapNormalDirect										{	float	ssa;	};
+	typedef xr_vector<_NormalItem,render_allocator::helper<_NormalItem>::result>								mapNormalDirect;
+	struct	mapNormalItems		: public	mapNormalDirect														{	float	ssa;	};
 	struct	mapNormalTextures	: public	FixedMAP<STextureList*,mapNormalItems,render_allocator>				{	float	ssa;	};
-	struct	mapNormalStates		: public	FixedMAP<ID3DState*,mapNormalTextures,render_allocator>	{	float	ssa;	};
-	struct	mapNormalCS			: public	FixedMAP<R_constant_table*,mapNormalStates,render_allocator>			{	float	ssa;	};
+	struct	mapNormalStates		: public	FixedMAP<state_type,mapNormalTextures,render_allocator>				{	float	ssa;	};
+	struct	mapNormalCS			: public	FixedMAP<R_constant_table*,mapNormalStates,render_allocator>		{	float	ssa;	};
 	struct	mapNormalPS			: public	FixedMAP<ps_type, mapNormalCS,render_allocator>						{	float	ssa;	};
 #ifdef	USE_DX10
 	struct	mapNormalGS			: public	FixedMAP<gs_type, mapNormalPS,render_allocator>						{	float	ssa;	};
@@ -124,10 +132,10 @@ namespace	R_dsgraph
 
 	// MATRIX
 	typedef xr_vector<_MatrixItem,render_allocator::helper<_MatrixItem>::result>	mapMatrixDirect;
-	struct	mapMatrixItems		: public	mapMatrixDirect										{	float	ssa;	};
+	struct	mapMatrixItems		: public	mapMatrixDirect														{	float	ssa;	};
 	struct	mapMatrixTextures	: public	FixedMAP<STextureList*,mapMatrixItems,render_allocator>				{	float	ssa;	};
-	struct	mapMatrixStates		: public	FixedMAP<ID3DState*,mapMatrixTextures,render_allocator>	{	float	ssa;	};
-	struct	mapMatrixCS			: public	FixedMAP<R_constant_table*,mapMatrixStates,render_allocator>			{	float	ssa;	};
+	struct	mapMatrixStates		: public	FixedMAP<state_type,mapMatrixTextures,render_allocator>				{	float	ssa;	};
+	struct	mapMatrixCS			: public	FixedMAP<R_constant_table*,mapMatrixStates,render_allocator>		{	float	ssa;	};
 	struct	mapMatrixPS			: public	FixedMAP<ps_type, mapMatrixCS,render_allocator>						{	float	ssa;	};
 #ifdef	USE_DX10
 	struct	mapMatrixGS			: public	FixedMAP<gs_type, mapMatrixPS,render_allocator>						{	float	ssa;	};

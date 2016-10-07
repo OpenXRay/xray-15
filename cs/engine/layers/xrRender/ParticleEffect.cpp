@@ -13,6 +13,16 @@ static void ApplyTexgen( const Fmatrix &mVP )
 {
 	Fmatrix mTexgen;
 
+#ifdef USE_OGL
+	Fmatrix			mTexelAdjust		= 
+	{
+		0.5f,				0.0f,				0.0f,			0.0f,
+		0.0f,				0.5f,				0.0f,			0.0f,
+		0.0f,				0.0f,				1.0f,			0.0f,
+		0.5f,				0.5f,				0.0f,			1.0f
+	};
+#else
+
 #ifdef	USE_DX10
 	Fmatrix			mTexelAdjust		= 
 	{
@@ -34,6 +44,8 @@ static void ApplyTexgen( const Fmatrix &mVP )
 		0.5f + o_w,			0.5f + o_h,			0.0f,			1.0f
 	};
 #endif	//	USE_DX10
+
+#endif // USE_OGL
 
 	mTexgen.mul(mTexelAdjust,mVP);
 	RCache.set_c( "mVPTexgen", mTexgen );
@@ -204,7 +216,7 @@ u32 CParticleEffect::ParticlesCount()
 //------------------------------------------------------------------------------
 // Render
 //------------------------------------------------------------------------------
-void CParticleEffect::Copy(dxRender_Visual* )
+void CParticleEffect::Copy(IRenderVisual* )
 {
 	FATAL	("Can't duplicate particle system - NOT IMPLEMENTED");
 }

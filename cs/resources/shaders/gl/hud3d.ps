@@ -1,0 +1,11 @@
+#include "common.h"
+
+layout(location = TEXCOORD0) in vec2 tc0;
+
+layout(location = COLOR0) out vec4 oColor;
+
+void 	main ()
+{
+	half4 r	= tex2D(s_base, tc0 );
+	oColor	= r;
+}

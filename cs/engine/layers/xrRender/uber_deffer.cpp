@@ -2,7 +2,11 @@
 #include "uber_deffer.h"
 void fix_texture_name(LPSTR fn);
 
+#ifdef USE_OGL
+#include "glRenderDeviceRender.h"
+#else
 #include "dxRenderDeviceRender.h"
+#endif // USE_OGL
 
 void	uber_deffer	(CBlender_Compile& C, bool hq, LPCSTR _vspec, LPCSTR _pspec, BOOL _aref, LPCSTR _detail_replace, bool DO_NOT_FINISH)
 {

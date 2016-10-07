@@ -1,0 +1,33 @@
+#include "common.h"
+
+uniform half3x4                        m_v2w                ;
+uniform	float4		screen_res;
+
+layout(location = TEXCOORD0) in float2	tc0;		// tc.xy
+layout(location = TEXCOORD1) in float2	tcJ;		// jitter coords
+
+layout(location = COLOR0) 	out float4	C;
+
+void	main()
+{
+        //float4 	P	= tex2D         (s_position,      tc0);                // position.(mtl or sun)
+
+	// FIXME: Should add a half-texel offset to tc0 here
+	// This would fix horizontal line issue
+	float4 	P0	= tex2D         (s_position,      tc0 + 0.5f * screen_res.zw );                // position.(mtl or sun)
+	float4 	P1	= tex2D         (s_position,      tc0 - 0.5f * screen_res.zw );                // position.(mtl or sun)
+	float4 	P2	= tex2D         (s_position,      tc0 + 0.5f * float2(screen_res.z, -screen_res.w) );                // position.(mtl or sun)
+	float4 	P3	= tex2D         (s_position,      tc0 + 0.5f * float2(-screen_res.z, screen_res.w) );                // position.(mtl or sun)
+
+	float4 P = P0;
+	if (P1.z < P.z) P = P1;	
+	if (P2.z < P.z) P = P2;	
+	if (P3.z < P.z) P = P3;
+
+#if SSAO_OPT_DATA == 2	
+	C		= float4(P.zzzz);
+#else	//	USE_HBAO == 2	
+	P 		= tex2D         (s_position,      tc0 - 0.5f * screen_res.zw);
+	C		= float4(P.zzzz);
+#endif	//	USE_HBAO == 2
+}

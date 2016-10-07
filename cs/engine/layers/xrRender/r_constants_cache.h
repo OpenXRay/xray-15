@@ -4,11 +4,15 @@
 
 #include "r_constants.h"
 
+#ifdef USE_OGL
+#include "../xrRenderGL/glr_constants_cache.h"
+#else
 #ifdef	USE_DX10
 #include "../xrRenderDX10/dx10r_constants_cache.h"
 #else	//	USE_DX10
 #include "../xrRenderDX9/dx9r_constants_cache.h"
 #endif	//	USE_DX10
+#endif // USE_OGL
 
 
 /*

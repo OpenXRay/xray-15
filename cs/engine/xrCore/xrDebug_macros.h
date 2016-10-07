@@ -110,6 +110,14 @@
         if (!ignoreAlways && FAILED(hr)) \
             xrDebug::Error(hr, #expr, DEBUG_INFO, ignoreAlways); \
     } while (false)
+#define CHK_GL(expr) \
+    do \
+    { \
+        static bool ignoreAlways = false; \
+        (expr); GLenum err = glGetError(); \
+        if (!ignoreAlways && err != GL_NO_ERROR) \
+            xrDebug::Error(err, #expr, (const char*)gluErrorString(err), DEBUG_INFO, ignoreAlways); \
+    } while (false)
 #else // DEBUG
 #ifdef __BORLANDC__
 #define NODEFAULT
@@ -121,6 +129,7 @@
 #define VERIFY3(expr, e2, e3) do {} while (0)
 #define VERIFY4(expr, e2, e3, e4) do {} while (0)
 #define CHK_DX(a) a
+#define CHK_GL(a) a
 #endif // DEBUG
 //---------------------------------------------------------------------------------------------
 // FIXMEs / TODOs / NOTE macros

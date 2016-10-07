@@ -1,16 +1,16 @@
 #include "stdafx.h"
 #pragma hdrstop
 
-#pragma warning(disable:4995)
-#include <d3dx9.h>
-#pragma warning(default:4995)
-
 #include "ResourceManager.h"
 
 #include "../../xrCore/xrPool.h"
 #include "r_constants.h"
 
-#include "../xrRender/dxRenderDeviceRender.h"
+#ifdef USE_OGL
+#include "glRenderDeviceRender.h"
+#else
+#include "dxRenderDeviceRender.h"
+#endif // USE_OGL
 
 // pool
 //.static	poolSS<R_constant,512>			g_constant_allocator;
@@ -59,7 +59,7 @@ ref_constant R_constant_table::get	(shared_str& S)
 	return	0;
 }
 
-#ifndef	USE_DX10
+#if	!defined(USE_DX10) && !defined(USE_OGL)
 BOOL	R_constant_table::parse	(void* _desc, u16 destination)
 {
 	D3DXSHADER_CONSTANTTABLE* desc	= (D3DXSHADER_CONSTANTTABLE*) _desc;
@@ -188,7 +188,7 @@ BOOL	R_constant_table::parse	(void* _desc, u16 destination)
 	std::sort	(table.begin(),table.end(),p_sort);
 	return		TRUE;
 }
-#endif	//	USE_DX10
+#endif	//	!USE_DX10 && !USE_OGL
 
 void R_constant_table::merge(R_constant_table* T)
 {
@@ -208,6 +208,7 @@ void R_constant_table::merge(R_constant_table* T)
 			C->ps				=	src->ps;
 			C->vs				=	src->vs;
 			C->samp				=	src->samp;
+			C->handler			=	src->handler;
 			table.push_back		(C);
 		} 
 		else 
@@ -219,6 +220,10 @@ void R_constant_table::merge(R_constant_table* T)
 			R_constant_load& dL	=	(src->destination&4)?C->samp:((src->destination&1)?C->ps:C->vs);
 			dL.index			=	sL.index;
 			dL.cls				=	sL.cls;
+#ifdef USE_OGL
+			dL.location			=	sL.location;
+			dL.program			=	sL.program;
+#endif // USE_OGL
 		}
 	}
 
