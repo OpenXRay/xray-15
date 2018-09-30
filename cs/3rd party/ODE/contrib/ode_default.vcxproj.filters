@@ -143,6 +143,9 @@
     <ClInclude Include="$(SolutionDir)3rd party\ode\src\util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="$(SolutionDir)3rd party\ode\src\Bounder33.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="de_padf_integration.cpp">
@@ -239,6 +242,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="$(SolutionDir)3rd party\ode\src\util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)3rd party\ode\src\Bounder33.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
