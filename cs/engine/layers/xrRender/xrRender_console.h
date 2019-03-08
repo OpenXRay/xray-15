@@ -183,7 +183,8 @@ enum
 	R2FLAGEXT_SSAO_OPT_DATA		= (1<<1),
 	R2FLAGEXT_SSAO_HALF_DATA	= (1<<2),
 	R2FLAGEXT_SSAO_HBAO			= (1<<3),
-	R2FLAGEXT_SSAO_HDAO			= (1<<4)
+	R2FLAGEXT_SSAO_HDAO			= (1<<4),
+    R2FLAGEXT_ACTOR_SHADOW		= (1<<5)
 };
 
 extern void						xrRender_initconsole	();

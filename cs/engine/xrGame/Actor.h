@@ -320,6 +320,7 @@ public:
 	CActorCameraManager&	Cameras				() 	{VERIFY(m_pActorEffector); return *m_pActorEffector;}
 	IC CCameraBase*			cam_Active			()	{return cameras[cam_active];}
 	IC CCameraBase*			cam_FirstEye		()	{return cameras[eacFirstEye];}
+	IC EActorCameras		activeCam			()	{ return cam_active; }
 
 protected:
 	virtual	void			cam_Set					(EActorCameras style);

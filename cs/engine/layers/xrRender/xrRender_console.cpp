@@ -138,6 +138,7 @@ Flags32		ps_r2_ls_flags				= { R2FLAG_SUN
 
 Flags32		ps_r2_ls_flags_ext			= {
 		/*R2FLAGEXT_SSAO_OPT_DATA |*/ R2FLAGEXT_SSAO_HALF_DATA
+    | R2FLAGEXT_ACTOR_SHADOW
 	};
 
 float		ps_r2_df_parallax_h			= 0.02f;
@@ -600,6 +601,8 @@ void		xrRender_initconsole	()
 #endif // DEBUG
 
 	CMD2(CCC_tf_Aniso,	"r__tf_aniso",			&ps_r__tf_Anisotropic		); //	{1..16}
+
+    CMD3(CCC_Mask,		 "r__actor_shadow",		&ps_r2_ls_flags_ext,		R2FLAGEXT_ACTOR_SHADOW);
 
 	// R1
 	CMD4(CCC_Float,		"r1_ssa_lod_a",			&ps_r1_ssaLOD_A,			16,		96		);

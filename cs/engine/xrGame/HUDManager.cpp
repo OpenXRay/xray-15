@@ -214,6 +214,30 @@ void CHUDManager::Render_Last()
 	::Render->set_HUD				(FALSE);
 }
 
+void CHUDManager::Render_Actor_Shadow()
+{
+    if (NULL == pUI)
+        return;
+
+    CObject* O = g_pGameLevel->CurrentViewEntity();
+    if (NULL == O)
+        return;
+
+    CActor* A = smart_cast<CActor*> (O);
+    if (!A)
+        return;
+
+    // KD: we need to render actor shadow only in first eye cam mode because 
+    // in other modes actor model already in scene graph and renders well
+    if (A->activeCam() != eacFirstEye)
+        return;
+    ::Render->set_Object(O->H_Root());
+    //O->renderable_Render();
+    //хак, чтобы были тени от приаттаченных предметов
+    A->CEntityAlive::renderable_Render();
+    A->CInventoryOwner::renderable_Render();
+}
+
 #include "player_hud.h"
 bool   CHUDManager::RenderActiveItemUIQuery()
 {
