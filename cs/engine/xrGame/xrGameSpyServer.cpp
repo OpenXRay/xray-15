@@ -166,24 +166,18 @@ u32				xrGameSpyServer::OnMessage(NET_Packet& P, ClientID sender)			// Non-Zero 
 	case M_GAMESPY_CDKEY_VALIDATION_CHALLENGE_RESPOND:
 		{
 			string128 ResponseStr;
-            ResponseStr[0] = 0;
 			if ((P.r_elapsed() == 0) ||
 				(P.r_elapsed() >= sizeof(ResponseStr)))
 			{
-                auto clientIp = CL->m_cAddress.to_string();
-                Msg("! WARNING: Validation challenge respond from client [%s] is too long, DoS attack?", clientIp.c_str());
-                this->DisconnectClient(CL, "");
-                // XXX nitrocaster: block IP address after X such attempts
 				return 0;
-			}            
+			}
+			strcpy_s(ResponseStr, "");
 			P.r_stringZ(ResponseStr);
 			if (xr_strlen(ResponseStr) == 0)
 			{
-                auto clientIp = CL->m_cAddress.to_string();
-                Msg("! WARNING: Validation challenge respond from client [%s] is empty, DoS attack?", clientIp.c_str());
-                this->DisconnectClient(CL, "");
 				return 0;
-			}			
+			}
+			
 			if (!CL->m_bCDKeyAuth)
 			{
 #ifndef MASTER_GOLD
