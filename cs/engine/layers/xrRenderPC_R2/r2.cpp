@@ -320,6 +320,13 @@ void CRender::reset_begin()
 		Lights_LastFrame.clear	();
 	}
 
+    // KD: let's reload details while changed details options on vid_restart
+    if (b_loaded && ((dm_current_size != dm_size) || (ps_r__Detail_density != ps_current_detail_density)))
+    {
+        Details->Unload();
+        xr_delete(Details);
+    }
+
 	xr_delete					(Target);
 	HWOCC.occq_destroy			();
 	//_RELEASE					(q_sync_point[1]);
@@ -337,6 +344,13 @@ void CRender::reset_end()
 	HWOCC.occq_create			(occq_size);
 
 	Target						= new CRenderTarget();
+
+    // KD: let's reload details while changed details options on vid_restart
+    if (b_loaded && ((dm_current_size != dm_size) || (ps_r__Detail_density != ps_current_detail_density)))
+    {
+        Details = xr_new<CDetailManager>();;
+        Details->Load();
+    }
 
 	xrRender_apply_tf			();
 }
