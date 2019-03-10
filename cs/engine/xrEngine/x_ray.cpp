@@ -743,7 +743,7 @@ void CApplication::LoadTitleInt(LPCSTR str)
     Msg("* phase cmem: %d K", Memory.mem_usage() / 1024);
     Log(app_title);
     if (g_pGamePersistent->GameType() == EGameIDs::eGameIDSingle &&
-        strstr(Core.Params, "alife"))
+        !xr_strcmp(g_pGamePersistent->m_game_params.m_alife, "alife"))
     {
         max_load_stage = 17;
     }
