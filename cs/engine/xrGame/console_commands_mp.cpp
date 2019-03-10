@@ -82,6 +82,9 @@ extern	int		g_sv_Pending_Wait_Time;
 extern	int		g_sv_Client_Reconnect_Time;
 		int		g_dwEventDelay			= 0	;
 
+extern	u32		g_sv_max_suspicious_actions;
+extern	u32		g_sv_suspicious_actions_ban_time;
+
 extern	u32		g_sv_cta_dwInvincibleTime;
 //extern	u32		g_sv_cta_dwAnomalySetLengthTime;
 extern	u32		g_sv_cta_artefactReturningTime;
@@ -1894,6 +1897,9 @@ void register_mp_console_commands()
 	CMD1(CCC_Name,			"name");
 	CMD1(CCC_SvStatus,		"sv_status");
 	CMD1(CCC_SvChat,		"chat");
+
+    CMD4(CCC_Integer,		"sv_max_suspicious_actions",	(int*)&g_sv_max_suspicious_actions, 1, 30);
+    CMD4(CCC_Integer,		"sv_suspicious_actions_ban_time", (int*)&g_sv_suspicious_actions_ban_time, 600, 999999999); // min
 
 //-----------------
 	CMD4(CCC_Integer,		"sv_invincible_time",			(int*)&g_sv_cta_dwInvincibleTime, 0, 60); //sec
