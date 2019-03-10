@@ -49,7 +49,7 @@ namespace xray_nvi
 
     public:
         NVI_Image();
-        ~NVI_Image();
+        virtual ~NVI_Image();
         virtual HRESULT Initialize(int width, int height, NVI_PIXEL_FORMAT format);
         virtual HRESULT Initialize(int width, int height, NVI_PIXEL_FORMAT format, u8* data);
         virtual HRESULT Free();
