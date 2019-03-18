@@ -219,6 +219,8 @@ void CActor::g_cl_CheckControls(u32 mstate_wf, Fvector &vControlAccel, float &Ju
 			}
 		}
 
+	    CWeapon* W = smart_cast<CWeapon*>(inventory().ActiveItem());
+
 		if ((mstate_wf&mcSprint) && !CanSprint())
 			mstate_wf				&= ~mcSprint;
 
@@ -229,12 +231,20 @@ void CActor::g_cl_CheckControls(u32 mstate_wf, Fvector &vControlAccel, float &Ju
 			mstate_real|=mcSprint;
 		else
 			mstate_real&=~mcSprint;
-		if(!(mstate_real&(mcFwd|mcLStrafe|mcRStrafe))||mstate_real&(mcCrouch|mcClimb)|| !isActorAccelerated(mstate_wf, IsZoomAimingMode()))
+		if(!(mstate_real&(mcFwd|mcLStrafe|mcRStrafe))||mstate_real&(mcCrouch|mcClimb)|| !isActorAccelerated(mstate_wf, IsZoomAimingMode())
+            || W && W->GetState() == W->eFire)
 		{
 			mstate_real&=~mcSprint;
 			mstate_wishful&=~mcSprint;
 		}
-				
+
+        if (mstate_real & mcJump)
+        {
+            mstate_real &= ~mcSprint;
+            mstate_real &= ~mcFwd;
+            mstate_wishful &= ~mcFwd;
+        }
+
 		// check player move state
 		if(mstate_real&mcAnyMove)
 		{
