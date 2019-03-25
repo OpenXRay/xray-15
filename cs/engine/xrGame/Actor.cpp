@@ -858,6 +858,13 @@ float CActor::currentFOV()
 
 void CActor::UpdateCL	()
 {
+    if ((character_physics_support()->movement()->GetVelocityActual() < 0.7f) && (mstate_real&mcJump))
+    {
+        Fvector impulse;
+        impulse.set(0, 1, 0);
+        character_physics_support()->movement()->ApplyImpulse(impulse, m_fJumpSpeed);
+    }
+
 	UpdateInventoryOwner			(Device.dwTimeDelta);
 
 	if(m_feel_touch_characters>0)
