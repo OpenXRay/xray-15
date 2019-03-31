@@ -3,7 +3,7 @@
 
 #include "xrDebug.h"
 #include "os_clipboard.h"
-#include "dxerr.h"
+#include "Debug/dxerr.h"
 #include "Debug/StackTrace.h"
 #include "Debug/MiniDump.h"
 
@@ -26,10 +26,6 @@ extern bool shared_str_initialized;
 
 #ifndef USE_BUG_TRAP
 #include <exception>
-#endif
-
-#ifndef __BORLANDC__
-#pragma comment(lib, "dxerr.lib")
 #endif
 
 #include <dbghelp.h> // MiniDump flags
@@ -259,14 +255,17 @@ void xrDebug::Backend(const char* expression, const char* description, const cha
 
 LPCSTR xrDebug::ErrorToString(long code)
 {
+    const char* result = nullptr;
     static string1024 descStorage;
-    const char* errorDesc = DXGetErrorDescription(code);
-    if (!errorDesc)
+
+    DXGetErrorDescription(code, descStorage, sizeof(descStorage));
+    if (!result)
     {
         FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, 0, code, 0, descStorage, sizeof(descStorage) - 1, 0);
-        errorDesc = descStorage;
+        result = descStorage;
     }
-    return errorDesc;
+
+    return result;
 }
 
 void xrDebug::Error(long hr, const char* expr, const char* file, int line, const char* function, bool& ignoreAlways)

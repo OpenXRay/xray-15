@@ -6,6 +6,8 @@
 #	define MASTER_GOLD
 #endif // DEBUG
 
+#define _SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS
+
 #pragma warning(disable:4996)
 
 #if (defined(_DEBUG) || defined(MIXED) || defined(DEBUG)) && !defined(FORCE_NO_EXCEPTIONS)

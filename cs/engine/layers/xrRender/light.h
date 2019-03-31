@@ -133,7 +133,7 @@ public:
 	void			xform_calc				();
 	void			vis_prepare				();
 	void			vis_update				();
-	void			export 					(light_Package& dest);
+	void			Export 					(light_Package& dest);
 	void			set_attenuation_params	(float a0, float a1, float a2, float fo);
 #endif
 

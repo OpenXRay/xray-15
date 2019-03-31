@@ -8,7 +8,7 @@
 #pragma warning(push)
 #pragma warning(disable:4995)
 #include <malloc.h>
-#include <dxerr.h>
+#include "xrCore/Debug/dxerr.h"
 
 //#pragma warning(pop)
 

@@ -1,3 +1,5 @@
 # exclude all dot files except .gitignore
 .*
 !.gitignore
+intermediate/
+lib/
