@@ -1165,7 +1165,7 @@ void CPHShell::EnabledCallbacks(BOOL val)
 
 
 template< typename T>
-void for_each_bone_id( IKinematics &K, T op )
+void for_each_bone_id( IKinematics &K, T&& op )
 {
 	u16 bn =  K.LL_BoneCount();
 	for(u16 i = 0; i < bn; ++i )
@@ -1195,7 +1195,6 @@ CPHElement* get_physics_parent( IKinematics &k,  u16 id )
 static u16 element_position_in_set_calbacks=u16(-1);
 void CPHShell::SetCallbacks( )
 {
-	
 	struct set_bone_callback
 	{
 		void operator() ( CPHElement* e){e->SetBoneCallback(); }

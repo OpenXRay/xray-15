@@ -1092,17 +1092,6 @@ bool CSE_ALifeCreatureAbstract::can_switch_offline	() const
 	return						(inherited::can_switch_offline() && (get_health() > 0.f));
 }
 
-IC	void CSE_ALifeCreatureAbstract::set_health	(float const health_value)
-{
-	VERIFY( !((get_killer_id() != u16(-1)) && (health_value > 0.f)) );
-	fHealth = health_value;
-}
-
-IC	void CSE_ALifeCreatureAbstract::set_killer_id	(ALife::_OBJECT_ID const killer_id)
-{
-	m_killer_id = killer_id;
-}
-
 ////////////////////////////////////////////////////////////////////////////
 // CSE_ALifeMonsterAbstract
 ////////////////////////////////////////////////////////////////////////////

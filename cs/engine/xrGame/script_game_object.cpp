@@ -7,6 +7,7 @@
 ////////////////////////////////////////////////////////////////////////////
 
 #include "pch_script.h"
+#include "gameobject.h"
 #include "script_game_object.h"
 #include "script_game_object_impl.h"
 #include "script_entity_action.h"
@@ -101,6 +102,26 @@ CScriptIniFile *CScriptGameObject::spawn_ini			() const
 {
 	return			((CScriptIniFile*)object().spawn_ini());
 }
+
+// Moved from script_game_object_impl.h because of linkage errors
+#if 1
+CGameObject &CScriptGameObject::object() const
+{
+#ifdef DEBUG
+    __try
+    {
+        if (m_game_object && m_game_object->lua_game_object() == this)
+            return	(*m_game_object);
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER)
+    {}
+
+    ai().script_engine().script_log(eLuaMessageTypeError, "you are trying to use a destroyed object [%x]", m_game_object);
+    THROW2(m_game_object && m_game_object->lua_game_object() == this, "Probably, you are trying to use a destroyed object!");
+#endif // #ifdef DEBUG
+    return			(*m_game_object);
+}
+#endif
 
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////

@@ -12,6 +12,8 @@
 #include "ai_space.h"
 #include "script_engine.h"
 
+// Moved to script_game_object.cpp due to linkage errors
+#if 0
 IC	CGameObject &CScriptGameObject::object	() const
 {
 #ifdef DEBUG
@@ -27,3 +29,4 @@ IC	CGameObject &CScriptGameObject::object	() const
 #endif // #ifdef DEBUG
 	return			(*m_game_object);
 }
+#endif
