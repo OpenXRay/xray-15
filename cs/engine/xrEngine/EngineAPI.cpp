@@ -161,7 +161,8 @@ void CEngineAPI::CreateRendererList()
 		bSupports_r2 = true;
 		bSupports_r2_5 = true;
 		bSupports_r3 = true;
-	}
+        bSupports_gl = true;
+    }
 	else
 	{
 		// try to initialize R2
@@ -189,21 +190,26 @@ void CEngineAPI::CreateRendererList()
 			R_ASSERT(test_dx10_rendering);
 			bSupports_r3 = test_dx10_rendering();
 			FreeLibrary(hRender);
-		}
-	}
+        }
+	    
+	    // try to initialize GL
+        Log("Loading DLL:", gl_name);
+        if (strstr(Core.Params, "-gl"))
+            hRender = LoadLibrary(gl_name);
+        if (hRender)
+        {
+            bSupports_gl = true;
+            // XXX: Why it crashes? Fix!
+            //FreeLibrary(hRender);
+        }
+    }
 
-	// try to initialize GL
-	Log("Loading DLL:", gl_name);
-	hRender = LoadLibrary(gl_name);
-	if (hRender)
-		bSupports_gl = true;
-
-	hRender = 0;
+	hRender = nullptr;
 
 	xr_vector<LPCSTR>			_tmp;
 	u32 i						= 0;
 	bool bBreakLoop = false;
-	for(; i<5; ++i)
+	for(; i<6; ++i)
 	{
 		switch (i)
 		{
@@ -219,6 +225,10 @@ void CEngineAPI::CreateRendererList()
 			if (!bSupports_r3)
 				bBreakLoop = true;
 			break;
+        case 5:		//"renderer_r_ogl"
+            if (!bSupports_gl)
+                bBreakLoop = true;
+            break;
 		default:	;
 		}
 
@@ -232,14 +242,12 @@ void CEngineAPI::CreateRendererList()
 		case 1: val ="renderer_r2a";		break;
 		case 2: val ="renderer_r2";			break;
 		case 3: val ="renderer_r2.5";		break;
-		case 4: val ="renderer_r3";			break; //  -)
+		case 4: val ="renderer_r3";			break;
+        case 5: val = "renderer_gl";		break;
 		}
 		if (bBreakLoop) break;
 		_tmp.back()					= xr_strdup(val);
 	}
-
-	if (bSupports_gl)
-		_tmp.push_back("renderer_gl");
 
 	u32 _cnt								= _tmp.size()+1;
 	vid_quality_token						= xr_alloc<xr_token>(_cnt);
