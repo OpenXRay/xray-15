@@ -90,7 +90,6 @@
       <AdditionalLibraryDirectories>$(SolutionDir)libraries\$(Configuration);$(DXSDK_DIR)Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>Server\serv.def</ModuleDefinitionFile>
       <ProgramDatabaseFile />
-      <ImportLibrary>$(SolutionDir)intermediate_plugs\$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -115,9 +114,6 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(ProjectName).pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>$(SolutionDir)intermediate_plugs\$(Configuration)\$(ProjectName)\</AssemblerListingLocation>
-      <ObjectFileName>$(SolutionDir)intermediate_plugs\$(Configuration)\$(ProjectName)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)intermediate_plugs\$(Configuration)\$(ProjectName)\</ProgramDataBaseFileName>
       <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
       <BrowseInformation />
       <WarningLevel>Level3</WarningLevel>
@@ -137,7 +133,6 @@
       <ModuleDefinitionFile>Server\serv.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)xray_export.pdb</ProgramDatabaseFile>
-      <ImportLibrary>$(SolutionDir)intermediate_plugs\$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -303,7 +298,6 @@
       <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </PrecompiledHeader>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)intermediate_plugs\$(Configuration)\$(ProjectName)</ObjectFileName>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

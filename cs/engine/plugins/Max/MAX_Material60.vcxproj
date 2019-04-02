@@ -91,7 +91,6 @@
       <ProgramDatabaseFile>$(OutDir)xray_material.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <BaseAddress>0x3e0e0000</BaseAddress>
-      <ImportLibrary>$(SolutionDir)intermediate_plugs\$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -140,7 +139,6 @@
       <SubSystem>Windows</SubSystem>
       <SetChecksum>true</SetChecksum>
       <BaseAddress>0x3e0e0000</BaseAddress>
-      <ImportLibrary>$(SolutionDir)intermediate_plugs\$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

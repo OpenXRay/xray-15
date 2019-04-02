@@ -56,9 +56,6 @@
       <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
       <PrecompiledHeader />
       <PrecompiledHeaderOutputFile />
-      <AssemblerListingLocation>$(SolutionDir)intermediate_plugs\$(Configuration)\$(ProjectName)\</AssemblerListingLocation>
-      <ObjectFileName>$(SolutionDir)intermediate_plugs\$(Configuration)\$(ProjectName)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)intermediate_plugs\$(Configuration)\$(ProjectName)\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </ClCompile>
@@ -85,9 +82,6 @@
       <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
       <PrecompiledHeader />
       <PrecompiledHeaderOutputFile />
-      <AssemblerListingLocation>$(SolutionDir)intermediate_plugs\$(Configuration)\$(ProjectName)\</AssemblerListingLocation>
-      <ObjectFileName>$(SolutionDir)intermediate_plugs\$(Configuration)\$(ProjectName)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)intermediate_plugs\$(Configuration)\$(ProjectName)\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
