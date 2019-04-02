@@ -1,8 +1,8 @@
 # exclude all dot files except .gitignore
 .*
 !.gitignore
-bin/
-bin_plugs/
-intermediate/
-intermediate_plugs/
-lib/
+./bin/
+./bin_plugs/
+./intermediate/
+./intermediate_plugs/
+./lib/
