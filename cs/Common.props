@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets">
     <Import Project="$(SolutionDir)ConfigurationDefs.props" />
@@ -47,6 +47,7 @@
     <xrIntDir>$(SolutionDir)..\intermediate\$(xrPlatform)\$(Configuration)\</xrIntDir>
     <xrSdkDir>$(SolutionDir)..\sdk\</xrSdkDir>
     <xrExternals>$(SolutionDir)..\Externals\</xrExternals>
+    <xr3rdParty>$(SolutionDir)3rd Party\</xr3rdParty>
   </PropertyGroup>
 
   <PropertyGroup Label="OutputDirectories">
@@ -71,6 +72,7 @@
       <AdditionalIncludeDirectories>
         .;
         $(SolutionDir);
+        $(xr3rdParty);
         $(xrExternals);
         $(ProjectDir);
         $(xrSdkDir)include;

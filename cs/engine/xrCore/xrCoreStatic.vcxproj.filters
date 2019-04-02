@@ -264,6 +264,9 @@
     <ClCompile Include="Debug\StackTrace.cpp">
       <Filter>Debug core</Filter>
     </ClCompile>
+    <ClCompile Include="Debug\dxerr.cpp">
+      <Filter>Debug core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FTimer.h">
@@ -548,6 +551,9 @@
     <ClInclude Include="Debug\SymbolEngine.h">
       <Filter>Debug core</Filter>
     </ClInclude>
+    <ClInclude Include="Debug\dxerr.h">
+      <Filter>Debug core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="xrCore.rc">
@@ -561,5 +567,16 @@
     <CustomBuild Include="LocatorAPI_Notifications.h">
       <Filter>FS</Filter>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Debug\DXGetErrorDescription.inl">
+      <Filter>Debug core</Filter>
+    </None>
+    <None Include="Debug\DXGetErrorString.inl">
+      <Filter>Debug core</Filter>
+    </None>
+    <None Include="Debug\DXTrace.inl">
+      <Filter>Debug core</Filter>
+    </None>
   </ItemGroup>
 </Project>

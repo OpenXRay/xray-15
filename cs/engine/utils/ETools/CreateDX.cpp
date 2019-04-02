@@ -4,7 +4,7 @@
 #include	"stdafx.h"
 #include	"D3DX_Wrapper.h"
 
-#include	"dxerr.h"
+#include	"xrCore/Debug/dxerr.h"
 // misc
 __declspec( dllimport ) bool WINAPI FSColorPickerDoModal(unsigned int * currentColor, unsigned int * originalColor, const int initialExpansionState);
 extern "C" __declspec(dllexport) bool  __stdcall FSColorPickerExecute(unsigned int * currentColor, unsigned int * originalColor, const int initialExpansionState)
@@ -190,8 +190,10 @@ extern "C"{
 
 	ETOOLS_API const char*  WINAPI DX_GetErrorDescription9(HRESULT hr)
 	{
-		return DXGetErrorDescription(hr);
-	}
+        static char desc[1024];
+        DXGetErrorDescription(hr, desc, sizeof(desc));
+        return desc;
+    }
 	ETOOLS_API D3DXMATRIX* WINAPI 
 		D3DX_MatrixInverse(          
 		D3DXMATRIX *pOut,
