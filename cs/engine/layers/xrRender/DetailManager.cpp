@@ -371,6 +371,7 @@ void __stdcall	CDetailManager::MT_CALC		()
 {
 #ifndef _EDITOR
 	if (0==RImplementation.Details)		return;	// possibly deleted
+    if (this != RImplementation.Details)	return;
 	if (0==dtFS)						return;
 	if (!psDeviceFlags.is(rsDetails))	return;
 #endif    
