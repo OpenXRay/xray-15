@@ -629,8 +629,8 @@ void		xrRender_initconsole	()
 //.	CMD4(CCC_Float,		"r__geometry_lod_pow",	&ps_r__LOD_Power,			0,		2		);
 
 //.	CMD4(CCC_Float,		"r__detail_density",	&ps_r__Detail_density,		.05f,	0.99f	);
-	CMD4(CCC_Float,		"r__detail_density",	&ps_current_detail_density,	0.04f,	0.6f	); // KD: extended from 0.2 to 0.04 and replaced variable
-    CMD4(CCC_DetailRadius,	"r__detail_radius",	&ps_r__detail_radius,		49,		250		); // KD
+	CMD4(CCC_Float,		"r__detail_density",	&ps_current_detail_density,	0.2f,	0.6f	); // KD: replaced variable
+    CMD4(CCC_DetailRadius,	"r__detail_radius",	&ps_r__detail_radius,		49,		200		); // KD
 
 #ifdef DEBUG
 	CMD4(CCC_Float,		"r__detail_l_ambient",	&ps_r__Detail_l_ambient,	.5f,	.95f	);
