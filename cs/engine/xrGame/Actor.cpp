@@ -1096,7 +1096,7 @@ void CActor::shedule_Update	(u32 DT)
 		mstate_wishful &=~mcFwd;
 		mstate_wishful &=~mcBack;
 		extern bool g_bAutoClearCrouch;
-		if (g_bAutoClearCrouch)
+		if (g_bAutoClearCrouch && !(mstate_real&(mcJump | mcFall)))/// v2v3v4 фикс когда можно было прыгнув в прыжке встать перед самой землёй забаговав анимацию ходьбы (левитация)
 			mstate_wishful &=~mcCrouch;
 		//-----------------------------------------------------
 		}
