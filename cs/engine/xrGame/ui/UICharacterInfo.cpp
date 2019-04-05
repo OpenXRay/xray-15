@@ -225,7 +225,7 @@ void CUICharacterInfo::InitCharacterMP( LPCSTR player_name, LPCSTR player_icon )
 	
 	if ( m_icons[eName] )
 	{
-		m_icons[eName]->SetTextST( player_name );
+		m_icons[eName]->SetText( player_name );//v2v3v4 чтобы нельзя было искать строку в configs\text\ для ника
 		m_icons[eName]->Show( true );
 	}
 
