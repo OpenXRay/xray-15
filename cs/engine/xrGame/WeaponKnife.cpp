@@ -84,6 +84,7 @@ void CWeaponKnife::OnStateSwitch	(u32 S)
 		}break;
 	case eFire2:
 		{
+			if(GetState() == eFire) return;//v2v3v4 фикс 2й атаки
 			//-------------------------------------------
 			m_eHitType		= m_eHitType_2;
 			//fHitPower		= fHitPower_2;
@@ -191,7 +192,7 @@ void CWeaponKnife::switch2_Attacking	(u32 state)
 
 	if(state==eFire)
 		PlayHUDMotion("anm_attack",		FALSE, this, state);
-	else //eFire2
+	else if(GetState() != eFire && state==eFire2)//v2v3v4 фикс 2й атаки
 		PlayHUDMotion("anm_attack2",	FALSE, this, state);
 
 	SetPending			(TRUE);
@@ -233,6 +234,7 @@ void CWeaponKnife::FireStart()
 
 void CWeaponKnife::Fire2Start () 
 {
+	if(GetState() != eFire)//v2v3v4 фикс 2й атаки
 	SwitchState(eFire2);
 }
 
