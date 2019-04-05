@@ -27,9 +27,11 @@ static const float y_spin0_factor		= 0.0f;
 static const float y_spin1_factor		= 0.4f;
 static const float y_shoulder_factor	= 0.4f;
 static const float y_head_factor		= 0.2f;
-static const float p_spin0_factor		= 0.0f;
-static const float p_spin1_factor		= 0.2f;
-static const float p_shoulder_factor	= 0.7f;
+
+static const float p_spin0_factor		= 0.7f;//v2v3v4 гнём спину тут
+static const float p_spin1_factor		= 0.01f;
+static const float p_shoulder_factor	= 0.3f;
+
 static const float p_head_factor		= 0.1f;
 static const float r_spin0_factor		= 0.3f;
 static const float r_spin1_factor		= 0.3f;
@@ -425,23 +427,10 @@ void CActor::g_SetAnimation( u32 mstate_rl )
 						
 						if(K)
 						{
-							switch (W->GetState()){
+							switch (W->GetState()){//v2v3v4 фикс анимок для ножа
 							case CWeapon::eIdle:		M_torso	= TW->moving[moving_idx];		break;
-							
-							case CWeapon::eFire:	
-								if(is_standing)
-														M_torso = M_legs = M_head = TW->all_attack_0;
-								else
-														M_torso	= TW->attack_zoom;
-								break;
-
-							case CWeapon::eFire2:
-								if(is_standing)
-														M_torso = M_legs = M_head = TW->all_attack_1;
-								else
-														M_torso	= TW->fire_idle;
-								break;
-
+							case CWeapon::eFire:		M_torso = TW->attack_zoom;				break;
+							case CWeapon::eFire2:		M_torso = TW->fire_idle;				break;
 							case CWeapon::eReload:		M_torso	= TW->reload;					break;
 							case CWeapon::eShowing:		M_torso	= TW->draw;						break;
 							case CWeapon::eHiding:		M_torso	= TW->holster;					break;
@@ -473,22 +462,7 @@ void CActor::g_SetAnimation( u32 mstate_rl )
 							}
 						}
 					}
-					else if (M) {
-						if(is_standing)
-						{
-							switch (M->GetState()){
-							case CMissile::eShowing		:		M_torso	= TW->draw;			break;
-							case CMissile::eHiding		:		M_torso	= TW->holster;		break;
-							case CMissile::eIdle		:		M_torso	= TW->moving[moving_idx];		break;
-							case CMissile::eThrowStart	:		M_torso = M_legs = M_head = TW->all_attack_0;	break;
-							case CMissile::eReady		:		M_torso = M_legs = M_head = TW->all_attack_1;	break;
-							case CMissile::eThrow		:		M_torso = M_legs = M_head = TW->all_attack_2;	break;
-							case CMissile::eThrowEnd	:		M_torso = M_legs = M_head = TW->all_attack_2;	break;
-							default						:		M_torso	= TW->draw;			break; 
-							}
-						}
-						else
-						{
+					else if (M) {//v2v3v4 фикс анимок для гранат и болта
 							switch (M->GetState()){
 							case CMissile::eShowing		:		M_torso	= TW->draw;						break;
 							case CMissile::eHiding		:		M_torso	= TW->holster;					break;
@@ -499,7 +473,6 @@ void CActor::g_SetAnimation( u32 mstate_rl )
 							case CMissile::eThrowEnd	:		M_torso	= TW->fire_end;					break;
 							default						:		M_torso	= TW->draw;						break; 
 							}
-						}
 					}
 					else if (A){
 							switch(A->GetState()){
@@ -515,6 +488,9 @@ void CActor::g_SetAnimation( u32 mstate_rl )
 			}
 		}
 	}
+	if (!inventory().ActiveItem())
+
+			M_torso = ST->m_torso[6].moving[moving_idx];//v2v3v4 даём анимки безоружному здесь 
 
 	if (!M_legs)
 	{
