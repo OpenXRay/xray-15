@@ -645,7 +645,9 @@ void CApplication::OnEvent(EVENT E, u64 P1, u64 P2)
         {
             Console->Execute("main_menu off");
             Console->Hide();
-            Device.Reset(false);
+            //! this line is commented by Dima
+            //! because I don't see any reason to reset device here
+            //! Device.Reset (false);
             g_pGamePersistent->PreStart(opServer);
             g_pGameLevel = (IGame_Level*)Engine.External.pCreate(CLSID_GAME_LEVEL);
             pApp->LoadBegin();
