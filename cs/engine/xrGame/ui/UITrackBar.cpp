@@ -270,7 +270,6 @@ void CUITrackBar::UpdatePos()
 		pos.x					= free_space-pos.x;
 
 	m_pSlider->SetWndPos		(pos);
-	SaveValue					();
 }
 
 void CUITrackBar::OnMessage(LPCSTR message)
