@@ -1117,7 +1117,7 @@ namespace luabind { namespace detail
 			// special case if we get nil in, try to match the holder type
 			if (lua_isnil(L, index))
 			{
-				class_rep* crep = get_class_rep<class T>(L);
+				class_rep* crep = get_class_rep<T>(L);
 				if (crep == 0) return -1;
 				if ((LUABIND_TYPE_INFO_EQUAL(crep->holder_type(), LUABIND_TYPEID(T))))
 					return 0;
