@@ -16,7 +16,7 @@
 
 namespace smart_cover {
 
-class target_provider : 
+class target_provider :
 	public	CActionBase<animation_planner>,
 	private boost::noncopyable
 {
@@ -34,9 +34,7 @@ private:
 	u32					m_loophole_value;
 };
 
-class target_fire_no_lookout : 
-	public	target_provider,
-	private debug::make_final<target_fire_no_lookout>
+class target_fire_no_lookout final : public target_provider
 {
 private:
 	typedef target_provider inherited;
