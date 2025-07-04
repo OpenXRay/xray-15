@@ -179,11 +179,7 @@ void CEngineAPI::CreateRendererList()
 
 		// try to initialize R3
 		Log				("Loading DLL:",	r3_name);
-		//	Hide "d3d10.dll not found" message box for XP
-		SetErrorMode(SEM_FAILCRITICALERRORS);
 		hRender			= LoadLibrary		(r3_name);
-		//	Restore error handling
-		SetErrorMode(0);
 		if (hRender)	
 		{
 			SupportsDX10Rendering *test_dx10_rendering = (SupportsDX10Rendering*) GetProcAddress(hRender,"SupportsDX10Rendering");
