@@ -164,12 +164,11 @@ void CUIListBox::MoveSelectedDown()
 //.	R_ASSERT(!m_flags.test(CUIScrollView::eMultiSelect));
 	WINDOW_LIST_it it		= m_pad->GetChildWndList().begin();
 	WINDOW_LIST_it it_e		= m_pad->GetChildWndList().end();
-	WINDOW_LIST_it it_next;
 
 	for(; it!=it_e; ++it)
 	{
 		if(*it==w){
-		it_next				= it;
+		auto it_next				= it;
 		++it_next;
 		if(it_next==it_e)	break;
 

@@ -118,8 +118,8 @@ void CUIScrollView::RecalcSize			()
 
 	if(m_sort_function)
 	{
-		m_pad->GetChildWndList().sort(m_sort_function);
-		//std::sort(m_pad->GetChildWndList().begin(), m_pad->GetChildWndList().end(), m_sort_function);
+		//m_pad->GetChildWndList().sort(m_sort_function);
+		std::sort(m_pad->GetChildWndList().begin(), m_pad->GetChildWndList().end(), m_sort_function);
 	}
 
 	if(GetVertFlip()){

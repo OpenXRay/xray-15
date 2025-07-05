@@ -281,8 +281,8 @@ void CUIDragDropListEx::Compact()
 	CUIWindow::WINDOW_LIST	wl		= m_container->GetChildWndList();
 	ClearAll						(false);
 
-	CUIWindow::WINDOW_LIST_it it	= wl.begin();
-	CUIWindow::WINDOW_LIST_it it_e	= wl.end();
+	WINDOW_LIST_it it	= wl.begin();
+	WINDOW_LIST_it it_e	= wl.end();
 	for(;it!=it_e;++it)
 	{
 		CUICellItem*	itm			= smart_cast<CUICellItem*>(*it);

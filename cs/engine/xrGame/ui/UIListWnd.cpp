@@ -376,13 +376,11 @@ void CUIListWnd::DrawActiveBackFrame(const Frect& rect, CUIListItem * itm)
 
 void CUIListWnd::Draw()
 {
-	WINDOW_LIST_it it;
-
 	if(m_iFocusedItem != -1 && IsActiveBackgroundEnabled() )
 	{
 		Frect rect;
 		GetAbsoluteRect(rect);
-		for (it = m_ChildWndList.begin(); it != m_ChildWndList.end(); ++it)
+		for (auto it = m_ChildWndList.begin(); it != m_ChildWndList.end(); ++it)
 		{
 			CUIListItem *pListItem2 = smart_cast<CUIListItem*>(*it);
 			if (!pListItem2) continue;
@@ -400,7 +398,7 @@ void CUIListWnd::Draw()
 	{
 		Frect rect;
 		GetAbsoluteRect	(rect);
-		for (it = m_ChildWndList.begin(); it != m_ChildWndList.end(); ++it)
+		for (auto it = m_ChildWndList.begin(); it != m_ChildWndList.end(); ++it)
 		{
 			CUIListItem *pListItem2 = smart_cast<CUIListItem*>(*it);
 			if (!pListItem2) continue;
