@@ -12,7 +12,7 @@
 #include "script_export_space.h"
 
 namespace DetailPathManager {
-	enum EDetailPathType;
+	enum EDetailPathType : u32;
 };
 
 namespace MonsterSpace {
@@ -23,8 +23,8 @@ namespace MonsterSpace {
 };
 
 namespace PatrolPathManager {
-	enum EPatrolStartType;
-	enum EPatrolRouteType;
+	enum EPatrolStartType : u32;
+	enum EPatrolRouteType : u32;
 };
 
 class CPatrolPath;

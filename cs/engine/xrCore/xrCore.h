@@ -63,7 +63,11 @@
 #include <stdarg.h>
 #include <math.h>
 #include <string.h>
-#include <typeinfo.h>
+#if _MSC_VER < 1920
+	#include <typeinfo.h>
+#else
+	#include <typeinfo>
+#endif
 //#include <process.h>
 
 #ifndef DEBUG

@@ -18,7 +18,7 @@ namespace MovementManager {
 };
 
 namespace DetailPathManager {
-	enum EDetailPathType;
+	enum EDetailPathType : u32;
 };
 
 template <
