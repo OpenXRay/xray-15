@@ -9,7 +9,9 @@
 #endif // STRICT
 #define IDIRECTPLAY2_OR_GREATER		// ?
 #define DIRECTINPUT_VERSION	0x0800	//
+#ifndef _CRT_SECURE_NO_DEPRECATE
 #define _CRT_SECURE_NO_DEPRECATE	// vc8.0 stuff, don't deprecate several ANSI functions
+#endif
 
 // windows.h
 #ifndef _WIN32_WINNT
