@@ -2,9 +2,6 @@
 #include "xr_level_controller.h"
 class CUIWindow;
 
-#define ui_list xr_vector
-#define WINDOW_LIST_it auto
-
 //////////////////////////////////////////////////////////////////////////
 
 #include "UIMessages.h"
@@ -122,7 +119,7 @@ public:
 																					return  m_pFont;
 																				else
 																					return  m_pParentWnd->GetFont();}
-	using WINDOW_LIST = ui_list<CUIWindow*>;
+	using WINDOW_LIST = xr_vector<CUIWindow*>;
 	WINDOW_LIST&			GetChildWndList		()							{return m_ChildWndList; }
 
 
@@ -144,7 +141,7 @@ public:
 	IC void					SetCustomDraw		(bool b) 					{m_bCustomDraw = b;}
 
 protected:
-	IC void					SafeRemoveChild(CUIWindow* child)				{WINDOW_LIST_it it = std::find(m_ChildWndList.begin(),m_ChildWndList.end(),child); if(it!=m_ChildWndList.end())m_ChildWndList.erase(it);};
+	IC void					SafeRemoveChild(CUIWindow* child)				{auto it = std::find(m_ChildWndList.begin(),m_ChildWndList.end(),child); if(it!=m_ChildWndList.end())m_ChildWndList.erase(it);};
 
 	shared_str				m_windowName;
 	//список дочерних окон

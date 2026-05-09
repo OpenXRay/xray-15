@@ -158,7 +158,7 @@ CUIWindow::~CUIWindow()
 
 void CUIWindow::Draw()
 {
-	for(WINDOW_LIST_it it = m_ChildWndList.begin(); m_ChildWndList.end() != it; ++it){
+	for(auto it = m_ChildWndList.begin(); m_ChildWndList.end() != it; ++it){
 		if(!(*it)->IsShown())		continue;
 		if((*it)->GetCustomDraw())	continue;
 		(*it)->Draw					();
@@ -198,7 +198,7 @@ void CUIWindow::Update()
 		}
 	}
 	
-	for(WINDOW_LIST_it it = m_ChildWndList.begin(); m_ChildWndList.end()!=it; ++it){
+	for(auto it = m_ChildWndList.begin(); m_ChildWndList.end()!=it; ++it){
 		if(!(*it)->IsShown()) continue;
 			(*it)->Update();
 	}
@@ -502,7 +502,7 @@ void CUIWindow::SetKeyboardCapture(CUIWindow* pChildWindow, bool capture_status)
 void CUIWindow::SendMessage(CUIWindow *pWnd, s16 msg, void *pData)
 {
 	//оповестить дочерние окна
-	for(WINDOW_LIST_it it = m_ChildWndList.begin(); m_ChildWndList.end()!=it; ++it)
+	for(auto it = m_ChildWndList.begin(); m_ChildWndList.end()!=it; ++it)
 	{
 		if((*it)->IsEnabled())
 			(*it)->SendMessage(pWnd,msg,pData);
@@ -543,7 +543,7 @@ CUIWindow* CUIWindow::GetChildMouseHandler(){
 bool CUIWindow::BringToTop(CUIWindow* pChild)
 {
 	//найти окно в списке
-/*	WINDOW_LIST_it it = std::find(m_ChildWndList.begin(), 
+/*	auto it = std::find(m_ChildWndList.begin(),
 										m_ChildWndList.end(), 
 										pChild);
 */
@@ -577,7 +577,7 @@ void CUIWindow::Reset()
 }
 void CUIWindow::ResetAll()
 {
-	for(WINDOW_LIST_it it = m_ChildWndList.begin(); m_ChildWndList.end()!=it; ++it)
+	for(auto it = m_ChildWndList.begin(); m_ChildWndList.end()!=it; ++it)
 	{
 		(*it)->Reset();
 	}
@@ -618,7 +618,7 @@ void CUIWindow::SetParent(CUIWindow* pNewParent)
 }
 
 void CUIWindow::ShowChildren(bool show){
-	for(WINDOW_LIST_it it = m_ChildWndList.begin(); m_ChildWndList.end()!=it; ++it)		
+	for(auto it = m_ChildWndList.begin(); m_ChildWndList.end()!=it; ++it)
 			(*it)->Show(show);
 }
 

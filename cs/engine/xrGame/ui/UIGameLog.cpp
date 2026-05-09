@@ -100,10 +100,10 @@ void CUIGameLog::Update()
 
 
 	// REMOVE ITEMS WITH COMPLETED ANIMATION
-	WINDOW_LIST_it end_it = m_pad->GetChildWndList().end();
-	WINDOW_LIST_it begin_it = m_pad->GetChildWndList().begin();
+	auto end_it = m_pad->GetChildWndList().end();
+	auto begin_it = m_pad->GetChildWndList().begin();
 
-	for(WINDOW_LIST_it it = begin_it; it!=end_it; ++it)
+	for(auto it = begin_it; it!=end_it; ++it)
 	{
 		CUIStatic* pItem = smart_cast<CUIStatic*>(*it);
 		VERIFY(pItem);
@@ -127,7 +127,7 @@ void CUIGameLog::Update()
 	toDelList.clear();
 	Frect visible_rect;
 	GetAbsoluteRect(visible_rect);
-	for(	WINDOW_LIST_it it = m_pad->GetChildWndList().begin(); 
+	for(	auto it = m_pad->GetChildWndList().begin();
 			m_pad->GetChildWndList().end()!=it; 
 			++it)
 	{
