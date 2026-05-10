@@ -39,9 +39,9 @@ bool CUISequenceSimpleItem::IsPlaying()
 CUIWindow* find_child_window(CUIWindow* parent, const shared_str& _name)
 {
 	CUIWindow::WINDOW_LIST& wl		= parent->GetChildWndList();
-	auto _I	= wl.begin();
-	auto _E	= wl.end();
-	for(;_I!=_E;++_I) if((*_I)->WindowName()==_name) return (*_I);
+	auto it		= wl.begin();
+	auto it_e	= wl.end();
+	for(;it!=it_e;++it) if((*it)->WindowName()==_name) return (*it);
 	return NULL;
 }
 
