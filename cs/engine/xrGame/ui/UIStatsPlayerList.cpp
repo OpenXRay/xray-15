@@ -295,7 +295,7 @@ void CUIStatsPlayerList::Update()
 
 	R_ASSERT(items.size() == m_pad->GetChildWndList().size());
 
-	WINDOW_LIST_it	it		= m_pad->GetChildWndList().begin();
+	auto			it		= m_pad->GetChildWndList().begin();
 	ItemIt			itit	= items.begin();
 
 	for (; it != m_pad->GetChildWndList().end(); it++, itit++)

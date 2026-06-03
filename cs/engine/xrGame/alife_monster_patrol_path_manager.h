@@ -15,8 +15,8 @@ class CSE_ALifeMonsterAbstract;
 class CPatrolPath;
 
 namespace PatrolPathManager {
-	enum EPatrolStartType;
-	enum EPatrolRouteType;
+	enum EPatrolStartType : u32;
+	enum EPatrolRouteType : u32;
 };
 
 class CALifeMonsterPatrolPathManager {

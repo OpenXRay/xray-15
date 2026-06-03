@@ -21,16 +21,16 @@ enum ETaskState;
 namespace ALife { enum ERelationType; }
 namespace ScriptEntity { enum EActionType; }
 namespace MovementManager { enum EPathType; }
-namespace DetailPathManager { enum EDetailPathType; }
-namespace SightManager { enum ESightType; }
+namespace DetailPathManager { enum EDetailPathType : u32; }
+namespace SightManager { enum ESightType : u32; }
 namespace smart_cover { class object; }
 
 class NET_Packet;
 class CGameTask;
 
 namespace PatrolPathManager { 
-	enum EPatrolStartType;
-	enum EPatrolRouteType;
+	enum EPatrolStartType : u32;
+	enum EPatrolRouteType : u32;
 };
 
 namespace MemorySpace {
@@ -113,10 +113,6 @@ class CArtefact;
 #endif // DEBUG
 
 class CScriptGameObject;
-
-namespace SightManager {
-	enum ESightType;
-}
 
 struct CSightParams {
 	SightManager::ESightType	m_sight_type;

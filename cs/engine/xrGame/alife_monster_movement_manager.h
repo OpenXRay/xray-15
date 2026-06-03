@@ -14,9 +14,7 @@ class CSE_ALifeMonsterAbstract;
 class CALifeMonsterDetailPathManager;
 class CALifeMonsterPatrolPathManager;
 
-namespace MovementManager {
-	enum EPathType;
-};
+#include "movement_manager_space.h"
 
 class CALifeMonsterMovementManager {
 public:

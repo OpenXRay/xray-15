@@ -17,7 +17,7 @@ class CPHAICharacter;
 namespace ALife {
 	enum EHitType;
 };
- static enum EEnvironment
+ enum EEnvironment
 			{
 				peOnGround,
 				peAtWall,

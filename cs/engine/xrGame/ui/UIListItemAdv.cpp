@@ -39,7 +39,7 @@ void CUIListItemAdv::AddWindow(CUIWindow* pWnd){
 
 float CUIListItemAdv::GetNextLeftPos(){
 	float p = 0;
-	for(WINDOW_LIST_it it = m_ChildWndList.begin(); m_ChildWndList.end()!=it; ++it)
+	for(auto it = m_ChildWndList.begin(); m_ChildWndList.end()!=it; ++it)
 		p += (*it)->GetWidth();
 
 	return p;

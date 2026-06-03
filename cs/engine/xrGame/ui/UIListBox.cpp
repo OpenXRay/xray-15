@@ -110,7 +110,7 @@ u32 CUIListBox::GetSelectedIDX()
 	u32			_idx	= 0;
 	CUIWindow*	w		= GetSelected();
 
-	for(WINDOW_LIST_it it = m_pad->GetChildWndList().begin(); m_pad->GetChildWndList().end()!=it; ++it)
+	for(auto it = m_pad->GetChildWndList().begin(); m_pad->GetChildWndList().end()!=it; ++it)
 	{
 		CUIListBoxItem* item = smart_cast<CUIListBoxItem*>(*it);
 		if (item)
@@ -162,14 +162,13 @@ void CUIListBox::MoveSelectedDown()
 	CUIWindow* w			= GetSelected();
 	if(!w)					return;
 //.	R_ASSERT(!m_flags.test(CUIScrollView::eMultiSelect));
-	WINDOW_LIST_it it		= m_pad->GetChildWndList().begin();
-	WINDOW_LIST_it it_e		= m_pad->GetChildWndList().end();
-	WINDOW_LIST_it it_next;
+	auto it					= m_pad->GetChildWndList().begin();
+	auto it_e				= m_pad->GetChildWndList().end();
 
 	for(; it!=it_e; ++it)
 	{
 		if(*it==w){
-		it_next				= it;
+		auto it_next				= it;
 		++it_next;
 		if(it_next==it_e)	break;
 
@@ -197,7 +196,7 @@ void CUIListBox::SetSelectedText(LPCSTR txt)
 
 CUIListBoxItem* CUIListBox::GetItemByTAG(u32 tag_val)
 {
-	for(WINDOW_LIST_it it = m_pad->GetChildWndList().begin(); m_pad->GetChildWndList().end()!=it; ++it)
+	for(auto it = m_pad->GetChildWndList().begin(); m_pad->GetChildWndList().end()!=it; ++it)
 	{
 		CUIListBoxItem* item = smart_cast<CUIListBoxItem*>(*it);
 		if (item)
@@ -213,7 +212,7 @@ CUIListBoxItem* CUIListBox::GetItemByTAG(u32 tag_val)
 CUIListBoxItem* CUIListBox::GetItemByIDX(u32 idx)
 {
 	u32 _idx = 0;
-	for(WINDOW_LIST_it it = m_pad->GetChildWndList().begin(); m_pad->GetChildWndList().end()!=it; ++it)
+	for(auto it = m_pad->GetChildWndList().begin(); m_pad->GetChildWndList().end()!=it; ++it)
 	{
 		CUIListBoxItem* item = smart_cast<CUIListBoxItem*>(*it);
 		if (item)
@@ -228,7 +227,7 @@ CUIListBoxItem* CUIListBox::GetItemByIDX(u32 idx)
 
 CUIListBoxItem* CUIListBox::GetItemByText(LPCSTR txt)
 {
-	for(WINDOW_LIST_it it = m_pad->GetChildWndList().begin(); m_pad->GetChildWndList().end()!=it; ++it)
+	for(auto it = m_pad->GetChildWndList().begin(); m_pad->GetChildWndList().end()!=it; ++it)
 	{
 		CUIListBoxItem* item = smart_cast<CUIListBoxItem*>(*it);
 		if (item)
@@ -281,7 +280,7 @@ CGameFont* CUIListBox::GetFont()
 float CUIListBox::GetLongestLength()
 {
 	float len = 0;
-	for(WINDOW_LIST_it it = m_pad->GetChildWndList().begin(); m_pad->GetChildWndList().end()!=it; ++it)
+	for(auto it = m_pad->GetChildWndList().begin(); m_pad->GetChildWndList().end()!=it; ++it)
 	{
 		CUIListBoxItem* item = smart_cast<CUIListBoxItem*>(*it);
 		if (item)
